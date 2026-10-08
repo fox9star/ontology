@@ -1,0 +1,347 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix kwar: <http://example.org/ontology/korean-war#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/korean-war> a owl:Ontology ;
+    rdfs:label "한국전쟁 역사 및 전사 분석 AI 에이전트 온톨로지"@ko,
+               "Korean War History and Military Strategic Analysis AI Agent Ontology"@en ;
+    rdfs:comment "한국전쟁(1950-1953)의 주요 군사 작전, 전장 위치, 참전 부대 및 지휘관, 정전 협상, 전사상자 사료 및 역사 분석 AI 에이전트 상호작용 체계를 정의한다."@ko,
+                 "Defines military operations, battlegrounds, armed units, commanding officers, armistice negotiations, casualty archives, and historical analysis AI agents for the Korean War."@en ;
+    owl:imports <https://example.org/ontology/core>, <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.0.0" .
+
+# =============================================================================
+# Classes (클래스 정의)
+# =============================================================================
+
+kwar:MilitaryOperation a owl:Class, rdfs:Class ;
+    rdfs:label "군사 작전 및 주요 전투"@ko, "Military Operation and Major Battle"@en ;
+    rdfs:comment "한국전쟁 기간 동안 수행된 주요 군사 작전, 전역(Campaign) 및 격전지 전투 활동."@ko,
+                 "Strategic military campaign, operation, or tactical battle engagement executed during the Korean War."@en .
+
+kwar:BattleLocation a owl:Class, rdfs:Class ;
+    rdfs:label "전장 전술 요충지"@ko, "Battlefield Strategic Location"@en ;
+    rdfs:comment "군사 작전이나 정전 회담이 전개된 한반도 전역의 지리적 전장 및 주요 요충 지점."@ko,
+                 "Geographical combat area, tactical hill, harbor, or village where military engagements or talks occurred."@en .
+
+kwar:BelligerentForce a owl:Class, rdfs:Class ;
+    rdfs:label "참전 국가 및 연합 세력"@ko, "Belligerent Force and Coalition"@en ;
+    rdfs:comment "대한민국 국군, 유엔군 연합, 공산 측 연합 등 전쟁에 직접 참전한 군사 정치적 연합체."@ko,
+                 "Sovereign belligerent party or multilateral military coalition actively engaged in combat operations."@en .
+
+kwar:CommandingOfficer a owl:Class, rdfs:Class ;
+    rdfs:label "참전 작전 지휘관"@ko, "Commanding Military Officer"@en ;
+    rdfs:comment "한국전쟁 당시 주요 군단, 사단 또는 연합군 최고 사령부를 지휘 통솔한 장성 및 야전 지휘관."@ko,
+                 "General officer or field tactical leader who exercised operational command over armed formations."@en .
+
+kwar:ArmisticeNegotiation a owl:Class, rdfs:Class ;
+    rdfs:label "정전 및 휴전 회담 세션"@ko, "Armistice Negotiation Session"@en ;
+    rdfs:comment "전쟁 종식과 적대행위 중단을 위해 개성과 판문점에서 개최된 공식 정전 협상 회의."@ko,
+                 "Formal diplomatic and military bilateral conference session conducted to negotiate terms of armistice."@en .
+
+kwar:TreatyDocument a owl:Class, rdfs:Class ;
+    rdfs:label "공식 정전 협정 및 조약"@ko, "Formal Treaty and Armistice Accord"@en ;
+    rdfs:comment "군사정전에 관한 협정문, 한미상호방위조약 등 전쟁 및 전후 안보를 규정한 법적 조약 문서."@ko,
+                 "Authoritative legal covenant, ceasefire agreement, or collective mutual defense pact resulting from the war."@en .
+
+kwar:MilitaryUnit a owl:Class, rdfs:Class ;
+    rdfs:label "참전 부대 및 사단 편성"@ko, "Participating Military Unit Formation"@en ;
+    rdfs:comment "전투에 투입된 군단, 사단, 여단, 연대 등의 실전 편제 군사 부대 단위."@ko,
+                 "Organized military corps, division, brigade, or regiment deployed in active operational combat sectors."@en .
+
+kwar:WarCasualtyRecord a owl:Class, rdfs:Class ;
+    rdfs:label "전사상자 및 피해 통계 기록"@ko, "War Casualty Statistical Record"@en ;
+    rdfs:comment "특정 전투 또는 작전 수행 중 발생한 전사자, 부상자, 실종자, 포로 등의 인명 피해 집계 기록."@ko,
+                 "Comprehensive casualty audit logging battle deaths, wounded personnel, missing in action, and prisoners."@en .
+
+kwar:HistoricalArtifact a owl:Class, rdfs:Class ;
+    rdfs:label "전쟁 사료 및 역사적 유물"@ko, "War Historical Document and Artifact"@en ;
+    rdfs:comment "작전명령서, 전시일지, 전선 상황도, 무공훈장 등 전쟁 당시의 역사적 진실을 입증하는 물적 사료."@ko,
+                 "Primary archival record, operational order, battlefield map, or physical artifact substantiating events."@en .
+
+kwar:AnalysisTask a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:TaskRun ;
+    rdfs:label "전사 고증 및 사료 분석 작업"@ko, "Military History Analysis Task"@en ;
+    rdfs:comment "AI 에이전트가 1차 사료와 지형 데이터, 전황 일지를 대조하여 역사적 사실을 검증하는 분석 실행 기록."@ko,
+                 "Actionable analytical run evaluating primary sources, topographical metrics, and battle logs for accuracy."@en .
+
+kwar:HistoricalAnalysisAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:Agent ;
+    rdfs:label "한국전쟁 역사 분석 AI 에이전트"@ko, "Korean War Historical Analysis AI Agent"@en ;
+    rdfs:comment "한국전쟁 전사 사료를 체계적으로 고증하고 전술 시뮬레이션을 수행하는 인공지능 역사 연구원."@ko,
+                 "Autonomous artificial intelligence entity specialized in war history research, archival vetting, and simulation."@en .
+
+kwar:TacticalAnalystAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf kwar:HistoricalAnalysisAgent ;
+    rdfs:label "전략 전술 시뮬레이션 에이전트"@ko, "Tactical Maneuver Simulation Agent"@en ;
+    rdfs:comment "화력, 병력비, 기상 및 지형 요인을 복합 분석하여 작전 전개의 필연성을 시뮬레이션하는 전문 에이전트."@ko,
+                 "Algorithmic specialist simulating troop ratios, terrain bottlenecks, fire support, and maneuver outcomes."@en .
+
+kwar:ArchiveCurationAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf kwar:HistoricalAnalysisAgent ;
+    rdfs:label "사료 고증 및 문서 큐레이션 에이전트"@ko, "Archival Curation and Provenance Agent"@en ;
+    rdfs:comment "참전국 정부의 기밀해제 외교 문서, 작전 일지, 전황 보고서의 진위와 출처를 검증하는 전문 에이전트."@ko,
+                 "Specialized documentary agent establishing provenance, declassification credibility, and cross-source validity."@en .
+
+kwar:CasualtyVerificationAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf kwar:HistoricalAnalysisAgent ;
+    rdfs:label "전사자 및 참전 유공자 추적 에이전트"@ko, "Casualty and Veteran Records Tracing Agent"@en ;
+    rdfs:comment "전몰용사 유해 발굴 데이터와 매장 기록, 참전 군번을 교차 추적하여 신원을 복원하는 전문 에이전트."@ko,
+                 "Specialized biometric and archival agent correlating military serials, burial logs, and remains recovery records."@en .
+
+# =============================================================================
+# Object Properties (객체 속성)
+# =============================================================================
+
+kwar:occurredAt a owl:ObjectProperty ;
+    rdfs:label "전투 발생 위치"@ko, "Occurred At Location"@en ;
+    rdfs:comment "군사 작전이나 전투가 전개된 지리적 전장 요충지를 연결한다."@ko,
+                 "Associates a military operation or battle with the geographical location where combat unfolded."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range kwar:BattleLocation .
+
+kwar:involvesForce a owl:ObjectProperty ;
+    rdfs:label "참전 세력 연결"@ko, "Involves Belligerent Force"@en ;
+    rdfs:comment "군사 작전에 참여하거나 교전한 참전 국가 연합 세력을 연결한다."@ko,
+                 "Links an operation to the belligerent coalition forces engaged in the tactical action."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range kwar:BelligerentForce .
+
+kwar:ledByCommander a owl:ObjectProperty ;
+    rdfs:label "작전 총지휘관"@ko, "Led By Commanding Officer"@en ;
+    rdfs:comment "해당 군사 작전을 기획하고 현장 지휘한 총책임 장성을 연결한다."@ko,
+                 "Identifies the primary general or admiral exercising supreme command over the operation."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range kwar:CommandingOfficer .
+
+kwar:belongsToForce a owl:ObjectProperty ;
+    rdfs:label "소속 참전 세력"@ko, "Belongs To Belligerent Force"@en ;
+    rdfs:comment "개별 군사 부대가 소속되어 있는 상위 군사 진영 및 국가 세력을 연결한다."@ko,
+                 "Connects a discrete military unit to the national armed forces or allied coalition it serves under."@en ;
+    rdfs:domain kwar:MilitaryUnit ;
+    rdfs:range kwar:BelligerentForce .
+
+kwar:participatedIn a owl:ObjectProperty ;
+    rdfs:label "참가 군사 작전"@ko, "Participated In Operation"@en ;
+    rdfs:comment "해당 부대가 실전에 투입되어 교전을 수행한 주요 작전을 연결한다."@ko,
+                 "Associates a military unit with the specific campaigns or battle actions it was engaged in."@en ;
+    rdfs:domain kwar:MilitaryUnit ;
+    rdfs:range kwar:MilitaryOperation .
+
+kwar:concludedWithTreaty a owl:ObjectProperty ;
+    rdfs:label "체결 결과 조약"@ko, "Concluded With Treaty"@en ;
+    rdfs:comment "정전 회담 협상의 결과물로 최종 서명 조인된 공식 조약 문건을 연결한다."@ko,
+                 "Links the negotiation process to the formal accord or treaty instrument produced by the talks."@en ;
+    rdfs:domain kwar:ArmisticeNegotiation ;
+    rdfs:range kwar:TreatyDocument .
+
+kwar:associatedOperation a owl:ObjectProperty ;
+    rdfs:label "대상 작전 연결"@ko, "Associated Operation"@en ;
+    rdfs:comment "인명 피해 통계가 집계되어 귀속되는 대상 전투 및 작전을 연결한다."@ko,
+                 "Connects casualty audit statistics to the discrete military operation in which losses were sustained."@en ;
+    rdfs:domain kwar:WarCasualtyRecord ;
+    rdfs:range kwar:MilitaryOperation .
+
+kwar:evidencedByArtifact a owl:ObjectProperty ;
+    rdfs:label "입증 사료 유물"@ko, "Evidenced By Historical Artifact"@en ;
+    rdfs:comment "해당 작전이나 전투의 역사적 사실을 객관적으로 입증하는 1차 사료를 연결한다."@ko,
+                 "Substantiates the operation by linking it to authentic archival records, orders, or museum artifacts."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range kwar:HistoricalArtifact .
+
+kwar:assignedAnalyst a owl:ObjectProperty ;
+    rdfs:label "배정 분석 에이전트"@ko, "Assigned Analysis Agent"@en ;
+    rdfs:comment "전사 분석 작업을 전담하여 실행하는 AI 분석 에이전트를 연결한다."@ko,
+                 "Assigns an autonomous historical reasoning agent to investigate the designated research task."@en ;
+    rdfs:domain kwar:AnalysisTask ;
+    rdfs:range kwar:HistoricalAnalysisAgent .
+
+kwar:targetOperation a owl:ObjectProperty ;
+    rdfs:label "분석 대상 작전"@ko, "Target Analyzed Operation"@en ;
+    rdfs:comment "AI 고증 작업이 집중적으로 검증하는 군사 작전 또는 전투를 연결한다."@ko,
+                 "Identifies the specific military operation subject to rigorous historical and tactical analysis."@en ;
+    rdfs:domain kwar:AnalysisTask ;
+    rdfs:range kwar:MilitaryOperation .
+
+kwar:supervisesUnit a owl:ObjectProperty ;
+    rdfs:label "지휘 통솔 부대"@ko, "Supervises Military Unit"@en ;
+    rdfs:comment "해당 지휘관이 직속으로 관할하고 지휘 통솔한 군사 부대를 연결한다."@ko,
+                 "Links a commanding officer to the subordinate military units placed under their direct authority."@en ;
+    rdfs:domain kwar:CommandingOfficer ;
+    rdfs:range kwar:MilitaryUnit .
+
+kwar:heldAtLocation a owl:ObjectProperty ;
+    rdfs:label "회담 개최 장소"@ko, "Held At Location"@en ;
+    rdfs:comment "정전 협상 및 회담이 공식적으로 개최된 지리적 장소를 연결한다."@ko,
+                 "Associates an armistice negotiation conference with the geographical location where meetings occurred."@en ;
+    rdfs:domain kwar:ArmisticeNegotiation ;
+    rdfs:range kwar:BattleLocation .
+
+# =============================================================================
+# Datatype Properties (데이터 속성)
+# =============================================================================
+
+kwar:operationName a owl:DatatypeProperty ;
+    rdfs:label "작전 전투 명칭"@ko, "Operation Name Text"@en ;
+    rdfs:comment "역사적으로 공인된 작전명 또는 전투 명칭 (예: 인천상륙작전, 장진호 전투)."@ko,
+                 "Official historical military designation of the tactical battle or offensive operation."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range xsd:string .
+
+kwar:startDate a owl:DatatypeProperty ;
+    rdfs:label "작전 개시 일자"@ko, "Operation Start Date"@en ;
+    rdfs:comment "전투 또는 군사 작전이 공식적으로 시작된 개시 날짜."@ko,
+                 "Calendar date marking the formal commencement of military hostilities or mission launch."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range xsd:date .
+
+kwar:endDate a owl:DatatypeProperty ;
+    rdfs:label "작전 종료 일자"@ko, "Operation End Date"@en ;
+    rdfs:comment "작전 목표가 완수되거나 전투가 종결된 공식 종료 날짜."@ko,
+                 "Calendar date marking the termination, cessation of combat, or objective completion of the mission."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range xsd:date .
+
+kwar:strategicOutcome a owl:DatatypeProperty ;
+    rdfs:label "전략 작전 결과"@ko, "Strategic Outcome Classification"@en ;
+    rdfs:comment "작전의 최종 성과 분류로 VICTORY, DEFEAT, STALEMATE, TACTICAL_SUCCESS 중 하나를 취한다."@ko,
+                 "Categorical evaluation of combat results such as VICTORY, DEFEAT, STALEMATE, or TACTICAL_SUCCESS."@en ;
+    rdfs:domain kwar:MilitaryOperation ;
+    rdfs:range xsd:string .
+
+kwar:locationName a owl:DatatypeProperty ;
+    rdfs:label "전장 지명 명칭"@ko, "Location Name Text"@en ;
+    rdfs:comment "전투나 회담이 진행된 전술 지역의 명칭 (예: 인천 월미도, 장진호, 판문점)."@ko,
+                 "Geographical toponym designating the physical hill, port, river basin, or conference venue."@en ;
+    rdfs:domain kwar:BattleLocation ;
+    rdfs:range xsd:string .
+
+kwar:latitude a owl:DatatypeProperty ;
+    rdfs:label "전장 위도 좌표"@ko, "Latitude Coordinate"@en ;
+    rdfs:comment "전장 지점의 WGS84 표준 위도 좌표 (단위: 도)."@ko,
+                 "WGS84 decimal latitude coordinate of the combat engagement or conference facility."@en ;
+    rdfs:domain kwar:BattleLocation ;
+    rdfs:range xsd:decimal .
+
+kwar:longitude a owl:DatatypeProperty ;
+    rdfs:label "전장 경도 좌표"@ko, "Longitude Coordinate"@en ;
+    rdfs:comment "전장 지점의 WGS84 표준 경도 좌표 (단위: 도)."@ko,
+                 "WGS84 decimal longitude coordinate of the combat engagement or conference facility."@en ;
+    rdfs:domain kwar:BattleLocation ;
+    rdfs:range xsd:decimal .
+
+kwar:forceName a owl:DatatypeProperty ;
+    rdfs:label "참전 세력 명칭"@ko, "Belligerent Force Name"@en ;
+    rdfs:comment "참전 국가 또는 연합군의 공식 명칭 (예: 유엔군, 대한민국 국군, 중국인민지원군)."@ko,
+                 "Official standard name of the sovereign combatant force or multilateral military coalition."@en ;
+    rdfs:domain kwar:BelligerentForce ;
+    rdfs:range xsd:string .
+
+kwar:allianceSide a owl:DatatypeProperty ;
+    rdfs:label "참전 진영 구분"@ko, "Alliance Side Alignment"@en ;
+    rdfs:comment "참전 세력의 국제 진영으로 UN_ALLIED 또는 COMMUNIST_BLOC 값을 가진다."@ko,
+                 "Geopolitical coalition alignment categorizing the force as UN_ALLIED or COMMUNIST_BLOC."@en ;
+    rdfs:domain kwar:BelligerentForce ;
+    rdfs:range xsd:string .
+
+kwar:commanderName a owl:DatatypeProperty ;
+    rdfs:label "지휘관 성명"@ko, "Commander Name Text"@en ;
+    rdfs:comment "작전 지휘관의 공식 인명 성명."@ko,
+                 "Official personal name of the military commander leading tactical or theatre forces."@en ;
+    rdfs:domain kwar:CommandingOfficer ;
+    rdfs:range xsd:string .
+
+kwar:militaryRank a owl:DatatypeProperty ;
+    rdfs:label "지휘관 군 계급"@ko, "Military Officer Rank"@en ;
+    rdfs:comment "작전 당시 지휘관이 보유한 정규 군 계급 (예: 대장, 소장, 준장)."@ko,
+                 "Substantive military rank held by the officer during the wartime operational timeframe."@en ;
+    rdfs:domain kwar:CommandingOfficer ;
+    rdfs:range xsd:string .
+
+kwar:unitDesignation a owl:DatatypeProperty ;
+    rdfs:label "부대 고유 명칭"@ko, "Unit Designation Text"@en ;
+    rdfs:comment "참전 군사 부대의 정식 명칭 (예: 국군 제1사단, 미 해병 제1사단)."@ko,
+                 "Formal tactical or organizational designation of the active military unit formation."@en ;
+    rdfs:domain kwar:MilitaryUnit ;
+    rdfs:range xsd:string .
+
+kwar:troopCount a owl:DatatypeProperty ;
+    rdfs:label "투입 병력 인원수"@ko, "Deplopyed Troop Headcount"@en ;
+    rdfs:comment "작전 투입 당시 해당 부대의 실제 가용 병력 인원수 (단위: 명)."@ko,
+                 "Quantitative numerical strength of active military personnel deployed into the tactical sector."@en ;
+    rdfs:domain kwar:MilitaryUnit ;
+    rdfs:range xsd:integer .
+
+kwar:sessionRound a owl:DatatypeProperty ;
+    rdfs:label "정전 회담 차수"@ko, "Negotiation Session Round"@en ;
+    rdfs:comment "개최된 공식 정전 회담의 진행 회차 번호 (단위: 회)."@ko,
+                 "Sequential numerical index identifying the formal plenary session of the ceasefire talks."@en ;
+    rdfs:domain kwar:ArmisticeNegotiation ;
+    rdfs:range xsd:integer .
+
+kwar:negotiationDate a owl:DatatypeProperty ;
+    rdfs:label "회담 진행 일자"@ko, "Negotiation Calendar Date"@en ;
+    rdfs:comment "정전 회담 본회의가 개최되어 토의가 이루어진 날짜."@ko,
+                 "Specific calendar date on which the armistice plenary conference convened."@en ;
+    rdfs:domain kwar:ArmisticeNegotiation ;
+    rdfs:range xsd:date .
+
+kwar:treatyTitle a owl:DatatypeProperty ;
+    rdfs:label "조약 협정문 명칭"@ko, "Treaty Document Official Title"@en ;
+    rdfs:comment "서명 조인된 공식 조약 또는 협정 문서의 정식 법률 명칭."@ko,
+                 "Complete diplomatic title of the signed international ceasefire accord or defense agreement."@en ;
+    rdfs:domain kwar:TreatyDocument ;
+    rdfs:range xsd:string .
+
+kwar:signingDate a owl:DatatypeProperty ;
+    rdfs:label "조약 조인 서명일"@ko, "Treaty Execution Signing Date"@en ;
+    rdfs:comment "교전 당사자 대표들이 협정문에 공식 조인 서명한 날짜."@ko,
+                 "Historical date on which authoritative plenipotentiaries affixed signatures to the accord."@en ;
+    rdfs:domain kwar:TreatyDocument ;
+    rdfs:range xsd:date .
+
+kwar:killedInAction a owl:DatatypeProperty ;
+    rdfs:label "전투 전사자 수"@ko, "Killed In Action Count"@en ;
+    rdfs:comment "해당 작전 중 적과의 교전으로 인해 사망한 군인 인원수 (단위: 명)."@ko,
+                 "Audited count of military service members who suffered fatal combat trauma in the battle."@en ;
+    rdfs:domain kwar:WarCasualtyRecord ;
+    rdfs:range xsd:integer .
+
+kwar:woundedInAction a owl:DatatypeProperty ;
+    rdfs:label "전투 부상자 수"@ko, "Wounded In Action Count"@en ;
+    rdfs:comment "해당 작전 중 적의 공격으로 인해 전상을 입은 인원수 (단위: 명)."@ko,
+                 "Count of military personnel who sustained physical non-fatal injuries during tactical combat."@en ;
+    rdfs:domain kwar:WarCasualtyRecord ;
+    rdfs:range xsd:integer .
+
+kwar:missingInAction a owl:DatatypeProperty ;
+    rdfs:label "실종 및 포로 수"@ko, "Missing In Action Count"@en ;
+    rdfs:comment "교전 후 생사가 확인되지 않거나 적국에 포로로 억류된 인원수 (단위: 명)."@ko,
+                 "Count of combat personnel unaccounted for or captured during the operational engagement."@en ;
+    rdfs:domain kwar:WarCasualtyRecord ;
+    rdfs:range xsd:integer .
+
+kwar:artifactIdentifier a owl:DatatypeProperty ;
+    rdfs:label "사료 기록물 등록번호"@ko, "Artifact Archival Identifier"@en ;
+    rdfs:comment "국가기록원, 군사편찬연구소, 미 국립문서기록청(NARA) 등의 사료 고유 관리번호."@ko,
+                 "Standard archival accession or catalog identifier assigned by military repository collections."@en ;
+    rdfs:domain kwar:HistoricalArtifact ;
+    rdfs:range xsd:string .
+
+kwar:taskFindings a owl:DatatypeProperty ;
+    rdfs:label "전사 분석 결론 소견"@ko, "Historical Findings Text"@en ;
+    rdfs:comment "AI 역사 에이전트가 1차 사료와 전훈 일지를 교차 검증하여 도출한 종합 결론 텍스트."@ko,
+                 "Synthesized historiographical narrative and critical evaluation findings compiled by the agent."@en ;
+    rdfs:domain kwar:AnalysisTask ;
+    rdfs:range xsd:string .
+
+kwar:taskStatus a owl:DatatypeProperty ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:label "작업 진행 상태"@ko, "Task Lifecycle Status"@en ;
+    rdfs:comment "역사 분석 작업의 진행 라이프사이클 상태 (PENDING, ACTIVE, COMPLETED)."@ko,
+                 "Operational lifecycle progression state of the research task taking values PENDING, ACTIVE, or COMPLETED."@en ;
+    rdfs:domain kwar:AnalysisTask ;
+    rdfs:range xsd:string .

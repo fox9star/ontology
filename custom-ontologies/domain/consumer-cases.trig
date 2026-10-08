@@ -1,0 +1,68 @@
+@prefix dom: <https://example.org/ontology/custom/domain#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/domain/rejected> {
+    <urn:example:domain:catalog:rejected> a dom:DomainCatalog ;
+        dom:catalogDefinition "호환 사례용 합성 체계"@ko ;
+        dom:catalogHasDomain <https://example.test/consumer/domain/example-rejected> ;
+        dom:catalogHasSource <urn:example:domain:source:rejected> ;
+        dom:catalogHasTopDomain <https://example.test/consumer/domain/example-rejected> ;
+        dom:catalogLifecycleStatus "draft"^^xsd:string ;
+        dom:catalogPreferredLabel "합성 분류"@ko ;
+        dom:catalogScopeNote "합성 검증 예시"@ko ;
+        dom:catalogVersion "0.1.0"^^xsd:string .
+
+    <urn:example:domain:source:rejected> a dom:DomainSource ;
+        dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        dom:sourceKind "other"^^xsd:string ;
+        dom:sourceLimitations "does not describe an authoritative classification"@en ;
+        dom:sourcePublisher "synthetic fixture"^^xsd:string ;
+        dom:sourceScope "synthetic fixture only"@en ;
+        dom:sourceTitle "synthetic consumer source"^^xsd:string ;
+        dom:sourceUri "urn:example:domain:source:rejected"^^xsd:anyURI ;
+        dom:sourceYear 2026 .
+
+    <https://example.test/consumer/domain/example-rejected> a dom:KnowledgeDomain ;
+        dom:domainBoundaryStatus "partial"^^xsd:string ;
+        dom:domainDefinition "expected reject: negative hierarchy level"@ko ;
+        dom:domainIdentifier "bad-domain"^^xsd:string ;
+        dom:domainInCatalog <urn:example:domain:catalog:rejected> ;
+        dom:domainLevel -1 ;
+        dom:domainLifecycleStatus "proposed"^^xsd:string ;
+        dom:domainNotation "BAD-DOMAIN"^^xsd:string ;
+        dom:domainPreferredLabel "잘못된 단계"@ko ;
+        dom:domainTopConcept true .
+}
+
+<https://example.test/consumer/domain/accepted> {
+    <urn:example:domain:catalog:accepted> a dom:DomainCatalog ;
+        dom:catalogDefinition "호환 사례용 합성 체계"@ko ;
+        dom:catalogHasDomain <https://example.test/consumer/domain/example-accepted> ;
+        dom:catalogHasSource <urn:example:domain:source:accepted> ;
+        dom:catalogHasTopDomain <https://example.test/consumer/domain/example-accepted> ;
+        dom:catalogLifecycleStatus "draft"^^xsd:string ;
+        dom:catalogPreferredLabel "합성 분류"@ko ;
+        dom:catalogScopeNote "합성 검증 예시"@ko ;
+        dom:catalogVersion "0.1.0"^^xsd:string .
+
+    <urn:example:domain:source:accepted> a dom:DomainSource ;
+        dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        dom:sourceKind "other"^^xsd:string ;
+        dom:sourceLimitations "does not describe an authoritative classification"@en ;
+        dom:sourcePublisher "synthetic fixture"^^xsd:string ;
+        dom:sourceScope "synthetic fixture only"@en ;
+        dom:sourceTitle "synthetic consumer source"^^xsd:string ;
+        dom:sourceUri "urn:example:domain:source:accepted"^^xsd:anyURI ;
+        dom:sourceYear 2026 .
+
+    <https://example.test/consumer/domain/example-accepted> a dom:KnowledgeDomain ;
+        dom:domainBoundaryStatus "partial"^^xsd:string ;
+        dom:domainDefinition "합성 분류 예시"@ko ;
+        dom:domainIdentifier "sample-domain"^^xsd:string ;
+        dom:domainInCatalog <urn:example:domain:catalog:accepted> ;
+        dom:domainLevel 0 ;
+        dom:domainLifecycleStatus "proposed"^^xsd:string ;
+        dom:domainNotation "SAMPLE-DOMAIN"^^xsd:string ;
+        dom:domainPreferredLabel "샘플 영역"@ko ;
+        dom:domainTopConcept true .
+}

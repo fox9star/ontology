@@ -1,0 +1,122 @@
+{
+  "created_at": "2026-10-08T02:53:58+00:00",
+  "id": "wireless-router",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 16,
+  "properties": 137,
+  "instance_counts": {
+    "AssociationRecord": 1,
+    "ClientDevice": 1,
+    "ConfigurationSnapshot": 1,
+    "DocumentationSource": 1,
+    "FirmwareRelease": 1,
+    "FirmwareUpdate": 1,
+    "IncidentRecord": 1,
+    "IsolationPolicy": 2,
+    "NetworkSegment": 2,
+    "PerformanceObservation": 2,
+    "RadioInterface": 2,
+    "RouterDevice": 1,
+    "RouterSystem": 1,
+    "SecurityProfile": 2,
+    "UplinkConnection": 1,
+    "WirelessNetwork": 2
+  },
+  "instances": 22,
+  "triples": 230,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 38
+  },
+  "questions": 12,
+  "question_fixture_triples": 230,
+  "consumer_case_quads": 15,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "query_execution_performed": false,
+  "scope": "The profile is a draft with synthetic-only example records. It keeps documented radio capability, configured settings, and observed operation separate; does not define fields for passwords, administrator credentials, real SSID text, MAC addresses, IP addresses, serial numbers, or device-specific secret material. The NIST source supports lifecycle security configuration and monitoring concepts, not the example device's capabilities or state.",
+  "release_uri": "pending; profile remains an example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "36315802ec54193dcebfb8c94855345e5f77b501acbac5b74d3955d821eacb17",
+      "bytes": 1266
+    },
+    "curated-data.json": {
+      "sha256": "b4474e9e89b861bf6c4898e7076b851fec66d6a6ef2c2d68d340fdf88a321510",
+      "bytes": 126
+    },
+    "example.ttl": {
+      "sha256": "d1453e0b35f2d2675438437471a7fd2c831b1d62bc5b2a6a930f611817c1fcbe",
+      "bytes": 13468
+    },
+    "profile.json": {
+      "sha256": "a0b6a2bc0546666cf384118278fff613bc7580cd80ff96727e6ba30423da952e",
+      "bytes": 1535
+    },
+    "question-answers.json": {
+      "sha256": "d5dac63bed1455648eac7a08cd59f1b3c77c2b82cfa89f0318984e9f19b4b43c",
+      "bytes": 7645
+    },
+    "question-fixture.ttl": {
+      "sha256": "ad2a897ef10b0e8856bd8cb7c0eceee13878f7b6cb1c46266b8321aa34759097",
+      "bytes": 16204
+    },
+    "questions.md": {
+      "sha256": "c0473cc9493e0f8859bc679a39cb7bf9929b4d4592297e1ca1d23f9af3e63672",
+      "bytes": 6726
+    },
+    "schema.owl": {
+      "sha256": "95aaeaa26bacbadc598264e030845af3cdd77281432daa4c60836bce47b9c95b",
+      "bytes": 114412
+    },
+    "schema.ttl": {
+      "sha256": "3143c4ed15594b21d6cfd6cc660b875caf059e8819121fd45f2fefac78e0cc90",
+      "bytes": 58372
+    },
+    "shapes.ttl": {
+      "sha256": "70393ed40217473d1f01cdc085fba4620f69a8500b1e148745e3f6469d57c6c3",
+      "bytes": 42854
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T02:57:34+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 29,
+    "profile_id": "wireless-router",
+    "draft": true,
+    "explorer": {
+      "classes": 16,
+      "properties": 137,
+      "instances": 22
+    },
+    "question_keys": [
+      "WR-01",
+      "WR-02",
+      "WR-03",
+      "WR-04",
+      "WR-05",
+      "WR-06",
+      "WR-07",
+      "WR-08",
+      "WR-09",
+      "WR-10",
+      "WR-11",
+      "WR-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  },
+  "updated_at": "2026-10-08T02:57:29+00:00",
+  "refinement_note": "Association and observation links no longer conflate the primary and guest networks. Unassessed firmware updates no longer invent source/target versions. Question answer contracts were manually authored and were not compared by query execution.",
+  "rollback_snapshot": ".runtime\\wireless-router-backup-20261008T025729Z"
+}

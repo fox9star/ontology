@@ -1,0 +1,236 @@
+@prefix trip: <https://example.org/ontology/custom/overseas-trip#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+trip:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+trip:TripPlanShape a sh:NodeShape ; sh:targetClass trip:TripPlan ; sh:node trip:LabelShape ;
+    sh:property [ sh:path trip:planStatus ; sh:datatype xsd:string ; sh:in ( "draft" "confirmed" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:departureDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:returnDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:travelerCount ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:hasDestination ; sh:class trip:Destination ; sh:minCount 1 ] ;
+    sh:property [ sh:path trip:hasItineraryDay ; sh:class trip:ItineraryDay ; sh:minCount 1 ] ;
+    sh:property [ sh:path trip:hasBooking ; sh:class trip:Booking ] ;
+    sh:property [ sh:path trip:hasBudgetItem ; sh:class trip:BudgetItem ] ;
+    sh:property [ sh:path trip:hasTraveler ; sh:class trip:Traveler ; sh:minCount 1 ] ;
+    sh:property [ sh:path trip:hasTraveler ; sh:qualifiedValueShape [ sh:property [ sh:path trip:travelerRole ; sh:hasValue "primary" ] ] ;
+        sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ] ;
+    sh:sparql [ sh:message "The traveler count must equal the number of recorded travelers." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:travelerCount ?n . OPTIONAL { $this trip:hasTraveler ?t }
+          } GROUP BY $this ?n HAVING (COUNT(DISTINCT ?t) != ?n)""" ] ;
+    sh:sparql [ sh:message "The return date must not be earlier than the departure date." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:departureDate ?dep ; trip:returnDate ?ret . FILTER (?ret < ?dep)
+          }""" ] ;
+    sh:sparql [ sh:message "Day numbers must be unique within a trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:hasItineraryDay ?a, ?b . ?a trip:dayNumber ?n . ?b trip:dayNumber ?n . FILTER (?a != ?b)
+          }""" ] ;
+    sh:sparql [ sh:message "A confirmed plan needs a booking, entry requirements for every destination, no unchecked requirement and no unconfirmed booking." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:planStatus "confirmed" .
+            { $this trip:hasDestination ?d . ?d trip:hasEntryRequirement ?r . ?r trip:checkStatus "unchecked" }
+            UNION { $this trip:hasBooking ?b . ?b trip:bookingStatus "planned" }
+            UNION { FILTER NOT EXISTS { $this trip:hasBooking ?any } }
+            UNION { $this trip:hasDestination ?d . FILTER NOT EXISTS { ?d trip:hasEntryRequirement ?req } }
+          }""" ] .
+
+trip:DestinationShape a sh:NodeShape ; sh:targetClass trip:Destination ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasDestination ] ; sh:class trip:TripPlan ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:countryCode ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:countryName ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:hasEntryRequirement ; sh:class trip:EntryRequirement ] ;
+    sh:sparql [ sh:message "A destination cannot list the same entry requirement kind twice for one traveler or twice at group level." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:hasEntryRequirement ?a, ?b . ?a trip:requirementKind ?k . ?b trip:requirementKind ?k . FILTER (?a != ?b)
+            FILTER ( EXISTS { ?a trip:appliesToTraveler ?t . ?b trip:appliesToTraveler ?t }
+                     || ( NOT EXISTS { ?a trip:appliesToTraveler ?x } && NOT EXISTS { ?b trip:appliesToTraveler ?y } ) )
+          }""" ] .
+
+trip:TravelerShape a sh:NodeShape ; sh:targetClass trip:Traveler ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasTraveler ] ; sh:class trip:TripPlan ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:travelerRole ; sh:datatype xsd:string ; sh:in ( "primary" "companion" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:ageGroup ; sh:datatype xsd:string ; sh:in ( "adult" "child" "infant" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:nationalityCode ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{2}$" ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The primary traveler must be an adult." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:travelerRole "primary" ; trip:ageGroup ?g . FILTER (?g != "adult") }""" ] .
+
+trip:EntryRequirementShape a sh:NodeShape ; sh:targetClass trip:EntryRequirement ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasEntryRequirement ] ; sh:class trip:Destination ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:requirementKind ; sh:datatype xsd:string ;
+        sh:in ( "passport-validity" "visa" "travel-authorization" "vaccination" "customs" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:checkStatus ; sh:datatype xsd:string ; sh:in ( "unchecked" "satisfied" "not-required" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:checkEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:appliesToTraveler ; sh:class trip:Traveler ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A requirement can only apply to a traveler of the same trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasDestination ?d . ?d trip:hasEntryRequirement $this . $this trip:appliesToTraveler ?t .
+            FILTER NOT EXISTS { ?plan trip:hasTraveler ?t }
+          }""" ] ;
+    sh:sparql [ sh:message "A checked requirement (satisfied or not-required) needs an evidence record." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:checkStatus ?s . FILTER (?s IN ("satisfied", "not-required"))
+            FILTER NOT EXISTS { $this trip:checkEvidenceUri ?e }
+          }""" ] ;
+    sh:sparql [ sh:message "An unchecked requirement cannot carry a check evidence record." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:checkStatus "unchecked" ; trip:checkEvidenceUri ?e . }""" ] .
+
+trip:ItineraryDayShape a sh:NodeShape ; sh:targetClass trip:ItineraryDay ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasItineraryDay ] ; sh:class trip:TripPlan ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:dayNumber ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:dayDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:cityName ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:atDestination ; sh:class trip:Destination ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:hasActivity ; sh:class trip:Activity ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "Activity order must be unique within a day." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:hasActivity ?a, ?b . ?a trip:activityOrder ?n . ?b trip:activityOrder ?n . FILTER (?a != ?b)
+          }""" ] ;
+    sh:sparql [ sh:message "The day date must fall between the plan departure and return dates." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasItineraryDay $this ; trip:departureDate ?dep ; trip:returnDate ?ret .
+            $this trip:dayDate ?d . FILTER (?d < ?dep || ?d > ?ret)
+          }""" ] ;
+    sh:sparql [ sh:message "A day must be spent at a destination of the same trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasItineraryDay $this . $this trip:atDestination ?dest .
+            FILTER NOT EXISTS { ?plan trip:hasDestination ?dest }
+          }""" ] .
+
+trip:ActivityShape a sh:NodeShape ; sh:targetClass trip:Activity ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasActivity ] ; sh:class trip:ItineraryDay ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:activityOrder ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:activityCategory ; sh:datatype xsd:string ;
+        sh:in ( "sightseeing" "meal" "transport" "lodging-checkin" "free-time" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:plannedDurationMinutes ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+trip:BookingShape a sh:NodeShape ; sh:targetClass trip:Booking ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasBooking ] ; sh:class trip:TripPlan ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:bookingKind ; sh:datatype xsd:string ;
+        sh:in ( "flight" "lodging" "transport" "ticket" "insurance" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:bookingStatus ; sh:datatype xsd:string ; sh:in ( "planned" "booked" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:confirmationEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:bookingStartDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:bookingEndDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:coversActivity ; sh:class trip:Activity ] ;
+    sh:property [ sh:path trip:hasFlightSegment ; sh:class trip:FlightSegment ] ;
+    sh:property [ sh:path trip:hasInsurancePolicy ; sh:class trip:InsurancePolicy ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A flight booking needs at least one flight segment." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:bookingKind "flight" . FILTER NOT EXISTS { $this trip:hasFlightSegment ?s } }""" ] ;
+    sh:sparql [ sh:message "Only a flight booking can have flight segments." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:hasFlightSegment ?s ; trip:bookingKind ?k . FILTER (?k != "flight") }""" ] ;
+    sh:sparql [ sh:message "Segment order must be unique within a flight booking." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:hasFlightSegment ?a, ?b . ?a trip:segmentOrder ?n . ?b trip:segmentOrder ?n . FILTER (?a != ?b)
+          }""" ] ;
+    sh:sparql [ sh:message "An insurance booking needs an insurance policy." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:bookingKind "insurance" . FILTER NOT EXISTS { $this trip:hasInsurancePolicy ?p } }""" ] ;
+    sh:sparql [ sh:message "Only an insurance booking can have an insurance policy." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:hasInsurancePolicy ?p ; trip:bookingKind ?k . FILTER (?k != "insurance") }""" ] ;
+    sh:sparql [ sh:message "A booked booking needs a confirmation evidence record." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:bookingStatus "booked" . FILTER NOT EXISTS { $this trip:confirmationEvidenceUri ?e }
+          }""" ] ;
+    sh:sparql [ sh:message "A planned booking cannot carry a confirmation evidence record." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:bookingStatus "planned" ; trip:confirmationEvidenceUri ?e . }""" ] ;
+    sh:sparql [ sh:message "The booking end date must not be earlier than its start date." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:bookingStartDate ?s ; trip:bookingEndDate ?e . FILTER (?e < ?s)
+          }""" ] ;
+    sh:sparql [ sh:message "Booking dates must fall within the plan departure and return dates." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasBooking $this ; trip:departureDate ?dep ; trip:returnDate ?ret .
+            $this trip:bookingStartDate ?s ; trip:bookingEndDate ?e .
+            FILTER (?s < ?dep || ?e > ?ret)
+          }""" ] ;
+    sh:sparql [ sh:message "A booking can only cover an activity of the same trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasBooking $this . $this trip:coversActivity ?a .
+            FILTER NOT EXISTS { ?plan trip:hasItineraryDay ?day . ?day trip:hasActivity ?a }
+          }""" ] .
+
+trip:FlightSegmentShape a sh:NodeShape ; sh:targetClass trip:FlightSegment ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasFlightSegment ] ; sh:class trip:Booking ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:segmentOrder ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:departureAirport ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:arrivalAirport ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:segmentDepartureDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:segmentArrivalDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A segment must depart and arrive at different airports." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE { $this trip:departureAirport ?a ; trip:arrivalAirport ?a . }""" ] ;
+    sh:sparql [ sh:message "A segment cannot arrive before it departs." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            $this trip:segmentDepartureDate ?d ; trip:segmentArrivalDate ?a . FILTER (?a < ?d)
+          }""" ] ;
+    sh:sparql [ sh:message "Segment dates must fall within the booking start and end dates." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?b trip:hasFlightSegment $this ; trip:bookingStartDate ?s ; trip:bookingEndDate ?e .
+            $this trip:segmentDepartureDate ?d ; trip:segmentArrivalDate ?a .
+            FILTER (?d < ?s || ?a > ?e)
+          }""" ] ;
+    sh:sparql [ sh:message "Consecutive segments must connect at the same airport without going back in time." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?b trip:hasFlightSegment $this, ?next .
+            $this trip:segmentOrder ?n ; trip:arrivalAirport ?arr ; trip:segmentArrivalDate ?ad .
+            ?next trip:segmentOrder ?m ; trip:departureAirport ?dep ; trip:segmentDepartureDate ?dd .
+            FILTER (?m = ?n + 1)
+            FILTER (?arr != ?dep || ?dd < ?ad)
+          }""" ] .
+
+trip:InsurancePolicyShape a sh:NodeShape ; sh:targetClass trip:InsurancePolicy ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasInsurancePolicy ] ; sh:class trip:Booking ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:coverageKind ; sh:datatype xsd:string ;
+        sh:in ( "medical" "cancellation" "baggage" "liability" ) ; sh:minCount 1 ] ;
+    sh:property [ sh:path trip:coverageLimitAmount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:coverageLimitCurrency ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:coversTraveler ; sh:class trip:Traveler ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "An insurance policy can only cover travelers of the same trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?b trip:hasInsurancePolicy $this . ?plan trip:hasBooking ?b . $this trip:coversTraveler ?t .
+            FILTER NOT EXISTS { ?plan trip:hasTraveler ?t }
+          }""" ] .
+
+trip:BudgetItemShape a sh:NodeShape ; sh:targetClass trip:BudgetItem ; sh:node trip:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath trip:hasBudgetItem ] ; sh:class trip:TripPlan ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:budgetCategory ; sh:datatype xsd:string ;
+        sh:in ( "transport" "lodging" "food" "activities" "insurance" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:plannedAmount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:currencyCode ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path trip:forBooking ; sh:class trip:Booking ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A budget item can only pay for a booking of the same trip plan." ;
+        sh:select """PREFIX trip: <https://example.org/ontology/custom/overseas-trip#>
+          SELECT $this WHERE {
+            ?plan trip:hasBudgetItem $this . $this trip:forBooking ?b .
+            FILTER NOT EXISTS { ?plan trip:hasBooking ?b }
+          }""" ] .

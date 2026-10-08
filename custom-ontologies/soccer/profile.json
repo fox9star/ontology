@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "soccer",
+  "name": "축구 온톨로지 (soccer)",
+  "description": "축구 클럽·선수·대회·경기와 출전 명단, 득점·경고·퇴장 사건을 연결하고, 보고서 없는 결과와 득점 사건과 맞지 않는 점수, 11명이 아닌 선발 명단을 막습니다.",
+  "name_en": "Soccer Ontology",
+  "description_en": "Connects clubs, players, competitions, matches, lineups and goal, caution and sending-off events, and blocks results without a report, scores that disagree with goal events and starting lineups that are not eleven players.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/soccer#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T20:07:43+09:00",
+  "schema": "custom-ontologies/soccer/schema.ttl",
+  "owl": "custom-ontologies/soccer/schema.owl",
+  "shapes": "custom-ontologies/soccer/shapes.ttl",
+  "example": "custom-ontologies/soccer/example.ttl",
+  "questions": "custom-ontologies/soccer/questions.md",
+  "questions_fixture": "custom-ontologies/soccer/question-fixture.ttl",
+  "question_answers": "custom-ontologies/soccer/question-answers.json",
+  "compatibility_cases": "custom-ontologies/soccer/consumer-cases.trig"
+}

@@ -1,0 +1,341 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix diet: <http://example.org/ontology/diet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/diet> a owl:Ontology ;
+    rdfs:label "체중감량 및 식이·운동 대사 헬스케어 AI 에이전트 온톨로지"@ko,
+               "Weight Loss and Metabolic Healthcare AI Agent Ontology"@en ;
+    rdfs:comment "체중 감량 목표, 체성분 계측, 식단 영양소 섭취, 신체 운동 활동, 일일 대사 수지 및 AI 코칭 에이전트 상호작용 체계를 정의한다."@ko,
+                 "Defines weight loss goals, body composition metrics, dietary nutrition intake, physical exercise, metabolic balance, and AI coaching agents."@en ;
+    owl:imports <https://example.org/ontology/core>, <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.0.0" .
+
+# =============================================================================
+# Classes (클래스 정의)
+# =============================================================================
+
+diet:WeightLossProfile a owl:Class, rdfs:Class ;
+    rdfs:label "체중감량 관리 프로필"@ko, "Weight Loss Profile"@en ;
+    rdfs:comment "체중 감량과 건강 증진을 목표로 식이와 운동을 추적하는 개인화된 대사 관리 프로필."@ko,
+                 "Personalized metabolic wellness profile tracking nutritional intake and exercise for weight management."@en .
+
+diet:TargetGoal a owl:Class, rdfs:Class ;
+    rdfs:label "체중감량 목표 설정"@ko, "Weight Loss Target Goal"@en ;
+    rdfs:comment "목표 체중, 목표 체지방률, 목표 기한 및 일일 목표 칼로리 결손량 설정 정보."@ko,
+                 "Quantitative target milestones including target weight, body fat percentage, and daily caloric deficit."@en .
+
+diet:BodyCompositionRecord a owl:Class, rdfs:Class ;
+    rdfs:label "체성분 계측 기록"@ko, "Body Composition Record"@en ;
+    rdfs:comment "특정 시점에 측정된 체중, 골격근량, 체지방량, 체질량지수(BMI), 기초대사량(BMR) 데이터."@ko,
+                 "Biometric measurement record capturing weight, skeletal muscle mass, body fat, BMI, and basal metabolic rate."@en .
+
+diet:DietaryMealLog a owl:Class, rdfs:Class ;
+    rdfs:label "식단 섭취 기록"@ko, "Dietary Meal Log"@en ;
+    rdfs:comment "아침, 점심, 저녁, 간식 등 특정 식사 시점에 섭취한 칼로리 및 3대 영양소 함량 기록."@ko,
+                 "Nutritional consumption log capturing calories and macronutrient breakdown across scheduled meals."@en .
+
+diet:FoodItem a owl:Class, rdfs:Class ;
+    rdfs:label "섭취 식품 항목"@ko, "Food Item"@en ;
+    rdfs:comment "식단에 포함된 개별 음식 원재료 또는 완제품 식품 단위."@ko,
+                 "Discrete food product or dietary component consumed within a recorded meal session."@en .
+
+diet:DietaryPlan a owl:Class, rdfs:Class ;
+    rdfs:label "식이 처방 플랜"@ko, "Dietary Plan"@en ;
+    rdfs:comment "저탄고지, 고단백, 간헐적 단식, 지중해식 등 체중 감량을 위해 설계된 식이요법 가이드라인."@ko,
+                 "Structured nutritional guideline and macronutrient regimen designed for sustainable weight reduction."@en .
+
+diet:ExerciseSession a owl:Class, rdfs:Class ;
+    rdfs:label "신체 운동 활동 기록"@ko, "Exercise Session"@en ;
+    rdfs:comment "유산소, 근력, 인터벌 등 칼로리를 소모하고 근육량을 보존하기 위해 수행한 운동 세션."@ko,
+                 "Physical activity session executed to expend energy, preserve lean mass, and stimulate metabolic rate."@en .
+
+diet:MetabolicDailySummary a owl:Class, rdfs:Class ;
+    rdfs:label "일일 대사 수지 요약"@ko, "Metabolic Daily Summary"@en ;
+    rdfs:comment "총 섭취 칼로리와 총 소비 칼로리를 비교하여 산출한 일일 순 칼로리 결손량 및 대사 균형 요약."@ko,
+                 "Comprehensive daily energy balance ledger calculating net caloric deficit and metabolic trajectory."@en .
+
+diet:PlateauAlert a owl:Class, rdfs:Class ;
+    rdfs:label "체중 정체기 감지 경보"@ko, "Weight Loss Plateau Alert"@en ;
+    rdfs:comment "지속적인 칼로리 결손에도 불구하고 일정 기간 체중 변화가 정체될 때 발행되는 분석 경보."@ko,
+                 "Automated analytic notification triggered when weight loss stalls despite sustained caloric deficit."@en .
+
+diet:CoachingInterventionTask a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:TaskRun ;
+    rdfs:label "코칭 개입 작업 실행"@ko, "Coaching Intervention Task"@en ;
+    rdfs:comment "AI 코칭 에이전트가 식단 조정, 운동 강도 변경, 휴식 권고 등 사용자의 행동 변화를 유도한 실행 기록."@ko,
+                 "Actionable behavioral intervention dispatched by an AI coach to adjust nutrition or training volume."@en .
+
+diet:DietCoachingAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:Agent ;
+    rdfs:label "체중감량 AI 코칭 에이전트"@ko, "Weight Loss AI Coaching Agent"@en ;
+    rdfs:comment "사용자의 라이프로그를 실시간 분석하여 최적의 감량 솔루션을 제공하는 인공지능 웰니스 코치."@ko,
+                 "Autonomous artificial intelligence wellness agent synthesizing biometric streams into adaptive weight guidance."@en .
+
+diet:NutritionistAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf diet:DietCoachingAgent ;
+    rdfs:label "임상 영양 분석 에이전트"@ko, "Nutritionist Specialist Agent"@en ;
+    rdfs:comment "영양소 균형, 혈당 스파이크 방지, 단백질 최적 섭취량을 정밀 설계하는 영양 전문 에이전트."@ko,
+                 "Specialized algorithmic agent optimizing macronutrient ratios, satiety indices, and nutritional density."@en .
+
+diet:FitnessTrainerAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf diet:DietCoachingAgent ;
+    rdfs:label "운동 처방 트레이너 에이전트"@ko, "Fitness Trainer Specialist Agent"@en ;
+    rdfs:comment "개인의 근력 수준과 회복 상태에 맞추어 유산소 및 저항성 운동 프로그램을 설계하는 에이전트."@ko,
+                 "Specialized athletic agent prescribing progressive resistance training and cardiovascular expenditure protocols."@en .
+
+diet:MetabolicMonitorAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf diet:DietCoachingAgent ;
+    rdfs:label "대사 항상성 모니터링 에이전트"@ko, "Metabolic Monitor Specialist Agent"@en ;
+    rdfs:comment "기초대사량 저하, 적응성 열발생, 정체기 징후를 조기에 감지하여 전략을 전환하는 전문 에이전트."@ko,
+                 "Specialized physiological agent monitoring adaptive thermogenesis, starvation responses, and weight loss plateaus."@en .
+
+# =============================================================================
+# Object Properties (객체 속성)
+# =============================================================================
+
+diet:hasTargetGoal a owl:ObjectProperty ;
+    rdfs:label "목표 설정 연결"@ko, "Has Target Goal"@en ;
+    rdfs:comment "프로필에 설정된 체중 감량 목표 정보를 연결한다."@ko,
+                 "Associates a weight loss profile with its active quantitative targets."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:TargetGoal .
+
+diet:followsDietPlan a owl:ObjectProperty ;
+    rdfs:label "적용 식이 플랜"@ko, "Follows Diet Plan"@en ;
+    rdfs:comment "프로필이 현재 채택하여 실천 중인 식이 처방 플랜을 연결한다."@ko,
+                 "Links a profile to the active nutritional and dietary prescription regimen."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:DietaryPlan .
+
+diet:hasBodyComposition a owl:ObjectProperty ;
+    rdfs:label "체성분 계측치 연결"@ko, "Has Body Composition"@en ;
+    rdfs:comment "프로필에 시계열로 축적된 체성분 측정 기록을 연결한다."@ko,
+                 "Associates a profile with historical or recent body composition measurement entries."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:BodyCompositionRecord .
+
+diet:logsMeal a owl:ObjectProperty ;
+    rdfs:label "식단 기록 연결"@ko, "Logs Meal"@en ;
+    rdfs:comment "프로필에 등록된 식단 및 음식물 섭취 기록을 연결한다."@ko,
+                 "Associates a user profile with chronological dietary meal log entries."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:DietaryMealLog .
+
+diet:containsFood a owl:ObjectProperty ;
+    rdfs:label "포함 식품 항목"@ko, "Contains Food Item"@en ;
+    rdfs:comment "식단 기록에 포함된 개별 섭취 식품 항목을 연결한다."@ko,
+                 "Links a meal log entry to the individual food items consumed within it."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range diet:FoodItem .
+
+diet:logsExercise a owl:ObjectProperty ;
+    rdfs:label "운동 활동 연결"@ko, "Logs Exercise"@en ;
+    rdfs:comment "프로필에 기록된 신체 운동 및 활동 세션을 연결한다."@ko,
+                 "Associates a weight loss profile with executed physical workout sessions."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:ExerciseSession .
+
+diet:hasDailySummary a owl:ObjectProperty ;
+    rdfs:label "일일 대사 요약 연결"@ko, "Has Daily Summary"@en ;
+    rdfs:comment "프로필의 일자별 종합 에너지 및 대사 수지 요약을 연결한다."@ko,
+                 "Connects a profile to its aggregated daily metabolic balance summary."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:MetabolicDailySummary .
+
+diet:assignedAgent a owl:ObjectProperty ;
+    rdfs:label "전담 코칭 에이전트"@ko, "Assigned Coaching Agent"@en ;
+    rdfs:comment "사용자의 감량 과정을 밀착 지도하는 주 담당 AI 코칭 에이전트를 연결한다."@ko,
+                 "Assigns a primary autonomous coaching agent to guide the individual weight management process."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range diet:DietCoachingAgent .
+
+diet:triggeredByAlert a owl:ObjectProperty ;
+    rdfs:label "유발 원인 경보"@ko, "Triggered By Alert"@en ;
+    rdfs:comment "코칭 개입 작업이 시작되도록 유발한 정체기 경보를 연결한다."@ko,
+                 "Links an intervention task to the triggering metabolic or plateau alert."@en ;
+    rdfs:domain diet:CoachingInterventionTask ;
+    rdfs:range diet:PlateauAlert .
+
+diet:executedByCoach a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runAgent ;
+    rdfs:label "개입 실행 코치 에이전트"@ko, "Executed By Coach"@en ;
+    rdfs:comment "해당 코칭 중재 작업을 생성하고 전달한 AI 에이전트를 연결한다."@ko,
+                 "Designates the AI coaching agent responsible for dispatching the intervention."@en ;
+    rdfs:domain diet:CoachingInterventionTask ;
+    rdfs:range diet:DietCoachingAgent .
+
+diet:targetProfile a owl:ObjectProperty ;
+    rdfs:label "개입 대상 프로필"@ko, "Target Profile"@en ;
+    rdfs:comment "코칭 개입의 혜택을 받는 대상 관리 프로필을 연결한다."@ko,
+                 "Identifies the target weight management profile recipient of the coaching action."@en ;
+    rdfs:domain diet:CoachingInterventionTask ;
+    rdfs:range diet:WeightLossProfile .
+
+diet:detectedOnProfile a owl:ObjectProperty ;
+    rdfs:label "정체 감지 프로필"@ko, "Detected On Profile"@en ;
+    rdfs:comment "정체기 현상이 감지된 대상 관리 프로필을 연결한다."@ko,
+                 "Associates a plateau alert with the specific profile demonstrating stagnant weight loss."@en ;
+    rdfs:domain diet:PlateauAlert ;
+    rdfs:range diet:WeightLossProfile .
+
+# =============================================================================
+# Datatype Properties (데이터 속성)
+# =============================================================================
+
+diet:profileName a owl:DatatypeProperty ;
+    rdfs:label "사용자 성명"@ko, "Profile User Name"@en ;
+    rdfs:comment "감량 관리 프로필의 사용자 표시 이름."@ko,
+                 "Human-readable display name or pseudonym identifying the profile subject."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range xsd:string .
+
+diet:heightCm a owl:DatatypeProperty ;
+    rdfs:label "신장 신체 키"@ko, "Height In Centimeters"@en ;
+    rdfs:comment "신체 질량 지수(BMI) 계산에 사용되는 사용자의 키 (단위: cm)."@ko,
+                 "Body stature height measured in centimeters used for anthropometric indexing."@en ;
+    rdfs:domain diet:WeightLossProfile ;
+    rdfs:range xsd:decimal .
+
+diet:targetWeightKg a owl:DatatypeProperty ;
+    rdfs:label "목표 체중"@ko, "Target Weight In Kg"@en ;
+    rdfs:comment "감량 목표로 설정된 최종 희망 체중 (단위: kg)."@ko,
+                 "Target body weight intended to be attained at the end of the program in kilograms."@en ;
+    rdfs:domain diet:TargetGoal ;
+    rdfs:range xsd:decimal .
+
+diet:targetBodyFatPercent a owl:DatatypeProperty ;
+    rdfs:label "목표 체지방률"@ko, "Target Body Fat Percentage"@en ;
+    rdfs:comment "최종 달성하고자 하는 목표 체지방률 백분율 (단위: %)."@ko,
+                 "Optimal targeted body fat ratio expressed as a percentage of total body mass."@en ;
+    rdfs:domain diet:TargetGoal ;
+    rdfs:range xsd:decimal .
+
+diet:targetDailyCalorieDeficit a owl:DatatypeProperty ;
+    rdfs:label "일일 목표 칼로리 결손량"@ko, "Target Daily Calorie Deficit"@en ;
+    rdfs:comment "안전한 체지방 감량을 위해 하루 동안 유지해야 하는 칼로리 결손 권장치 (단위: kcal)."@ko,
+                 "Recommended daily negative energy balance target in kilocalories for gradual adipose reduction."@en ;
+    rdfs:domain diet:TargetGoal ;
+    rdfs:range xsd:decimal .
+
+diet:weightKg a owl:DatatypeProperty ;
+    rdfs:label "계측 체중"@ko, "Measured Weight In Kg"@en ;
+    rdfs:comment "측정 시점에 기록된 실제 신체 몸무게 (단위: kg)."@ko,
+                 "Actual measured gross body mass recorded during the assessment session in kilograms."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:decimal .
+
+diet:bodyFatMassKg a owl:DatatypeProperty ;
+    rdfs:label "체지방량"@ko, "Body Fat Mass In Kg"@en ;
+    rdfs:comment "생체 임피던스 또는 DEXA로 측정된 순수 체지방 질량 (단위: kg)."@ko,
+                 "Absolute mass of adipose tissue measured via bioelectrical impedance or densitometry in kilograms."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:decimal .
+
+diet:skeletalMuscleMassKg a owl:DatatypeProperty ;
+    rdfs:label "골격근량"@ko, "Skeletal Muscle Mass In Kg"@en ;
+    rdfs:comment "대사 활성 조직인 신체 골격근의 총 중량 (단위: kg)."@ko,
+                 "Total mass of metabolically active skeletal muscle tissue in kilograms."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:decimal .
+
+diet:bmi a owl:DatatypeProperty ;
+    rdfs:label "체질량지수 BMI"@ko, "Body Mass Index"@en ;
+    rdfs:comment "체중(kg)을 신장의 제곱(m²)으로 나눈 비만 판정 표준 지수."@ko,
+                 "Standard epidemiological anthropometric metric dividing weight by squared height."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:decimal .
+
+diet:bmrKcal a owl:DatatypeProperty ;
+    rdfs:label "기초대사량 BMR"@ko, "Basal Metabolic Rate"@en ;
+    rdfs:comment "생명 유지를 위해 신체가 완전 휴식 상태에서 소모하는 최소 열량 (단위: kcal)."@ko,
+                 "Minimum daily energy expenditure required to sustain biological homeostasis at rest in kilocalories."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:decimal .
+
+diet:recordedAt a owl:DatatypeProperty ;
+    rdfs:label "계측 측정 시각"@ko, "Measurement Timestamp"@en ;
+    rdfs:comment "체성분이 정밀 측정되어 전산에 등록된 일시."@ko,
+                 "ISO 8601 standardized timestamp when the biometric body composition assessment occurred."@en ;
+    rdfs:domain diet:BodyCompositionRecord ;
+    rdfs:range xsd:dateTime .
+
+diet:mealType a owl:DatatypeProperty ;
+    rdfs:label "식사 구분"@ko, "Meal Category Type"@en ;
+    rdfs:comment "섭취된 식사의 종류로 BREAKFAST, LUNCH, DINNER, SNACK 중 하나의 값을 취한다."@ko,
+                 "Discrete categorical classification of the feeding event such as BREAKFAST, LUNCH, DINNER, or SNACK."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range xsd:string .
+
+diet:mealCaloriesKcal a owl:DatatypeProperty ;
+    rdfs:label "식사 총 섭취 열량"@ko, "Meal Caloric Content"@en ;
+    rdfs:comment "해당 식사에서 섭취한 음식의 총 에너지 열량 (단위: kcal)."@ko,
+                 "Total caloric energy consumed during the specific meal session in kilocalories."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range xsd:decimal .
+
+diet:carbohydrateGrams a owl:DatatypeProperty ;
+    rdfs:label "탄수화물 함량"@ko, "Carbohydrate In Grams"@en ;
+    rdfs:comment "식사에 포함된 탄수화물 영양소 총량 (단위: g)."@ko,
+                 "Total carbohydrate nutrient mass ingested during the meal expressed in grams."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range xsd:decimal .
+
+diet:proteinGrams a owl:DatatypeProperty ;
+    rdfs:label "단백질 함량"@ko, "Protein In Grams"@en ;
+    rdfs:comment "식사에 포함된 단백질 영양소 총량 (단위: g)."@ko,
+                 "Total protein nutrient mass ingested during the meal expressed in grams."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range xsd:decimal .
+
+diet:fatGrams a owl:DatatypeProperty ;
+    rdfs:label "지방 함량"@ko, "Fat In Grams"@en ;
+    rdfs:comment "식사에 포함된 지질 영양소 총량 (단위: g)."@ko,
+                 "Total dietary lipid fat mass ingested during the meal expressed in grams."@en ;
+    rdfs:domain diet:DietaryMealLog ;
+    rdfs:range xsd:decimal .
+
+diet:exerciseType a owl:DatatypeProperty ;
+    rdfs:label "운동 유형"@ko, "Exercise Modality Type"@en ;
+    rdfs:comment "수행한 운동의 분류로 AEROBIC, RESISTANCE, HIIT, WALKING 값을 가진다."@ko,
+                 "Specific training modality undertaken such as AEROBIC, RESISTANCE, HIIT, or WALKING."@en ;
+    rdfs:domain diet:ExerciseSession ;
+    rdfs:range xsd:string .
+
+diet:durationMinutes a owl:DatatypeProperty ;
+    rdfs:label "운동 수행 시간"@ko, "Exercise Duration Minutes"@en ;
+    rdfs:comment "운동 세션을 지속한 순수 활동 시간 (단위: 분)."@ko,
+                 "Total net duration of physical exercise completed during the session in minutes."@en ;
+    rdfs:domain diet:ExerciseSession ;
+    rdfs:range xsd:integer .
+
+diet:burnedCaloriesKcal a owl:DatatypeProperty ;
+    rdfs:label "운동 소비 열량"@ko, "Burned Calories In Kcal"@en ;
+    rdfs:comment "운동 세션을 통해 소모된 추정 활동 대사 열량 (단위: kcal)."@ko,
+                 "Estimated energy expenditure expended during the workout session in kilocalories."@en ;
+    rdfs:domain diet:ExerciseSession ;
+    rdfs:range xsd:decimal .
+
+diet:netCalorieDeficitKcal a owl:DatatypeProperty ;
+    rdfs:label "일일 순 칼로리 결손량"@ko, "Net Daily Calorie Deficit"@en ;
+    rdfs:comment "일일 총 에너지 소모량에서 총 섭취 열량을 감산한 순수 결손 칼로리 (단위: kcal)."@ko,
+                 "Net difference between total daily energy expenditure and total caloric intake in kilocalories."@en ;
+    rdfs:domain diet:MetabolicDailySummary ;
+    rdfs:range xsd:decimal .
+
+diet:interventionAction a owl:DatatypeProperty ;
+    rdfs:label "코칭 중재 지침"@ko, "Intervention Action Text"@en ;
+    rdfs:comment "사용자의 대사 상태에 대응하여 AI 코치가 지시한 구체적 실행 지침."@ko,
+                 "Actionable prescription narrative generated by the AI coach to overcome plateaus or improve compliance."@en ;
+    rdfs:domain diet:CoachingInterventionTask ;
+    rdfs:range xsd:string .
+
+diet:taskStatus a owl:DatatypeProperty ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:label "작업 진행 상태"@ko, "Task Lifecycle Status"@en ;
+    rdfs:comment "코칭 개입 작업의 전달 및 수행 완료 상태 (PENDING, ACTIVE, COMPLETED, DISMISSED)."@ko,
+                 "Operational lifecycle status of the coaching action taking values PENDING, ACTIVE, COMPLETED, or DISMISSED."@en ;
+    rdfs:domain diet:CoachingInterventionTask ;
+    rdfs:range xsd:string .

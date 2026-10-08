@@ -1,0 +1,70 @@
+@prefix div: <https://example.org/ontology/custom/divorce#> .
+@prefix ex: <https://example.org/ontology/custom/divorce#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely fictional cases. Parties and children are pseudonymous placeholders, and every
+# date, amount and urn:synthetic: location is invented. Nothing here describes a real person
+# or a real court record, and no legal period is encoded: reflection end dates are given data.
+ex:case1 a div:DivorceCase ; rdfs:label "가상 이혼 사건 1 (협의, 종결)"@ko ;
+    div:caseType "consensual" ; div:caseStatus "finalized" ;
+    div:filedDate "2026-01-10"^^xsd:date ; div:reflectionEndDate "2026-04-10"^^xsd:date ;
+    div:confirmationDate "2026-04-15"^^xsd:date ; div:effectiveDate "2026-04-28"^^xsd:date ;
+    div:decreeEvidenceUri "urn:synthetic:registration:case1"^^xsd:anyURI ;
+    div:hasParty ex:partyA1, ex:partyB1 ; div:hasChild ex:child1 ;
+    div:hasCustodyArrangement ex:custody1 ; div:hasSupportObligation ex:support1 ;
+    div:hasAsset ex:asset1, ex:asset2, ex:asset3 .
+ex:partyA1 a div:Party ; rdfs:label "가상 당사자 1-가"@ko ; div:partyRole "joint-petitioner" .
+ex:partyB1 a div:Party ; rdfs:label "가상 당사자 1-나"@ko ; div:partyRole "joint-petitioner" .
+ex:child1 a div:Child ; rdfs:label "가상 자녀 1"@ko ; div:minorAtFiling true .
+ex:custody1 a div:CustodyArrangement ; rdfs:label "자녀 1 양육 결정"@ko ;
+    div:custodyOfChild ex:child1 ; div:custodian ex:partyA1 ; div:authorityHolding "joint" .
+ex:support1 a div:SupportObligation ; rdfs:label "자녀 1 양육비"@ko ;
+    div:supportForChild ex:child1 ; div:payer ex:partyB1 ; div:payee ex:partyA1 ;
+    div:monthlyAmount "600000"^^xsd:decimal ; div:currencyCode "KRW" ; div:paymentDay 25 .
+ex:asset1 a div:Asset ; rdfs:label "가상 아파트"@ko ; div:assetType "real-estate" ;
+    div:estimatedValue "400000000"^^xsd:decimal ; div:valueCurrency "KRW" ; div:hasAllocation ex:alloc1a, ex:alloc1b .
+ex:alloc1a a div:AssetAllocation ; rdfs:label "아파트 1-가 몫"@ko ; div:allocatedTo ex:partyA1 ; div:sharePercent "50"^^xsd:decimal .
+ex:alloc1b a div:AssetAllocation ; rdfs:label "아파트 1-나 몫"@ko ; div:allocatedTo ex:partyB1 ; div:sharePercent "50"^^xsd:decimal .
+ex:asset2 a div:Asset ; rdfs:label "가상 예금"@ko ; div:assetType "deposit" ;
+    div:estimatedValue "30000000"^^xsd:decimal ; div:valueCurrency "KRW" ; div:hasAllocation ex:alloc2a, ex:alloc2b .
+ex:alloc2a a div:AssetAllocation ; rdfs:label "예금 1-가 몫"@ko ; div:allocatedTo ex:partyA1 ; div:sharePercent "60"^^xsd:decimal .
+ex:alloc2b a div:AssetAllocation ; rdfs:label "예금 1-나 몫"@ko ; div:allocatedTo ex:partyB1 ; div:sharePercent "40"^^xsd:decimal .
+ex:asset3 a div:Asset ; rdfs:label "가상 대출 채무"@ko ; div:assetType "debt" ;
+    div:estimatedValue "50000000"^^xsd:decimal ; div:valueCurrency "KRW" ; div:hasAllocation ex:alloc3a, ex:alloc3b .
+ex:alloc3a a div:AssetAllocation ; rdfs:label "채무 1-가 몫"@ko ; div:allocatedTo ex:partyA1 ; div:sharePercent "50"^^xsd:decimal .
+ex:alloc3b a div:AssetAllocation ; rdfs:label "채무 1-나 몫"@ko ; div:allocatedTo ex:partyB1 ; div:sharePercent "50"^^xsd:decimal .
+
+ex:case2 a div:DivorceCase ; rdfs:label "가상 이혼 사건 2 (협의, 접수)"@ko ;
+    div:caseType "consensual" ; div:caseStatus "filed" ;
+    div:filedDate "2026-09-01"^^xsd:date ; div:reflectionEndDate "2026-10-01"^^xsd:date ;
+    div:hasParty ex:partyA2, ex:partyB2 .
+ex:partyA2 a div:Party ; rdfs:label "가상 당사자 2-가"@ko ; div:partyRole "joint-petitioner" .
+ex:partyB2 a div:Party ; rdfs:label "가상 당사자 2-나"@ko ; div:partyRole "joint-petitioner" .
+
+ex:case3 a div:DivorceCase ; rdfs:label "가상 이혼 사건 3 (소송, 접수)"@ko ;
+    div:caseType "litigation" ; div:caseStatus "filed" ; div:filedDate "2026-06-15"^^xsd:date ;
+    div:hasParty ex:partyA3, ex:partyB3 ; div:hasChild ex:child3a, ex:child3b .
+ex:partyA3 a div:Party ; rdfs:label "가상 당사자 3-가"@ko ; div:partyRole "petitioner" .
+ex:partyB3 a div:Party ; rdfs:label "가상 당사자 3-나"@ko ; div:partyRole "respondent" .
+ex:child3a a div:Child ; rdfs:label "가상 자녀 3-가"@ko ; div:minorAtFiling true .
+ex:child3b a div:Child ; rdfs:label "가상 자녀 3-나"@ko ; div:minorAtFiling false .
+
+ex:case4 a div:DivorceCase ; rdfs:label "가상 이혼 사건 4 (협의, 철회)"@ko ;
+    div:caseType "consensual" ; div:caseStatus "withdrawn" ;
+    div:filedDate "2026-02-01"^^xsd:date ; div:reflectionEndDate "2026-03-01"^^xsd:date ;
+    div:withdrawalDate "2026-02-20"^^xsd:date ; div:hasParty ex:partyA4, ex:partyB4 .
+ex:partyA4 a div:Party ; rdfs:label "가상 당사자 4-가"@ko ; div:partyRole "joint-petitioner" .
+ex:partyB4 a div:Party ; rdfs:label "가상 당사자 4-나"@ko ; div:partyRole "joint-petitioner" .
+
+ex:case5 a div:DivorceCase ; rdfs:label "가상 이혼 사건 5 (소송, 종결)"@ko ;
+    div:caseType "litigation" ; div:caseStatus "finalized" ;
+    div:filedDate "2026-02-10"^^xsd:date ; div:effectiveDate "2026-06-30"^^xsd:date ;
+    div:decreeEvidenceUri "urn:synthetic:judgment:case5"^^xsd:anyURI ;
+    div:hasParty ex:partyA5, ex:partyB5 ; div:hasAsset ex:asset4 .
+ex:partyA5 a div:Party ; rdfs:label "가상 당사자 5-가"@ko ; div:partyRole "petitioner" .
+ex:partyB5 a div:Party ; rdfs:label "가상 당사자 5-나"@ko ; div:partyRole "respondent" .
+ex:asset4 a div:Asset ; rdfs:label "가상 예금(사건 5)"@ko ; div:assetType "deposit" ;
+    div:estimatedValue "100000000"^^xsd:decimal ; div:valueCurrency "KRW" ; div:hasAllocation ex:alloc4a, ex:alloc4b .
+ex:alloc4a a div:AssetAllocation ; rdfs:label "예금 5-가 몫"@ko ; div:allocatedTo ex:partyA5 ; div:sharePercent "70"^^xsd:decimal .
+ex:alloc4b a div:AssetAllocation ; rdfs:label "예금 5-나 몫"@ko ; div:allocatedTo ex:partyB5 ; div:sharePercent "30"^^xsd:decimal .

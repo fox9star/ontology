@@ -1,0 +1,838 @@
+@prefix ad: <https://example.org/ontology/custom/autonomous-driving#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/autonomous-driving> a owl:Ontology ;
+    rdfs:label "Autonomous Driving Ontology"@en,
+        "자율주행 온톨로지"@ko ;
+    rdfs:comment "Connects driving features, vehicles, ODD, sensors, software stack, scenarios, tests and safety evidence. The campus shuttle is synthetic."@en,
+        "자율주행 기능·차량·ODD·센서·소프트웨어 스택·시나리오·시험·안전 근거를 연결한다. 캠퍼스 셔틀 예시는 합성 기록이다."@ko ;
+    owl:versionIRI <https://example.org/ontology/custom/autonomous-driving/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+ad:actorKind a owl:DatatypeProperty ;
+    rdfs:label "Actor kind"@en,
+        "행위자 유형"@ko ;
+    rdfs:comment "Records or classifies actor kind."@en,
+        "행위자 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadActor ;
+    rdfs:range xsd:string .
+
+ad:actorMotion a owl:DatatypeProperty ;
+    rdfs:label "Actor motion"@en,
+        "행위자 동작"@ko ;
+    rdfs:comment "Records or classifies actor motion."@en,
+        "행위자 동작를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadActor ;
+    rdfs:range xsd:string .
+
+ad:actorName a owl:DatatypeProperty ;
+    rdfs:label "Actor name"@en,
+        "행위자 이름"@ko ;
+    rdfs:comment "Records or classifies actor name."@en,
+        "행위자 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadActor ;
+    rdfs:range xsd:string .
+
+ad:actorVehicle a owl:ObjectProperty ;
+    rdfs:label "Represents vehicle"@en,
+        "표현 차량"@ko ;
+    rdfs:comment "Links the related represents vehicle entity."@en,
+        "관련 표현 차량 개체를 연결한다."@ko ;
+    rdfs:domain ad:RoadActor ;
+    rdfs:range ad:Vehicle .
+
+ad:dependsOnModule a owl:ObjectProperty ;
+    rdfs:label "Depends on module"@en,
+        "의존 모듈"@ko ;
+    rdfs:comment "Links the related depends on module entity."@en,
+        "관련 의존 모듈 개체를 연결한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range ad:SoftwareModule .
+
+ad:documentedBy a owl:ObjectProperty ;
+    rdfs:label "Documented by"@en,
+        "문서 근거"@ko ;
+    rdfs:comment "Links the related documented by entity."@en,
+        "관련 문서 근거 개체를 연결한다."@ko ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ad:DocumentationSource .
+
+ad:environmentCondition a owl:DatatypeProperty ;
+    rdfs:label "Environmental condition"@en,
+        "환경 조건"@ko ;
+    rdfs:comment "Records or classifies environmental condition."@en,
+        "환경 조건를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:string .
+
+ad:featureAutomationLevel a owl:ObjectProperty ;
+    rdfs:label "Feature automation level"@en,
+        "기능 자동화 수준"@ko ;
+    rdfs:comment "Links the related feature automation level entity."@en,
+        "관련 기능 자동화 수준 개체를 연결한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range ad:AutomationLevel .
+
+ad:featureKind a owl:DatatypeProperty ;
+    rdfs:label "Feature kind"@en,
+        "기능 유형"@ko ;
+    rdfs:comment "Records or classifies feature kind."@en,
+        "기능 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range xsd:string .
+
+ad:featureName a owl:DatatypeProperty ;
+    rdfs:label "Feature name"@en,
+        "기능 이름"@ko ;
+    rdfs:comment "Records or classifies feature name."@en,
+        "기능 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range xsd:string .
+
+ad:featureNote a owl:DatatypeProperty ;
+    rdfs:label "Feature note"@en,
+        "기능 설명"@ko ;
+    rdfs:comment "Records or classifies feature note."@en,
+        "기능 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range xsd:string .
+
+ad:featureODD a owl:ObjectProperty ;
+    rdfs:label "Feature ODD"@en,
+        "기능의 운행설계영역"@ko ;
+    rdfs:comment "Links the related feature odd entity."@en,
+        "관련 기능의 운행설계영역 개체를 연결한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range ad:OperationalDesignDomain .
+
+ad:featureUsesModule a owl:ObjectProperty ;
+    rdfs:label "Feature uses module"@en,
+        "기능 소프트웨어 모듈"@ko ;
+    rdfs:comment "Links the related feature uses module entity."@en,
+        "관련 기능 소프트웨어 모듈 개체를 연결한다."@ko ;
+    rdfs:domain ad:DrivingFeature ;
+    rdfs:range ad:SoftwareModule .
+
+ad:geographicArea a owl:DatatypeProperty ;
+    rdfs:label "Geographic area"@en,
+        "지리 범위"@ko ;
+    rdfs:comment "Records or classifies geographic area."@en,
+        "지리 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:string .
+
+ad:hasAutomationLevel a owl:ObjectProperty ;
+    rdfs:label "Has automation level term"@en,
+        "자동화 수준 용어"@ko ;
+    rdfs:comment "Links the related has automation level term entity."@en,
+        "관련 자동화 수준 용어 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:AutomationLevel .
+
+ad:hasDocumentationSource a owl:ObjectProperty ;
+    rdfs:label "Has documentation source"@en,
+        "문서 출처"@ko ;
+    rdfs:comment "Links the related has documentation source entity."@en,
+        "관련 문서 출처 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:DocumentationSource .
+
+ad:hasDrivingFeature a owl:ObjectProperty ;
+    rdfs:label "Has driving feature"@en,
+        "주행 기능"@ko ;
+    rdfs:comment "Links the related has driving feature entity."@en,
+        "관련 주행 기능 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:DrivingFeature .
+
+ad:hasOperationalDesignDomain a owl:ObjectProperty ;
+    rdfs:label "Has operational design domain"@en,
+        "운행설계영역"@ko ;
+    rdfs:comment "Links the related has operational design domain entity."@en,
+        "관련 운행설계영역 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:OperationalDesignDomain .
+
+ad:hasRoadActor a owl:ObjectProperty ;
+    rdfs:label "Has road actor"@en,
+        "도로 행위자"@ko ;
+    rdfs:comment "Links the related has road actor entity."@en,
+        "관련 도로 행위자 개체를 연결한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range ad:RoadActor .
+
+ad:hasRoadMap a owl:ObjectProperty ;
+    rdfs:label "Has road map"@en,
+        "도로 지도"@ko ;
+    rdfs:comment "Links the related has road map entity."@en,
+        "관련 도로 지도 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:RoadMap .
+
+ad:hasRoute a owl:ObjectProperty ;
+    rdfs:label "Has route"@en,
+        "경로"@ko ;
+    rdfs:comment "Links the related has route entity."@en,
+        "관련 경로 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:Route .
+
+ad:hasSafetyFunction a owl:ObjectProperty ;
+    rdfs:label "Has safety function"@en,
+        "안전 기능"@ko ;
+    rdfs:comment "Links the related has safety function entity."@en,
+        "관련 안전 기능 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:SafetyFunction .
+
+ad:hasScenario a owl:ObjectProperty ;
+    rdfs:label "Has scenario"@en,
+        "시나리오"@ko ;
+    rdfs:comment "Links the related has scenario entity."@en,
+        "관련 시나리오 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:Scenario .
+
+ad:hasSensor a owl:ObjectProperty ;
+    rdfs:label "Has sensor"@en,
+        "센서"@ko ;
+    rdfs:comment "Links the related has sensor entity."@en,
+        "관련 센서 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:Sensor .
+
+ad:hasSoftwareModule a owl:ObjectProperty ;
+    rdfs:label "Has software module"@en,
+        "소프트웨어 모듈"@ko ;
+    rdfs:comment "Links the related has software module entity."@en,
+        "관련 소프트웨어 모듈 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:SoftwareModule .
+
+ad:hasTestRun a owl:ObjectProperty ;
+    rdfs:label "Has test run"@en,
+        "시험 실행"@ko ;
+    rdfs:comment "Links the related has test run entity."@en,
+        "관련 시험 실행 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:TestRun .
+
+ad:hasTrajectory a owl:ObjectProperty ;
+    rdfs:label "Has trajectory"@en,
+        "궤적"@ko ;
+    rdfs:comment "Links the related has trajectory entity."@en,
+        "관련 궤적 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:Trajectory .
+
+ad:hasVehicle a owl:ObjectProperty ;
+    rdfs:label "Has vehicle"@en,
+        "차량"@ko ;
+    rdfs:comment "Links the related has vehicle entity."@en,
+        "관련 차량 개체를 연결한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range ad:Vehicle .
+
+ad:levelLabel a owl:DatatypeProperty ;
+    rdfs:label "Level label"@en,
+        "수준 명칭"@ko ;
+    rdfs:comment "Records or classifies level label."@en,
+        "수준 명칭를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutomationLevel ;
+    rdfs:range xsd:string .
+
+ad:levelNote a owl:DatatypeProperty ;
+    rdfs:label "Level note"@en,
+        "수준 설명"@ko ;
+    rdfs:comment "Records or classifies level note."@en,
+        "수준 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutomationLevel ;
+    rdfs:range xsd:string .
+
+ad:levelNumber a owl:DatatypeProperty ;
+    rdfs:label "Level number"@en,
+        "수준 번호"@ko ;
+    rdfs:comment "Records or classifies level number."@en,
+        "수준 번호를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutomationLevel ;
+    rdfs:range xsd:integer .
+
+ad:levelScope a owl:DatatypeProperty ;
+    rdfs:label "Taxonomy scope"@en,
+        "분류 범위"@ko ;
+    rdfs:comment "Records or classifies taxonomy scope."@en,
+        "분류 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutomationLevel ;
+    rdfs:range xsd:string .
+
+ad:mapCoverage a owl:DatatypeProperty ;
+    rdfs:label "Map coverage"@en,
+        "지도 범위"@ko ;
+    rdfs:comment "Records or classifies map coverage."@en,
+        "지도 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadMap ;
+    rdfs:range xsd:string .
+
+ad:mapFormat a owl:DatatypeProperty ;
+    rdfs:label "Map format"@en,
+        "지도 형식"@ko ;
+    rdfs:comment "Records or classifies map format."@en,
+        "지도 형식를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadMap ;
+    rdfs:range xsd:string .
+
+ad:mapName a owl:DatatypeProperty ;
+    rdfs:label "Map name"@en,
+        "지도 이름"@ko ;
+    rdfs:comment "Records or classifies map name."@en,
+        "지도 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadMap ;
+    rdfs:range xsd:string .
+
+ad:mapNote a owl:DatatypeProperty ;
+    rdfs:label "Map note"@en,
+        "지도 설명"@ko ;
+    rdfs:comment "Records or classifies map note."@en,
+        "지도 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:RoadMap ;
+    rdfs:range xsd:string .
+
+ad:maxSpeedKph a owl:DatatypeProperty ;
+    rdfs:label "Maximum operating speed km/h"@en,
+        "최대 운행 속도 km/h"@ko ;
+    rdfs:comment "Records or classifies maximum operating speed km/h."@en,
+        "최대 운행 속도 km/h를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:integer .
+
+ad:moduleInput a owl:DatatypeProperty ;
+    rdfs:label "Module input"@en,
+        "입력 데이터"@ko ;
+    rdfs:comment "Records or classifies module input."@en,
+        "입력 데이터를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:moduleKind a owl:DatatypeProperty ;
+    rdfs:label "Module kind"@en,
+        "모듈 유형"@ko ;
+    rdfs:comment "Records or classifies module kind."@en,
+        "모듈 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:moduleName a owl:DatatypeProperty ;
+    rdfs:label "Module name"@en,
+        "모듈 이름"@ko ;
+    rdfs:comment "Records or classifies module name."@en,
+        "모듈 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:moduleNote a owl:DatatypeProperty ;
+    rdfs:label "Module note"@en,
+        "모듈 설명"@ko ;
+    rdfs:comment "Records or classifies module note."@en,
+        "모듈 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:moduleOutput a owl:DatatypeProperty ;
+    rdfs:label "Module output"@en,
+        "출력 데이터"@ko ;
+    rdfs:comment "Records or classifies module output."@en,
+        "출력 데이터를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:modulePurpose a owl:DatatypeProperty ;
+    rdfs:label "Module purpose"@en,
+        "모듈 목적"@ko ;
+    rdfs:comment "Records or classifies module purpose."@en,
+        "모듈 목적를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SoftwareModule ;
+    rdfs:range xsd:string .
+
+ad:monitorsODD a owl:ObjectProperty ;
+    rdfs:label "Monitors ODD"@en,
+        "감시 운행설계영역"@ko ;
+    rdfs:comment "Links the related monitors odd entity."@en,
+        "관련 감시 운행설계영역 개체를 연결한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range ad:OperationalDesignDomain .
+
+ad:mountedOnVehicle a owl:ObjectProperty ;
+    rdfs:label "Mounted on vehicle"@en,
+        "장착 차량"@ko ;
+    rdfs:comment "Links the related mounted on vehicle entity."@en,
+        "관련 장착 차량 개체를 연결한다."@ko ;
+    rdfs:domain ad:Sensor ;
+    rdfs:range ad:Vehicle .
+
+ad:oddName a owl:DatatypeProperty ;
+    rdfs:label "ODD name"@en,
+        "운행설계영역 이름"@ko ;
+    rdfs:comment "Records or classifies odd name."@en,
+        "운행설계영역 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:string .
+
+ad:oddNote a owl:DatatypeProperty ;
+    rdfs:label "ODD note"@en,
+        "운행설계영역 설명"@ko ;
+    rdfs:comment "Records or classifies odd note."@en,
+        "운행설계영역 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:string .
+
+ad:powertrainType a owl:DatatypeProperty ;
+    rdfs:label "Powertrain type"@en,
+        "동력계 종류"@ko ;
+    rdfs:comment "Records or classifies powertrain type."@en,
+        "동력계 종류를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Vehicle ;
+    rdfs:range xsd:string .
+
+ad:responseAction a owl:DatatypeProperty ;
+    rdfs:label "Response action"@en,
+        "대응 동작"@ko ;
+    rdfs:comment "Records or classifies response action."@en,
+        "대응 동작를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range xsd:string .
+
+ad:roadwayType a owl:DatatypeProperty ;
+    rdfs:label "Roadway type"@en,
+        "도로 유형"@ko ;
+    rdfs:comment "Records or classifies roadway type."@en,
+        "도로 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:OperationalDesignDomain ;
+    rdfs:range xsd:string .
+
+ad:routeEnd a owl:DatatypeProperty ;
+    rdfs:label "Route end"@en,
+        "경로 종점"@ko ;
+    rdfs:comment "Records or classifies route end."@en,
+        "경로 종점를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Route ;
+    rdfs:range xsd:string .
+
+ad:routeMap a owl:ObjectProperty ;
+    rdfs:label "Route map"@en,
+        "경로 지도"@ko ;
+    rdfs:comment "Links the related route map entity."@en,
+        "관련 경로 지도 개체를 연결한다."@ko ;
+    rdfs:domain ad:Route ;
+    rdfs:range ad:RoadMap .
+
+ad:routeName a owl:DatatypeProperty ;
+    rdfs:label "Route name"@en,
+        "경로 이름"@ko ;
+    rdfs:comment "Records or classifies route name."@en,
+        "경로 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Route ;
+    rdfs:range xsd:string .
+
+ad:routeNote a owl:DatatypeProperty ;
+    rdfs:label "Route note"@en,
+        "경로 설명"@ko ;
+    rdfs:comment "Records or classifies route note."@en,
+        "경로 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Route ;
+    rdfs:range xsd:string .
+
+ad:routeStart a owl:DatatypeProperty ;
+    rdfs:label "Route start"@en,
+        "경로 시작점"@ko ;
+    rdfs:comment "Records or classifies route start."@en,
+        "경로 시작점를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Route ;
+    rdfs:range xsd:string .
+
+ad:safetyFunctionKind a owl:DatatypeProperty ;
+    rdfs:label "Safety function kind"@en,
+        "안전 기능 유형"@ko ;
+    rdfs:comment "Records or classifies safety function kind."@en,
+        "안전 기능 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range xsd:string .
+
+ad:safetyFunctionName a owl:DatatypeProperty ;
+    rdfs:label "Safety function name"@en,
+        "안전 기능 이름"@ko ;
+    rdfs:comment "Records or classifies safety function name."@en,
+        "안전 기능 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range xsd:string .
+
+ad:safetyFunctionNote a owl:DatatypeProperty ;
+    rdfs:label "Safety function note"@en,
+        "안전 기능 설명"@ko ;
+    rdfs:comment "Records or classifies safety function note."@en,
+        "안전 기능 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range xsd:string .
+
+ad:safetyFunctionStatus a owl:DatatypeProperty ;
+    rdfs:label "Function implementation status"@en,
+        "기능 구현 상태"@ko ;
+    rdfs:comment "Records or classifies function implementation status."@en,
+        "기능 구현 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:SafetyFunction ;
+    rdfs:range xsd:string .
+
+ad:scenarioKind a owl:DatatypeProperty ;
+    rdfs:label "Scenario kind"@en,
+        "시나리오 유형"@ko ;
+    rdfs:comment "Records or classifies scenario kind."@en,
+        "시나리오 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range xsd:string .
+
+ad:scenarioName a owl:DatatypeProperty ;
+    rdfs:label "Scenario name"@en,
+        "시나리오 이름"@ko ;
+    rdfs:comment "Records or classifies scenario name."@en,
+        "시나리오 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range xsd:string .
+
+ad:scenarioNote a owl:DatatypeProperty ;
+    rdfs:label "Scenario note"@en,
+        "시나리오 설명"@ko ;
+    rdfs:comment "Records or classifies scenario note."@en,
+        "시나리오 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range xsd:string .
+
+ad:scenarioODD a owl:ObjectProperty ;
+    rdfs:label "Scenario ODD"@en,
+        "시나리오 운행설계영역"@ko ;
+    rdfs:comment "Links the related scenario odd entity."@en,
+        "관련 시나리오 운행설계영역 개체를 연결한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range ad:OperationalDesignDomain .
+
+ad:scenarioRoute a owl:ObjectProperty ;
+    rdfs:label "Scenario route"@en,
+        "시나리오 경로"@ko ;
+    rdfs:comment "Links the related scenario route entity."@en,
+        "관련 시나리오 경로 개체를 연결한다."@ko ;
+    rdfs:domain ad:Scenario ;
+    rdfs:range ad:Route .
+
+ad:sensorModality a owl:DatatypeProperty ;
+    rdfs:label "Sensor modality"@en,
+        "센서 방식"@ko ;
+    rdfs:comment "Records or classifies sensor modality."@en,
+        "센서 방식를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Sensor ;
+    rdfs:range xsd:string .
+
+ad:sensorName a owl:DatatypeProperty ;
+    rdfs:label "Sensor name"@en,
+        "센서 이름"@ko ;
+    rdfs:comment "Records or classifies sensor name."@en,
+        "센서 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Sensor ;
+    rdfs:range xsd:string .
+
+ad:sensorPurpose a owl:DatatypeProperty ;
+    rdfs:label "Sensor purpose"@en,
+        "센서 용도"@ko ;
+    rdfs:comment "Records or classifies sensor purpose."@en,
+        "센서 용도를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Sensor ;
+    rdfs:range xsd:string .
+
+ad:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "Access date"@en,
+        "확인 날짜"@ko ;
+    rdfs:comment "Records or classifies access date."@en,
+        "확인 날짜를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:date .
+
+ad:sourceClaim a owl:DatatypeProperty ;
+    rdfs:label "Source claim"@en,
+        "근거 범위"@ko ;
+    rdfs:comment "Records or classifies source claim."@en,
+        "근거 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ad:sourceLanguage a owl:DatatypeProperty ;
+    rdfs:label "Source language"@en,
+        "문서 언어"@ko ;
+    rdfs:comment "Records or classifies source language."@en,
+        "문서 언어를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ad:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "Source publisher"@en,
+        "문서 제공자"@ko ;
+    rdfs:comment "Records or classifies source publisher."@en,
+        "문서 제공자를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ad:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "Source title"@en,
+        "문서 제목"@ko ;
+    rdfs:comment "Records or classifies source title."@en,
+        "문서 제목를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ad:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "Source URI"@en,
+        "문서 주소"@ko ;
+    rdfs:comment "Records or classifies source uri."@en,
+        "문서 주소를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:DocumentationSource ;
+    rdfs:range xsd:anyURI .
+
+ad:systemNote a owl:DatatypeProperty ;
+    rdfs:label "System note"@en,
+        "시스템 설명"@ko ;
+    rdfs:comment "Records or classifies system note."@en,
+        "시스템 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range xsd:string .
+
+ad:systemPurpose a owl:DatatypeProperty ;
+    rdfs:label "System purpose"@en,
+        "시스템 목적"@ko ;
+    rdfs:comment "Records or classifies system purpose."@en,
+        "시스템 목적를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range xsd:string .
+
+ad:systemRecordKind a owl:DatatypeProperty ;
+    rdfs:label "Record kind"@en,
+        "기록 성격"@ko ;
+    rdfs:comment "Records or classifies record kind."@en,
+        "기록 성격를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:AutonomousDrivingSystem ;
+    rdfs:range xsd:string .
+
+ad:testDate a owl:DatatypeProperty ;
+    rdfs:label "Test date"@en,
+        "시험 날짜"@ko ;
+    rdfs:comment "Records or classifies test date."@en,
+        "시험 날짜를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:date .
+
+ad:testEnvironment a owl:DatatypeProperty ;
+    rdfs:label "Test environment"@en,
+        "시험 환경"@ko ;
+    rdfs:comment "Records or classifies test environment."@en,
+        "시험 환경를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:string .
+
+ad:testEvidenceUri a owl:DatatypeProperty ;
+    rdfs:label "Test evidence URI"@en,
+        "시험 증거 URI"@ko ;
+    rdfs:comment "Records or classifies test evidence uri."@en,
+        "시험 증거 URI를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:anyURI .
+
+ad:testName a owl:DatatypeProperty ;
+    rdfs:label "Test name"@en,
+        "시험 이름"@ko ;
+    rdfs:comment "Records or classifies test name."@en,
+        "시험 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:string .
+
+ad:testNote a owl:DatatypeProperty ;
+    rdfs:label "Test note"@en,
+        "시험 설명"@ko ;
+    rdfs:comment "Records or classifies test note."@en,
+        "시험 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:string .
+
+ad:testResult a owl:DatatypeProperty ;
+    rdfs:label "Test result"@en,
+        "시험 결과"@ko ;
+    rdfs:comment "Records or classifies test result."@en,
+        "시험 결과를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:string .
+
+ad:testStatus a owl:DatatypeProperty ;
+    rdfs:label "Test status"@en,
+        "시험 상태"@ko ;
+    rdfs:comment "Records or classifies test status."@en,
+        "시험 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range xsd:string .
+
+ad:testsScenario a owl:ObjectProperty ;
+    rdfs:label "Tests scenario"@en,
+        "시험 시나리오"@ko ;
+    rdfs:comment "Links the related tests scenario entity."@en,
+        "관련 시험 시나리오 개체를 연결한다."@ko ;
+    rdfs:domain ad:TestRun ;
+    rdfs:range ad:Scenario .
+
+ad:trajectoryForRoute a owl:ObjectProperty ;
+    rdfs:label "Trajectory for route"@en,
+        "대상 경로"@ko ;
+    rdfs:comment "Links the related trajectory for route entity."@en,
+        "관련 대상 경로 개체를 연결한다."@ko ;
+    rdfs:domain ad:Trajectory ;
+    rdfs:range ad:Route .
+
+ad:trajectoryGeneratedBy a owl:ObjectProperty ;
+    rdfs:label "Generated by module"@en,
+        "생성 모듈"@ko ;
+    rdfs:comment "Links the related generated by module entity."@en,
+        "관련 생성 모듈 개체를 연결한다."@ko ;
+    rdfs:domain ad:Trajectory ;
+    rdfs:range ad:SoftwareModule .
+
+ad:trajectoryName a owl:DatatypeProperty ;
+    rdfs:label "Trajectory name"@en,
+        "궤적 이름"@ko ;
+    rdfs:comment "Records or classifies trajectory name."@en,
+        "궤적 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Trajectory ;
+    rdfs:range xsd:string .
+
+ad:trajectoryNote a owl:DatatypeProperty ;
+    rdfs:label "Trajectory note"@en,
+        "궤적 설명"@ko ;
+    rdfs:comment "Records or classifies trajectory note."@en,
+        "궤적 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Trajectory ;
+    rdfs:range xsd:string .
+
+ad:trajectoryStatus a owl:DatatypeProperty ;
+    rdfs:label "Trajectory status"@en,
+        "궤적 상태"@ko ;
+    rdfs:comment "Records or classifies trajectory status."@en,
+        "궤적 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Trajectory ;
+    rdfs:range xsd:string .
+
+ad:vehicleKind a owl:DatatypeProperty ;
+    rdfs:label "Vehicle kind"@en,
+        "차량 종류"@ko ;
+    rdfs:comment "Records or classifies vehicle kind."@en,
+        "차량 종류를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Vehicle ;
+    rdfs:range xsd:string .
+
+ad:vehicleName a owl:DatatypeProperty ;
+    rdfs:label "Vehicle name"@en,
+        "차량 이름"@ko ;
+    rdfs:comment "Records or classifies vehicle name."@en,
+        "차량 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Vehicle ;
+    rdfs:range xsd:string .
+
+ad:vehicleNote a owl:DatatypeProperty ;
+    rdfs:label "Vehicle note"@en,
+        "차량 설명"@ko ;
+    rdfs:comment "Records or classifies vehicle note."@en,
+        "차량 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain ad:Vehicle ;
+    rdfs:range xsd:string .
+
+ad:RoadActor a owl:Class ;
+    rdfs:label "Road actor"@en,
+        "도로 행위자"@ko ;
+    rdfs:comment "A vehicle, pedestrian, cyclist, signal or static obstacle in a driving scenario."@en,
+        "주행 시나리오에 포함된 차량·보행자·자전거·신호·정적 장애물이다."@ko .
+
+ad:Sensor a owl:Class ;
+    rdfs:label "Vehicle sensor"@en,
+        "차량 센서"@ko ;
+    rdfs:comment "A sensor measuring the vehicle surroundings or vehicle state, with its mounting relation."@en,
+        "차량 주변이나 차량 상태를 측정하는 센서와 장착 관계다."@ko .
+
+ad:AutomationLevel a owl:Class ;
+    rdfs:label "Automation level term"@en,
+        "자동화 수준 용어"@ko ;
+    rdfs:comment "A classification term referring to an on-road driving automation level in SAE J3016."@en,
+        "SAE J3016의 온로드 주행 자동화 수준을 참조하는 분류 용어다."@ko .
+
+ad:RoadMap a owl:Class ;
+    rdfs:label "Road map"@en,
+        "도로 지도"@ko ;
+    rdfs:comment "A road, lane or environment map referenced by routes and planning."@en,
+        "경로와 계획이 참조하는 도로·차선·환경 지도의 범위와 형식이다."@ko .
+
+ad:Trajectory a owl:Class ;
+    rdfs:label "Trajectory"@en,
+        "주행 궤적"@ko ;
+    rdfs:comment "A planned or tracked trajectory linked to a route and driving feature."@en,
+        "경로와 주행 기능에 연결된 계획 또는 추종 궤적이다."@ko .
+
+ad:DrivingFeature a owl:Class ;
+    rdfs:label "Driving automation feature"@en,
+        "주행 자동화 기능"@ko ;
+    rdfs:comment "A driving automation feature designed for stated operating conditions; its level and ODD are recorded per feature."@en,
+        "특정 운행 조건에서 수행하도록 설계된 주행 자동화 기능이다. 기능별 등급과 ODD를 기록한다."@ko .
+
+ad:SafetyFunction a owl:Class ;
+    rdfs:label "Safety function"@en,
+        "안전 기능"@ko ;
+    rdfs:comment "A safety-related function such as operating-domain monitoring, hazard response, minimal-risk fallback or manual disengagement."@en,
+        "운행 조건 감시, 위험 대응, 최소위험상태 전환 또는 수동 해제와 같은 안전 관련 기능이다."@ko .
+
+ad:Vehicle a owl:Class ;
+    rdfs:label "Vehicle"@en,
+        "차량"@ko ;
+    rdfs:comment "A road vehicle connected to driving features, sensors and vehicle interfaces."@en,
+        "자율주행 기능과 센서·차량 인터페이스가 연결되는 도로 차량이다."@ko .
+
+ad:DocumentationSource a owl:Class ;
+    rdfs:label "Documentation source"@en,
+        "문서 근거"@ko ;
+    rdfs:comment "Records an official standard or document source and the scope of the claim it supports."@en,
+        "용어 또는 속성의 주장을 뒷받침하는 표준·공식 문서 출처와 범위를 기록한다."@ko .
+
+ad:Route a owl:Class ;
+    rdfs:label "Route"@en,
+        "주행 경로"@ko ;
+    rdfs:comment "A high-level path connecting a start and destination on a map."@en,
+        "지도 위의 출발·도착 지점을 연결하는 상위 경로다."@ko .
+
+ad:Scenario a owl:Class ;
+    rdfs:label "Driving scenario"@en,
+        "주행 시나리오"@ko ;
+    rdfs:comment "A situation in which road actors such as vehicles, pedestrians and signals interact under operating conditions and on a route."@en,
+        "운행 조건과 경로에서 차량·보행자·신호 등 도로 행위자가 상호작용하는 상황이다."@ko .
+
+ad:TestRun a owl:Class ;
+    rdfs:label "Test run record"@en,
+        "시험 실행 기록"@ko ;
+    rdfs:comment "Records the plan, result and evidence state of a simulation, closed-track, road or log-replay test."@en,
+        "시뮬레이션·폐쇄 시험장·도로·기록 재생 시험의 계획과 결과·증거 상태를 기록한다."@ko .
+
+ad:OperationalDesignDomain a owl:Class ;
+    rdfs:label "Operational design domain"@en,
+        "운행설계영역"@ko ;
+    rdfs:comment "The roadway, geography, speed and environmental conditions and limits for which a feature is designed to operate."@en,
+        "기능이 작동하도록 설계된 도로·지역·속도·환경 조건과 경계다."@ko .
+
+ad:SoftwareModule a owl:Class ;
+    rdfs:label "Autonomous-driving software module"@en,
+        "자율주행 소프트웨어 모듈"@ko ;
+    rdfs:comment "A software component for sensing, perception, localization, planning, control, vehicle interfacing or safety monitoring."@en,
+        "감지·인지·위치추정·계획·제어·차량 연결 또는 안전 감시를 수행하는 소프트웨어 구성요소다."@ko .
+
+ad:AutonomousDrivingSystem a owl:Class ;
+    rdfs:label "Autonomous driving system"@en,
+        "자율주행 시스템"@ko ;
+    rdfs:comment "Groups a vehicle, driving features, operating conditions, software modules, tests and evidence into a system."@en,
+        "차량, 자율주행 기능, 운용 조건, 소프트웨어 모듈, 시험과 근거를 하나의 시스템으로 묶는다."@ko .

@@ -1,0 +1,77 @@
+@prefix mv: <https://example.org/mv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mv:demo_p01 a mv:MusicVideoProject ;
+    rdfs:label "파이프라인 자동화 60초 뮤직비디오"@ko ;
+    mv:hasAudio mv:audio_main ;
+    mv:hasBrief mv:demo_p01_brief ;
+    mv:hasFinalVideo mv:video_main ;
+    mv:hasImage mv:image_01,
+        mv:image_02 ;
+    mv:hasTimeline mv:timeline_main .
+
+mv:agent_editor a mv:AIAgent ;
+    rdfs:label "영상 편집 에이전트"@ko .
+
+mv:agent_music a mv:AIAgent ;
+    rdfs:label "작곡 에이전트"@ko .
+
+mv:demo_p01_brief a mv:CreativeBrief ;
+    mv:targetDurationSeconds 60.0 .
+
+mv:shot_01 a mv:Shot ;
+    rdfs:label "첫 번째 밤거리 샷"@ko ;
+    mv:endSecond 30.0 ;
+    mv:orderIndex 1 ;
+    mv:startSecond 0.0 ;
+    mv:usesImage mv:image_01 .
+
+mv:shot_02 a mv:Shot ;
+    rdfs:label "두 번째 드라이브 샷"@ko ;
+    mv:endSecond 60.0 ;
+    mv:orderIndex 2 ;
+    mv:startSecond 30.0 ;
+    mv:usesImage mv:image_02 .
+
+mv:task_audio_gen a mv:AudioGenerationTask ;
+    rdfs:label "음원 트랙 자동 생성"@ko ;
+    prov:wasAssociatedWith mv:agent_music ;
+    mv:status "completed" .
+
+mv:task_render a mv:RenderTask ;
+    prov:wasAssociatedWith mv:agent_editor ;
+    mv:status "completed" .
+
+mv:video_main a mv:MusicVideo ;
+    rdfs:label "최종 렌더링 뮤직비디오"@ko ;
+    prov:wasGeneratedBy mv:task_render ;
+    mv:durationSeconds 60.0 ;
+    mv:fileUri <https://example.org/assets/demo_video.mp4> ;
+    mv:hasTimeline mv:timeline_main ;
+    mv:usesAudio mv:audio_main .
+
+mv:audio_main a mv:AudioAsset ;
+    rdfs:label "메인 음원"@ko ;
+    prov:wasGeneratedBy mv:task_audio_gen ;
+    mv:bpm 128 ;
+    mv:durationSeconds 60.0 ;
+    mv:fileUri <https://example.org/assets/demo_song.wav> ;
+    mv:genre "CityPop" .
+
+mv:image_01 a mv:ImageAsset ;
+    mv:fileUri <https://example.org/assets/img01.png> ;
+    mv:height 1080 ;
+    mv:width 1920 .
+
+mv:image_02 a mv:ImageAsset ;
+    mv:fileUri <https://example.org/assets/img02.png> ;
+    mv:height 1080 ;
+    mv:width 1920 .
+
+mv:timeline_main a mv:Timeline ;
+    rdfs:label "메인 타임라인"@ko ;
+    mv:hasShot mv:shot_01,
+        mv:shot_02 .
+

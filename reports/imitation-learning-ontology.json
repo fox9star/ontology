@@ -1,0 +1,116 @@
+{
+  "created_at": "2026-10-08T01:51:17+00:00",
+  "id": "imitation-learning",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 16,
+  "properties": 84,
+  "instance_counts": {
+    "Action": 2,
+    "Demonstration": 1,
+    "DemonstrationDataset": 1,
+    "DemonstrationStep": 2,
+    "DistributionShift": 1,
+    "DocumentationSource": 3,
+    "EvaluationMetric": 3,
+    "EvaluationRun": 1,
+    "Expert": 1,
+    "ImitationLearningProject": 1,
+    "LearningMethod": 3,
+    "LearningTask": 1,
+    "Observation": 2,
+    "Policy": 1,
+    "SafetyConstraint": 1,
+    "TrainingRun": 1
+  },
+  "triples": 203,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 41
+  },
+  "questions": 10,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Three sourced method references (behavior cloning related example, DAgger, inverse RL); all robot-arm task, demonstrator, demonstration, policy, run and safety records are explicitly synthetic. No data was collected, model trained, robot actuated or evaluation run.",
+  "release_uri": "pending; profile remains example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "cc29d3c4859baf6ea2c2e35d3189643fa14e6cf5e920934a134eead70c651a74",
+      "bytes": 32996
+    },
+    "curated-data.json": {
+      "sha256": "9ea8b1a9b4ca7215f03f5dbbf5311e972b50a263725d04ae0bff2efede2dcc5b",
+      "bytes": 1831
+    },
+    "example.ttl": {
+      "sha256": "93f5631b9f42c4bbb7c09cca5c9a9dfefa4252db0a03e68c6a3fc12b3ea63cb2",
+      "bytes": 13194
+    },
+    "profile.json": {
+      "sha256": "32475b565e3ce289c8cb61091c2fa86fa56e5d45948d9aeab3a1b5e7e632535d",
+      "bytes": 1400
+    },
+    "question-answers.json": {
+      "sha256": "b3add9527131ff79ed6ac39a58cbbc94f3db8d96c16360136b40ef0f931c6a71",
+      "bytes": 9696
+    },
+    "question-fixture.ttl": {
+      "sha256": "2ffc6e2641456b97a43112302f02aef1e37dd65a779d239eaa5915d02b1e75c4",
+      "bytes": 13320
+    },
+    "questions.md": {
+      "sha256": "1e84e7cd722e8f0e9e4fa2e98e6d68e7647d050804cc5e9745b508b01b767875",
+      "bytes": 4899
+    },
+    "schema.owl": {
+      "sha256": "f5683d524307a9964e02fcbcccca60913c7780f4917512dd66f3445ef4decec5",
+      "bytes": 68248
+    },
+    "schema.ttl": {
+      "sha256": "937b41cd99fa28fc2689c5a26152f917dd91460396689ce6f6d6b56abbe981c0",
+      "bytes": 31751
+    },
+    "shapes.ttl": {
+      "sha256": "7c6d83853ea327e6eb623e3a5c5e8f5bd1c24435949ab882c6f37abc581db0e1",
+      "bytes": 23204
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T01:53:16+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 27,
+    "profile_name": "모방학습 온톨로지 (imitation-learning)",
+    "profile_id": "imitation-learning",
+    "draft": true,
+    "explorer": {
+      "classes": 16,
+      "properties": 84,
+      "instances": 25
+    },
+    "question_keys": [
+      "IL-01",
+      "IL-02",
+      "IL-03",
+      "IL-04",
+      "IL-05",
+      "IL-06",
+      "IL-07",
+      "IL-08",
+      "IL-09",
+      "IL-10"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  },
+  "instance_iri_namespace": "https://example.org/ontology/custom/imitation-learning#",
+  "question_fixture_namespace": "https://example.test/imitation-learning/"
+}

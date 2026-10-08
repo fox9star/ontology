@@ -1,0 +1,376 @@
+@prefix ns1: <https://example.org/ontology/custom/dog#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/dog-accept> {
+    <https://example.test/dog/bori> a ns1:Dog ;
+        rdfs:label "가상의 개: 보리"@ko ;
+        ns1:birthDate "2023-06-15"^^xsd:date ;
+        ns1:birthDateKnowledge "exact" ;
+        ns1:hasBreed <https://example.test/dog/goldenRetriever> ;
+        ns1:hasGuardian <https://example.test/dog/guardianA>,
+            <https://example.test/dog/guardianB> ;
+        ns1:hasVaccination <https://example.test/dog/boriCombination>,
+            <https://example.test/dog/boriRabies> ;
+        ns1:hasVisit <https://example.test/dog/boriVisit1>,
+            <https://example.test/dog/boriVisit2> ;
+        ns1:hasWeightRecord <https://example.test/dog/boriWeight1>,
+            <https://example.test/dog/boriWeight2> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "intact" ;
+        ns1:sex "male" .
+
+    <https://example.test/dog/dalgi> a ns1:Dog ;
+        rdfs:label "가상의 개: 달이"@ko ;
+        ns1:birthDateKnowledge "unknown" ;
+        ns1:hasBreed <https://example.test/dog/maltese> ;
+        ns1:hasGuardian <https://example.test/dog/guardianC> ;
+        ns1:hasVisit <https://example.test/dog/dalgiVisit> ;
+        ns1:hasWeightRecord <https://example.test/dog/dalgiWeight> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "neutered" ;
+        ns1:sex "female" .
+
+    <https://example.test/dog/kongi> a ns1:Dog ;
+        rdfs:label "가상의 개: 콩이"@ko ;
+        ns1:birthDate "2021-03-01"^^xsd:date ;
+        ns1:birthDateKnowledge "estimated" ;
+        ns1:hasBreed <https://example.test/dog/jindo> ;
+        ns1:hasGuardian <https://example.test/dog/guardianA> ;
+        ns1:hasVaccination <https://example.test/dog/kongiCombination>,
+            <https://example.test/dog/kongiRabies> ;
+        ns1:hasVisit <https://example.test/dog/kongiVisit1>,
+            <https://example.test/dog/kongiVisit2> ;
+        ns1:hasWeightRecord <https://example.test/dog/kongiWeight1>,
+            <https://example.test/dog/kongiWeight2> ;
+        ns1:microchipNumber "999000000000001" ;
+        ns1:microchipStatus "registered" ;
+        ns1:neuterStatus "neutered" ;
+        ns1:registrationEvidenceUri "urn:synthetic:registration:kongi"^^xsd:anyURI ;
+        ns1:sex "female" .
+
+    <https://example.test/dog/nuri> a ns1:Dog ;
+        rdfs:label "가상의 개: 누리"@ko ;
+        ns1:birthDate "2024-01-10"^^xsd:date ;
+        ns1:birthDateKnowledge "estimated" ;
+        ns1:hasBreed <https://example.test/dog/mixed> ;
+        ns1:hasGuardian <https://example.test/dog/guardianB> ;
+        ns1:hasVaccination <https://example.test/dog/nuriRabies> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "unknown" ;
+        ns1:sex "male" .
+
+    <https://example.test/dog/boriCombination> a ns1:Vaccination ;
+        rdfs:label "보리 종합백신 접종 예정"@ko ;
+        ns1:nextDueDate "2026-11-01"^^xsd:date ;
+        ns1:vaccinationStatus "scheduled" ;
+        ns1:vaccineKind "combination" .
+
+    <https://example.test/dog/boriRabies> a ns1:Vaccination ;
+        rdfs:label "보리 광견병 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicB> ;
+        ns1:administeredDate "2026-07-01"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:bori-rabies"^^xsd:anyURI ;
+        ns1:nextDueDate "2027-07-01"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/boriVisit1> a ns1:VetVisit ;
+        rdfs:label "보리 접종 방문"@ko ;
+        ns1:visitDate "2026-07-01"^^xsd:date ;
+        ns1:visitReason "vaccination" ;
+        ns1:visitedClinic <https://example.test/dog/clinicB> .
+
+    <https://example.test/dog/boriVisit2> a ns1:VetVisit ;
+        rdfs:label "보리 정기 검진"@ko ;
+        ns1:visitDate "2026-09-15"^^xsd:date ;
+        ns1:visitReason "checkup" ;
+        ns1:visitedClinic <https://example.test/dog/clinicB> .
+
+    <https://example.test/dog/boriWeight1> a ns1:WeightRecord ;
+        rdfs:label "보리 체중 2026-07-01"@ko ;
+        ns1:measuredDate "2026-07-01"^^xsd:date ;
+        ns1:weightKg 29.5 .
+
+    <https://example.test/dog/boriWeight2> a ns1:WeightRecord ;
+        rdfs:label "보리 체중 2026-09-15"@ko ;
+        ns1:measuredDate "2026-09-15"^^xsd:date ;
+        ns1:weightKg 30.1 .
+
+    <https://example.test/dog/dalgiVisit> a ns1:VetVisit ;
+        rdfs:label "달이 진료 방문"@ko ;
+        ns1:visitDate "2026-08-20"^^xsd:date ;
+        ns1:visitReason "illness" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/dalgiWeight> a ns1:WeightRecord ;
+        rdfs:label "달이 체중 2026-08-20"@ko ;
+        ns1:measuredDate "2026-08-20"^^xsd:date ;
+        ns1:weightKg 3.4 .
+
+    <https://example.test/dog/goldenRetriever> a ns1:Breed ;
+        rdfs:label "Golden Retriever"@en,
+            "골든 리트리버"@ko ;
+        ns1:typicalSizeClass "large" .
+
+    <https://example.test/dog/guardianC> a ns1:Guardian ;
+        rdfs:label "가상 보호자 C"@ko .
+
+    <https://example.test/dog/jindo> a ns1:Breed ;
+        rdfs:label "Korean Jindo"@en,
+            "진돗개"@ko ;
+        ns1:typicalSizeClass "medium" .
+
+    <https://example.test/dog/kongiCombination> a ns1:Vaccination ;
+        rdfs:label "콩이 종합백신 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicA> ;
+        ns1:administeredDate "2025-04-10"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:kongi-combination"^^xsd:anyURI ;
+        ns1:nextDueDate "2026-04-10"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "combination" .
+
+    <https://example.test/dog/kongiRabies> a ns1:Vaccination ;
+        rdfs:label "콩이 광견병 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicA> ;
+        ns1:administeredDate "2025-04-10"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:kongi-rabies"^^xsd:anyURI ;
+        ns1:nextDueDate "2026-04-10"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/kongiVisit1> a ns1:VetVisit ;
+        rdfs:label "콩이 접종 방문"@ko ;
+        ns1:visitDate "2025-04-10"^^xsd:date ;
+        ns1:visitReason "vaccination" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/kongiVisit2> a ns1:VetVisit ;
+        rdfs:label "콩이 정기 검진"@ko ;
+        ns1:visitDate "2026-04-12"^^xsd:date ;
+        ns1:visitReason "checkup" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/kongiWeight1> a ns1:WeightRecord ;
+        rdfs:label "콩이 체중 2025-04-10"@ko ;
+        ns1:measuredDate "2025-04-10"^^xsd:date ;
+        ns1:weightKg 14.2 .
+
+    <https://example.test/dog/kongiWeight2> a ns1:WeightRecord ;
+        rdfs:label "콩이 체중 2026-04-12"@ko ;
+        ns1:measuredDate "2026-04-12"^^xsd:date ;
+        ns1:weightKg 15.0 .
+
+    <https://example.test/dog/maltese> a ns1:Breed ;
+        rdfs:label "Maltese"@en,
+            "말티즈"@ko ;
+        ns1:typicalSizeClass "toy" .
+
+    <https://example.test/dog/mixed> a ns1:Breed ;
+        rdfs:label "Mixed breed"@en,
+            "믹스견"@ko .
+
+    <https://example.test/dog/nuriRabies> a ns1:Vaccination ;
+        rdfs:label "누리 광견병 접종 예정"@ko ;
+        ns1:nextDueDate "2026-10-20"^^xsd:date ;
+        ns1:vaccinationStatus "scheduled" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/guardianA> a ns1:Guardian ;
+        rdfs:label "가상 보호자 A"@ko .
+
+    <https://example.test/dog/guardianB> a ns1:Guardian ;
+        rdfs:label "가상 보호자 B"@ko .
+
+    <https://example.test/dog/clinicB> a ns1:Clinic ;
+        rdfs:label "가상 동물병원 B"@ko .
+
+    <https://example.test/dog/clinicA> a ns1:Clinic ;
+        rdfs:label "가상 동물병원 A"@ko .
+}
+
+<https://example.test/consumer/dog-reject> {
+    <https://example.test/dog/bori> a ns1:Dog ;
+        rdfs:label "가상의 개: 보리"@ko ;
+        ns1:birthDate "2023-06-15"^^xsd:date ;
+        ns1:birthDateKnowledge "exact" ;
+        ns1:hasBreed <https://example.test/dog/goldenRetriever> ;
+        ns1:hasGuardian <https://example.test/dog/guardianA>,
+            <https://example.test/dog/guardianB> ;
+        ns1:hasVaccination <https://example.test/dog/boriCombination>,
+            <https://example.test/dog/boriRabies> ;
+        ns1:hasVisit <https://example.test/dog/boriVisit1>,
+            <https://example.test/dog/boriVisit2> ;
+        ns1:hasWeightRecord <https://example.test/dog/boriWeight1>,
+            <https://example.test/dog/boriWeight2> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "intact" ;
+        ns1:sex "male" .
+
+    <https://example.test/dog/dalgi> a ns1:Dog ;
+        rdfs:label "가상의 개: 달이"@ko ;
+        ns1:birthDateKnowledge "unknown" ;
+        ns1:hasBreed <https://example.test/dog/maltese> ;
+        ns1:hasGuardian <https://example.test/dog/guardianC> ;
+        ns1:hasVisit <https://example.test/dog/dalgiVisit> ;
+        ns1:hasWeightRecord <https://example.test/dog/dalgiWeight> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "neutered" ;
+        ns1:sex "female" .
+
+    <https://example.test/dog/kongi> a ns1:Dog ;
+        ns1:birthDate "2021-03-01"^^xsd:date ;
+        ns1:birthDateKnowledge "estimated" ;
+        ns1:hasBreed <https://example.test/dog/jindo> ;
+        ns1:hasGuardian <https://example.test/dog/guardianA> ;
+        ns1:hasVaccination <https://example.test/dog/kongiCombination>,
+            <https://example.test/dog/kongiRabies> ;
+        ns1:hasVisit <https://example.test/dog/kongiVisit1>,
+            <https://example.test/dog/kongiVisit2> ;
+        ns1:hasWeightRecord <https://example.test/dog/kongiWeight1>,
+            <https://example.test/dog/kongiWeight2> ;
+        ns1:microchipNumber "999000000000001" ;
+        ns1:microchipStatus "registered" ;
+        ns1:neuterStatus "neutered" ;
+        ns1:registrationEvidenceUri "urn:synthetic:registration:kongi"^^xsd:anyURI ;
+        ns1:sex "female" .
+
+    <https://example.test/dog/nuri> a ns1:Dog ;
+        rdfs:label "가상의 개: 누리"@ko ;
+        ns1:birthDate "2024-01-10"^^xsd:date ;
+        ns1:birthDateKnowledge "estimated" ;
+        ns1:hasBreed <https://example.test/dog/mixed> ;
+        ns1:hasGuardian <https://example.test/dog/guardianB> ;
+        ns1:hasVaccination <https://example.test/dog/nuriRabies> ;
+        ns1:microchipStatus "unregistered" ;
+        ns1:neuterStatus "unknown" ;
+        ns1:sex "male" .
+
+    <https://example.test/dog/boriCombination> a ns1:Vaccination ;
+        rdfs:label "보리 종합백신 접종 예정"@ko ;
+        ns1:nextDueDate "2026-11-01"^^xsd:date ;
+        ns1:vaccinationStatus "scheduled" ;
+        ns1:vaccineKind "combination" .
+
+    <https://example.test/dog/boriRabies> a ns1:Vaccination ;
+        rdfs:label "보리 광견병 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicB> ;
+        ns1:administeredDate "2026-07-01"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:bori-rabies"^^xsd:anyURI ;
+        ns1:nextDueDate "2027-07-01"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/boriVisit1> a ns1:VetVisit ;
+        rdfs:label "보리 접종 방문"@ko ;
+        ns1:visitDate "2026-07-01"^^xsd:date ;
+        ns1:visitReason "vaccination" ;
+        ns1:visitedClinic <https://example.test/dog/clinicB> .
+
+    <https://example.test/dog/boriVisit2> a ns1:VetVisit ;
+        rdfs:label "보리 정기 검진"@ko ;
+        ns1:visitDate "2026-09-15"^^xsd:date ;
+        ns1:visitReason "checkup" ;
+        ns1:visitedClinic <https://example.test/dog/clinicB> .
+
+    <https://example.test/dog/boriWeight1> a ns1:WeightRecord ;
+        rdfs:label "보리 체중 2026-07-01"@ko ;
+        ns1:measuredDate "2026-07-01"^^xsd:date ;
+        ns1:weightKg 29.5 .
+
+    <https://example.test/dog/boriWeight2> a ns1:WeightRecord ;
+        rdfs:label "보리 체중 2026-09-15"@ko ;
+        ns1:measuredDate "2026-09-15"^^xsd:date ;
+        ns1:weightKg 30.1 .
+
+    <https://example.test/dog/dalgiVisit> a ns1:VetVisit ;
+        rdfs:label "달이 진료 방문"@ko ;
+        ns1:visitDate "2026-08-20"^^xsd:date ;
+        ns1:visitReason "illness" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/dalgiWeight> a ns1:WeightRecord ;
+        rdfs:label "달이 체중 2026-08-20"@ko ;
+        ns1:measuredDate "2026-08-20"^^xsd:date ;
+        ns1:weightKg 3.4 .
+
+    <https://example.test/dog/goldenRetriever> a ns1:Breed ;
+        rdfs:label "Golden Retriever"@en,
+            "골든 리트리버"@ko ;
+        ns1:typicalSizeClass "large" .
+
+    <https://example.test/dog/guardianC> a ns1:Guardian ;
+        rdfs:label "가상 보호자 C"@ko .
+
+    <https://example.test/dog/jindo> a ns1:Breed ;
+        rdfs:label "Korean Jindo"@en,
+            "진돗개"@ko ;
+        ns1:typicalSizeClass "medium" .
+
+    <https://example.test/dog/kongiCombination> a ns1:Vaccination ;
+        rdfs:label "콩이 종합백신 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicA> ;
+        ns1:administeredDate "2025-04-10"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:kongi-combination"^^xsd:anyURI ;
+        ns1:nextDueDate "2026-04-10"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "combination" .
+
+    <https://example.test/dog/kongiRabies> a ns1:Vaccination ;
+        rdfs:label "콩이 광견병 접종"@ko ;
+        ns1:administeredAt <https://example.test/dog/clinicA> ;
+        ns1:administeredDate "2025-04-10"^^xsd:date ;
+        ns1:certificateUri "urn:synthetic:certificate:kongi-rabies"^^xsd:anyURI ;
+        ns1:nextDueDate "2026-04-10"^^xsd:date ;
+        ns1:vaccinationStatus "administered" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/kongiVisit1> a ns1:VetVisit ;
+        rdfs:label "콩이 접종 방문"@ko ;
+        ns1:visitDate "2025-04-10"^^xsd:date ;
+        ns1:visitReason "vaccination" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/kongiVisit2> a ns1:VetVisit ;
+        rdfs:label "콩이 정기 검진"@ko ;
+        ns1:visitDate "2026-04-12"^^xsd:date ;
+        ns1:visitReason "checkup" ;
+        ns1:visitedClinic <https://example.test/dog/clinicA> .
+
+    <https://example.test/dog/kongiWeight1> a ns1:WeightRecord ;
+        rdfs:label "콩이 체중 2025-04-10"@ko ;
+        ns1:measuredDate "2025-04-10"^^xsd:date ;
+        ns1:weightKg 14.2 .
+
+    <https://example.test/dog/kongiWeight2> a ns1:WeightRecord ;
+        rdfs:label "콩이 체중 2026-04-12"@ko ;
+        ns1:measuredDate "2026-04-12"^^xsd:date ;
+        ns1:weightKg 15.0 .
+
+    <https://example.test/dog/maltese> a ns1:Breed ;
+        rdfs:label "Maltese"@en,
+            "말티즈"@ko ;
+        ns1:typicalSizeClass "toy" .
+
+    <https://example.test/dog/mixed> a ns1:Breed ;
+        rdfs:label "Mixed breed"@en,
+            "믹스견"@ko .
+
+    <https://example.test/dog/nuriRabies> a ns1:Vaccination ;
+        rdfs:label "누리 광견병 접종 예정"@ko ;
+        ns1:nextDueDate "2026-10-20"^^xsd:date ;
+        ns1:vaccinationStatus "scheduled" ;
+        ns1:vaccineKind "rabies" .
+
+    <https://example.test/dog/guardianA> a ns1:Guardian ;
+        rdfs:label "가상 보호자 A"@ko .
+
+    <https://example.test/dog/guardianB> a ns1:Guardian ;
+        rdfs:label "가상 보호자 B"@ko .
+
+    <https://example.test/dog/clinicB> a ns1:Clinic ;
+        rdfs:label "가상 동물병원 B"@ko .
+
+    <https://example.test/dog/clinicA> a ns1:Clinic ;
+        rdfs:label "가상 동물병원 A"@ko .
+}

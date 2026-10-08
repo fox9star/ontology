@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation & Playground - AI Agent Ontology Ecosystem</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-5.3.2/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css') }}">
+  <style>
+    body { background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #1e293b; }
+    .hero-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: #ffffff; padding: 40px 0; margin-bottom: 30px; }
+    .method-badge { font-weight: 700; font-size: 0.85rem; padding: 6px 12px; border-radius: 6px; min-width: 80px; text-align: center; }
+    .method-get { background-color: #10b981; color: white; }
+    .method-post { background-color: #2563eb; color: white; }
+    .method-delete { background-color: #ef4444; color: white; }
+    .api-card { border: 1px solid #e2e8f0; border-radius: 8px; transition: box-shadow 0.2s; margin-bottom: 20px; background: white; }
+    .api-card:hover { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07); }
+    .api-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+    .api-body { padding: 20px; border-top: 1px solid #f1f5f9; background: #fafafa; }
+    pre { background: #0f172a; color: #f8fafc; padding: 14px; border-radius: 6px; font-size: 0.88rem; max-height: 350px; overflow-y: auto; }
+    .source-path { font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body>
+
+<header class="hero-header shadow-sm">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="fw-bold mb-1"><i class="bi bi-code-slash me-2"></i>AI Agent Ontology Ecosystem REST API</h2>
+        <p class="mb-0 text-white-50">OpenAPI 3.0 명세 및 인터랙티브 테스트 플레이그라운드 (v2.7.0)</p>
+      </div>
+      <div>
+        <a href="/" class="btn btn-outline-light btn-sm me-2"><i class="bi bi-house me-1"></i>웹 스튜디오 메인</a>
+        <a href="/api/openapi.json" target="_blank" class="btn btn-light btn-sm fw-semibold"><i class="bi bi-filetype-json me-1"></i>OpenAPI JSON</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mb-5">
+  <div class="alert alert-info border d-flex align-items-center gap-2 mb-4">
+    <i class="bi bi-info-circle-fill fs-5 text-primary"></i>
+    <div>
+      모든 API는 외부 CDN 없이 완전 로컬에서 호스팅되며, 아래 각 엔드포인트 카드를 펼쳐 <strong>[직접 테스트]</strong> 버튼으로 실시간 호출 및 응답을 확인할 수 있습니다.
+    </div>
+  </div>
+
+  <div id="apiList"></div>
+</main>
+
+<script src="{{ url_for('static', filename='vendor/bootstrap-5.3.2/js/bootstrap.bundle.min.js') }}"></script>
+<script>
+  async function loadSpecs() {
+    try {
+      const res = await fetch('/api/openapi.json');
+      const data = await res.json();
+      renderApiList(data);
+    } catch (e) {
+      document.getElementById('apiList').innerHTML = `<div class="alert alert-danger">명세를 불러오지 못했습니다: ${e.message}</div>`;
+    }
+  }
+
+  function renderApiList(spec) {
+    const list = document.getElementById('apiList');
+    list.innerHTML = '';
+    
+    let cardIdx = 0;
+    for (const [path, methods] of Object.entries(spec.paths)) {
+      for (const [method, info] of Object.entries(methods)) {
+        cardIdx++;
+        const cardId = `collapse_${cardIdx}`;
+        const mUpper = method.toUpperCase();
+        const mClass = mUpper === 'GET' ? 'method-get' : mUpper === 'POST' ? 'method-post' : 'method-delete';
+        
+        const card = document.createElement('div');
+        card.className = 'api-card';
+        card.innerHTML = `
+          <div class="api-header" data-bs-toggle="collapse" data-bs-target="#${cardId}">
+            <div class="d-flex align-items-center gap-3">
+              <span class="method-badge ${mClass}">${mUpper}</span>
+              <strong class="source-path text-dark fs-6">${path}</strong>
+              <span class="text-muted small">${info.summary || ''}</span>
+            </div>
+            <i class="bi bi-chevron-down text-muted"></i>
+          </div>
+          <div id="${cardId}" class="collapse">
+            <div class="api-body">
+              <p class="text-secondary small mb-3">${info.description || ''}</p>
+              
+              <div class="d-flex gap-2 mb-3">
+                <button class="btn btn-primary btn-sm" onclick="callApi('${method}', '${path}', ${cardIdx})">
+                  <i class="bi bi-play-fill me-1"></i>직접 호출 테스트 (Send Request)
+                </button>
+              </div>
+
+              <div id="res_box_${cardIdx}" class="d-none">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <small class="fw-bold text-muted">응답 결과 (Response):</small>
+                  <span id="res_status_${cardIdx}" class="badge bg-secondary"></span>
+                </div>
+                <pre id="res_pre_${cardIdx}"><code></code></pre>
+              </div>
+            </div>
+          </div>
+        `;
+        list.appendChild(card);
+      }
+    }
+  }
+
+  async function callApi(method, path, idx) {
+    const box = document.getElementById(`res_box_${idx}`);
+    const pre = document.getElementById(`res_pre_${idx}`);
+    const statusBadge = document.getElementById(`res_status_${idx}`);
+    
+    box.classList.remove('d-none');
+    pre.textContent = '요청 처리 중...';
+    statusBadge.textContent = 'WAIT';
+    statusBadge.className = 'badge bg-warning';
+
+    try {
+      let options = { method: method.toUpperCase() };
+      let url = path;
+
+      // Special sample payload for POST endpoints
+      if (path === '/api/sparql') {
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify({ ont: 'mv', query: 'SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 5' });
+      } else if (path === '/api/v1/nl-query') {
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify({ ont: 'mv', question: '작업 목록과 담당 에이전트를 알려줘' });
+      } else if (path === '/api/v1/simulate') {
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify({ step: 1, session_id: 'test_doc_01' });
+      }
+
+      const res = await fetch(url, options);
+      statusBadge.textContent = `${res.status} ${res.statusText}`;
+      statusBadge.className = res.ok ? 'badge bg-success' : 'badge bg-danger';
+
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const json = await res.json();
+        pre.textContent = JSON.stringify(json, null, 2);
+      } else {
+        const text = await res.text();
+        pre.textContent = text.slice(0, 3000) + (text.length > 3000 ? '\n... (일부 생략)' : '');
+      }
+    } catch (err) {
+      statusBadge.textContent = 'ERR';
+      statusBadge.className = 'badge bg-danger';
+      pre.textContent = `네트워크 오류: ${err.message}`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadSpecs);
+</script>
+</body>
+</html>

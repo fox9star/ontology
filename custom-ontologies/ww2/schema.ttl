@@ -1,0 +1,133 @@
+@prefix ww2: <https://example.org/ontology/custom/ww2#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/ww2> a owl:Ontology ;
+    rdfs:label "제2차 세계대전 온톨로지"@ko, "World War II ontology"@en ;
+    rdfs:comment "전쟁, 사건, 역사적 국가, 인물, 장소와 사건별 참여를 출처가 있는 주장에 연결한다. 날짜의 범위와 의미를 명시하며 출처 연결 자체를 사실 검증으로 간주하지 않는다."@ko,
+        "Connects conflict, events, historical states, people, places and event-specific participation to sourced claims. Date scope is explicit; a citation link alone does not establish historical truth."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/ww2/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+ww2:Conflict a owl:Class ;
+    rdfs:label "전쟁"@ko, "Conflict"@en ;
+    rdfs:comment "시작일, 종료일과 그 날짜를 채택한 범위 설명을 가진 전쟁이다. 지역별 전쟁의 기원이나 다른 시대 구분을 부정하지 않는다."@ko,
+        "A conflict with start and end dates and an explanation of the selected period. Its date convention does not deny regional origins or other periodizations."@en .
+ww2:HistoricalEvent a owl:Class ;
+    rdfs:label "역사적 사건"@ko, "Historical event"@en ;
+    rdfs:comment "전쟁에 속한 침공, 전투, 상륙, 항복, 해방 등의 사건이다. 단일 날짜는 사건 전체의 기간 대신 시작이나 종점만 기록할 수 있으며 날짜 설명에 이를 밝힌다."@ko,
+        "An invasion, battle, landing, surrender, liberation or other event within a conflict. A single date can record an inception or endpoint rather than a whole episode, as explained by the date note."@en .
+ww2:State a owl:Class ;
+    rdfs:label "역사적 국가"@ko, "Historical state"@en ;
+    rdfs:comment "사건 당시의 국가나 정치체를 나타낸다. 현재의 국명과 동일하다고 가정하지 않으며 진영은 국가의 고정 속성이 아니라 사건별 참여에 기록한다."@ko,
+        "A state or polity identified in its historical context. Its name is not assumed to equal a present-day country name; coalition alignment belongs to event participation."@en .
+ww2:Person a owl:Class ;
+    rdfs:label "인물"@ko, "Person"@en ;
+    rdfs:comment "역사적 사건의 참여자로 연결할 수 있는 인물이다. 지휘나 대표 역할은 인물의 영구 속성이 아니라 해당 사건의 참여 기록에 명시한다."@ko,
+        "A person who can participate in an event. A command or representative role is recorded for that participation, rather than asserted as a timeless personal attribute."@en .
+ww2:Place a owl:Class ;
+    rdfs:label "장소"@ko, "Place"@en ;
+    rdfs:comment "사건의 위치를 기록하는 국가, 지역, 도시, 만, 기지 또는 수용소이다. 이 초기 모형은 현재 국경이나 좌표의 정확성을 추론하지 않는다."@ko,
+        "A country, region, city, bay, base or camp recording an event location. This initial model does not infer present-day borders or coordinate accuracy."@en .
+ww2:Participation a owl:Class ;
+    rdfs:label "사건 참여"@ko, "Event participation"@en ;
+    rdfs:comment "한 사건에서 국가나 인물이 맡은 역할과 선택적 진영 및 기간을 기록한다. 국가의 참여는 그 국가와 관련된 병력이나 대표의 역할을 포함하며 국가 전체의 항복이나 공식 동맹 가입을 뜻하지 않는다. 근거 문서를 연결하고 사건 간 진영 변화를 허용한다."@ko,
+        "Records a state's or person's event role, optional side and period, linked to sources. State participation includes associated forces or representatives without implying nationwide surrender or formal coalition membership; alignment can vary between events."@en .
+ww2:SourceDocument a owl:Class ;
+    rdfs:label "출처 문서"@ko, "Source document"@en ;
+    rdfs:comment "공개 주소, 발행 기관, 자료 유형과 확인 날짜가 기록된 문서이다. 연결 구조의 검증이 문서의 진위나 모든 주장에 대한 뒷받침을 자동으로 보증하지 않는다."@ko,
+        "A document identified by a public URL, publisher, source kind and access date. Structural validation does not automatically authenticate the document or prove each associated claim."@en .
+ww2:HistoricalClaim a owl:Class ;
+    rdfs:label "출처가 있는 역사적 주장"@ko, "Sourced historical claim"@en ;
+    rdfs:comment "한 사건에 대한 설명을 자료의 인용과 함께 기록한 주장이다. 문구와 원자료의 일치 여부는 별도 검토 대상이며 이 모형은 자동 진실 판정을 하지 않는다."@ko,
+        "A statement about one event accompanied by source citations. Agreement between the statement and the original material requires separate review; this model makes no automatic truth determination."@en .
+
+ww2:eventOf a owl:ObjectProperty ; rdfs:domain ww2:HistoricalEvent ; rdfs:range ww2:Conflict ;
+    rdfs:label "소속 전쟁"@ko, "Event of conflict"@en ;
+    rdfs:comment "역사적 사건을 그 사건이 속한 전쟁에 연결한다."@ko,
+        "Links a historical event to the conflict within which it is modeled."@en .
+ww2:eventKind a owl:DatatypeProperty ; rdfs:domain ww2:HistoricalEvent ; rdfs:range xsd:string ;
+    rdfs:label "사건 유형"@ko, "Event kind"@en ;
+    rdfs:comment "침공, 공격, 상륙, 전투, 전역, 항복, 항복 발표, 항복 서명, 휴전, 집단학살 또는 해방 중 사건의 유형을 기록한다. 항복 유형은 서명 여부나 국가 전체의 항복을 자동으로 뜻하지 않는다."@ko,
+        "Records an invasion, attack, landing, battle, campaign, surrender, surrender announcement, surrender signing, ceasefire, genocide or liberation. A surrender kind does not itself imply signing or nationwide capitulation."@en .
+ww2:startDate a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( ww2:Conflict ww2:HistoricalEvent ww2:Participation ) ] ; rdfs:range xsd:date ;
+    rdfs:label "시작일"@ko, "Start date"@en ;
+    rdfs:comment "전쟁, 사건 또는 참여의 시작을 일 단위의 YYYY-MM-DD 날짜로 기록한다. 사건 날짜의 적용 범위는 날짜 설명으로 밝힌다."@ko,
+        "Records a conflict, event or participation start at YYYY-MM-DD day precision. An event date's scope is explained in its date note."@en .
+ww2:endDate a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( ww2:Conflict ww2:HistoricalEvent ww2:Participation ) ] ; rdfs:range xsd:date ;
+    rdfs:label "종료일"@ko, "End date"@en ;
+    rdfs:comment "전쟁, 사건 또는 참여의 종료를 일 단위의 YYYY-MM-DD 날짜로 기록한다. 시작일과 같으면 해당 날짜에 한정된 기록이며 날짜 설명에서 범위를 밝힌다."@ko,
+        "Records an end at YYYY-MM-DD day precision. An end equal to the start denotes a date-bounded record whose scope is explained by the date note."@en .
+ww2:dateNote a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( ww2:Conflict ww2:HistoricalEvent ) ] ; rdfs:range xsd:string ;
+    rdfs:label "날짜 범위 설명"@ko, "Date scope note"@en ;
+    rdfs:comment "채택한 전쟁 기간 또는 사건 날짜가 전체 기간, 시작일, 종점 중 무엇을 뜻하는지 설명한다."@ko,
+        "Explains the selected conflict period or whether event dates describe the complete duration, inception or endpoint."@en .
+ww2:occurredAt a owl:ObjectProperty ; rdfs:domain ww2:HistoricalEvent ; rdfs:range ww2:Place ;
+    rdfs:label "발생 장소"@ko, "Occurred at"@en ;
+    rdfs:comment "사건이 발생한 것으로 기록된 한 곳 이상의 장소를 연결한다."@ko,
+        "Links an event to one or more places where it is recorded as occurring."@en .
+ww2:hasParticipation a owl:ObjectProperty ; rdfs:domain ww2:HistoricalEvent ; rdfs:range ww2:Participation ;
+    rdfs:label "참여 기록"@ko, "Has participation"@en ;
+    rdfs:comment "사건에서의 국가 또는 인물의 역할을 기록한 참여를 연결한다."@ko,
+        "Links an event to a record of a state's or person's role in that event."@en .
+ww2:participant a owl:ObjectProperty ; rdfs:domain ww2:Participation ;
+    rdfs:range [ a owl:Class ; owl:unionOf ( ww2:State ww2:Person ) ] ;
+    rdfs:label "참여자"@ko, "Participant"@en ;
+    rdfs:comment "참여 기록의 주체인 역사적 국가 또는 인물을 연결한다. 국가를 연결하면 해당 사건에서 그 국가와 관련된 병력이나 대표를 포함하며 국가의 모든 기관이나 병력에 같은 역할을 부여하지 않는다."@ko,
+        "Identifies the historical state or person represented by a participation record. A state link includes associated forces or representatives in that event without assigning the role to all its institutions or forces."@en .
+ww2:role a owl:DatatypeProperty ; rdfs:domain ww2:Participation ; rdfs:range xsd:string ;
+    rdfs:label "사건에서의 역할"@ko, "Role in event"@en ;
+    rdfs:comment "공격자, 방어자, 지휘관, 항복 당사자, 수락 당사자, 대표 또는 해방자의 사건별 역할을 기록한다. 항복 당사자는 해당 사건의 병력이나 대표를 가리킬 수 있으며 국가 전체의 항복을 자동으로 뜻하지 않는다."@ko,
+        "Records an event-specific attacker, defender, commander, surrendering party, accepting party, representative or liberator role. A surrendering-party role can identify event-specific forces or representatives without implying nationwide surrender."@en .
+ww2:side a owl:DatatypeProperty ; rdfs:domain ww2:Participation ; rdfs:range xsd:string ;
+    rdfs:label "사건에서의 진영"@ko, "Side in event"@en ;
+    rdfs:comment "해당 참여에서 통상적으로 구분하는 추축국, 연합국 또는 특정하지 않은 교전 진영을 선택적으로 기록한다. 공식 조약 가입이나 가입 날짜를 주장하지 않으며 국가나 인물의 모든 시기에 걸친 진영을 뜻하지 않는다."@ko,
+        "Optionally records the conventional Axis, Allied or unspecified belligerent grouping for this participation. It asserts neither formal treaty membership nor its entry date, and does not classify the actor across all periods."@en .
+ww2:placeKind a owl:DatatypeProperty ; rdfs:domain ww2:Place ; rdfs:range xsd:string ;
+    rdfs:label "장소 유형"@ko, "Place kind"@en ;
+    rdfs:comment "장소를 국가, 지역, 도시, 만, 기지 또는 수용소로 구분한다."@ko,
+        "Classifies a place as country, region, city, bay, base or camp."@en .
+ww2:historicalName a owl:DatatypeProperty ; rdfs:domain ww2:State ; rdfs:range xsd:string ;
+    rdfs:label "당시 국가명"@ko, "Historical state name"@en ;
+    rdfs:comment "사건의 역사적 맥락에 맞춰 국가나 정치체의 명칭을 기록한다."@ko,
+        "Records a state or polity name appropriate to the event's historical context."@en .
+ww2:hasClaim a owl:ObjectProperty ; rdfs:domain ww2:HistoricalEvent ; rdfs:range ww2:HistoricalClaim ;
+    rdfs:label "역사적 주장 연결"@ko, "Has historical claim"@en ;
+    rdfs:comment "사건을 그 사건에 관한 출처가 있는 주장에 연결한다. 주장의 대상 사건도 동일하게 연결되어야 한다."@ko,
+        "Links an event to a sourced claim about that same event; the reciprocal about-event relation must agree."@en .
+ww2:aboutEvent a owl:ObjectProperty ; rdfs:domain ww2:HistoricalClaim ; rdfs:range ww2:HistoricalEvent ;
+    rdfs:label "주장의 대상 사건"@ko, "Claim about event"@en ;
+    rdfs:comment "주장이 설명하는 하나의 사건을 연결하며 그 사건의 주장 연결과 일치해야 한다."@ko,
+        "Identifies the one event described by a claim, matching that event's has-claim link."@en .
+ww2:claimText a owl:DatatypeProperty ; rdfs:domain ww2:HistoricalClaim ; rdfs:range xsd:string ;
+    rdfs:label "주장 내용"@ko, "Claim text"@en ;
+    rdfs:comment "인용 자료를 바탕으로 정리한 역사적 주장의 문구이다. 자동 판정 결과나 원문의 직접 인용이라는 의미를 갖지 않는다."@ko,
+        "Records the text of a historical statement summarized from cited material. It denotes neither an automatic verdict nor necessarily a verbatim quotation."@en .
+ww2:citesSource a owl:ObjectProperty ; rdfs:domain ww2:HistoricalClaim ; rdfs:range ww2:SourceDocument ;
+    rdfs:label "인용 출처"@ko, "Cites source"@en ;
+    rdfs:comment "주장에 사용한 한 곳 이상의 출처 문서를 연결한다. 인용 범위와 내용의 일치는 별도 검토한다."@ko,
+        "Links a claim to one or more cited source documents. The scope and agreement of a citation require separate review."@en .
+ww2:sourceURL a owl:DatatypeProperty ; rdfs:domain ww2:SourceDocument ; rdfs:range xsd:anyURI ;
+    rdfs:label "출처 공개 주소"@ko, "Source URL"@en ;
+    rdfs:comment "출처 문서를 확인한 공개 HTTP 또는 HTTPS 주소를 기록한다."@ko,
+        "Records the public HTTP or HTTPS URL used to inspect a source document."@en .
+ww2:publisher a owl:DatatypeProperty ; rdfs:domain ww2:SourceDocument ; rdfs:range xsd:string ;
+    rdfs:label "발행 기관"@ko, "Publisher"@en ;
+    rdfs:comment "출처 문서를 공개한 기관의 이름을 기록한다."@ko,
+        "Records the name of the institution publishing a source document."@en .
+ww2:sourceKind a owl:DatatypeProperty ; rdfs:domain ww2:SourceDocument ; rdfs:range xsd:string ;
+    rdfs:label "출처 자료 유형"@ko, "Source kind"@en ;
+    rdfs:comment "일차 사료, 박물관 요약 또는 기록물 전시로 출처 유형을 구분한다."@ko,
+        "Distinguishes a primary document, museum summary or archive exhibit."@en .
+ww2:accessedOn a owl:DatatypeProperty ; rdfs:domain ww2:SourceDocument ; rdfs:range xsd:date ;
+    rdfs:label "출처 확인일"@ko, "Source access date"@en ;
+    rdfs:comment "출처 문서를 확인한 일자를 YYYY-MM-DD 형식으로 기록하며 문서의 작성일과 구분한다."@ko,
+        "Records the YYYY-MM-DD date a source was accessed, separately from its creation date."@en .
+ww2:documentedBy a owl:ObjectProperty ; rdfs:domain ww2:Participation ; rdfs:range ww2:SourceDocument ;
+    rdfs:label "참여 근거 문서"@ko, "Participation documented by"@en ;
+    rdfs:comment "국가나 인물의 사건 참여 및 역할을 기록하는 출처 문서를 연결한다."@ko,
+        "Links a participation record to source documents describing the actor's participation and role in the event."@en .

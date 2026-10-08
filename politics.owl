@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#hasResult">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선거 결과</rdfs:label>
+    <rdfs:label xml:lang="en">Has Result</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거와 해당 선거의 집계 결과 기록을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an election to one of its aggregate tally records.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Election"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#resultForCandidate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">결과 후보자</rdfs:label>
+    <rdfs:label xml:lang="en">Result for Candidate</rdfs:label>
+    <rdfs:comment xml:lang="ko">집계 결과의 대상 후보자를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the candidate to whom an election tally applies.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#Candidate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#eventDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">행사 날짜</rdfs:label>
+    <rdfs:label xml:lang="en">Campaign Event Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거운동 행사가 열리는 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date on which a campaign event takes place.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#CampaignEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">정치·선거 정보 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Political and Election Information Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거, 선거구, 정당, 후보자, 집계 결과, 선거운동, 정책 쟁점 및 출처가 명시된 정치적 입장을 중립적으로 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Neutrally represents elections, districts, parties, candidates, aggregate results, campaigns, policy issues, and source-attributed political positions.</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/politics/1.0.0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#campaignForElection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">대상 선거</rdfs:label>
+    <rdfs:label xml:lang="en">Campaign for Election</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거운동이 대상으로 하는 선거를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a campaign to the election it concerns.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Campaign"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#Election"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#runByActor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선거운동 주체</rdfs:label>
+    <rdfs:label xml:lang="en">Campaign Run by Actor</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거운동을 수행하는 후보자 또는 정당을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a campaign to the candidate or party conducting it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Campaign"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#PoliticalActor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#resultForDistrict">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">결과 선거구</rdfs:label>
+    <rdfs:label xml:lang="en">Result for District</rdfs:label>
+    <rdfs:comment xml:lang="ko">집계 결과가 속하는 선거구를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the district to which a tally result applies.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#ElectoralDistrict"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#jurisdiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">관할 구역</rdfs:label>
+    <rdfs:label xml:lang="en">Jurisdiction</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거 또는 선거구의 행정 관할 범위를 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The administrative jurisdiction associated with an election or district.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectoralDistrict"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#Election">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">선거</rdfs:label>
+    <rdfs:label xml:lang="en">Election</rdfs:label>
+    <rdfs:comment xml:lang="ko">공직 또는 대표자를 선출하기 위해 정해진 시점에 시행되는 선거 절차이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An electoral process held at a specified time to select public officials or representatives.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#ElectoralDistrict">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">선거구</rdfs:label>
+    <rdfs:label xml:lang="en">Electoral District</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거에서 대표자를 선출하거나 투표를 집계하는 지리적 또는 행정적 구역이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A geographic or administrative area in which representatives are elected or votes are aggregated.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#memberParty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">소속 정당</rdfs:label>
+    <rdfs:label xml:lang="en">Member Party</rdfs:label>
+    <rdfs:comment xml:lang="ko">후보자 또는 정치 주체의 정당 소속을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a candidate or political actor to an affiliated political party.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Candidate"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#PoliticalParty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#Candidate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/politics#PoliticalActor"/>
+    <rdfs:label xml:lang="ko">선거 후보자</rdfs:label>
+    <rdfs:label xml:lang="en">Election Candidate</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 선거에서 공직 후보로 등록되거나 출마하는 개인이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An individual nominated or running for public office in an election.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#voteCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">집계 득표수</rdfs:label>
+    <rdfs:label xml:lang="en">Aggregate Vote Count</rdfs:label>
+    <rdfs:comment xml:lang="ko">후보자에게 집계된 비식별 총 득표수이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The non-identifying aggregate number of votes tallied for a candidate.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#ElectionResult">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">선거 집계 결과</rdfs:label>
+    <rdfs:label xml:lang="en">Election Tally Result</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거·선거구·후보자와 관련된 집계 득표 및 개표 상태 기록이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A record of aggregate votes and counting status associated with an election, district, and candidate.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#PolicyIssue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">정책 쟁점</rdfs:label>
+    <rdfs:label xml:lang="en">Policy Issue</rdfs:label>
+    <rdfs:comment xml:lang="ko">정책 제안과 입장이 다루는 공공 의제 또는 쟁점이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A public topic or issue addressed by policy proposals and positions.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#electionDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">선거일</rdfs:label>
+    <rdfs:label xml:lang="en">Election Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거가 예정되거나 시행되는 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date on which an election is scheduled or held.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Election"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#hasCampaignEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선거운동 행사</rdfs:label>
+    <rdfs:label xml:lang="en">Has Campaign Event</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거운동에 포함된 행사를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a campaign to an event included in it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Campaign"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#CampaignEvent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#resultForElection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">결과 선거</rdfs:label>
+    <rdfs:label xml:lang="en">Result for Election</rdfs:label>
+    <rdfs:comment xml:lang="ko">집계 결과가 속하는 선거를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the election to which a tally result belongs.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#Election"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#CampaignEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">선거운동 행사</rdfs:label>
+    <rdfs:label xml:lang="en">Campaign Event</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거운동에 속한 공개 일정이나 행사이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A public meeting or scheduled event associated with an election campaign.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#positionByActor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">입장 표명 주체</rdfs:label>
+    <rdfs:label xml:lang="en">Position by Actor</rdfs:label>
+    <rdfs:comment xml:lang="ko">정책 입장을 표명한 후보자 또는 정당을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a policy position record to the candidate or party that stated it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#PolicyPosition"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#PoliticalActor"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#positionStatement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">정책 입장 내용</rdfs:label>
+    <rdfs:label xml:lang="en">Policy Position Statement</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처에 귀속되는 정책 관련 발언 또는 요약문이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A policy-related statement or summary attributed to a source.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#PolicyPosition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#PoliticalActor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">정치 주체</rdfs:label>
+    <rdfs:label xml:lang="en">Political Actor</rdfs:label>
+    <rdfs:comment xml:lang="ko">정치 또는 선거 활동에 참여하는 개인이나 조직의 공통 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A shared type for an individual or organization participating in political or electoral activity.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#electionStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">선거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Election Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거 절차의 예정, 진행, 완료 상태를 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The scheduled, in-progress, or completed status of an election process.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Election"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#positionOnIssue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">관련 정책 쟁점</rdfs:label>
+    <rdfs:label xml:lang="en">Position on Issue</rdfs:label>
+    <rdfs:comment xml:lang="ko">정책 입장이 다루는 쟁점을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a policy position record to the issue it addresses.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#PolicyPosition"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#PolicyIssue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#positionRecordedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">입장 기록일</rdfs:label>
+    <rdfs:label xml:lang="en">Position Record Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">정책 입장 기록의 기준 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date on which a policy-position record was made.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#PolicyPosition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#Campaign">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">선거운동</rdfs:label>
+    <rdfs:label xml:lang="en">Election Campaign</rdfs:label>
+    <rdfs:comment xml:lang="ko">후보자 또는 정당이 선거 기간에 수행하는 공개 활동과 계획의 묶음이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A set of public activities and plans conducted by a candidate or party during an election period.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#sourceURL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">출처 URL</rdfs:label>
+    <rdfs:label xml:lang="en">Source URL</rdfs:label>
+    <rdfs:comment xml:lang="ko">정책 입장을 확인할 수 있는 공개 출처의 URL이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The URL of a public source that can be consulted for a policy position.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#PolicyPosition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#resultStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">개표 결과 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Tally Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">개표 기록이 잠정인지 확정인지 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Indicates whether a tally record is preliminary or certified.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#ElectionResult"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#heldInDistrict">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선거 시행 선거구</rdfs:label>
+    <rdfs:label xml:lang="en">Held in District</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거가 시행되는 선거구를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an election to the electoral district where it is held.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Election"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#ElectoralDistrict"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#PolicyPosition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">정책 입장 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Policy Position Record</rdfs:label>
+    <rdfs:comment xml:lang="ko">정치 주체의 정책 관련 주장을 기록하고 그 출처와 시점을 연결하는 자료이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A record of a political actor's policy-related statement linked to its source and date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#hasCandidate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선거 후보자</rdfs:label>
+    <rdfs:label xml:lang="en">Has Candidate</rdfs:label>
+    <rdfs:comment xml:lang="ko">선거에 출마하는 후보자를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an election to a candidate running in it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/politics#Election"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/politics#Candidate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/politics#PoliticalParty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/politics#PoliticalActor"/>
+    <rdfs:label xml:lang="ko">정당</rdfs:label>
+    <rdfs:label xml:lang="en">Political Party</rdfs:label>
+    <rdfs:comment xml:lang="ko">정치적 목표와 조직을 공유하며 선거에 참여하는 정치 조직이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A political organization with shared objectives and an organizational structure that may participate in elections.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

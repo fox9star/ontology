@@ -1,0 +1,12 @@
+{
+  "profile_id": "domain",
+  "source_records": [
+    "source-skos-reference",
+    "source-profile-ai-film",
+    "source-profile-autonomous-driving",
+    "source-profile-imitation-learning",
+    "source-profile-ros2",
+    "source-profile-wireless-router"
+  ],
+  "taxonomy_status": "illustrative_draft"
+}

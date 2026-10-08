@@ -1,0 +1,447 @@
+@prefix ag: <https://example.org/agent#> .
+@prefix dev: <http://example.org/ontology/devops#> .
+@prefix ex: <https://example.test/business/> .
+@prefix mv: <https://example.org/mv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:normal {
+    ex:agentproject a ag:Project ;
+        ag:goal "Synthetic review workflow" ;
+        ag:hasFinalArtifact ex:document ;
+        ag:hasTask ex:reviewtask,
+            ex:writetask .
+
+    ex:mediaproject a mv:MusicVideoProject ;
+        mv:hasAudio ex:audio ;
+        mv:hasBrief ex:brief ;
+        mv:hasFinalVideo ex:video ;
+        mv:hasImage ex:image ;
+        mv:hasTimeline ex:timeline .
+
+    ex:otheraudio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/otheraudio.wav> .
+
+    ex:pipeline a dev:DevOpsPipeline ;
+        rdfs:label "Synthetic pipeline" ;
+        dev:commitHash "synthetic-commit-0001" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:hasTask ex:build,
+            ex:deploy,
+            ex:scan ;
+        dev:pipelineId "synthetic-pipeline-v1" .
+
+    ex:rejected a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "rejected" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:accepted a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "approved" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:brief a mv:CreativeBrief ;
+        mv:targetDurationSeconds 5.0 .
+
+    ex:build a dev:BuildTask ;
+        rdfs:label "Synthetic build" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:managedBy ex:devagent ;
+        dev:producesArtifact ex:package .
+
+    ex:deploy a dev:DeploymentTask ;
+        rdfs:label "Synthetic deploy" ;
+        dev:deployedTo ex:production ;
+        dev:deploysArtifact ex:package ;
+        dev:executionStatus "SUCCESS" ;
+        dev:managedBy ex:devagent .
+
+    ex:generation a mv:ImageGenerationTask ;
+        prov:used ex:receipt ;
+        prov:wasAssociatedWith ex:mediaagent ;
+        mv:modelVersion "synthetic-model-v1" ;
+        mv:promptText "Invented synthetic prompt" ;
+        mv:status "completed" .
+
+    ex:handoff a ag:Handoff ;
+        prov:wasGeneratedBy ex:write ;
+        ag:acceptanceCriteria "Inspect synthetic document" ;
+        ag:containsArtifact ex:document ;
+        ag:toAgent ex:reviewer ;
+        ag:toTask ex:reviewtask .
+
+    ex:mediaagent a mv:AIAgent .
+
+    ex:production a dev:TargetEnvironment ;
+        dev:environmentName "Synthetic production" .
+
+    ex:receipt a prov:Entity .
+
+    ex:scan a dev:SecurityScanTask ;
+        rdfs:label "Synthetic scan" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:generatesReport ex:scanreport ;
+        dev:managedBy ex:devagent ;
+        dev:vulnerabilityCount 0 .
+
+    ex:scanreport a dev:VulnerabilityReport ;
+        rdfs:label "Synthetic scanreport" .
+
+    ex:shot a mv:Shot ;
+        mv:endSecond 5.0 ;
+        mv:orderIndex 1 ;
+        mv:startSecond 0.0 ;
+        mv:usesImage ex:image .
+
+    ex:video a mv:MusicVideo ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/video.mp4> ;
+        mv:hasTimeline ex:timeline ;
+        mv:usesAudio ex:audio .
+
+    ex:write a ag:TaskRun ;
+        prov:wasAssociatedWith ex:author ;
+        ag:hasHandoff ex:handoff ;
+        ag:implementsTask ex:writetask ;
+        ag:status "completed" .
+
+    ex:audio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/audio.wav> .
+
+    ex:author a ag:Agent .
+
+    ex:image a mv:ImageAsset ;
+        prov:wasGeneratedBy ex:generation ;
+        mv:fileUri <https://example.test/business/files/image.png> ;
+        mv:height 1080 ;
+        mv:width 1920 .
+
+    ex:package a dev:BuildArtifact ;
+        dev:imageTag "synthetic:v1" .
+
+    ex:review a ag:ReviewRun ;
+        prov:wasAssociatedWith ex:reviewer ;
+        ag:hasDecision ex:accepted ;
+        ag:implementsTask ex:reviewtask ;
+        ag:reviews ex:document ;
+        ag:status "completed" .
+
+    ex:timeline a mv:Timeline ;
+        mv:hasShot ex:shot .
+
+    ex:writetask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:author .
+
+    ex:devagent a dev:DevOpsAgent ;
+        rdfs:label "Synthetic devagent" .
+
+    ex:reviewer a ag:Agent .
+
+    ex:reviewtask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:reviewer .
+
+    ex:document a ag:Artifact ;
+        ag:artifactUri <https://example.test/business/files/document.md> ;
+        ag:version "1" .
+}
+
+ex:missing {
+    ex:agentproject a ag:Project ;
+        ag:goal "Synthetic review workflow" ;
+        ag:hasFinalArtifact ex:document ;
+        ag:hasTask ex:reviewtask,
+            ex:writetask .
+
+    ex:mediaproject a mv:MusicVideoProject ;
+        mv:hasAudio ex:audio ;
+        mv:hasBrief ex:brief ;
+        mv:hasFinalVideo ex:video ;
+        mv:hasImage ex:image ;
+        mv:hasTimeline ex:timeline .
+
+    ex:otheraudio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/otheraudio.wav> .
+
+    ex:pipeline a dev:DevOpsPipeline ;
+        rdfs:label "Synthetic pipeline" ;
+        dev:commitHash "synthetic-commit-0001" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:hasTask ex:build,
+            ex:deploy,
+            ex:scan ;
+        dev:pipelineId "synthetic-pipeline-v1" .
+
+    ex:rejected a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "rejected" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:accepted a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "approved" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:generation a mv:ImageGenerationTask ;
+        prov:used ex:receipt ;
+        prov:wasAssociatedWith ex:mediaagent ;
+        mv:modelVersion "synthetic-model-v1" ;
+        mv:promptText "Invented synthetic prompt" ;
+        mv:status "completed" .
+
+    ex:brief a mv:CreativeBrief ;
+        mv:targetDurationSeconds 5.0 .
+
+    ex:build a dev:BuildTask ;
+        rdfs:label "Synthetic build" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:managedBy ex:devagent ;
+        dev:producesArtifact ex:package .
+
+    ex:deploy a dev:DeploymentTask ;
+        rdfs:label "Synthetic deploy" ;
+        dev:deployedTo ex:production ;
+        dev:executionStatus "SUCCESS" ;
+        dev:managedBy ex:devagent .
+
+    ex:handoff a ag:Handoff ;
+        prov:wasGeneratedBy ex:write ;
+        ag:acceptanceCriteria "Inspect synthetic document" ;
+        ag:containsArtifact ex:document ;
+        ag:toAgent ex:reviewer ;
+        ag:toTask ex:reviewtask .
+
+    ex:mediaagent a mv:AIAgent .
+
+    ex:production a dev:TargetEnvironment ;
+        dev:environmentName "Synthetic production" .
+
+    ex:receipt a prov:Entity .
+
+    ex:scan a dev:SecurityScanTask ;
+        rdfs:label "Synthetic scan" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:generatesReport ex:scanreport ;
+        dev:managedBy ex:devagent ;
+        dev:vulnerabilityCount 0 .
+
+    ex:scanreport a dev:VulnerabilityReport ;
+        rdfs:label "Synthetic scanreport" .
+
+    ex:shot a mv:Shot ;
+        mv:endSecond 5.0 ;
+        mv:orderIndex 1 ;
+        mv:startSecond 0.0 ;
+        mv:usesImage ex:image .
+
+    ex:video a mv:MusicVideo ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/video.mp4> ;
+        mv:hasTimeline ex:timeline ;
+        mv:usesAudio ex:audio .
+
+    ex:write a ag:TaskRun ;
+        prov:wasAssociatedWith ex:author ;
+        ag:hasHandoff ex:handoff ;
+        ag:implementsTask ex:writetask ;
+        ag:status "completed" .
+
+    ex:package a dev:BuildArtifact ;
+        dev:imageTag "synthetic:v1" .
+
+    ex:audio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/audio.wav> .
+
+    ex:author a ag:Agent .
+
+    ex:image a mv:ImageAsset ;
+        mv:fileUri <https://example.test/business/files/image.png> ;
+        mv:height 1080 ;
+        mv:width 1920 .
+
+    ex:review a ag:ReviewRun ;
+        prov:wasAssociatedWith ex:reviewer ;
+        ag:implementsTask ex:reviewtask ;
+        ag:reviews ex:document ;
+        ag:status "completed" .
+
+    ex:timeline a mv:Timeline ;
+        mv:hasShot ex:shot .
+
+    ex:writetask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:author .
+
+    ex:devagent a dev:DevOpsAgent ;
+        rdfs:label "Synthetic devagent" .
+
+    ex:reviewer a ag:Agent .
+
+    ex:reviewtask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:reviewer .
+
+    ex:document a ag:Artifact ;
+        ag:artifactUri <https://example.test/business/files/document.md> ;
+        ag:version "1" .
+}
+
+ex:conflict {
+    ex:agentproject a ag:Project ;
+        ag:goal "Synthetic review workflow" ;
+        ag:hasFinalArtifact ex:document ;
+        ag:hasTask ex:reviewtask,
+            ex:writetask .
+
+    ex:mediaproject a mv:MusicVideoProject ;
+        mv:hasAudio ex:audio ;
+        mv:hasBrief ex:brief ;
+        mv:hasFinalVideo ex:video ;
+        mv:hasImage ex:image ;
+        mv:hasTimeline ex:timeline .
+
+    ex:pipeline a dev:DevOpsPipeline ;
+        rdfs:label "Synthetic pipeline" ;
+        dev:commitHash "synthetic-commit-0001" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:hasTask ex:build,
+            ex:deploy,
+            ex:scan ;
+        dev:pipelineId "synthetic-pipeline-v1" .
+
+    ex:otheraudio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/otheraudio.wav> .
+
+    ex:rejected a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "rejected" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:accepted a ag:ReviewDecision ;
+        prov:wasGeneratedBy ex:review ;
+        ag:decision "approved" ;
+        ag:decisionAbout ex:document ;
+        ag:reason "Synthetic fixture rationale" .
+
+    ex:generation a mv:ImageGenerationTask ;
+        prov:used ex:receipt ;
+        prov:wasAssociatedWith ex:mediaagent ;
+        mv:modelVersion "synthetic-model-v1" ;
+        mv:promptText "Invented synthetic prompt" ;
+        mv:status "completed" .
+
+    ex:brief a mv:CreativeBrief ;
+        mv:targetDurationSeconds 5.0 .
+
+    ex:build a dev:BuildTask ;
+        rdfs:label "Synthetic build" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:managedBy ex:devagent ;
+        dev:producesArtifact ex:package .
+
+    ex:deploy a dev:DeploymentTask ;
+        rdfs:label "Synthetic deploy" ;
+        dev:deployedTo ex:production ;
+        dev:deploysArtifact ex:package ;
+        dev:executionStatus "FAILED",
+            "SUCCESS" ;
+        dev:managedBy ex:devagent .
+
+    ex:handoff a ag:Handoff ;
+        prov:wasGeneratedBy ex:write ;
+        ag:acceptanceCriteria "Inspect synthetic document" ;
+        ag:containsArtifact ex:document ;
+        ag:toAgent ex:reviewer ;
+        ag:toTask ex:reviewtask .
+
+    ex:mediaagent a mv:AIAgent .
+
+    ex:production a dev:TargetEnvironment ;
+        dev:environmentName "Synthetic production" .
+
+    ex:receipt a prov:Entity .
+
+    ex:scan a dev:SecurityScanTask ;
+        rdfs:label "Synthetic scan" ;
+        dev:executionStatus "SUCCESS" ;
+        dev:generatesReport ex:scanreport ;
+        dev:managedBy ex:devagent ;
+        dev:vulnerabilityCount 0 .
+
+    ex:scanreport a dev:VulnerabilityReport ;
+        rdfs:label "Synthetic scanreport" .
+
+    ex:shot a mv:Shot ;
+        mv:endSecond 5.0 ;
+        mv:orderIndex 1 ;
+        mv:startSecond 0.0 ;
+        mv:usesImage ex:image .
+
+    ex:video a mv:MusicVideo ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/video.mp4> ;
+        mv:hasTimeline ex:timeline ;
+        mv:usesAudio ex:otheraudio .
+
+    ex:write a ag:TaskRun ;
+        prov:wasAssociatedWith ex:author ;
+        ag:hasHandoff ex:handoff ;
+        ag:implementsTask ex:writetask ;
+        ag:status "completed" .
+
+    ex:audio a mv:AudioAsset ;
+        mv:durationSeconds 5.0 ;
+        mv:fileUri <https://example.test/business/files/audio.wav> .
+
+    ex:package a dev:BuildArtifact ;
+        dev:imageTag "synthetic:v1" .
+
+    ex:author a ag:Agent .
+
+    ex:image a mv:ImageAsset ;
+        prov:wasGeneratedBy ex:generation ;
+        mv:fileUri <https://example.test/business/files/image.png> ;
+        mv:height 1080 ;
+        mv:width 1920 .
+
+    ex:review a ag:ReviewRun ;
+        prov:wasAssociatedWith ex:reviewer ;
+        ag:hasDecision ex:accepted,
+            ex:rejected ;
+        ag:implementsTask ex:reviewtask ;
+        ag:reviews ex:document ;
+        ag:status "completed" .
+
+    ex:timeline a mv:Timeline ;
+        mv:hasShot ex:shot .
+
+    ex:writetask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:author .
+
+    ex:devagent a dev:DevOpsAgent ;
+        rdfs:label "Synthetic devagent" .
+
+    ex:reviewer a ag:Agent .
+
+    ex:reviewtask a ag:Task ;
+        ag:acceptanceCriteria "Synthetic checks complete" ;
+        ag:assignedTo ex:reviewer .
+
+    ex:document a ag:Artifact ;
+        ag:artifactUri <https://example.test/business/files/document.md> ;
+        ag:version "1" .
+}

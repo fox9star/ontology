@@ -1,0 +1,553 @@
+@prefix item: <https://example.org/ontology/custom/ww2#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+item:auschwitz a item:Place ;
+    rdfs:label "Auschwitz camp complex"@en,
+        "아우슈비츠 수용소 복합시설"@ko ;
+    item:placeKind "camp" .
+
+item:auschwitz-liberation a item:HistoricalEvent ;
+    rdfs:label "Liberation of Auschwitz"@en,
+        "아우슈비츠 수용소 해방"@ko ;
+    item:dateNote "소련군의 수용소 해방 일자입니다. 홀로코스트의 시작·종료 경계를 하나의 일자로 단정하지 않습니다." ;
+    item:endDate "1945-01-27"^^xsd:date ;
+    item:eventKind "liberation" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:auschwitz-liberation-claim ;
+    item:hasParticipation item:auschwitz-liberation-participation-soviet-union ;
+    item:occurredAt item:auschwitz ;
+    item:startDate "1945-01-27"^^xsd:date .
+
+item:auschwitz-liberation-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Liberation of Auschwitz"@en,
+        "아우슈비츠 수용소 해방의 출처 서술"@ko ;
+    item:aboutEvent item:auschwitz-liberation ;
+    item:citesSource item:auschwitz-source ;
+    item:claimText "1945년 1월 27일 소련군은 아우슈비츠 수용소 복합시설에 남아 있던 수감자들을 해방했다." .
+
+item:auschwitz-liberation-participation-soviet-union a item:Participation ;
+    rdfs:label "Liberation of Auschwitz: participation of Union of Soviet Socialist Republics"@en,
+        "아우슈비츠 수용소 해방: 소련의 참여"@ko ;
+    item:documentedBy item:auschwitz-source ;
+    item:endDate "1945-01-27"^^xsd:date ;
+    item:participant item:soviet-union ;
+    item:role "liberator" ;
+    item:side "Allied" ;
+    item:startDate "1945-01-27"^^xsd:date .
+
+item:barbarossa-opening a item:HistoricalEvent ;
+    rdfs:label "Opening of Operation Barbarossa"@en,
+        "바르바로사 작전 개시"@ko ;
+    item:dateNote "독일의 소련 침공 개시일입니다. 동부전선 전체나 작전 전체의 종료일을 기록한 구간이 아닙니다." ;
+    item:endDate "1941-06-22"^^xsd:date ;
+    item:eventKind "invasion" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:barbarossa-opening-claim ;
+    item:hasParticipation item:barbarossa-opening-participation-german-reich,
+        item:barbarossa-opening-participation-soviet-union ;
+    item:occurredAt item:soviet-territory ;
+    item:startDate "1941-06-22"^^xsd:date .
+
+item:barbarossa-opening-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Opening of Operation Barbarossa"@en,
+        "바르바로사 작전 개시의 출처 서술"@ko ;
+    item:aboutEvent item:barbarossa-opening ;
+    item:citesSource item:barbarossa-source ;
+    item:claimText "1941년 6월 22일 나치 독일이 소련을 침공했다. 초기 장소 기록은 현대 국경 대신 당시 소련 영토를 가리킨다." .
+
+item:barbarossa-opening-participation-german-reich a item:Participation ;
+    rdfs:label "Opening of Operation Barbarossa: participation of German Reich"@en,
+        "바르바로사 작전 개시: 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:barbarossa-source ;
+    item:endDate "1941-06-22"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "attacker" ;
+    item:side "Axis" ;
+    item:startDate "1941-06-22"^^xsd:date .
+
+item:barbarossa-opening-participation-soviet-union a item:Participation ;
+    rdfs:label "Opening of Operation Barbarossa: participation of Union of Soviet Socialist Republics"@en,
+        "바르바로사 작전 개시: 소련의 참여"@ko ;
+    item:documentedBy item:barbarossa-source ;
+    item:endDate "1941-06-22"^^xsd:date ;
+    item:participant item:soviet-union ;
+    item:role "defender" ;
+    item:side "Allied" ;
+    item:startDate "1941-06-22"^^xsd:date .
+
+item:canada a item:State ;
+    rdfs:label "Canada"@en,
+        "캐나다"@ko ;
+    item:historicalName "캐나다" .
+
+item:europe a item:Place ;
+    rdfs:label "European theater, scope of the event"@en,
+        "유럽 전역 (사건의 적용 범위)"@ko ;
+    item:placeKind "region" .
+
+item:german-ceasefire-effective a item:HistoricalEvent ;
+    rdfs:label "Effective cessation of German military operations"@en,
+        "독일군 작전 중지의 발효"@ko ;
+    item:dateNote "항복문서상 중앙유럽시간 23:01의 작전 중지 발효일입니다. 모든 지역에서 동시에 실제 전투가 멈췄다고 단정하지 않습니다." ;
+    item:endDate "1945-05-08"^^xsd:date ;
+    item:eventKind "ceasefire" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:german-ceasefire-effective-claim ;
+    item:hasParticipation item:german-ceasefire-effective-participation-german-reich ;
+    item:occurredAt item:europe ;
+    item:startDate "1945-05-08"^^xsd:date .
+
+item:german-ceasefire-effective-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Effective cessation of German military operations"@en,
+        "독일군 작전 중지의 발효의 출처 서술"@ko ;
+    item:aboutEvent item:german-ceasefire-effective ;
+    item:citesSource item:german-surrender-source ;
+    item:claimText "독일 항복문서는 독일 지휘하의 육·해·공군이 1945년 5월 8일 중앙유럽시간 23:01에 작전을 중지하도록 규정했다." .
+
+item:german-ceasefire-effective-participation-german-reich a item:Participation ;
+    rdfs:label "Effective cessation of German military operations: participation of German Reich"@en,
+        "독일군 작전 중지의 발효: 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:german-surrender-source ;
+    item:endDate "1945-05-08"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "surrendering-party" ;
+    item:side "Axis" ;
+    item:startDate "1945-05-08"^^xsd:date .
+
+item:german-surrender-reims a item:HistoricalEvent ;
+    rdfs:label "Signing of the German surrender at Reims"@en,
+        "독일 항복문서의 랭스 서명"@ko ;
+    item:dateNote "프랑스 랭스에서의 항복문서 서명일입니다. 5월 8일의 작전 중지 발효와 베를린 재서명을 별도 사실로 구별합니다." ;
+    item:endDate "1945-05-07"^^xsd:date ;
+    item:eventKind "surrender-signing" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:german-surrender-reims-claim ;
+    item:hasParticipation item:german-surrender-reims-participation-german-reich ;
+    item:occurredAt item:reims ;
+    item:startDate "1945-05-07"^^xsd:date .
+
+item:german-surrender-reims-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Signing of the German surrender at Reims"@en,
+        "독일 항복문서의 랭스 서명의 출처 서술"@ko ;
+    item:aboutEvent item:german-surrender-reims ;
+    item:citesSource item:german-surrender-source ;
+    item:claimText "1945년 5월 7일 프랑스 랭스에서 독일군의 무조건 항복문서가 서명되었다. 문서가 규정한 작전 중지는 이튿날 발효했다." .
+
+item:german-surrender-reims-participation-german-reich a item:Participation ;
+    rdfs:label "Signing of the German surrender at Reims: participation of German Reich"@en,
+        "독일 항복문서의 랭스 서명: 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:german-surrender-source ;
+    item:endDate "1945-05-07"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "surrendering-party" ;
+    item:side "Axis" ;
+    item:startDate "1945-05-07"^^xsd:date .
+
+item:japan-place a item:Place ;
+    rdfs:label "Japan, audience scope of the broadcast"@en,
+        "일본 (방송의 전달 범위)"@ko ;
+    item:placeKind "country" .
+
+item:japan-surrender-broadcast a item:HistoricalEvent ;
+    rdfs:label "Japanese broadcast announcing acceptance of surrender"@en,
+        "일본의 항복 수락 방송"@ko ;
+    item:dateNote "국민에게 방송된 일본 현지 일자입니다. 8월 14일의 준비·녹음 및 9월 2일의 정식 항복문서 서명과 구별합니다." ;
+    item:endDate "1945-08-15"^^xsd:date ;
+    item:eventKind "surrender-announcement" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:japan-surrender-broadcast-claim ;
+    item:hasParticipation item:japan-surrender-broadcast-participation-empire-of-japan ;
+    item:occurredAt item:japan-place ;
+    item:startDate "1945-08-15"^^xsd:date .
+
+item:japan-surrender-broadcast-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Japanese broadcast announcing acceptance of surrender"@en,
+        "일본의 항복 수락 방송의 출처 서술"@ko ;
+    item:aboutEvent item:japan-surrender-broadcast ;
+    item:citesSource item:japan-broadcast-source ;
+    item:claimText "1945년 8월 15일 히로히토의 라디오 방송이 일본의 항복 수락을 국민에게 알렸다." .
+
+item:japan-surrender-broadcast-participation-empire-of-japan a item:Participation ;
+    rdfs:label "Japanese broadcast announcing acceptance of surrender: participation of Empire of Japan"@en,
+        "일본의 항복 수락 방송: 일본제국의 참여"@ko ;
+    item:documentedBy item:japan-broadcast-source ;
+    item:endDate "1945-08-15"^^xsd:date ;
+    item:participant item:empire-of-japan ;
+    item:role "surrendering-party" ;
+    item:side "Axis" ;
+    item:startDate "1945-08-15"^^xsd:date .
+
+item:japan-surrender-signing a item:HistoricalEvent ;
+    rdfs:label "Formal signing of the Japanese Instrument of Surrender"@en,
+        "일본 항복문서의 정식 서명"@ko ;
+    item:dateNote "도쿄만 USS Missouri 함상에서의 정식 항복문서 서명일입니다. 8월 15일의 발표·방송과 별도 사건입니다." ;
+    item:endDate "1945-09-02"^^xsd:date ;
+    item:eventKind "surrender-signing" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:japan-surrender-signing-claim ;
+    item:hasParticipation item:japan-surrender-signing-participation-empire-of-japan,
+        item:japan-surrender-signing-participation-macarthur,
+        item:japan-surrender-signing-participation-shigemitsu ;
+    item:occurredAt item:tokyo-bay ;
+    item:startDate "1945-09-02"^^xsd:date .
+
+item:japan-surrender-signing-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Formal signing of the Japanese Instrument of Surrender"@en,
+        "일본 항복문서의 정식 서명의 출처 서술"@ko ;
+    item:aboutEvent item:japan-surrender-signing ;
+    item:citesSource item:japan-surrender-source ;
+    item:claimText "1945년 9월 2일 도쿄만의 USS Missouri 함상에서 일본 항복문서가 서명되었다. 시게미쓰 마모루는 일본 정부를 대표해 서명했고 더글러스 맥아더는 연합국을 대표해 수락했다." .
+
+item:japan-surrender-signing-participation-empire-of-japan a item:Participation ;
+    rdfs:label "Formal signing of the Japanese Instrument of Surrender: participation of Empire of Japan"@en,
+        "일본 항복문서의 정식 서명: 일본제국의 참여"@ko ;
+    item:documentedBy item:japan-surrender-source ;
+    item:endDate "1945-09-02"^^xsd:date ;
+    item:participant item:empire-of-japan ;
+    item:role "surrendering-party" ;
+    item:side "Axis" ;
+    item:startDate "1945-09-02"^^xsd:date .
+
+item:japan-surrender-signing-participation-macarthur a item:Participation ;
+    rdfs:label "Formal signing of the Japanese Instrument of Surrender: participation of Douglas MacArthur"@en,
+        "일본 항복문서의 정식 서명: 더글러스 맥아더의 참여"@ko ;
+    item:documentedBy item:japan-surrender-source ;
+    item:endDate "1945-09-02"^^xsd:date ;
+    item:participant item:macarthur ;
+    item:role "accepting-party" ;
+    item:side "Allied" ;
+    item:startDate "1945-09-02"^^xsd:date .
+
+item:japan-surrender-signing-participation-shigemitsu a item:Participation ;
+    rdfs:label "Formal signing of the Japanese Instrument of Surrender: participation of Mamoru Shigemitsu"@en,
+        "일본 항복문서의 정식 서명: 시게미쓰 마모루의 참여"@ko ;
+    item:documentedBy item:japan-surrender-source ;
+    item:endDate "1945-09-02"^^xsd:date ;
+    item:participant item:shigemitsu ;
+    item:role "representative" ;
+    item:side "Axis" ;
+    item:startDate "1945-09-02"^^xsd:date .
+
+item:macarthur a item:Person ;
+    rdfs:label "Douglas MacArthur"@en,
+        "더글러스 맥아더"@ko .
+
+item:normandy a item:Place ;
+    rdfs:label "Normandy landing area, France"@en,
+        "프랑스 노르망디 상륙 지역"@ko ;
+    item:placeKind "region" .
+
+item:normandy-landings a item:HistoricalEvent ;
+    rdfs:label "Normandy landings, D-Day"@en,
+        "노르망디 상륙 개시 (D-Day)"@ko ;
+    item:dateNote "상륙 개시일입니다. 노르망디 전역 또는 오버로드 작전 전체의 기간을 뜻하지 않습니다." ;
+    item:endDate "1944-06-06"^^xsd:date ;
+    item:eventKind "landing" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:normandy-landings-claim ;
+    item:hasParticipation item:normandy-landings-participation-canada,
+        item:normandy-landings-participation-german-reich,
+        item:normandy-landings-participation-united-kingdom,
+        item:normandy-landings-participation-united-states ;
+    item:occurredAt item:normandy ;
+    item:startDate "1944-06-06"^^xsd:date .
+
+item:normandy-landings-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Normandy landings, D-Day"@en,
+        "노르망디 상륙 개시 (D-Day)의 출처 서술"@ko ;
+    item:aboutEvent item:normandy-landings ;
+    item:citesSource item:d-day-source ;
+    item:claimText "1944년 6월 6일 미국·영국·캐나다군이 프랑스 노르망디에 상륙해 독일 방어군과 전투를 벌였다." .
+
+item:normandy-landings-participation-canada a item:Participation ;
+    rdfs:label "Normandy landings, D-Day: participation of Canada"@en,
+        "노르망디 상륙 개시 (D-Day): 캐나다의 참여"@ko ;
+    item:documentedBy item:d-day-source ;
+    item:endDate "1944-06-06"^^xsd:date ;
+    item:participant item:canada ;
+    item:role "attacker" ;
+    item:side "Allied" ;
+    item:startDate "1944-06-06"^^xsd:date .
+
+item:normandy-landings-participation-german-reich a item:Participation ;
+    rdfs:label "Normandy landings, D-Day: participation of German Reich"@en,
+        "노르망디 상륙 개시 (D-Day): 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:d-day-source ;
+    item:endDate "1944-06-06"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "defender" ;
+    item:side "Axis" ;
+    item:startDate "1944-06-06"^^xsd:date .
+
+item:normandy-landings-participation-united-kingdom a item:Participation ;
+    rdfs:label "Normandy landings, D-Day: participation of United Kingdom"@en,
+        "노르망디 상륙 개시 (D-Day): 영국의 참여"@ko ;
+    item:documentedBy item:d-day-source ;
+    item:endDate "1944-06-06"^^xsd:date ;
+    item:participant item:united-kingdom ;
+    item:role "attacker" ;
+    item:side "Allied" ;
+    item:startDate "1944-06-06"^^xsd:date .
+
+item:normandy-landings-participation-united-states a item:Participation ;
+    rdfs:label "Normandy landings, D-Day: participation of United States of America"@en,
+        "노르망디 상륙 개시 (D-Day): 미국의 참여"@ko ;
+    item:documentedBy item:d-day-source ;
+    item:endDate "1944-06-06"^^xsd:date ;
+    item:participant item:united-states ;
+    item:role "attacker" ;
+    item:side "Allied" ;
+    item:startDate "1944-06-06"^^xsd:date .
+
+item:pearl-harbor a item:Place ;
+    rdfs:label "Pearl Harbor, then Territory of Hawaii"@en,
+        "진주만, 당시 미국령 하와이"@ko ;
+    item:placeKind "base" .
+
+item:pearl-harbor-attack a item:HistoricalEvent ;
+    rdfs:label "Attack on Pearl Harbor"@en,
+        "진주만 공격"@ko ;
+    item:dateNote "하와이 현지 달력의 공격 일자입니다. 시간대가 다른 지역의 달력 일자와 구별합니다." ;
+    item:endDate "1941-12-07"^^xsd:date ;
+    item:eventKind "attack" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:pearl-harbor-attack-claim ;
+    item:hasParticipation item:pearl-harbor-attack-participation-empire-of-japan,
+        item:pearl-harbor-attack-participation-united-states ;
+    item:occurredAt item:pearl-harbor ;
+    item:startDate "1941-12-07"^^xsd:date .
+
+item:pearl-harbor-attack-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Attack on Pearl Harbor"@en,
+        "진주만 공격의 출처 서술"@ko ;
+    item:aboutEvent item:pearl-harbor-attack ;
+    item:citesSource item:pearl-harbor-source ;
+    item:claimText "1941년 12월 7일 하와이 현지 날짜에 일본군이 미국의 진주만 해군기지를 공격했다. 하와이는 당시 미국령이었다." .
+
+item:pearl-harbor-attack-participation-empire-of-japan a item:Participation ;
+    rdfs:label "Attack on Pearl Harbor: participation of Empire of Japan"@en,
+        "진주만 공격: 일본제국의 참여"@ko ;
+    item:documentedBy item:pearl-harbor-source ;
+    item:endDate "1941-12-07"^^xsd:date ;
+    item:participant item:empire-of-japan ;
+    item:role "attacker" ;
+    item:side "Axis" ;
+    item:startDate "1941-12-07"^^xsd:date .
+
+item:pearl-harbor-attack-participation-united-states a item:Participation ;
+    rdfs:label "Attack on Pearl Harbor: participation of United States of America"@en,
+        "진주만 공격: 미국의 참여"@ko ;
+    item:documentedBy item:pearl-harbor-source ;
+    item:endDate "1941-12-07"^^xsd:date ;
+    item:participant item:united-states ;
+    item:role "defender" ;
+    item:side "Allied" ;
+    item:startDate "1941-12-07"^^xsd:date .
+
+item:poland-invasion-opening a item:HistoricalEvent ;
+    rdfs:label "Opening of the German invasion of Poland"@en,
+        "독일의 폴란드 침공 개시"@ko ;
+    item:dateNote "침공이 개시된 일자입니다. 폴란드 전역 전체가 하루 동안 진행되었다는 뜻이 아닙니다." ;
+    item:endDate "1939-09-01"^^xsd:date ;
+    item:eventKind "invasion" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:poland-invasion-opening-claim ;
+    item:hasParticipation item:poland-invasion-opening-participation-german-reich,
+        item:poland-invasion-opening-participation-polish-republic ;
+    item:occurredAt item:poland-place ;
+    item:startDate "1939-09-01"^^xsd:date .
+
+item:poland-invasion-opening-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of Opening of the German invasion of Poland"@en,
+        "독일의 폴란드 침공 개시의 출처 서술"@ko ;
+    item:aboutEvent item:poland-invasion-opening ;
+    item:citesSource item:poland-source ;
+    item:claimText "1939년 9월 1일 독일군이 폴란드를 침공했다. 이 사건은 유럽에서의 제2차 세계대전 개전 기준으로 쓰인다." .
+
+item:poland-invasion-opening-participation-german-reich a item:Participation ;
+    rdfs:label "Opening of the German invasion of Poland: participation of German Reich"@en,
+        "독일의 폴란드 침공 개시: 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:poland-source ;
+    item:endDate "1939-09-01"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "attacker" ;
+    item:side "Axis" ;
+    item:startDate "1939-09-01"^^xsd:date .
+
+item:poland-invasion-opening-participation-polish-republic a item:Participation ;
+    rdfs:label "Opening of the German invasion of Poland: participation of Poland in 1939"@en,
+        "독일의 폴란드 침공 개시: 폴란드 (1939년)의 참여"@ko ;
+    item:documentedBy item:poland-source ;
+    item:endDate "1939-09-01"^^xsd:date ;
+    item:participant item:polish-republic ;
+    item:role "defender" ;
+    item:side "Allied" ;
+    item:startDate "1939-09-01"^^xsd:date .
+
+item:poland-place a item:Place ;
+    rdfs:label "Poland, invasion area in 1939"@en,
+        "폴란드 (1939년 침공 지역)"@ko ;
+    item:placeKind "country" .
+
+item:polish-republic a item:State ;
+    rdfs:label "Poland in 1939"@en,
+        "폴란드 (1939년)"@ko ;
+    item:historicalName "당시 폴란드" .
+
+item:reims a item:Place ;
+    rdfs:label "Reims, France"@en,
+        "프랑스 랭스"@ko ;
+    item:placeKind "city" .
+
+item:shigemitsu a item:Person ;
+    rdfs:label "Mamoru Shigemitsu"@en,
+        "시게미쓰 마모루"@ko .
+
+item:soviet-territory a item:Place ;
+    rdfs:label "Soviet territory at the time of the invasion"@en,
+        "당시 소련 영토"@ko ;
+    item:placeKind "region" .
+
+item:stalingrad a item:Place ;
+    rdfs:label "Stalingrad, contemporary city name"@en,
+        "스탈린그라드 (당시 도시명)"@ko ;
+    item:placeKind "city" .
+
+item:stalingrad-surrender a item:HistoricalEvent ;
+    rdfs:label "German surrender at Stalingrad"@en,
+        "스탈린그라드의 독일군 항복"@ko ;
+    item:dateNote "남아 있던 독일군의 항복으로 전투가 종결된 일자를 기록합니다. 전투 전체 기간이나 국가 전체의 항복을 뜻하지 않습니다." ;
+    item:endDate "1943-02-02"^^xsd:date ;
+    item:eventKind "surrender" ;
+    item:eventOf item:world-war-ii ;
+    item:hasClaim item:stalingrad-surrender-claim ;
+    item:hasParticipation item:stalingrad-surrender-participation-german-reich ;
+    item:occurredAt item:stalingrad ;
+    item:startDate "1943-02-02"^^xsd:date .
+
+item:stalingrad-surrender-claim a item:HistoricalClaim ;
+    rdfs:label "Sourced account of German surrender at Stalingrad"@en,
+        "스탈린그라드의 독일군 항복의 출처 서술"@ko ;
+    item:aboutEvent item:stalingrad-surrender ;
+    item:citesSource item:stalingrad-source ;
+    item:claimText "1943년 2월 2일 스탈린그라드에서 남아 있던 독일군이 항복했다. 이것은 현지 독일군의 항복이며 독일 국가 전체의 항복이 아니다." .
+
+item:stalingrad-surrender-participation-german-reich a item:Participation ;
+    rdfs:label "German surrender at Stalingrad: participation of German Reich"@en,
+        "스탈린그라드의 독일군 항복: 독일국 (당시 독일)의 참여"@ko ;
+    item:documentedBy item:stalingrad-source ;
+    item:endDate "1943-02-02"^^xsd:date ;
+    item:participant item:german-reich ;
+    item:role "surrendering-party" ;
+    item:side "Axis" ;
+    item:startDate "1943-02-02"^^xsd:date .
+
+item:tokyo-bay a item:Place ;
+    rdfs:label "Aboard USS Missouri in Tokyo Bay"@en,
+        "도쿄만의 USS Missouri 함상"@ko ;
+    item:placeKind "bay" .
+
+item:united-kingdom a item:State ;
+    rdfs:label "United Kingdom"@en,
+        "영국"@ko ;
+    item:historicalName "그레이트브리튼 및 북아일랜드 연합왕국" .
+
+item:auschwitz-source a item:SourceDocument ;
+    rdfs:label "Soviet Forces Liberate Auschwitz"@en,
+        "아우슈비츠 해방 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States Holocaust Memorial Museum" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/soviet-forces-liberate-auschwitz"^^xsd:anyURI .
+
+item:japan-broadcast-source a item:SourceDocument ;
+    rdfs:label "Jewel Voice Broadcast, contextual account and translation"@en,
+        "일본 항복 수락 방송 자료와 번역문"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "National Museum of Nuclear Science & History / Atomic Heritage Foundation" ;
+    item:sourceKind "primary-document" ;
+    item:sourceURL "https://ahf.nuclearmuseum.org/ahf/key-documents/jewel-voice-broadcast/"^^xsd:anyURI .
+
+item:soviet-union a item:State ;
+    rdfs:label "Union of Soviet Socialist Republics"@en,
+        "소련"@ko ;
+    item:historicalName "소비에트 사회주의 공화국 연방" .
+
+item:stalingrad-source a item:SourceDocument ;
+    rdfs:label "German Defeat at Stalingrad"@en,
+        "스탈린그라드의 독일군 항복 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States Holocaust Memorial Museum" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1942-1945/german-defeat-at-stalingrad"^^xsd:anyURI .
+
+item:united-states a item:State ;
+    rdfs:label "United States of America"@en,
+        "미국"@ko ;
+    item:historicalName "미합중국" .
+
+item:barbarossa-source a item:SourceDocument ;
+    rdfs:label "Invasion of the Soviet Union, June 1941"@en,
+        "소련 침공 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States Holocaust Memorial Museum" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://encyclopedia.ushmm.org/content/en/article/invasion-of-the-soviet-union-june-1941"^^xsd:anyURI .
+
+item:empire-of-japan a item:State ;
+    rdfs:label "Empire of Japan"@en,
+        "일본제국"@ko ;
+    item:historicalName "일본제국" .
+
+item:pearl-harbor-source a item:SourceDocument ;
+    rdfs:label "Pearl Harbor"@en,
+        "진주만 공격 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States National Park Service" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://www.nps.gov/wwii/learn/historyculture/pearl-harbor.htm"^^xsd:anyURI .
+
+item:poland-source a item:SourceDocument ;
+    rdfs:label "Invasion of Poland, Fall 1939"@en,
+        "폴란드 침공 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States Holocaust Memorial Museum" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://encyclopedia.ushmm.org/content/en/article/invasion-of-poland-fall-1939"^^xsd:anyURI .
+
+item:german-surrender-source a item:SourceDocument ;
+    rdfs:label "Surrender of Germany (1945), instrument and transcript"@en,
+        "독일 항복문서와 전사본"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States National Archives and Records Administration" ;
+    item:sourceKind "primary-document" ;
+    item:sourceURL "https://www.archives.gov/milestone-documents/surrender-of-germany"^^xsd:anyURI .
+
+item:japan-surrender-source a item:SourceDocument ;
+    rdfs:label "Surrender of Japan (1945), instrument and transcript"@en,
+        "일본 항복문서와 전사본"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States National Archives and Records Administration" ;
+    item:sourceKind "primary-document" ;
+    item:sourceURL "https://www.archives.gov/milestone-documents/surrender-of-japan"^^xsd:anyURI .
+
+item:d-day-source a item:SourceDocument ;
+    rdfs:label "D-Day"@en,
+        "노르망디 상륙 자료"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "United States Holocaust Memorial Museum" ;
+    item:sourceKind "museum-summary" ;
+    item:sourceURL "https://encyclopedia.ushmm.org/content/en/article/d-day"^^xsd:anyURI .
+
+item:german-reich a item:State ;
+    rdfs:label "German Reich"@en,
+        "독일국 (당시 독일)"@ko ;
+    item:historicalName "독일국" .
+
+item:world-war-ii a item:Conflict ;
+    rdfs:label "World War II"@en,
+        "제2차 세계대전"@ko ;
+    item:dateNote "이 초기 프로필은 유럽의 개전일과 일본의 정식 항복문서 서명일을 시간 범위로 채택합니다. 아시아 전쟁의 1937년 기원이나 지역별 종전 기준을 부정하는 정의가 아닙니다." ;
+    item:endDate "1945-09-02"^^xsd:date ;
+    item:startDate "1939-09-01"^^xsd:date .

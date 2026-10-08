@@ -1,0 +1,130 @@
+@prefix ev: <https://example.org/ontology/evidence#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/evidence> a owl:Ontology ;
+    owl:versionInfo "1.0.0" ; owl:imports <http://www.w3.org/ns/prov-o#> ;
+    rdfs:label "출처 검증 근거 온톨로지"@ko, "Provenance evidence ontology"@en ;
+    rdfs:comment "파일 등록과 원본 생성 및 원본 출처의 확인 범위를 분리하여 검증 근거와 미확인 사유를 기록한다."@ko,
+        "Separates observed local registration from original generation and origin claims, recording evidence and explicit unknown reasons."@en .
+
+ev:VerificationClaim a owl:Class ; rdfs:subClassOf prov:Entity ;
+    rdfs:label "검증 주장"@ko, "Verification claim"@en ;
+    rdfs:comment "특정 자산에 대해 하나의 확인 범위와 상태를 표현하며 다른 범위의 확인을 대신하지 않는 주장이다."@ko,
+        "An assertion about one asset within one verification scope; a verified local copy never establishes its original generation history."@en .
+ev:EvidenceRecord a owl:Class ; rdfs:subClassOf prov:Entity ;
+    rdfs:label "관찰 근거 기록"@ko, "Evidence record"@en ;
+    rdfs:comment "실제로 읽은 파일의 위치와 SHA-256 지문을 기록하는 근거이며 파일 내용의 역사적 진실까지 보증하지 않는다."@ko,
+        "Records the IRI and SHA-256 of an inspected file; matching bytes establish content identity rather than the truth of a historical account."@en .
+ev:ClaimScope a owl:Class ;
+    rdfs:label "주장 확인 범위"@ko, "Claim scope"@en ;
+    rdfs:comment "로컬 파일 무결성, 원본 생성 이력, 원본 출처 중 무엇을 확인하는 주장인지 구별하는 분류이다."@ko,
+        "Identifies whether an assertion concerns local file integrity, original generation history, or original origin."@en .
+ev:VerificationStatus a owl:Class ;
+    rdfs:label "검증 상태"@ko, "Verification status"@en ;
+    rdfs:comment "직접 관찰, 독립적인 확인, 미확인, 검사 실패를 구별하여 근거가 허용하는 주장 수준을 제한한다."@ko,
+        "Distinguishes direct observation, independent verification, unverified assertions, and failed checks to limit claims to available evidence."@en .
+
+ev:LocalFileIntegrity a ev:ClaimScope ;
+    rdfs:label "등록 파일 무결성"@ko, "Local file integrity"@en ;
+    rdfs:comment "등록된 복사본이 현재 존재하며 등록 지문과 일치하는지 확인하는 범위이다. 원본 생성 모델을 확인하지 않는다."@ko,
+        "The scope of current registered-copy existence and checksum comparison, without verifying an original generation model."@en .
+ev:OriginalGeneration a ev:ClaimScope ;
+    rdfs:label "원본 생성 이력"@ko, "Original generation"@en ;
+    rdfs:comment "원본을 생성한 모델, 프롬프트와 생성 과정에 대한 독립적인 근거를 확인하는 범위이다."@ko,
+        "The scope of independently evidenced model, prompt, and process used to create the original asset."@en .
+ev:OriginalOrigin a ev:ClaimScope ;
+    rdfs:label "원본 출처"@ko, "Original origin"@en ;
+    rdfs:comment "원본 자산의 최초 출처에 대한 근거를 확인하는 범위이며 로컬 복사 경로와 구별한다."@ko,
+        "The scope of evidence establishing the asset's original origin, distinct from the path of a local source copy."@en .
+ev:Observed a ev:VerificationStatus ;
+    rdfs:label "직접 관찰"@ko, "Observed"@en ;
+    rdfs:comment "현재 파일을 읽고 등록 지문과 대조한 직접 관찰이며 생성 이력의 독립적 검증은 아니다."@ko,
+        "A direct read and successful registered-file checksum comparison, rather than independent verification of generation history."@en .
+ev:Verified a ev:VerificationStatus ;
+    rdfs:label "독립 확인"@ko, "Verified"@en ;
+    rdfs:comment "원본 생성 또는 출처에 대해 검토자가 독립적인 근거를 확인한 상태이며 파일 복사만으로 부여하지 않는다."@ko,
+        "An original generation or origin assertion independently reviewed against evidence; copying a file does not grant this status."@en .
+ev:Unverified a ev:VerificationStatus ;
+    rdfs:label "미확인"@ko, "Unverified"@en ;
+    rdfs:comment "확인을 뒷받침하는 독립적인 근거가 없으며 그 사유가 명시된 상태이다."@ko,
+        "A state lacking independent evidence sufficient for confirmation, accompanied by an explicit reason."@en .
+ev:Failed a ev:VerificationStatus ;
+    rdfs:label "검사 실패"@ko, "Failed"@en ;
+    rdfs:comment "등록 파일의 누락, 지문 불일치 또는 등록 정보 불일치를 발견한 상태이며 문제 사유를 기록한다."@ko,
+        "A local integrity check detected a missing file, checksum mismatch, or inconsistent registration and records the failure reason."@en .
+
+ev:aboutAsset a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range prov:Entity ;
+    rdfs:label "주장 대상 자산"@ko, "About asset"@en ;
+    rdfs:comment "검증 주장이 확인하는 자산을 가리키며 자산 자체에 검증 상태를 일괄 부여하지 않는다."@ko,
+        "Links a scoped claim to the asset it concerns without assigning a single verification status to the entire asset."@en .
+ev:scope a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range ev:ClaimScope ;
+    rdfs:label "확인 범위"@ko, "Scope"@en ;
+    rdfs:comment "검증 주장이 확인하는 정보의 범위를 정확히 하나 지정한다."@ko,
+        "Assigns exactly one information scope to a verification claim."@en .
+ev:status a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range ev:VerificationStatus ;
+    rdfs:label "확인 상태"@ko, "Status"@en ;
+    rdfs:comment "해당 범위에서 현재 근거로 확인할 수 있는 수준을 하나 지정한다."@ko,
+        "Assigns one evidence-supported verification state within the claim's scope."@en .
+ev:checkedAt a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:dateTime ;
+    rdfs:label "검사 시점"@ko, "Checked at"@en ;
+    rdfs:comment "파일을 검사하거나 근거 부재를 확인한 시점이며 자산의 생성 시점으로 해석하지 않는다."@ko,
+        "Records when files were checked or absence of evidence was reviewed, not when the asset was originally created."@en .
+ev:checkedBy a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range prov:Agent ;
+    rdfs:label "검사 수행자"@ko, "Checked by"@en ;
+    rdfs:comment "검증 주장을 평가한 도구 또는 검토자를 가리키며 원본 생성자로 추정하지 않는다."@ko,
+        "Identifies the tool or reviewer evaluating the claim without inferring that the checker created the original asset."@en .
+ev:verifiedAt a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:dateTime ;
+    rdfs:label "독립 확인 시점"@ko, "Verified at"@en ;
+    rdfs:comment "원본 생성 또는 출처 주장을 독립 근거로 확인한 시점을 기록하며 미확인 주장에는 사용하지 않는다."@ko,
+        "Records independent verification time for original generation or origin and is absent from unverified claims."@en .
+ev:hasEvidence a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range ev:EvidenceRecord ;
+    rdfs:label "관찰 근거"@ko, "Has evidence"@en ;
+    rdfs:comment "검증 주장에 사용한 실제 관찰 근거 기록을 연결하며 미확인 주장에는 긍정 근거를 연결하지 않는다."@ko,
+        "Links the claim to an actually inspected evidence record; unverified claims do not carry affirmative supporting evidence."@en .
+ev:evidenceURI a owl:ObjectProperty ; rdfs:domain ev:EvidenceRecord ; rdfs:range prov:Entity ;
+    rdfs:label "근거 파일 위치"@ko, "Evidence URI"@en ;
+    rdfs:comment "검사 시 실제로 읽은 파일의 위치를 지정하며 존재하지 않는 파일을 관찰했다고 주장하지 않는다."@ko,
+        "Identifies the file actually read during inspection, never claiming observation of an absent file."@en .
+ev:sha256 a owl:DatatypeProperty ; rdfs:domain ev:EvidenceRecord ; rdfs:range xsd:string ;
+    rdfs:label "관찰 SHA-256"@ko, "Observed SHA-256"@en ;
+    rdfs:comment "검사에서 읽은 실제 바이트의 SHA-256 지문이며 누락된 파일에는 기록하지 않는다."@ko,
+        "The SHA-256 digest of bytes actually read; missing files receive no observed digest."@en .
+ev:evidenceRole a owl:DatatypeProperty ; rdfs:domain ev:EvidenceRecord ; rdfs:range xsd:string ;
+    rdfs:label "근거 역할"@ko, "Evidence role"@en ;
+    rdfs:comment "근거 파일이 등록 명세, 등록 그래프, 등록 복사본 또는 로컬 원본 중 무엇인지 식별한다."@ko,
+        "Identifies evidence as a registration manifest, registration graph, registered copy, local source copy, or independently reviewed document."@en .
+ev:expectedSHA256 a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "등록 지문"@ko, "Expected SHA-256"@en ;
+    rdfs:comment "등록 명세와 등록 그래프가 제시한 비교 기준 지문이며 현재 파일을 읽었다는 뜻은 아니다."@ko,
+        "The comparison digest recorded by the manifest and graph, not an assertion that a current file was read."@en .
+ev:unknownReason a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "미확인 또는 실패 사유"@ko, "Unknown or failure reason"@en ;
+    rdfs:comment "근거가 없어 확인하지 못했거나 검사에 실패한 구체적인 사유를 기록한다."@ko,
+        "Records a concrete reason why evidence is unavailable or an integrity check failed."@en .
+ev:projectIdentifier a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "등록 프로젝트 식별자"@ko, "Project identifier"@en ;
+    rdfs:comment "주장이 속한 로컬 프로젝트의 식별자로 동일한 자산 IRI를 사용하는 프로젝트의 범위를 구별한다."@ko,
+        "Records the local project context so claims remain scoped when projects reuse the same asset IRI."@en .
+ev:assetIdentifier a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "등록 자산 식별자"@ko, "Asset identifier"@en ;
+    rdfs:comment "등록 명세에서 자산을 식별하는 로컬 식별자를 기록한다."@ko,
+        "Records the local asset identifier assigned by the registration manifest."@en .
+ev:sourceCopyState a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "로컬 원본 대조 상태"@ko, "Source copy state"@en ;
+    rdfs:comment "로컬 원본 복사본의 현재 지문 대조 결과이며 원본의 최초 출처에 대한 검증과 구별한다."@ko,
+        "Records the current comparison with a local source copy, separately from verification of original origin."@en .
+ev:originalModel a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "독립 확인 원본 모델"@ko, "Verified original model"@en ;
+    rdfs:comment "독립 근거로 확인한 원본 생성 모델이며 로컬 등록 도구 버전으로 채우지 않는다."@ko,
+        "An independently evidenced original generation model, never filled using the local importer version."@en .
+ev:originalPrompt a owl:DatatypeProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range xsd:string ;
+    rdfs:label "독립 확인 원본 프롬프트"@ko, "Verified original prompt"@en ;
+    rdfs:comment "독립 근거로 확인한 원본 생성 프롬프트이며 근거 없는 내용은 기록하지 않는다."@ko,
+        "An independently evidenced original generation prompt; unevidenced prompt content is not recorded."@en .
+ev:originalOriginIRI a owl:ObjectProperty ; rdfs:domain ev:VerificationClaim ; rdfs:range prov:Entity ;
+    rdfs:label "독립 확인 원본 출처 위치"@ko, "Verified original origin IRI"@en ;
+    rdfs:comment "독립 근거로 확인한 원본 최초 출처를 가리키며 로컬 원본 복사 경로로 대신하지 않는다."@ko,
+        "Identifies an independently evidenced original origin rather than substituting the local source-copy path."@en .

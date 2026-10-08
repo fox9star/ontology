@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "ww2",
+  "name": "세계2차대전 온톨로지 (ww2)",
+  "description": "제2차 세계대전의 사건·연표·국가·인물·장소를 연결하고 사건별 참여 역할, 날짜의 의미, 공식 기록관·박물관 출처를 탐색합니다.",
+  "name_en": "World War II (WWII, Second World War) Ontology",
+  "description_en": "Connects World War II events, chronology, historical states, people and places with event-scoped participation roles, date conventions and archival or museum sources.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/ww2#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T19:09:07+09:00",
+  "schema": "custom-ontologies/ww2/schema.ttl",
+  "owl": "custom-ontologies/ww2/schema.owl",
+  "shapes": "custom-ontologies/ww2/shapes.ttl",
+  "example": "custom-ontologies/ww2/example.ttl",
+  "questions": "custom-ontologies/ww2/questions.md",
+  "questions_fixture": "custom-ontologies/ww2/question-fixture.ttl",
+  "question_answers": "custom-ontologies/ww2/question-answers.json",
+  "compatibility_cases": "custom-ontologies/ww2/consumer-cases.trig"
+}

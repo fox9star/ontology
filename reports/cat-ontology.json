@@ -1,0 +1,96 @@
+{
+  "created_at": "2026-10-05T10:35:03+00:00",
+  "id": "cat",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 8,
+  "properties": 32,
+  "instance_counts": {
+    "Breed": 4,
+    "CareRecord": 6,
+    "Cat": 6,
+    "Environment": 3,
+    "Guardian": 2,
+    "Observation": 8,
+    "SourceDocument": 4,
+    "Trait": 8
+  },
+  "triples": 298,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 49
+  },
+  "questions": 6,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Sourced CFA breed descriptions with explicitly synthetic cat, environment, guardian, care and observation examples.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "ba0b943b31035f2a569b4f145560e5ce54e596c6fbe803f44467ebf077fb3121",
+      "bytes": 36024
+    },
+    "curated-data.json": {
+      "sha256": "b56f5ba5c088c9332a99ed4f563194d918234cb316e8ef6c060abf6b6f1313ed",
+      "bytes": 13964
+    },
+    "example.ttl": {
+      "sha256": "e080b4b1fbc98a43f63301b8eac0870a404d28d03b0a43369f6a9509459f44b4",
+      "bytes": 14969
+    },
+    "profile.json": {
+      "sha256": "7216755ae2c3260b8d6146980d9ef1610821a2493a1ad69dd3df51582a99dfb6",
+      "bytes": 1300
+    },
+    "question-answers.json": {
+      "sha256": "2968224af916dc4b59525694b082c8d08403655aa2aecad847ad4b36a3d89501",
+      "bytes": 13119
+    },
+    "question-fixture.ttl": {
+      "sha256": "0db2b59e77af15d14e7a0812b6e296bb68d7191e917cf717edb8a7cb2aab6ab6",
+      "bytes": 14800
+    },
+    "questions.md": {
+      "sha256": "df514cfaf85c6d58bbfb126d6820d555cff32e103e9a5d2725670eddcad1be92",
+      "bytes": 4338
+    },
+    "schema.owl": {
+      "sha256": "7a1e6faa6a84f209d604d5f13dab38c5192a521a287b1cb7fc67550540410c06",
+      "bytes": 31251
+    },
+    "schema.ttl": {
+      "sha256": "1b3efb5f873b5ba0a6c1aa47e786dbf74458b3d9783c3369be79167682953360",
+      "bytes": 20242
+    },
+    "shapes.ttl": {
+      "sha256": "9926b9d6c3acb012fcef8e596799f681a3d095b6935af3ca8cb0b7f91636eed1",
+      "bytes": 8669
+    }
+  },
+  "live_studio": {
+    "catalog_profiles": 15,
+    "profile_id": "cat",
+    "profile_name": "고양이 온톨로지 (cat)",
+    "explorer_counts": {
+      "classes": 8,
+      "properties": 32,
+      "instances": 41
+    },
+    "question_templates": [
+      "CAT-01",
+      "CAT-02",
+      "CAT-03",
+      "CAT-04",
+      "CAT-05",
+      "CAT-06"
+    ],
+    "page_status": 200,
+    "selector_option_present": true,
+    "browser_visual_verification": "not_performed"
+  }
+}

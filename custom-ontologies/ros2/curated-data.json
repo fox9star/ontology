@@ -1,0 +1,526 @@
+{
+  "ROS2System": {
+    "greenhouse-system": {
+      "label_ko": "가상 온실 계측·관수 ROS 2 구성",
+      "label_en": "Synthetic ROS 2 greenhouse sensing and irrigation system",
+      "recordKind": "synthetic",
+      "systemPurpose": "학습용 구조로 온도·토양 수분을 수집하고 관수 펌프 동작을 요청한다.",
+      "systemNote": "실제 온실 배포, 펌프 회로, 센서 배선이나 검증된 안전 동작이 아닌 개념 예시다. 공식 ROS 개념 근거는 출처 개체에 연결한다.",
+      "hasPackage": [
+        "pkg-rclcpp",
+        "pkg-sensor-msgs",
+        "pkg-std-srvs",
+        "pkg-farm-interfaces",
+        "pkg-ros2-control",
+        "pkg-ros2-controllers",
+        "pkg-tf2",
+        "pkg-greenhouse-app",
+        "pkg-controller-manager"
+      ],
+      "hasNode": [
+        "node-sensor-bridge",
+        "node-greenhouse-supervisor",
+        "node-operator-console",
+        "node-controller-manager"
+      ],
+      "hasTopic": [
+        "topic-temperature",
+        "topic-soil-moisture"
+      ],
+      "hasService": [
+        "service-pump-enable"
+      ],
+      "hasAction": [
+        "action-irrigation-cycle"
+      ],
+      "hasHardwareComponent": [
+        "hardware-temperature-sensor",
+        "hardware-soil-probe",
+        "hardware-pump"
+      ],
+      "hasController": [
+        "controller-irrigation-pump"
+      ],
+      "hasCoordinateFrame": [
+        "frame-greenhouse-map",
+        "frame-sensor-rack",
+        "frame-temperature-probe",
+        "frame-soil-probe"
+      ],
+      "hasQoSProfile": [
+        "qos-sensor-data",
+        "qos-default",
+        "qos-services"
+      ],
+      "hasDocumentationSource": [
+        "src-interfaces",
+        "src-qos-guide",
+        "src-rclcpp-qos",
+        "src-tf2",
+        "src-control",
+        "src-temperature",
+        "src-setbool"
+      ]
+    }
+  },
+  "Package": {
+    "pkg-rclcpp": {
+      "label_ko": "rclcpp",
+      "label_en": "rclcpp",
+      "packageName": "rclcpp",
+      "packageRole": "client_library",
+      "packageUri": "https://github.com/ros2/rclcpp",
+      "packageNote": "C++ ROS 2 클라이언트 라이브러리다. 이 예시 애플리케이션의 구현 의존성을 나타낸다.",
+      "documentedBy": [
+        "src-rclcpp-qos"
+      ]
+    },
+    "pkg-sensor-msgs": {
+      "label_ko": "sensor_msgs",
+      "label_en": "sensor_msgs",
+      "packageName": "sensor_msgs",
+      "packageRole": "common_interfaces",
+      "packageUri": "https://github.com/ros2/common_interfaces/tree/rolling/sensor_msgs",
+      "packageNote": "센서 장치와 관련한 ROS 메시지 정의를 제공한다.",
+      "documentedBy": [
+        "src-temperature"
+      ]
+    },
+    "pkg-std-srvs": {
+      "label_ko": "std_srvs",
+      "label_en": "std_srvs",
+      "packageName": "std_srvs",
+      "packageRole": "common_interfaces",
+      "packageUri": "https://github.com/ros2/common_interfaces/tree/rolling/std_srvs",
+      "packageNote": "일반적인 단순 서비스 형식을 제공한다.",
+      "documentedBy": [
+        "src-setbool"
+      ]
+    },
+    "pkg-farm-interfaces": {
+      "label_ko": "farm_interfaces (가상)",
+      "label_en": "farm_interfaces (synthetic)",
+      "packageName": "farm_interfaces",
+      "packageRole": "custom_interfaces",
+      "packageUri": "urn:synthetic:ros2:package:farm_interfaces",
+      "packageNote": "토양 수분 메시지와 관수 액션을 보여주기 위해 만든 예시 패키지 식별자이며 실제 저장소나 배포물이 아니다."
+    },
+    "pkg-ros2-control": {
+      "label_ko": "ros2_control",
+      "label_en": "ros2_control",
+      "packageName": "ros2_control",
+      "packageRole": "control_framework",
+      "packageUri": "https://github.com/ros-controls/ros2_control",
+      "packageNote": "하드웨어 구성요소·인터페이스와 컨트롤러 관리 구조를 제공한다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    },
+    "pkg-ros2-controllers": {
+      "label_ko": "ros2_controllers",
+      "label_en": "ros2_controllers",
+      "packageName": "ros2_controllers",
+      "packageRole": "controller_plugins",
+      "packageUri": "https://github.com/ros-controls/ros2_controllers",
+      "packageNote": "공용 ros2_control 컨트롤러 플러그인 모음이다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    },
+    "pkg-tf2": {
+      "label_ko": "tf2",
+      "label_en": "tf2",
+      "packageName": "tf2",
+      "packageRole": "transform_library",
+      "packageUri": "https://github.com/ros2/geometry2",
+      "packageNote": "좌표 프레임 간 관계를 저장하고 변환하는 라이브러리 모음이다.",
+      "documentedBy": [
+        "src-tf2"
+      ]
+    },
+    "pkg-greenhouse-app": {
+      "label_ko": "greenhouse_application (가상)",
+      "label_en": "greenhouse_application (synthetic)",
+      "packageName": "greenhouse_application",
+      "packageRole": "application",
+      "packageUri": "urn:synthetic:ros2:package:greenhouse_application",
+      "packageNote": "가상 온실 노드와 사용자 정의 컨트롤러 구현을 나타내는 예시 패키지 식별자다."
+    },
+    "pkg-controller-manager": {
+      "label_ko": "controller_manager",
+      "label_en": "controller_manager",
+      "packageName": "controller_manager",
+      "packageRole": "control_framework",
+      "packageUri": "https://github.com/ros-controls/ros2_control/tree/master/controller_manager",
+      "packageNote": "ros2_control의 컨트롤러와 하드웨어 인터페이스를 관리하는 패키지다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    }
+  },
+  "Node": {
+    "node-sensor-bridge": {
+      "label_ko": "가상 센서 브리지 노드",
+      "label_en": "Synthetic sensor bridge node",
+      "nodeName": "/greenhouse/sensor_bridge",
+      "nodeRole": "driver",
+      "nodeNote": "가상 센서 읽기를 두 토픽으로 발행하는 예시 노드다.",
+      "usesPackage": "pkg-greenhouse-app"
+    },
+    "node-greenhouse-supervisor": {
+      "label_ko": "가상 온실 관리 노드",
+      "label_en": "Synthetic greenhouse supervisor node",
+      "nodeName": "/greenhouse/supervisor",
+      "nodeRole": "manager",
+      "nodeNote": "센서 토픽을 구독하고 펌프 서비스와 관수 액션을 제공하는 예시 노드다.",
+      "usesPackage": "pkg-greenhouse-app"
+    },
+    "node-operator-console": {
+      "label_ko": "가상 작업자 패널 노드",
+      "label_en": "Synthetic operator console node",
+      "nodeName": "/greenhouse/operator_console",
+      "nodeRole": "operator",
+      "nodeNote": "펌프 활성 요청과 관수 사이클 목표를 보내는 예시 노드다.",
+      "usesPackage": "pkg-greenhouse-app"
+    },
+    "node-controller-manager": {
+      "label_ko": "가상 controller_manager 노드",
+      "label_en": "Synthetic controller_manager node",
+      "nodeName": "/controller_manager",
+      "nodeRole": "controller_manager",
+      "nodeNote": "온실 펌프 컨트롤러를 관리하는 합성 구성 연결이다. 특정 실행 환경에서 확인한 런타임 상태가 아니다.",
+      "usesPackage": "pkg-controller-manager"
+    }
+  },
+  "MessageType": {
+    "type-temperature": {
+      "label_ko": "sensor_msgs/msg/Temperature",
+      "label_en": "sensor_msgs/msg/Temperature",
+      "typeName": "sensor_msgs/msg/Temperature",
+      "definitionKind": "msg",
+      "definedInPackage": "pkg-sensor-msgs",
+      "typeNote": "sensor_msgs 문서에서 단일 온도 측정값으로 설명하는 표준 메시지 형식이다.",
+      "documentedBy": [
+        "src-temperature"
+      ]
+    },
+    "type-soil-moisture": {
+      "label_ko": "farm_interfaces/msg/SoilMoisture (가상)",
+      "label_en": "farm_interfaces/msg/SoilMoisture (synthetic)",
+      "typeName": "farm_interfaces/msg/SoilMoisture",
+      "definitionKind": "msg",
+      "definedInPackage": "pkg-farm-interfaces",
+      "typeNote": "온실 학습 예시를 위해 만든 사용자 정의 메시지 형식 이름이다. ROS 표준 형식이 아니다."
+    },
+    "type-set-bool": {
+      "label_ko": "std_srvs/srv/SetBool",
+      "label_en": "std_srvs/srv/SetBool",
+      "typeName": "std_srvs/srv/SetBool",
+      "definitionKind": "srv",
+      "definedInPackage": "pkg-std-srvs",
+      "typeNote": "불리언 요청과 성공 여부·메시지 응답을 정의하는 표준 서비스 형식이다.",
+      "documentedBy": [
+        "src-setbool"
+      ]
+    },
+    "type-irrigation-cycle": {
+      "label_ko": "farm_interfaces/action/IrrigationCycle (가상)",
+      "label_en": "farm_interfaces/action/IrrigationCycle (synthetic)",
+      "typeName": "farm_interfaces/action/IrrigationCycle",
+      "definitionKind": "action",
+      "definedInPackage": "pkg-farm-interfaces",
+      "typeNote": "목표·피드백·결과가 필요한 관수 사이클의 예시 사용자 정의 액션 형식 이름이다."
+    }
+  },
+  "QoSProfile": {
+    "qos-sensor-data": {
+      "label_ko": "SensorDataQoS 예시",
+      "label_en": "SensorDataQoS example",
+      "qosName": "SensorDataQoS",
+      "reliability": "best_effort",
+      "durability": "volatile",
+      "historyPolicy": "keep_last",
+      "historyDepth": 5,
+      "qosNote": "rclcpp SensorDataQoS 정의에 기록된 keep_last 깊이 5, best effort, volatile 조합이다. 애플리케이션의 손실 허용 여부는 별도 검토해야 한다.",
+      "documentedBy": [
+        "src-qos-guide",
+        "src-rclcpp-qos"
+      ]
+    },
+    "qos-default": {
+      "label_ko": "ROS 2 기본 QoS 예시",
+      "label_en": "ROS 2 default QoS example",
+      "qosName": "DefaultQoS",
+      "reliability": "reliable",
+      "durability": "volatile",
+      "historyPolicy": "keep_last",
+      "historyDepth": 10,
+      "qosNote": "ROS 2 문서의 기본 publish/subscribe 설정 예시다. 각 RMW 구현의 세부 기본값은 달라질 수 있다.",
+      "documentedBy": [
+        "src-qos-guide"
+      ]
+    },
+    "qos-services": {
+      "label_ko": "ServicesQoS 예시",
+      "label_en": "ServicesQoS example",
+      "qosName": "ServicesQoS",
+      "reliability": "reliable",
+      "durability": "volatile",
+      "historyPolicy": "keep_last",
+      "historyDepth": 10,
+      "qosNote": "rclcpp ServicesQoS 정의에 기록된 reliable, volatile, keep_last 깊이 10 조합이다.",
+      "documentedBy": [
+        "src-rclcpp-qos"
+      ]
+    }
+  },
+  "Topic": {
+    "topic-temperature": {
+      "label_ko": "가상 온실 온도 토픽",
+      "label_en": "Synthetic greenhouse temperature topic",
+      "topicName": "/greenhouse/temperature",
+      "messageType": "type-temperature",
+      "hasPublisher": [
+        "node-sensor-bridge"
+      ],
+      "hasSubscriber": [
+        "node-greenhouse-supervisor"
+      ],
+      "usesQoSProfile": "qos-sensor-data",
+      "documentedBy": [
+        "src-interfaces"
+      ]
+    },
+    "topic-soil-moisture": {
+      "label_ko": "가상 토양 수분 토픽",
+      "label_en": "Synthetic soil moisture topic",
+      "topicName": "/greenhouse/soil_moisture",
+      "messageType": "type-soil-moisture",
+      "hasPublisher": [
+        "node-sensor-bridge"
+      ],
+      "hasSubscriber": [
+        "node-greenhouse-supervisor"
+      ],
+      "usesQoSProfile": "qos-sensor-data",
+      "documentedBy": [
+        "src-interfaces"
+      ]
+    }
+  },
+  "Service": {
+    "service-pump-enable": {
+      "label_ko": "가상 펌프 활성 서비스",
+      "label_en": "Synthetic pump enable service",
+      "serviceName": "/greenhouse/pump/set_enabled",
+      "serviceType": "type-set-bool",
+      "serviceServer": "node-greenhouse-supervisor",
+      "serviceClient": [
+        "node-operator-console"
+      ],
+      "serviceNote": "작업자 패널이 펌프 활성 여부를 요청하는 예시 서비스다. 실제 펌프를 작동시키지 않는다.",
+      "serviceQoSProfile": "qos-services",
+      "documentedBy": [
+        "src-interfaces"
+      ]
+    }
+  },
+  "Action": {
+    "action-irrigation-cycle": {
+      "label_ko": "가상 관수 사이클 액션",
+      "label_en": "Synthetic irrigation cycle action",
+      "actionName": "/greenhouse/irrigation/run_cycle",
+      "actionType": "type-irrigation-cycle",
+      "actionServer": "node-greenhouse-supervisor",
+      "actionClient": [
+        "node-operator-console"
+      ],
+      "actionNote": "긴 관수 작업에 목표·진행 피드백·결과·취소를 보여주는 합성 액션 연결이다. 농업 처방이나 안전 로직을 제공하지 않는다.",
+      "documentedBy": [
+        "src-interfaces"
+      ]
+    }
+  },
+  "HardwareComponent": {
+    "hardware-temperature-sensor": {
+      "label_ko": "가상 온도 센서",
+      "label_en": "Synthetic temperature sensor",
+      "componentName": "temperature_sensor",
+      "componentKind": "sensor",
+      "hardwareProtocol": "가상 MCU를 통한 I2C 센서 읽기",
+      "stateInterface": [
+        "temperature"
+      ],
+      "hardwareNote": "연결 방식과 상태 인터페이스는 예시이며 실제 센서 모델·드라이버를 검증하지 않았다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    },
+    "hardware-soil-probe": {
+      "label_ko": "가상 토양 수분 프로브",
+      "label_en": "Synthetic soil moisture probe",
+      "componentName": "soil_moisture_probe",
+      "componentKind": "sensor",
+      "hardwareProtocol": "가상 MCU를 통한 아날로그 입력",
+      "stateInterface": [
+        "moisture"
+      ],
+      "hardwareNote": "센서 측정 단위, 교정, 전기 연결과 ROS 드라이버는 구현하지 않은 예시다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    },
+    "hardware-pump": {
+      "label_ko": "가상 관수 펌프",
+      "label_en": "Synthetic irrigation pump",
+      "componentName": "irrigation_pump",
+      "componentKind": "actuator",
+      "hardwareProtocol": "가상 절연 릴레이 출력",
+      "stateInterface": [
+        "enabled"
+      ],
+      "commandInterface": [
+        "enable"
+      ],
+      "hardwareNote": "회로·전원·보호·급수 부품을 나타내지 않는 가상 하드웨어 구성요소다.",
+      "controlledBy": "controller-irrigation-pump",
+      "documentedBy": [
+        "src-control"
+      ]
+    }
+  },
+  "Controller": {
+    "controller-irrigation-pump": {
+      "label_ko": "가상 펌프 명령 컨트롤러",
+      "label_en": "Synthetic pump command controller",
+      "controllerName": "greenhouse_pump_controller",
+      "controllerKind": "custom",
+      "controllerPackage": "pkg-greenhouse-app",
+      "controllerNode": "node-controller-manager",
+      "controlsHardware": [
+        "hardware-pump"
+      ],
+      "controllerNote": "예시 전용 사용자 정의 컨트롤러 연결이다. 공식 ros2_controllers 플러그인이나 실제 하드웨어 드라이버가 아니다.",
+      "documentedBy": [
+        "src-control"
+      ]
+    }
+  },
+  "CoordinateFrame": {
+    "frame-greenhouse-map": {
+      "label_ko": "가상 온실 기준 프레임",
+      "label_en": "Synthetic greenhouse world frame",
+      "frameName": "greenhouse_map",
+      "frameRole": "world",
+      "frameNote": "학습용 프레임 트리의 루트다.",
+      "documentedBy": [
+        "src-tf2"
+      ]
+    },
+    "frame-sensor-rack": {
+      "label_ko": "가상 센서 랙 프레임",
+      "label_en": "Synthetic sensor rack frame",
+      "frameName": "sensor_rack",
+      "frameRole": "other",
+      "parentFrame": "frame-greenhouse-map",
+      "frameNote": "온실 기준 프레임에 고정된 합성 장착 프레임이다.",
+      "documentedBy": [
+        "src-tf2"
+      ]
+    },
+    "frame-temperature-probe": {
+      "label_ko": "가상 온도 프로브 프레임",
+      "label_en": "Synthetic temperature probe frame",
+      "frameName": "temperature_probe",
+      "frameRole": "sensor",
+      "parentFrame": "frame-sensor-rack",
+      "frameNote": "센서 랙에 연결된 합성 센서 프레임이다.",
+      "documentedBy": [
+        "src-tf2"
+      ]
+    },
+    "frame-soil-probe": {
+      "label_ko": "가상 토양 프로브 프레임",
+      "label_en": "Synthetic soil probe frame",
+      "frameName": "soil_probe",
+      "frameRole": "sensor",
+      "parentFrame": "frame-sensor-rack",
+      "frameNote": "센서 랙에 연결된 합성 토양 프로브 프레임이다.",
+      "documentedBy": [
+        "src-tf2"
+      ]
+    }
+  },
+  "DocumentationSource": {
+    "src-interfaces": {
+      "label_ko": "ROS 2 토픽·서비스·액션 문서",
+      "label_en": "ROS 2 topics, services and actions documentation",
+      "sourceTitle": "Interfaces: Topics, Services, Actions",
+      "sourcePublisher": "ROS 2 Documentation project",
+      "sourceUri": "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results."
+    },
+    "src-qos-guide": {
+      "label_ko": "ROS 2 QoS 정책 문서",
+      "label_en": "ROS 2 QoS policies documentation",
+      "sourceTitle": "About Quality of Service settings",
+      "sourcePublisher": "ROS 2 Documentation project",
+      "sourceUri": "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.rst",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "QoS profiles group history, depth, reliability and durability; sensor data favors timely recent samples, and endpoint profiles must be compatible."
+    },
+    "src-rclcpp-qos": {
+      "label_ko": "rclcpp QoS 프로파일 정의",
+      "label_en": "rclcpp QoS profile definitions",
+      "sourceTitle": "rclcpp qos.hpp: SensorDataQoS and ServicesQoS",
+      "sourcePublisher": "ROS 2 rclcpp project",
+      "sourceUri": "https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/qos.hpp",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "The source defines SensorDataQoS as keep_last depth 5, best effort, volatile; ServicesQoS as keep_last depth 10, reliable, volatile."
+    },
+    "src-tf2": {
+      "label_ko": "tf2 좌표 프레임 문서",
+      "label_en": "tf2 coordinate frames documentation",
+      "sourceTitle": "About tf2",
+      "sourcePublisher": "ROS 2 Documentation project",
+      "sourceUri": "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames."
+    },
+    "src-control": {
+      "label_ko": "ros2_control 구조 문서",
+      "label_en": "ros2_control architecture documentation",
+      "sourceTitle": "ros2_control Getting Started",
+      "sourcePublisher": "ros-controls project",
+      "sourceUri": "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems."
+    },
+    "src-temperature": {
+      "label_ko": "sensor_msgs 메시지 목록",
+      "label_en": "sensor_msgs message list",
+      "sourceTitle": "sensor_msgs README: Temperature",
+      "sourcePublisher": "ROS 2 common_interfaces project",
+      "sourceUri": "https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/README.md",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "sensor_msgs lists Temperature as a single temperature reading."
+    },
+    "src-setbool": {
+      "label_ko": "std_srvs SetBool 서비스 정의",
+      "label_en": "std_srvs SetBool service definition",
+      "sourceTitle": "SetBool.srv",
+      "sourcePublisher": "ROS 2 common_interfaces project",
+      "sourceUri": "https://github.com/ros2/common_interfaces/blob/rolling/std_srvs/srv/SetBool.srv",
+      "sourceAccessedAt": "2026-10-07",
+      "sourceLanguage": "en",
+      "sourceClaim": "SetBool defines a boolean request and success/message response; the example uses it as a synthetic pump-enable interface."
+    }
+  }
+}

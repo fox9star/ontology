@@ -1,0 +1,3482 @@
+{
+  "total": 231,
+  "covered": {
+    "ko": {
+      "label": 231,
+      "definition": 231
+    },
+    "en": {
+      "label": 231,
+      "definition": 231
+    }
+  },
+  "exception_count": 0,
+  "terms": [
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#Agent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#Artifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#Project",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#SensitiveRecord",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#Task",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#TaskRun",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#runAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#runEndedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#runInput",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#runOutput",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#runStartedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "core-schema.ttl",
+      "term": "https://example.org/ontology/core#taskStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#AIAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#AudioAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#AudioGenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#CreativeBrief",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#GenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#ImageAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#ImageGenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#LyricGenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#MediaAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#MusicVideo",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#MusicVideoProject",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#QualityCheckTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#RenderTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#Shot",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#SubtitleGenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#Timeline",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#TranslationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#bpm",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#checksum",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#dependsOn",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#durationSeconds",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#endSecond",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#fileUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#genre",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasAudio",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasBrief",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasFinalVideo",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasImage",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasShot",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#hasTimeline",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#height",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#lyricText",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#mimeType",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#modelVersion",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#orderIndex",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#promptText",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#startSecond",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#status",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#targetDurationSeconds",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#usesAudio",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#usesImage",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#usesInput",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "mv-schema.ttl",
+      "term": "https://example.org/mv#width",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Agent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#AgentAssignment",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Artifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Capability",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Handoff",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#HumanAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Project",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#ReviewDecision",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#ReviewRun",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Role",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#SoftwareAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#Task",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#TaskRun",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#acceptanceCriteria",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#artifactType",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#artifactUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#assignedTo",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#assignmentAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#assignmentRole",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#checksum",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#containsArtifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#decision",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#decisionAbout",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#dependsOn",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#errorCode",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#goal",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasAssignment",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasCapability",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasDecision",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasFinalArtifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasHandoff",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#hasTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#implementsTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#reason",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#requiresCapability",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#reviews",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#status",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#taskObjective",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#toAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#toTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#toolVersion",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "agent-schema.ttl",
+      "term": "https://example.org/agent#version",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#BuildArtifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#BuildTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#DeploymentTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#DevOpsAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#DevOpsPipeline",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#PipelineTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#SecurityScanTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#TargetEnvironment",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#VulnerabilityReport",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#branchName",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#commitHash",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#dependsOn",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#deployedTo",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#deploysArtifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#environmentName",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#executionStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#generatesReport",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#hasTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#imageTag",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#managedBy",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#pipelineId",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#producesArtifact",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "devops-schema.ttl",
+      "term": "http://example.org/ontology/devops#vulnerabilityCount",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#CustomerSession",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#OrderStatusEvent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#OrderTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#Product",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#RecommendationAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#changedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#eventOrder",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#fromStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#handledBy",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#hasStatusEvent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#includesProduct",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#orderStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#price",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#priceCurrency",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#priceCurrencyStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#productId",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#recommends",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "term": "http://example.org/ontology/ecommerce#toStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#ClinicalObservation",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#ClinicalReport",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#DiagnosticTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#MedicalAnalysisAgent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#PatientRecord",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#PrivacyClassification",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#analyzedBy",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#associatedWithRecord",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#codeSystem",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#confidenceScore",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#dataClassification",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#diagnosticStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#findingText",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#generatesObservation",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#generatesReport",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#numericValue",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#observationCode",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#observationStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#observedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#observesRecord",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#patientId",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#reportCode",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#reportCodeSystem",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#reportResult",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#reportStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#taskIntent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#textValue",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#unitCode",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "term": "http://example.org/ontology/healthcare#unitCodeSystem",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#Course",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#Professor",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#Student",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#courseCode",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#credits",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#enrollsIn",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#hasStudent",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "academic-schema.ttl",
+      "term": "https://example.org/ontology/academic#teaches",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#ClaimScope",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#EvidenceRecord",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#VerificationClaim",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#VerificationStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#aboutAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#assetIdentifier",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#checkedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#checkedBy",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#evidenceRole",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#evidenceURI",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#expectedSHA256",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#hasEvidence",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#originalModel",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#originalOriginIRI",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#originalPrompt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#projectIdentifier",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#scope",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#sha256",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#sourceCopyState",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#status",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#unknownReason",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "term": "https://example.org/ontology/evidence#verifiedAt",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#EditVersion",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#FilmProject",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#GenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#MediaAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#ReviewDecision",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#Scene",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#Screenplay",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#Shot",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#assetStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#assetUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#decision",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#decisionReason",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#editStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#generationEvidenceUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasEditVersion",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasGenerationTask",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasReview",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasScene",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasScreenplay",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#hasShot",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#mediaType",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#modelIdentifier",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#modelKnowledgeStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#plannedAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#promptText",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#reviewEvidenceUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#reviewKind",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#sceneOrder",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#shotOrder",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#sourceEvidenceUri",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#targetDurationSeconds",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#taskStatus",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#usesAsset",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "term": "https://example.org/ontology/custom/ai-film#versionLabel",
+      "coverage": {
+        "ko": {
+          "label": true,
+          "definition": true
+        },
+        "en": {
+          "label": true,
+          "definition": true
+        }
+      },
+      "exceptions": []
+    }
+  ],
+  "errors": []
+}

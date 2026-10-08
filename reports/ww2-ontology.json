@@ -1,0 +1,94 @@
+{
+  "created_at": "2026-10-05T10:09:25+00:00",
+  "id": "ww2",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 8,
+  "properties": 21,
+  "instance_counts": {
+    "Conflict": 1,
+    "HistoricalClaim": 10,
+    "HistoricalEvent": 10,
+    "Participation": 18,
+    "Person": 2,
+    "Place": 10,
+    "SourceDocument": 9,
+    "State": 7
+  },
+  "triples": 483,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 153
+  },
+  "questions": 6,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Initial sourced historical sample, not a comprehensive World War II history.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "4a5a9449f044450126bf26bf75800c543b20515bfaa0b144aba34e8f213aac7f",
+      "bytes": 65735
+    },
+    "curated-data.json": {
+      "sha256": "5fa61210543f9f204b5b84d36b4d8a1a77f173feb4d3966a3ec2347733f759da",
+      "bytes": 15546
+    },
+    "example.ttl": {
+      "sha256": "0cc6602e939a8195d205b02073247dc20dbc906d807a7e01d07b89880948e6d5",
+      "bytes": 27585
+    },
+    "profile.json": {
+      "sha256": "72c7f3d4fd913ee6997d486d49698c94fa01a50d11bcd5730c70acc1cc60324d",
+      "bytes": 1171
+    },
+    "question-answers.json": {
+      "sha256": "fb4ee95905a0d35fbdafef6a2b4da9c6265bbb0e33f85ec085f4564a8f2a1b96",
+      "bytes": 24227
+    },
+    "question-fixture.ttl": {
+      "sha256": "91de01477e06aac4b683e6d523fd1b8c6d5b6a256220814bd7e08947624ebb5f",
+      "bytes": 27287
+    },
+    "questions.md": {
+      "sha256": "d94f6791017f41926e39686a0604ebf1be6e9ac7fcdfbf39a8cd0e4ad79746e9",
+      "bytes": 4522
+    },
+    "schema.owl": {
+      "sha256": "2fd34969faf6cfb27ef9de23867b3082f07e90948ee185d377f7f0e4f7f78aae",
+      "bytes": 27758
+    },
+    "schema.ttl": {
+      "sha256": "27379310f431e8078d8a092da9a89fa58af47ecf4592e824d42b4fd79f45776b",
+      "bytes": 14790
+    },
+    "shapes.ttl": {
+      "sha256": "c4bfb74f350ed11055d2d332a4938cc315180e46aa9a5f25dae18012ffe4cc7f",
+      "bytes": 7624
+    }
+  },
+  "live_studio": {
+    "catalog_profiles": 12,
+    "profile_id": "ww2",
+    "profile_name": "세계2차대전 온톨로지 (ww2)",
+    "explorer_counts": {
+      "classes": 8,
+      "properties": 21,
+      "instances": 67
+    },
+    "question_templates": [
+      "WW2-01",
+      "WW2-02",
+      "WW2-03",
+      "WW2-04",
+      "WW2-05",
+      "WW2-06"
+    ],
+    "page_status": 200,
+    "selector_option_present": true,
+    "browser_visual_verification": "not_performed"
+  }
+}

@@ -1,0 +1,21 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# 실행 시각은 알 수 없을 수 있으므로 필수로 만들지 않는다.
+# 기록되어 있으면 자료형, 중복 여부, 시간 순서는 검사한다.
+core:TaskRunTimeShape a sh:NodeShape ;
+    sh:targetClass core:TaskRun ;
+    sh:property [ sh:path prov:startedAtTime ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path prov:endedAtTime ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:sparql [
+        sh:message "실행 종료 시각은 시작 시각보다 빠를 수 없습니다."@ko ;
+        sh:select """
+            PREFIX prov: <http://www.w3.org/ns/prov#>
+            SELECT $this ?started ?ended WHERE {
+                $this prov:startedAtTime ?started ; prov:endedAtTime ?ended .
+                FILTER (?ended < ?started)
+            }
+        """
+    ] .

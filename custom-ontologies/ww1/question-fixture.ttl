@@ -1,0 +1,300 @@
+@prefix ww1: <https://example.org/ontology/custom/ww1#> .
+@prefix ex: <https://example.test/ww1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Curated draft of widely known First World War facts. It is NOT a complete record:
+# only twelve states, twelve battles and six agreements are included, belligerent and
+# commander lists name principal contingents only, and every record is marked
+# "unverified" with no source cited. Outcomes are coarse labels; "contested" marks
+# battles whose result historians still debate. Check each claim against a cited
+# source before changing its status to "source-checked".
+
+ex:wwi a ww1:Conflict ; rdfs:label "제1차 세계대전"@ko, "World War I"@en ;
+    ww1:conflictStartDate "1914-07-28"^^xsd:date ; ww1:conflictEndDate "1918-11-11"^^xsd:date .
+ex:alliedPowers a ww1:Side ; rdfs:label "연합국"@ko, "Allied Powers"@en .
+ex:centralPowers a ww1:Side ; rdfs:label "동맹국"@ko, "Central Powers"@en .
+ex:tripleAlliance a ww1:Alliance ; rdfs:label "3국 동맹"@ko, "Triple Alliance"@en ;
+    ww1:hasMember ex:germany, ex:austriaHungary, ex:italy ; ww1:correspondingSide ex:centralPowers .
+ex:tripleEntente a ww1:Alliance ; rdfs:label "3국 협상"@ko, "Triple Entente"@en ;
+    ww1:hasMember ex:france, ex:uk, ex:russia ; ww1:correspondingSide ex:alliedPowers .
+
+ex:theatreWestern a ww1:Theatre ; rdfs:label "서부 전선"@ko, "Western Front"@en .
+ex:theatreEastern a ww1:Theatre ; rdfs:label "동부 전선"@ko, "Eastern Front"@en .
+ex:theatreItalian a ww1:Theatre ; rdfs:label "이탈리아 전선"@ko, "Italian Front"@en .
+ex:theatreMiddleEast a ww1:Theatre ; rdfs:label "중동 전역"@ko, "Middle Eastern theatre"@en .
+ex:theatreNaval a ww1:Theatre ; rdfs:label "해상 전역(북해)"@ko, "Naval theatre (North Sea)"@en .
+
+ex:germany a ww1:State ; rdfs:label "독일 제국"@ko, "German Empire"@en ; ww1:governmentForm "empire" .
+ex:austriaHungary a ww1:State ; rdfs:label "오스트리아-헝가리 제국"@ko, "Austria-Hungary"@en ; ww1:governmentForm "empire" .
+ex:ottoman a ww1:State ; rdfs:label "오스만 제국"@ko, "Ottoman Empire"@en ; ww1:governmentForm "empire" .
+ex:bulgaria a ww1:State ; rdfs:label "불가리아 왕국"@ko, "Kingdom of Bulgaria"@en ; ww1:governmentForm "kingdom" .
+ex:france a ww1:State ; rdfs:label "프랑스 제3공화국"@ko, "French Third Republic"@en ; ww1:governmentForm "republic" .
+ex:uk a ww1:State ; rdfs:label "영국"@ko, "United Kingdom"@en ; ww1:governmentForm "kingdom" .
+ex:russia a ww1:State ; rdfs:label "러시아 제국"@ko, "Russian Empire"@en ; ww1:governmentForm "empire" .
+ex:serbia a ww1:State ; rdfs:label "세르비아 왕국"@ko, "Kingdom of Serbia"@en ; ww1:governmentForm "kingdom" .
+ex:belgium a ww1:State ; rdfs:label "벨기에 왕국"@ko, "Kingdom of Belgium"@en ; ww1:governmentForm "kingdom" .
+ex:japan a ww1:State ; rdfs:label "일본 제국"@ko, "Empire of Japan"@en ; ww1:governmentForm "empire" .
+ex:italy a ww1:State ; rdfs:label "이탈리아 왕국"@ko, "Kingdom of Italy"@en ; ww1:governmentForm "kingdom" .
+ex:usa a ww1:State ; rdfs:label "미국"@ko, "United States"@en ; ww1:governmentForm "republic" .
+
+ex:hindenburg a ww1:Person ; rdfs:label "파울 폰 힌덴부르크"@ko, "Paul von Hindenburg"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1847 ; ww1:deathYear 1934 .
+ex:ludendorff a ww1:Person ; rdfs:label "에리히 루덴도르프"@ko, "Erich Ludendorff"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1865 ; ww1:deathYear 1937 .
+ex:samsonov a ww1:Person ; rdfs:label "알렉산드르 삼소노프"@ko, "Alexander Samsonov"@en ;
+    ww1:servedState ex:russia ; ww1:birthYear 1859 ; ww1:deathYear 1914 .
+ex:joffre a ww1:Person ; rdfs:label "조제프 조프르"@ko, "Joseph Joffre"@en ;
+    ww1:servedState ex:france ; ww1:birthYear 1852 ; ww1:deathYear 1931 .
+ex:french a ww1:Person ; rdfs:label "존 프렌치"@ko, "John French"@en ;
+    ww1:servedState ex:uk ; ww1:birthYear 1852 ; ww1:deathYear 1925 .
+ex:moltke a ww1:Person ; rdfs:label "소(小) 몰트케"@ko, "Helmuth von Moltke the Younger"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1848 ; ww1:deathYear 1916 .
+ex:hamilton a ww1:Person ; rdfs:label "이언 해밀턴"@ko, "Ian Hamilton"@en ;
+    ww1:servedState ex:uk ; ww1:birthYear 1853 ; ww1:deathYear 1947 .
+ex:kemal a ww1:Person ; rdfs:label "무스타파 케말"@ko, "Mustafa Kemal"@en ;
+    ww1:servedState ex:ottoman ; ww1:birthYear 1881 ; ww1:deathYear 1938 .
+ex:petain a ww1:Person ; rdfs:label "필리프 페탱"@ko, "Philippe Pétain"@en ;
+    ww1:servedState ex:france ; ww1:birthYear 1856 ; ww1:deathYear 1951 .
+ex:falkenhayn a ww1:Person ; rdfs:label "에리히 폰 팔켄하인"@ko, "Erich von Falkenhayn"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1861 ; ww1:deathYear 1922 .
+ex:jellicoe a ww1:Person ; rdfs:label "존 젤리코"@ko, "John Jellicoe"@en ;
+    ww1:servedState ex:uk ; ww1:birthYear 1859 ; ww1:deathYear 1935 .
+ex:beatty a ww1:Person ; rdfs:label "데이비드 비티"@ko, "David Beatty"@en ;
+    ww1:servedState ex:uk ; ww1:birthYear 1871 ; ww1:deathYear 1936 .
+ex:scheer a ww1:Person ; rdfs:label "라인하르트 셰어"@ko, "Reinhard Scheer"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1863 ; ww1:deathYear 1928 .
+ex:hipper a ww1:Person ; rdfs:label "프란츠 폰 히퍼"@ko, "Franz von Hipper"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1863 ; ww1:deathYear 1943 .
+ex:haig a ww1:Person ; rdfs:label "더글러스 헤이그"@ko, "Douglas Haig"@en ;
+    ww1:servedState ex:uk ; ww1:birthYear 1861 ; ww1:deathYear 1928 .
+ex:foch a ww1:Person ; rdfs:label "페르디낭 포슈"@ko, "Ferdinand Foch"@en ;
+    ww1:servedState ex:france ; ww1:birthYear 1851 ; ww1:deathYear 1929 .
+ex:cadorna a ww1:Person ; rdfs:label "루이지 카도르나"@ko, "Luigi Cadorna"@en ;
+    ww1:servedState ex:italy ; ww1:birthYear 1850 ; ww1:deathYear 1928 .
+ex:below a ww1:Person ; rdfs:label "오토 폰 벨로"@ko, "Otto von Below"@en ;
+    ww1:servedState ex:germany ; ww1:birthYear 1857 ; ww1:deathYear 1944 .
+ex:pershing a ww1:Person ; rdfs:label "존 퍼싱"@ko, "John J. Pershing"@en ;
+    ww1:servedState ex:usa ; ww1:birthYear 1860 ; ww1:deathYear 1948 .
+ex:diaz a ww1:Person ; rdfs:label "아르만도 디아스"@ko, "Armando Diaz"@en ;
+    ww1:servedState ex:italy ; ww1:birthYear 1861 ; ww1:deathYear 1928 .
+
+ex:partGermany a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "독일 제국의 참전"@ko, "German Empire enters the war"@en ;
+    ww1:participant ex:germany ; ww1:inConflict ex:wwi ; ww1:onSide ex:centralPowers ;
+    ww1:entryDate "1914-08-01"^^xsd:date ; ww1:enteredVia ex:declGerRussia ;
+    ww1:exitDate "1918-11-11"^^xsd:date ; ww1:endedByAgreement ex:compiegne ;
+    ww1:verificationStatus "unverified" .
+ex:partAustriaHungary a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "오스트리아-헝가리 제국의 참전"@ko, "Austria-Hungary enters the war"@en ;
+    ww1:participant ex:austriaHungary ; ww1:inConflict ex:wwi ; ww1:onSide ex:centralPowers ;
+    ww1:entryDate "1914-07-28"^^xsd:date ; ww1:enteredVia ex:declAHSerbia ;
+    ww1:exitDate "1918-11-03"^^xsd:date ; ww1:endedByAgreement ex:villaGiusti ;
+    ww1:verificationStatus "unverified" .
+ex:partOttoman a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "오스만 제국의 참전"@ko, "Ottoman Empire enters the war"@en ;
+    ww1:participant ex:ottoman ; ww1:inConflict ex:wwi ; ww1:onSide ex:centralPowers ;
+    ww1:entryDate "1914-10-29"^^xsd:date ; ww1:enteredVia ex:raidBlackSea ;
+    ww1:exitDate "1918-10-30"^^xsd:date ; ww1:endedByAgreement ex:mudros ;
+    ww1:verificationStatus "unverified" .
+ex:partBulgaria a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "불가리아 왕국의 참전"@ko, "Kingdom of Bulgaria enters the war"@en ;
+    ww1:participant ex:bulgaria ; ww1:inConflict ex:wwi ; ww1:onSide ex:centralPowers ;
+    ww1:entryDate "1915-10-14"^^xsd:date ; ww1:enteredVia ex:declBulgSerbia ;
+    ww1:exitDate "1918-09-29"^^xsd:date ; ww1:endedByAgreement ex:salonica ;
+    ww1:verificationStatus "unverified" .
+ex:partFrance a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "프랑스 제3공화국의 참전"@ko, "French Third Republic enters the war"@en ;
+    ww1:participant ex:france ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-08-03"^^xsd:date ; ww1:enteredVia ex:declGerFrance ;
+    ww1:verificationStatus "unverified" .
+ex:partUk a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "영국의 참전"@ko, "United Kingdom enters the war"@en ;
+    ww1:participant ex:uk ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-08-04"^^xsd:date ; ww1:enteredVia ex:declUKGer ;
+    ww1:verificationStatus "unverified" .
+ex:partRussia a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "러시아 제국의 참전"@ko, "Russian Empire enters the war"@en ;
+    ww1:participant ex:russia ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-08-01"^^xsd:date ; ww1:enteredVia ex:declGerRussia ;
+    ww1:exitDate "1918-03-03"^^xsd:date ; ww1:endedByAgreement ex:brestLitovsk ;
+    ww1:verificationStatus "unverified" .
+ex:partSerbia a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "세르비아 왕국의 참전"@ko, "Kingdom of Serbia enters the war"@en ;
+    ww1:participant ex:serbia ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-07-28"^^xsd:date ; ww1:enteredVia ex:declAHSerbia ;
+    ww1:verificationStatus "unverified" .
+ex:partBelgium a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "벨기에 왕국의 참전"@ko, "Kingdom of Belgium enters the war"@en ;
+    ww1:participant ex:belgium ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-08-04"^^xsd:date ; ww1:enteredVia ex:invasionBelgium ;
+    ww1:verificationStatus "unverified" .
+ex:partJapan a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "일본 제국의 참전"@ko, "Empire of Japan enters the war"@en ;
+    ww1:participant ex:japan ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1914-08-23"^^xsd:date ; ww1:enteredVia ex:declJapanGer ;
+    ww1:verificationStatus "unverified" .
+ex:partItaly a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "이탈리아 왕국의 참전"@ko, "Kingdom of Italy enters the war"@en ;
+    ww1:participant ex:italy ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1915-05-23"^^xsd:date ; ww1:enteredVia ex:declItalyAH ;
+    ww1:verificationStatus "unverified" .
+ex:partUsa a ww1:Participation, ww1:HistoricalClaim ;
+    rdfs:label "미국의 참전"@ko, "United States enters the war"@en ;
+    ww1:participant ex:usa ; ww1:inConflict ex:wwi ; ww1:onSide ex:alliedPowers ;
+    ww1:entryDate "1917-04-06"^^xsd:date ; ww1:enteredVia ex:declUSGer ;
+    ww1:verificationStatus "unverified" .
+
+ex:sarajevo a ww1:Event, ww1:HistoricalClaim ; rdfs:label "사라예보 사건: 프란츠 페르디난트 대공 암살"@ko, "Assassination of Archduke Franz Ferdinand in Sarajevo"@en ;
+    ww1:eventKind "assassination" ; ww1:startDate "1914-06-28"^^xsd:date ; ww1:endDate "1914-06-28"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ; ww1:locationName "Sarajevo, Bosnia and Herzegovina (then Austria-Hungary)" ; ww1:verificationStatus "unverified" .
+ex:declAHSerbia a ww1:Event, ww1:HistoricalClaim ; rdfs:label "오스트리아-헝가리의 세르비아 선전포고"@ko, "Austria-Hungary declares war on Serbia"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1914-07-28"^^xsd:date ; ww1:endDate "1914-07-28"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:austriaHungary ; ww1:directedAgainst ex:serbia ; ww1:verificationStatus "unverified" .
+ex:declGerRussia a ww1:Event, ww1:HistoricalClaim ; rdfs:label "독일의 러시아 선전포고"@ko, "Germany declares war on Russia"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1914-08-01"^^xsd:date ; ww1:endDate "1914-08-01"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:germany ; ww1:directedAgainst ex:russia ; ww1:verificationStatus "unverified" .
+ex:declGerFrance a ww1:Event, ww1:HistoricalClaim ; rdfs:label "독일의 프랑스 선전포고"@ko, "Germany declares war on France"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1914-08-03"^^xsd:date ; ww1:endDate "1914-08-03"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:germany ; ww1:directedAgainst ex:france ; ww1:verificationStatus "unverified" .
+ex:invasionBelgium a ww1:Event, ww1:HistoricalClaim ; rdfs:label "독일의 벨기에 침공"@ko, "German invasion of Belgium"@en ;
+    ww1:eventKind "invasion" ; ww1:startDate "1914-08-04"^^xsd:date ; ww1:endDate "1914-08-04"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ; ww1:locationName "Belgium" ;
+    ww1:initiatedBy ex:germany ; ww1:directedAgainst ex:belgium ; ww1:verificationStatus "unverified" .
+ex:declUKGer a ww1:Event, ww1:HistoricalClaim ; rdfs:label "영국의 독일 선전포고"@ko, "United Kingdom declares war on Germany"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1914-08-04"^^xsd:date ; ww1:endDate "1914-08-04"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:uk ; ww1:directedAgainst ex:germany ; ww1:verificationStatus "unverified" .
+ex:declJapanGer a ww1:Event, ww1:HistoricalClaim ; rdfs:label "일본의 독일 선전포고"@ko, "Japan declares war on Germany"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1914-08-23"^^xsd:date ; ww1:endDate "1914-08-23"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:japan ; ww1:directedAgainst ex:germany ; ww1:verificationStatus "unverified" .
+ex:raidBlackSea a ww1:Event, ww1:HistoricalClaim ; rdfs:label "오스만 함대의 러시아 흑해 항구 공격"@ko, "Ottoman raid on Russian Black Sea ports"@en ;
+    ww1:eventKind "naval-raid" ; ww1:startDate "1914-10-29"^^xsd:date ; ww1:endDate "1914-10-29"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ; ww1:locationName "Black Sea coast of the Russian Empire" ;
+    ww1:initiatedBy ex:ottoman ; ww1:directedAgainst ex:russia ; ww1:verificationStatus "unverified" .
+ex:declItalyAH a ww1:Event, ww1:HistoricalClaim ; rdfs:label "이탈리아의 오스트리아-헝가리 선전포고"@ko, "Italy declares war on Austria-Hungary"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1915-05-23"^^xsd:date ; ww1:endDate "1915-05-23"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:italy ; ww1:directedAgainst ex:austriaHungary ; ww1:verificationStatus "unverified" .
+ex:declBulgSerbia a ww1:Event, ww1:HistoricalClaim ; rdfs:label "불가리아의 세르비아 선전포고"@ko, "Bulgaria declares war on Serbia"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1915-10-14"^^xsd:date ; ww1:endDate "1915-10-14"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:bulgaria ; ww1:directedAgainst ex:serbia ; ww1:verificationStatus "unverified" .
+ex:declUSGer a ww1:Event, ww1:HistoricalClaim ; rdfs:label "미국의 독일 선전포고"@ko, "United States declares war on Germany"@en ;
+    ww1:eventKind "war-declaration" ; ww1:startDate "1917-04-06"^^xsd:date ; ww1:endDate "1917-04-06"^^xsd:date ;
+    ww1:relatedConflict ex:wwi ;
+    ww1:initiatedBy ex:usa ; ww1:directedAgainst ex:germany ; ww1:verificationStatus "unverified" .
+
+ex:tannenberg a ww1:Event, ww1:HistoricalClaim ; rdfs:label "탄넨베르크 전투"@ko, "Battle of Tannenberg"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1914-08-26"^^xsd:date ; ww1:endDate "1914-08-30"^^xsd:date ;
+    ww1:locationName "East Prussia (now in Poland)" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreEastern ;
+    ww1:outcome "central-victory" ;
+    ww1:hasBelligerent ex:partGermany, ex:partRussia ;
+    ww1:hadCommander ex:hindenburg, ex:ludendorff, ex:samsonov ;
+    ww1:verificationStatus "unverified" .
+ex:marne a ww1:Event, ww1:HistoricalClaim ; rdfs:label "제1차 마른 전투"@ko, "First Battle of the Marne"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1914-09-06"^^xsd:date ; ww1:endDate "1914-09-12"^^xsd:date ;
+    ww1:locationName "Marne valley, France" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partFrance, ex:partUk, ex:partGermany ;
+    ww1:hadCommander ex:joffre, ex:french, ex:moltke ;
+    ww1:verificationStatus "unverified" .
+ex:gallipoli a ww1:Event, ww1:HistoricalClaim ; rdfs:label "갈리폴리 전역"@ko, "Gallipoli campaign"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1915-02-19"^^xsd:date ; ww1:endDate "1916-01-09"^^xsd:date ;
+    ww1:locationName "Gallipoli peninsula, Ottoman Empire (now Turkey)" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreMiddleEast ;
+    ww1:outcome "central-victory" ;
+    ww1:hasBelligerent ex:partUk, ex:partFrance, ex:partOttoman ;
+    ww1:hadCommander ex:hamilton, ex:kemal ;
+    ww1:verificationStatus "unverified" .
+ex:verdun a ww1:Event, ww1:HistoricalClaim ; rdfs:label "베르됭 전투"@ko, "Battle of Verdun"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1916-02-21"^^xsd:date ; ww1:endDate "1916-12-18"^^xsd:date ;
+    ww1:locationName "Verdun-sur-Meuse, France" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partFrance, ex:partGermany ;
+    ww1:hadCommander ex:petain, ex:falkenhayn ;
+    ww1:verificationStatus "unverified" .
+ex:jutland a ww1:Event, ww1:HistoricalClaim ; rdfs:label "유틀란트 해전"@ko, "Battle of Jutland"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1916-05-31"^^xsd:date ; ww1:endDate "1916-06-01"^^xsd:date ;
+    ww1:locationName "North Sea off the coast of Jutland, Denmark" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreNaval ;
+    ww1:outcome "contested" ;
+    ww1:hasBelligerent ex:partUk, ex:partGermany ;
+    ww1:hadCommander ex:jellicoe, ex:beatty, ex:scheer, ex:hipper ;
+    ww1:verificationStatus "unverified" .
+ex:somme a ww1:Event, ww1:HistoricalClaim ; rdfs:label "솜 전투"@ko, "Battle of the Somme"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1916-07-01"^^xsd:date ; ww1:endDate "1916-11-18"^^xsd:date ;
+    ww1:locationName "Somme, France" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "contested" ;
+    ww1:hasBelligerent ex:partUk, ex:partFrance, ex:partGermany ;
+    ww1:hadCommander ex:haig, ex:foch ;
+    ww1:verificationStatus "unverified" .
+ex:passchendaele a ww1:Event, ww1:HistoricalClaim ; rdfs:label "파스샹달 전투(제3차 이프르 전투)"@ko, "Battle of Passchendaele (Third Battle of Ypres)"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1917-07-31"^^xsd:date ; ww1:endDate "1917-11-10"^^xsd:date ;
+    ww1:locationName "near Ypres, Belgium" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partUk, ex:partFrance, ex:partBelgium, ex:partGermany ;
+    ww1:hadCommander ex:haig ;
+    ww1:verificationStatus "unverified" .
+ex:caporetto a ww1:Event, ww1:HistoricalClaim ; rdfs:label "카포레토 전투"@ko, "Battle of Caporetto"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1917-10-24"^^xsd:date ; ww1:endDate "1917-11-19"^^xsd:date ;
+    ww1:locationName "Kobarid (Caporetto), now in Slovenia" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreItalian ;
+    ww1:outcome "central-victory" ;
+    ww1:hasBelligerent ex:partItaly, ex:partGermany, ex:partAustriaHungary ;
+    ww1:hadCommander ex:cadorna, ex:below ;
+    ww1:verificationStatus "unverified" .
+ex:springOffensive a ww1:Event, ww1:HistoricalClaim ; rdfs:label "독일 춘계 대공세"@ko, "German Spring Offensive"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1918-03-21"^^xsd:date ; ww1:endDate "1918-07-18"^^xsd:date ;
+    ww1:locationName "Western Front, France and Belgium" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partUk, ex:partFrance, ex:partUsa, ex:partGermany ;
+    ww1:hadCommander ex:ludendorff, ex:haig, ex:petain ;
+    ww1:verificationStatus "unverified" .
+ex:belleauWood a ww1:Event, ww1:HistoricalClaim ; rdfs:label "벨로 숲 전투"@ko, "Battle of Belleau Wood"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1918-06-01"^^xsd:date ; ww1:endDate "1918-06-26"^^xsd:date ;
+    ww1:locationName "Belleau, Aisne, France" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partUsa, ex:partGermany ;
+    ww1:hadCommander ex:pershing ;
+    ww1:verificationStatus "unverified" .
+ex:hundredDays a ww1:Event, ww1:HistoricalClaim ; rdfs:label "백일 공세"@ko, "Hundred Days Offensive"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1918-08-08"^^xsd:date ; ww1:endDate "1918-11-11"^^xsd:date ;
+    ww1:locationName "Western Front, France and Belgium" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreWestern ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partUk, ex:partFrance, ex:partUsa, ex:partBelgium, ex:partGermany ;
+    ww1:hadCommander ex:foch, ex:haig, ex:pershing ;
+    ww1:verificationStatus "unverified" .
+ex:vittorioVeneto a ww1:Event, ww1:HistoricalClaim ; rdfs:label "비토리오 베네토 전투"@ko, "Battle of Vittorio Veneto"@en ;
+    ww1:eventKind "battle" ; ww1:startDate "1918-10-24"^^xsd:date ; ww1:endDate "1918-11-03"^^xsd:date ;
+    ww1:locationName "Veneto, Italy" ; ww1:relatedConflict ex:wwi ; ww1:inTheatre ex:theatreItalian ;
+    ww1:outcome "allied-victory" ;
+    ww1:hasBelligerent ex:partItaly, ex:partUk, ex:partFrance, ex:partAustriaHungary ;
+    ww1:hadCommander ex:diaz ;
+    ww1:verificationStatus "unverified" .
+
+ex:brestLitovsk a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "브레스트리토프스크 조약"@ko, "Treaty of Brest-Litovsk"@en ;
+    ww1:agreementKind "peace-treaty" ; ww1:signedDate "1918-03-03"^^xsd:date ;
+    ww1:hasParty ex:russia, ex:germany, ex:austriaHungary, ex:bulgaria, ex:ottoman ;
+    ww1:verificationStatus "unverified" .
+ex:salonica a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "살로니카 휴전 협정"@ko, "Armistice of Salonica"@en ;
+    ww1:agreementKind "armistice" ; ww1:signedDate "1918-09-29"^^xsd:date ;
+    ww1:hasParty ex:bulgaria, ex:france, ex:uk, ex:serbia ;
+    ww1:verificationStatus "unverified" .
+ex:mudros a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "무드로스 휴전 협정"@ko, "Armistice of Mudros"@en ;
+    ww1:agreementKind "armistice" ; ww1:signedDate "1918-10-30"^^xsd:date ;
+    ww1:hasParty ex:ottoman, ex:uk ;
+    ww1:verificationStatus "unverified" .
+ex:villaGiusti a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "빌라 주스티 휴전 협정"@ko, "Armistice of Villa Giusti"@en ;
+    ww1:agreementKind "armistice" ; ww1:signedDate "1918-11-03"^^xsd:date ;
+    ww1:hasParty ex:austriaHungary, ex:italy ;
+    ww1:verificationStatus "unverified" .
+ex:compiegne a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "콩피에뉴 휴전 협정"@ko, "Armistice of Compiègne"@en ;
+    ww1:agreementKind "armistice" ; ww1:signedDate "1918-11-11"^^xsd:date ;
+    ww1:hasParty ex:germany, ex:france, ex:uk ;
+    ww1:verificationStatus "unverified" .
+ex:versailles a ww1:Agreement, ww1:HistoricalClaim ; rdfs:label "베르사유 조약"@ko, "Treaty of Versailles"@en ;
+    ww1:agreementKind "peace-treaty" ; ww1:signedDate "1919-06-28"^^xsd:date ; ww1:inForceDate "1920-01-10"^^xsd:date ;
+    ww1:hasParty ex:germany, ex:france, ex:uk, ex:italy, ex:japan, ex:belgium, ex:usa ;
+    ww1:verificationStatus "unverified" .

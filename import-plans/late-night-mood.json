@@ -1,0 +1,13 @@
+{
+  "id": "late-night-mood",
+  "name": "Late Night Mood",
+  "source_directory": "<local-source-directory>",
+  "audio": "03_Late Night Mood.wav",
+  "images": ["image_01.jpg", "image_02.jpg"],
+  "image_labels": ["네온 도심의 스포츠카", "야간 음악 스튜디오"],
+  "provenance_note": "기존 곡 폴더에서 가져온 실제 미디어입니다. 원본 생성 모델과 프롬프트는 확인되지 않았습니다. 아래 작업 이력은 이 프로젝트에 복사·등록한 이력입니다.",
+  "source_references": [
+    "organize_music.py",
+    "download_wav.py"
+  ]
+}

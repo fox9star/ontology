@@ -1,0 +1,97 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/core> a owl:Ontology ;
+    rdfs:label "Agent·Task 공통 코어 온톨로지"@ko ;
+    rdfs:comment "도메인별 에이전트, 계획 작업, 실행, 프로젝트와 결과물을 연결하는 재사용 상위 어휘."@ko ;
+    owl:imports <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.1.1" .
+
+core:Project a owl:Class ;
+    rdfs:label "프로젝트"@ko ;
+    rdfs:comment "공통 목표와 관련 작업을 묶는 범위."@ko ;
+    rdfs:subClassOf prov:Entity .
+
+core:Agent a owl:Class ;
+    rdfs:label "에이전트"@ko ;
+    rdfs:comment "작업을 계획하거나 실행하는 사람 또는 소프트웨어."@ko ;
+    rdfs:subClassOf prov:Agent .
+
+core:Task a owl:Class ;
+    rdfs:label "계획 작업"@ko ;
+    rdfs:comment "실행 결과와 구분되는 계획·요구사항 단위."@ko ;
+    rdfs:subClassOf prov:Plan .
+
+core:TaskRun a owl:Class ;
+    rdfs:label "작업 실행"@ko ;
+    rdfs:comment "계획 작업을 실제로 수행한 한 번의 활동. 재시도는 별도 실행으로 기록한다."@ko ;
+    rdfs:subClassOf prov:Activity .
+
+core:Artifact a owl:Class ;
+    rdfs:label "결과물"@ko ;
+    rdfs:comment "작업에서 사용하거나 생성한 파일, 보고서 또는 버전이 있는 정보 자산."@ko ;
+    rdfs:subClassOf prov:Entity .
+
+core:SensitiveRecord a owl:Class ;
+    rdfs:label "민감 기록"@ko ;
+    rdfs:comment "접근·보존 정책을 별도로 적용해야 하는 기록. 이 분류만으로 접근 제어가 시행되지는 않는다."@ko ;
+    rdfs:subClassOf prov:Entity .
+
+core:taskStatus a owl:DatatypeProperty ;
+    rdfs:label "작업 상태"@ko ;
+    rdfs:comment "상태 값과 허용 전이는 사용하는 도메인의 SHACL 규칙에서 정의한다."@ko ;
+    rdfs:range xsd:string .
+
+core:runAgent a owl:ObjectProperty ;
+    rdfs:label "실행 담당 에이전트"@ko ;
+    rdfs:comment "실행에 참여한 에이전트를 PROV-O 활동 연계로도 표현한다."@ko ;
+    rdfs:subPropertyOf prov:wasAssociatedWith ;
+    rdfs:domain core:TaskRun ;
+    rdfs:range core:Agent .
+
+core:runInput a owl:ObjectProperty ;
+    rdfs:label "실행 입력"@ko ;
+    rdfs:comment "실행이 사용한 PROV-O 개체를 연결한다. 확인되지 않은 출처는 별도 표시한다."@ko ;
+    rdfs:subPropertyOf prov:used ;
+    rdfs:domain core:TaskRun ;
+    rdfs:range prov:Entity .
+
+core:runOutput a owl:ObjectProperty ;
+    rdfs:label "실행 결과물"@ko ;
+    rdfs:comment "실행이 생성한 결과물을 PROV-O 생성 관계로도 표현한다."@ko ;
+    rdfs:subPropertyOf prov:generated ;
+    rdfs:domain core:TaskRun ;
+    rdfs:range core:Artifact .
+
+core:runStartedAt a owl:DatatypeProperty ;
+    rdfs:label "실행 시작 시각"@ko ;
+    rdfs:subPropertyOf prov:startedAtTime ;
+    rdfs:domain core:TaskRun ;
+    rdfs:range xsd:dateTime .
+
+core:runEndedAt a owl:DatatypeProperty ;
+    rdfs:label "실행 종료 시각"@ko ;
+    rdfs:subPropertyOf prov:endedAtTime ;
+    rdfs:domain core:TaskRun ;
+    rdfs:range xsd:dateTime .
+
+# English labels and definitions for named schema terms.
+<https://example.org/ontology/core#Agent> rdfs:label "Agent"@en ; rdfs:comment "Represents a person or software actor that plans or performs work."@en .
+<https://example.org/ontology/core#Artifact> rdfs:label "Artifact"@en ; rdfs:comment "Represents a file, document, dataset, or other resource used or produced by work."@en .
+<https://example.org/ontology/core#Project> rdfs:label "Project"@en ; rdfs:comment "Represents coordinated work directed toward a shared goal and its deliverables."@en .
+<https://example.org/ontology/core#SensitiveRecord> rdfs:label "Sensitive Record"@en ; rdfs:comment "Represents information that requires separate access or retention controls."@en .
+<https://example.org/ontology/core#Task> rdfs:label "Task"@en ; rdfs:comment "Represents a planned unit of work with an objective and completion criteria."@en .
+<https://example.org/ontology/core#TaskRun> rdfs:label "Task Run"@en ; rdfs:comment "Represents one execution of a planned task, including its status and provenance."@en .
+<https://example.org/ontology/core#runAgent> rdfs:label "Run Agent"@en ; rdfs:comment "Links a Task Run to a Agent."@en .
+<https://example.org/ontology/core#runEndedAt> rdfs:label "Run Ended At"@en ; rdfs:comment "Records the run ended at for a Task Run as a date-time value."@en .
+<https://example.org/ontology/core#runInput> rdfs:label "Run Input"@en ; rdfs:comment "Links a Task Run to a Entity."@en .
+<https://example.org/ontology/core#runOutput> rdfs:label "Run Output"@en ; rdfs:comment "Links a Task Run to a Artifact."@en .
+<https://example.org/ontology/core#runStartedAt> rdfs:label "Run Started At"@en ; rdfs:comment "Records the run started at for a Task Run as a date-time value."@en .
+<https://example.org/ontology/core#taskStatus> rdfs:label "Task Status"@en ; rdfs:comment "Records the task status as a literal value."@en .
+
+# Korean definitions for execution timestamps.
+core:runStartedAt rdfs:comment "한 작업 실행이 시작된 시각을 시간대가 포함된 날짜·시간 값으로 기록한다."@ko .
+core:runEndedAt rdfs:comment "한 작업 실행이 종료된 시각을 기록한다. 시작 시각과의 순서 제약은 SHACL에서 검사한다."@ko .

@@ -1,0 +1,416 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix trip: <https://example.org/ontology/custom/overseas-trip#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/overseas-trip-reject> {
+    <https://example.test/overseas-trip/plan> a trip:TripPlan ;
+        trip:departureDate "2027-03-10"^^xsd:date ;
+        trip:hasBooking <https://example.test/overseas-trip/flight>,
+            <https://example.test/overseas-trip/insurance>,
+            <https://example.test/overseas-trip/lodging>,
+            <https://example.test/overseas-trip/rail> ;
+        trip:hasBudgetItem <https://example.test/overseas-trip/budgetFlight>,
+            <https://example.test/overseas-trip/budgetFood>,
+            <https://example.test/overseas-trip/budgetInsurance>,
+            <https://example.test/overseas-trip/budgetLodging> ;
+        trip:hasDestination <https://example.test/overseas-trip/japan> ;
+        trip:hasItineraryDay <https://example.test/overseas-trip/day1>,
+            <https://example.test/overseas-trip/day2>,
+            <https://example.test/overseas-trip/day3> ;
+        trip:hasTraveler <https://example.test/overseas-trip/travelerA>,
+            <https://example.test/overseas-trip/travelerB> ;
+        trip:planStatus "draft" ;
+        trip:returnDate "2027-03-14"^^xsd:date ;
+        trip:travelerCount 2 .
+
+    <https://example.test/overseas-trip/act02> a trip:Activity ;
+        rdfs:label "도심 산책"@ko ;
+        trip:activityCategory "sightseeing" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 120 .
+
+    <https://example.test/overseas-trip/act03> a trip:Activity ;
+        rdfs:label "시장 식사"@ko ;
+        trip:activityCategory "meal" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 90 .
+
+    <https://example.test/overseas-trip/act04> a trip:Activity ;
+        rdfs:label "박물관 관람"@ko ;
+        trip:activityCategory "sightseeing" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 180 .
+
+    <https://example.test/overseas-trip/act06> a trip:Activity ;
+        rdfs:label "자유 시간"@ko ;
+        trip:activityCategory "free-time" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 240 .
+
+    <https://example.test/overseas-trip/budgetFlight> a trip:BudgetItem ;
+        rdfs:label "항공 예산 계획"@ko ;
+        trip:budgetCategory "transport" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/flight> ;
+        trip:plannedAmount 1000000.00 .
+
+    <https://example.test/overseas-trip/budgetFood> a trip:BudgetItem ;
+        rdfs:label "현지 식비 예산 계획"@ko ;
+        trip:budgetCategory "food" ;
+        trip:currencyCode "JPY" ;
+        trip:plannedAmount 60000.00 .
+
+    <https://example.test/overseas-trip/budgetInsurance> a trip:BudgetItem ;
+        rdfs:label "보험 예산 계획"@ko ;
+        trip:budgetCategory "insurance" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/insurance> ;
+        trip:plannedAmount 80000.00 .
+
+    <https://example.test/overseas-trip/budgetLodging> a trip:BudgetItem ;
+        rdfs:label "숙박 예산 계획"@ko ;
+        trip:budgetCategory "lodging" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/lodging> ;
+        trip:plannedAmount 600000.00 .
+
+    <https://example.test/overseas-trip/day1> a trip:ItineraryDay ;
+        rdfs:label "합성 1일차: 도쿄 도착"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "도쿄" ;
+        trip:dayDate "2027-03-10"^^xsd:date ;
+        trip:dayNumber 1 ;
+        trip:hasActivity <https://example.test/overseas-trip/act01>,
+            <https://example.test/overseas-trip/act02> .
+
+    <https://example.test/overseas-trip/day2> a trip:ItineraryDay ;
+        rdfs:label "합성 2일차: 도쿄 둘러보기"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "도쿄" ;
+        trip:dayDate "2027-03-11"^^xsd:date ;
+        trip:dayNumber 2 ;
+        trip:hasActivity <https://example.test/overseas-trip/act03>,
+            <https://example.test/overseas-trip/act04> .
+
+    <https://example.test/overseas-trip/day3> a trip:ItineraryDay ;
+        rdfs:label "합성 3일차: 오사카 이동"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "오사카" ;
+        trip:dayDate "2027-03-12"^^xsd:date ;
+        trip:dayNumber 3 ;
+        trip:hasActivity <https://example.test/overseas-trip/act05>,
+            <https://example.test/overseas-trip/act06> .
+
+    <https://example.test/overseas-trip/policy> a trip:InsurancePolicy ;
+        rdfs:label "합성 보험 보장 계획"@ko ;
+        trip:coverageKind "cancellation",
+            "medical" ;
+        trip:coverageLimitAmount 30000000.00 ;
+        trip:coverageLimitCurrency "KRW" ;
+        trip:coversTraveler <https://example.test/overseas-trip/travelerA> .
+
+    <https://example.test/overseas-trip/rail> a trip:Booking ;
+        rdfs:label "도시 간 열차 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-12"^^xsd:date ;
+        trip:bookingKind "transport" ;
+        trip:bookingStartDate "2027-03-12"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:coversActivity <https://example.test/overseas-trip/act05> .
+
+    <https://example.test/overseas-trip/reqPassportA> a trip:EntryRequirement ;
+        rdfs:label "동반자 A 여권 유효기간 확인 대기"@ko ;
+        trip:appliesToTraveler <https://example.test/overseas-trip/travelerA> ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "passport-validity" .
+
+    <https://example.test/overseas-trip/reqPassportB> a trip:EntryRequirement ;
+        rdfs:label "동반자 B 여권 유효기간 확인 대기"@ko ;
+        trip:appliesToTraveler <https://example.test/overseas-trip/travelerB> ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "passport-validity" .
+
+    <https://example.test/overseas-trip/reqVisa> a trip:EntryRequirement ;
+        rdfs:label "일행 비자 필요 여부 확인 대기"@ko ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "visa" .
+
+    <https://example.test/overseas-trip/segBack> a trip:FlightSegment ;
+        rdfs:label "오는 항공 구간"@ko ;
+        trip:arrivalAirport "ICN" ;
+        trip:departureAirport "NRT" ;
+        trip:segmentArrivalDate "2027-03-14"^^xsd:date ;
+        trip:segmentDepartureDate "2027-03-14"^^xsd:date ;
+        trip:segmentOrder 2 .
+
+    <https://example.test/overseas-trip/segOut> a trip:FlightSegment ;
+        rdfs:label "가는 항공 구간"@ko ;
+        trip:arrivalAirport "NRT" ;
+        trip:departureAirport "ICN" ;
+        trip:segmentArrivalDate "2027-03-10"^^xsd:date ;
+        trip:segmentDepartureDate "2027-03-10"^^xsd:date ;
+        trip:segmentOrder 1 .
+
+    <https://example.test/overseas-trip/act01> a trip:Activity ;
+        rdfs:label "도착 및 숙소 체크인"@ko ;
+        trip:activityCategory "lodging-checkin" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 60 .
+
+    <https://example.test/overseas-trip/act05> a trip:Activity ;
+        rdfs:label "고속열차 이동"@ko ;
+        trip:activityCategory "transport" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 150 .
+
+    <https://example.test/overseas-trip/flight> a trip:Booking ;
+        rdfs:label "왕복 항공 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "flight" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:hasFlightSegment <https://example.test/overseas-trip/segBack>,
+            <https://example.test/overseas-trip/segOut> .
+
+    <https://example.test/overseas-trip/insurance> a trip:Booking ;
+        rdfs:label "여행자 보험 가입 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "insurance" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:hasInsurancePolicy <https://example.test/overseas-trip/policy> .
+
+    <https://example.test/overseas-trip/lodging> a trip:Booking ;
+        rdfs:label "숙박 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "lodging" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:coversActivity <https://example.test/overseas-trip/act01> .
+
+    <https://example.test/overseas-trip/travelerB> a trip:Traveler ;
+        rdfs:label "합성 동반자 B"@ko ;
+        trip:ageGroup "adult" ;
+        trip:nationalityCode "KR" ;
+        trip:travelerRole "companion" .
+
+    <https://example.test/overseas-trip/travelerA> a trip:Traveler ;
+        rdfs:label "합성 동반자 A"@ko ;
+        trip:ageGroup "adult" ;
+        trip:nationalityCode "KR" ;
+        trip:travelerRole "primary" .
+
+    <https://example.test/overseas-trip/japan> a trip:Destination ;
+        rdfs:label "합성 목적지: 일본"@ko ;
+        trip:countryCode "JP" ;
+        trip:countryName "일본" ;
+        trip:hasEntryRequirement <https://example.test/overseas-trip/reqPassportA>,
+            <https://example.test/overseas-trip/reqPassportB>,
+            <https://example.test/overseas-trip/reqVisa> .
+}
+
+<https://example.test/consumer/overseas-trip-accept> {
+    <https://example.test/overseas-trip/plan> a trip:TripPlan ;
+        rdfs:label "합성 예제: 일본 4박 5일 여행 계획"@ko ;
+        trip:departureDate "2027-03-10"^^xsd:date ;
+        trip:hasBooking <https://example.test/overseas-trip/flight>,
+            <https://example.test/overseas-trip/insurance>,
+            <https://example.test/overseas-trip/lodging>,
+            <https://example.test/overseas-trip/rail> ;
+        trip:hasBudgetItem <https://example.test/overseas-trip/budgetFlight>,
+            <https://example.test/overseas-trip/budgetFood>,
+            <https://example.test/overseas-trip/budgetInsurance>,
+            <https://example.test/overseas-trip/budgetLodging> ;
+        trip:hasDestination <https://example.test/overseas-trip/japan> ;
+        trip:hasItineraryDay <https://example.test/overseas-trip/day1>,
+            <https://example.test/overseas-trip/day2>,
+            <https://example.test/overseas-trip/day3> ;
+        trip:hasTraveler <https://example.test/overseas-trip/travelerA>,
+            <https://example.test/overseas-trip/travelerB> ;
+        trip:planStatus "draft" ;
+        trip:returnDate "2027-03-14"^^xsd:date ;
+        trip:travelerCount 2 .
+
+    <https://example.test/overseas-trip/act02> a trip:Activity ;
+        rdfs:label "도심 산책"@ko ;
+        trip:activityCategory "sightseeing" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 120 .
+
+    <https://example.test/overseas-trip/act03> a trip:Activity ;
+        rdfs:label "시장 식사"@ko ;
+        trip:activityCategory "meal" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 90 .
+
+    <https://example.test/overseas-trip/act04> a trip:Activity ;
+        rdfs:label "박물관 관람"@ko ;
+        trip:activityCategory "sightseeing" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 180 .
+
+    <https://example.test/overseas-trip/act06> a trip:Activity ;
+        rdfs:label "자유 시간"@ko ;
+        trip:activityCategory "free-time" ;
+        trip:activityOrder 2 ;
+        trip:plannedDurationMinutes 240 .
+
+    <https://example.test/overseas-trip/budgetFlight> a trip:BudgetItem ;
+        rdfs:label "항공 예산 계획"@ko ;
+        trip:budgetCategory "transport" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/flight> ;
+        trip:plannedAmount 1000000.00 .
+
+    <https://example.test/overseas-trip/budgetFood> a trip:BudgetItem ;
+        rdfs:label "현지 식비 예산 계획"@ko ;
+        trip:budgetCategory "food" ;
+        trip:currencyCode "JPY" ;
+        trip:plannedAmount 60000.00 .
+
+    <https://example.test/overseas-trip/budgetInsurance> a trip:BudgetItem ;
+        rdfs:label "보험 예산 계획"@ko ;
+        trip:budgetCategory "insurance" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/insurance> ;
+        trip:plannedAmount 80000.00 .
+
+    <https://example.test/overseas-trip/budgetLodging> a trip:BudgetItem ;
+        rdfs:label "숙박 예산 계획"@ko ;
+        trip:budgetCategory "lodging" ;
+        trip:currencyCode "KRW" ;
+        trip:forBooking <https://example.test/overseas-trip/lodging> ;
+        trip:plannedAmount 600000.00 .
+
+    <https://example.test/overseas-trip/day1> a trip:ItineraryDay ;
+        rdfs:label "합성 1일차: 도쿄 도착"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "도쿄" ;
+        trip:dayDate "2027-03-10"^^xsd:date ;
+        trip:dayNumber 1 ;
+        trip:hasActivity <https://example.test/overseas-trip/act01>,
+            <https://example.test/overseas-trip/act02> .
+
+    <https://example.test/overseas-trip/day2> a trip:ItineraryDay ;
+        rdfs:label "합성 2일차: 도쿄 둘러보기"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "도쿄" ;
+        trip:dayDate "2027-03-11"^^xsd:date ;
+        trip:dayNumber 2 ;
+        trip:hasActivity <https://example.test/overseas-trip/act03>,
+            <https://example.test/overseas-trip/act04> .
+
+    <https://example.test/overseas-trip/day3> a trip:ItineraryDay ;
+        rdfs:label "합성 3일차: 오사카 이동"@ko ;
+        trip:atDestination <https://example.test/overseas-trip/japan> ;
+        trip:cityName "오사카" ;
+        trip:dayDate "2027-03-12"^^xsd:date ;
+        trip:dayNumber 3 ;
+        trip:hasActivity <https://example.test/overseas-trip/act05>,
+            <https://example.test/overseas-trip/act06> .
+
+    <https://example.test/overseas-trip/policy> a trip:InsurancePolicy ;
+        rdfs:label "합성 보험 보장 계획"@ko ;
+        trip:coverageKind "cancellation",
+            "medical" ;
+        trip:coverageLimitAmount 30000000.00 ;
+        trip:coverageLimitCurrency "KRW" ;
+        trip:coversTraveler <https://example.test/overseas-trip/travelerA> .
+
+    <https://example.test/overseas-trip/rail> a trip:Booking ;
+        rdfs:label "도시 간 열차 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-12"^^xsd:date ;
+        trip:bookingKind "transport" ;
+        trip:bookingStartDate "2027-03-12"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:coversActivity <https://example.test/overseas-trip/act05> .
+
+    <https://example.test/overseas-trip/reqPassportA> a trip:EntryRequirement ;
+        rdfs:label "동반자 A 여권 유효기간 확인 대기"@ko ;
+        trip:appliesToTraveler <https://example.test/overseas-trip/travelerA> ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "passport-validity" .
+
+    <https://example.test/overseas-trip/reqPassportB> a trip:EntryRequirement ;
+        rdfs:label "동반자 B 여권 유효기간 확인 대기"@ko ;
+        trip:appliesToTraveler <https://example.test/overseas-trip/travelerB> ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "passport-validity" .
+
+    <https://example.test/overseas-trip/reqVisa> a trip:EntryRequirement ;
+        rdfs:label "일행 비자 필요 여부 확인 대기"@ko ;
+        trip:checkStatus "unchecked" ;
+        trip:requirementKind "visa" .
+
+    <https://example.test/overseas-trip/segBack> a trip:FlightSegment ;
+        rdfs:label "오는 항공 구간"@ko ;
+        trip:arrivalAirport "ICN" ;
+        trip:departureAirport "NRT" ;
+        trip:segmentArrivalDate "2027-03-14"^^xsd:date ;
+        trip:segmentDepartureDate "2027-03-14"^^xsd:date ;
+        trip:segmentOrder 2 .
+
+    <https://example.test/overseas-trip/segOut> a trip:FlightSegment ;
+        rdfs:label "가는 항공 구간"@ko ;
+        trip:arrivalAirport "NRT" ;
+        trip:departureAirport "ICN" ;
+        trip:segmentArrivalDate "2027-03-10"^^xsd:date ;
+        trip:segmentDepartureDate "2027-03-10"^^xsd:date ;
+        trip:segmentOrder 1 .
+
+    <https://example.test/overseas-trip/act01> a trip:Activity ;
+        rdfs:label "도착 및 숙소 체크인"@ko ;
+        trip:activityCategory "lodging-checkin" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 60 .
+
+    <https://example.test/overseas-trip/act05> a trip:Activity ;
+        rdfs:label "고속열차 이동"@ko ;
+        trip:activityCategory "transport" ;
+        trip:activityOrder 1 ;
+        trip:plannedDurationMinutes 150 .
+
+    <https://example.test/overseas-trip/flight> a trip:Booking ;
+        rdfs:label "왕복 항공 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "flight" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:hasFlightSegment <https://example.test/overseas-trip/segBack>,
+            <https://example.test/overseas-trip/segOut> .
+
+    <https://example.test/overseas-trip/insurance> a trip:Booking ;
+        rdfs:label "여행자 보험 가입 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "insurance" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:hasInsurancePolicy <https://example.test/overseas-trip/policy> .
+
+    <https://example.test/overseas-trip/lodging> a trip:Booking ;
+        rdfs:label "숙박 예약 계획"@ko ;
+        trip:bookingEndDate "2027-03-14"^^xsd:date ;
+        trip:bookingKind "lodging" ;
+        trip:bookingStartDate "2027-03-10"^^xsd:date ;
+        trip:bookingStatus "planned" ;
+        trip:coversActivity <https://example.test/overseas-trip/act01> .
+
+    <https://example.test/overseas-trip/travelerB> a trip:Traveler ;
+        rdfs:label "합성 동반자 B"@ko ;
+        trip:ageGroup "adult" ;
+        trip:nationalityCode "KR" ;
+        trip:travelerRole "companion" .
+
+    <https://example.test/overseas-trip/travelerA> a trip:Traveler ;
+        rdfs:label "합성 동반자 A"@ko ;
+        trip:ageGroup "adult" ;
+        trip:nationalityCode "KR" ;
+        trip:travelerRole "primary" .
+
+    <https://example.test/overseas-trip/japan> a trip:Destination ;
+        rdfs:label "합성 목적지: 일본"@ko ;
+        trip:countryCode "JP" ;
+        trip:countryName "일본" ;
+        trip:hasEntryRequirement <https://example.test/overseas-trip/reqPassportA>,
+            <https://example.test/overseas-trip/reqPassportB>,
+            <https://example.test/overseas-trip/reqVisa> .
+}

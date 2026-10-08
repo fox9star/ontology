@@ -1,0 +1,56 @@
+@prefix ev: <https://example.org/ontology/evidence#> .
+@prefix ex: <https://example.test/evidence/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely synthetic example; documents and assets are fixture IRIs only.
+ex:checker a prov:Agent .
+ev:LocalFileIntegrity a ev:ClaimScope .
+ev:OriginalGeneration a ev:ClaimScope .
+ev:OriginalOrigin a ev:ClaimScope .
+ev:Observed a ev:VerificationStatus .
+ev:Verified a ev:VerificationStatus .
+ev:Unverified a ev:VerificationStatus .
+ev:Failed a ev:VerificationStatus .
+
+ex:copyA a ev:EvidenceRecord ; ev:evidenceRole "registered-copy" ;
+    ev:evidenceURI ex:synthetic-file-A ; ev:sha256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" .
+ex:copyB a ev:EvidenceRecord ; ev:evidenceRole "registered-copy" ;
+    ev:evidenceURI ex:synthetic-file-B ; ev:sha256 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" .
+ex:reviewB a ev:EvidenceRecord ; ev:evidenceRole "independently-reviewed-document" ;
+    ev:evidenceURI ex:synthetic-reviewed-document-B ; ev:sha256 "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" .
+
+ex:localA a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-A ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticA" ;
+    ev:scope ev:LocalFileIntegrity ; ev:status ev:Observed ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:expectedSHA256 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" ;
+    ev:sourceCopyState "matches" ; ev:hasEvidence ex:copyA .
+ex:generationA a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-A ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticA" ;
+    ev:scope ev:OriginalGeneration ; ev:status ev:Unverified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:unknownReason "No independently reviewed model or prompt evidence is available." .
+ex:originA a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-A ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticA" ;
+    ev:scope ev:OriginalOrigin ; ev:status ev:Unverified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:unknownReason "A local source path does not establish the original origin." .
+ex:localB a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-B ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticB" ;
+    ev:scope ev:LocalFileIntegrity ; ev:status ev:Observed ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:expectedSHA256 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" ;
+    ev:sourceCopyState "not-recorded" ; ev:hasEvidence ex:copyB .
+ex:generationB a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-B ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticB" ;
+    ev:scope ev:OriginalGeneration ; ev:status ev:Verified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:verifiedAt "2026-10-04T23:00:00Z"^^xsd:dateTime ; ev:hasEvidence ex:reviewB ;
+    ev:originalModel "Synthetic fixture model" ; ev:originalPrompt "Synthetic fixture prompt" .
+ex:originB a ev:VerificationClaim ; ev:aboutAsset ex:synthetic-asset-B ;
+    ev:projectIdentifier "synthetic" ; ev:assetIdentifier "syntheticB" ;
+    ev:scope ev:OriginalOrigin ; ev:status ev:Verified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:verifiedAt "2026-10-04T23:00:00Z"^^xsd:dateTime ; ev:hasEvidence ex:reviewB ;
+    ev:originalOriginIRI ex:synthetic-original-origin-B .

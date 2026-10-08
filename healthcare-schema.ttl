@@ -1,0 +1,238 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/healthcare> a owl:Ontology ;
+    rdfs:label "헬스케어 진단 AI 온톨로지"@ko,
+               "Healthcare Clinical & Diagnostic AI Agent Ontology"@en ;
+    rdfs:comment "환자 기록, 진단 실행, 분석 에이전트와 보고서를 표현한다. 환자 직접 식별정보와 신원 연결표는 이 그래프 밖에서 관리한다."@ko ;
+    owl:imports <https://example.org/ontology/core>, <https://example.org/ontology/vocab>, <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.3.1" .
+
+health:PatientRecord a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:SensitiveRecord ;
+    rdfs:label "환자 기록"@ko, "Patient Record"@en ;
+    rdfs:comment "내부용 불투명 키와 분류만 보관한다. 직접 식별정보나 키 대응표는 포함하지 않는다."@ko ;
+    rdfs:seeAlso <https://hl7.org/fhir/R5/patient.html> .
+
+health:DiagnosticTask a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:TaskRun ;
+    rdfs:label "진단 분석 실행"@ko, "Diagnostic Analysis Task"@en ;
+    rdfs:comment "환자 기록에 연결된 AI 분석 작업 실행."@ko ;
+    rdfs:seeAlso <https://hl7.org/fhir/R5/task.html> .
+
+health:MedicalAnalysisAgent a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:Agent ;
+    rdfs:label "의료 분석 에이전트"@ko, "Medical Image Analysis AI Agent"@en .
+
+health:ClinicalReport a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:Artifact ;
+    rdfs:label "임상 분석 보고서"@ko, "Clinical Diagnostic Report"@en ;
+    rdfs:seeAlso <https://hl7.org/fhir/R5/diagnosticreport.html> .
+
+health:ClinicalObservation a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:Artifact ;
+    rdfs:label "임상 관측값"@ko, "Clinical Observation"@en ;
+    rdfs:comment "코드 체계와 시각, 단위가 명시된 개별 관측 결과. 검증되지 않은 임상 사실은 만들어 넣지 않는다."@ko ;
+    rdfs:seeAlso <https://hl7.org/fhir/R5/observation.html> .
+
+health:PrivacyClassification a rdfs:Class, owl:Class ;
+    rdfs:label "개인정보 분류"@ko ;
+    rdfs:comment "그래프의 민감도·출처 확인 상태를 표시한다. 접근 제어와 보존 정책은 저장 계층에서 별도 적용해야 한다."@ko .
+
+health:Unverified a health:PrivacyClassification ;
+    rdfs:label "미확인"@ko, "Unverified"@en .
+
+health:Synthetic a health:PrivacyClassification ;
+    rdfs:label "합성 예시"@ko, "Synthetic"@en .
+
+health:Pseudonymized a health:PrivacyClassification ;
+    rdfs:label "가명 처리"@ko, "Pseudonymized"@en .
+
+health:Sensitive a health:PrivacyClassification ;
+    rdfs:label "민감 정보"@ko, "Sensitive"@en .
+
+health:analyzedBy a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runAgent ;
+    rdfs:label "분석 담당 에이전트"@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range health:MedicalAnalysisAgent .
+
+health:generatesReport a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runOutput ;
+    rdfs:label "분석 보고서를 생성"@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range health:ClinicalReport .
+
+health:generatesObservation a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runOutput ;
+    rdfs:label "임상 관측값을 생성"@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range health:ClinicalObservation .
+
+health:reportResult a owl:ObjectProperty ;
+    rdfs:label "보고서 결과 관측값"@ko, "Diagnostic Report Result Observation"@en ;
+    rdfs:comment "명시적으로 이 보고서에 포함된 개별 관측 결과를 연결한다."@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range health:ClinicalObservation .
+
+health:observesRecord a owl:ObjectProperty ;
+    rdfs:label "관측 대상 환자 기록"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range health:PatientRecord .
+
+health:codeSystem a owl:ObjectProperty ;
+    rdfs:label "코드 체계"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range rdfs:Resource .
+
+health:unitCodeSystem a owl:ObjectProperty ;
+    rdfs:label "단위 코드 체계"@ko, "Unit Code System"@en ;
+    rdfs:comment "수치 관측 단위 코드의 식별 URI. 교환 시 제공된 체계를 그대로 FHIR Quantity.system에 기록한다."@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range rdfs:Resource .
+
+health:associatedWithRecord a owl:ObjectProperty ;
+    rdfs:label "관련 환자 기록"@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range health:PatientRecord .
+
+health:dataClassification a owl:ObjectProperty ;
+    rdfs:label "기록 분류"@ko ;
+    rdfs:domain health:PatientRecord ;
+    rdfs:range health:PrivacyClassification .
+
+health:patientId a owl:DatatypeProperty ;
+    rdfs:label "내부 환자 키"@ko ;
+    rdfs:comment "신원을 직접 드러내지 않는 내부 키만 허용한다. 외부 신원 대응표는 별도 보호 저장소에 둔다."@ko ;
+    rdfs:domain health:PatientRecord ;
+    rdfs:range xsd:string .
+
+health:confidenceScore a owl:DatatypeProperty ;
+    rdfs:label "모델 신뢰 점수"@ko ;
+    rdfs:comment "0과 1 사이의 모델 점수이며 임상적 확률로 해석하지 않는다."@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range xsd:decimal .
+
+health:diagnosticStatus a owl:DatatypeProperty ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:label "진단 실행 상태"@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range xsd:string .
+
+health:taskIntent a owl:DatatypeProperty ;
+    rdfs:label "진단 작업 의도"@ko, "Diagnostic Task Intent"@en ;
+    rdfs:comment "FHIR Task.intent와 호환되는 의도 코드. 값이 없으면 교환 시 unknown으로 표시한다."@ko ;
+    rdfs:domain health:DiagnosticTask ;
+    rdfs:range xsd:string .
+
+health:findingText a owl:DatatypeProperty ;
+    rdfs:label "분석 소견"@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range xsd:string .
+
+health:reportStatus a owl:DatatypeProperty ;
+    rdfs:label "보고서 상태"@ko, "Diagnostic Report Status"@en ;
+    rdfs:comment "기록된 임상 보고서의 상태. FHIR DiagnosticReport.status 허용 코드와 일치할 때 교환한다."@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range xsd:string .
+
+health:reportCodeSystem a owl:ObjectProperty ;
+    rdfs:label "보고서 코드 체계"@ko, "Diagnostic Report Code System"@en ;
+    rdfs:comment "보고서 종류를 식별하는 코드 체계 URI."@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range rdfs:Resource .
+
+health:reportCode a owl:DatatypeProperty ;
+    rdfs:label "보고서 코드"@ko, "Diagnostic Report Code"@en ;
+    rdfs:comment "보고서 종류를 식별하는 출처 코드."@ko ;
+    rdfs:domain health:ClinicalReport ;
+    rdfs:range xsd:string .
+
+health:observationCode a owl:DatatypeProperty ;
+    rdfs:label "관측 코드"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:string .
+
+health:observedAt a owl:DatatypeProperty ;
+    rdfs:label "관측 시각"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:dateTime .
+
+health:observationStatus a owl:DatatypeProperty ;
+    rdfs:label "관측 결과 상태"@ko, "Observation Result Status"@en ;
+    rdfs:comment "관측값의 작성·검토 상태. 값이 없으면 교환 시 FHIR unknown 상태를 사용한다."@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:string .
+
+health:numericValue a owl:DatatypeProperty ;
+    rdfs:label "수치 관측값"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:decimal .
+
+health:unitCode a owl:DatatypeProperty ;
+    rdfs:label "UCUM 단위 코드"@ko ;
+    rdfs:comment "수치 관측값은 가능하면 UCUM 단위 코드로 기록한다."@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:string .
+
+health:textValue a owl:DatatypeProperty ;
+    rdfs:label "문자 관측값"@ko ;
+    rdfs:domain health:ClinicalObservation ;
+    rdfs:range xsd:string .
+
+# These classes represent distinct record, workflow, result, agent, and policy roles.
+health:HealthcareRoleDisjointness a owl:AllDisjointClasses ;
+    owl:members ( health:PatientRecord health:DiagnosticTask health:MedicalAnalysisAgent
+                  health:ClinicalReport health:ClinicalObservation health:PrivacyClassification ) .
+
+# English labels and definitions for named schema terms.
+<http://example.org/ontology/healthcare#ClinicalObservation> rdfs:comment "Represents a coded clinical measurement or finding linked to a patient record; its privacy classification is recorded separately."@en .
+<http://example.org/ontology/healthcare#ClinicalReport> rdfs:comment "Represents a coded report that summarizes clinical findings and observation results."@en .
+<http://example.org/ontology/healthcare#DiagnosticTask> rdfs:comment "Represents a diagnostic analysis run associated with a patient record and its outputs."@en .
+<http://example.org/ontology/healthcare#MedicalAnalysisAgent> rdfs:comment "Represents an agent that performs medical image or clinical analysis."@en .
+<http://example.org/ontology/healthcare#PatientRecord> rdfs:comment "Represents a patient record whose identity and classification are managed separately from clinical content."@en .
+<http://example.org/ontology/healthcare#PrivacyClassification> rdfs:label "Privacy Classification"@en ; rdfs:comment "Represents the privacy category used to govern handling of a patient record."@en .
+<http://example.org/ontology/healthcare#analyzedBy> rdfs:label "Analyzed By"@en ; rdfs:comment "Links a Diagnostic Task to a Medical Analysis Agent."@en .
+<http://example.org/ontology/healthcare#associatedWithRecord> rdfs:label "Associated With Record"@en ; rdfs:comment "Links a Diagnostic Task to a Patient Record."@en .
+<http://example.org/ontology/healthcare#codeSystem> rdfs:label "Code System"@en ; rdfs:comment "Links a Clinical Observation to a Resource."@en .
+<http://example.org/ontology/healthcare#confidenceScore> rdfs:label "Confidence Score"@en ; rdfs:comment "Records the confidence score for a Clinical Report as a decimal value."@en .
+<http://example.org/ontology/healthcare#dataClassification> rdfs:label "Data Classification"@en ; rdfs:comment "Links a Patient Record to a Privacy Classification."@en .
+<http://example.org/ontology/healthcare#diagnosticStatus> rdfs:label "Diagnostic Status"@en ; rdfs:comment "Records the diagnostic status for a Diagnostic Task as a string value."@en .
+<http://example.org/ontology/healthcare#findingText> rdfs:label "Finding Text"@en ; rdfs:comment "Records the finding text for a Clinical Report as a string value."@en .
+<http://example.org/ontology/healthcare#generatesObservation> rdfs:label "Generates Observation"@en ; rdfs:comment "Links a Diagnostic Task to a Clinical Observation."@en .
+<http://example.org/ontology/healthcare#generatesReport> rdfs:label "Generates Report"@en ; rdfs:comment "Links a Diagnostic Task to a Clinical Report."@en .
+<http://example.org/ontology/healthcare#numericValue> rdfs:label "Numeric Value"@en ; rdfs:comment "Records the numeric value for a Clinical Observation as a decimal value."@en .
+<http://example.org/ontology/healthcare#observationCode> rdfs:label "Observation Code"@en ; rdfs:comment "Records the observation code for a Clinical Observation as a string value."@en .
+<http://example.org/ontology/healthcare#observationStatus> rdfs:comment "Records the observation status for a Clinical Observation as a string value."@en .
+<http://example.org/ontology/healthcare#observedAt> rdfs:label "Observed At"@en ; rdfs:comment "Records the observed at for a Clinical Observation as a date-time value."@en .
+<http://example.org/ontology/healthcare#observesRecord> rdfs:label "Observes Record"@en ; rdfs:comment "Links a Clinical Observation to a Patient Record."@en .
+<http://example.org/ontology/healthcare#patientId> rdfs:label "Patient ID"@en ; rdfs:comment "Records the patient id for a Patient Record as a string value."@en .
+<http://example.org/ontology/healthcare#reportCode> rdfs:comment "Records the report code for a Clinical Report as a string value."@en .
+<http://example.org/ontology/healthcare#reportCodeSystem> rdfs:comment "Links a Clinical Report to a Resource."@en .
+<http://example.org/ontology/healthcare#reportResult> rdfs:comment "Links a Clinical Report to a Clinical Observation."@en .
+<http://example.org/ontology/healthcare#reportStatus> rdfs:comment "Records the report status for a Clinical Report as a string value."@en .
+<http://example.org/ontology/healthcare#taskIntent> rdfs:comment "Records the task intent for a Diagnostic Task as a string value."@en .
+<http://example.org/ontology/healthcare#textValue> rdfs:label "Text Value"@en ; rdfs:comment "Records the text value for a Clinical Observation as a string value."@en .
+<http://example.org/ontology/healthcare#unitCode> rdfs:label "Unit Code"@en ; rdfs:comment "Records the unit code for a Clinical Observation as a string value."@en .
+<http://example.org/ontology/healthcare#unitCodeSystem> rdfs:comment "Links a Clinical Observation to a Resource."@en .
+
+# Korean definitions for clinical workflow and recorded observation values.
+health:ClinicalReport rdfs:comment "진단 분석 실행이 생성한 소견과 명시적으로 포함된 관측 결과를 담은 보고서 결과물."@ko .
+health:MedicalAnalysisAgent rdfs:comment "의료 영상 또는 임상 자료의 진단 분석 실행을 담당하는 에이전트. 이 분류만으로 임상적 자격이나 정확성을 보장하지 않는다."@ko .
+health:analyzedBy rdfs:comment "진단 분석 실행을 담당한 의료 분석 에이전트를 연결한다."@ko .
+health:associatedWithRecord rdfs:comment "진단 분석 실행이 대상으로 삼은 내부 환자 기록을 연결한다. 직접 식별정보는 그래프 밖에서 관리한다."@ko .
+health:codeSystem rdfs:comment "관측 코드의 의미를 정하는 코드 체계 URI를 연결한다. 실제 코드 값은 observationCode에 별도 기록한다."@ko .
+health:dataClassification rdfs:comment "환자 기록의 민감도와 출처 확인 상태를 나타내는 개인정보 분류 자원을 연결한다."@ko .
+health:diagnosticStatus rdfs:comment "진단 분석 실행의 현재 상태 코드를 기록한다. 허용 값은 헬스케어 통제 어휘와 SHACL에서 관리한다."@ko .
+health:findingText rdfs:comment "임상 분석 보고서에 기록된 소견 문장을 보존한다. 원문에 없는 임상 사실을 덧붙이지 않는다."@ko .
+health:generatesObservation rdfs:comment "진단 분석 실행이 생성한 개별 임상 관측 결과를 연결한다."@ko .
+health:generatesReport rdfs:comment "진단 분석 실행이 생성한 임상 분석 보고서를 연결한다."@ko .
+health:numericValue rdfs:comment "임상 관측 결과의 수치 값을 소수로 기록한다. 값이 없으면 0으로 채우지 않으며 단위 체계와 단위 코드를 함께 기록한다."@ko .
+health:observationCode rdfs:comment "관측 결과가 무엇을 측정하거나 기술하는지 나타내는 출처 코드 값을 기록한다. 의미는 codeSystem과 함께 해석한다."@ko .
+health:observedAt rdfs:comment "임상 관측 결과가 측정되거나 관측된 시각을 기록한다. 보고서 작성 시각과 동일하다고 추정하지 않는다."@ko .
+health:observesRecord rdfs:comment "개별 임상 관측 결과가 대상으로 삼은 내부 환자 기록을 연결한다."@ko .
+health:textValue rdfs:comment "수치로 표현하지 않은 임상 관측 결과의 출처 문장을 기록한다. 미확인 임상 내용을 생성해 채우지 않는다."@ko .

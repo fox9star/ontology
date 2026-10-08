@@ -1,0 +1,780 @@
+@prefix iml: <https://example.org/ontology/custom/imitation-learning#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/imitation-learning> a owl:Ontology ;
+    rdfs:label "Imitation Learning Ontology"@en,
+        "모방학습 온톨로지 (imitation-learning)"@ko ;
+    rdfs:comment "Connects demonstrations, behavior cloning, DAgger, inverse reinforcement learning, policies, run status, distribution shift and literature evidence."@en,
+        "전문가 시연, 행동복제·DAgger·역강화학습, 정책, 학습·평가 상태, 분포 변화 및 문헌 근거를 연결한다."@ko ;
+    owl:versionIRI <https://example.org/ontology/custom/imitation-learning/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+iml:actionLabelSource a owl:DatatypeProperty ;
+    rdfs:label "Label source type"@en,
+        "레이블 출처 유형"@ko ;
+    rdfs:comment "Records or classifies label source type."@en,
+        "레이블 출처 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Action ;
+    rdfs:range xsd:string .
+
+iml:actionType a owl:DatatypeProperty ;
+    rdfs:label "Action type"@en,
+        "행동 유형"@ko ;
+    rdfs:comment "Records or classifies action type."@en,
+        "행동 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Action ;
+    rdfs:range xsd:string .
+
+iml:actionUnit a owl:DatatypeProperty ;
+    rdfs:label "Action unit"@en,
+        "행동 단위"@ko ;
+    rdfs:comment "Records or classifies action unit."@en,
+        "행동 단위를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Action ;
+    rdfs:range xsd:string .
+
+iml:actionValue a owl:DatatypeProperty ;
+    rdfs:label "Action value or label"@en,
+        "행동 값 또는 레이블"@ko ;
+    rdfs:comment "Records or classifies action value or label."@en,
+        "행동 값 또는 레이블를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Action ;
+    rdfs:range xsd:string .
+
+iml:constraintAppliesToTask a owl:ObjectProperty ;
+    rdfs:label "Applies to task"@en,
+        "적용 과제"@ko ;
+    rdfs:comment "Links a related learning task entity."@en,
+        "관련 학습 과제 개체를 연결한다."@ko ;
+    rdfs:domain iml:SafetyConstraint ;
+    rdfs:range iml:LearningTask .
+
+iml:constraintDescription a owl:DatatypeProperty ;
+    rdfs:label "Constraint description"@en,
+        "제약 설명"@ko ;
+    rdfs:comment "Records or classifies constraint description."@en,
+        "제약 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:SafetyConstraint ;
+    rdfs:range xsd:string .
+
+iml:constraintName a owl:DatatypeProperty ;
+    rdfs:label "Constraint name"@en,
+        "제약 이름"@ko ;
+    rdfs:comment "Records or classifies constraint name."@en,
+        "제약 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:SafetyConstraint ;
+    rdfs:range xsd:string .
+
+iml:constraintNote a owl:DatatypeProperty ;
+    rdfs:label "Constraint note"@en,
+        "제약 메모"@ko ;
+    rdfs:comment "Records or classifies constraint note."@en,
+        "제약 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:SafetyConstraint ;
+    rdfs:range xsd:string .
+
+iml:constraintStatus a owl:DatatypeProperty ;
+    rdfs:label "Constraint status"@en,
+        "검증 상태"@ko ;
+    rdfs:comment "Records or classifies constraint status."@en,
+        "검증 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:SafetyConstraint ;
+    rdfs:range xsd:string .
+
+iml:datasetCollectionStatus a owl:DatatypeProperty ;
+    rdfs:label "Collection status"@en,
+        "수집 상태"@ko ;
+    rdfs:comment "Records or classifies collection status."@en,
+        "수집 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range xsd:string .
+
+iml:datasetForTask a owl:ObjectProperty ;
+    rdfs:label "Dataset for task"@en,
+        "대상 과제"@ko ;
+    rdfs:comment "Links a related learning task entity."@en,
+        "관련 학습 과제 개체를 연결한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range iml:LearningTask .
+
+iml:datasetIncludesDemonstration a owl:ObjectProperty ;
+    rdfs:label "Includes demonstration"@en,
+        "포함 시연"@ko ;
+    rdfs:comment "Links a related demonstration episode entity."@en,
+        "관련 시연 에피소드 개체를 연결한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range iml:Demonstration .
+
+iml:datasetLimitations a owl:DatatypeProperty ;
+    rdfs:label "Dataset limitations"@en,
+        "데이터 한계"@ko ;
+    rdfs:comment "Records or classifies dataset limitations."@en,
+        "데이터 한계를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range xsd:string .
+
+iml:datasetName a owl:DatatypeProperty ;
+    rdfs:label "Dataset name"@en,
+        "데이터셋 이름"@ko ;
+    rdfs:comment "Records or classifies dataset name."@en,
+        "데이터셋 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range xsd:string .
+
+iml:datasetProvenanceType a owl:DatatypeProperty ;
+    rdfs:label "Provenance type"@en,
+        "출처 유형"@ko ;
+    rdfs:comment "Records or classifies provenance type."@en,
+        "출처 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range xsd:string .
+
+iml:datasetSplitStatus a owl:DatatypeProperty ;
+    rdfs:label "Split status"@en,
+        "분할 상태"@ko ;
+    rdfs:comment "Records or classifies split status."@en,
+        "분할 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationDataset ;
+    rdfs:range xsd:string .
+
+iml:demonstrationByExpert a owl:ObjectProperty ;
+    rdfs:label "Demonstrated by"@en,
+        "시연자 또는 참조"@ko ;
+    rdfs:comment "Links a related demonstrator or reference policy entity."@en,
+        "관련 시연자 또는 참조 정책 개체를 연결한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range iml:Expert .
+
+iml:demonstrationForTask a owl:ObjectProperty ;
+    rdfs:label "Demonstration for task"@en,
+        "대상 과제"@ko ;
+    rdfs:comment "Links a related learning task entity."@en,
+        "관련 학습 과제 개체를 연결한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range iml:LearningTask .
+
+iml:demonstrationHasStep a owl:ObjectProperty ;
+    rdfs:label "Has step"@en,
+        "시연 단계"@ko ;
+    rdfs:comment "Links a related demonstration step entity."@en,
+        "관련 시연 단계 개체를 연결한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range iml:DemonstrationStep .
+
+iml:demonstrationInDataset a owl:ObjectProperty ;
+    rdfs:label "In dataset"@en,
+        "소속 데이터셋"@ko ;
+    rdfs:comment "Links a related demonstration dataset entity."@en,
+        "관련 시연 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range iml:DemonstrationDataset .
+
+iml:demonstrationLabelStatus a owl:DatatypeProperty ;
+    rdfs:label "Label status"@en,
+        "레이블 상태"@ko ;
+    rdfs:comment "Records or classifies label status."@en,
+        "레이블 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range xsd:string .
+
+iml:demonstrationNote a owl:DatatypeProperty ;
+    rdfs:label "Demonstration note"@en,
+        "시연 설명"@ko ;
+    rdfs:comment "Records or classifies demonstration note."@en,
+        "시연 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range xsd:string .
+
+iml:demonstrationStatus a owl:DatatypeProperty ;
+    rdfs:label "Demonstration status"@en,
+        "시연 상태"@ko ;
+    rdfs:comment "Records or classifies demonstration status."@en,
+        "시연 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Demonstration ;
+    rdfs:range xsd:string .
+
+iml:evaluationEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "Evidence status"@en,
+        "평가 근거 상태"@ko ;
+    rdfs:comment "Records or classifies evidence status."@en,
+        "평가 근거 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range xsd:string .
+
+iml:evaluationForPolicy a owl:ObjectProperty ;
+    rdfs:label "Evaluates policy"@en,
+        "평가 대상 정책"@ko ;
+    rdfs:comment "Links a related policy entity."@en,
+        "관련 정책 개체를 연결한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range iml:Policy .
+
+iml:evaluationName a owl:DatatypeProperty ;
+    rdfs:label "Evaluation name"@en,
+        "평가 이름"@ko ;
+    rdfs:comment "Records or classifies evaluation name."@en,
+        "평가 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range xsd:string .
+
+iml:evaluationNote a owl:DatatypeProperty ;
+    rdfs:label "Evaluation note"@en,
+        "평가 메모"@ko ;
+    rdfs:comment "Records or classifies evaluation note."@en,
+        "평가 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range xsd:string .
+
+iml:evaluationStatus a owl:DatatypeProperty ;
+    rdfs:label "Evaluation status"@en,
+        "평가 상태"@ko ;
+    rdfs:comment "Records or classifies evaluation status."@en,
+        "평가 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range xsd:string .
+
+iml:evaluationUsesDataset a owl:ObjectProperty ;
+    rdfs:label "Uses dataset"@en,
+        "평가 데이터셋"@ko ;
+    rdfs:comment "Links a related demonstration dataset entity."@en,
+        "관련 시연 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range iml:DemonstrationDataset .
+
+iml:evaluationUsesMetric a owl:ObjectProperty ;
+    rdfs:label "Uses metric"@en,
+        "평가 지표"@ko ;
+    rdfs:comment "Links a related evaluation metric entity."@en,
+        "관련 평가 지표 개체를 연결한다."@ko ;
+    rdfs:domain iml:EvaluationRun ;
+    rdfs:range iml:EvaluationMetric .
+
+iml:expertRole a owl:DatatypeProperty ;
+    rdfs:label "Demonstrator role"@en,
+        "시연자 역할"@ko ;
+    rdfs:comment "Records or classifies demonstrator role."@en,
+        "시연자 역할를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Expert ;
+    rdfs:range xsd:string .
+
+iml:expertType a owl:DatatypeProperty ;
+    rdfs:label "Demonstrator type"@en,
+        "시연자 유형"@ko ;
+    rdfs:comment "Records or classifies demonstrator type."@en,
+        "시연자 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Expert ;
+    rdfs:range xsd:string .
+
+iml:methodApplicabilityNote a owl:DatatypeProperty ;
+    rdfs:label "Applicability note"@en,
+        "적용 범위 메모"@ko ;
+    rdfs:comment "Records or classifies applicability note."@en,
+        "적용 범위 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningMethod ;
+    rdfs:range xsd:string .
+
+iml:methodDescription a owl:DatatypeProperty ;
+    rdfs:label "Method description"@en,
+        "방법 설명"@ko ;
+    rdfs:comment "Records or classifies method description."@en,
+        "방법 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningMethod ;
+    rdfs:range xsd:string .
+
+iml:methodDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "Documented by"@en,
+        "문헌 근거"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain iml:LearningMethod ;
+    rdfs:range iml:DocumentationSource .
+
+iml:methodKind a owl:DatatypeProperty ;
+    rdfs:label "Method kind"@en,
+        "방법 유형"@ko ;
+    rdfs:comment "Records or classifies method kind."@en,
+        "방법 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningMethod ;
+    rdfs:range xsd:string .
+
+iml:methodName a owl:DatatypeProperty ;
+    rdfs:label "Method name"@en,
+        "방법 이름"@ko ;
+    rdfs:comment "Records or classifies method name."@en,
+        "방법 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningMethod ;
+    rdfs:range xsd:string .
+
+iml:metricDefinition a owl:DatatypeProperty ;
+    rdfs:label "Metric definition"@en,
+        "지표 정의"@ko ;
+    rdfs:comment "Records or classifies metric definition."@en,
+        "지표 정의를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+iml:metricMeasuredValue a owl:DatatypeProperty ;
+    rdfs:label "Measured value"@en,
+        "측정값"@ko ;
+    rdfs:comment "Records or classifies measured value."@en,
+        "측정값를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationMetric ;
+    rdfs:range xsd:decimal .
+
+iml:metricMeasurementStatus a owl:DatatypeProperty ;
+    rdfs:label "Measurement status"@en,
+        "측정 상태"@ko ;
+    rdfs:comment "Records or classifies measurement status."@en,
+        "측정 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+iml:metricName a owl:DatatypeProperty ;
+    rdfs:label "Metric name"@en,
+        "지표 이름"@ko ;
+    rdfs:comment "Records or classifies metric name."@en,
+        "지표 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+iml:metricUnit a owl:DatatypeProperty ;
+    rdfs:label "Metric unit"@en,
+        "지표 단위"@ko ;
+    rdfs:comment "Records or classifies metric unit."@en,
+        "지표 단위를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+iml:observationModality a owl:DatatypeProperty ;
+    rdfs:label "Observation modality"@en,
+        "관측 방식"@ko ;
+    rdfs:comment "Records or classifies observation modality."@en,
+        "관측 방식를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Observation ;
+    rdfs:range xsd:string .
+
+iml:observationSummary a owl:DatatypeProperty ;
+    rdfs:label "Observation summary"@en,
+        "관측 요약"@ko ;
+    rdfs:comment "Records or classifies observation summary."@en,
+        "관측 요약를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Observation ;
+    rdfs:range xsd:string .
+
+iml:policyForTask a owl:ObjectProperty ;
+    rdfs:label "Policy for task"@en,
+        "대상 과제"@ko ;
+    rdfs:comment "Links a related learning task entity."@en,
+        "관련 학습 과제 개체를 연결한다."@ko ;
+    rdfs:domain iml:Policy ;
+    rdfs:range iml:LearningTask .
+
+iml:policyLearnsWithMethod a owl:ObjectProperty ;
+    rdfs:label "Learns with method"@en,
+        "학습 방법"@ko ;
+    rdfs:comment "Links a related imitation-learning method entity."@en,
+        "관련 모방학습 방법 개체를 연결한다."@ko ;
+    rdfs:domain iml:Policy ;
+    rdfs:range iml:LearningMethod .
+
+iml:policyName a owl:DatatypeProperty ;
+    rdfs:label "Policy name"@en,
+        "정책 이름"@ko ;
+    rdfs:comment "Records or classifies policy name."@en,
+        "정책 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Policy ;
+    rdfs:range xsd:string .
+
+iml:policyNote a owl:DatatypeProperty ;
+    rdfs:label "Policy note"@en,
+        "정책 메모"@ko ;
+    rdfs:comment "Records or classifies policy note."@en,
+        "정책 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Policy ;
+    rdfs:range xsd:string .
+
+iml:policyStatus a owl:DatatypeProperty ;
+    rdfs:label "Policy status"@en,
+        "정책 상태"@ko ;
+    rdfs:comment "Records or classifies policy status."@en,
+        "정책 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:Policy ;
+    rdfs:range xsd:string .
+
+iml:projectConsidersMethod a owl:ObjectProperty ;
+    rdfs:label "Considers method"@en,
+        "검토 방법"@ko ;
+    rdfs:comment "Links a related imitation-learning method entity."@en,
+        "관련 모방학습 방법 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:LearningMethod .
+
+iml:projectDataStatus a owl:DatatypeProperty ;
+    rdfs:label "Project data status"@en,
+        "프로젝트 데이터 상태"@ko ;
+    rdfs:comment "Records or classifies project data status."@en,
+        "프로젝트 데이터 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range xsd:string .
+
+iml:projectHasDataset a owl:ObjectProperty ;
+    rdfs:label "Has dataset"@en,
+        "시연 데이터셋"@ko ;
+    rdfs:comment "Links a related demonstration dataset entity."@en,
+        "관련 시연 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:DemonstrationDataset .
+
+iml:projectHasDistributionShift a owl:ObjectProperty ;
+    rdfs:label "Has distribution shift"@en,
+        "상태 분포 변화"@ko ;
+    rdfs:comment "Links a related state distribution shift entity."@en,
+        "관련 상태 분포 변화 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:DistributionShift .
+
+iml:projectHasDocumentationSource a owl:ObjectProperty ;
+    rdfs:label "Has source"@en,
+        "문헌 출처"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:DocumentationSource .
+
+iml:projectHasEvaluationRun a owl:ObjectProperty ;
+    rdfs:label "Has evaluation run"@en,
+        "평가 실행"@ko ;
+    rdfs:comment "Links a related evaluation run record entity."@en,
+        "관련 평가 실행 기록 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:EvaluationRun .
+
+iml:projectHasExpert a owl:ObjectProperty ;
+    rdfs:label "Has demonstrator"@en,
+        "시연자"@ko ;
+    rdfs:comment "Links a related demonstrator or reference policy entity."@en,
+        "관련 시연자 또는 참조 정책 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:Expert .
+
+iml:projectHasPolicy a owl:ObjectProperty ;
+    rdfs:label "Has policy"@en,
+        "정책"@ko ;
+    rdfs:comment "Links a related policy entity."@en,
+        "관련 정책 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:Policy .
+
+iml:projectHasSafetyConstraint a owl:ObjectProperty ;
+    rdfs:label "Has safety constraint"@en,
+        "안전 제약"@ko ;
+    rdfs:comment "Links a related safety constraint entity."@en,
+        "관련 안전 제약 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:SafetyConstraint .
+
+iml:projectHasTask a owl:ObjectProperty ;
+    rdfs:label "Has learning task"@en,
+        "학습 과제"@ko ;
+    rdfs:comment "Links a related learning task entity."@en,
+        "관련 학습 과제 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:LearningTask .
+
+iml:projectHasTrainingRun a owl:ObjectProperty ;
+    rdfs:label "Has training run"@en,
+        "학습 실행"@ko ;
+    rdfs:comment "Links a related training run record entity."@en,
+        "관련 학습 실행 기록 개체를 연결한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range iml:TrainingRun .
+
+iml:projectNote a owl:DatatypeProperty ;
+    rdfs:label "Project scope note"@en,
+        "프로젝트 범위 메모"@ko ;
+    rdfs:comment "Records or classifies project scope note."@en,
+        "프로젝트 범위 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:ImitationLearningProject ;
+    rdfs:range xsd:string .
+
+iml:shiftAssessmentStatus a owl:DatatypeProperty ;
+    rdfs:label "Shift assessment status"@en,
+        "분포 변화 평가 상태"@ko ;
+    rdfs:comment "Records or classifies shift assessment status."@en,
+        "분포 변화 평가 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DistributionShift ;
+    rdfs:range xsd:string .
+
+iml:shiftDescription a owl:DatatypeProperty ;
+    rdfs:label "Shift description"@en,
+        "분포 변화 설명"@ko ;
+    rdfs:comment "Records or classifies shift description."@en,
+        "분포 변화 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DistributionShift ;
+    rdfs:range xsd:string .
+
+iml:shiftDiscussedByMethod a owl:ObjectProperty ;
+    rdfs:label "Discussed by method"@en,
+        "관련 방법"@ko ;
+    rdfs:comment "Links a related imitation-learning method entity."@en,
+        "관련 모방학습 방법 개체를 연결한다."@ko ;
+    rdfs:domain iml:DistributionShift ;
+    rdfs:range iml:LearningMethod .
+
+iml:shiftName a owl:DatatypeProperty ;
+    rdfs:label "Shift name"@en,
+        "분포 변화 이름"@ko ;
+    rdfs:comment "Records or classifies shift name."@en,
+        "분포 변화 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DistributionShift ;
+    rdfs:range xsd:string .
+
+iml:shiftNote a owl:DatatypeProperty ;
+    rdfs:label "Shift note"@en,
+        "분포 변화 메모"@ko ;
+    rdfs:comment "Records or classifies shift note."@en,
+        "분포 변화 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DistributionShift ;
+    rdfs:range xsd:string .
+
+iml:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "Accessed date"@en,
+        "확인 날짜"@ko ;
+    rdfs:comment "Records or classifies accessed date."@en,
+        "확인 날짜를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:date .
+
+iml:sourceAuthors a owl:DatatypeProperty ;
+    rdfs:label "Authors"@en,
+        "저자"@ko ;
+    rdfs:comment "Records or classifies authors."@en,
+        "저자를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:string .
+
+iml:sourceClaim a owl:DatatypeProperty ;
+    rdfs:label "Claim supported here"@en,
+        "뒷받침하는 주장"@ko ;
+    rdfs:comment "Records or classifies claim supported here."@en,
+        "뒷받침하는 주장를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:string .
+
+iml:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "Source title"@en,
+        "자료 제목"@ko ;
+    rdfs:comment "Records or classifies source title."@en,
+        "자료 제목를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:string .
+
+iml:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "Source URI"@en,
+        "자료 URI"@ko ;
+    rdfs:comment "Records or classifies source uri."@en,
+        "자료 URI를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:anyURI .
+
+iml:sourceYear a owl:DatatypeProperty ;
+    rdfs:label "Publication year"@en,
+        "발행 연도"@ko ;
+    rdfs:comment "Records or classifies publication year."@en,
+        "발행 연도를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DocumentationSource ;
+    rdfs:range xsd:integer .
+
+iml:stepAction a owl:ObjectProperty ;
+    rdfs:label "Step action label"@en,
+        "단계 행동 레이블"@ko ;
+    rdfs:comment "Links a related action label entity."@en,
+        "관련 행동 레이블 개체를 연결한다."@ko ;
+    rdfs:domain iml:DemonstrationStep ;
+    rdfs:range iml:Action .
+
+iml:stepInDemonstration a owl:ObjectProperty ;
+    rdfs:label "Step in demonstration"@en,
+        "소속 시연"@ko ;
+    rdfs:comment "Links a related demonstration episode entity."@en,
+        "관련 시연 에피소드 개체를 연결한다."@ko ;
+    rdfs:domain iml:DemonstrationStep ;
+    rdfs:range iml:Demonstration .
+
+iml:stepIndex a owl:DatatypeProperty ;
+    rdfs:label "Step index"@en,
+        "단계 순서"@ko ;
+    rdfs:comment "Records or classifies step index."@en,
+        "단계 순서를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:DemonstrationStep ;
+    rdfs:range xsd:integer .
+
+iml:stepObservation a owl:ObjectProperty ;
+    rdfs:label "Step observation"@en,
+        "단계 관측"@ko ;
+    rdfs:comment "Links a related observation entity."@en,
+        "관련 관측 개체를 연결한다."@ko ;
+    rdfs:domain iml:DemonstrationStep ;
+    rdfs:range iml:Observation .
+
+iml:taskGoal a owl:DatatypeProperty ;
+    rdfs:label "Task goal"@en,
+        "과제 목표"@ko ;
+    rdfs:comment "Records or classifies task goal."@en,
+        "과제 목표를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningTask ;
+    rdfs:range xsd:string .
+
+iml:taskName a owl:DatatypeProperty ;
+    rdfs:label "Task name"@en,
+        "과제 이름"@ko ;
+    rdfs:comment "Records or classifies task name."@en,
+        "과제 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:LearningTask ;
+    rdfs:range xsd:string .
+
+iml:trainingName a owl:DatatypeProperty ;
+    rdfs:label "Training run name"@en,
+        "학습 실행 이름"@ko ;
+    rdfs:comment "Records or classifies training run name."@en,
+        "학습 실행 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range xsd:string .
+
+iml:trainingNote a owl:DatatypeProperty ;
+    rdfs:label "Training note"@en,
+        "학습 실행 메모"@ko ;
+    rdfs:comment "Records or classifies training note."@en,
+        "학습 실행 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range xsd:string .
+
+iml:trainingProducesPolicy a owl:ObjectProperty ;
+    rdfs:label "Produces policy"@en,
+        "결과 정책"@ko ;
+    rdfs:comment "Links a related policy entity."@en,
+        "관련 정책 개체를 연결한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range iml:Policy .
+
+iml:trainingStatus a owl:DatatypeProperty ;
+    rdfs:label "Training status"@en,
+        "학습 상태"@ko ;
+    rdfs:comment "Records or classifies training status."@en,
+        "학습 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range xsd:string .
+
+iml:trainingUsesDataset a owl:ObjectProperty ;
+    rdfs:label "Uses dataset"@en,
+        "사용 데이터셋"@ko ;
+    rdfs:comment "Links a related demonstration dataset entity."@en,
+        "관련 시연 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range iml:DemonstrationDataset .
+
+iml:trainingUsesMethod a owl:ObjectProperty ;
+    rdfs:label "Uses method"@en,
+        "사용 방법"@ko ;
+    rdfs:comment "Links a related imitation-learning method entity."@en,
+        "관련 모방학습 방법 개체를 연결한다."@ko ;
+    rdfs:domain iml:TrainingRun ;
+    rdfs:range iml:LearningMethod .
+
+iml:Observation a owl:Class ;
+    rdfs:label "Observation"@en,
+        "관측"@ko ;
+    rdfs:comment "Records the content and modality of a policy input."@en,
+        "정책 입력으로 쓰이는 관측 내용과 형식을 기록한다."@ko .
+
+iml:Expert a owl:Class ;
+    rdfs:label "Demonstrator or reference policy"@en,
+        "시연자 또는 참조 정책"@ko ;
+    rdfs:comment "A person, controller or policy supplying or serving as a demonstration reference."@en,
+        "시연 행동을 제공하거나 참조하는 사람, 제어기 또는 정책이다."@ko .
+
+iml:Action a owl:Class ;
+    rdfs:label "Action label"@en,
+        "행동 레이블"@ko ;
+    rdfs:comment "An expert, reference, synthetic or commanded action paired with an observation."@en,
+        "관측과 짝을 이루는 전문가, 참조, 합성 행동 또는 명령이다."@ko .
+
+iml:DemonstrationStep a owl:Class ;
+    rdfs:label "Demonstration step"@en,
+        "시연 단계"@ko ;
+    rdfs:comment "An ordered observation and action-label pair within a demonstration."@en,
+        "시연 안에서 순서가 있는 관측과 행동 레이블 한 쌍이다."@ko .
+
+iml:DistributionShift a owl:Class ;
+    rdfs:label "State distribution shift"@en,
+        "상태 분포 변화"@ko ;
+    rdfs:comment "A difference between expert demonstration states and states induced by a learned policy."@en,
+        "전문가 시연과 학습 정책이 유도하는 관측 차이 및 평가 상태다."@ko .
+
+iml:EvaluationMetric a owl:Class ;
+    rdfs:label "Evaluation metric"@en,
+        "평가 지표"@ko ;
+    rdfs:comment "A measure for action imitation or task performance and its measurement status."@en,
+        "행동 모방 또는 과제 성능 척도와 측정 여부를 나타낸다."@ko .
+
+iml:SafetyConstraint a owl:Class ;
+    rdfs:label "Safety constraint"@en,
+        "안전 제약"@ko ;
+    rdfs:comment "Records a safety condition for training or evaluation and its verification status."@en,
+        "학습·평가 범위의 안전 조건과 검증 상태를 기록한다."@ko .
+
+iml:LearningTask a owl:Class ;
+    rdfs:label "Learning task"@en,
+        "학습 과제"@ko ;
+    rdfs:comment "Describes the goal and scope of mapping observations to actions."@en,
+        "관측에서 행동으로 이어지는 학습 목표와 범위를 기술한다."@ko .
+
+iml:TrainingRun a owl:Class ;
+    rdfs:label "Training run record"@en,
+        "학습 실행 기록"@ko ;
+    rdfs:comment "Records the data, method, output policy and training status."@en,
+        "데이터, 방법, 결과 정책 및 학습 상태를 기록한다."@ko .
+
+iml:DocumentationSource a owl:Class ;
+    rdfs:label "Documentation source"@en,
+        "문헌 출처"@ko ;
+    rdfs:comment "Literature and claim scope supporting method descriptions."@en,
+        "방법 설명과 주장을 뒷받침하는 문헌 및 주장 범위다."@ko .
+
+iml:EvaluationRun a owl:Class ;
+    rdfs:label "Evaluation run record"@en,
+        "평가 실행 기록"@ko ;
+    rdfs:comment "Records the evaluation target, metrics, measurement status and evidence."@en,
+        "평가 대상, 지표, 측정 상태와 근거를 기록한다."@ko .
+
+iml:Policy a owl:Class ;
+    rdfs:label "Policy"@en,
+        "정책"@ko ;
+    rdfs:comment "A learned or reference mapping from observations or states to actions."@en,
+        "관측이나 상태를 행동으로 사상하는 학습 대상 또는 기준이다."@ko .
+
+iml:Demonstration a owl:Class ;
+    rdfs:label "Demonstration episode"@en,
+        "시연 에피소드"@ko ;
+    rdfs:comment "An observation-action sequence or record linked to a task and demonstrator."@en,
+        "과제와 시연자에 연결된 관측·행동 시퀀스 또는 기록이다."@ko .
+
+iml:LearningMethod a owl:Class ;
+    rdfs:label "Imitation-learning method"@en,
+        "모방학습 방법"@ko ;
+    rdfs:comment "A method for learning a policy or objective from demonstrations, with literature evidence."@en,
+        "시연으로부터 정책 또는 목적을 학습하는 방법과 문헌 근거다."@ko .
+
+iml:DemonstrationDataset a owl:Class ;
+    rdfs:label "Demonstration dataset"@en,
+        "시연 데이터셋"@ko ;
+    rdfs:comment "A collection of demonstrations with provenance, collection status, split status and limitations."@en,
+        "출처, 수집 상태, 분할 상태와 한계를 갖는 시연 자료 모음이다."@ko .
+
+iml:ImitationLearningProject a owl:Class ;
+    rdfs:label "Imitation-learning project"@en,
+        "모방학습 프로젝트"@ko ;
+    rdfs:comment "Groups a learning task, demonstrations, methods, policies, runs and evidence."@en,
+        "학습 과제, 시연 데이터, 방법, 정책, 실행 및 근거를 묶는다."@ko .

@@ -1,0 +1,865 @@
+@prefix ns1: <https://example.org/ontology/custom/autonomous-driving#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/autonomous-driving/reject> {
+    <https://example.test/autonomous-driving/campus-shuttle-system> a ns1:AutonomousDrivingSystem ;
+        rdfs:label "Synthetic campus shuttle driving system"@en,
+            "가상 캠퍼스 셔틀 자율주행 구성"@ko ;
+        ns1:hasAutomationLevel <https://example.test/autonomous-driving/level-0>,
+            <https://example.test/autonomous-driving/level-1>,
+            <https://example.test/autonomous-driving/level-2>,
+            <https://example.test/autonomous-driving/level-3>,
+            <https://example.test/autonomous-driving/level-4>,
+            <https://example.test/autonomous-driving/level-5> ;
+        ns1:hasDocumentationSource <https://example.test/autonomous-driving/src-autoware-stack>,
+            <https://example.test/autonomous-driving/src-autoware-vehicle>,
+            <https://example.test/autonomous-driving/src-awsim>,
+            <https://example.test/autonomous-driving/src-nhtsa-ads>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd>,
+            <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:hasDrivingFeature <https://example.test/autonomous-driving/feature-campus-loop> ;
+        ns1:hasOperationalDesignDomain <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:hasRoadMap <https://example.test/autonomous-driving/map-campus> ;
+        ns1:hasRoute <https://example.test/autonomous-driving/route-campus-loop> ;
+        ns1:hasSafetyFunction <https://example.test/autonomous-driving/safety-minimal-risk>,
+            <https://example.test/autonomous-driving/safety-odd-monitor> ;
+        ns1:hasScenario <https://example.test/autonomous-driving/scenario-pedestrian-crossing>,
+            <https://example.test/autonomous-driving/scenario-signalized-junction> ;
+        ns1:hasSensor <https://example.test/autonomous-driving/sensor-camera>,
+            <https://example.test/autonomous-driving/sensor-gnss-imu>,
+            <https://example.test/autonomous-driving/sensor-lidar>,
+            <https://example.test/autonomous-driving/sensor-wheel-odometry> ;
+        ns1:hasSoftwareModule <https://example.test/autonomous-driving/module-control>,
+            <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-odd-monitor>,
+            <https://example.test/autonomous-driving/module-perception>,
+            <https://example.test/autonomous-driving/module-planning>,
+            <https://example.test/autonomous-driving/module-sensing>,
+            <https://example.test/autonomous-driving/module-vehicle-interface> ;
+        ns1:hasTestRun <https://example.test/autonomous-driving/test-pedestrian-simulation> ;
+        ns1:hasTrajectory <https://example.test/autonomous-driving/trajectory-campus-loop> ;
+        ns1:hasVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:systemNote "실제 차량·도로 배포, 성능 수준, 인증 또는 안전 검증을 나타내지 않는 설명용 합성 그래프다."^^xsd:string ;
+        ns1:systemPurpose "자율주행 구성요소, 운행 조건과 시험 계획 사이의 관계를 학습한다."^^xsd:string ;
+        ns1:systemRecordKind "synthetic"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-approaching-car> a ns1:RoadActor ;
+        rdfs:label "Synthetic approaching vehicle actor"@en,
+            "가상 접근 차량 행위자"@ko ;
+        ns1:actorKind "vehicle"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "approaching_vehicle"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-pedestrian> a ns1:RoadActor ;
+        rdfs:label "Synthetic pedestrian actor"@en,
+            "가상 보행자 행위자"@ko ;
+        ns1:actorKind "pedestrian"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "crossing_pedestrian"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-traffic-signal> a ns1:RoadActor ;
+        rdfs:label "Synthetic traffic signal actor"@en,
+            "가상 교통 신호 행위자"@ko ;
+        ns1:actorKind "traffic_signal"^^xsd:string ;
+        ns1:actorMotion "traffic_control"^^xsd:string ;
+        ns1:actorName "campus_signal"^^xsd:string .
+
+    <https://example.test/autonomous-driving/feature-campus-loop> a ns1:DrivingFeature ;
+        rdfs:label "Synthetic geofenced shuttle loop feature"@en,
+            "가상 지정 구간 셔틀 운행 기능"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack>,
+            <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:featureKind "automated_driving"^^xsd:string ;
+        ns1:featureName "geofenced_campus_loop"^^xsd:string ;
+        ns1:featureNote "SAE 수준을 평가·할당하지 않았다. 제한된 ODD가 있는 가상 학습 기능 이름이며, 운행 가능성이나 안전성을 의미하지 않는다."^^xsd:string ;
+        ns1:featureODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:featureUsesModule <https://example.test/autonomous-driving/module-control>,
+            <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-odd-monitor>,
+            <https://example.test/autonomous-driving/module-perception>,
+            <https://example.test/autonomous-driving/module-planning>,
+            <https://example.test/autonomous-driving/module-sensing>,
+            <https://example.test/autonomous-driving/module-vehicle-interface> .
+
+    <https://example.test/autonomous-driving/level-0> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 0"@en,
+            "SAE 주행 자동화 수준 0"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "No Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 0 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-1> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 1"@en,
+            "SAE 주행 자동화 수준 1"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Driver Assistance"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 1 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-2> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 2"@en,
+            "SAE 주행 자동화 수준 2"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Partial Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 2 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-3> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 3"@en,
+            "SAE 주행 자동화 수준 3"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Conditional Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 3 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-4> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 4"@en,
+            "SAE 주행 자동화 수준 4"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "High Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 4 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-5> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 5"@en,
+            "SAE 주행 자동화 수준 5"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Full Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 5 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/safety-minimal-risk> a ns1:SafetyFunction ;
+        rdfs:label "Synthetic minimal-risk fallback concept"@en,
+            "가상 최소위험상태 전환 개념"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle>,
+            <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:monitorsODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:responseAction "조건에 따라 감속·정지 등 최소위험상태 전환을 검토한다."^^xsd:string ;
+        ns1:safetyFunctionKind "minimal_risk_fallback"^^xsd:string ;
+        ns1:safetyFunctionName "minimal_risk_fallback_demo"^^xsd:string ;
+        ns1:safetyFunctionNote "차량 제동거리, 위험 분석, 규제 요구사항 또는 안전 성능을 정의하지 않은 학습용 개념이다."^^xsd:string ;
+        ns1:safetyFunctionStatus "conceptual"^^xsd:string .
+
+    <https://example.test/autonomous-driving/safety-odd-monitor> a ns1:SafetyFunction ;
+        rdfs:label "Synthetic operating-domain boundary monitor"@en,
+            "가상 운행영역 이탈 감시"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:monitorsODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:responseAction "범위 이탈 감지 시 운행 승인 상태를 낮추고 대응 계획으로 전달한다."^^xsd:string ;
+        ns1:safetyFunctionKind "odd_monitoring"^^xsd:string ;
+        ns1:safetyFunctionName "odd_boundary_monitor_demo"^^xsd:string ;
+        ns1:safetyFunctionNote "동작 코드·진단 커버리지·안전 검증이 없는 개념 항목이다."^^xsd:string ;
+        ns1:safetyFunctionStatus "conceptual"^^xsd:string .
+
+    <https://example.test/autonomous-driving/scenario-signalized-junction> a ns1:Scenario ;
+        rdfs:label "Synthetic signalized junction scenario"@en,
+            "가상 신호 교차로 시나리오"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-awsim> ;
+        ns1:hasRoadActor <https://example.test/autonomous-driving/actor-approaching-car>,
+            <https://example.test/autonomous-driving/actor-ego-shuttle>,
+            <https://example.test/autonomous-driving/actor-traffic-signal> ;
+        ns1:scenarioKind "intersection"^^xsd:string ;
+        ns1:scenarioName "signalized_junction_demo"^^xsd:string ;
+        ns1:scenarioNote "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."^^xsd:string ;
+        ns1:scenarioODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:scenarioRoute <https://example.test/autonomous-driving/route-campus-loop> .
+
+    <https://example.test/autonomous-driving/sensor-camera> a ns1:Sensor ;
+        rdfs:label "Synthetic forward camera"@en,
+            "가상 전방 카메라"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "camera"^^xsd:string ;
+        ns1:sensorName "front_camera_demo"^^xsd:string ;
+        ns1:sensorPurpose "차선·신호·물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-gnss-imu> a ns1:Sensor ;
+        rdfs:label "Synthetic GNSS and IMU"@en,
+            "가상 GNSS·IMU"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "gnss_imu"^^xsd:string ;
+        ns1:sensorName "gnss_imu_demo"^^xsd:string ;
+        ns1:sensorPurpose "위치·자세 추정 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-lidar> a ns1:Sensor ;
+        rdfs:label "Synthetic LiDAR"@en,
+            "가상 라이다"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "lidar"^^xsd:string ;
+        ns1:sensorName "roof_lidar_demo"^^xsd:string ;
+        ns1:sensorPurpose "주변 3차원 물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-wheel-odometry> a ns1:Sensor ;
+        rdfs:label "Synthetic wheel odometry"@en,
+            "가상 휠 오도메트리"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "wheel_odometry"^^xsd:string ;
+        ns1:sensorName "wheel_odometry_demo"^^xsd:string ;
+        ns1:sensorPurpose "차량 이동 추정 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/test-pedestrian-simulation> a ns1:TestRun ;
+        rdfs:label "Unrun synthetic pedestrian simulation plan"@en,
+            "미실행 가상 보행자 시뮬레이션 계획"@ko ;
+        ns1:testEnvironment "simulation"^^xsd:string ;
+        ns1:testName "pedestrian_crossing_simulation_plan"^^xsd:string ;
+        ns1:testNote "실제 시뮬레이터 실행, 결과 측정, 로그 수집 또는 안전 검증이 수행되지 않았다."^^xsd:string ;
+        ns1:testResult "not_run"^^xsd:string ;
+        ns1:testStatus "planned"^^xsd:string ;
+        ns1:testsScenario <https://example.test/autonomous-driving/scenario-pedestrian-crossing> .
+
+    <https://example.test/autonomous-driving/trajectory-campus-loop> a ns1:Trajectory ;
+        rdfs:label "Synthetic shuttle loop trajectory plan"@en,
+            "가상 셔틀 순환 궤적 계획"@ko ;
+        ns1:trajectoryForRoute <https://example.test/autonomous-driving/route-campus-loop> ;
+        ns1:trajectoryGeneratedBy <https://example.test/autonomous-driving/module-planning> ;
+        ns1:trajectoryName "campus_loop_trajectory_demo"^^xsd:string ;
+        ns1:trajectoryNote "시뮬레이션에서 생성·추종한 실적이 없는 계획 개념 기록이다."^^xsd:string ;
+        ns1:trajectoryStatus "planned"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-ego-shuttle> a ns1:RoadActor ;
+        rdfs:label "Synthetic ego shuttle actor"@en,
+            "가상 자율주행 셔틀 행위자"@ko ;
+        ns1:actorKind "ego_vehicle"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "ego_shuttle"^^xsd:string ;
+        ns1:actorVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> .
+
+    <https://example.test/autonomous-driving/map-campus> a ns1:RoadMap ;
+        rdfs:label "Synthetic campus road map"@en,
+            "가상 캠퍼스 도로 지도"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mapCoverage "가상의 캠퍼스 순환 구간"^^xsd:string ;
+        ns1:mapFormat "lanelet2"^^xsd:string ;
+        ns1:mapName "campus_map_demo"^^xsd:string ;
+        ns1:mapNote "지도 파일·측량 자료·point-cloud 자료를 포함하지 않는 개념 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-odd-monitor> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic ODD monitor module"@en,
+            "가상 ODD 감시 모듈"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:moduleInput "vehicle, weather and geofence state"^^xsd:string ;
+        ns1:moduleKind "safety_monitor"^^xsd:string ;
+        ns1:moduleName "odd_monitor"^^xsd:string ;
+        ns1:moduleNote "실제 감시 로직이나 안전 무결성 수준을 구현·평가하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "odd_status"^^xsd:string ;
+        ns1:modulePurpose "운행 조건이 합성 ODD 범위에 있는지 감시하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-vehicle-interface> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic vehicle interface module"@en,
+            "가상 차량 인터페이스 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-control> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle> ;
+        ns1:moduleInput "steering and velocity commands, vehicle status"^^xsd:string ;
+        ns1:moduleKind "vehicle_interface"^^xsd:string ;
+        ns1:moduleName "vehicle_interface"^^xsd:string ;
+        ns1:moduleNote "CAN, drive-by-wire 또는 실차 프로토콜을 구현하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "vehicle-specific command and normalized vehicle status"^^xsd:string ;
+        ns1:modulePurpose "차량별 제어 형식과 상태 형식 사이를 변환하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/scenario-pedestrian-crossing> a ns1:Scenario ;
+        rdfs:label "Synthetic crosswalk pedestrian scenario"@en,
+            "가상 횡단보도 보행자 시나리오"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-awsim>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd> ;
+        ns1:hasRoadActor <https://example.test/autonomous-driving/actor-ego-shuttle>,
+            <https://example.test/autonomous-driving/actor-pedestrian> ;
+        ns1:scenarioKind "pedestrian_crossing"^^xsd:string ;
+        ns1:scenarioName "crosswalk_pedestrian_demo"^^xsd:string ;
+        ns1:scenarioNote "속도·거리·우선권·반응 시간을 규정하지 않은 시험 설계 예시다."^^xsd:string ;
+        ns1:scenarioODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:scenarioRoute <https://example.test/autonomous-driving/route-campus-loop> .
+
+    <https://example.test/autonomous-driving/module-control> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic vehicle control module"@en,
+            "가상 차량 제어 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-planning> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "planned trajectory and vehicle state"^^xsd:string ;
+        ns1:moduleKind "control"^^xsd:string ;
+        ns1:moduleName "control"^^xsd:string ;
+        ns1:moduleNote "차량의 실제 actuator에 명령하지 않는다."^^xsd:string ;
+        ns1:moduleOutput "steering and velocity commands"^^xsd:string ;
+        ns1:modulePurpose "계획 궤적 추종용 조향·종방향 명령을 구성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-localization> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic localization module"@en,
+            "가상 위치추정 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-sensing> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "GNSS/IMU, wheel odometry and map"^^xsd:string ;
+        ns1:moduleKind "localization"^^xsd:string ;
+        ns1:moduleName "localization"^^xsd:string ;
+        ns1:moduleNote "정확도나 수렴 상태를 주장하지 않는다."^^xsd:string ;
+        ns1:moduleOutput "localized vehicle pose"^^xsd:string ;
+        ns1:modulePurpose "차량 위치·자세를 지도 기준으로 추정하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-perception> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic perception module"@en,
+            "가상 인지 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-sensing> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "timestamped sensor data"^^xsd:string ;
+        ns1:moduleKind "perception"^^xsd:string ;
+        ns1:moduleName "perception"^^xsd:string ;
+        ns1:moduleNote "출력 형식과 모델 성능은 지정하거나 검증하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "objects, traffic signal states and lane scene"^^xsd:string ;
+        ns1:modulePurpose "주변 물체·차선·신호 관련 장면 정보를 구성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-awsim> a ns1:DocumentationSource ;
+        rdfs:label "AWSIM simulation documentation"@en,
+            "AWSIM 시뮬레이션 문서"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "AWSIM is documented as a simulator for testing and evaluating autonomous-driving perception, planning and control under different configurations and scenarios."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "AWSIM Labs"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/AWSIM-Labs/main/Introduction/AWSIM/"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-nhtsa-odd> a ns1:DocumentationSource ;
+        rdfs:label "NHTSA operational design domain definition"@en,
+            "NHTSA 운행설계영역 정의"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The report describes ODD attributes such as roadway type, speed range, lighting, weather and other operating constraints; the sample campus bounds here are synthetic."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+        ns1:sourceTitle "A Framework for Automated Driving System Testable Cases and Scenarios"^^xsd:string ;
+        ns1:sourceUri "https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/13882-automateddrivingsystems_092618_v1a_tag.pdf"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/module-planning> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic planning module"@en,
+            "가상 경로계획 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-perception> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "localized vehicle pose, objects and route"^^xsd:string ;
+        ns1:moduleKind "planning"^^xsd:string ;
+        ns1:moduleName "planning"^^xsd:string ;
+        ns1:moduleNote "실제 충돌 회피나 통행 규칙 준수 결과는 확인하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "planned trajectory"^^xsd:string ;
+        ns1:modulePurpose "목표 경로와 장면 정보를 이용해 궤적을 생성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-sensing> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic sensing module"@en,
+            "가상 감지 모듈"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "camera frames, LiDAR scans, GNSS/IMU and wheel odometry"^^xsd:string ;
+        ns1:moduleKind "sensing"^^xsd:string ;
+        ns1:moduleName "sensing"^^xsd:string ;
+        ns1:moduleNote "실제 ROS 노드나 드라이버를 가리키지 않는다."^^xsd:string ;
+        ns1:moduleOutput "timestamped sensor data"^^xsd:string ;
+        ns1:modulePurpose "센서 입력 수집·전처리 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/route-campus-loop> a ns1:Route ;
+        rdfs:label "Synthetic campus loop route"@en,
+            "가상 캠퍼스 순환 경로"@ko ;
+        ns1:routeEnd "가상 연구동 정류장"^^xsd:string ;
+        ns1:routeMap <https://example.test/autonomous-driving/map-campus> ;
+        ns1:routeName "campus_loop_demo"^^xsd:string ;
+        ns1:routeNote "측량·접근성·도로 규칙 확인 전의 설명용 경로다."^^xsd:string ;
+        ns1:routeStart "가상 북문 정류장"^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-autoware-vehicle> a ns1:DocumentationSource ;
+        rdfs:label "Autoware vehicle interface design"@en,
+            "Autoware 차량 인터페이스 설계"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "Vehicle Interface design"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-nhtsa-ads> a ns1:DocumentationSource ;
+        rdfs:label "NHTSA automated driving systems guidance"@en,
+            "NHTSA 자동주행 시스템 안전 안내"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+        ns1:sourceTitle "Automated Driving Systems"^^xsd:string ;
+        ns1:sourceUri "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/odd-campus-day> a ns1:OperationalDesignDomain ;
+        rdfs:label "Synthetic campus daytime dry-condition ODD"@en,
+            "가상 캠퍼스 낮·건조 조건 ODD"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd> ;
+        ns1:environmentCondition "daylight"^^xsd:string,
+            "dry"^^xsd:string,
+            "geofenced"^^xsd:string ;
+        ns1:geographicArea "가상의 분리된 캠퍼스 순환로"^^xsd:string ;
+        ns1:maxSpeedKph 0 ;
+        ns1:oddName "campus_day_dry_demo"^^xsd:string ;
+        ns1:oddNote "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."^^xsd:string ;
+        ns1:roadwayType "private_campus"^^xsd:string .
+
+    <https://example.test/autonomous-driving/vehicle-campus-shuttle> a ns1:Vehicle ;
+        rdfs:label "Synthetic electric campus shuttle"@en,
+            "가상 전기 캠퍼스 셔틀"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle> ;
+        ns1:powertrainType "electric"^^xsd:string ;
+        ns1:vehicleKind "shuttle"^^xsd:string ;
+        ns1:vehicleName "campus_shuttle_demo"^^xsd:string ;
+        ns1:vehicleNote "차량 크기, 제동거리, 조향 응답과 drive-by-wire 연결을 정의하거나 시험하지 않은 가상 차량이다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-sae-j3016> a ns1:DocumentationSource ;
+        rdfs:label "SAE J3016 driving automation taxonomy"@en,
+            "SAE J3016 자동화 수준 분류"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "SAE International"^^xsd:string ;
+        ns1:sourceTitle "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles"^^xsd:string ;
+        ns1:sourceUri "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-autoware-stack> a ns1:DocumentationSource ;
+        rdfs:label "Autoware autonomous driving stack architecture"@en,
+            "Autoware 자율주행 스택 구조"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "Autonomous Driving Stack Architecture"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/"^^xsd:anyURI .
+}
+
+<https://example.test/consumer/autonomous-driving/accept> {
+    <https://example.test/autonomous-driving/campus-shuttle-system> a ns1:AutonomousDrivingSystem ;
+        rdfs:label "Synthetic campus shuttle driving system"@en,
+            "가상 캠퍼스 셔틀 자율주행 구성"@ko ;
+        ns1:hasAutomationLevel <https://example.test/autonomous-driving/level-0>,
+            <https://example.test/autonomous-driving/level-1>,
+            <https://example.test/autonomous-driving/level-2>,
+            <https://example.test/autonomous-driving/level-3>,
+            <https://example.test/autonomous-driving/level-4>,
+            <https://example.test/autonomous-driving/level-5> ;
+        ns1:hasDocumentationSource <https://example.test/autonomous-driving/src-autoware-stack>,
+            <https://example.test/autonomous-driving/src-autoware-vehicle>,
+            <https://example.test/autonomous-driving/src-awsim>,
+            <https://example.test/autonomous-driving/src-nhtsa-ads>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd>,
+            <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:hasDrivingFeature <https://example.test/autonomous-driving/feature-campus-loop> ;
+        ns1:hasOperationalDesignDomain <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:hasRoadMap <https://example.test/autonomous-driving/map-campus> ;
+        ns1:hasRoute <https://example.test/autonomous-driving/route-campus-loop> ;
+        ns1:hasSafetyFunction <https://example.test/autonomous-driving/safety-minimal-risk>,
+            <https://example.test/autonomous-driving/safety-odd-monitor> ;
+        ns1:hasScenario <https://example.test/autonomous-driving/scenario-pedestrian-crossing>,
+            <https://example.test/autonomous-driving/scenario-signalized-junction> ;
+        ns1:hasSensor <https://example.test/autonomous-driving/sensor-camera>,
+            <https://example.test/autonomous-driving/sensor-gnss-imu>,
+            <https://example.test/autonomous-driving/sensor-lidar>,
+            <https://example.test/autonomous-driving/sensor-wheel-odometry> ;
+        ns1:hasSoftwareModule <https://example.test/autonomous-driving/module-control>,
+            <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-odd-monitor>,
+            <https://example.test/autonomous-driving/module-perception>,
+            <https://example.test/autonomous-driving/module-planning>,
+            <https://example.test/autonomous-driving/module-sensing>,
+            <https://example.test/autonomous-driving/module-vehicle-interface> ;
+        ns1:hasTestRun <https://example.test/autonomous-driving/test-pedestrian-simulation> ;
+        ns1:hasTrajectory <https://example.test/autonomous-driving/trajectory-campus-loop> ;
+        ns1:hasVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:systemNote "실제 차량·도로 배포, 성능 수준, 인증 또는 안전 검증을 나타내지 않는 설명용 합성 그래프다."^^xsd:string ;
+        ns1:systemPurpose "자율주행 구성요소, 운행 조건과 시험 계획 사이의 관계를 학습한다."^^xsd:string ;
+        ns1:systemRecordKind "synthetic"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-approaching-car> a ns1:RoadActor ;
+        rdfs:label "Synthetic approaching vehicle actor"@en,
+            "가상 접근 차량 행위자"@ko ;
+        ns1:actorKind "vehicle"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "approaching_vehicle"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-pedestrian> a ns1:RoadActor ;
+        rdfs:label "Synthetic pedestrian actor"@en,
+            "가상 보행자 행위자"@ko ;
+        ns1:actorKind "pedestrian"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "crossing_pedestrian"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-traffic-signal> a ns1:RoadActor ;
+        rdfs:label "Synthetic traffic signal actor"@en,
+            "가상 교통 신호 행위자"@ko ;
+        ns1:actorKind "traffic_signal"^^xsd:string ;
+        ns1:actorMotion "traffic_control"^^xsd:string ;
+        ns1:actorName "campus_signal"^^xsd:string .
+
+    <https://example.test/autonomous-driving/feature-campus-loop> a ns1:DrivingFeature ;
+        rdfs:label "Synthetic geofenced shuttle loop feature"@en,
+            "가상 지정 구간 셔틀 운행 기능"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack>,
+            <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:featureKind "automated_driving"^^xsd:string ;
+        ns1:featureName "geofenced_campus_loop"^^xsd:string ;
+        ns1:featureNote "SAE 수준을 평가·할당하지 않았다. 제한된 ODD가 있는 가상 학습 기능 이름이며, 운행 가능성이나 안전성을 의미하지 않는다."^^xsd:string ;
+        ns1:featureODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:featureUsesModule <https://example.test/autonomous-driving/module-control>,
+            <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-odd-monitor>,
+            <https://example.test/autonomous-driving/module-perception>,
+            <https://example.test/autonomous-driving/module-planning>,
+            <https://example.test/autonomous-driving/module-sensing>,
+            <https://example.test/autonomous-driving/module-vehicle-interface> .
+
+    <https://example.test/autonomous-driving/level-0> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 0"@en,
+            "SAE 주행 자동화 수준 0"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "No Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 0 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-1> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 1"@en,
+            "SAE 주행 자동화 수준 1"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Driver Assistance"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 1 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-2> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 2"@en,
+            "SAE 주행 자동화 수준 2"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Partial Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 2 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-3> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 3"@en,
+            "SAE 주행 자동화 수준 3"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Conditional Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 3 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-4> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 4"@en,
+            "SAE 주행 자동화 수준 4"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "High Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 4 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/level-5> a ns1:AutomationLevel ;
+        rdfs:label "SAE driving automation Level 5"@en,
+            "SAE 주행 자동화 수준 5"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-sae-j3016> ;
+        ns1:levelLabel "Full Driving Automation"^^xsd:string ;
+        ns1:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+        ns1:levelNumber 5 ;
+        ns1:levelScope "on-road vehicle feature"^^xsd:string .
+
+    <https://example.test/autonomous-driving/safety-minimal-risk> a ns1:SafetyFunction ;
+        rdfs:label "Synthetic minimal-risk fallback concept"@en,
+            "가상 최소위험상태 전환 개념"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle>,
+            <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:monitorsODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:responseAction "조건에 따라 감속·정지 등 최소위험상태 전환을 검토한다."^^xsd:string ;
+        ns1:safetyFunctionKind "minimal_risk_fallback"^^xsd:string ;
+        ns1:safetyFunctionName "minimal_risk_fallback_demo"^^xsd:string ;
+        ns1:safetyFunctionNote "차량 제동거리, 위험 분석, 규제 요구사항 또는 안전 성능을 정의하지 않은 학습용 개념이다."^^xsd:string ;
+        ns1:safetyFunctionStatus "conceptual"^^xsd:string .
+
+    <https://example.test/autonomous-driving/safety-odd-monitor> a ns1:SafetyFunction ;
+        rdfs:label "Synthetic operating-domain boundary monitor"@en,
+            "가상 운행영역 이탈 감시"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:monitorsODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:responseAction "범위 이탈 감지 시 운행 승인 상태를 낮추고 대응 계획으로 전달한다."^^xsd:string ;
+        ns1:safetyFunctionKind "odd_monitoring"^^xsd:string ;
+        ns1:safetyFunctionName "odd_boundary_monitor_demo"^^xsd:string ;
+        ns1:safetyFunctionNote "동작 코드·진단 커버리지·안전 검증이 없는 개념 항목이다."^^xsd:string ;
+        ns1:safetyFunctionStatus "conceptual"^^xsd:string .
+
+    <https://example.test/autonomous-driving/scenario-signalized-junction> a ns1:Scenario ;
+        rdfs:label "Synthetic signalized junction scenario"@en,
+            "가상 신호 교차로 시나리오"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-awsim> ;
+        ns1:hasRoadActor <https://example.test/autonomous-driving/actor-approaching-car>,
+            <https://example.test/autonomous-driving/actor-ego-shuttle>,
+            <https://example.test/autonomous-driving/actor-traffic-signal> ;
+        ns1:scenarioKind "intersection"^^xsd:string ;
+        ns1:scenarioName "signalized_junction_demo"^^xsd:string ;
+        ns1:scenarioNote "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."^^xsd:string ;
+        ns1:scenarioODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:scenarioRoute <https://example.test/autonomous-driving/route-campus-loop> .
+
+    <https://example.test/autonomous-driving/sensor-camera> a ns1:Sensor ;
+        rdfs:label "Synthetic forward camera"@en,
+            "가상 전방 카메라"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "camera"^^xsd:string ;
+        ns1:sensorName "front_camera_demo"^^xsd:string ;
+        ns1:sensorPurpose "차선·신호·물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-gnss-imu> a ns1:Sensor ;
+        rdfs:label "Synthetic GNSS and IMU"@en,
+            "가상 GNSS·IMU"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "gnss_imu"^^xsd:string ;
+        ns1:sensorName "gnss_imu_demo"^^xsd:string ;
+        ns1:sensorPurpose "위치·자세 추정 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-lidar> a ns1:Sensor ;
+        rdfs:label "Synthetic LiDAR"@en,
+            "가상 라이다"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "lidar"^^xsd:string ;
+        ns1:sensorName "roof_lidar_demo"^^xsd:string ;
+        ns1:sensorPurpose "주변 3차원 물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/sensor-wheel-odometry> a ns1:Sensor ;
+        rdfs:label "Synthetic wheel odometry"@en,
+            "가상 휠 오도메트리"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mountedOnVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> ;
+        ns1:sensorModality "wheel_odometry"^^xsd:string ;
+        ns1:sensorName "wheel_odometry_demo"^^xsd:string ;
+        ns1:sensorPurpose "차량 이동 추정 입력을 나타내는 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/test-pedestrian-simulation> a ns1:TestRun ;
+        rdfs:label "Unrun synthetic pedestrian simulation plan"@en,
+            "미실행 가상 보행자 시뮬레이션 계획"@ko ;
+        ns1:testEnvironment "simulation"^^xsd:string ;
+        ns1:testName "pedestrian_crossing_simulation_plan"^^xsd:string ;
+        ns1:testNote "실제 시뮬레이터 실행, 결과 측정, 로그 수집 또는 안전 검증이 수행되지 않았다."^^xsd:string ;
+        ns1:testResult "not_run"^^xsd:string ;
+        ns1:testStatus "planned"^^xsd:string ;
+        ns1:testsScenario <https://example.test/autonomous-driving/scenario-pedestrian-crossing> .
+
+    <https://example.test/autonomous-driving/trajectory-campus-loop> a ns1:Trajectory ;
+        rdfs:label "Synthetic shuttle loop trajectory plan"@en,
+            "가상 셔틀 순환 궤적 계획"@ko ;
+        ns1:trajectoryForRoute <https://example.test/autonomous-driving/route-campus-loop> ;
+        ns1:trajectoryGeneratedBy <https://example.test/autonomous-driving/module-planning> ;
+        ns1:trajectoryName "campus_loop_trajectory_demo"^^xsd:string ;
+        ns1:trajectoryNote "시뮬레이션에서 생성·추종한 실적이 없는 계획 개념 기록이다."^^xsd:string ;
+        ns1:trajectoryStatus "planned"^^xsd:string .
+
+    <https://example.test/autonomous-driving/actor-ego-shuttle> a ns1:RoadActor ;
+        rdfs:label "Synthetic ego shuttle actor"@en,
+            "가상 자율주행 셔틀 행위자"@ko ;
+        ns1:actorKind "ego_vehicle"^^xsd:string ;
+        ns1:actorMotion "moving"^^xsd:string ;
+        ns1:actorName "ego_shuttle"^^xsd:string ;
+        ns1:actorVehicle <https://example.test/autonomous-driving/vehicle-campus-shuttle> .
+
+    <https://example.test/autonomous-driving/map-campus> a ns1:RoadMap ;
+        rdfs:label "Synthetic campus road map"@en,
+            "가상 캠퍼스 도로 지도"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:mapCoverage "가상의 캠퍼스 순환 구간"^^xsd:string ;
+        ns1:mapFormat "lanelet2"^^xsd:string ;
+        ns1:mapName "campus_map_demo"^^xsd:string ;
+        ns1:mapNote "지도 파일·측량 자료·point-cloud 자료를 포함하지 않는 개념 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-odd-monitor> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic ODD monitor module"@en,
+            "가상 ODD 감시 모듈"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads> ;
+        ns1:moduleInput "vehicle, weather and geofence state"^^xsd:string ;
+        ns1:moduleKind "safety_monitor"^^xsd:string ;
+        ns1:moduleName "odd_monitor"^^xsd:string ;
+        ns1:moduleNote "실제 감시 로직이나 안전 무결성 수준을 구현·평가하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "odd_status"^^xsd:string ;
+        ns1:modulePurpose "운행 조건이 합성 ODD 범위에 있는지 감시하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-vehicle-interface> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic vehicle interface module"@en,
+            "가상 차량 인터페이스 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-control> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle> ;
+        ns1:moduleInput "steering and velocity commands, vehicle status"^^xsd:string ;
+        ns1:moduleKind "vehicle_interface"^^xsd:string ;
+        ns1:moduleName "vehicle_interface"^^xsd:string ;
+        ns1:moduleNote "CAN, drive-by-wire 또는 실차 프로토콜을 구현하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "vehicle-specific command and normalized vehicle status"^^xsd:string ;
+        ns1:modulePurpose "차량별 제어 형식과 상태 형식 사이를 변환하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/scenario-pedestrian-crossing> a ns1:Scenario ;
+        rdfs:label "Synthetic crosswalk pedestrian scenario"@en,
+            "가상 횡단보도 보행자 시나리오"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-awsim>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd> ;
+        ns1:hasRoadActor <https://example.test/autonomous-driving/actor-ego-shuttle>,
+            <https://example.test/autonomous-driving/actor-pedestrian> ;
+        ns1:scenarioKind "pedestrian_crossing"^^xsd:string ;
+        ns1:scenarioName "crosswalk_pedestrian_demo"^^xsd:string ;
+        ns1:scenarioNote "속도·거리·우선권·반응 시간을 규정하지 않은 시험 설계 예시다."^^xsd:string ;
+        ns1:scenarioODD <https://example.test/autonomous-driving/odd-campus-day> ;
+        ns1:scenarioRoute <https://example.test/autonomous-driving/route-campus-loop> .
+
+    <https://example.test/autonomous-driving/module-control> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic vehicle control module"@en,
+            "가상 차량 제어 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-planning> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "planned trajectory and vehicle state"^^xsd:string ;
+        ns1:moduleKind "control"^^xsd:string ;
+        ns1:moduleName "control"^^xsd:string ;
+        ns1:moduleNote "차량의 실제 actuator에 명령하지 않는다."^^xsd:string ;
+        ns1:moduleOutput "steering and velocity commands"^^xsd:string ;
+        ns1:modulePurpose "계획 궤적 추종용 조향·종방향 명령을 구성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-localization> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic localization module"@en,
+            "가상 위치추정 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-sensing> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "GNSS/IMU, wheel odometry and map"^^xsd:string ;
+        ns1:moduleKind "localization"^^xsd:string ;
+        ns1:moduleName "localization"^^xsd:string ;
+        ns1:moduleNote "정확도나 수렴 상태를 주장하지 않는다."^^xsd:string ;
+        ns1:moduleOutput "localized vehicle pose"^^xsd:string ;
+        ns1:modulePurpose "차량 위치·자세를 지도 기준으로 추정하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-perception> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic perception module"@en,
+            "가상 인지 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-sensing> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "timestamped sensor data"^^xsd:string ;
+        ns1:moduleKind "perception"^^xsd:string ;
+        ns1:moduleName "perception"^^xsd:string ;
+        ns1:moduleNote "출력 형식과 모델 성능은 지정하거나 검증하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "objects, traffic signal states and lane scene"^^xsd:string ;
+        ns1:modulePurpose "주변 물체·차선·신호 관련 장면 정보를 구성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-awsim> a ns1:DocumentationSource ;
+        rdfs:label "AWSIM simulation documentation"@en,
+            "AWSIM 시뮬레이션 문서"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "AWSIM is documented as a simulator for testing and evaluating autonomous-driving perception, planning and control under different configurations and scenarios."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "AWSIM Labs"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/AWSIM-Labs/main/Introduction/AWSIM/"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-nhtsa-odd> a ns1:DocumentationSource ;
+        rdfs:label "NHTSA operational design domain definition"@en,
+            "NHTSA 운행설계영역 정의"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The report describes ODD attributes such as roadway type, speed range, lighting, weather and other operating constraints; the sample campus bounds here are synthetic."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+        ns1:sourceTitle "A Framework for Automated Driving System Testable Cases and Scenarios"^^xsd:string ;
+        ns1:sourceUri "https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/13882-automateddrivingsystems_092618_v1a_tag.pdf"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/module-planning> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic planning module"@en,
+            "가상 경로계획 모듈"@ko ;
+        ns1:dependsOnModule <https://example.test/autonomous-driving/module-localization>,
+            <https://example.test/autonomous-driving/module-perception> ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "localized vehicle pose, objects and route"^^xsd:string ;
+        ns1:moduleKind "planning"^^xsd:string ;
+        ns1:moduleName "planning"^^xsd:string ;
+        ns1:moduleNote "실제 충돌 회피나 통행 규칙 준수 결과는 확인하지 않았다."^^xsd:string ;
+        ns1:moduleOutput "planned trajectory"^^xsd:string ;
+        ns1:modulePurpose "목표 경로와 장면 정보를 이용해 궤적을 생성하는 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/module-sensing> a ns1:SoftwareModule ;
+        rdfs:label "Synthetic sensing module"@en,
+            "가상 감지 모듈"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-stack> ;
+        ns1:moduleInput "camera frames, LiDAR scans, GNSS/IMU and wheel odometry"^^xsd:string ;
+        ns1:moduleKind "sensing"^^xsd:string ;
+        ns1:moduleName "sensing"^^xsd:string ;
+        ns1:moduleNote "실제 ROS 노드나 드라이버를 가리키지 않는다."^^xsd:string ;
+        ns1:moduleOutput "timestamped sensor data"^^xsd:string ;
+        ns1:modulePurpose "센서 입력 수집·전처리 역할의 예시다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/route-campus-loop> a ns1:Route ;
+        rdfs:label "Synthetic campus loop route"@en,
+            "가상 캠퍼스 순환 경로"@ko ;
+        ns1:routeEnd "가상 연구동 정류장"^^xsd:string ;
+        ns1:routeMap <https://example.test/autonomous-driving/map-campus> ;
+        ns1:routeName "campus_loop_demo"^^xsd:string ;
+        ns1:routeNote "측량·접근성·도로 규칙 확인 전의 설명용 경로다."^^xsd:string ;
+        ns1:routeStart "가상 북문 정류장"^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-autoware-vehicle> a ns1:DocumentationSource ;
+        rdfs:label "Autoware vehicle interface design"@en,
+            "Autoware 차량 인터페이스 설계"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "Vehicle Interface design"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-nhtsa-ads> a ns1:DocumentationSource ;
+        rdfs:label "NHTSA automated driving systems guidance"@en,
+            "NHTSA 자동주행 시스템 안전 안내"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+        ns1:sourceTitle "Automated Driving Systems"^^xsd:string ;
+        ns1:sourceUri "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/odd-campus-day> a ns1:OperationalDesignDomain ;
+        rdfs:label "Synthetic campus daytime dry-condition ODD"@en,
+            "가상 캠퍼스 낮·건조 조건 ODD"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-nhtsa-ads>,
+            <https://example.test/autonomous-driving/src-nhtsa-odd> ;
+        ns1:environmentCondition "daylight"^^xsd:string,
+            "dry"^^xsd:string,
+            "geofenced"^^xsd:string ;
+        ns1:geographicArea "가상의 분리된 캠퍼스 순환로"^^xsd:string ;
+        ns1:maxSpeedKph 20 ;
+        ns1:oddName "campus_day_dry_demo"^^xsd:string ;
+        ns1:oddNote "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."^^xsd:string ;
+        ns1:roadwayType "private_campus"^^xsd:string .
+
+    <https://example.test/autonomous-driving/vehicle-campus-shuttle> a ns1:Vehicle ;
+        rdfs:label "Synthetic electric campus shuttle"@en,
+            "가상 전기 캠퍼스 셔틀"@ko ;
+        ns1:documentedBy <https://example.test/autonomous-driving/src-autoware-vehicle> ;
+        ns1:powertrainType "electric"^^xsd:string ;
+        ns1:vehicleKind "shuttle"^^xsd:string ;
+        ns1:vehicleName "campus_shuttle_demo"^^xsd:string ;
+        ns1:vehicleNote "차량 크기, 제동거리, 조향 응답과 drive-by-wire 연결을 정의하거나 시험하지 않은 가상 차량이다."^^xsd:string .
+
+    <https://example.test/autonomous-driving/src-sae-j3016> a ns1:DocumentationSource ;
+        rdfs:label "SAE J3016 driving automation taxonomy"@en,
+            "SAE J3016 자동화 수준 분류"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "SAE International"^^xsd:string ;
+        ns1:sourceTitle "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles"^^xsd:string ;
+        ns1:sourceUri "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation"^^xsd:anyURI .
+
+    <https://example.test/autonomous-driving/src-autoware-stack> a ns1:DocumentationSource ;
+        rdfs:label "Autoware autonomous driving stack architecture"@en,
+            "Autoware 자율주행 스택 구조"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceClaim "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap."^^xsd:string ;
+        ns1:sourceLanguage "en"^^xsd:string ;
+        ns1:sourcePublisher "Autoware Foundation"^^xsd:string ;
+        ns1:sourceTitle "Autonomous Driving Stack Architecture"^^xsd:string ;
+        ns1:sourceUri "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/"^^xsd:anyURI .
+}

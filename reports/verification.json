@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-05T02:06:27.138431+09:00",
+  "python_version": "3.13.15",
+  "command": ".venv/Scripts/python.exe run_tests.py",
+  "exit_code": 0,
+  "tests_run": 302,
+  "elapsed_seconds": 87.08,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "raw_log": ".runtime/quality-tests.log",
+  "log_sha256": "88a761c1ce3fb68e324bd4e6272aa72167cd4157ed52e67ca05a17a5e55d7dd0"
+}

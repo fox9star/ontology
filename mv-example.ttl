@@ -1,0 +1,108 @@
+@prefix mv: <https://example.org/mv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mv:project01 a mv:MusicVideoProject ;
+    rdfs:label "시티팝 60초 뮤직비디오 프로젝트"@ko ;
+    mv:hasAudio mv:audio01 ;
+    mv:hasBrief mv:brief01 ;
+    mv:hasFinalVideo mv:video01 ;
+    mv:hasImage mv:image01,
+        mv:image02 ;
+    mv:hasTimeline mv:timeline01 .
+
+mv:테스트용신규AI에이전트_311f2d a mv:AIAgent ;
+    rdfs:label "테스트용 신규 AI 에이전트"@ko .
+
+mv:editorAgent01 a mv:AIAgent ;
+    rdfs:label "영상 편집/렌더링 에이전트"@ko .
+
+mv:imageAgent01 a mv:AIAgent ;
+    rdfs:label "원화 생성 에이전트"@ko .
+
+mv:musicAgent01 a mv:AIAgent ;
+    rdfs:label "작곡 에이전트"@ko .
+
+mv:renderTask01 a mv:RenderTask ;
+    rdfs:label "최종 뮤직비디오 합성 렌더링"@ko ;
+    prov:used mv:audio01,
+        mv:image01,
+        mv:image02,
+        mv:timeline01 ;
+    prov:wasAssociatedWith mv:editorAgent01 ;
+    mv:dependsOn mv:audioTask01,
+        mv:imageTask01 ;
+    mv:modelVersion "FFmpeg-v6.1" ;
+    mv:status "completed" .
+
+mv:shot01 a mv:Shot ;
+    rdfs:label "첫 번째 장면 (0~30초)"@ko ;
+    mv:endSecond 30.0 ;
+    mv:orderIndex 1 ;
+    mv:startSecond 0.0 ;
+    mv:usesImage mv:image01 .
+
+mv:shot02 a mv:Shot ;
+    rdfs:label "두 번째 장면 (30~60초)"@ko ;
+    mv:endSecond 60.0 ;
+    mv:orderIndex 2 ;
+    mv:startSecond 30.0 ;
+    mv:usesImage mv:image02 .
+
+mv:video01 a mv:MusicVideo ;
+    rdfs:label "시티팝 60초 최종 뮤직비디오 파일"@ko ;
+    prov:wasDerivedFrom mv:audio01,
+        mv:image01,
+        mv:image02 ;
+    prov:wasGeneratedBy mv:renderTask01 ;
+    mv:durationSeconds 60.0 ;
+    mv:fileUri <https://example.org/assets/video.mp4> ;
+    mv:hasTimeline mv:timeline01 ;
+    mv:usesAudio mv:audio01 .
+
+mv:audioTask01 a mv:AudioGenerationTask ;
+    rdfs:label "음원 트랙 생성 작업"@ko ;
+    prov:used mv:brief01 ;
+    prov:wasAssociatedWith mv:musicAgent01 ;
+    mv:modelVersion "Suno-v3.5" ;
+    mv:promptText "80s retro city pop synthwave instrumental" ;
+    mv:status "completed" .
+
+mv:brief01 a mv:CreativeBrief ;
+    rdfs:label "시티팝 분위기의 60초 홍보 영상 기획안"@ko ;
+    mv:targetDurationSeconds 60.0 .
+
+mv:imageTask01 a mv:ImageGenerationTask ;
+    rdfs:label "배경 및 캐릭터 일러스트 생성 작업"@ko ;
+    prov:used mv:brief01 ;
+    prov:wasAssociatedWith mv:imageAgent01 ;
+    mv:modelVersion "Midjourney-v6" ;
+    mv:promptText "Retro anime city night skyline with neon lights" ;
+    mv:status "completed" .
+
+mv:timeline01 a mv:Timeline ;
+    rdfs:label "60초 영상 타임라인"@ko ;
+    mv:hasShot mv:shot01,
+        mv:shot02 .
+
+mv:audio01 a mv:AudioAsset ;
+    rdfs:label "시티팝 메인 음원파일"@ko ;
+    prov:wasGeneratedBy mv:audioTask01 ;
+    mv:durationSeconds 60.0 ;
+    mv:fileUri <https://example.org/assets/song.wav> .
+
+mv:image01 a mv:ImageAsset ;
+    rdfs:label "도시 야경 배경 일러스트"@ko ;
+    prov:wasGeneratedBy mv:imageTask01 ;
+    mv:fileUri <https://example.org/assets/image01.png> ;
+    mv:height 1080 ;
+    mv:width 1920 .
+
+mv:image02 a mv:ImageAsset ;
+    rdfs:label "네온 거리 드라이브 장면 일러스트"@ko ;
+    prov:wasGeneratedBy mv:imageTask01 ;
+    mv:fileUri <https://example.org/assets/image02.png> ;
+    mv:height 1080 ;
+    mv:width 1920 .
+

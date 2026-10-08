@@ -1,0 +1,24 @@
+@prefix ns1: <https://example.org/ontology/custom/electricity-craftsman#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/electricity-craftsman/rejected> {
+    <https://example.test/electricity-craftsman/rejected> a ns1:SourceDocument ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceIdentifier "rejected-source"^^xsd:string ;
+        ns1:sourceKind "invalid-source-kind"^^xsd:string ;
+        ns1:sourceLimitations "Illustrative consumer fixture only."@en ;
+        ns1:sourcePublisher "Fixture publisher"^^xsd:string ;
+        ns1:sourceTitle "Consumer source fixture"^^xsd:string ;
+        ns1:sourceUri "urn:example:electricity-craftsman:source"^^xsd:anyURI .
+}
+
+<https://example.test/consumer/electricity-craftsman/accepted> {
+    <https://example.test/electricity-craftsman/accepted> a ns1:SourceDocument ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceIdentifier "accepted-source"^^xsd:string ;
+        ns1:sourceKind "exam_details"^^xsd:string ;
+        ns1:sourceLimitations "Illustrative consumer fixture only."@en ;
+        ns1:sourcePublisher "Fixture publisher"^^xsd:string ;
+        ns1:sourceTitle "Consumer source fixture"^^xsd:string ;
+        ns1:sourceUri "urn:example:electricity-craftsman:source"^^xsd:anyURI .
+}

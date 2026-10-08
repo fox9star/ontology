@@ -1,0 +1,727 @@
+@prefix ev: <https://example.test/electric-vehicle#> .
+@prefix ns1: <https://example.org/ontology/custom/electric-vehicle#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ev:coverage-charging a ev:CoverageNote,
+        ev:ResourceRecord ;
+    rdfs:label "Charging infrastructure"@en,
+        "충전 인프라"@ko ;
+    ns1:coverageExplanation "Models station-port-connector structure and AC/DC interfaces; infrastructure and session data are synthetic."@en,
+        "스테이션-포트-커넥터 구조와 AC/DC 인터페이스를 나타낸다. 인프라·세션 자료는 합성 예시다."@ko ;
+    ns1:coverageLabel "Charging infrastructure"@en,
+        "충전 인프라"@ko ;
+    ns1:coverageStatus "limited"^^xsd:string ;
+    ns1:recordIdentifier "coverage-charging"^^xsd:string ;
+    ns1:recordLabel "Charging infrastructure"@en,
+        "충전 인프라"@ko .
+
+ev:coverage-components a ev:CoverageNote,
+        ev:ResourceRecord ;
+    rdfs:label "Drivetrain and power conversion"@en,
+        "구동계와 전력 변환"@ko ;
+    ns1:coverageExplanation "Covers battery, motor, onboard charger, inverter, DC-DC converter, controller, and thermal-management roles."@en,
+        "구동 배터리, 모터, 탑재 충전기, 인버터, DC-DC 변환기, 제어기와 열관리 역할을 다룬다."@ko ;
+    ns1:coverageLabel "Drivetrain and power conversion"@en,
+        "구동계와 전력 변환"@ko ;
+    ns1:coverageStatus "included"^^xsd:string ;
+    ns1:recordIdentifier "coverage-components"^^xsd:string ;
+    ns1:recordLabel "Drivetrain and power conversion"@en,
+        "구동계와 전력 변환"@ko .
+
+ev:coverage-performance a ev:CoverageNote,
+        ev:ResourceRecord ;
+    rdfs:label "Model-specific performance and battery figures"@en,
+        "차종별 성능·배터리 수치"@ko ;
+    ns1:coverageExplanation "Capacity, charging speed, range, efficiency, and battery health are not generalized without model- and use-specific sources."@en,
+        "용량, 충전 속도, 주행거리, 효율과 배터리 건강도는 차종·시험·운행별 자료가 없어 일반화하지 않는다."@ko ;
+    ns1:coverageLabel "Model-specific performance and battery figures"@en,
+        "차종별 성능·배터리 수치"@ko ;
+    ns1:coverageStatus "excluded"^^xsd:string ;
+    ns1:recordIdentifier "coverage-performance"^^xsd:string ;
+    ns1:recordLabel "Model-specific performance and battery figures"@en,
+        "차종별 성능·배터리 수치"@ko .
+
+ev:coverage-standards a ev:CoverageNote,
+        ev:ResourceRecord ;
+    rdfs:label "Market-specific connector standards and compatibility"@en,
+        "지역별 커넥터 표준과 호환성"@ko ;
+    ns1:coverageExplanation "Standards support, manufacturer compatibility, laws, tariffs, and incentives require market- and time-specific sources and are excluded."@en,
+        "표준별 지원, 제조사 호환성, 법규·요금·보조금은 지역과 시점별 자료가 필요해 제외한다."@ko ;
+    ns1:coverageLabel "Market-specific connector standards and compatibility"@en,
+        "지역별 커넥터 표준과 호환성"@ko ;
+    ns1:coverageStatus "excluded"^^xsd:string ;
+    ns1:recordIdentifier "coverage-standards"^^xsd:string ;
+    ns1:recordLabel "Market-specific connector standards and compatibility"@en,
+        "지역별 커넥터 표준과 호환성"@ko .
+
+ev:coverage-vehicle-types a ev:CoverageNote,
+        ev:ResourceRecord ;
+    rdfs:label "Vehicle categories"@en,
+        "차량 유형"@ko ;
+    ns1:coverageExplanation "Separate BEV, PHEV, and HEV classes represent differences in off-board charging and propulsion energy."@en,
+        "BEV, PHEV, HEV를 별도 클래스로 두고 외부 충전과 추진 에너지 범주의 차이를 표현한다."@ko ;
+    ns1:coverageLabel "Vehicle categories"@en,
+        "차량 유형"@ko ;
+    ns1:coverageStatus "included"^^xsd:string ;
+    ns1:recordIdentifier "coverage-vehicle-types"^^xsd:string ;
+    ns1:recordLabel "Vehicle categories"@en,
+        "차량 유형"@ko .
+
+ev:e-charge-factors a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-charge-factors"@en,
+        "근거 e-charge-factors"@ko ;
+    ns1:evidenceAbout ev:evse-ac-example ;
+    ns1:evidenceClaim "Charging time depends on battery state of charge and capacity, battery type, onboard-charger capacity, equipment output, and electrical service."@en,
+        "충전 시간에는 배터리 상태·용량·종류, 차량 충전기 용량, 설비 출력과 전기 서비스가 영향을 준다."@ko ;
+    ns1:evidenceIdentifier "e-charge-factors"^^xsd:string ;
+    ns1:evidenceLocator "Charging Equipment section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-charging ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-charge-factors"^^xsd:string ;
+    ns1:recordLabel "Evidence e-charge-factors"@en,
+        "근거 e-charge-factors"@ko .
+
+ev:e-port-topology a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-port-topology"@en,
+        "근거 e-port-topology"@ko ;
+    ns1:evidenceAbout ev:station-location-example ;
+    ns1:evidenceClaim "A station location can contain multiple ports; a port serves one vehicle at a time and can have multiple connectors."@en,
+        "충전소 위치는 여러 충전 포트를 가질 수 있고 포트는 한 번에 한 차량을 공급하며 여러 커넥터를 가질 수 있다."@ko ;
+    ns1:evidenceIdentifier "e-port-topology"^^xsd:string ;
+    ns1:evidenceLocator "Charging Infrastructure Terminology section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-charging ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-port-topology"^^xsd:string ;
+    ns1:recordLabel "Evidence e-port-topology"@en,
+        "근거 e-port-topology"@ko .
+
+ev:flow-ac-evse-onboard a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "AC equipment to onboard charger"@en,
+        "AC 설비에서 차량 탑재 충전기로"@ko ;
+    ns1:energyFlowCondition "Input from AC charging equipment to the onboard charger."@en,
+        "AC 충전 설비에서 차량 탑재 충전기로 입력된다."@ko ;
+    ns1:energyFlowDestination ev:component-onboard-charger ;
+    ns1:energyFlowForm "ac-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-ac-path ;
+    ns1:energyFlowSource ev:evse-ac-example ;
+    ns1:recordIdentifier "flow-ac-evse-onboard"^^xsd:string ;
+    ns1:recordLabel "AC equipment to onboard charger"@en,
+        "AC 설비에서 차량 탑재 충전기로"@ko .
+
+ev:flow-battery-controller a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Traction battery to controller"@en,
+        "구동 배터리에서 제어기로"@ko ;
+    ns1:energyFlowCondition "A conceptual representation of power flow from battery to traction drive."@en,
+        "배터리와 구동계 사이 전력 흐름의 개념적 표현이다."@ko ;
+    ns1:energyFlowDestination ev:component-power-controller ;
+    ns1:energyFlowForm "dc-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-components ;
+    ns1:energyFlowSource ev:component-traction-battery ;
+    ns1:recordIdentifier "flow-battery-controller"^^xsd:string ;
+    ns1:recordLabel "Traction battery to controller"@en,
+        "구동 배터리에서 제어기로"@ko .
+
+ev:flow-controller-inverter a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Controller to inverter"@en,
+        "제어기에서 인버터로"@ko ;
+    ns1:energyFlowCondition "A simplified relation; detailed circuit topology varies."@en,
+        "전력전자 구성품의 단순화된 관계이며 상세 회로 구성은 다를 수 있다."@ko ;
+    ns1:energyFlowDestination ev:component-inverter ;
+    ns1:energyFlowForm "dc-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-components ;
+    ns1:energyFlowSource ev:component-power-controller ;
+    ns1:recordIdentifier "flow-controller-inverter"^^xsd:string ;
+    ns1:recordLabel "Controller to inverter"@en,
+        "제어기에서 인버터로"@ko .
+
+ev:flow-dc-equipment-battery a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "DC equipment to traction battery"@en,
+        "DC 충전 설비에서 구동 배터리로"@ko ;
+    ns1:energyFlowCondition "Represents the DC charging interface path without generalizing internal vehicle topology."@en,
+        "DC 충전 경로를 인터페이스 수준에서 나타낸다. 차량 내부 토폴로지를 일반화하지 않는다."@ko ;
+    ns1:energyFlowDestination ev:component-traction-battery ;
+    ns1:energyFlowForm "dc-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-dc-interface ;
+    ns1:energyFlowSource ev:evse-dc-example ;
+    ns1:recordIdentifier "flow-dc-equipment-battery"^^xsd:string ;
+    ns1:recordLabel "DC equipment to traction battery"@en,
+        "DC 충전 설비에서 구동 배터리로"@ko .
+
+ev:flow-inverter-motor a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Inverter to motor"@en,
+        "인버터에서 모터로"@ko ;
+    ns1:energyFlowCondition "A conceptual flow of controlled power to the motor."@en,
+        "모터에 제어된 전력을 공급하는 개념 흐름이다."@ko ;
+    ns1:energyFlowDestination ev:component-electric-motor ;
+    ns1:energyFlowForm "ac-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-components ;
+    ns1:energyFlowSource ev:component-inverter ;
+    ns1:recordIdentifier "flow-inverter-motor"^^xsd:string ;
+    ns1:recordLabel "Inverter to motor"@en,
+        "인버터에서 모터로"@ko .
+
+ev:flow-motor-vehicle a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Motor to vehicle drivetrain"@en,
+        "모터에서 차량 구동계로"@ko ;
+    ns1:energyFlowCondition "The drivetrain transfers motor mechanical power to the wheels."@en,
+        "구동계가 모터의 기계적 동력을 바퀴로 전달한다."@ko ;
+    ns1:energyFlowDestination ev:vehicle-bev-pattern ;
+    ns1:energyFlowForm "mechanical-energy"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-bev-components ;
+    ns1:energyFlowSource ev:component-electric-motor ;
+    ns1:recordIdentifier "flow-motor-vehicle"^^xsd:string ;
+    ns1:recordLabel "Motor to vehicle drivetrain"@en,
+        "모터에서 차량 구동계로"@ko .
+
+ev:flow-onboard-battery a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Onboard charger to traction battery"@en,
+        "차량 탑재 충전기에서 구동 배터리로"@ko ;
+    ns1:energyFlowCondition "The onboard charger converts input AC to DC for the battery."@en,
+        "탑재 충전기가 입력 AC를 배터리 충전용 DC로 변환한다."@ko ;
+    ns1:energyFlowDestination ev:component-traction-battery ;
+    ns1:energyFlowForm "dc-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-ac-path ;
+    ns1:energyFlowSource ev:component-onboard-charger ;
+    ns1:recordIdentifier "flow-onboard-battery"^^xsd:string ;
+    ns1:recordLabel "Onboard charger to traction battery"@en,
+        "차량 탑재 충전기에서 구동 배터리로"@ko .
+
+ev:flow-regeneration-battery a ev:EnergyFlow,
+        ev:ResourceRecord ;
+    rdfs:label "Regenerative braking to battery"@en,
+        "회생 제동에서 배터리로"@ko ;
+    ns1:energyFlowCondition "Where supported, motor-generator operation captures braking energy for storage."@en,
+        "회생 제동을 지원할 때 모터 발전 기능이 에너지를 포착해 저장한다."@ko ;
+    ns1:energyFlowDestination ev:component-traction-battery ;
+    ns1:energyFlowForm "dc-electricity"^^xsd:string ;
+    ns1:energyFlowHasEvidence ev:e-doe-components ;
+    ns1:energyFlowSource ev:component-electric-motor ;
+    ns1:recordIdentifier "flow-regeneration-battery"^^xsd:string ;
+    ns1:recordLabel "Regenerative braking to battery"@en,
+        "회생 제동에서 배터리로"@ko .
+
+ev:session-example a ev:ChargingSession,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic AC charging session"@en,
+        "가상 AC 충전 세션"@ko ;
+    ns1:recordDescription "Synthetic session, not validated metering data."@en,
+        "검증·계량 데이터가 아닌 합성 세션이다."@ko ;
+    ns1:recordIdentifier "session-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic AC charging session"@en,
+        "가상 AC 충전 세션"@ko ;
+    ns1:sessionConnector ev:connector-ac-example ;
+    ns1:sessionCurrentType "ac"^^xsd:string ;
+    ns1:sessionDataStatus "synthetic-example"^^xsd:string ;
+    ns1:sessionEVSEPort ev:evse-ac-example ;
+    ns1:sessionState "completed"^^xsd:string ;
+    ns1:sessionVehicle ev:vehicle-bev-pattern .
+
+ev:afdc-bev a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Alternative Fuels Data Center: How Do All-Electric Cars Work?"@en,
+        "미국 에너지부 대체연료 데이터센터: 배터리 전기차 작동 방식"@ko ;
+    ns1:recordIdentifier "afdc-bev"^^xsd:string ;
+    ns1:recordLabel "Alternative Fuels Data Center: How Do All-Electric Cars Work?"@en,
+        "미국 에너지부 대체연료 데이터센터: 배터리 전기차 작동 방식"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy, Transportation Technologies Office"^^xsd:string ;
+    ns1:sourceScope "Overview of BEV components and functions; does not generalize model-specific design or numerical specifications."@en,
+        "BEV 구성품과 기능 개요다. 차종별 상세 설계와 수치 사양을 일반화하지 않는다."@ko ;
+    ns1:sourceTitle "Alternative Fuels Data Center: How Do All-Electric Cars Work?"@en,
+        "미국 에너지부 대체연료 데이터센터: 배터리 전기차 작동 방식"@ko ;
+    ns1:sourceURL "https://afdc.energy.gov/vehicles/how-do-all-electric-cars-work"^^xsd:anyURI .
+
+ev:afdc-hev a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Alternative Fuels Data Center: Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 하이브리드 전기차"@ko ;
+    ns1:recordIdentifier "afdc-hev"^^xsd:string ;
+    ns1:recordLabel "Alternative Fuels Data Center: Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 하이브리드 전기차"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy, Transportation Technologies Office"^^xsd:string ;
+    ns1:sourceScope "Describes HEV charging through regenerative braking and the combustion engine rather than plugging in."@en,
+        "HEV의 외부 충전 불가와 회생 제동·내연기관 충전을 설명한다."@ko ;
+    ns1:sourceTitle "Alternative Fuels Data Center: Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 하이브리드 전기차"@ko ;
+    ns1:sourceURL "https://afdc.energy.gov/vehicles/electric-basics-hev"^^xsd:anyURI .
+
+ev:afdc-phev a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Alternative Fuels Data Center: Plug-In Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 플러그인 하이브리드 전기차"@ko ;
+    ns1:recordIdentifier "afdc-phev"^^xsd:string ;
+    ns1:recordLabel "Alternative Fuels Data Center: Plug-In Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 플러그인 하이브리드 전기차"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy, Transportation Technologies Office"^^xsd:string ;
+    ns1:sourceScope "Describes PHEV engine, motor, battery, external charging, regeneration, and series or parallel layouts."@en,
+        "PHEV의 엔진·모터·배터리, 외부 충전, 회생 제동, 직렬·병렬 구성을 설명한다."@ko ;
+    ns1:sourceTitle "Alternative Fuels Data Center: Plug-In Hybrid Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 플러그인 하이브리드 전기차"@ko ;
+    ns1:sourceURL "https://afdc.energy.gov/vehicles/electric-basics-phev"^^xsd:anyURI .
+
+ev:component-auxiliary-battery a ev:AuxiliaryBattery,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "Auxiliary battery"@en,
+        "보조 배터리"@ko ;
+    ns1:componentFunction "Supplies auxiliary power to vehicle accessories."@en,
+        "차량 액세서리에 보조 전력을 공급한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components ;
+    ns1:componentRole "auxiliary-storage"^^xsd:string ;
+    ns1:recordIdentifier "component-auxiliary-battery"^^xsd:string ;
+    ns1:recordLabel "Auxiliary battery"@en,
+        "보조 배터리"@ko .
+
+ev:component-dcdc a ev:DCDCConverter,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "DC-DC converter"@en,
+        "DC-DC 변환기"@ko ;
+    ns1:componentFunction "Converts higher-voltage traction-battery DC to lower-voltage DC for auxiliary loads."@en,
+        "구동 배터리의 고전압 DC를 보조 부하용 저전압 DC로 변환한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:componentRole "power-conversion"^^xsd:string ;
+    ns1:recordIdentifier "component-dcdc"^^xsd:string ;
+    ns1:recordLabel "DC-DC converter"@en,
+        "DC-DC 변환기"@ko .
+
+ev:component-thermal-management a ev:PowertrainComponent,
+        ev:ResourceRecord,
+        ev:ThermalManagementSystem ;
+    rdfs:label "EV thermal management system"@en,
+        "전기차 열관리 시스템"@ko ;
+    ns1:componentFunction "Manages operating temperatures of the battery, motor, and power electronics."@en,
+        "배터리와 모터, 전력전자 등 구성품의 작동 온도를 관리한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:componentRole "thermal-control"^^xsd:string ;
+    ns1:recordIdentifier "component-thermal-management"^^xsd:string ;
+    ns1:recordLabel "EV thermal management system"@en,
+        "전기차 열관리 시스템"@ko .
+
+ev:component-vehicle-charge-port a ev:PowertrainComponent,
+        ev:ResourceRecord,
+        ev:VehicleChargePort ;
+    rdfs:label "Vehicle charge port"@en,
+        "차량 충전구"@ko ;
+    ns1:componentFunction "Connects the vehicle to external charging equipment."@en,
+        "외부 충전 설비와 차량을 연결한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components ;
+    ns1:componentRole "charging-interface"^^xsd:string ;
+    ns1:recordIdentifier "component-vehicle-charge-port"^^xsd:string ;
+    ns1:recordLabel "Vehicle charge port"@en,
+        "차량 충전구"@ko .
+
+ev:connector-dc-example a ev:ChargingConnector,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic DC interface connector"@en,
+        "가상 DC 인터페이스 커넥터"@ko ;
+    ns1:connectorDataStatus "synthetic-example"^^xsd:string ;
+    ns1:connectorInterfaceType "dc-example"^^xsd:string ;
+    ns1:recordDescription "Synthetic example, not a country- or manufacturer-specific connector standard."@en,
+        "특정 국가·제조사 커넥터 표준을 뜻하지 않는 합성 예시다."@ko ;
+    ns1:recordIdentifier "connector-dc-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic DC interface connector"@en,
+        "가상 DC 인터페이스 커넥터"@ko .
+
+ev:e-bev-category a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-bev-category"@en,
+        "근거 e-bev-category"@ko ;
+    ns1:evidenceAbout ev:vehicle-bev-pattern ;
+    ns1:evidenceClaim "BEVs operate in all-electric mode and charge their traction battery by plugging into charging equipment."@en,
+        "BEV는 전기 모드로 주행하며 충전 설비에 연결해 구동 배터리를 충전하는 유형으로 설명된다."@ko ;
+    ns1:evidenceIdentifier "e-bev-category"^^xsd:string ;
+    ns1:evidenceLocator "All-Electric Vehicles section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-electric ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-bev-category"^^xsd:string ;
+    ns1:recordLabel "Evidence e-bev-category"@en,
+        "근거 e-bev-category"@ko .
+
+ev:e-dc-interface a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-dc-interface"@en,
+        "근거 e-dc-interface"@ko ;
+    ns1:evidenceAbout ev:evse-dc-example ;
+    ns1:evidenceClaim "The source distinguishes AC charging equipment from direct-current fast-charging equipment."@en,
+        "AFDC는 AC 충전 설비와 DC 급속 충전 설비를 구분한다."@ko ;
+    ns1:evidenceIdentifier "e-dc-interface"^^xsd:string ;
+    ns1:evidenceLocator "Charging Equipment and DC Fast Charging sections"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-charging ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-dc-interface"^^xsd:string ;
+    ns1:recordLabel "Evidence e-dc-interface"@en,
+        "근거 e-dc-interface"@ko .
+
+ev:e-hev-category a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-hev-category"@en,
+        "근거 e-hev-category"@ko ;
+    ns1:evidenceAbout ev:vehicle-hev-pattern ;
+    ns1:evidenceClaim "HEVs use a combustion engine and electric motor; the battery charges through regenerative braking rather than plugging in."@en,
+        "HEV는 외부 전원에 꽂지 않고 회생 제동과 내연기관을 통해 배터리를 충전한다."@ko ;
+    ns1:evidenceIdentifier "e-hev-category"^^xsd:string ;
+    ns1:evidenceLocator "Hybrid Electric Vehicles section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-electric ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-hev-category"^^xsd:string ;
+    ns1:recordLabel "Evidence e-hev-category"@en,
+        "근거 e-hev-category"@ko .
+
+ev:e-hev-regeneration a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-hev-regeneration"@en,
+        "근거 e-hev-regeneration"@ko ;
+    ns1:evidenceAbout ev:vehicle-hev-pattern ;
+    ns1:evidenceClaim "An HEV cannot plug into off-board electricity and charges through regenerative braking and the combustion engine."@en,
+        "HEV는 외부 충전을 하지 않고 회생 제동과 내연기관을 이용해 배터리를 충전한다."@ko ;
+    ns1:evidenceIdentifier "e-hev-regeneration"^^xsd:string ;
+    ns1:evidenceLocator "Regenerative Braking section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-hev ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-hev-regeneration"^^xsd:string ;
+    ns1:recordLabel "Evidence e-hev-regeneration"@en,
+        "근거 e-hev-regeneration"@ko .
+
+ev:e-phev-architecture a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-phev-architecture"@en,
+        "근거 e-phev-architecture"@ko ;
+    ns1:evidenceAbout ev:vehicle-phev-pattern ;
+    ns1:evidenceClaim "PHEVs may use series or parallel powertrain configurations; some vehicles can operate in either configuration."@en,
+        "PHEV에는 직렬·병렬 구성이 있으며 일부 차량은 두 구성으로 동작할 수 있다."@ko ;
+    ns1:evidenceIdentifier "e-phev-architecture"^^xsd:string ;
+    ns1:evidenceLocator "Fuel-Efficient System Design section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-phev ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-phev-architecture"^^xsd:string ;
+    ns1:recordLabel "Evidence e-phev-architecture"@en,
+        "근거 e-phev-architecture"@ko .
+
+ev:e-phev-category a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-phev-category"@en,
+        "근거 e-phev-category"@ko ;
+    ns1:evidenceAbout ev:vehicle-phev-pattern ;
+    ns1:evidenceClaim "PHEVs combine an internal-combustion engine and electric motor, and can plug in to charge the battery."@en,
+        "PHEV는 내연기관과 전기 모터를 함께 사용하고 배터리를 외부 전원에 연결해 충전할 수 있다."@ko ;
+    ns1:evidenceIdentifier "e-phev-category"^^xsd:string ;
+    ns1:evidenceLocator "Plug-In Hybrid Electric Vehicles section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-electric ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-phev-category"^^xsd:string ;
+    ns1:recordLabel "Evidence e-phev-category"@en,
+        "근거 e-phev-category"@ko .
+
+ev:station-location-example a ev:ChargingStationLocation,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic station location example"@en,
+        "가상 충전소 위치 예시"@ko ;
+    ns1:recordDescription "Synthetic example, not an observation of a real station."@en,
+        "실제 충전소의 관찰값이 아닌 합성 예시다."@ko ;
+    ns1:recordIdentifier "station-location-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic station location example"@en,
+        "가상 충전소 위치 예시"@ko ;
+    ns1:stationDataStatus "synthetic-example"^^xsd:string ;
+    ns1:stationHasPort ev:evse-ac-example,
+        ev:evse-dc-example .
+
+ev:connector-ac-example a ev:ChargingConnector,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic AC interface connector"@en,
+        "가상 AC 인터페이스 커넥터"@ko ;
+    ns1:connectorDataStatus "synthetic-example"^^xsd:string ;
+    ns1:connectorInterfaceType "ac-example"^^xsd:string ;
+    ns1:recordDescription "Synthetic example, not a country- or manufacturer-specific connector standard."@en,
+        "특정 국가·제조사 커넥터 표준을 뜻하지 않는 합성 예시다."@ko ;
+    ns1:recordIdentifier "connector-ac-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic AC interface connector"@en,
+        "가상 AC 인터페이스 커넥터"@ko .
+
+ev:doe-vgi a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Vehicles-to-Grid Integration Assessment Report"@en,
+        "미국 에너지부 차량-전력망 통합 평가 보고서"@ko ;
+    ns1:recordIdentifier "doe-vgi"^^xsd:string ;
+    ns1:recordLabel "Vehicles-to-Grid Integration Assessment Report"@en,
+        "미국 에너지부 차량-전력망 통합 평가 보고서"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy"^^xsd:string ;
+    ns1:sourceScope "Uses the January 2025 EV component overview; model-specific architecture and performance are not universal constraints."@en,
+        "2025년 1월 보고서의 EV 구성품 개요를 사용한다. 차종별 구조와 성능 차이를 보편 제약으로 만들지 않는다."@ko ;
+    ns1:sourceTitle "Vehicles-to-Grid Integration Assessment Report"@en,
+        "미국 에너지부 차량-전력망 통합 평가 보고서"@ko ;
+    ns1:sourceURL "https://www.energy.gov/sites/default/files/2025-01/Vehicle_Grid_Integration_Asseessment_Report_01162025.pdf"^^xsd:anyURI .
+
+ev:vehicle-hev-pattern a ev:ElectrifiedVehicle,
+        ev:HybridElectricVehicle,
+        ev:ResourceRecord,
+        ev:Vehicle ;
+    rdfs:label "Non-plug-in hybrid archetype example"@en,
+        "일반 하이브리드 유형 예시"@ko ;
+    ns1:recordIdentifier "vehicle-hev-pattern"^^xsd:string ;
+    ns1:recordLabel "Non-plug-in hybrid archetype example"@en,
+        "일반 하이브리드 유형 예시"@ko ;
+    ns1:vehicleChargingEnergySource "internal-combustion-engine"^^xsd:string,
+        "regenerative-braking"^^xsd:string ;
+    ns1:vehicleHasEvidence ev:e-hev-category,
+        ev:e-hev-regeneration ;
+    ns1:vehiclePlugInChargeable false ;
+    ns1:vehiclePowertrainConfiguration "parallel"^^xsd:string,
+        "series"^^xsd:string ;
+    ns1:vehiclePropulsionMode "electric-and-liquid-fuel"^^xsd:string .
+
+ev:vehicle-phev-pattern a ev:ElectrifiedVehicle,
+        ev:PlugInHybridElectricVehicle,
+        ev:ResourceRecord,
+        ev:Vehicle ;
+    rdfs:label "Plug-in hybrid archetype example"@en,
+        "플러그인 하이브리드 유형 예시"@ko ;
+    ns1:recordIdentifier "vehicle-phev-pattern"^^xsd:string ;
+    ns1:recordLabel "Plug-in hybrid archetype example"@en,
+        "플러그인 하이브리드 유형 예시"@ko ;
+    ns1:vehicleChargingEnergySource "internal-combustion-engine"^^xsd:string,
+        "off-board-electricity"^^xsd:string,
+        "regenerative-braking"^^xsd:string ;
+    ns1:vehicleHasEvidence ev:e-phev-architecture,
+        ev:e-phev-category ;
+    ns1:vehiclePlugInChargeable true ;
+    ns1:vehiclePowertrainConfiguration "parallel"^^xsd:string,
+        "series"^^xsd:string ;
+    ns1:vehiclePropulsionMode "electric-and-liquid-fuel"^^xsd:string .
+
+ev:afdc-charging a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Alternative Fuels Data Center: Electric Vehicle Charging Stations"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 충전소"@ko ;
+    ns1:recordIdentifier "afdc-charging"^^xsd:string ;
+    ns1:recordLabel "Alternative Fuels Data Center: Electric Vehicle Charging Stations"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 충전소"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy, Transportation Technologies Office"^^xsd:string ;
+    ns1:sourceScope "Defines station location, charging port, connector, and AC/DC equipment; standard-specific compatibility is not asserted."@en,
+        "충전소 위치, 충전 포트, 커넥터와 AC/DC 설비를 다룬다. 표준별 호환성은 이 프로필에서 주장하지 않는다."@ko ;
+    ns1:sourceTitle "Alternative Fuels Data Center: Electric Vehicle Charging Stations"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 충전소"@ko ;
+    ns1:sourceURL "https://afdc.energy.gov/fuels/electricity-stations"^^xsd:anyURI .
+
+ev:afdc-electric a ev:ResourceRecord,
+        ev:SourceDocument ;
+    rdfs:label "Alternative Fuels Data Center: Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 유형"@ko ;
+    ns1:recordIdentifier "afdc-electric"^^xsd:string ;
+    ns1:recordLabel "Alternative Fuels Data Center: Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 유형"@ko ;
+    ns1:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    ns1:sourcePublisher "U.S. Department of Energy, Transportation Technologies Office"^^xsd:string ;
+    ns1:sourceScope "Category overview from the U.S. DOE; distinguishes off-board charging and combustion-engine use."@en,
+        "BEV·PHEV·HEV를 전기 사용 차량으로 설명하면서 외부 충전 가능 여부와 내연기관을 구분한다."@ko ;
+    ns1:sourceTitle "Alternative Fuels Data Center: Electric Vehicles"@en,
+        "미국 에너지부 대체연료 데이터센터: 전기차 유형"@ko ;
+    ns1:sourceURL "https://afdc.energy.gov/vehicles/electric"^^xsd:anyURI .
+
+ev:component-inverter a ev:Inverter,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "Traction inverter"@en,
+        "구동 인버터"@ko ;
+    ns1:componentFunction "Participates in traction power conversion."@en,
+        "전력전자 구동계의 전력 변환에 참여한다."@ko ;
+    ns1:componentHasEvidence ev:e-doe-components ;
+    ns1:componentRole "power-conversion"^^xsd:string ;
+    ns1:recordIdentifier "component-inverter"^^xsd:string ;
+    ns1:recordLabel "Traction inverter"@en,
+        "구동 인버터"@ko .
+
+ev:component-power-controller a ev:PowerElectronicsController,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "Power electronics controller"@en,
+        "전력전자 제어기"@ko ;
+    ns1:componentFunction "Manages battery-to-drive power flow and motor output."@en,
+        "배터리와 구동계 사이 전력 흐름과 모터 출력을 관리한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:componentRole "power-control"^^xsd:string ;
+    ns1:recordIdentifier "component-power-controller"^^xsd:string ;
+    ns1:recordLabel "Power electronics controller"@en,
+        "전력전자 제어기"@ko .
+
+ev:e-doe-ac-path a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-doe-ac-path"@en,
+        "근거 e-doe-ac-path"@ko ;
+    ns1:evidenceAbout ev:component-onboard-charger ;
+    ns1:evidenceClaim "For AC charging, the onboard charger converts AC from the vehicle charge port to DC for the traction battery."@en,
+        "AC 충전에서 차량 탑재 충전기는 충전구의 입력 AC를 구동 배터리 충전용 DC로 변환한다."@ko ;
+    ns1:evidenceIdentifier "e-doe-ac-path"^^xsd:string ;
+    ns1:evidenceLocator "Appendix I, PDF page 31, onboard charger"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:doe-vgi ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-doe-ac-path"^^xsd:string ;
+    ns1:recordLabel "Evidence e-doe-ac-path"@en,
+        "근거 e-doe-ac-path"@ko .
+
+ev:evse-dc-example a ev:EVSEPort,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic DC-output EVSE port"@en,
+        "DC 출력 EVSE 포트 예시"@ko ;
+    ns1:portDataStatus "synthetic-example"^^xsd:string ;
+    ns1:portHasConnector ev:connector-dc-example ;
+    ns1:portOutputCurrentType "dc"^^xsd:string ;
+    ns1:portSingleVehicleAtATime true ;
+    ns1:recordDescription "Synthetic example, not a real equipment record."@en,
+        "실제 설비 기록이 아닌 합성 예시다."@ko ;
+    ns1:recordIdentifier "evse-dc-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic DC-output EVSE port"@en,
+        "DC 출력 EVSE 포트 예시"@ko .
+
+ev:component-electric-motor a ev:ElectricTractionMotor,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "Electric traction motor"@en,
+        "전기 구동 모터"@ko ;
+    ns1:componentFunction "Drives the wheels and may also perform regeneration in some designs."@en,
+        "구동 배터리 에너지로 바퀴를 구동하고 일부 설계에서 회생 기능도 수행한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:componentRole "propulsion"^^xsd:string ;
+    ns1:recordIdentifier "component-electric-motor"^^xsd:string ;
+    ns1:recordLabel "Electric traction motor"@en,
+        "전기 구동 모터"@ko .
+
+ev:component-onboard-charger a ev:OnboardCharger,
+        ev:PowertrainComponent,
+        ev:ResourceRecord ;
+    rdfs:label "Onboard charger"@en,
+        "차량 탑재 충전기"@ko ;
+    ns1:componentFunction "Converts AC charging input to battery-charging DC and communicates with equipment."@en,
+        "AC 충전 입력을 배터리 충전용 DC로 변환하고 설비와 통신한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-ac-path,
+        ev:e-doe-components ;
+    ns1:componentRole "power-conversion"^^xsd:string ;
+    ns1:recordIdentifier "component-onboard-charger"^^xsd:string ;
+    ns1:recordLabel "Onboard charger"@en,
+        "차량 탑재 충전기"@ko .
+
+ev:evse-ac-example a ev:EVSEPort,
+        ev:ResourceRecord ;
+    rdfs:label "Synthetic AC-output EVSE port"@en,
+        "AC 출력 EVSE 포트 예시"@ko ;
+    ns1:portDataStatus "synthetic-example"^^xsd:string ;
+    ns1:portHasConnector ev:connector-ac-example ;
+    ns1:portOutputCurrentType "ac"^^xsd:string ;
+    ns1:portSingleVehicleAtATime true ;
+    ns1:recordDescription "Synthetic example, not a real equipment record."@en,
+        "실제 설비 기록이 아닌 합성 예시다."@ko ;
+    ns1:recordIdentifier "evse-ac-example"^^xsd:string ;
+    ns1:recordLabel "Synthetic AC-output EVSE port"@en,
+        "AC 출력 EVSE 포트 예시"@ko .
+
+ev:component-traction-battery a ev:PowertrainComponent,
+        ev:ResourceRecord,
+        ev:TractionBatteryPack ;
+    rdfs:label "Traction battery pack"@en,
+        "구동 배터리 팩"@ko ;
+    ns1:componentFunction "Stores electricity for the traction motor."@en,
+        "구동 모터가 사용할 전기를 저장한다."@ko ;
+    ns1:componentHasEvidence ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:componentRole "traction-storage"^^xsd:string ;
+    ns1:recordIdentifier "component-traction-battery"^^xsd:string ;
+    ns1:recordLabel "Traction battery pack"@en,
+        "구동 배터리 팩"@ko .
+
+ev:vehicle-bev-pattern a ev:BatteryElectricVehicle,
+        ev:ElectrifiedVehicle,
+        ev:ResourceRecord,
+        ev:Vehicle ;
+    rdfs:label "Battery-electric vehicle archetype example"@en,
+        "배터리 전기차 유형 예시"@ko ;
+    ns1:recordIdentifier "vehicle-bev-pattern"^^xsd:string ;
+    ns1:recordLabel "Battery-electric vehicle archetype example"@en,
+        "배터리 전기차 유형 예시"@ko ;
+    ns1:vehicleChargingEnergySource "off-board-electricity"^^xsd:string,
+        "regenerative-braking"^^xsd:string ;
+    ns1:vehicleHasComponent ev:component-auxiliary-battery,
+        ev:component-dcdc,
+        ev:component-electric-motor,
+        ev:component-inverter,
+        ev:component-onboard-charger,
+        ev:component-power-controller,
+        ev:component-thermal-management,
+        ev:component-traction-battery,
+        ev:component-vehicle-charge-port ;
+    ns1:vehicleHasEvidence ev:e-bev-category,
+        ev:e-bev-components,
+        ev:e-doe-components ;
+    ns1:vehiclePlugInChargeable true ;
+    ns1:vehiclePowertrainConfiguration "electric-only"^^xsd:string ;
+    ns1:vehiclePropulsionMode "electric-only"^^xsd:string .
+
+ev:e-bev-components a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-bev-components"@en,
+        "근거 e-bev-components"@ko ;
+    ns1:evidenceAbout ev:vehicle-bev-pattern ;
+    ns1:evidenceClaim "The page describes the charge port, DC/DC converter, traction motor, onboard charger, power electronics controller, thermal system, and traction battery."@en,
+        "AFDC는 BEV의 충전구, DC-DC 변환기, 구동 모터, 탑재 충전기, 전력전자 제어기, 열관리와 구동 배터리 기능을 설명한다."@ko ;
+    ns1:evidenceIdentifier "e-bev-components"^^xsd:string ;
+    ns1:evidenceLocator "Key Components of an All-Electric Car section"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:afdc-bev ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-bev-components"^^xsd:string ;
+    ns1:recordLabel "Evidence e-bev-components"@en,
+        "근거 e-bev-components"@ko .
+
+ev:e-doe-components a ev:EvidenceRecord,
+        ev:ResourceRecord ;
+    rdfs:label "Evidence e-doe-components"@en,
+        "근거 e-doe-components"@ko ;
+    ns1:evidenceAbout ev:vehicle-bev-pattern ;
+    ns1:evidenceClaim "The report describes the traction battery, inverter, motor, power controller, DC-DC converter, onboard charger, thermal management, and regenerative braking."@en,
+        "DOE 보고서는 구동 배터리, 인버터, 모터, 제어기, DC-DC 변환기, 탑재 충전기, 열관리와 회생 제동을 설명한다."@ko ;
+    ns1:evidenceIdentifier "e-doe-components"^^xsd:string ;
+    ns1:evidenceLocator "Appendix I, PDF pages 30-31, key EV components"^^xsd:string ;
+    ns1:evidenceScope "A general source description, not a measured value or universal specification for a specific model."@en,
+        "출처에 기술된 일반 유형·구성 설명이며 실제 차종의 측정값이나 보편 사양으로 해석하지 않는다."@ko ;
+    ns1:evidenceSource ev:doe-vgi ;
+    ns1:evidenceStatus "source-reported"^^xsd:string ;
+    ns1:recordIdentifier "e-doe-components"^^xsd:string ;
+    ns1:recordLabel "Evidence e-doe-components"@en,
+        "근거 e-doe-components"@ko .

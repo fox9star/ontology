@@ -1,0 +1,274 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tpark: <http://example.org/ontology/theme-park#> .
+
+# =================================================================
+# NodeShapes for Theme Park Ontology
+# =================================================================
+
+tpark:ThemeParkShape a sh:NodeShape ;
+    sh:targetClass tpark:ThemePark ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "테마파크는 1개 이상의 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:parkName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "테마파크 명칭은 문자열이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:openingHours ;
+        sh:datatype xsd:string ;
+        sh:message "개장 운영 시간은 문자열이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:totalAreaSqMeters ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "총 부지 면적은 0 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:hasZone ;
+        sh:class tpark:ThemeZone ;
+        sh:message "테마 구역은 ThemeZone 인스턴스여야 합니다."@ko
+    ] .
+
+tpark:ThemeZoneShape a sh:NodeShape ;
+    sh:targetClass tpark:ThemeZone ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "테마 구역은 1개 이상의 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:zoneTheme ;
+        sh:datatype xsd:string ;
+        sh:message "구역 테마 컨셉은 문자열이어야 합니다."@ko
+    ] .
+
+tpark:AttractionShape a sh:NodeShape ;
+    sh:targetClass tpark:Attraction, tpark:RollerCoaster, tpark:WaterRide, tpark:DarkRide ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "어트랙션은 1개 이상의 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:attractionCode ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "어트랙션 식별 코드는 필수 문자열입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:rideCapacityPerHour ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "시간당 탑승 정원은 1명 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:minHeightRequirementCm ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "탑승 제한 신장은 0cm 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:maxSpeedKmh ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "최고 속도는 0km/h 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:trackLengthMeters ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "트랙 길이는 0m 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:rideDurationSeconds ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "운행 소요 시간은 1초 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:operationalStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "운영 상태 표시는 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:fastPassAvailable ;
+        sh:datatype xsd:boolean ;
+        sh:message "스마트 패스 지원 여부는 불리언이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:locatedInZone ;
+        sh:class tpark:ThemeZone ;
+        sh:message "위치한 테마 구역은 ThemeZone 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:hasWaitTime ;
+        sh:class tpark:WaitTimeRecord ;
+        sh:message "대기 시간 기록은 WaitTimeRecord 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:hasInspection ;
+        sh:class tpark:SafetyInspection ;
+        sh:message "안전 점검 기록은 SafetyInspection 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:hasMaintenanceTask ;
+        sh:class tpark:RideMaintenanceTask ;
+        sh:message "정비 작업 내역은 RideMaintenanceTask 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:managedByAgent ;
+        sh:class tpark:ThemeParkAgent ;
+        sh:message "담당 운영 에이전트는 ThemeParkAgent 인스턴스여야 합니다."@ko
+    ] .
+
+tpark:ParkVisitorShape a sh:NodeShape ;
+    sh:targetClass tpark:ParkVisitor ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "방문객은 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:holdsPass ;
+        sh:class tpark:AdmissionPass ;
+        sh:message "보유 입장권은 AdmissionPass 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:visitorAssignedTo ;
+        sh:class tpark:Attraction ;
+        sh:message "예약된 어트랙션은 Attraction 인스턴스여야 합니다."@ko
+    ] .
+
+tpark:AdmissionPassShape a sh:NodeShape ;
+    sh:targetClass tpark:AdmissionPass ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "입장권은 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:passType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "패스 유형은 필수 문자열입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:passPrice ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "패스 가격은 0 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:validForPark ;
+        sh:class tpark:ThemePark ;
+        sh:message "적용 대상 테마파크는 ThemePark 인스턴스여야 합니다."@ko
+    ] .
+
+tpark:WaitTimeRecordShape a sh:NodeShape ;
+    sh:targetClass tpark:WaitTimeRecord ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "대기 시간 기록은 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:currentWaitMinutes ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:minCount 1 ;
+        sh:message "현재 대기 시간은 0분 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:queueLengthPersons ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:message "대기열 인원은 0명 이상이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:recordedTimestamp ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:message "측정 일시는 필수 일시형식(dateTime)이어야 합니다."@ko
+    ] .
+
+tpark:SafetyInspectionShape a sh:NodeShape ;
+    sh:targetClass tpark:SafetyInspection ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "안전 점검 기록은 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:inspectionDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:message "점검 일자는 필수 날짜형식(date)이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:inspectionPassed ;
+        sh:datatype xsd:boolean ;
+        sh:minCount 1 ;
+        sh:message "점검 합격 여부는 불리언이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:safetyInspector ;
+        sh:datatype xsd:string ;
+        sh:message "점검관은 문자열이어야 합니다."@ko
+    ] .
+
+tpark:RideMaintenanceTaskShape a sh:NodeShape ;
+    sh:targetClass tpark:RideMaintenanceTask ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "정비 보수 작업은 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:maintenanceCategory ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "정비 분류는 문자열이어야 합니다."@ko
+    ] .
+
+tpark:ThemeParkAgentShape a sh:NodeShape ;
+    sh:targetClass tpark:ThemeParkAgent, tpark:CrowdControlAgent, tpark:SafetyMonitoringAgent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "AI 에이전트는 라벨이 필수입니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:aiRecommendationNote ;
+        sh:datatype xsd:string ;
+        sh:message "AI 운영 권고문은 문자열이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:executesTask ;
+        sh:class tpark:RideMaintenanceTask ;
+        sh:message "실행 정비 작업은 RideMaintenanceTask 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:monitorsAttraction ;
+        sh:class tpark:Attraction ;
+        sh:message "모니터링 대상 어트랙션은 Attraction 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:congestionLevel ;
+        sh:datatype xsd:string ;
+        sh:message "혼잡도 레벨은 문자열이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path tpark:auditsInspection ;
+        sh:class tpark:SafetyInspection ;
+        sh:message "감사 대상 안전점검은 SafetyInspection 인스턴스여야 합니다."@ko
+    ] .

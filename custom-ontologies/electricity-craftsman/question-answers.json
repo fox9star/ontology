@@ -1,0 +1,580 @@
+{
+  "ELEC-01": {
+    "variables": [
+      "ko",
+      "en",
+      "code",
+      "ministry",
+      "body"
+    ],
+    "rows": [
+      [
+        "전기기능사",
+        "Craftsman Electricity",
+        "7780",
+        "기후에너지환경부",
+        "한국산업인력공단"
+      ]
+    ]
+  },
+  "ELEC-02": {
+    "variables": [
+      "id",
+      "label",
+      "from",
+      "through",
+      "status",
+      "content"
+    ],
+    "rows": [
+      [
+        "electricity-craftsman-2024-2026",
+        "전기기능사 출제기준 (2024.1.1~2026.12.31)",
+        "2024-01-01",
+        "2026-12-31",
+        "active",
+        "partial"
+      ],
+      [
+        "electricity-craftsman-2027-2029",
+        "전기기능사 출제기준 (2027.1.1~2029.12.31)",
+        "2027-01-01",
+        "2029-12-31",
+        "scheduled",
+        "not_ingested"
+      ]
+    ]
+  },
+  "ELEC-03": {
+    "variables": [
+      "id",
+      "label",
+      "method",
+      "items",
+      "choices",
+      "minutes"
+    ],
+    "rows": [
+      [
+        "practical",
+        "실기시험",
+        "전기설비작업 작업형",
+        null,
+        null,
+        "270"
+      ],
+      [
+        "written",
+        "필기시험",
+        "객관식 4지택일형 60문항",
+        "60",
+        "4",
+        null
+      ]
+    ]
+  },
+  "ELEC-04": {
+    "variables": [
+      "id",
+      "label",
+      "description"
+    ],
+    "rows": [
+      [
+        "electrical-theory",
+        "전기이론",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."
+      ],
+      [
+        "electrical-machinery",
+        "전기기기",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."
+      ],
+      [
+        "electrical-equipment",
+        "전기설비",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."
+      ]
+    ]
+  },
+  "ELEC-05": {
+    "variables": [
+      "id",
+      "label",
+      "minimum",
+      "maximum",
+      "stageId"
+    ],
+    "rows": [
+      [
+        "practical-pass-60",
+        "실기 100점 중 60점 이상",
+        "60",
+        "100",
+        "practical"
+      ],
+      [
+        "written-pass-60",
+        "필기 100점 중 60점 이상",
+        "60",
+        "100",
+        "written"
+      ]
+    ]
+  },
+  "ELEC-06": {
+    "variables": [
+      "taskId",
+      "taskLabel",
+      "description",
+      "competencyId",
+      "competencyLabel"
+    ],
+    "rows": [
+      [
+        "conduit-and-wiring",
+        "전기설비 배관 및 배선공사",
+        "큐넷 출제경향에 명시된 실기 작업 범위 요약이다. 단계별 현장 시공법은 다루지 않는다.",
+        "electrical-installation-work",
+        "전기설비 작업 수행"
+      ],
+      [
+        "sequence-control-circuit-completion",
+        "시퀀스 제어회로 완성",
+        "큐넷 출제경향에 명시된 실기 작업 범위 요약이다. 전원 연결·실작업 절차는 다루지 않는다.",
+        "sequence-control-circuit",
+        "시퀀스 제어회로 구성"
+      ]
+    ]
+  },
+  "ELEC-07": {
+    "variables": [
+      "id",
+      "label",
+      "spec",
+      "quantity",
+      "unit",
+      "restriction"
+    ],
+    "rows": [
+      [
+        "tool-01-circuit-tester",
+        "회로시험기(벨테스터, 멀티테스터)",
+        "회로 시험용",
+        "1",
+        "EA",
+        "동작시험 기기는 사용할 수 없으며 10V 이하 제품 사용"
+      ],
+      [
+        "tool-02-screwdriver",
+        "드라이버",
+        "+, -; 충전 드라이버 사용 가능",
+        "1",
+        "SET",
+        "임팩트 드릴 기능 및 해머 드릴 기능 사용 불가"
+      ],
+      [
+        "tool-03-driver-bits",
+        "드라이버 비트",
+        "범용",
+        "1",
+        "SET",
+        null
+      ],
+      [
+        "tool-04-nippers",
+        "니퍼",
+        "범용",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-05-long-nose-pliers",
+        "롱노즈 플라이어",
+        "범용",
+        "1",
+        "개",
+        null
+      ],
+      [
+        "tool-06-pliers",
+        "펜치",
+        "범용",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-07-wire-stripper",
+        "와이어 스트리퍼",
+        "범용",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-08-fish-tape",
+        "강철선(피시테이프)",
+        "1.0mm; 안내선 2m 이상",
+        "1",
+        "M",
+        null
+      ],
+      [
+        "tool-09-other-tools",
+        "기타 필요공구",
+        "검정용 수공구 세트 및 PE관·CD관 배선작업 공구",
+        "1",
+        "SET",
+        null
+      ],
+      [
+        "tool-10-hacksaw",
+        "쇠톱",
+        "전선관 절단용; 파이프 커터 대체 가능",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-11-spring-bender",
+        "스프링벤더",
+        "16mm 전선관 굽힘용",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-12-ruler",
+        "자",
+        "범용",
+        "1",
+        "SET",
+        "사전 준비작업 금지"
+      ],
+      [
+        "tool-13-level",
+        "수평계",
+        "범용",
+        "1",
+        "EA",
+        "사전 준비작업 금지; 자 눈금은 무관"
+      ],
+      [
+        "tool-14-writing-tool",
+        "필기구",
+        "볼펜, 분필 등",
+        "1",
+        "세트",
+        null
+      ],
+      [
+        "tool-15-masking-tape",
+        "마스킹 테이프류",
+        "범용",
+        "1",
+        "EA",
+        "사전 준비작업 및 절연테이프 사용 금지"
+      ],
+      [
+        "tool-16-labels",
+        "견출지류(포스트잇, 인덱스 등)",
+        "범용",
+        "1",
+        "SET",
+        "사전 준비작업 및 절연테이프 사용 금지"
+      ],
+      [
+        "tool-17-magnetic-tools",
+        "자화기·손목자석밴드·단자대 자석·자석바",
+        "범용",
+        "1",
+        "SET",
+        "동시 사용 가능"
+      ],
+      [
+        "tool-18-tool-belt",
+        "공구벨트",
+        "작업조끼 또는 앞치마 가능",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-19-toolbox",
+        "공구함·부속품함",
+        "범용",
+        "1",
+        "EA",
+        null
+      ],
+      [
+        "tool-20-long-trousers",
+        "긴바지",
+        "범용",
+        "1",
+        "EA",
+        "안전 복장 요건"
+      ],
+      [
+        "tool-21-shoes",
+        "운동화",
+        "안전화 대체 가능",
+        "1",
+        "족",
+        "안전 복장 요건"
+      ],
+      [
+        "tool-22-cotton-gloves",
+        "면장갑",
+        "일반; 기타 손 보호용 장갑 가능",
+        "1",
+        "EA",
+        "안전 복장 요건"
+      ]
+    ]
+  },
+  "ELEC-08": {
+    "variables": [
+      "id",
+      "label",
+      "type",
+      "text",
+      "level"
+    ],
+    "rows": [
+      [
+        "safety-level-label",
+        "큐넷 게시 안전등급 4",
+        "published_level",
+        "큐넷 페이지에 게시된 등급 숫자 그대로 기록하며 별도의 위험 척도로 해석하지 않는다.",
+        "4"
+      ],
+      [
+        "safety-ppe",
+        "보호구 및 복장",
+        "PPE",
+        "긴바지·운동화(또는 안전화)·면장갑(또는 손 보호 장갑)을 지참한다.",
+        null
+      ],
+      [
+        "safety-prohibited-tools",
+        "공구·재료 사용 제한",
+        "prohibited",
+        "지참 목록 밖 품목, 개인 제작·개조 공구, 지그류는 사용할 수 없으며 일부 공구 기능이 금지된다.",
+        null
+      ],
+      [
+        "safety-score",
+        "안전·정리정돈 채점",
+        "scored",
+        "작업복 착용, 정리정돈, 안전사항 등이 채점 대상이 될 수 있다.",
+        null
+      ],
+      [
+        "safety-unsafe-handling",
+        "위험한 장비·재료 취급",
+        "disqualification_condition",
+        "위해를 일으킬 것으로 예상되는 장비 조작 또는 재료 취급은 시험감독위원 전원의 합의 판단으로 실격 처리될 수 있다.",
+        null
+      ]
+    ]
+  },
+  "ELEC-09": {
+    "variables": [
+      "id",
+      "title",
+      "uri",
+      "kind",
+      "accessed",
+      "limits"
+    ],
+    "rows": [
+      [
+        "qnet-exam-details",
+        "Q-Net 전기기능사 시험정보·취득방법",
+        "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=7780&jmInfoDivCcd=B0",
+        "exam_details",
+        "2026-10-08",
+        "시험 세부사항과 출제기준은 변경될 수 있어 이 프로필은 2026-10-08 확인 스냅샷으로 한정한다."
+      ],
+      [
+        "qnet-materials",
+        "Q-Net 전기기능사 수험자 지참 준비물",
+        "https://www.q-net.or.kr/rcv013.do?IMPL_ID=PL2024557010&JM_CD=7780&JM_FLD_NM=%EC%A0%84%EA%B8%B0%EA%B8%B0%EB%8A%A5%EC%82%AC&SELFLD_CD=00&SERIES_CD=04&gSite=Q&id=rcv01314",
+        "required_materials",
+        "2026-10-08",
+        "목록은 확인일 기준 스냅샷이다. 응시 전 Q-Net의 최신 지참준비물·공개문제 공지를 확인해야 한다."
+      ],
+      [
+        "qnet-public-task-2025",
+        "Q-Net 전기기능사 공개문제(2025-08-04 수정)",
+        "https://www.q-net.or.kr/cst006.do?artlSeq=5208377&brdId=Q006&code=1204&id=cst00602",
+        "public_task",
+        "2026-10-08",
+        "공개 과제는 일부 변경될 수 있으며, 회차별 안내를 다시 확인해야 한다."
+      ],
+      [
+        "qnet-qualification",
+        "Q-Net 국가자격 종목별 상세정보: 전기기능사",
+        "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503&jmCd=7780",
+        "qualification_page",
+        "2026-10-08",
+        "종목의 현재 공식 소개 페이지다. 시험 일정이나 조건은 개별 회차 안내에서 다시 확인해야 한다."
+      ],
+      [
+        "qnet-standard-2024",
+        "Q-Net 전기기능사 출제기준(2024.1.1~2026.12.31)",
+        "https://www.q-net.or.kr/cst006.do?artlSeq=5212053&brdId=Q006&id=cst00602",
+        "exam_standard",
+        "2026-10-08",
+        "첨부 원문 세부 항목은 이 초안에서 구조화하지 않았다. 과목명과 시험 정보는 Q-Net 상세 페이지에서 별도로 확인했다."
+      ],
+      [
+        "qnet-standard-2027",
+        "Q-Net 전기기능사 출제기준(2027.1.1~2029.12.31) 공지",
+        "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=7780&jmInfoDivCcd=B0",
+        "exam_standard",
+        "2026-10-08",
+        "첨부 원문 세부 내용을 추출·검토하지 않아 2027-2029 기준의 과목·세부 항목은 주장하지 않는다."
+      ]
+    ]
+  },
+  "ELEC-10": {
+    "variables": [
+      "id",
+      "status",
+      "claim",
+      "sourceId",
+      "locator"
+    ],
+    "rows": [
+      [
+        "evidence-exam-structure",
+        "verified_as_of_access",
+        "큐넷 상세정보는 필기 3과목, 실기 전기설비작업을 안내한다.",
+        "qnet-exam-details",
+        "시험정보 > 취득방법"
+      ],
+      [
+        "evidence-materials-list",
+        "verified_as_of_access",
+        "큐넷은 전기기능사 실기 지참준비물 22개 항목과 규격·제한을 게시한다.",
+        "qnet-materials",
+        "수험자 지참준비물 > 전기기능사"
+      ],
+      [
+        "evidence-pass-thresholds",
+        "verified_as_of_access",
+        "필기와 실기는 각각 100점 만점에 60점 이상이 합격 기준이다.",
+        "qnet-exam-details",
+        "취득방법 > 합격기준"
+      ],
+      [
+        "evidence-practical-format",
+        "verified_as_of_access",
+        "실기는 전기설비작업 작업형이며 약 4시간 30분으로 안내된다.",
+        "qnet-exam-details",
+        "취득방법 > 검정방법"
+      ],
+      [
+        "evidence-practical-safety",
+        "verified_as_of_access",
+        "큐넷은 실기 안전등급 4와 보호구·안전 채점·위해 가능 행위 관련 안내를 게시한다.",
+        "qnet-exam-details",
+        "취득방법 > 작업형 실기시험 기본정보"
+      ],
+      [
+        "evidence-practical-scope",
+        "verified_as_of_access",
+        "실기 출제경향은 전기설비 배관·배선공사와 시퀀스 제어회로 완성을 제시한다.",
+        "qnet-exam-details",
+        "시험정보 > 출제경향"
+      ],
+      [
+        "evidence-public-task",
+        "verified_as_of_access",
+        "공개문제 페이지는 2025-08-04 수정본과 2025년 기능사 제3회부터의 적용시점을 안내한다.",
+        "qnet-public-task-2025",
+        "공개문제 본문 > 적용시기 및 수정 내역"
+      ],
+      [
+        "evidence-qualification-identity",
+        "verified_as_of_access",
+        "큐넷은 종목을 전기기능사(Craftsman Electricity), 코드 7780, 시행기관 한국산업인력공단, 관련 부처 기후에너지환경부로 표시한다.",
+        "qnet-qualification",
+        "국가자격 종목별 상세정보 > 전기기능사"
+      ],
+      [
+        "evidence-standard-current",
+        "verified_as_of_access",
+        "큐넷에는 2024-01-01부터 2026-12-31까지 적용되는 출제기준이 표시된다.",
+        "qnet-standard-2024",
+        "전기기능사 출제기준 목록"
+      ],
+      [
+        "evidence-standard-future",
+        "announced_not_ingested",
+        "큐넷 상세 페이지에 2027-01-01부터 2029-12-31까지의 차기 출제기준 제목이 게시되어 있다.",
+        "qnet-standard-2027",
+        "시험정보 > 출제기준 > 2027.1.1~2029.12.31"
+      ],
+      [
+        "evidence-written-format",
+        "verified_as_of_access",
+        "필기는 4지택일형 60문항으로 안내된다.",
+        "qnet-exam-details",
+        "취득방법 > 검정방법"
+      ]
+    ]
+  },
+  "ELEC-11": {
+    "variables": [
+      "id",
+      "label",
+      "from",
+      "through",
+      "status",
+      "content"
+    ],
+    "rows": [
+      [
+        "electricity-craftsman-2027-2029",
+        "전기기능사 출제기준 (2027.1.1~2029.12.31)",
+        "2027-01-01",
+        "2029-12-31",
+        "scheduled",
+        "not_ingested"
+      ]
+    ]
+  },
+  "ELEC-12": {
+    "variables": [
+      "id",
+      "label",
+      "description",
+      "source"
+    ],
+    "rows": [
+      [
+        "electrical-equipment",
+        "전기설비",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다.",
+        "Q-Net 전기기능사 시험정보·취득방법"
+      ],
+      [
+        "electrical-machinery",
+        "전기기기",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다.",
+        "Q-Net 전기기능사 시험정보·취득방법"
+      ],
+      [
+        "electrical-theory",
+        "전기이론",
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다.",
+        "Q-Net 전기기능사 시험정보·취득방법"
+      ]
+    ]
+  }
+}

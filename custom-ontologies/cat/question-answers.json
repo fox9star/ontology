@@ -1,0 +1,420 @@
+{
+  "CAT-01": {
+    "variables": [
+      "cat",
+      "name",
+      "recordKind",
+      "sex",
+      "birthDate",
+      "breedStatus",
+      "breed",
+      "breedLabel",
+      "breedEvidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/cloud",
+        "합성 고양이: 구름",
+        "synthetic",
+        "unknown",
+        null,
+        "recorded",
+        "https://example.test/cat/norwegian-forest",
+        "노르웨이 숲",
+        "가상 예제의 노르웨이 숲 품종 설정입니다. 실제 고양이의 품종을 확인한 자료가 아닙니다."
+      ],
+      [
+        "https://example.test/cat/kong",
+        "합성 고양이: 콩이",
+        "synthetic",
+        "male",
+        "2022-11-08",
+        "recorded",
+        "https://example.test/cat/british-shorthair",
+        "브리티시 쇼트헤어",
+        "가상 예제의 브리티시 쇼트헤어 품종 설정입니다. 실제 등록증이나 혈통 증거를 주장하지 않습니다."
+      ],
+      [
+        "https://example.test/cat/luna",
+        "합성 고양이: 루나",
+        "synthetic",
+        "female",
+        "2024-03-10",
+        "recorded",
+        "https://example.test/cat/siamese",
+        "샴",
+        "가상 예제의 샴 품종 설정입니다. 외형 관찰로 추정한 품종이 아닙니다."
+      ],
+      [
+        "https://example.test/cat/mocha",
+        "합성 고양이: 모카",
+        "synthetic",
+        "male",
+        "2023-05-01",
+        "recorded",
+        "https://example.test/cat/maine-coon",
+        "메인쿤",
+        "가상 예제의 메인쿤 품종 설정입니다. 실제 고양이의 혈통 확인 기록이 아닙니다."
+      ],
+      [
+        "https://example.test/cat/nabi",
+        "합성 고양이: 나비",
+        "synthetic",
+        "female",
+        null,
+        "unknown",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/cat/tori",
+        "합성 고양이: 토리",
+        "synthetic",
+        "unknown",
+        null,
+        "unknown",
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "CAT-02": {
+    "variables": [
+      "breed",
+      "breedLabel",
+      "trait",
+      "category",
+      "text",
+      "sourceURL",
+      "publisher",
+      "sourceKind",
+      "accessedOn"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/british-shorthair",
+        "브리티시 쇼트헤어",
+        "https://example.test/cat/british-shorthair-body",
+        "body",
+        "CFA 표준은 다부지고 힘 있는 몸과 넓은 가슴을 기술한다.",
+        "https://cfa.org/breed/british-shorthair/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/british-shorthair",
+        "브리티시 쇼트헤어",
+        "https://example.test/cat/british-shorthair-coat",
+        "coat",
+        "CFA 표준은 짧고 매우 조밀한 털을 기술한다.",
+        "https://cfa.org/breed/british-shorthair/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/maine-coon",
+        "메인쿤",
+        "https://example.test/cat/maine-coon-body",
+        "body",
+        "CFA 표준은 길고 균형 잡힌 직사각형 형태의 몸을 기술한다.",
+        "https://cfa.org/breed/maine-coon-cat/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/maine-coon",
+        "메인쿤",
+        "https://example.test/cat/maine-coon-coat",
+        "coat",
+        "CFA 표준은 풍성하고 길이가 고르지 않은 털을 기술하며, 어깨의 털은 배와 뒷다리 부위보다 짧다.",
+        "https://cfa.org/breed/maine-coon-cat/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/norwegian-forest",
+        "노르웨이 숲",
+        "https://example.test/cat/norwegian-forest-body",
+        "body",
+        "CFA 표준은 근육이 발달하고 넓은 가슴을 가진 몸을 기술한다.",
+        "https://cfa.org/breed/norwegian-forest-cat/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/norwegian-forest",
+        "노르웨이 숲",
+        "https://example.test/cat/norwegian-forest-coat",
+        "coat",
+        "CFA 표준은 조밀한 속털과 길고 매끄러운 방수성 겉털로 이루어진 이중모를 기술한다.",
+        "https://cfa.org/breed/norwegian-forest-cat/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/siamese",
+        "샴",
+        "https://example.test/cat/siamese-coat",
+        "coat",
+        "CFA 표준은 짧고 가는 털이 몸에 밀착된다고 기술한다.",
+        "https://cfa.org/breed/siamese/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ],
+      [
+        "https://example.test/cat/siamese",
+        "샴",
+        "https://example.test/cat/siamese-pattern",
+        "pattern",
+        "CFA 표준은 밝은 몸통과 짙은 얼굴·귀·다리·발·꼬리의 포인트 사이의 대비를 기술한다.",
+        "https://cfa.org/breed/siamese/",
+        "The Cat Fanciers' Association",
+        "breed-registry",
+        "2026-10-05"
+      ]
+    ]
+  },
+  "CAT-03": {
+    "variables": [
+      "cat",
+      "environment",
+      "environmentType",
+      "environmentNote",
+      "guardian",
+      "guardianLabel"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/cloud",
+        "https://example.test/cat/enclosed-space",
+        "enclosed-outdoor",
+        "울타리가 있는 외부 공간 유형을 보여 주는 가상 환경입니다. 특정 시설의 안전성을 보증하지 않습니다.",
+        "https://example.test/cat/guardian-a",
+        "합성 보호자 A"
+      ],
+      [
+        "https://example.test/cat/kong",
+        "https://example.test/cat/home-b",
+        "indoor",
+        "두 번째 가상 실내 생활환경입니다. 실제 거주지 정보는 없습니다.",
+        "https://example.test/cat/guardian-b",
+        "합성 보호자 B"
+      ],
+      [
+        "https://example.test/cat/luna",
+        "https://example.test/cat/home-b",
+        "indoor",
+        "두 번째 가상 실내 생활환경입니다. 실제 거주지 정보는 없습니다.",
+        "https://example.test/cat/guardian-b",
+        "합성 보호자 B"
+      ],
+      [
+        "https://example.test/cat/mocha",
+        "https://example.test/cat/home-a",
+        "indoor",
+        "가상 고양이의 실내 생활환경 예제입니다. 실제 주소나 주거 안전 평가를 나타내지 않습니다.",
+        "https://example.test/cat/guardian-a",
+        "합성 보호자 A"
+      ],
+      [
+        "https://example.test/cat/nabi",
+        "https://example.test/cat/home-a",
+        "indoor",
+        "가상 고양이의 실내 생활환경 예제입니다. 실제 주소나 주거 안전 평가를 나타내지 않습니다.",
+        "https://example.test/cat/guardian-a",
+        "합성 보호자 A"
+      ],
+      [
+        "https://example.test/cat/tori",
+        "https://example.test/cat/home-b",
+        "indoor",
+        "두 번째 가상 실내 생활환경입니다. 실제 거주지 정보는 없습니다.",
+        "https://example.test/cat/guardian-b",
+        "합성 보호자 B"
+      ]
+    ]
+  },
+  "CAT-04": {
+    "variables": [
+      "record",
+      "cat",
+      "careKind",
+      "status",
+      "scheduledFor",
+      "carer",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/care-01",
+        "https://example.test/cat/nabi",
+        "feeding",
+        "planned",
+        "2026-10-06T00:00:00+00:00",
+        "https://example.test/cat/guardian-a",
+        "가상 예제의 예정 기록입니다. 음식 종류·용량·영양 처방은 포함하지 않습니다."
+      ],
+      [
+        "https://example.test/cat/care-03",
+        "https://example.test/cat/mocha",
+        "play",
+        "planned",
+        "2026-10-06T09:00:00+00:00",
+        "https://example.test/cat/guardian-a",
+        "가상 놀이 계획입니다. 실제 활동이 수행되었다는 기록은 없습니다."
+      ],
+      [
+        "https://example.test/cat/care-05",
+        "https://example.test/cat/kong",
+        "grooming",
+        "cancelled",
+        "2026-10-05T08:00:00+00:00",
+        "https://example.test/cat/guardian-b",
+        "가상 예제에서 취소된 계획이며 수행 시각은 없습니다."
+      ]
+    ]
+  },
+  "CAT-05": {
+    "variables": [
+      "record",
+      "cat",
+      "careKind",
+      "performedAt",
+      "scheduledFor",
+      "carer",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/care-02",
+        "https://example.test/cat/tori",
+        "water-refresh",
+        "2026-10-05T00:05:00+00:00",
+        "2026-10-05T00:00:00+00:00",
+        "https://example.test/cat/guardian-b",
+        "가상 예제에서 수행 시각을 가진 물 교체 기록입니다."
+      ],
+      [
+        "https://example.test/cat/care-04",
+        "https://example.test/cat/luna",
+        "litter-cleaning",
+        "2026-10-05T01:00:00+00:00",
+        null,
+        "https://example.test/cat/guardian-b",
+        "가상 예제의 완료 기록으로 수행 시각을 기록했습니다."
+      ],
+      [
+        "https://example.test/cat/care-06",
+        "https://example.test/cat/cloud",
+        "grooming",
+        "2026-10-05T06:15:00+00:00",
+        "2026-10-05T06:00:00+00:00",
+        "https://example.test/cat/guardian-a",
+        "가상 예제의 손질 완료 기록입니다. 권장 주기를 나타내지 않습니다."
+      ]
+    ]
+  },
+  "CAT-06": {
+    "variables": [
+      "observation",
+      "cat",
+      "recordKind",
+      "observedAt",
+      "kind",
+      "text",
+      "value",
+      "unit"
+    ],
+    "rows": [
+      [
+        "https://example.test/cat/observation-01",
+        "https://example.test/cat/nabi",
+        "synthetic",
+        "2026-10-05T02:00:00+00:00",
+        "behavior",
+        "가상 예제에서 창가에 앉아 있는 모습을 기록했습니다.",
+        null,
+        null
+      ],
+      [
+        "https://example.test/cat/observation-02",
+        "https://example.test/cat/tori",
+        "synthetic",
+        "2026-10-05T02:10:00+00:00",
+        "appearance",
+        "가상 예제의 짧은 털을 기록했습니다. 이 관찰에서 품종을 추론하지 않습니다.",
+        null,
+        null
+      ],
+      [
+        "https://example.test/cat/observation-03",
+        "https://example.test/cat/mocha",
+        "synthetic",
+        "2026-10-05T02:20:00+00:00",
+        "weight",
+        "가상 측정값입니다. 품종의 표준 체중 또는 건강 판단 기준이 아닙니다.",
+        "5.4",
+        "kg"
+      ],
+      [
+        "https://example.test/cat/observation-04",
+        "https://example.test/cat/luna",
+        "synthetic",
+        "2026-10-05T02:30:00+00:00",
+        "behavior",
+        "가상 예제에서 장난감에 관심을 보인 행동을 기록했습니다.",
+        null,
+        null
+      ],
+      [
+        "https://example.test/cat/observation-05",
+        "https://example.test/cat/kong",
+        "synthetic",
+        "2026-10-05T02:40:00+00:00",
+        "weight",
+        "가상 측정값이며 개체의 건강 상태를 분류하지 않습니다.",
+        "4.2",
+        "kg"
+      ],
+      [
+        "https://example.test/cat/observation-06",
+        "https://example.test/cat/cloud",
+        "synthetic",
+        "2026-10-05T02:50:00+00:00",
+        "appearance",
+        "가상 개체의 풍성한 털을 기록했습니다. 품종 표준의 특징을 자동 적용한 관찰이 아닙니다.",
+        null,
+        null
+      ],
+      [
+        "https://example.test/cat/observation-07",
+        "https://example.test/cat/nabi",
+        "synthetic",
+        "2026-10-05T03:00:00+00:00",
+        "weight",
+        "품종이 미확인인 가상 개체의 예제 측정값입니다.",
+        "3.6",
+        "kg"
+      ],
+      [
+        "https://example.test/cat/observation-08",
+        "https://example.test/cat/tori",
+        "synthetic",
+        "2026-10-05T03:10:00+00:00",
+        "behavior",
+        "가상 예제에서 실내 선반에 올라가 있는 모습을 기록했습니다.",
+        null,
+        null
+      ]
+    ]
+  }
+}

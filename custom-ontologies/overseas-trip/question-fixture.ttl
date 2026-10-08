@@ -1,0 +1,92 @@
+@prefix trip: <https://example.org/ontology/custom/overseas-trip#> .
+@prefix ex: <https://example.test/overseas-trip/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Question fixture: entirely synthetic plan. No entry requirement has been checked, no reservation
+# exists, and no cost has been paid; amounts are placeholders for planning only.
+ex:plan a trip:TripPlan ; rdfs:label "합성 예제: 일본 4박 5일 여행 계획"@ko ;
+    trip:planStatus "draft" ; trip:departureDate "2027-03-10"^^xsd:date ; trip:returnDate "2027-03-14"^^xsd:date ;
+    trip:travelerCount 2 ; trip:hasTraveler ex:travelerA, ex:travelerB ; trip:hasDestination ex:japan ;
+    trip:hasItineraryDay ex:day1, ex:day2, ex:day3 ;
+    trip:hasBooking ex:flight, ex:lodging, ex:rail, ex:insurance ;
+    trip:hasBudgetItem ex:budgetFlight, ex:budgetLodging, ex:budgetFood, ex:budgetInsurance .
+
+# Travelers are pseudonymous: no name, passport number or birth date is recorded.
+ex:travelerA a trip:Traveler ; rdfs:label "합성 동반자 A"@ko ;
+    trip:travelerRole "primary" ; trip:ageGroup "adult" ; trip:nationalityCode "KR" .
+ex:travelerB a trip:Traveler ; rdfs:label "합성 동반자 B"@ko ;
+    trip:travelerRole "companion" ; trip:ageGroup "adult" ; trip:nationalityCode "KR" .
+
+ex:japan a trip:Destination ; rdfs:label "합성 목적지: 일본"@ko ;
+    trip:countryCode "JP" ; trip:countryName "일본" ;
+    trip:hasEntryRequirement ex:reqPassportA, ex:reqPassportB, ex:reqVisa .
+ex:reqPassportA a trip:EntryRequirement ; rdfs:label "동반자 A 여권 유효기간 확인 대기"@ko ;
+    trip:requirementKind "passport-validity" ; trip:checkStatus "unchecked" ; trip:appliesToTraveler ex:travelerA .
+ex:reqPassportB a trip:EntryRequirement ; rdfs:label "동반자 B 여권 유효기간 확인 대기"@ko ;
+    trip:requirementKind "passport-validity" ; trip:checkStatus "unchecked" ; trip:appliesToTraveler ex:travelerB .
+ex:reqVisa a trip:EntryRequirement ; rdfs:label "일행 비자 필요 여부 확인 대기"@ko ;
+    trip:requirementKind "visa" ; trip:checkStatus "unchecked" .
+
+ex:day1 a trip:ItineraryDay ; rdfs:label "합성 1일차: 도쿄 도착"@ko ;
+    trip:dayNumber 1 ; trip:dayDate "2027-03-10"^^xsd:date ; trip:cityName "도쿄" ;
+    trip:atDestination ex:japan ; trip:hasActivity ex:act01, ex:act02 .
+ex:day2 a trip:ItineraryDay ; rdfs:label "합성 2일차: 도쿄 둘러보기"@ko ;
+    trip:dayNumber 2 ; trip:dayDate "2027-03-11"^^xsd:date ; trip:cityName "도쿄" ;
+    trip:atDestination ex:japan ; trip:hasActivity ex:act03, ex:act04 .
+ex:day3 a trip:ItineraryDay ; rdfs:label "합성 3일차: 오사카 이동"@ko ;
+    trip:dayNumber 3 ; trip:dayDate "2027-03-12"^^xsd:date ; trip:cityName "오사카" ;
+    trip:atDestination ex:japan ; trip:hasActivity ex:act05, ex:act06 .
+
+ex:act01 a trip:Activity ; rdfs:label "도착 및 숙소 체크인"@ko ;
+    trip:activityOrder 1 ; trip:activityCategory "lodging-checkin" ; trip:plannedDurationMinutes 60 .
+ex:act02 a trip:Activity ; rdfs:label "도심 산책"@ko ;
+    trip:activityOrder 2 ; trip:activityCategory "sightseeing" ; trip:plannedDurationMinutes 120 .
+ex:act03 a trip:Activity ; rdfs:label "시장 식사"@ko ;
+    trip:activityOrder 1 ; trip:activityCategory "meal" ; trip:plannedDurationMinutes 90 .
+ex:act04 a trip:Activity ; rdfs:label "박물관 관람"@ko ;
+    trip:activityOrder 2 ; trip:activityCategory "sightseeing" ; trip:plannedDurationMinutes 180 .
+ex:act05 a trip:Activity ; rdfs:label "고속열차 이동"@ko ;
+    trip:activityOrder 1 ; trip:activityCategory "transport" ; trip:plannedDurationMinutes 150 .
+ex:act06 a trip:Activity ; rdfs:label "자유 시간"@ko ;
+    trip:activityOrder 2 ; trip:activityCategory "free-time" ; trip:plannedDurationMinutes 240 .
+
+ex:flight a trip:Booking ; rdfs:label "왕복 항공 예약 계획"@ko ;
+    trip:bookingKind "flight" ; trip:bookingStatus "planned" ;
+    trip:bookingStartDate "2027-03-10"^^xsd:date ; trip:bookingEndDate "2027-03-14"^^xsd:date ;
+    trip:hasFlightSegment ex:segOut, ex:segBack .
+ex:segOut a trip:FlightSegment ; rdfs:label "가는 항공 구간"@ko ;
+    trip:segmentOrder 1 ; trip:departureAirport "ICN" ; trip:arrivalAirport "NRT" ;
+    trip:segmentDepartureDate "2027-03-10"^^xsd:date ; trip:segmentArrivalDate "2027-03-10"^^xsd:date .
+ex:segBack a trip:FlightSegment ; rdfs:label "오는 항공 구간"@ko ;
+    trip:segmentOrder 2 ; trip:departureAirport "NRT" ; trip:arrivalAirport "ICN" ;
+    trip:segmentDepartureDate "2027-03-14"^^xsd:date ; trip:segmentArrivalDate "2027-03-14"^^xsd:date .
+ex:lodging a trip:Booking ; rdfs:label "숙박 예약 계획"@ko ;
+    trip:bookingKind "lodging" ; trip:bookingStatus "planned" ;
+    trip:bookingStartDate "2027-03-10"^^xsd:date ; trip:bookingEndDate "2027-03-14"^^xsd:date ;
+    trip:coversActivity ex:act01 .
+ex:rail a trip:Booking ; rdfs:label "도시 간 열차 예약 계획"@ko ;
+    trip:bookingKind "transport" ; trip:bookingStatus "planned" ;
+    trip:bookingStartDate "2027-03-12"^^xsd:date ; trip:bookingEndDate "2027-03-12"^^xsd:date ;
+    trip:coversActivity ex:act05 .
+ex:insurance a trip:Booking ; rdfs:label "여행자 보험 가입 계획"@ko ;
+    trip:bookingKind "insurance" ; trip:bookingStatus "planned" ;
+    trip:bookingStartDate "2027-03-10"^^xsd:date ; trip:bookingEndDate "2027-03-14"^^xsd:date ;
+    trip:hasInsurancePolicy ex:policy .
+# Only traveler A is covered so far; traveler B is a coverage gap the questions surface.
+ex:policy a trip:InsurancePolicy ; rdfs:label "합성 보험 보장 계획"@ko ;
+    trip:coverageKind "medical", "cancellation" ;
+    trip:coverageLimitAmount "30000000.00"^^xsd:decimal ; trip:coverageLimitCurrency "KRW" ;
+    trip:coversTraveler ex:travelerA .
+
+ex:budgetFlight a trip:BudgetItem ; rdfs:label "항공 예산 계획"@ko ;
+    trip:budgetCategory "transport" ; trip:plannedAmount "1000000.00"^^xsd:decimal ; trip:currencyCode "KRW" ;
+    trip:forBooking ex:flight .
+ex:budgetLodging a trip:BudgetItem ; rdfs:label "숙박 예산 계획"@ko ;
+    trip:budgetCategory "lodging" ; trip:plannedAmount "600000.00"^^xsd:decimal ; trip:currencyCode "KRW" ;
+    trip:forBooking ex:lodging .
+ex:budgetInsurance a trip:BudgetItem ; rdfs:label "보험 예산 계획"@ko ;
+    trip:budgetCategory "insurance" ; trip:plannedAmount "80000.00"^^xsd:decimal ; trip:currencyCode "KRW" ;
+    trip:forBooking ex:insurance .
+ex:budgetFood a trip:BudgetItem ; rdfs:label "현지 식비 예산 계획"@ko ;
+    trip:budgetCategory "food" ; trip:plannedAmount "60000.00"^^xsd:decimal ; trip:currencyCode "JPY" .

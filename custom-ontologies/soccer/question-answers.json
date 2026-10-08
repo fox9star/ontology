@@ -1,0 +1,315 @@
+{
+  "SOC-01": {
+    "variables": [
+      "match",
+      "competition",
+      "date",
+      "home",
+      "away",
+      "status",
+      "homeGoals",
+      "awayGoals",
+      "report"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/league2026",
+        "2026-03-01",
+        "https://example.test/soccer/clubA",
+        "https://example.test/soccer/clubB",
+        "finished",
+        "2",
+        "1",
+        "urn:synthetic:report:match1"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/cup2026",
+        "2026-04-12",
+        "https://example.test/soccer/clubB",
+        "https://example.test/soccer/clubC",
+        "finished",
+        "1",
+        "1",
+        "urn:synthetic:report:match2"
+      ],
+      [
+        "https://example.test/soccer/match4",
+        "https://example.test/soccer/league2026",
+        "2026-09-20",
+        "https://example.test/soccer/clubC",
+        "https://example.test/soccer/clubB",
+        "postponed",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/soccer/match3",
+        "https://example.test/soccer/league2026",
+        "2026-10-24",
+        "https://example.test/soccer/clubA",
+        "https://example.test/soccer/clubC",
+        "scheduled",
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "SOC-02": {
+    "variables": [
+      "club",
+      "played",
+      "goalsFor",
+      "goalsAgainst"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/clubA",
+        "1",
+        "2",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/clubB",
+        "2",
+        "2",
+        "3"
+      ],
+      [
+        "https://example.test/soccer/clubC",
+        "1",
+        "1",
+        "1"
+      ]
+    ]
+  },
+  "SOC-03": {
+    "variables": [
+      "player",
+      "club",
+      "goals"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/playerA10",
+        "https://example.test/soccer/clubA",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/playerA11",
+        "https://example.test/soccer/clubA",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/playerB09",
+        "https://example.test/soccer/clubB",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/playerC09",
+        "https://example.test/soccer/clubC",
+        "1"
+      ]
+    ]
+  },
+  "SOC-04": {
+    "variables": [
+      "match",
+      "minute",
+      "type",
+      "player",
+      "club"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match1",
+        "40",
+        "yellow-card",
+        "https://example.test/soccer/playerB03",
+        "https://example.test/soccer/clubB"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "30",
+        "yellow-card",
+        "https://example.test/soccer/playerB02",
+        "https://example.test/soccer/clubB"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "50",
+        "own-goal",
+        "https://example.test/soccer/playerC04",
+        "https://example.test/soccer/clubC"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "65",
+        "red-card",
+        "https://example.test/soccer/playerC07",
+        "https://example.test/soccer/clubC"
+      ]
+    ]
+  },
+  "SOC-05": {
+    "variables": [
+      "match",
+      "club",
+      "starters"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubA",
+        "11"
+      ],
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubB",
+        "11"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubB",
+        "11"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubC",
+        "11"
+      ]
+    ]
+  },
+  "SOC-06": {
+    "variables": [
+      "match",
+      "club",
+      "player",
+      "in",
+      "out"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubB",
+        "https://example.test/soccer/playerB12",
+        "60",
+        null
+      ],
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubA",
+        "https://example.test/soccer/playerA12",
+        "70",
+        null
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubB",
+        "https://example.test/soccer/playerB12",
+        "70",
+        null
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubC",
+        "https://example.test/soccer/playerC12",
+        "80",
+        null
+      ]
+    ]
+  },
+  "SOC-07": {
+    "variables": [
+      "match",
+      "club",
+      "player",
+      "shirt"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubA",
+        "https://example.test/soccer/playerA01",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/match1",
+        "https://example.test/soccer/clubB",
+        "https://example.test/soccer/playerB01",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubB",
+        "https://example.test/soccer/playerB01",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/match2",
+        "https://example.test/soccer/clubC",
+        "https://example.test/soccer/playerC01",
+        "1"
+      ]
+    ]
+  },
+  "SOC-08": {
+    "variables": [
+      "competition",
+      "season",
+      "type",
+      "limit",
+      "matches"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/cup2026",
+        "2026",
+        "cup",
+        "3",
+        "1"
+      ],
+      [
+        "https://example.test/soccer/league2026",
+        "2026",
+        "league",
+        "5",
+        "3"
+      ]
+    ]
+  },
+  "SOC-09": {
+    "variables": [
+      "match",
+      "status",
+      "date",
+      "matchday"
+    ],
+    "rows": [
+      [
+        "https://example.test/soccer/match4",
+        "postponed",
+        "2026-09-20",
+        "2"
+      ],
+      [
+        "https://example.test/soccer/match3",
+        "scheduled",
+        "2026-10-24",
+        "3"
+      ]
+    ]
+  },
+  "SOC-10": {
+    "variables": [
+      "match",
+      "club",
+      "recorded",
+      "counted"
+    ],
+    "rows": []
+  }
+}

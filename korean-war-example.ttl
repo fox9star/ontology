@@ -1,0 +1,210 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix kwar: <http://example.org/ontology/korean-war#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# Belligerent Forces (참전 연합 세력)
+# =============================================================================
+
+kwar:Force_ROK a kwar:BelligerentForce ;
+    rdfs:label "대한민국 국군"@ko, "Republic of Korea Armed Forces"@en ;
+    kwar:forceName "대한민국 국군" ;
+    kwar:allianceSide "UN_ALLIED" .
+
+kwar:Force_UN a kwar:BelligerentForce ;
+    rdfs:label "유엔군 파병 연합군"@ko, "United Nations Command Coalition"@en ;
+    kwar:forceName "국제연합군 (UN군)" ;
+    kwar:allianceSide "UN_ALLIED" .
+
+kwar:Force_PVA a kwar:BelligerentForce ;
+    rdfs:label "중국인민지원군"@ko, "Chinese People's Volunteer Army"@en ;
+    kwar:forceName "중국인민지원군 (중공군)" ;
+    kwar:allianceSide "COMMUNIST_BLOC" .
+
+kwar:Force_KPA a kwar:BelligerentForce ;
+    rdfs:label "조선인민군"@ko, "Korean People's Army"@en ;
+    kwar:forceName "북한 조선인민군" ;
+    kwar:allianceSide "COMMUNIST_BLOC" .
+
+# =============================================================================
+# Battle Locations (전장 지리적 요충지)
+# =============================================================================
+
+kwar:Loc_Incheon a kwar:BattleLocation ;
+    rdfs:label "인천 월미도 및 만석동 상륙 해안"@ko, "Incheon Wolmido Landing Beachhead"@en ;
+    kwar:locationName "인천 월미도 해안" ;
+    kwar:latitude "37.472"^^xsd:decimal ;
+    kwar:longitude "126.621"^^xsd:decimal .
+
+kwar:Loc_ChosinReservoir a kwar:BattleLocation ;
+    rdfs:label "함경남도 장진호 하갈우리 협곡"@ko, "Chosin Reservoir Hagaru-ri Gorge"@en ;
+    kwar:locationName "함경남도 장진호" ;
+    kwar:latitude "40.485"^^xsd:decimal ;
+    kwar:longitude "127.253"^^xsd:decimal .
+
+kwar:Loc_DabuDong a kwar:BattleLocation ;
+    rdfs:label "경상북도 칠곡군 다부동 유학산 고지"@ko, "Dabu-dong Yuhaksan Strategic Ridge"@en ;
+    kwar:locationName "칠곡 다부동 전선" ;
+    kwar:latitude "36.002"^^xsd:decimal ;
+    kwar:longitude "128.524"^^xsd:decimal .
+
+kwar:Loc_Panmunjeom a kwar:BattleLocation ;
+    rdfs:label "판문점 군사분계선 회담장"@ko, "Panmunjeom Demarcation Conference Site"@en ;
+    kwar:locationName "판문점 중립국감독위원회 회담장" ;
+    kwar:latitude "37.956"^^xsd:decimal ;
+    kwar:longitude "126.677"^^xsd:decimal .
+
+# =============================================================================
+# Military Units (참전 실전 부대)
+# =============================================================================
+
+kwar:Unit_ROK_1stDiv a kwar:MilitaryUnit ;
+    rdfs:label "대한민국 육군 제1보병사단 전진부대"@ko, "ROK Army 1st Infantry Division"@en ;
+    kwar:unitDesignation "대한민국 육군 제1보병사단" ;
+    kwar:troopCount 11500 ;
+    kwar:belongsToForce kwar:Force_ROK ;
+    kwar:participatedIn kwar:Op_DabuDong .
+
+kwar:Unit_US_1stMarDiv a kwar:MilitaryUnit ;
+    rdfs:label "미합중국 해병 제1사단 올드 브리드"@ko, "United States 1st Marine Division"@en ;
+    kwar:unitDesignation "미 해병 제1사단" ;
+    kwar:troopCount 25000 ;
+    kwar:belongsToForce kwar:Force_UN ;
+    kwar:participatedIn kwar:Op_Chromite, kwar:Op_ChosinReservoir .
+
+kwar:Unit_US_7thInfDiv a kwar:MilitaryUnit ;
+    rdfs:label "미합중국 육군 제7보병사단 아워크랫"@ko, "United States 7th Infantry Division"@en ;
+    kwar:unitDesignation "미 육군 제7보병사단" ;
+    kwar:troopCount 18000 ;
+    kwar:belongsToForce kwar:Force_UN ;
+    kwar:participatedIn kwar:Op_Chromite .
+
+# =============================================================================
+# Commanding Officers (참전 군사 지휘관)
+# =============================================================================
+
+kwar:Cmdr_DouglasMacArthur a kwar:CommandingOfficer ;
+    rdfs:label "더글러스 맥아더 연합군 최고사령관"@ko, "General of the Army Douglas MacArthur"@en ;
+    kwar:commanderName "더글러스 맥아더 (Douglas MacArthur)" ;
+    kwar:militaryRank "원수 (General of the Army)" ;
+    kwar:supervisesUnit kwar:Unit_US_1stMarDiv, kwar:Unit_US_7thInfDiv .
+
+kwar:Cmdr_PaikSunYup a kwar:CommandingOfficer ;
+    rdfs:label "백선엽 국군 제1사단장"@ko, "Major General Paik Sun-yup"@en ;
+    kwar:commanderName "백선엽" ;
+    kwar:militaryRank "소장 (Major General)" ;
+    kwar:supervisesUnit kwar:Unit_ROK_1stDiv .
+
+kwar:Cmdr_OliverSmith a kwar:CommandingOfficer ;
+    rdfs:label "올리버 스미스 미 해병 제1사단장"@ko, "Major General Oliver P. Smith"@en ;
+    kwar:commanderName "올리버 P. 스미스 (Oliver P. Smith)" ;
+    kwar:militaryRank "소장 (Major General)" ;
+    kwar:supervisesUnit kwar:Unit_US_1stMarDiv .
+
+# =============================================================================
+# Historical Artifacts (전쟁 사료 기록물)
+# =============================================================================
+
+kwar:Art_OperationOrder_Chromite a kwar:HistoricalArtifact ;
+    rdfs:label "맥아더 사령부 인천상륙작전 정식 명령서 No.1"@ko, "GHQ CINCFE Operation Order No. 1 Chromite"@en ;
+    kwar:artifactIdentifier "NARA-RG-407-BOX-129" .
+
+kwar:Art_ArmisticeDocumentOriginal a kwar:HistoricalArtifact ;
+    rdfs:label "1953년 7월 27일 정전협정문 원본 날인본"@ko, "1953 Korean Armistice Agreement Signed Original"@en ;
+    kwar:artifactIdentifier "UN-TREATY-SERIES-VOL-216" .
+
+# =============================================================================
+# Military Operations (주요 군사 작전 및 전투)
+# =============================================================================
+
+kwar:Op_Chromite a kwar:MilitaryOperation ;
+    rdfs:label "인천상륙작전 (Operation Chromite)"@ko, "Operation Chromite Incheon Landing"@en ;
+    kwar:operationName "인천상륙작전" ;
+    kwar:startDate "1950-09-15"^^xsd:date ;
+    kwar:endDate "1950-09-19"^^xsd:date ;
+    kwar:strategicOutcome "VICTORY" ;
+    kwar:occurredAt kwar:Loc_Incheon ;
+    kwar:involvesForce kwar:Force_UN, kwar:Force_ROK ;
+    kwar:ledByCommander kwar:Cmdr_DouglasMacArthur ;
+    kwar:evidencedByArtifact kwar:Art_OperationOrder_Chromite .
+
+kwar:Op_ChosinReservoir a kwar:MilitaryOperation ;
+    rdfs:label "장진호 혹한기 철수 포위 돌파전"@ko, "Battle of Chosin Reservoir Breakthrough"@en ;
+    kwar:operationName "장진호 전투" ;
+    kwar:startDate "1950-11-27"^^xsd:date ;
+    kwar:endDate "1950-12-13"^^xsd:date ;
+    kwar:strategicOutcome "TACTICAL_SUCCESS" ;
+    kwar:occurredAt kwar:Loc_ChosinReservoir ;
+    kwar:involvesForce kwar:Force_UN, kwar:Force_PVA ;
+    kwar:ledByCommander kwar:Cmdr_OliverSmith .
+
+kwar:Op_DabuDong a kwar:MilitaryOperation ;
+    rdfs:label "낙동강 전선 칠곡 다부동 방어 전투"@ko, "Battle of Dabu-dong Nakdong Defense"@en ;
+    kwar:operationName "다부동 전투" ;
+    kwar:startDate "1950-08-01"^^xsd:date ;
+    kwar:endDate "1950-09-24"^^xsd:date ;
+    kwar:strategicOutcome "VICTORY" ;
+    kwar:occurredAt kwar:Loc_DabuDong ;
+    kwar:involvesForce kwar:Force_ROK, kwar:Force_KPA ;
+    kwar:ledByCommander kwar:Cmdr_PaikSunYup .
+
+# =============================================================================
+# Casualty Records (전사상자 통계 기록)
+# =============================================================================
+
+kwar:Cas_Chromite a kwar:WarCasualtyRecord ;
+    rdfs:label "인천상륙작전 아군 공식 피해 집계"@ko, "Operation Chromite Casualty Audit"@en ;
+    kwar:killedInAction 222 ;
+    kwar:woundedInAction 896 ;
+    kwar:missingInAction 14 ;
+    kwar:associatedOperation kwar:Op_Chromite .
+
+kwar:Cas_Chosin a kwar:WarCasualtyRecord ;
+    rdfs:label "장진호 전투 연합군 공식 피해 집계"@ko, "Chosin Reservoir Casualty Audit"@en ;
+    kwar:killedInAction 1029 ;
+    kwar:woundedInAction 4582 ;
+    kwar:missingInAction 4894 ;
+    kwar:associatedOperation kwar:Op_ChosinReservoir .
+
+# =============================================================================
+# Armistice Negotiation & Treaty (정전 회담 및 협정)
+# =============================================================================
+
+kwar:Neg_Panmunjeom_Plenary158 a kwar:ArmisticeNegotiation ;
+    rdfs:label "제158차 판문점 정전협정 본회의"@ko, "Panmunjeom Plenary Session Round 158"@en ;
+    kwar:sessionRound 158 ;
+    kwar:negotiationDate "1953-07-27"^^xsd:date ;
+    kwar:heldAtLocation kwar:Loc_Panmunjeom ;
+    kwar:concludedWithTreaty kwar:Treaty_KoreanArmisticeAgreement .
+
+kwar:Treaty_KoreanArmisticeAgreement a kwar:TreatyDocument ;
+    rdfs:label "한국 군사정전에 관한 협정문"@ko, "Korean War Military Armistice Agreement"@en ;
+    kwar:treatyTitle "한국 군사분계선 및 정전에 관한 정전협정" ;
+    kwar:signingDate "1953-07-27"^^xsd:date .
+
+# =============================================================================
+# AI Historical Analysis Agents & Tasks (전사 분석 AI 에이전트 및 작업)
+# =============================================================================
+
+kwar:Agent_TacticalSimulator a kwar:TacticalAnalystAgent ;
+    rdfs:label "AI 한반도 전황 및 전술 기동 시뮬레이터"@ko, "AI Peninsula Strategic Maneuver Simulator"@en .
+
+kwar:Agent_NARAArchiveCurator a kwar:ArchiveCurationAgent ;
+    rdfs:label "AI 미 국립문서기록청(NARA) 사료 큐레이터"@ko, "AI NARA Military Archive Curator Agent"@en .
+
+kwar:Task_ChromiteTideAnalysis a kwar:AnalysisTask ;
+    rdfs:label "인천 연안 9.1m 간만차 극복 및 맥아더 기습 효과 정량 고증"@ko, "Quantitative Incheon Tidal Gap Analysis Task"@en ;
+    kwar:taskFindings "인천 연안 조수간만 차 9.1m 조건에서 월미도 첩보 작전(영흥도 X-RAY)과의 연계율 98%로 북한군 주력 보급선을 차단하여 전황을 일거에 역전시켰음을 사료적으로 확증함." ;
+    kwar:taskStatus "COMPLETED" ;
+    kwar:assignedAnalyst kwar:Agent_TacticalSimulator ;
+    kwar:targetOperation kwar:Op_Chromite .
+
+kwar:Task_ChosinLogisticsBreakthrough a kwar:AnalysisTask ;
+    rdfs:label "장진호 영하 40도 혹한기 화력 동결 및 수송 수교 가설 복원 고증"@ko, "Chosin Sub-zero Logistics Trench Analysis Task"@en ;
+    kwar:taskFindings "공중 투하된 트레드웨이 M2 조립교를 활용하여 수문발전소 협곡을 돌파함으로써 10만여 명의 흥남 철수 작전 성공 토대를 구축한 전술적 의의를 재평가함." ;
+    kwar:taskStatus "ACTIVE" ;
+    kwar:assignedAnalyst kwar:Agent_NARAArchiveCurator ;
+    kwar:targetOperation kwar:Op_ChosinReservoir .

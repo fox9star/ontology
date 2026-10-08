@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#SourceDocument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Source document</rdfs:label>
+    <rdfs:comment xml:lang="ko">발행기관, URL, 확인일과 서술 범위를 보존한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Preserves a source's publisher, URL, access date, and scope.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#EVSEPort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">EVSE 충전 포트</rdfs:label>
+    <rdfs:label xml:lang="en">EVSE port</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 번에 한 차량에 전력을 공급하는 설비 측 포트다. 한 포트에 여러 커넥터가 있을 수 있다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The equipment-side port that supplies one vehicle at a time; one port may have multiple connectors.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#VehicleChargePort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">차량 충전구</rdfs:label>
+    <rdfs:label xml:lang="en">Vehicle charge port</rdfs:label>
+    <rdfs:comment xml:lang="ko">외부 충전 설비와 차량을 연결하는 차량 측 인터페이스다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The vehicle-side interface connecting external charging equipment to the vehicle.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#connectorDataStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingConnector"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">데이터 상태</rdfs:label>
+    <rdfs:label xml:lang="en">data status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records data status for ChargingConnector.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingConnector의 데이터 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#recordIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기록 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">record identifier</rdfs:label>
+    <rdfs:comment xml:lang="en">Records record identifier for ResourceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ResourceRecord의 기록 식별자를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#portHasConnector">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingConnector"/>
+    <rdfs:label xml:lang="ko">커넥터</rdfs:label>
+    <rdfs:label xml:lang="en">has connector</rdfs:label>
+    <rdfs:comment xml:lang="en">Records has connector for EVSEPort.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EVSEPort의 커넥터를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehiclePowertrainConfiguration">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">동력 구성</rdfs:label>
+    <rdfs:label xml:lang="en">powertrain configuration</rdfs:label>
+    <rdfs:comment xml:lang="en">Records powertrain configuration for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 동력 구성를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#stationDataStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingStationLocation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">데이터 상태</rdfs:label>
+    <rdfs:label xml:lang="en">data status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records data status for ChargingStationLocation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingStationLocation의 데이터 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#connectorInterfaceType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingConnector"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">인터페이스 유형</rdfs:label>
+    <rdfs:label xml:lang="en">interface type</rdfs:label>
+    <rdfs:comment xml:lang="en">Records interface type for ChargingConnector.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingConnector의 인터페이스 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#energyFlowCondition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EnergyFlow"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">흐름 조건</rdfs:label>
+    <rdfs:label xml:lang="en">flow condition</rdfs:label>
+    <rdfs:comment xml:lang="en">Records flow condition for EnergyFlow.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EnergyFlow의 흐름 조건를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceLocator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 내 위치</rdfs:label>
+    <rdfs:label xml:lang="en">source locator</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source locator for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 출처 내 위치를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ElectricTractionMotor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">전기 구동 모터</rdfs:label>
+    <rdfs:label xml:lang="en">Electric traction motor</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기 에너지를 바퀴 구동력으로 변환하며 일부 차량에서 회생 기능도 수행한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Converts electrical energy into wheel propulsion and may also perform regeneration.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionState">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">세션 상태</rdfs:label>
+    <rdfs:label xml:lang="en">session state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records session state for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 세션 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sourceTitle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">출처 제목</rdfs:label>
+    <rdfs:label xml:lang="en">source title</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source title for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 제목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehicleHasComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+    <rdfs:label xml:lang="ko">구성품</rdfs:label>
+    <rdfs:label xml:lang="en">has component</rdfs:label>
+    <rdfs:comment xml:lang="en">Records has component for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 구성품를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sourceAccessedOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">확인일</rdfs:label>
+    <rdfs:label xml:lang="en">accessed on</rdfs:label>
+    <rdfs:comment xml:lang="en">Records accessed on for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 확인일를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehiclePlugInChargeable">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="ko">외부 충전 가능</rdfs:label>
+    <rdfs:label xml:lang="en">chargeable from off-board electricity</rdfs:label>
+    <rdfs:comment xml:lang="en">Records chargeable from off-board electricity for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 외부 충전 가능를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">근거 주장</rdfs:label>
+    <rdfs:label xml:lang="en">evidence claim</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence claim for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 주장를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#recordDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">설명</rdfs:label>
+    <rdfs:label xml:lang="en">description</rdfs:label>
+    <rdfs:comment xml:lang="en">Records description for ResourceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ResourceRecord의 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">구동계 구성품</rdfs:label>
+    <rdfs:label xml:lang="en">Powertrain component</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기 구동, 에너지 저장, 전력 변환 또는 동력 전달에 참여하는 구성품이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A component participating in electric propulsion, energy storage, power conversion, or power transfer.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehicleChargingEnergySource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">충전 에너지원</rdfs:label>
+    <rdfs:label xml:lang="en">charging energy source</rdfs:label>
+    <rdfs:comment xml:lang="en">Records charging energy source for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 충전 에너지원를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#componentHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">구성품 근거</rdfs:label>
+    <rdfs:label xml:lang="en">component evidence</rdfs:label>
+    <rdfs:comment xml:lang="en">Records component evidence for PowertrainComponent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">PowertrainComponent의 구성품 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#energyFlowSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EnergyFlow"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label xml:lang="ko">에너지 출발점</rdfs:label>
+    <rdfs:label xml:lang="en">energy source</rdfs:label>
+    <rdfs:comment xml:lang="en">Records energy source for EnergyFlow.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EnergyFlow의 에너지 출발점를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#PlugInHybridElectricVehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">플러그인 하이브리드 전기차</rdfs:label>
+    <rdfs:label xml:lang="en">Plug-in hybrid electric vehicle</rdfs:label>
+    <rdfs:comment xml:lang="ko">내연기관과 전기 구동을 함께 사용하고 외부 전원으로 배터리를 충전할 수 있는 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A vehicle archetype combining combustion and electric drive whose battery can be charged externally.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ElectrifiedVehicle"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">근거 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Evidence record</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 위치와 적용 범위가 명시된 주장의 근거다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A claim-level evidence record with a source locator and stated scope.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ChargingStationLocation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">충전소 위치</rdfs:label>
+    <rdfs:label xml:lang="en">Charging station location</rdfs:label>
+    <rdfs:comment xml:lang="ko">하나 이상의 전기차 충전 포트가 설치된 물리적 장소다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A physical location containing one or more EV charging ports.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceAbout">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label xml:lang="ko">주장 대상</rdfs:label>
+    <rdfs:label xml:lang="en">subject of evidence</rdfs:label>
+    <rdfs:comment xml:lang="en">Records subject of evidence for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 주장 대상를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#Inverter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">인버터</rdfs:label>
+    <rdfs:label xml:lang="en">Inverter</rdfs:label>
+    <rdfs:comment xml:lang="ko">전력전자 구동계에서 전력을 변환하는 구성품이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A component that converts power within the electric traction drive.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#recordLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">표시 이름</rdfs:label>
+    <rdfs:label xml:lang="en">display label</rdfs:label>
+    <rdfs:comment xml:lang="en">Records display label for ResourceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ResourceRecord의 표시 이름를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/electric-vehicle/0.1.0"/>
+    <rdfs:label xml:lang="ko">전기자동차 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Electric Vehicle Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">BEV·PHEV·HEV 유형, 구동계 구성품, 에너지 흐름, 충전 설비와 출처 근거를 연결하는 초안이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A draft connecting BEV, PHEV, and HEV categories to drivetrain components, energy flows, charging infrastructure, and evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#DCDCConverter">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">DC-DC 변환기</rdfs:label>
+    <rdfs:label xml:lang="en">DC-DC converter</rdfs:label>
+    <rdfs:comment xml:lang="ko">구동 배터리의 고전압 직류를 저전압 보조 부하용 직류로 변환한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Converts higher-voltage traction-battery DC to lower-voltage DC for auxiliary loads.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#portOutputCurrentType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출력 전류 유형</rdfs:label>
+    <rdfs:label xml:lang="en">output current type</rdfs:label>
+    <rdfs:comment xml:lang="en">Records output current type for EVSEPort.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EVSEPort의 출력 전류 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#CoverageNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">범위 메모</rdfs:label>
+    <rdfs:label xml:lang="en">Coverage note</rdfs:label>
+    <rdfs:comment xml:lang="ko">초안에 포함하거나 제한하거나 제외한 지식 범위를 설명한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">States what this draft includes, limits, or excludes.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#coverageExplanation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">범위 설명</rdfs:label>
+    <rdfs:label xml:lang="en">coverage explanation</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage explanation for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 범위 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehicleHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">차량 유형 근거</rdfs:label>
+    <rdfs:label xml:lang="en">vehicle evidence</rdfs:label>
+    <rdfs:comment xml:lang="en">Records vehicle evidence for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 차량 유형 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">근거 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">evidence identifier</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence identifier for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 식별자를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">evidence status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence status for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionDataStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">데이터 상태</rdfs:label>
+    <rdfs:label xml:lang="en">data status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records data status for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 데이터 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#componentRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기능 범주</rdfs:label>
+    <rdfs:label xml:lang="en">component role</rdfs:label>
+    <rdfs:comment xml:lang="en">Records component role for PowertrainComponent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">PowertrainComponent의 기능 범주를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionCurrentType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">전류 유형</rdfs:label>
+    <rdfs:label xml:lang="en">current type</rdfs:label>
+    <rdfs:comment xml:lang="en">Records current type for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 전류 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#coverageStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">범위 상태</rdfs:label>
+    <rdfs:label xml:lang="en">coverage status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage status for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 범위 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#energyFlowForm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EnergyFlow"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">에너지 형태</rdfs:label>
+    <rdfs:label xml:lang="en">energy form</rdfs:label>
+    <rdfs:comment xml:lang="en">Records energy form for EnergyFlow.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EnergyFlow의 에너지 형태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#PowerElectronicsController">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">전력전자 제어기</rdfs:label>
+    <rdfs:label xml:lang="en">Power electronics controller</rdfs:label>
+    <rdfs:comment xml:lang="ko">배터리에서 구동계로 흐르는 전력을 관리하고 모터 속도와 토크를 제어한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Manages energy delivered from the battery and controls motor speed and torque.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ThermalManagementSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">열관리 시스템</rdfs:label>
+    <rdfs:label xml:lang="en">Thermal management system</rdfs:label>
+    <rdfs:comment xml:lang="ko">배터리, 모터와 전력전자 등 구성품의 작동 온도를 관리한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Manages operating temperatures of the battery, motor, and power electronics.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#portDataStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">데이터 상태</rdfs:label>
+    <rdfs:label xml:lang="en">data status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records data status for EVSEPort.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EVSEPort의 데이터 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#stationHasPort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingStationLocation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:label xml:lang="ko">충전 포트</rdfs:label>
+    <rdfs:label xml:lang="en">has charging port</rdfs:label>
+    <rdfs:comment xml:lang="en">Records has charging port for ChargingStationLocation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingStationLocation의 충전 포트를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:label xml:lang="ko">근거 출처</rdfs:label>
+    <rdfs:label xml:lang="en">evidence source</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence source for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 출처를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#vehiclePropulsionMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">추진 방식</rdfs:label>
+    <rdfs:label xml:lang="en">propulsion mode</rdfs:label>
+    <rdfs:comment xml:lang="en">Records propulsion mode for Vehicle.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Vehicle의 추진 방식를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionConnector">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingConnector"/>
+    <rdfs:label xml:lang="ko">사용 커넥터</rdfs:label>
+    <rdfs:label xml:lang="en">connector used</rdfs:label>
+    <rdfs:comment xml:lang="en">Records connector used for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 사용 커넥터를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#evidenceScope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">주장 적용 범위</rdfs:label>
+    <rdfs:label xml:lang="en">claim scope</rdfs:label>
+    <rdfs:comment xml:lang="en">Records claim scope for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 주장 적용 범위를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#coverageLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">범위 항목</rdfs:label>
+    <rdfs:label xml:lang="en">coverage label</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage label for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 범위 항목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#TractionBatteryPack">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">구동 배터리 팩</rdfs:label>
+    <rdfs:label xml:lang="en">Traction battery pack</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기 구동에 사용할 에너지를 저장한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Stores electricity for electric propulsion.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sourceScope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">출처 범위와 주의</rdfs:label>
+    <rdfs:label xml:lang="en">source scope and caveat</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source scope and caveat for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 범위와 주의를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#OnboardCharger">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">차량 탑재 충전기</rdfs:label>
+    <rdfs:label xml:lang="en">Onboard charger</rdfs:label>
+    <rdfs:comment xml:lang="ko">AC 충전 때 입력 AC를 배터리 충전용 DC로 변환하고 충전 설비와 통신한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">For AC charging, converts input AC to battery-charging DC and communicates with charging equipment.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#EnergyFlow">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">에너지 흐름</rdfs:label>
+    <rdfs:label xml:lang="en">Energy flow</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기 또는 기계 에너지의 방향과 조건을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a directed electrical or mechanical energy flow and its conditions.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sourceURL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">출처 URL</rdfs:label>
+    <rdfs:label xml:lang="en">source URL</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source URL for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 URL를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sourcePublisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">발행 기관</rdfs:label>
+    <rdfs:label xml:lang="en">publisher</rdfs:label>
+    <rdfs:comment xml:lang="en">Records publisher for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 발행 기관를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#HybridElectricVehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">하이브리드 전기차</rdfs:label>
+    <rdfs:label xml:lang="en">Hybrid electric vehicle</rdfs:label>
+    <rdfs:comment xml:lang="ko">내연기관과 전기 모터를 사용하지만 외부 전원에 꽂아 충전하지 않는 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A vehicle archetype combining combustion and electric drive that is not plugged into off-board electricity.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ElectrifiedVehicle"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionEVSEPort">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:label xml:lang="ko">충전 포트</rdfs:label>
+    <rdfs:label xml:lang="en">EVSE port in session</rdfs:label>
+    <rdfs:comment xml:lang="en">Records EVSE port in session for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 충전 포트를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#energyFlowDestination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EnergyFlow"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label xml:lang="ko">에너지 도착점</rdfs:label>
+    <rdfs:label xml:lang="en">energy destination</rdfs:label>
+    <rdfs:comment xml:lang="en">Records energy destination for EnergyFlow.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EnergyFlow의 에너지 도착점를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ChargingConnector">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">충전 커넥터</rdfs:label>
+    <rdfs:label xml:lang="en">Charging connector</rdfs:label>
+    <rdfs:comment xml:lang="ko">EVSE 포트와 차량 충전구를 물리적으로 연결하는 커넥터다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A connector physically linking an EVSE port and a vehicle charge port.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ResourceRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">자원 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Resource record</rdfs:label>
+    <rdfs:comment xml:lang="ko">식별자와 다국어 이름을 가진 온톨로지 자원이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A named ontology resource with a stable local identifier.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#sessionVehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#ChargingSession"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+    <rdfs:label xml:lang="ko">충전 차량</rdfs:label>
+    <rdfs:label xml:lang="en">vehicle in session</rdfs:label>
+    <rdfs:comment xml:lang="en">Records vehicle in session for ChargingSession.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ChargingSession의 충전 차량를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ChargingSession">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">충전 세션</rdfs:label>
+    <rdfs:label xml:lang="en">Charging session</rdfs:label>
+    <rdfs:comment xml:lang="ko">차량, EVSE 포트와 커넥터가 관여하는 한 번의 충전 과정 기록이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A record of one charging interaction involving a vehicle, EVSE port, and connector.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#energyFlowHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EnergyFlow"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electric-vehicle#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">에너지 흐름 근거</rdfs:label>
+    <rdfs:label xml:lang="en">energy-flow evidence</rdfs:label>
+    <rdfs:comment xml:lang="en">Records energy-flow evidence for EnergyFlow.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EnergyFlow의 에너지 흐름 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#AuxiliaryBattery">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">보조 배터리</rdfs:label>
+    <rdfs:label xml:lang="en">Auxiliary battery</rdfs:label>
+    <rdfs:comment xml:lang="ko">차량 액세서리와 저전압 보조 부하에 전력을 공급한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Supplies vehicle accessories and low-voltage auxiliary loads.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#Vehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">차량</rdfs:label>
+    <rdfs:label xml:lang="en">Vehicle</rdfs:label>
+    <rdfs:comment xml:lang="ko">동력원과 구동계 구성을 기록하는 차량 또는 차량 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A vehicle or vehicle archetype whose propulsion and drivetrain are described.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ResourceRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#componentFunction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#PowertrainComponent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">구성품 기능</rdfs:label>
+    <rdfs:label xml:lang="en">component function</rdfs:label>
+    <rdfs:comment xml:lang="en">Records component function for PowertrainComponent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">PowertrainComponent의 구성품 기능를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#portSingleVehicleAtATime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electric-vehicle#EVSEPort"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="ko">동시 충전 차량 제한</rdfs:label>
+    <rdfs:label xml:lang="en">supplies one vehicle at a time</rdfs:label>
+    <rdfs:comment xml:lang="en">Records supplies one vehicle at a time for EVSEPort.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EVSEPort의 동시 충전 차량 제한를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#ElectrifiedVehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">전동화 차량</rdfs:label>
+    <rdfs:label xml:lang="en">Electrified vehicle</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기 구동 요소를 사용하는 차량 범주다. 일상어의 EV와 플러그인 전기차 범주를 구별한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A vehicle category using electric-drive elements; colloquial EV usage is distinct from plug-in vehicle categories.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#Vehicle"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electric-vehicle#BatteryElectricVehicle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">배터리 전기차</rdfs:label>
+    <rdfs:label xml:lang="en">Battery electric vehicle</rdfs:label>
+    <rdfs:comment xml:lang="ko">주행용 배터리와 전기 모터로 구동되는 플러그인 차량 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A plug-in vehicle archetype propelled by an electric motor using traction-battery energy.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/electric-vehicle#ElectrifiedVehicle"/>
+  </rdf:Description>
+</rdf:RDF>

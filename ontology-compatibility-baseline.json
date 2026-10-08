@@ -1,0 +1,1074 @@
+{
+  "modules": {
+    "academic-schema.ttl": {
+      "imports": [
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "https://example.org/ontology/academic",
+      "terms": {
+        "https://example.org/ontology/academic#Course": {
+          "role": "class",
+          "semantic_hash": "16ea2b6ca310bfeb4c56b95feb88033312874b65931f939d1a0889b44acf9ddc"
+        },
+        "https://example.org/ontology/academic#Professor": {
+          "role": "class",
+          "semantic_hash": "2d96dc6e945b868839735058f4f7403d494c91dedf9292e4e3d85012b83ad465"
+        },
+        "https://example.org/ontology/academic#Student": {
+          "role": "class",
+          "semantic_hash": "0107ee6eeecf3b9ed542f60782a297e8876399a18e2811b24df7b306d8756e81"
+        },
+        "https://example.org/ontology/academic#courseCode": {
+          "role": "datatype_property",
+          "semantic_hash": "a25a711f938b2e1024e0e8c01283cbf0e5193d06c6bd17f22eedccf343817174"
+        },
+        "https://example.org/ontology/academic#credits": {
+          "role": "datatype_property",
+          "semantic_hash": "c9150ae3050202f2d7d7eda23e78b208f2b8cdd8be2eb47c7987d92b2e448e04"
+        },
+        "https://example.org/ontology/academic#enrollsIn": {
+          "role": "object_property",
+          "semantic_hash": "f3500a2d7bf7701f5d8e172243727d0cffbad007423d5931f96c7111c0e238c4"
+        },
+        "https://example.org/ontology/academic#hasStudent": {
+          "role": "object_property",
+          "semantic_hash": "6cdc68cd3230cbc6c2164514f85b928781791814698686809cdcef65f8ef6a0f"
+        },
+        "https://example.org/ontology/academic#teaches": {
+          "role": "object_property",
+          "semantic_hash": "0c499561dc2ddc90478fdd2a871706794ddeba736f82c5febeee3e7c0daf2d4a"
+        }
+      },
+      "version": "1.2.1"
+    },
+    "agent-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "https://example.org/agent",
+      "terms": {
+        "https://example.org/agent#Agent": {
+          "role": "class",
+          "semantic_hash": "be2a36e76d35015735e6baa5374b13e2602448034c410d9d85c2c686a1efb420"
+        },
+        "https://example.org/agent#AgentAssignment": {
+          "role": "class",
+          "semantic_hash": "d26245af4d1e16ffb7418f936c49df2528d4cda79fe5abd9b12dcc86758d4d90"
+        },
+        "https://example.org/agent#Artifact": {
+          "role": "class",
+          "semantic_hash": "82439db5dbf17232cffabc85de9f5dd55d51f63a884f0300abf821313730fafb"
+        },
+        "https://example.org/agent#Capability": {
+          "role": "class",
+          "semantic_hash": "849ccce06fc0c8a884e704225702bdc81556bc09646daac52a0955a882b8639d"
+        },
+        "https://example.org/agent#Handoff": {
+          "role": "class",
+          "semantic_hash": "16318aaa396be946efe2082ef3a5e6c5afa1bc938ad6ad9a489bc4dad5b4cce1"
+        },
+        "https://example.org/agent#HumanAgent": {
+          "role": "class",
+          "semantic_hash": "984bfcd22506018927bd24bc0ee03b158781dbf7aed27b3f4baf4c3194420133"
+        },
+        "https://example.org/agent#Project": {
+          "role": "class",
+          "semantic_hash": "22f10bb40edff65ed79aec1870f885549414d4d297585de1cb2dc3b194283e82"
+        },
+        "https://example.org/agent#ReviewDecision": {
+          "role": "class",
+          "semantic_hash": "4c47c1f0522ac1b6ff12c7bf2b170c8096b6f1795669b0b2a02f9081ff6ffdf4"
+        },
+        "https://example.org/agent#ReviewRun": {
+          "role": "class",
+          "semantic_hash": "0430f42fff19c4cef8d41839ab528eab967122a2ed342040060578ed28acccf9"
+        },
+        "https://example.org/agent#Role": {
+          "role": "class",
+          "semantic_hash": "30ec2b1f873f7f2490f2694fc18687d55c9ca495ad0c45c2f575e6522bfeaffa"
+        },
+        "https://example.org/agent#SoftwareAgent": {
+          "role": "class",
+          "semantic_hash": "a2db5dc6ca8813efcb3e861627406accf50406aa88de8bdba7e3ecebf4ebbf26"
+        },
+        "https://example.org/agent#Task": {
+          "role": "class",
+          "semantic_hash": "e0b23a3002ef50e8263e479ae40ff42f3d16bac27c64a8be9eb5c8e41d3ad892"
+        },
+        "https://example.org/agent#TaskRun": {
+          "role": "class",
+          "semantic_hash": "19eefa1a5facdcddfec7a0915888b11cdab4c0cfa7d2144ca908c766092f3732"
+        },
+        "https://example.org/agent#acceptanceCriteria": {
+          "role": "datatype_property",
+          "semantic_hash": "7bdef5d8676aec735ba2d41afb9e215134f367d6c8894a8c72b14cb0b0737c64"
+        },
+        "https://example.org/agent#artifactType": {
+          "role": "datatype_property",
+          "semantic_hash": "aaedbe5fbfd37dcffae96ad01edbbf2f1e25be3a162ad35ac6b711878111fd9a"
+        },
+        "https://example.org/agent#artifactUri": {
+          "role": "object_property",
+          "semantic_hash": "2d23cec20f6f18f3ac8dafa029944ae11fa5bc6a52fc861effadafc9165bf1b2"
+        },
+        "https://example.org/agent#assignedTo": {
+          "role": "object_property",
+          "semantic_hash": "0c48ab30997db1446d1dc2f8ea87ecc1c82a49f2b2d3e1a4ddbe811185f3bddf"
+        },
+        "https://example.org/agent#assignmentAgent": {
+          "role": "object_property",
+          "semantic_hash": "10ca0727834e5978b55d16cb849e61bbe8d3c30d4742ab854283e79479454441"
+        },
+        "https://example.org/agent#assignmentRole": {
+          "role": "object_property",
+          "semantic_hash": "05c30586a687c5a06d01ac3e40442bdfac045052387af8ddfef557ca1dc44b18"
+        },
+        "https://example.org/agent#checksum": {
+          "role": "datatype_property",
+          "semantic_hash": "1dbf1397187998d45d8d37ff6c0fca8bb3ecb854e1bc8efcf45e29ec018c8c4e"
+        },
+        "https://example.org/agent#containsArtifact": {
+          "role": "object_property",
+          "semantic_hash": "84340b97113969f78bac106f1fcf17a50e3359c98aa21bcd0e91c22572e0c9d4"
+        },
+        "https://example.org/agent#decision": {
+          "role": "datatype_property",
+          "semantic_hash": "e51caa37bc6cd027f6f62da44a355b661a1247f49ff744a62db4f5f459cf14ca"
+        },
+        "https://example.org/agent#decisionAbout": {
+          "role": "object_property",
+          "semantic_hash": "2d8fef76cf104189c350d53cc386d3126d7953678bc81634b351254767a91bff"
+        },
+        "https://example.org/agent#dependsOn": {
+          "role": "object_property",
+          "semantic_hash": "e430193d9cc1c741433fc7e5385ad9611d8b15d87a8d623e4e5b80f0034a2bd0"
+        },
+        "https://example.org/agent#errorCode": {
+          "role": "datatype_property",
+          "semantic_hash": "caf0d2275567c069721057b9afeb1f9916e166ed8110eedac4fde1d8c3134cac"
+        },
+        "https://example.org/agent#goal": {
+          "role": "datatype_property",
+          "semantic_hash": "859e427ff45b2dd2e2616a75eeb09c9e4624512917c51e4031a6ab11a6fc60a3"
+        },
+        "https://example.org/agent#hasAssignment": {
+          "role": "object_property",
+          "semantic_hash": "87da42fbad5bf76df74027662b75c4b48921abb7791254920912bf2c4ff7e30b"
+        },
+        "https://example.org/agent#hasCapability": {
+          "role": "object_property",
+          "semantic_hash": "ccccaf4e7c7c44c8b2a191e7a4c06608f0a878d9c256a1ff889e66beb3947398"
+        },
+        "https://example.org/agent#hasDecision": {
+          "role": "object_property",
+          "semantic_hash": "c09ffa6cc32a7e4fdb2f41fbfb334b525ee8cb7a41962e37bfdc90720c50fed1"
+        },
+        "https://example.org/agent#hasFinalArtifact": {
+          "role": "object_property",
+          "semantic_hash": "50711f69237f3f6ab5c5c279106935b2ba86859260884e797fcb4648e409f382"
+        },
+        "https://example.org/agent#hasHandoff": {
+          "role": "object_property",
+          "semantic_hash": "2cbe688a95a712721d679517112a25472ce3f6f9bdd992730267ebec80d2423f"
+        },
+        "https://example.org/agent#hasTask": {
+          "role": "object_property",
+          "semantic_hash": "19b2703e4cb4ceec689a54e20623d437ac131d88a760b74f02acc9618856e6c5"
+        },
+        "https://example.org/agent#implementsTask": {
+          "role": "object_property",
+          "semantic_hash": "55bbeb69be73f11d99b290c00dac620e0a752b76bd9d0319e12a551ea8c80be3"
+        },
+        "https://example.org/agent#reason": {
+          "role": "datatype_property",
+          "semantic_hash": "89207400cdc870b6558438fe3cdecfb25d12fe1d9d1d1f947e7df5c1d9cb0b5d"
+        },
+        "https://example.org/agent#requiresCapability": {
+          "role": "object_property",
+          "semantic_hash": "91ede65c31cf9e64d4dadebf0e045c8d4b5ac6ab9910320dbabae5629d84d360"
+        },
+        "https://example.org/agent#reviews": {
+          "role": "object_property",
+          "semantic_hash": "1a81607116a8ffe08316ef2f938017f5730e1a788707a6143a45b8c00b59fb20"
+        },
+        "https://example.org/agent#status": {
+          "role": "datatype_property",
+          "semantic_hash": "62a918663c08d3f1f08fe02457b05e3bfee74ec4b7ef0a2807f339c16619247b"
+        },
+        "https://example.org/agent#taskObjective": {
+          "role": "datatype_property",
+          "semantic_hash": "98523474d340401b1624025b9daf688042d1f5922172f139e5d252edd7506184"
+        },
+        "https://example.org/agent#toAgent": {
+          "role": "object_property",
+          "semantic_hash": "b9bd74e00dcc15131fb858930863dc0843d2b1cb85a316e5cae08f549a87492f"
+        },
+        "https://example.org/agent#toTask": {
+          "role": "object_property",
+          "semantic_hash": "299eb84da2ece8fed5445dd34cf49415ca3b6beb0466962801a18679417886e3"
+        },
+        "https://example.org/agent#toolVersion": {
+          "role": "datatype_property",
+          "semantic_hash": "2f6f97d58bd3bb107d704e69c075dcb183f733b18d95d3cefb0e51a51f407d70"
+        },
+        "https://example.org/agent#version": {
+          "role": "datatype_property",
+          "semantic_hash": "7f7257d275e483ee8e8dde07df2085abc510d32ea56eeef065fcc54974a6ce9a"
+        }
+      },
+      "version": "1.2.1"
+    },
+    "controlled-vocabularies.ttl": {
+      "imports": [],
+      "ontology": "https://example.org/ontology/vocab",
+      "terms": {
+        "http://example.org/ontology/healthcare#ClinicalObservationStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "81903e7871915837b32d590ab82ba72b569bb38f89193e26b4a9fa7f0b4e30db"
+        },
+        "http://example.org/ontology/healthcare#ClinicalReportStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "48d323109c4eb101f1ebff6008457d66a05020ffac4b1b7da098bc6d5e287185"
+        },
+        "http://example.org/ontology/healthcare#DiagnosticTaskIntentScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "f3c72c4f49fe05f4204ba524423e2b1857b132621f228374cdfd57f6d440723a"
+        },
+        "http://example.org/ontology/healthcare#PrivacyClassificationScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "0311eac743e134efa647161ebef54887befaba7c80c3ab8b876267c27b36a376"
+        },
+        "http://example.org/ontology/healthcare#Pseudonymized": {
+          "role": "concept",
+          "semantic_hash": "97a0e0a3c652f7330c66f6ac9368961a56bdec9269ad17ced013c782f29a8186"
+        },
+        "http://example.org/ontology/healthcare#Sensitive": {
+          "role": "concept",
+          "semantic_hash": "5bebf3f53245b1798103a89b6d2e41448d61972297f233001bfb80f2ae64c4d1"
+        },
+        "http://example.org/ontology/healthcare#Synthetic": {
+          "role": "concept",
+          "semantic_hash": "92b1cfe89daed8b2925f5a1b4a40cd96db4282d1d2cc83ad9bd528af315461b3"
+        },
+        "http://example.org/ontology/healthcare#Unverified": {
+          "role": "concept",
+          "semantic_hash": "bb584e3d7eaba9eb908c4556c0c05fa110e43c19ee95e4fc8c023bbb5464c96f"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-filler-order": {
+          "role": "concept",
+          "semantic_hash": "94f041aff0fa38ee75c67e627b3c6f19c36e69b6d55718ff95aad531085e5980"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-instance-order": {
+          "role": "concept",
+          "semantic_hash": "bc9f42647f881a5d4276b2738fc5cd2980253329d3f7a373e5c28fbb5d219dd0"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-option": {
+          "role": "concept",
+          "semantic_hash": "e9ed5e043a4786dc6dc1a40a1175b1400aaaeff109c06b863c7995e982fd9da4"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-order": {
+          "role": "concept",
+          "semantic_hash": "5ebcbb9555636a2799505cdf1e15949059eaa56df5406b3c59f1da87805c5e52"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-original-order": {
+          "role": "concept",
+          "semantic_hash": "abff57e034c1f2d7d9d89301679a67134525850c92d8bc98e5e755a6ae4ee61b"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-plan": {
+          "role": "concept",
+          "semantic_hash": "142485827d5276befe2a2a3959503d485e5de14daa89b263e302d9ae83c4a264"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-proposal": {
+          "role": "concept",
+          "semantic_hash": "2941abb264850222300ee0ff9d3c8e5cb6847b6504ea2439dafc2322135c2651"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-reflex-order": {
+          "role": "concept",
+          "semantic_hash": "c00955d02f2b92aa26964988a7399978e6212d71cfae1ad99c0d4d03d96b7ed9"
+        },
+        "http://example.org/ontology/healthcare#fhir-intent-unknown": {
+          "role": "concept",
+          "semantic_hash": "1737f1bcd0441816f01e13076142fb7ffb421e6266c01f7058df88e5a3aa0915"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-amended": {
+          "role": "concept",
+          "semantic_hash": "aabe7ecee32881a073a3784361c514ce9fb285ee9f5696070f1f324172928551"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-cancelled": {
+          "role": "concept",
+          "semantic_hash": "100f56c479504b2ee9eb38aa703240a296b89fcb9ff7711c446df38fee374125"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-corrected": {
+          "role": "concept",
+          "semantic_hash": "22cb8a5af7b8774b67420d9155a6a00e560b08b25f721e41f18484bf6d844709"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-error": {
+          "role": "concept",
+          "semantic_hash": "ea7bc22867538e4d71e100164c774aa358670229c6c8809aa3dc573ff087945d"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-final": {
+          "role": "concept",
+          "semantic_hash": "2bfde77883923a433eeb6bb9fcc1f41c5e62ff0a65d3d2a521c27dbbb9e9a39a"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-preliminary": {
+          "role": "concept",
+          "semantic_hash": "d7df6e83426df3bae5e9c1a759833e399d414909ad1b840bdd60db0bcb4c3877"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-registered": {
+          "role": "concept",
+          "semantic_hash": "33fc26143856ce97f0b9fa25a42a23c1fb705823eeac96b9fbb0a70ba7b2ff1c"
+        },
+        "http://example.org/ontology/healthcare#fhir-observation-unknown": {
+          "role": "concept",
+          "semantic_hash": "1e45c11504dcbb1cd729831416391d8a137d60fe159b95d3e69351f9eed04b37"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-amended": {
+          "role": "concept",
+          "semantic_hash": "edaf4f97c5c4f2371c52f1e07f8c2475b014eef4762b46f58f4b3e0ce232f208"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-appended": {
+          "role": "concept",
+          "semantic_hash": "5ff2aeee357aba5afe3b9e9e61902d7be82da4440d9928c608a9ddae6a614d50"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-cancelled": {
+          "role": "concept",
+          "semantic_hash": "f44e2eafa9a7eddc14ddc91baf7b95d5c2cf3a399b585bb2fb6bc4dd7585a354"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-corrected": {
+          "role": "concept",
+          "semantic_hash": "f50aa89f11ccca765edf923d35163434ed8a63dee2c206d93e57bc9b501e2022"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-error": {
+          "role": "concept",
+          "semantic_hash": "5060971321c4534ee4c66dc3982375d4bc44104b9c31e51d16cf698d8fbd331b"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-final": {
+          "role": "concept",
+          "semantic_hash": "0cdabc32bef9dc468cbf169941956837227523431615f3777b4b86716432165f"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-modified": {
+          "role": "concept",
+          "semantic_hash": "f15ffe190f7e74bbd03778d45153d89dbb4d594a6208c3aaed99c3982a506099"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-partial": {
+          "role": "concept",
+          "semantic_hash": "8e5e686544fd513437bf03149753be3c73816ecab8ab2458d3c2377cb7258ccf"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-preliminary": {
+          "role": "concept",
+          "semantic_hash": "769de3a71bd972cb76f9a493d675a63b1141dfb0543892f586df4a0c64995d98"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-registered": {
+          "role": "concept",
+          "semantic_hash": "66b552b969477c9b64cd7dbb7c0fd615146b94475a1cd5c9e0b076f142b946a1"
+        },
+        "http://example.org/ontology/healthcare#fhir-report-unknown": {
+          "role": "concept",
+          "semantic_hash": "e16e0f78acbde9297e8cfcb8216166f6bd1584044e4c65d3647eb26382ffe1a4"
+        },
+        "https://example.org/ontology/vocab#AgentRunStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "b9b0f19ad2d491ce092c1331c3391aa94e3536213012fe7dfb319e6c89597d33"
+        },
+        "https://example.org/ontology/vocab#DevOpsStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "781b93ff22e4a423ecf0651c8dd5d8c4cb0055948690dab1b127b8ae8085b751"
+        },
+        "https://example.org/ontology/vocab#EcommerceCurrencyStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "f59278352fc9204a025cb0b5f50309d8a7089a086e07a20b63ec9f144a93c164"
+        },
+        "https://example.org/ontology/vocab#EcommerceOrderStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "96bf4e3b4e7f32e3f98bc6a0788cbba998655aaf25e9d991ce60c4b3c8713e6a"
+        },
+        "https://example.org/ontology/vocab#HealthcareDiagnosticStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "2e4660da47bffbb310bda7c8b74ee09eb16c5fb0579aeb8a81036188c33b8051"
+        },
+        "https://example.org/ontology/vocab#MVStatusScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "5d5597d2b1276e34aea0f6e285361e5317f816f9178047dc5ca418a491988f75"
+        },
+        "https://example.org/ontology/vocab#ReviewDecisionScheme": {
+          "role": "concept_scheme",
+          "semantic_hash": "f1d19b2504cb44a849de0d6ec7bb5a537fc2f113af05d8a515a2cd9b9517f92f"
+        },
+        "https://example.org/ontology/vocab#agent-completed": {
+          "role": "concept",
+          "semantic_hash": "1f6f7a30b3d6b81db77364e01257439d7bc20b292e715f95ad90cf68051d1dc3"
+        },
+        "https://example.org/ontology/vocab#agent-failed": {
+          "role": "concept",
+          "semantic_hash": "6e9e515a3399eb61291d30b59346cc55fda00fc39e8db34072753924ad4762ca"
+        },
+        "https://example.org/ontology/vocab#agent-planned": {
+          "role": "concept",
+          "semantic_hash": "20e35a5195587bf666e03a2c220a33506eae5a588f04897b20ffebb0ac605850"
+        },
+        "https://example.org/ontology/vocab#agent-ready": {
+          "role": "concept",
+          "semantic_hash": "565fd605406068aca6f1ea1ca270bd80d31f5ebd7ddb4ed200fc2c419eefaa20"
+        },
+        "https://example.org/ontology/vocab#agent-running": {
+          "role": "concept",
+          "semantic_hash": "24593957f14da6bf0998ba35e82220cad956cccb6987c5bc65c365c60cd3c188"
+        },
+        "https://example.org/ontology/vocab#currency-unverified": {
+          "role": "concept",
+          "semantic_hash": "3bdc2b008938622b608a4f7a1c67c7869a89a5567c5ccfd93cfc9eece924eeb9"
+        },
+        "https://example.org/ontology/vocab#currency-verified": {
+          "role": "concept",
+          "semantic_hash": "4c4ede988b6b256fdd91b6810301b4d4c44961b29ccf99b140daa338c3def914"
+        },
+        "https://example.org/ontology/vocab#devops-cancelled": {
+          "role": "concept",
+          "semantic_hash": "92f5ab13a85a49940d3625872b1931a7bf355a7bdebde797f33164c94933574b"
+        },
+        "https://example.org/ontology/vocab#devops-failed": {
+          "role": "concept",
+          "semantic_hash": "db9be55e43612d026553126b3e7c1e4d2b2a230e5414fae89eebfd443cedae51"
+        },
+        "https://example.org/ontology/vocab#devops-pending": {
+          "role": "concept",
+          "semantic_hash": "c3ae4165d0265e5348dbd0391e123368564fb313d5ab4e6111a94f7ff6e421a8"
+        },
+        "https://example.org/ontology/vocab#devops-running": {
+          "role": "concept",
+          "semantic_hash": "2cd268641eadd7460c85b52716036a202f66c80c84299807dd7c76b6c8dfc12b"
+        },
+        "https://example.org/ontology/vocab#devops-success": {
+          "role": "concept",
+          "semantic_hash": "57da6f826e3038d9953550efeacbc8bda53f9cb0f4945b8b50ee40b42bda5bb6"
+        },
+        "https://example.org/ontology/vocab#health-analyzing": {
+          "role": "concept",
+          "semantic_hash": "b5bee4117d9544f026e8dd9ebbcd62881eff6e8842c8805d84c0054d8f3017a7"
+        },
+        "https://example.org/ontology/vocab#health-cancelled": {
+          "role": "concept",
+          "semantic_hash": "52a63569c23c205b7d5dea5fb21fca8608ea4d167b716aacf79f1cb2555111b0"
+        },
+        "https://example.org/ontology/vocab#health-completed": {
+          "role": "concept",
+          "semantic_hash": "c50a2d0df740c9aed208fae9baafaa6f4fe01413530d786bc72a3eb5a0dc3e9c"
+        },
+        "https://example.org/ontology/vocab#health-failed": {
+          "role": "concept",
+          "semantic_hash": "0bb66acb807a459f03e94b4ff107dd883a5e69d9694ec959648b152e4961c642"
+        },
+        "https://example.org/ontology/vocab#health-pending": {
+          "role": "concept",
+          "semantic_hash": "9b1bdbf2e2728aaa47ed3589e68dd18aceda36346199eb2eb29e54af774c7b4d"
+        },
+        "https://example.org/ontology/vocab#health-verified": {
+          "role": "concept",
+          "semantic_hash": "6739efe22fe20da9df393048bbd19a4fec95e947d069538b6ad1566a58c197c6"
+        },
+        "https://example.org/ontology/vocab#mv-completed": {
+          "role": "concept",
+          "semantic_hash": "459d22a15173840a3c0c8058ff57107aea95bb5ffa41aaed10a120f38cd0abd3"
+        },
+        "https://example.org/ontology/vocab#mv-failed": {
+          "role": "concept",
+          "semantic_hash": "4b1ebbccfb5d6e23d73f0ffcdbd37c4ee760ef8582fc07352fd79961c7ff75d5"
+        },
+        "https://example.org/ontology/vocab#mv-planned": {
+          "role": "concept",
+          "semantic_hash": "3d5c909aba10b3cc2ce51f99058b1c5d1fe9d169eb43376f6b2e5f72f4d30415"
+        },
+        "https://example.org/ontology/vocab#mv-running": {
+          "role": "concept",
+          "semantic_hash": "3b4eb01a27ae3c0a33757f1f6536d2424bf5ca5202c489681c9dc079400e4107"
+        },
+        "https://example.org/ontology/vocab#order-cancelled": {
+          "role": "concept",
+          "semantic_hash": "bf53f25f2d71f77e95bd305bb9f5041a424ed4dbd28259fe06d0c20227e1eee9"
+        },
+        "https://example.org/ontology/vocab#order-delivered": {
+          "role": "concept",
+          "semantic_hash": "02361786a915c9fb6e903b8e8b851c8b8f0e9dfc1bbdfa56a92b70b6f5c2ba29"
+        },
+        "https://example.org/ontology/vocab#order-placed": {
+          "role": "concept",
+          "semantic_hash": "d170e502f758e5aebe0856034a2f16be4a42d4a59a50582f2ada24e1c650be5c"
+        },
+        "https://example.org/ontology/vocab#order-processing": {
+          "role": "concept",
+          "semantic_hash": "0f508f24b1663bff533959fe92ced2e5e3c9c30d91a65b6d5ceb660cfb7f9258"
+        },
+        "https://example.org/ontology/vocab#order-shipped": {
+          "role": "concept",
+          "semantic_hash": "c24943316fee8d5735f01902e5637ecf7e6122c4e91e0d7667a0941f1e375bcb"
+        },
+        "https://example.org/ontology/vocab#review-approved": {
+          "role": "concept",
+          "semantic_hash": "4f40f2d56c4a5f33c51fd62511ca79a956493f61f1471145f52deb53f85fc1c1"
+        },
+        "https://example.org/ontology/vocab#review-rejected": {
+          "role": "concept",
+          "semantic_hash": "1a141a6ba5991b4451dbf3bf29e2994b937eed92cd76ff5b8b7f54ac1d9468d4"
+        }
+      },
+      "version": "1.0.0"
+    },
+    "core-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#"
+      ],
+      "ontology": "https://example.org/ontology/core",
+      "terms": {
+        "https://example.org/ontology/core#Agent": {
+          "role": "class",
+          "semantic_hash": "3326f43466e8aa23462fc060ed9a12aedf1fea669b99c3748fe9780202b9b643"
+        },
+        "https://example.org/ontology/core#Artifact": {
+          "role": "class",
+          "semantic_hash": "a212d8433bbecb36b965a93b6dfa94a361f710be28c55ebcca1090eafdaeaad4"
+        },
+        "https://example.org/ontology/core#Project": {
+          "role": "class",
+          "semantic_hash": "a519715fab1a22b7b4aaf9e1921763e8be29f8abca78eb8fbc775939ce410826"
+        },
+        "https://example.org/ontology/core#SensitiveRecord": {
+          "role": "class",
+          "semantic_hash": "1f551389a3ce37c2c27f0c076bc783291343f046af2c8950d816f84d97fe3c28"
+        },
+        "https://example.org/ontology/core#Task": {
+          "role": "class",
+          "semantic_hash": "034d689037175ae06df34d68b5df8ca74f0cba7c1e443c3c4727882e5221e71f"
+        },
+        "https://example.org/ontology/core#TaskRun": {
+          "role": "class",
+          "semantic_hash": "85d1e326b8383f0369f72e40a979bf4abe2059894af82f64aba4939bcd1ff39b"
+        },
+        "https://example.org/ontology/core#runAgent": {
+          "role": "object_property",
+          "semantic_hash": "cacc2735bb79d34a4b34a74b663b5d4bbb79f04b1ebdc420143b5b638678ca93"
+        },
+        "https://example.org/ontology/core#runEndedAt": {
+          "role": "datatype_property",
+          "semantic_hash": "5c44c7069410ee19eb7fadef870c32e90c7d1153a4812ad85fde7b8a90c1189d"
+        },
+        "https://example.org/ontology/core#runInput": {
+          "role": "object_property",
+          "semantic_hash": "8170774244e31b4eef0c65cd043c2c06b9ca73b1e89f1710b4eb0415129dba5e"
+        },
+        "https://example.org/ontology/core#runOutput": {
+          "role": "object_property",
+          "semantic_hash": "c714e56105612256e08cf758c711ec2b294e2bcf66c15177d76710417b4fa264"
+        },
+        "https://example.org/ontology/core#runStartedAt": {
+          "role": "datatype_property",
+          "semantic_hash": "a7e036856b8a91e1653a157c1e6f658f80466d260d8c70c4d7c99c56678d0078"
+        },
+        "https://example.org/ontology/core#taskStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "2981ababf17c58f1d8d7cc434572cf25109537d668333552c42c6b7b3a1879f1"
+        }
+      },
+      "version": "1.1.1"
+    },
+    "devops-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "http://example.org/ontology/devops",
+      "terms": {
+        "http://example.org/ontology/devops#BuildArtifact": {
+          "role": "class",
+          "semantic_hash": "e8efda8a3be8dc5175287e61d60d8706ff47b9c281c63f726fb8a65762064bc8"
+        },
+        "http://example.org/ontology/devops#BuildTask": {
+          "role": "class",
+          "semantic_hash": "f62e0cf912d9f2412baa08bf46905553dbc7edf2aff8498718bc12a5605b80a6"
+        },
+        "http://example.org/ontology/devops#DeploymentTask": {
+          "role": "class",
+          "semantic_hash": "85a8b277386d5e0fc43ad82f9da137fa4af0abe82ba8ac2b870714a70bcc38ea"
+        },
+        "http://example.org/ontology/devops#DevOpsAgent": {
+          "role": "class",
+          "semantic_hash": "d8a136ec4d32bd998cfabd74a19912871a8c9f4dfdb4352d0a4e10a394dd5296"
+        },
+        "http://example.org/ontology/devops#DevOpsPipeline": {
+          "role": "class",
+          "semantic_hash": "30f5b8636551f59f01d1f24de381fea595276f1d2de81cbaeadb28d7f9577da8"
+        },
+        "http://example.org/ontology/devops#PipelineTask": {
+          "role": "class",
+          "semantic_hash": "316f7aa20cd7a023819331f9cc91321de6f4f290f8414cde7d99df192ff05786"
+        },
+        "http://example.org/ontology/devops#SecurityScanTask": {
+          "role": "class",
+          "semantic_hash": "da415434be806d2c06e3d8a3f9c1f82973e357dbba16c1bbc19a1e1ed730b1ef"
+        },
+        "http://example.org/ontology/devops#TargetEnvironment": {
+          "role": "class",
+          "semantic_hash": "d2ad53d2f0c9fdc9de87b1156132560265262fdc8d4638ca5893d82fc046502b"
+        },
+        "http://example.org/ontology/devops#VulnerabilityReport": {
+          "role": "class",
+          "semantic_hash": "0280c620075fef8e6f7a5d9fc0a8242ee404acc23344c04c8fbfa5d00b086431"
+        },
+        "http://example.org/ontology/devops#branchName": {
+          "role": "datatype_property",
+          "semantic_hash": "6042ab931dd404aadcb390a5e5257ac80ffa4545ab56f7c7f3502efea3d3d941"
+        },
+        "http://example.org/ontology/devops#commitHash": {
+          "role": "datatype_property",
+          "semantic_hash": "575ad3b308c0ee2e1e6ccd268e33ba9da90d40cf032c4fc24961395d04007683"
+        },
+        "http://example.org/ontology/devops#dependsOn": {
+          "role": "object_property",
+          "semantic_hash": "7c1d8d43c0f49ce52e2bdb79675eb399e1ce0dcec9b9f8e8d7f182f5e38741b4"
+        },
+        "http://example.org/ontology/devops#deployedTo": {
+          "role": "object_property",
+          "semantic_hash": "15a0424ad545bd77797aee031d5aec9190ddec8c6215df21a4fcc1f3f91bc6ff"
+        },
+        "http://example.org/ontology/devops#deploysArtifact": {
+          "role": "object_property",
+          "semantic_hash": "2e5cb8ff4820528392a7120390a7aa344f68e052c3e69b7b8b2e8e85dfb026aa"
+        },
+        "http://example.org/ontology/devops#environmentName": {
+          "role": "datatype_property",
+          "semantic_hash": "13dcf6b7c1dffdc3f677f00cb9aa2271633293e619c27ce9795a2b00320830ac"
+        },
+        "http://example.org/ontology/devops#executionStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "c5f1b40293e0c0b76d3fa4d332a2f590fde3c712dd206a1a489166c36fe422bf"
+        },
+        "http://example.org/ontology/devops#generatesReport": {
+          "role": "object_property",
+          "semantic_hash": "e105e6a6a56e50af071317c1ee889287bfca2474f936d3a17672457a1b7efd41"
+        },
+        "http://example.org/ontology/devops#hasTask": {
+          "role": "object_property",
+          "semantic_hash": "41557cdeecec2130f0185518d8ac349e767cc39992de513a710adff2d5176728"
+        },
+        "http://example.org/ontology/devops#imageTag": {
+          "role": "datatype_property",
+          "semantic_hash": "4e8f81153ebbc86ef4a56b4889b25e114fdcdcb95fa0493ced1339cea1e6786b"
+        },
+        "http://example.org/ontology/devops#managedBy": {
+          "role": "object_property",
+          "semantic_hash": "2a0b460c574b67ff49cccdf961f23b720b944cf9228c8f6cb3b9e7a984fa9b3f"
+        },
+        "http://example.org/ontology/devops#pipelineId": {
+          "role": "datatype_property",
+          "semantic_hash": "4dd65a8e2fa2bc51e2c66eb5c0a9d78303440f33a2bc1e01c71b16e1b52cb150"
+        },
+        "http://example.org/ontology/devops#producesArtifact": {
+          "role": "object_property",
+          "semantic_hash": "ffc78502575f0323ac273c08d5adc8e7da8711c7fd1d8ab6c4d5b6c727231b0d"
+        },
+        "http://example.org/ontology/devops#vulnerabilityCount": {
+          "role": "datatype_property",
+          "semantic_hash": "f5313e7e83d3b14decada3cc853aac149a00c707dbe2807f8cd0f1aadf71b37b"
+        }
+      },
+      "version": "1.2.1"
+    },
+    "ecommerce-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "http://example.org/ontology/ecommerce",
+      "terms": {
+        "http://example.org/ontology/ecommerce#CustomerSession": {
+          "role": "class",
+          "semantic_hash": "a7dca0ea949d3b269237b519644b9b37bd8e27219ebc9eeeec0c0b1935a92905"
+        },
+        "http://example.org/ontology/ecommerce#OrderStatusEvent": {
+          "role": "class",
+          "semantic_hash": "b35ce8c0e15455f73a0953b62e737fae6624291d11f74fc4c014fe873f65d686"
+        },
+        "http://example.org/ontology/ecommerce#OrderTask": {
+          "role": "class",
+          "semantic_hash": "0d3217d8b222dab432def2eafe41a61808b2dbbc8e5261fa9e2ff71c1125dbdb"
+        },
+        "http://example.org/ontology/ecommerce#Product": {
+          "role": "class",
+          "semantic_hash": "22e1fc9cc6fdf96a27297eab0d5e53a2d06d52d18468befe429fac79972c8277"
+        },
+        "http://example.org/ontology/ecommerce#RecommendationAgent": {
+          "role": "class",
+          "semantic_hash": "2e65fe2e14956a8757752123049a265e3024e1ae87084d7b1f7d235e0f11b91e"
+        },
+        "http://example.org/ontology/ecommerce#changedAt": {
+          "role": "datatype_property",
+          "semantic_hash": "56049ed0760a7f14a1137302daffb1c354bccb3114e24099956740039094f11f"
+        },
+        "http://example.org/ontology/ecommerce#eventOrder": {
+          "role": "object_property",
+          "semantic_hash": "80c8ffe0d4fe2a4df430bfd410de048f8fef62ddcb393c1f8f6533978345c034"
+        },
+        "http://example.org/ontology/ecommerce#fromStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "d1961172cdefb4965de5cecc7fb94be323b41d5fee5e047f5ee2400da5d5d432"
+        },
+        "http://example.org/ontology/ecommerce#handledBy": {
+          "role": "object_property",
+          "semantic_hash": "4bac11b3c1675f3750154d3c68e72d4c9eb252194fff2086a7db528be8c34bfe"
+        },
+        "http://example.org/ontology/ecommerce#hasStatusEvent": {
+          "role": "object_property",
+          "semantic_hash": "601967819ccafc15cd5e27a228d96e504e6711eb86937bf3d4d7aebccb4648c3"
+        },
+        "http://example.org/ontology/ecommerce#includesProduct": {
+          "role": "object_property",
+          "semantic_hash": "5c6b38663f176d4e72c5478ad2f173c24fd6d54c69f98fb0bdf32fb1d5872a6f"
+        },
+        "http://example.org/ontology/ecommerce#orderStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "de02f55069dd8a07e81aef02cd05424b74c072a657429108687a3fbafa9c5940"
+        },
+        "http://example.org/ontology/ecommerce#price": {
+          "role": "datatype_property",
+          "semantic_hash": "c0b6850b1d9b3f8e54050b92f6b3a4cfc100664c4812ed73d9d416a1e3dd4c4e"
+        },
+        "http://example.org/ontology/ecommerce#priceCurrency": {
+          "role": "datatype_property",
+          "semantic_hash": "df3fcbebcb149cde844d147780a8e469a55af492e6cb1c08d467f4ef21f44a7f"
+        },
+        "http://example.org/ontology/ecommerce#priceCurrencyStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "aa8313fd4771a25c0d32c505de0fc3f21d4161fe17710031de491c65c019dd9d"
+        },
+        "http://example.org/ontology/ecommerce#productId": {
+          "role": "datatype_property",
+          "semantic_hash": "73425c2c22dd9e21d56821294045a23efa13ec163674a5fb9e7373cfe5b1000b"
+        },
+        "http://example.org/ontology/ecommerce#recommends": {
+          "role": "object_property",
+          "semantic_hash": "1357b714b12eaf10c198086ddc16956330f1b23927e7a968f290d4413ee9fb1a"
+        },
+        "http://example.org/ontology/ecommerce#toStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "85cd48d31580959f1ceb996e6afb39ca24f76df6fff62f0951ecc1024ae8c577"
+        }
+      },
+      "version": "1.2.1"
+    },
+    "healthcare-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "http://example.org/ontology/healthcare",
+      "terms": {
+        "http://example.org/ontology/healthcare#ClinicalObservation": {
+          "role": "class",
+          "semantic_hash": "2d73fd85905c9489c0c1d7d4cd48cec18b1c7432c4c1955cb2fa81708cc280d4"
+        },
+        "http://example.org/ontology/healthcare#ClinicalReport": {
+          "role": "class",
+          "semantic_hash": "1c81e5507641f9266e0cb2e033d2bf06032bd03988e180863c2414f1e83b9133"
+        },
+        "http://example.org/ontology/healthcare#DiagnosticTask": {
+          "role": "class",
+          "semantic_hash": "c528b828b54e2b687dfc55024408d0a7b7981aff870ece48fdca7cb9926c0fa7"
+        },
+        "http://example.org/ontology/healthcare#MedicalAnalysisAgent": {
+          "role": "class",
+          "semantic_hash": "f95c4a6ef5aee68ae7e1ceece96f20f2f138f4966c7b54ecc7d5a2971b50c85b"
+        },
+        "http://example.org/ontology/healthcare#PatientRecord": {
+          "role": "class",
+          "semantic_hash": "4378b3f7f2df5d4bc6ea8eefc64c330fa8d2f0364ba0cc790479af64968adcf1"
+        },
+        "http://example.org/ontology/healthcare#PrivacyClassification": {
+          "role": "class",
+          "semantic_hash": "624e9a44dedf710f8de9151dab8bdb8a71f2fa0e510ac011dd1de107f616c94f"
+        },
+        "http://example.org/ontology/healthcare#analyzedBy": {
+          "role": "object_property",
+          "semantic_hash": "6f6ed09bf550030ff28eea185fc17e5cdd5561d2c1d722393d3642280313cb9d"
+        },
+        "http://example.org/ontology/healthcare#associatedWithRecord": {
+          "role": "object_property",
+          "semantic_hash": "c30ea1ef3ccb0b9eb7668ce8645977bb302dce1012f6743f613b8121dc0db4eb"
+        },
+        "http://example.org/ontology/healthcare#codeSystem": {
+          "role": "object_property",
+          "semantic_hash": "c3e3c2e109c316dba11a76d5ab7ae3c446608154b108f7194f41753dc6bf6c7a"
+        },
+        "http://example.org/ontology/healthcare#confidenceScore": {
+          "role": "datatype_property",
+          "semantic_hash": "c4f9e842fac8f25be597c3904e4631e9bfed9ad07f822b20b15d2f70dec29fdc"
+        },
+        "http://example.org/ontology/healthcare#dataClassification": {
+          "role": "object_property",
+          "semantic_hash": "ca9aff139835e0dca798acb03bc45e0f1b83363180339f5d66779c0618a2defe"
+        },
+        "http://example.org/ontology/healthcare#diagnosticStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "fba96b655740eb9c150b3d5b7422f5396eaf077688b1c2b7a9d68d0613e13db6"
+        },
+        "http://example.org/ontology/healthcare#findingText": {
+          "role": "datatype_property",
+          "semantic_hash": "227abaf68d84adb8098ffc6ccf9646ee74f423e0dad3227445b6b82f5152fd13"
+        },
+        "http://example.org/ontology/healthcare#generatesObservation": {
+          "role": "object_property",
+          "semantic_hash": "c3d6e9320c53feb0aa3503a07c0728759708a5d00fa5bbd8850277a497bd75c0"
+        },
+        "http://example.org/ontology/healthcare#generatesReport": {
+          "role": "object_property",
+          "semantic_hash": "9eece25a7b6580f66820fbefd9003823392f4f3f95b38db1fe25be4671117650"
+        },
+        "http://example.org/ontology/healthcare#numericValue": {
+          "role": "datatype_property",
+          "semantic_hash": "83eafa28437da8bdc9830cb0ec5e2a500a4f79e5655ad82d1ea27a77ad086701"
+        },
+        "http://example.org/ontology/healthcare#observationCode": {
+          "role": "datatype_property",
+          "semantic_hash": "52a752b2ba09b0ba47fe030e68ed514bac3f7b1b29434ddffe1a384a7de23ca1"
+        },
+        "http://example.org/ontology/healthcare#observationStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "86f1149458aa67028c3416f5e08dabc14efe276420f81d8d38482e4cc056c7d6"
+        },
+        "http://example.org/ontology/healthcare#observedAt": {
+          "role": "datatype_property",
+          "semantic_hash": "d054a60e4964699eb18f62cdc7a2920f6e4bc6652cc8dfb2cb2ffc08e7fb714c"
+        },
+        "http://example.org/ontology/healthcare#observesRecord": {
+          "role": "object_property",
+          "semantic_hash": "3903b2756acf81c9f43abaa5fd9fa28788d29502fc8fd6f0c9b8e0e8ffedb67a"
+        },
+        "http://example.org/ontology/healthcare#patientId": {
+          "role": "datatype_property",
+          "semantic_hash": "bbcb2efaa28e3c567cdd4adba3674eccef77c85e40acd342756807b5437515f0"
+        },
+        "http://example.org/ontology/healthcare#reportCode": {
+          "role": "datatype_property",
+          "semantic_hash": "a0cb4157c2b91ca6d8f9ae28f1ac98753ff220617f5dbb6605c2e9b11c4f56fc"
+        },
+        "http://example.org/ontology/healthcare#reportCodeSystem": {
+          "role": "object_property",
+          "semantic_hash": "1fd2a329d3e6c0c0761c7a8c7ad2523c00e4c5b41abb8f4805ebe0223d0644a4"
+        },
+        "http://example.org/ontology/healthcare#reportResult": {
+          "role": "object_property",
+          "semantic_hash": "2fb32c11a682f5d5af489a94f2b7e4978bdb79ae38db273156da8a438225a011"
+        },
+        "http://example.org/ontology/healthcare#reportStatus": {
+          "role": "datatype_property",
+          "semantic_hash": "f887c5493070a88af306529d3d92b042bfab178f9f3b79cf053199fc99e8f20d"
+        },
+        "http://example.org/ontology/healthcare#taskIntent": {
+          "role": "datatype_property",
+          "semantic_hash": "084d5ac044d1fbc6c9523fdf834ca70fa953adb70551d224ec6209ef1a8b4111"
+        },
+        "http://example.org/ontology/healthcare#textValue": {
+          "role": "datatype_property",
+          "semantic_hash": "1101306b6a5a24782620f65ad8bcf74b460d12fb9815b76c89926f0bc70fe75a"
+        },
+        "http://example.org/ontology/healthcare#unitCode": {
+          "role": "datatype_property",
+          "semantic_hash": "4e1910a69d50f786fda14690588a6444a325c397271d33d16d8300fbd3739640"
+        },
+        "http://example.org/ontology/healthcare#unitCodeSystem": {
+          "role": "object_property",
+          "semantic_hash": "5c04cdb18f136ce746d1b87275b58bcec249fcd3fe7532dd40b1ddb669e1c2ad"
+        }
+      },
+      "version": "1.3.1"
+    },
+    "mv-schema.ttl": {
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ],
+      "ontology": "https://example.org/mv",
+      "terms": {
+        "https://example.org/mv#AIAgent": {
+          "role": "class",
+          "semantic_hash": "b49ab4c3d4d21b0ca89cc6f9361c5077f9c8d2297f07c5fde03107e9262384a0"
+        },
+        "https://example.org/mv#AudioAsset": {
+          "role": "class",
+          "semantic_hash": "02a3a8c3d111bff2e2c16a404d84a7ec7feba073f4a2c99e72fa5c173486062c"
+        },
+        "https://example.org/mv#AudioGenerationTask": {
+          "role": "class",
+          "semantic_hash": "90bb3a0186446951ed5277b6be6e0041b4c24bac45b046b5cb4dc729e743bc1a"
+        },
+        "https://example.org/mv#CreativeBrief": {
+          "role": "class",
+          "semantic_hash": "5e39cc3820afb5f2be6250d68129d21efffe2dbb48e38278439b7284256b7384"
+        },
+        "https://example.org/mv#GenerationTask": {
+          "role": "class",
+          "semantic_hash": "f8a73cdde7b984c3d2124c088e70d8a1943f9df1d81fdfb75759e70c95c7f962"
+        },
+        "https://example.org/mv#ImageAsset": {
+          "role": "class",
+          "semantic_hash": "49a900d113e7c3dc35903bf2bb752b92c79a99a9c96c4c0305842a025693a380"
+        },
+        "https://example.org/mv#ImageGenerationTask": {
+          "role": "class",
+          "semantic_hash": "3c0a73bc4a8824167a22e79dc661bd8a1c6f712b959fa7345ae0b81eb81fabef"
+        },
+        "https://example.org/mv#LyricGenerationTask": {
+          "role": "class",
+          "semantic_hash": "0ce3f67d7d6d5c56493fa793be3aa652ec762fddeac496c5e344179ade6989bd"
+        },
+        "https://example.org/mv#MediaAsset": {
+          "role": "class",
+          "semantic_hash": "7821df9173e35783599a91e5ed7fb85e9f087a7331d5619bdd2dd13e12a9bd21"
+        },
+        "https://example.org/mv#MusicVideo": {
+          "role": "class",
+          "semantic_hash": "33ec085b2c0e3ddac5a66ad949d6cb089638e9ad631e0806e14609cf6fa6189d"
+        },
+        "https://example.org/mv#MusicVideoProject": {
+          "role": "class",
+          "semantic_hash": "5733f321764193638130817d1b48734b125f5c4d59ad5f1403ac66c0c3db71fb"
+        },
+        "https://example.org/mv#QualityCheckTask": {
+          "role": "class",
+          "semantic_hash": "9cc4432036e3d28c24f6a906f0228b692237b1c0cf6629941bea105520c2b75a"
+        },
+        "https://example.org/mv#RenderTask": {
+          "role": "class",
+          "semantic_hash": "b3eac3a605765d016bac6f925bcb7b4b9d415449d35198ea917b9bf6436ecbbc"
+        },
+        "https://example.org/mv#Shot": {
+          "role": "class",
+          "semantic_hash": "6f539604e2677243d8a120ab1938daeda5940f56f337d2d712a92f377422e8e1"
+        },
+        "https://example.org/mv#SubtitleGenerationTask": {
+          "role": "class",
+          "semantic_hash": "2c81773f5c6a40d416445aee7287b149524d7cfa5417f6b9a9ae33d059e89588"
+        },
+        "https://example.org/mv#Timeline": {
+          "role": "class",
+          "semantic_hash": "0d743ea76398f1838b9cfef3b2371dc48b746f40396f5dc775641c5bb7a71ad5"
+        },
+        "https://example.org/mv#TranslationTask": {
+          "role": "class",
+          "semantic_hash": "dac31165e1829bd51ab215ff12e27ffe3ff25c30f44c6ae61a9807f63ce2cfcd"
+        },
+        "https://example.org/mv#bpm": {
+          "role": "datatype_property",
+          "semantic_hash": "3a276839afaa907c1dc1ebc89da7582dd39d905b9549c86d29863ff5da317f06"
+        },
+        "https://example.org/mv#checksum": {
+          "role": "datatype_property",
+          "semantic_hash": "c1f523d11fe2e253a5cf3e6f1f52985ac33ac7ad6dac57d3b312a22f66d73aff"
+        },
+        "https://example.org/mv#dependsOn": {
+          "role": "object_property",
+          "semantic_hash": "2b448d2b97fe1851a4a70fd706af4e7a08dabd975ee7a3dcba56c4c710c03f5c"
+        },
+        "https://example.org/mv#durationSeconds": {
+          "role": "datatype_property",
+          "semantic_hash": "e2899474012764991604d91915f983959165025817315b2994ee53f6fecf6636"
+        },
+        "https://example.org/mv#endSecond": {
+          "role": "datatype_property",
+          "semantic_hash": "1d5ea762db00477325fb8857834ce9ad16d2a7bcb289878f357a6caef1d30cfd"
+        },
+        "https://example.org/mv#fileUri": {
+          "role": "object_property",
+          "semantic_hash": "03a9b993f6af08f015efd44949b1943eeff7a83e6bc19c54966e44ffc00a9e32"
+        },
+        "https://example.org/mv#genre": {
+          "role": "datatype_property",
+          "semantic_hash": "aaee2cda7a4656d3ed08f8a2f0c3694bc5f9200467d812b7f9481210b84fe3ad"
+        },
+        "https://example.org/mv#hasAudio": {
+          "role": "object_property",
+          "semantic_hash": "c293ac187b8ab7ab0ce041e8f991404ce6126522f6baf660852529893cccb8e1"
+        },
+        "https://example.org/mv#hasBrief": {
+          "role": "object_property",
+          "semantic_hash": "6ab487407b3a73678e7942d2fc9f1af0d3dfa245db12807e07b665c59ac86a8f"
+        },
+        "https://example.org/mv#hasFinalVideo": {
+          "role": "object_property",
+          "semantic_hash": "8456b693ed8fb674110c723a205dda6b11fe6f3f11bc312f42cc780229831020"
+        },
+        "https://example.org/mv#hasImage": {
+          "role": "object_property",
+          "semantic_hash": "0f6e9c8e5e4d9f541c2de6926d0cbbfec0db16b972ce8d33ad61a77893b23d59"
+        },
+        "https://example.org/mv#hasShot": {
+          "role": "object_property",
+          "semantic_hash": "2a359c085c702cd9cb169a32d44d80de663107069339cf3112f679a5c421f611"
+        },
+        "https://example.org/mv#hasTimeline": {
+          "role": "object_property",
+          "semantic_hash": "1ba0dca8b9612fd27ebd5a2ee75f457c8fd85d5fe34abd0046786fc0ccf5f216"
+        },
+        "https://example.org/mv#height": {
+          "role": "datatype_property",
+          "semantic_hash": "be2321b45fffb57c53a1071422001b9b905333edba7efd996625653a6de2d304"
+        },
+        "https://example.org/mv#lyricText": {
+          "role": "datatype_property",
+          "semantic_hash": "9d118b839a8931e2f08d0ffbedfefff22fae478926bd40200d67c5a6f30ace1f"
+        },
+        "https://example.org/mv#mimeType": {
+          "role": "datatype_property",
+          "semantic_hash": "b2573b397301089e1abbd504152ff1ecb0bd34a7fa22e1f4fb2b48edd5799146"
+        },
+        "https://example.org/mv#modelVersion": {
+          "role": "datatype_property",
+          "semantic_hash": "9e074556cda9504b76e1bfe4572fac2304844b2ca29f0d084e73ae403e82e188"
+        },
+        "https://example.org/mv#orderIndex": {
+          "role": "datatype_property",
+          "semantic_hash": "d682d1e7e00711f824adf6a4d90cbf1164262afac16aca1a6838ebcb2f1eb0b0"
+        },
+        "https://example.org/mv#promptText": {
+          "role": "datatype_property",
+          "semantic_hash": "c56b7e5ff81be9d933e66353a52d0ab99949f1dc011bee5909d33a3d5f6b0029"
+        },
+        "https://example.org/mv#startSecond": {
+          "role": "datatype_property",
+          "semantic_hash": "9fd47e42052613340e70875b98fe7132a160834e25eadbdb009db31d31eba477"
+        },
+        "https://example.org/mv#status": {
+          "role": "datatype_property",
+          "semantic_hash": "d03db32b9b1e6cc7114c429cbad8efb6ca13b77daa3c1f19ff69dc32a6321e4e"
+        },
+        "https://example.org/mv#targetDurationSeconds": {
+          "role": "datatype_property",
+          "semantic_hash": "84b721ffc9de985fffbc2112b5d23938004d838b124971f307f54232ab9c78ad"
+        },
+        "https://example.org/mv#usesAudio": {
+          "role": "object_property",
+          "semantic_hash": "4e89774ab58e25673e27d9dd0b6883068cd216243cc3bf9897bf2cb32e785219"
+        },
+        "https://example.org/mv#usesImage": {
+          "role": "object_property",
+          "semantic_hash": "e37aeceb75d76a88f98f16c941c37c4673bf206df5e7863204af3463c97d0bad"
+        },
+        "https://example.org/mv#usesInput": {
+          "role": "object_property",
+          "semantic_hash": "22ce507850e4501732152566d316d37b6f7e2cba1f6f714772287c6b87af233e"
+        },
+        "https://example.org/mv#width": {
+          "role": "datatype_property",
+          "semantic_hash": "0b494cb3ce44e3442b23e01dccde4d96a088d85e8d45461dc01f009030e5b222"
+        }
+      },
+      "version": "1.2.1"
+    }
+  },
+  "scope": "canonical-schema-axioms",
+  "snapshot_version": 1
+}

@@ -1,0 +1,72 @@
+@prefix politics: <https://example.org/ontology/politics#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+politics:ExampleLocalElection a politics:Election ;
+    rdfs:label "가상 2027년 해솔시 지방선거"@ko, "Fictional 2027 Haesol City Local Election"@en ;
+    politics:electionDate "2027-06-09"^^xsd:date ;
+    politics:electionStatus "SCHEDULED" ;
+    politics:heldInDistrict politics:ExampleDistrict ;
+    politics:hasCandidate politics:ExampleCandidate_A, politics:ExampleCandidate_B ;
+    politics:hasResult politics:ExampleResult_A, politics:ExampleResult_B .
+
+politics:ExampleDistrict a politics:ElectoralDistrict ;
+    rdfs:label "가상 해솔시장 선거구"@ko, "Fictional Haesol Mayoral District"@en ;
+    politics:jurisdiction "가상 해솔시" .
+
+politics:ExampleParty_A a politics:PoliticalParty ;
+    rdfs:label "가상 미래연합"@ko, "Fictional Future Alliance"@en .
+
+politics:ExampleParty_B a politics:PoliticalParty ;
+    rdfs:label "가상 시민정책당"@ko, "Fictional Civic Policy Party"@en .
+
+politics:ExampleCandidate_A a politics:Candidate ;
+    rdfs:label "가상 후보 김하늘"@ko, "Fictional Candidate Kim Haneul"@en ;
+    politics:memberParty politics:ExampleParty_A .
+
+politics:ExampleCandidate_B a politics:Candidate ;
+    rdfs:label "가상 후보 이바다"@ko, "Fictional Candidate Lee Bada"@en ;
+    politics:memberParty politics:ExampleParty_B .
+
+politics:ExampleResult_A a politics:ElectionResult ;
+    rdfs:label "가상 후보 김하늘 잠정 집계"@ko, "Fictional Preliminary Tally for Kim Haneul"@en ;
+    politics:resultForCandidate politics:ExampleCandidate_A ;
+    politics:resultForElection politics:ExampleLocalElection ;
+    politics:resultForDistrict politics:ExampleDistrict ;
+    politics:voteCount 12500 ;
+    politics:resultStatus "PRELIMINARY" .
+
+politics:ExampleResult_B a politics:ElectionResult ;
+    rdfs:label "가상 후보 이바다 잠정 집계"@ko, "Fictional Preliminary Tally for Lee Bada"@en ;
+    politics:resultForCandidate politics:ExampleCandidate_B ;
+    politics:resultForElection politics:ExampleLocalElection ;
+    politics:resultForDistrict politics:ExampleDistrict ;
+    politics:voteCount 11800 ;
+    politics:resultStatus "PRELIMINARY" .
+
+politics:ExampleCampaign_A a politics:Campaign ;
+    rdfs:label "가상 김하늘 후보 공개 정책 토론 캠페인"@ko, "Fictional Kim Haneul Public Policy Forum Campaign"@en ;
+    politics:runByActor politics:ExampleCandidate_A ;
+    politics:campaignForElection politics:ExampleLocalElection ;
+    politics:hasCampaignEvent politics:ExampleForum .
+
+politics:ExampleForum a politics:CampaignEvent ;
+    rdfs:label "가상 해솔시 공개 정책 토론회"@ko, "Fictional Haesol Public Policy Forum"@en ;
+    politics:eventDate "2027-05-15"^^xsd:date .
+
+politics:ExampleTransitIssue a politics:PolicyIssue ;
+    rdfs:label "가상 도시 대중교통 개선 쟁점"@ko, "Fictional Urban Public Transit Improvement Issue"@en .
+
+politics:ExamplePolicyPosition a politics:PolicyPosition ;
+    rdfs:label "가상 후보 김하늘의 대중교통 정책 입장 기록"@ko,
+               "Fictional Policy Position Record on Public Transit by Kim Haneul"@en ;
+    politics:positionByActor politics:ExampleCandidate_A ;
+    politics:positionOnIssue politics:ExampleTransitIssue ;
+    politics:positionStatement "가상 사례: 대중교통 접근성 개선을 위한 단계적 시범 사업을 제안한다." ;
+    politics:positionRecordedAt "2027-05-15"^^xsd:date ;
+    politics:sourceURL "https://example.org/fictional/haesol/transit-policy"^^xsd:anyURI ;
+    prov:wasDerivedFrom politics:FictionalPublicForumSource .
+
+politics:FictionalPublicForumSource a prov:Entity ;
+    rdfs:label "가상 공개 정책 토론 자료"@ko, "Fictional Public Policy Forum Material"@en .

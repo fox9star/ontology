@@ -1,0 +1,308 @@
+{
+  "WR-01": {
+    "variables": [
+      "system",
+      "recordStatus",
+      "device",
+      "deviceStatus",
+      "network",
+      "networkStatus",
+      "uplink",
+      "uplinkStatus"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/system-synthetic-01",
+        "synthetic",
+        "https://example.test/wireless-router/router-synthetic-01",
+        "synthetic",
+        "https://example.test/wireless-router/network-guest-example",
+        "planned",
+        "https://example.test/wireless-router/uplink-example-01",
+        "not_observed"
+      ],
+      [
+        "https://example.test/wireless-router/system-synthetic-01",
+        "synthetic",
+        "https://example.test/wireless-router/router-synthetic-01",
+        "synthetic",
+        "https://example.test/wireless-router/network-primary-example",
+        "planned",
+        "https://example.test/wireless-router/uplink-example-01",
+        "not_observed"
+      ]
+    ]
+  },
+  "WR-02": {
+    "variables": [
+      "radio",
+      "band",
+      "standard",
+      "evidence",
+      "configured"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/radio-24-example",
+        "2.4GHz",
+        "unknown",
+        "not_provided",
+        "planned"
+      ],
+      [
+        "https://example.test/wireless-router/radio-5-example",
+        "5GHz",
+        "unknown",
+        "not_provided",
+        "planned"
+      ]
+    ]
+  },
+  "WR-03": {
+    "variables": [
+      "network",
+      "alias",
+      "purpose",
+      "identifierHandling",
+      "lifecycle"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/network-guest-example",
+        "GUEST-EXAMPLE",
+        "guest",
+        "synthetic_alias_only",
+        "planned"
+      ],
+      [
+        "https://example.test/wireless-router/network-primary-example",
+        "PRIMARY-EXAMPLE",
+        "primary",
+        "synthetic_alias_only",
+        "planned"
+      ]
+    ]
+  },
+  "WR-04": {
+    "variables": [
+      "profile",
+      "protocol",
+      "state",
+      "certification",
+      "credentialHandling"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/security-guest-example",
+        "WPA3-Personal",
+        "planned",
+        "not_provided",
+        "omitted_by_design"
+      ],
+      [
+        "https://example.test/wireless-router/security-primary-example",
+        "WPA3-Personal",
+        "planned",
+        "not_provided",
+        "omitted_by_design"
+      ]
+    ]
+  },
+  "WR-05": {
+    "variables": [
+      "segment",
+      "zone",
+      "policy",
+      "policyState",
+      "allowed",
+      "denied",
+      "evidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/segment-guest-example",
+        "guest",
+        "https://example.test/wireless-router/policy-guest-example",
+        "planned",
+        "필수 통신만 허용하는 방안을 검토 예정; 실제 ACL 미관측",
+        "게스트에서 내부 구간으로의 접근 차단 의도; 적용 여부 미관측",
+        "not_assessed"
+      ],
+      [
+        "https://example.test/wireless-router/segment-primary-example",
+        "trusted",
+        "https://example.test/wireless-router/policy-primary-example",
+        "planned",
+        "필수 통신만 허용하는 방안을 검토 예정; 실제 ACL 미관측",
+        "게스트에서 내부 구간으로의 접근 차단 의도; 적용 여부 미관측",
+        "not_assessed"
+      ]
+    ]
+  },
+  "WR-06": {
+    "variables": [
+      "client",
+      "pseudonym",
+      "category",
+      "identityHandling",
+      "association",
+      "associationStatus",
+      "evidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/client-example-01",
+        "CLIENT-EXAMPLE-A",
+        "generic_personal_device",
+        "pseudonym_only",
+        "https://example.test/wireless-router/association-example-01",
+        "not_observed",
+        "not_observed"
+      ]
+    ]
+  },
+  "WR-07": {
+    "variables": [
+      "uplink",
+      "type",
+      "state",
+      "providerDisclosure",
+      "credentialHandling",
+      "observation"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/uplink-example-01",
+        "internet",
+        "not_observed",
+        "omitted",
+        "omitted_by_design",
+        "not_observed"
+      ]
+    ]
+  },
+  "WR-08": {
+    "variables": [
+      "device",
+      "version",
+      "support",
+      "provenance",
+      "update",
+      "updateState",
+      "reboot",
+      "rollback"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/router-synthetic-01",
+        "unknown",
+        "unknown",
+        "not_provided",
+        "https://example.test/wireless-router/firmware-update-unassessed",
+        "not_assessed",
+        "not_observed",
+        "unknown"
+      ]
+    ]
+  },
+  "WR-09": {
+    "variables": [
+      "snapshot",
+      "lifecycle",
+      "applied",
+      "redaction",
+      "completeness",
+      "provenance",
+      "summary"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/snapshot-planned-example",
+        "planned",
+        "not_applied",
+        "not_applicable_no_secrets",
+        "partial",
+        "synthetic",
+        "내부·게스트 무선망과 논리 구간을 구분하는 교육용 계획이며 실제 설정 덤프가 아니다."
+      ]
+    ]
+  },
+  "WR-10": {
+    "variables": [
+      "observation",
+      "metric",
+      "status",
+      "value",
+      "unit",
+      "method",
+      "time",
+      "samples"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/observation-example-01",
+        "throughput",
+        "not_measured",
+        null,
+        "Mbps",
+        "no_measurement_performed",
+        null,
+        null
+      ],
+      [
+        "https://example.test/wireless-router/observation-primary-unmeasured",
+        "throughput",
+        "not_measured",
+        null,
+        "Mbps",
+        "no_measurement_performed",
+        null,
+        null
+      ]
+    ]
+  },
+  "WR-11": {
+    "variables": [
+      "incident",
+      "state",
+      "category",
+      "severity",
+      "impact",
+      "response",
+      "evidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/incident-not-observed-example",
+        "not_observed",
+        "other",
+        "unknown",
+        "실제 시스템이 아니므로 영향 평가를 수행하지 않았다.",
+        "not_observed",
+        "not_observed"
+      ]
+    ]
+  },
+  "WR-12": {
+    "variables": [
+      "source",
+      "title",
+      "publisher",
+      "year",
+      "uri",
+      "scope",
+      "limitations"
+    ],
+    "rows": [
+      [
+        "https://example.test/wireless-router/source-nist-sp800-153",
+        "Guidelines for Securing Wireless Local Area Networks (WLANs)",
+        "National Institute of Standards and Technology",
+        "2012",
+        "https://doi.org/10.6028/NIST.SP.800-153",
+        "WLAN 구성요소의 설계부터 운영·유지보수까지 보안 구성과 모니터링을 다루며, 게스트와 내부용 네트워크의 논리적 분리를 설명한다.",
+        "2012년 발간 자료이며 특정 장비의 기능, 현재 설정, 인증 상태, 지역별 전파 규정 또는 이 합성 예시의 실제 운영 상태를 입증하지 않는다."
+      ]
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+health:Patient_P9081 a health:PatientRecord ;
+    rdfs:label "Patient Record #P9081" ;
+    health:patientId "PATIENT-9081" ;
+    health:dataClassification health:Unverified .
+
+health:Agent_RadAI a health:MedicalAnalysisAgent ;
+    rdfs:label "Radiology Vision Transformer Agent" .
+
+health:Task_CTScan_9081 a health:DiagnosticTask ;
+    rdfs:label "Chest CT Scan AI Analysis" ;
+    health:diagnosticStatus "COMPLETED" ;
+    health:analyzedBy health:Agent_RadAI ;
+    health:associatedWithRecord health:Patient_P9081 ;
+    health:generatesReport health:Report_CTScan_9081 .
+
+health:Report_CTScan_9081 a health:ClinicalReport ;
+    rdfs:label "AI Diagnostic Analysis Findings" ;
+    health:confidenceScore "0.985"^^xsd:decimal ;
+    health:findingText "No pulmonary nodules detected. Lungs clear." .
+

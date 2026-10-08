@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-mv-studio
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mv-studio
+spec:
+  replicas: {{ .Values.mvStudio.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ontology-stack.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: mv-studio
+  template:
+    metadata:
+      labels:
+        {{- include "ontology-stack.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: mv-studio
+    spec:
+      containers:
+        - name: mv-studio
+          image: "{{ .Values.mvStudio.image.repository }}:{{ .Values.mvStudio.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.mvStudio.image.pullPolicy }}
+          command: ["python", "web_server.py", "--port", "8766"]
+          ports:
+            - name: http
+              containerPort: 8766
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "8766"
+            - name: API_BACKEND_URL
+              value: "http://{{ include "ontology-stack.fullname" . }}-web-studio:5000"
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8766
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8766
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.mvStudio.resources | nindent 12 }}

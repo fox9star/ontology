@@ -1,0 +1,35 @@
+{
+  "format_version": 1,
+  "checker": "local-evidence-checker-1.0.0",
+  "checked_at": "2026-10-04T17:28:55.685277+00:00",
+  "asset_count": 3,
+  "claim_count": 9,
+  "scope_status_counts": {
+    "LocalFileIntegrity": {
+      "Observed": 3,
+      "Failed": 0
+    },
+    "OriginalGeneration": {
+      "Unverified": 3
+    },
+    "OriginalOrigin": {
+      "Unverified": 3
+    }
+  },
+  "source_copy_state_counts": {
+    "matches": 3
+  },
+  "checks": {
+    "files_conform": true,
+    "evidence_graph_conforms": true,
+    "registration_snapshot_conforms": true,
+    "saved_claims_conform": true
+  },
+  "conforms": true,
+  "limitations": [
+    "A matching local source/copy checksum establishes byte identity only.",
+    "No independently reviewed original generation or origin evidence was supplied.",
+    "Missing source copies do not invalidate an intact registered copy; their current availability is reported separately.",
+    "Checks are observations at the recorded time, not continuous monitoring or independent notarization."
+  ]
+}

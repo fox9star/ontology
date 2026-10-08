@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "ww1",
+  "name": "제1차 세계대전 온톨로지 (ww1)",
+  "description": "참전국과 진영, 참전 기간, 개전 계기 사건, 주요 전투와 지휘관, 휴전·강화 협정을 연결하고 각 기록의 출처 확인 상태를 구분합니다.",
+  "name_en": "World War I Ontology",
+  "description_en": "Connects participants and sides, periods of participation, outbreak events, key battles and commanders, and armistices and treaties, and separates each record's source-verification status.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/ww1#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T19:02:09+09:00",
+  "schema": "custom-ontologies/ww1/schema.ttl",
+  "owl": "custom-ontologies/ww1/schema.owl",
+  "shapes": "custom-ontologies/ww1/shapes.ttl",
+  "example": "custom-ontologies/ww1/example.ttl",
+  "questions": "custom-ontologies/ww1/questions.md",
+  "questions_fixture": "custom-ontologies/ww1/question-fixture.ttl",
+  "question_answers": "custom-ontologies/ww1/question-answers.json",
+  "compatibility_cases": "custom-ontologies/ww1/consumer-cases.trig"
+}

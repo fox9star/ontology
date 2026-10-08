@@ -1,0 +1,364 @@
+{
+  "profile_id": "electric-vehicle",
+  "accessed_on": "2026-10-08",
+  "sources": {
+    "afdc-electric": [
+      "미국 에너지부 대체연료 데이터센터: 전기차 유형",
+      "Alternative Fuels Data Center: Electric Vehicles",
+      "https://afdc.energy.gov/vehicles/electric",
+      "BEV·PHEV·HEV를 전기 사용 차량으로 설명하면서 외부 충전 가능 여부와 내연기관을 구분한다.",
+      "Category overview from the U.S. DOE; distinguishes off-board charging and combustion-engine use."
+    ],
+    "afdc-bev": [
+      "미국 에너지부 대체연료 데이터센터: 배터리 전기차 작동 방식",
+      "Alternative Fuels Data Center: How Do All-Electric Cars Work?",
+      "https://afdc.energy.gov/vehicles/how-do-all-electric-cars-work",
+      "BEV 구성품과 기능 개요다. 차종별 상세 설계와 수치 사양을 일반화하지 않는다.",
+      "Overview of BEV components and functions; does not generalize model-specific design or numerical specifications."
+    ],
+    "afdc-phev": [
+      "미국 에너지부 대체연료 데이터센터: 플러그인 하이브리드 전기차",
+      "Alternative Fuels Data Center: Plug-In Hybrid Electric Vehicles",
+      "https://afdc.energy.gov/vehicles/electric-basics-phev",
+      "PHEV의 엔진·모터·배터리, 외부 충전, 회생 제동, 직렬·병렬 구성을 설명한다.",
+      "Describes PHEV engine, motor, battery, external charging, regeneration, and series or parallel layouts."
+    ],
+    "afdc-hev": [
+      "미국 에너지부 대체연료 데이터센터: 하이브리드 전기차",
+      "Alternative Fuels Data Center: Hybrid Electric Vehicles",
+      "https://afdc.energy.gov/vehicles/electric-basics-hev",
+      "HEV의 외부 충전 불가와 회생 제동·내연기관 충전을 설명한다.",
+      "Describes HEV charging through regenerative braking and the combustion engine rather than plugging in."
+    ],
+    "afdc-charging": [
+      "미국 에너지부 대체연료 데이터센터: 전기차 충전소",
+      "Alternative Fuels Data Center: Electric Vehicle Charging Stations",
+      "https://afdc.energy.gov/fuels/electricity-stations",
+      "충전소 위치, 충전 포트, 커넥터와 AC/DC 설비를 다룬다. 표준별 호환성은 이 프로필에서 주장하지 않는다.",
+      "Defines station location, charging port, connector, and AC/DC equipment; standard-specific compatibility is not asserted."
+    ],
+    "doe-vgi": [
+      "미국 에너지부 차량-전력망 통합 평가 보고서",
+      "Vehicles-to-Grid Integration Assessment Report",
+      "https://www.energy.gov/sites/default/files/2025-01/Vehicle_Grid_Integration_Asseessment_Report_01162025.pdf",
+      "2025년 1월 보고서의 EV 구성품 개요를 사용한다. 차종별 구조와 성능 차이를 보편 제약으로 만들지 않는다.",
+      "Uses the January 2025 EV component overview; model-specific architecture and performance are not universal constraints."
+    ]
+  },
+  "vehicle_archetypes": [
+    {
+      "id": "vehicle-bev-pattern",
+      "class": "BatteryElectricVehicle",
+      "label_ko": "배터리 전기차 유형 예시",
+      "label_en": "Battery-electric vehicle archetype example",
+      "plug_in_chargeable": true,
+      "propulsion": "electric-only",
+      "charging_sources": [
+        "off-board-electricity",
+        "regenerative-braking"
+      ]
+    },
+    {
+      "id": "vehicle-phev-pattern",
+      "class": "PlugInHybridElectricVehicle",
+      "label_ko": "플러그인 하이브리드 유형 예시",
+      "label_en": "Plug-in hybrid archetype example",
+      "plug_in_chargeable": true,
+      "propulsion": "electric-and-liquid-fuel",
+      "charging_sources": [
+        "off-board-electricity",
+        "regenerative-braking",
+        "internal-combustion-engine"
+      ]
+    },
+    {
+      "id": "vehicle-hev-pattern",
+      "class": "HybridElectricVehicle",
+      "label_ko": "일반 하이브리드 유형 예시",
+      "label_en": "Non-plug-in hybrid archetype example",
+      "plug_in_chargeable": false,
+      "propulsion": "electric-and-liquid-fuel",
+      "charging_sources": [
+        "regenerative-braking",
+        "internal-combustion-engine"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "component-traction-battery",
+      "class": "TractionBatteryPack",
+      "role": "traction-storage",
+      "function_ko": "구동 모터가 사용할 전기를 저장한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components"
+      ]
+    },
+    {
+      "id": "component-auxiliary-battery",
+      "class": "AuxiliaryBattery",
+      "role": "auxiliary-storage",
+      "function_ko": "차량 액세서리에 보조 전력을 공급한다.",
+      "evidence": [
+        "e-bev-components"
+      ]
+    },
+    {
+      "id": "component-electric-motor",
+      "class": "ElectricTractionMotor",
+      "role": "propulsion",
+      "function_ko": "구동 배터리 에너지로 바퀴를 구동하고 일부 설계에서 회생 기능도 수행한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components"
+      ]
+    },
+    {
+      "id": "component-power-controller",
+      "class": "PowerElectronicsController",
+      "role": "power-control",
+      "function_ko": "배터리와 구동계 사이 전력 흐름과 모터 출력을 관리한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components"
+      ]
+    },
+    {
+      "id": "component-inverter",
+      "class": "Inverter",
+      "role": "power-conversion",
+      "function_ko": "전력전자 구동계의 전력 변환에 참여한다.",
+      "evidence": [
+        "e-doe-components"
+      ]
+    },
+    {
+      "id": "component-dcdc",
+      "class": "DCDCConverter",
+      "role": "power-conversion",
+      "function_ko": "구동 배터리의 고전압 DC를 보조 부하용 저전압 DC로 변환한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components"
+      ]
+    },
+    {
+      "id": "component-onboard-charger",
+      "class": "OnboardCharger",
+      "role": "power-conversion",
+      "function_ko": "AC 충전 입력을 배터리 충전용 DC로 변환하고 설비와 통신한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components",
+        "e-doe-ac-path"
+      ]
+    },
+    {
+      "id": "component-vehicle-charge-port",
+      "class": "VehicleChargePort",
+      "role": "charging-interface",
+      "function_ko": "외부 충전 설비와 차량을 연결한다.",
+      "evidence": [
+        "e-bev-components"
+      ]
+    },
+    {
+      "id": "component-thermal-management",
+      "class": "ThermalManagementSystem",
+      "role": "thermal-control",
+      "function_ko": "배터리와 모터, 전력전자 등 구성품의 작동 온도를 관리한다.",
+      "evidence": [
+        "e-bev-components",
+        "e-doe-components"
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "flow-ac-evse-onboard",
+      "source": "evse-ac-example",
+      "destination": "component-onboard-charger",
+      "form": "ac-electricity",
+      "evidence": "e-doe-ac-path"
+    },
+    {
+      "id": "flow-onboard-battery",
+      "source": "component-onboard-charger",
+      "destination": "component-traction-battery",
+      "form": "dc-electricity",
+      "evidence": "e-doe-ac-path"
+    },
+    {
+      "id": "flow-dc-equipment-battery",
+      "source": "evse-dc-example",
+      "destination": "component-traction-battery",
+      "form": "dc-electricity",
+      "evidence": "e-dc-interface"
+    },
+    {
+      "id": "flow-battery-controller",
+      "source": "component-traction-battery",
+      "destination": "component-power-controller",
+      "form": "dc-electricity",
+      "evidence": "e-doe-components"
+    },
+    {
+      "id": "flow-controller-inverter",
+      "source": "component-power-controller",
+      "destination": "component-inverter",
+      "form": "dc-electricity",
+      "evidence": "e-doe-components"
+    },
+    {
+      "id": "flow-inverter-motor",
+      "source": "component-inverter",
+      "destination": "component-electric-motor",
+      "form": "ac-electricity",
+      "evidence": "e-doe-components"
+    },
+    {
+      "id": "flow-motor-vehicle",
+      "source": "component-electric-motor",
+      "destination": "vehicle-bev-pattern",
+      "form": "mechanical-energy",
+      "evidence": "e-bev-components"
+    },
+    {
+      "id": "flow-regeneration-battery",
+      "source": "component-electric-motor",
+      "destination": "component-traction-battery",
+      "form": "dc-electricity",
+      "evidence": "e-doe-components"
+    }
+  ],
+  "evidence_records": [
+    {
+      "id": "e-bev-category",
+      "source": "afdc-electric",
+      "locator": "All-Electric Vehicles section",
+      "claim": "BEVs operate in all-electric mode and charge their traction battery by plugging into charging equipment.",
+      "about": "vehicle-bev-pattern"
+    },
+    {
+      "id": "e-phev-category",
+      "source": "afdc-electric",
+      "locator": "Plug-In Hybrid Electric Vehicles section",
+      "claim": "PHEVs combine an internal-combustion engine and electric motor, and can plug in to charge the battery.",
+      "about": "vehicle-phev-pattern"
+    },
+    {
+      "id": "e-hev-category",
+      "source": "afdc-electric",
+      "locator": "Hybrid Electric Vehicles section",
+      "claim": "HEVs use a combustion engine and electric motor; the battery charges through regenerative braking rather than plugging in.",
+      "about": "vehicle-hev-pattern"
+    },
+    {
+      "id": "e-phev-architecture",
+      "source": "afdc-phev",
+      "locator": "Fuel-Efficient System Design section",
+      "claim": "PHEVs may use series or parallel powertrain configurations; some vehicles can operate in either configuration.",
+      "about": "vehicle-phev-pattern"
+    },
+    {
+      "id": "e-bev-components",
+      "source": "afdc-bev",
+      "locator": "Key Components of an All-Electric Car section",
+      "claim": "The page describes the charge port, DC/DC converter, traction motor, onboard charger, power electronics controller, thermal system, and traction battery.",
+      "about": "vehicle-bev-pattern"
+    },
+    {
+      "id": "e-doe-components",
+      "source": "doe-vgi",
+      "locator": "Appendix I, PDF pages 30-31, key EV components",
+      "claim": "The report describes the traction battery, inverter, motor, power controller, DC-DC converter, onboard charger, thermal management, and regenerative braking.",
+      "about": "vehicle-bev-pattern"
+    },
+    {
+      "id": "e-doe-ac-path",
+      "source": "doe-vgi",
+      "locator": "Appendix I, PDF page 31, onboard charger",
+      "claim": "For AC charging, the onboard charger converts AC from the vehicle charge port to DC for the traction battery.",
+      "about": "component-onboard-charger"
+    },
+    {
+      "id": "e-dc-interface",
+      "source": "afdc-charging",
+      "locator": "Charging Equipment and DC Fast Charging sections",
+      "claim": "The source distinguishes AC charging equipment from direct-current fast-charging equipment.",
+      "about": "evse-dc-example"
+    },
+    {
+      "id": "e-port-topology",
+      "source": "afdc-charging",
+      "locator": "Charging Infrastructure Terminology section",
+      "claim": "A station location can contain multiple ports; a port serves one vehicle at a time and can have multiple connectors.",
+      "about": "station-location-example"
+    },
+    {
+      "id": "e-charge-factors",
+      "source": "afdc-charging",
+      "locator": "Charging Equipment section",
+      "claim": "Charging time depends on battery state of charge and capacity, battery type, onboard-charger capacity, equipment output, and electrical service.",
+      "about": "evse-ac-example"
+    },
+    {
+      "id": "e-hev-regeneration",
+      "source": "afdc-hev",
+      "locator": "Regenerative Braking section",
+      "claim": "An HEV cannot plug into off-board electricity and charges through regenerative braking and the combustion engine.",
+      "about": "vehicle-hev-pattern"
+    }
+  ],
+  "coverage_notes": [
+    {
+      "id": "coverage-vehicle-types",
+      "status": "included",
+      "label_ko": "차량 유형",
+      "label_en": "Vehicle categories",
+      "explanation_ko": "BEV, PHEV, HEV를 별도 클래스로 두고 외부 충전과 추진 에너지 범주의 차이를 표현한다.",
+      "explanation_en": "Separate BEV, PHEV, and HEV classes represent differences in off-board charging and propulsion energy."
+    },
+    {
+      "id": "coverage-components",
+      "status": "included",
+      "label_ko": "구동계와 전력 변환",
+      "label_en": "Drivetrain and power conversion",
+      "explanation_ko": "구동 배터리, 모터, 탑재 충전기, 인버터, DC-DC 변환기, 제어기와 열관리 역할을 다룬다.",
+      "explanation_en": "Covers battery, motor, onboard charger, inverter, DC-DC converter, controller, and thermal-management roles."
+    },
+    {
+      "id": "coverage-charging",
+      "status": "limited",
+      "label_ko": "충전 인프라",
+      "label_en": "Charging infrastructure",
+      "explanation_ko": "스테이션-포트-커넥터 구조와 AC/DC 인터페이스를 나타낸다. 인프라·세션 자료는 합성 예시다.",
+      "explanation_en": "Models station-port-connector structure and AC/DC interfaces; infrastructure and session data are synthetic."
+    },
+    {
+      "id": "coverage-standards",
+      "status": "excluded",
+      "label_ko": "지역별 커넥터 표준과 호환성",
+      "label_en": "Market-specific connector standards and compatibility",
+      "explanation_ko": "표준별 지원, 제조사 호환성, 법규·요금·보조금은 지역과 시점별 자료가 필요해 제외한다.",
+      "explanation_en": "Standards support, manufacturer compatibility, laws, tariffs, and incentives require market- and time-specific sources and are excluded."
+    },
+    {
+      "id": "coverage-performance",
+      "status": "excluded",
+      "label_ko": "차종별 성능·배터리 수치",
+      "label_en": "Model-specific performance and battery figures",
+      "explanation_ko": "용량, 충전 속도, 주행거리, 효율과 배터리 건강도는 차종·시험·운행별 자료가 없어 일반화하지 않는다.",
+      "explanation_en": "Capacity, charging speed, range, efficiency, and battery health are not generalized without model- and use-specific sources."
+    }
+  ],
+  "synthetic_records": [
+    "station-location-example",
+    "evse-ac-example",
+    "evse-dc-example",
+    "connector-ac-example",
+    "connector-dc-example",
+    "session-example"
+  ]
+}

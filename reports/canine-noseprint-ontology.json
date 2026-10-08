@@ -1,0 +1,117 @@
+{
+  "created_at": "2026-10-08T01:58:28+00:00",
+  "id": "canine-noseprint",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 16,
+  "properties": 100,
+  "instance_counts": {
+    "BiometricTemplate": 1,
+    "CanineSubject": 1,
+    "CaptureSession": 2,
+    "DataUsePermission": 1,
+    "DocumentationSource": 3,
+    "EvaluationMetric": 4,
+    "EvaluationRun": 1,
+    "IdentificationTask": 1,
+    "ImageQualityAssessment": 2,
+    "MatchResult": 1,
+    "NosePrintProject": 1,
+    "NosePrintSample": 2,
+    "NoseRegion": 1,
+    "PreprocessingRecord": 1,
+    "RecognitionModel": 1,
+    "ReferenceDataset": 1
+  },
+  "instances": 24,
+  "triples": 214,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 40
+  },
+  "questions": 12,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "query_execution_performed": false,
+  "scope": "The dog-subject crosswalk points to a synthetic record in the separate dog profile. All nose sample records are synthetic metadata placeholders with no image binary, biometric template, match score or identity decision. Literature claims carry study-specific limitations; no research dataset or performance result is imported as a local experiment.",
+  "release_uri": "pending; profile remains example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "213d07b2c98d8d1564f4e7b2e9fbd3eb32e5a5b3d5c7d14667108e302009e266",
+      "bytes": 34448
+    },
+    "curated-data.json": {
+      "sha256": "c4fe475dddcf511ed9a6ac178a1ca1d92940d72804d7637536923f1e3b6935e1",
+      "bytes": 2291
+    },
+    "example.ttl": {
+      "sha256": "30f6fbc3e1d0a116d825710895711af603638ec075c627480cf34ef6ef0dcc80",
+      "bytes": 13902
+    },
+    "profile.json": {
+      "sha256": "2249d309f12a6e6b3973c32c0098ec40c7d4940941d3f4f8a961951af1836d65",
+      "bytes": 1423
+    },
+    "question-answers.json": {
+      "sha256": "95ae364d1df9675c8d13ee46849b44a25f236c4016bc9e15ba4c8f583da59dd5",
+      "bytes": 11338
+    },
+    "question-fixture.ttl": {
+      "sha256": "e21f18dfd528018f73a2f277ed3a47ff7af91d77373936d945ad952d4ef40ce1",
+      "bytes": 14087
+    },
+    "questions.md": {
+      "sha256": "cd034a4cb73b47b3ce26c8980b0007e0d4f08a41ac26ac9a6e5f6c941d13ad26",
+      "bytes": 6362
+    },
+    "schema.owl": {
+      "sha256": "523041581950c3c71cf0dc24bb39f33857cc7916c1cac54eb13b2e6c219048f9",
+      "bytes": 79762
+    },
+    "schema.ttl": {
+      "sha256": "f34f0ebdc5ee60d60b61b4f9c171c1808fce5b430c14a6fe26bf378e48f8cd87",
+      "bytes": 37503
+    },
+    "shapes.ttl": {
+      "sha256": "4a10eb4fd5f8fda236cc2d29b024667510f0e17426ff5196981cf63f0b681c96",
+      "bytes": 28244
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T01:59:02+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 28,
+    "profile_id": "canine-noseprint",
+    "draft": true,
+    "explorer": {
+      "classes": 16,
+      "properties": 100,
+      "instances": 24
+    },
+    "question_keys": [
+      "DNP-01",
+      "DNP-02",
+      "DNP-03",
+      "DNP-04",
+      "DNP-05",
+      "DNP-06",
+      "DNP-07",
+      "DNP-08",
+      "DNP-09",
+      "DNP-10",
+      "DNP-11",
+      "DNP-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  }
+}

@@ -1,0 +1,194 @@
+@prefix ww1: <https://example.org/ontology/custom/ww1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/ww1> a owl:Ontology ;
+    rdfs:label "제1차 세계대전 온톨로지"@ko, "World War I ontology"@en ;
+    rdfs:comment "제1차 세계대전의 참전국, 진영, 참전 기간, 주요 사건과 전투, 휴전·강화 협정, 지휘관을 연결하고 각 기록의 출처 확인 상태를 구분한다. 예제는 널리 알려진 사실을 간추린 초안이며 출처 대조 전에는 모두 미확인으로 표시한다."@ko,
+      "Connects the participants, sides, periods of participation, key events and battles, armistices and treaties, and commanders of the First World War, and separates each record's source-verification status. The example is a condensed draft of widely known facts and is marked unverified until checked against cited sources."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/ww1/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+ww1:HistoricalClaim a owl:Class ;
+    rdfs:label "역사 기록 주장"@ko, "Historical claim"@en ;
+    rdfs:comment "출처로 뒷받침해야 하는 역사적 진술의 상위 개념이다. 참전, 사건, 협정 기록이 이를 구체화한다."@ko,
+      "Abstract parent of records that assert a historical statement and should be supported by a cited source."@en .
+ww1:Conflict a owl:Class ;
+    rdfs:label "전쟁"@ko, "Conflict"@en ;
+    rdfs:comment "전체 전쟁의 시작일과 일반 교전 종료일을 가진 범위이다. 법적 종전은 협정 발효일로 따로 기록한다."@ko,
+      "Defines a war's scope with its start and general end of fighting; legal termination is recorded separately by treaty force dates."@en .
+ww1:State a owl:Class ;
+    rdfs:label "국가"@ko, "State"@en ;
+    rdfs:comment "전쟁에 참여할 수 있는 제국, 왕국 또는 공화국 같은 정치 단위이다. 식민지와 자치령은 별도로 구분하지 않는다."@ko,
+      "A political unit such as an empire, kingdom or republic that could take part in a war; colonies and dominions are not modelled separately."@en .
+ww1:Side a owl:Class ;
+    rdfs:label "진영"@ko, "Side"@en ;
+    rdfs:comment "전쟁에서 참전국이 속한 연합국 또는 동맹국 같은 교전 진영이다."@ko,
+      "A wartime camp, such as the Allied Powers or the Central Powers, to which a participant belongs."@en .
+ww1:Alliance a owl:Class ;
+    rdfs:label "개전 전 동맹"@ko, "Pre-war alliance"@en ;
+    rdfs:comment "전쟁 발발 전에 맺어진 3국 동맹이나 3국 협상 같은 협력 체제이다. 실제 참전 진영과 다를 수 있다."@ko,
+      "A pre-war arrangement such as the Triple Alliance or Triple Entente, whose members may have joined a different side in the war."@en .
+ww1:Participation a owl:Class ; rdfs:subClassOf ww1:HistoricalClaim ;
+    rdfs:label "참전"@ko, "Participation"@en ;
+    rdfs:comment "한 국가가 한 전쟁에서 특정 진영으로 싸운 기간을 나타낸다. 참전 시작일과 선택적 종료일을 가진다."@ko,
+      "Records the period during which one state fought on one side of a war, with an entry date and an optional exit date."@en .
+ww1:Event a owl:Class ; rdfs:subClassOf ww1:HistoricalClaim ;
+    rdfs:label "사건"@ko, "Event"@en ;
+    rdfs:comment "암살, 선전포고, 침공, 해상 공격이나 전투처럼 날짜 범위를 가진 역사적 사건이다. 종류에 따라 필요한 정보가 달라진다."@ko,
+      "A dated historical occurrence such as an assassination, war declaration, invasion, naval raid or battle; its kind decides which details apply."@en .
+ww1:Agreement a owl:Class ; rdfs:subClassOf ww1:HistoricalClaim ;
+    rdfs:label "휴전·강화 협정"@ko, "Armistice or treaty"@en ;
+    rdfs:comment "교전을 멈추는 휴전 협정이나 전쟁 상태를 종결하는 강화 조약이다. 서명일과 당사국을 가진다."@ko,
+      "An armistice that halts fighting or a peace treaty that ends the state of war, with a signing date and its principal parties."@en .
+ww1:Theatre a owl:Class ;
+    rdfs:label "전선·전역"@ko, "Theatre"@en ;
+    rdfs:comment "서부 전선이나 동부 전선처럼 전투가 벌어진 지리적 구분이다."@ko,
+      "A geographic division of the war, such as the Western Front or Eastern Front, in which battles were fought."@en .
+ww1:Person a owl:Class ;
+    rdfs:label "지휘관"@ko, "Commander"@en ;
+    rdfs:comment "전투를 지휘한 인물이다. 복무한 국가와 생존 연도만 기록하고 직책 이력은 다루지 않는다."@ko,
+      "A person who commanded forces in a battle; only the served state and lifespan are recorded, not a career history."@en .
+ww1:SourceReference a owl:Class ;
+    rdfs:label "출처"@ko, "Source reference"@en ;
+    rdfs:comment "역사 기록을 확인한 문헌이나 자료의 인용 정보이다. 인용문이 있다는 사실이 내용의 정확성을 보증하지는 않는다."@ko,
+      "Citation details of a document or record used to check a historical claim; having a citation does not guarantee accuracy."@en .
+
+ww1:participant a owl:ObjectProperty ; rdfs:domain ww1:Participation ; rdfs:range ww1:State ;
+    rdfs:label "참전 국가"@ko, "Participant"@en ;
+    rdfs:comment "참전 기록이 어느 국가의 참전인지 연결한다."@ko,
+      "Links a participation record to the state that fought."@en .
+ww1:inConflict a owl:ObjectProperty ; rdfs:domain ww1:Participation ; rdfs:range ww1:Conflict ;
+    rdfs:label "참전한 전쟁"@ko, "In conflict"@en ;
+    rdfs:comment "참전 기록이 속한 전쟁을 연결한다."@ko,
+      "Links a participation record to the war in which the state fought."@en .
+ww1:onSide a owl:ObjectProperty ; rdfs:domain ww1:Participation ; rdfs:range ww1:Side ;
+    rdfs:label "소속 진영"@ko, "On side"@en ;
+    rdfs:comment "참전 기간 동안 국가가 속한 진영을 연결한다."@ko,
+      "Links a participation record to the side on which the state fought."@en .
+ww1:enteredVia a owl:ObjectProperty ; rdfs:domain ww1:Participation ; rdfs:range ww1:Event ;
+    rdfs:label "참전 계기 사건"@ko, "Entered via"@en ;
+    rdfs:comment "국가가 전쟁에 들어가게 된 선전포고, 침공이나 공격 사건을 연결한다."@ko,
+      "Links a participation record to the declaration, invasion or attack through which the state entered the war."@en .
+ww1:endedByAgreement a owl:ObjectProperty ; rdfs:domain ww1:Participation ; rdfs:range ww1:Agreement ;
+    rdfs:label "참전을 끝낸 협정"@ko, "Ended by agreement"@en ;
+    rdfs:comment "국가의 교전을 끝낸 휴전 협정이나 강화 조약을 연결한다."@ko,
+      "Links a participation record to the armistice or treaty that ended the state's fighting."@en .
+ww1:hasMember a owl:ObjectProperty ; rdfs:domain ww1:Alliance ; rdfs:range ww1:State ;
+    rdfs:label "동맹 회원국"@ko, "Has member"@en ;
+    rdfs:comment "개전 전 동맹에 속했던 국가를 연결한다."@ko,
+      "Links a pre-war alliance to a state that belonged to it."@en .
+ww1:correspondingSide a owl:ObjectProperty ; rdfs:domain ww1:Alliance ; rdfs:range ww1:Side ;
+    rdfs:label "대응 진영"@ko, "Corresponding side"@en ;
+    rdfs:comment "개전 전 동맹이 전쟁에서 주로 이어진 진영을 연결한다. 회원국이 실제로 그 진영에 섰다는 뜻은 아니다."@ko,
+      "Links a pre-war alliance to the wartime side it chiefly developed into; members did not necessarily join that side."@en .
+ww1:relatedConflict a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:Conflict ;
+    rdfs:label "관련 전쟁"@ko, "Related conflict"@en ;
+    rdfs:comment "사건이 속하거나 전쟁의 계기가 된 전쟁을 연결한다."@ko,
+      "Links an event to the war it belongs to or precipitated."@en .
+ww1:initiatedBy a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:State ;
+    rdfs:label "행위국"@ko, "Initiated by"@en ;
+    rdfs:comment "선전포고, 침공이나 공격을 먼저 한 국가를 연결한다."@ko,
+      "Links a war declaration, invasion or raid to the state that carried it out."@en .
+ww1:directedAgainst a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:State ;
+    rdfs:label "상대국"@ko, "Directed against"@en ;
+    rdfs:comment "선전포고, 침공이나 공격의 대상이 된 국가를 연결한다."@ko,
+      "Links a war declaration, invasion or raid to the state it targeted."@en .
+ww1:inTheatre a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:Theatre ;
+    rdfs:label "전선"@ko, "In theatre"@en ;
+    rdfs:comment "전투가 벌어진 전선이나 전역을 연결한다."@ko,
+      "Links a battle to the theatre in which it was fought."@en .
+ww1:hasBelligerent a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:Participation ;
+    rdfs:label "교전 참여"@ko, "Has belligerent"@en ;
+    rdfs:comment "전투에 병력을 보낸 국가를 참전 기록으로 연결해 진영과 참전 기간을 함께 확인한다. 주요 참전국만 기록하며 모든 참전 부대를 포함한다고 보장하지 않는다."@ko,
+      "Links a battle to the participation record of a state that fought in it, so its side and period can be checked; principal contingents only, not every unit that took part."@en .
+ww1:hadCommander a owl:ObjectProperty ; rdfs:domain ww1:Event ; rdfs:range ww1:Person ;
+    rdfs:label "전투 지휘관"@ko, "Had commander"@en ;
+    rdfs:comment "전투에서 한 쪽 군을 지휘한 인물을 연결한다. 모든 지휘관을 빠짐없이 기록한다는 뜻은 아니다."@ko,
+      "Links a battle to a person who commanded forces in it; the set of commanders is not claimed to be complete."@en .
+ww1:servedState a owl:ObjectProperty ; rdfs:domain ww1:Person ; rdfs:range ww1:State ;
+    rdfs:label "복무 국가"@ko, "Served state"@en ;
+    rdfs:comment "지휘관이 전쟁 중 군인으로 복무한 국가를 연결한다."@ko,
+      "Links a commander to the state in whose forces the person served during the war."@en .
+ww1:hasParty a owl:ObjectProperty ; rdfs:domain ww1:Agreement ; rdfs:range ww1:State ;
+    rdfs:label "협정 당사국"@ko, "Has party"@en ;
+    rdfs:comment "협정에 서명했거나 직접 상대한 주요 당사국을 연결한다. 모든 서명국을 포함한다고 보장하지 않는다."@ko,
+      "Links an agreement to a principal party; the recorded parties are not claimed to cover every signatory."@en .
+ww1:supportedBy a owl:ObjectProperty ; rdfs:domain ww1:HistoricalClaim ; rdfs:range ww1:SourceReference ;
+    rdfs:label "뒷받침 출처"@ko, "Supported by"@en ;
+    rdfs:comment "기록을 확인한 출처를 연결한다. 출처 확인을 마친 기록에만 연결한다."@ko,
+      "Links a historical claim to a source consulted to check it; used only once the claim has been source-checked."@en .
+
+ww1:conflictStartDate a owl:DatatypeProperty ; rdfs:domain ww1:Conflict ; rdfs:range xsd:date ;
+    rdfs:label "전쟁 시작일"@ko, "Conflict start date"@en ;
+    rdfs:comment "전쟁이 시작된 것으로 보는 날짜이다."@ko,
+      "The date on which the war is taken to have begun."@en .
+ww1:conflictEndDate a owl:DatatypeProperty ; rdfs:domain ww1:Conflict ; rdfs:range xsd:date ;
+    rdfs:label "교전 종료일"@ko, "End of fighting date"@en ;
+    rdfs:comment "전선 전체의 교전이 멈춘 날짜이며 법적으로 전쟁이 끝난 날짜와 다를 수 있다."@ko,
+      "The date on which general fighting stopped, which may differ from the date the war legally ended."@en .
+ww1:governmentForm a owl:DatatypeProperty ; rdfs:domain ww1:State ; rdfs:range xsd:string ;
+    rdfs:label "정체"@ko, "Form of government"@en ;
+    rdfs:comment "개전 당시 국가의 정체를 empire, kingdom, republic 중 하나로 기록한다."@ko,
+      "Records the state's form of government at the outbreak as empire, kingdom or republic."@en .
+ww1:entryDate a owl:DatatypeProperty ; rdfs:domain ww1:Participation ; rdfs:range xsd:date ;
+    rdfs:label "참전일"@ko, "Entry date"@en ;
+    rdfs:comment "국가가 전쟁에 들어간 날짜이며 계기 사건의 시작일과 같아야 한다."@ko,
+      "The date on which the state entered the war; it must equal the start date of the triggering event."@en .
+ww1:exitDate a owl:DatatypeProperty ; rdfs:domain ww1:Participation ; rdfs:range xsd:date ;
+    rdfs:label "전쟁 이탈일"@ko, "Exit date"@en ;
+    rdfs:comment "국가가 휴전이나 강화로 교전을 마친 날짜이며 협정 서명일과 같아야 한다. 값이 없으면 이탈을 기록하지 않았다는 뜻이다."@ko,
+      "The date on which the state stopped fighting by armistice or treaty; absent when no exit is recorded."@en .
+ww1:eventKind a owl:DatatypeProperty ; rdfs:domain ww1:Event ; rdfs:range xsd:string ;
+    rdfs:label "사건 종류"@ko, "Event kind"@en ;
+    rdfs:comment "assassination, war-declaration, invasion, naval-raid, battle 중 하나이며 필요한 속성이 달라진다."@ko,
+      "One of assassination, war-declaration, invasion, naval-raid or battle, which decides the required properties."@en .
+ww1:startDate a owl:DatatypeProperty ; rdfs:domain ww1:Event ; rdfs:range xsd:date ;
+    rdfs:label "사건 시작일"@ko, "Event start date"@en ;
+    rdfs:comment "사건이 시작된 날짜이다. 하루에 끝난 사건은 종료일과 같다."@ko,
+      "The date on which the event began; it equals the end date for a one-day event."@en .
+ww1:endDate a owl:DatatypeProperty ; rdfs:domain ww1:Event ; rdfs:range xsd:date ;
+    rdfs:label "사건 종료일"@ko, "Event end date"@en ;
+    rdfs:comment "사건이 끝난 날짜이며 시작일보다 앞설 수 없다."@ko,
+      "The date on which the event ended; it cannot precede the start date."@en .
+ww1:locationName a owl:DatatypeProperty ; rdfs:domain ww1:Event ; rdfs:range xsd:string ;
+    rdfs:label "장소 이름"@ko, "Location name"@en ;
+    rdfs:comment "사건이 일어난 장소를 설명하는 이름이며 좌표나 현재 국경은 보증하지 않는다."@ko,
+      "A descriptive name of where the event took place, without coordinates or any claim about present borders."@en .
+ww1:outcome a owl:DatatypeProperty ; rdfs:domain ww1:Event ; rdfs:range xsd:string ;
+    rdfs:label "전투 결과"@ko, "Battle outcome"@en ;
+    rdfs:comment "전투 결과를 allied-victory, central-victory, contested 중 하나로 기록한다. 평가가 갈리면 contested를 사용한다."@ko,
+      "Records a battle's outcome as allied-victory, central-victory or contested, the last when historians disagree."@en .
+ww1:agreementKind a owl:DatatypeProperty ; rdfs:domain ww1:Agreement ; rdfs:range xsd:string ;
+    rdfs:label "협정 종류"@ko, "Agreement kind"@en ;
+    rdfs:comment "교전만 멈추는 armistice인지 전쟁 상태를 끝내는 peace-treaty인지 구분한다."@ko,
+      "Distinguishes an armistice, which only halts fighting, from a peace-treaty, which ends the state of war."@en .
+ww1:signedDate a owl:DatatypeProperty ; rdfs:domain ww1:Agreement ; rdfs:range xsd:date ;
+    rdfs:label "서명일"@ko, "Signed date"@en ;
+    rdfs:comment "협정이 서명된 날짜이며 발효일과 구분한다."@ko,
+      "The date on which the agreement was signed, as distinct from the date it came into force."@en .
+ww1:inForceDate a owl:DatatypeProperty ; rdfs:domain ww1:Agreement ; rdfs:range xsd:date ;
+    rdfs:label "발효일"@ko, "In-force date"@en ;
+    rdfs:comment "강화 조약이 법적으로 효력을 얻은 날짜이다. 값이 없으면 기록하지 않았다는 뜻이다."@ko,
+      "The date a peace treaty took legal effect; absent when it is not recorded."@en .
+ww1:birthYear a owl:DatatypeProperty ; rdfs:domain ww1:Person ; rdfs:range xsd:integer ;
+    rdfs:label "출생 연도"@ko, "Birth year"@en ;
+    rdfs:comment "지휘관이 태어난 연도이며 전투 시작 연도보다 늦을 수 없다."@ko,
+      "The year the commander was born; it cannot be later than the year of a battle commanded."@en .
+ww1:deathYear a owl:DatatypeProperty ; rdfs:domain ww1:Person ; rdfs:range xsd:integer ;
+    rdfs:label "사망 연도"@ko, "Death year"@en ;
+    rdfs:comment "지휘관이 사망한 연도이며 전투 종료 연도보다 앞설 수 없다. 값이 없으면 기록하지 않았다는 뜻이다."@ko,
+      "The year the commander died; it cannot precede the year a commanded battle ended; absent when not recorded."@en .
+ww1:verificationStatus a owl:DatatypeProperty ; rdfs:domain ww1:HistoricalClaim ; rdfs:range xsd:string ;
+    rdfs:label "출처 확인 상태"@ko, "Verification status"@en ;
+    rdfs:comment "unverified는 아직 출처와 대조하지 않았음을, source-checked는 출처를 확인했음을 뜻하며 후자에는 출처가 필요하다."@ko,
+      "unverified means not yet checked against a source; source-checked means checked and requires at least one cited source."@en .
+ww1:citationText a owl:DatatypeProperty ; rdfs:domain ww1:SourceReference ; rdfs:range xsd:string ;
+    rdfs:label "인용문"@ko, "Citation text"@en ;
+    rdfs:comment "자료의 저자, 제목, 출판 정보를 담은 사람이 읽을 수 있는 인용 표기이다."@ko,
+      "A human-readable citation giving the author, title and publication details of the source."@en .
+ww1:sourceUri a owl:DatatypeProperty ; rdfs:domain ww1:SourceReference ; rdfs:range xsd:anyURI ;
+    rdfs:label "출처 주소"@ko, "Source URI"@en ;
+    rdfs:comment "출처를 열람할 수 있는 위치이며 문서의 진위나 접근 가능성을 자동으로 보증하지 않는다."@ko,
+      "Where the source can be consulted; it does not by itself guarantee authenticity or availability."@en .

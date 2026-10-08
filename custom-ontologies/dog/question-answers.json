@@ -1,0 +1,274 @@
+{
+  "DOG-01": {
+    "variables": [
+      "dog",
+      "breed",
+      "size",
+      "sex",
+      "neuter"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/bori",
+        "https://example.test/dog/goldenRetriever",
+        "large",
+        "male",
+        "intact"
+      ],
+      [
+        "https://example.test/dog/dalgi",
+        "https://example.test/dog/maltese",
+        "toy",
+        "female",
+        "neutered"
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "https://example.test/dog/jindo",
+        "medium",
+        "female",
+        "neutered"
+      ],
+      [
+        "https://example.test/dog/nuri",
+        "https://example.test/dog/mixed",
+        null,
+        "male",
+        "unknown"
+      ]
+    ]
+  },
+  "DOG-02": {
+    "variables": [
+      "guardian",
+      "dogs"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/guardianA",
+        "2"
+      ],
+      [
+        "https://example.test/dog/guardianB",
+        "2"
+      ],
+      [
+        "https://example.test/dog/guardianC",
+        "1"
+      ]
+    ]
+  },
+  "DOG-03": {
+    "variables": [
+      "dog",
+      "status",
+      "administered",
+      "due",
+      "certificate",
+      "standing"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/bori",
+        "administered",
+        "2026-07-01",
+        "2027-07-01",
+        "urn:synthetic:certificate:bori-rabies",
+        "current"
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "administered",
+        "2025-04-10",
+        "2026-04-10",
+        "urn:synthetic:certificate:kongi-rabies",
+        "overdue"
+      ],
+      [
+        "https://example.test/dog/nuri",
+        "scheduled",
+        null,
+        "2026-10-20",
+        null,
+        "planned"
+      ]
+    ]
+  },
+  "DOG-04": {
+    "variables": [
+      "dog"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/dalgi"
+      ]
+    ]
+  },
+  "DOG-05": {
+    "variables": [
+      "dog",
+      "kind",
+      "due"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/nuri",
+        "rabies",
+        "2026-10-20"
+      ],
+      [
+        "https://example.test/dog/bori",
+        "combination",
+        "2026-11-01"
+      ]
+    ]
+  },
+  "DOG-06": {
+    "variables": [
+      "clinic",
+      "vaccinations"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/clinicA",
+        "2"
+      ],
+      [
+        "https://example.test/dog/clinicB",
+        "1"
+      ]
+    ]
+  },
+  "DOG-07": {
+    "variables": [
+      "clinic",
+      "reason",
+      "visits",
+      "latest"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/clinicA",
+        "checkup",
+        "1",
+        "2026-04-12"
+      ],
+      [
+        "https://example.test/dog/clinicA",
+        "illness",
+        "1",
+        "2026-08-20"
+      ],
+      [
+        "https://example.test/dog/clinicA",
+        "vaccination",
+        "1",
+        "2025-04-10"
+      ],
+      [
+        "https://example.test/dog/clinicB",
+        "checkup",
+        "1",
+        "2026-09-15"
+      ],
+      [
+        "https://example.test/dog/clinicB",
+        "vaccination",
+        "1",
+        "2026-07-01"
+      ]
+    ]
+  },
+  "DOG-08": {
+    "variables": [
+      "dog",
+      "date",
+      "kg"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/bori",
+        "2026-07-01",
+        "29.5"
+      ],
+      [
+        "https://example.test/dog/bori",
+        "2026-09-15",
+        "30.1"
+      ],
+      [
+        "https://example.test/dog/dalgi",
+        "2026-08-20",
+        "3.4"
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "2025-04-10",
+        "14.2"
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "2026-04-12",
+        "15.0"
+      ]
+    ]
+  },
+  "DOG-09": {
+    "variables": [
+      "dog",
+      "status",
+      "number",
+      "evidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/bori",
+        "unregistered",
+        null,
+        null
+      ],
+      [
+        "https://example.test/dog/dalgi",
+        "unregistered",
+        null,
+        null
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "registered",
+        "999000000000001",
+        "urn:synthetic:registration:kongi"
+      ],
+      [
+        "https://example.test/dog/nuri",
+        "unregistered",
+        null,
+        null
+      ]
+    ]
+  },
+  "DOG-10": {
+    "variables": [
+      "dog",
+      "knowledge",
+      "birth"
+    ],
+    "rows": [
+      [
+        "https://example.test/dog/dalgi",
+        "unknown",
+        null
+      ],
+      [
+        "https://example.test/dog/kongi",
+        "estimated",
+        "2021-03-01"
+      ],
+      [
+        "https://example.test/dog/nuri",
+        "estimated",
+        "2024-01-10"
+      ]
+    ]
+  }
+}

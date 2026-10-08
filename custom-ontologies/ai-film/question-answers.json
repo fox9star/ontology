@@ -1,0 +1,178 @@
+{
+  "AIF-01": {
+    "variables": [
+      "project",
+      "sceneOrder",
+      "shotOrder",
+      "shot",
+      "seconds",
+      "task",
+      "status",
+      "prompt"
+    ],
+    "rows": [
+      [
+        "https://example.test/ai-film/project",
+        "1",
+        "1",
+        "https://example.test/ai-film/shot01",
+        "6.0",
+        "https://example.test/ai-film/task01",
+        "planned",
+        "A fictional empty station at dawn, slow camera movement."
+      ],
+      [
+        "https://example.test/ai-film/project",
+        "1",
+        "2",
+        "https://example.test/ai-film/shot02",
+        "4.0",
+        "https://example.test/ai-film/task02",
+        "planned",
+        "A fictional hand holding an unmarked envelope, close-up."
+      ]
+    ]
+  },
+  "AIF-02": {
+    "variables": [
+      "task",
+      "status",
+      "modelState",
+      "model",
+      "executionEvidence",
+      "asset"
+    ],
+    "rows": [
+      [
+        "https://example.test/ai-film/task01",
+        "planned",
+        "unknown",
+        null,
+        null,
+        "https://example.test/ai-film/asset01"
+      ],
+      [
+        "https://example.test/ai-film/task02",
+        "planned",
+        "unknown",
+        null,
+        null,
+        "https://example.test/ai-film/asset02"
+      ]
+    ]
+  },
+  "AIF-03": {
+    "variables": [
+      "asset",
+      "media",
+      "availability",
+      "file",
+      "source",
+      "kind",
+      "decision",
+      "reason",
+      "reviewEvidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/ai-film/asset01",
+        "video",
+        "planned",
+        null,
+        null,
+        "quality",
+        "pending",
+        "아직 생성된 영상이 없어 품질을 판단하지 않았습니다.",
+        null
+      ],
+      [
+        "https://example.test/ai-film/asset01",
+        "video",
+        "planned",
+        null,
+        null,
+        "rights",
+        "pending",
+        "합성 계획 단계로 실제 자산과 권리 자료가 없습니다.",
+        null
+      ],
+      [
+        "https://example.test/ai-film/asset02",
+        "video",
+        "planned",
+        null,
+        null,
+        "quality",
+        "pending",
+        "아직 생성된 영상이 없어 품질을 판단하지 않았습니다.",
+        null
+      ],
+      [
+        "https://example.test/ai-film/asset02",
+        "video",
+        "planned",
+        null,
+        null,
+        "rights",
+        "pending",
+        "합성 계획 단계로 실제 자산과 권리 자료가 없습니다.",
+        null
+      ]
+    ]
+  },
+  "AIF-04": {
+    "variables": [
+      "edit",
+      "version",
+      "asset",
+      "blocker"
+    ],
+    "rows": [
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset01",
+        "asset-or-source-unavailable"
+      ],
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset01",
+        "quality-review-incomplete"
+      ],
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset01",
+        "rights-review-incomplete"
+      ],
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset02",
+        "asset-or-source-unavailable"
+      ],
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset02",
+        "quality-review-incomplete"
+      ],
+      [
+        "https://example.test/ai-film/edit01",
+        "draft-01",
+        "https://example.test/ai-film/asset02",
+        "rights-review-incomplete"
+      ]
+    ]
+  },
+  "AIF-05": {
+    "variables": [
+      "project",
+      "edit",
+      "version",
+      "assetCount"
+    ],
+    "rows": []
+  }
+}

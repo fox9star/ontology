@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-mv-studio
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: mv-studio
+spec:
+  type: {{ .Values.mvStudio.service.type }}
+  ports:
+    - port: {{ .Values.mvStudio.service.port }}
+      targetPort: {{ .Values.mvStudio.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "ontology-stack.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: mv-studio

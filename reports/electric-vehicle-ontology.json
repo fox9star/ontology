@@ -1,0 +1,134 @@
+{
+  "created_at": "2026-10-08T05:39:11+00:00",
+  "id": "electric-vehicle",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 24,
+  "properties": 46,
+  "instance_counts": {
+    "AuxiliaryBattery": 1,
+    "BatteryElectricVehicle": 1,
+    "ChargingConnector": 2,
+    "ChargingSession": 1,
+    "ChargingStationLocation": 1,
+    "CoverageNote": 5,
+    "DCDCConverter": 1,
+    "EVSEPort": 2,
+    "ElectricTractionMotor": 1,
+    "ElectrifiedVehicle": 3,
+    "EnergyFlow": 8,
+    "EvidenceRecord": 11,
+    "HybridElectricVehicle": 1,
+    "Inverter": 1,
+    "OnboardCharger": 1,
+    "PlugInHybridElectricVehicle": 1,
+    "PowerElectronicsController": 1,
+    "PowertrainComponent": 9,
+    "ResourceRecord": 48,
+    "SourceDocument": 6,
+    "ThermalManagementSystem": 1,
+    "TractionBatteryPack": 1,
+    "Vehicle": 3,
+    "VehicleChargePort": 1
+  },
+  "instances": 48,
+  "triples": 675,
+  "source_documents": 6,
+  "evidence_records": 11,
+  "coverage_notes": 5,
+  "synthetic_records": 6,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 83
+  },
+  "questions": 12,
+  "question_fixture_triples": 675,
+  "question_answer_contracts": 12,
+  "consumer_case_quads": 677,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "query_execution_performed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Conceptual BEV/PHEV/HEV categories, source-described drivetrain roles, energy-flow patterns, and AC/DC station-port-connector concepts. Charging-site, equipment, and session examples are synthetic. Market-specific connector compatibility, laws/incentives, and model-specific performance are excluded.",
+  "release_uri": "pending; profile remains an example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "7beaea9a81b416b1b8288edd304dd9c43678a6244e9361fa3af696249960c841",
+      "bytes": 46263
+    },
+    "curated-data.json": {
+      "sha256": "a475defa8ed3078e4af48dc7f1defd4c18d81d59759a52f186b09406bd9d4647",
+      "bytes": 15007
+    },
+    "example.ttl": {
+      "sha256": "e67e4574c4c9e8ce3583f38fc7e868b4bf7f338cc4c02e466966b000b2e8874a",
+      "bytes": 41966
+    },
+    "profile.json": {
+      "sha256": "288216cf62ead7d10d23c9ed1016d3b741ea04ba0e9d271bf9e71590a5a59310",
+      "bytes": 1393
+    },
+    "question-answers.json": {
+      "sha256": "a1aae1da5e01652e41ee75abfe79293f366fa4400ad6d15bb9a2edc5d2fa0b2f",
+      "bytes": 13704
+    },
+    "question-fixture.ttl": {
+      "sha256": "a4de4bcb4c0af065c58190dac21b5678cf4a89c4309843b19f3b6ee14f64be79",
+      "bytes": 42349
+    },
+    "questions.md": {
+      "sha256": "04057a01117dd84cdf0cf0948145f20b36b4a832959825f0c08f298d47055c58",
+      "bytes": 6452
+    },
+    "schema.owl": {
+      "sha256": "20370eec8d189440a6b9d256401c5326daf71ec71ced11e84326e90a13410cc1",
+      "bytes": 49078
+    },
+    "schema.ttl": {
+      "sha256": "d32d6a7cc4e0d782d7383de27ad3f7e4b9915566b3e84cb5ba5a66d670ff6305",
+      "bytes": 23712
+    },
+    "shapes.ttl": {
+      "sha256": "43d1a56b79822a648051d71bf5225898a67b1a4c88ea31a2bb39fe89996dc5fa",
+      "bytes": 12418
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T05:41:52+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 33,
+    "profile_id": "electric-vehicle",
+    "draft": true,
+    "explorer": {
+      "classes": 24,
+      "properties": 46,
+      "instances": 48
+    },
+    "question_keys": [
+      "EV-01",
+      "EV-02",
+      "EV-03",
+      "EV-04",
+      "EV-05",
+      "EV-06",
+      "EV-07",
+      "EV-08",
+      "EV-09",
+      "EV-10",
+      "EV-11",
+      "EV-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "selector_label_matches_catalog": true,
+    "selector_search_keywords": "Electric Vehicle Ontology",
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  }
+}

@@ -1,0 +1,755 @@
+{
+  "created_at": "2026-10-04T17:24:20.500395+00:00",
+  "environment": {
+    "python": "3.13.15",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 158 Stepping 9, GenuineIntel",
+    "cpu_count": 4,
+    "packages": {
+      "rdflib": "7.6.0",
+      "pyshacl": "0.40.1",
+      "owlrl": "7.6.2"
+    },
+    "workload_version": "canonical-mv-archive-v1",
+    "schema_versions": [
+      "1.0.0",
+      "1.1.1",
+      "1.2.1"
+    ],
+    "schema_source_sha256": {
+      "mv-schema.ttl": "75f11d195496874719dc92c2fa0260dd50a1bf4e1e571ac1db25e60a475b843e",
+      "core-schema.ttl": "21b5a06e6cf6342960d01b656d8bf167be4a08dc3fb9209418761a0c9573c00d",
+      "controlled-vocabularies.ttl": "3ec8776c281411609d48828b992ef5e76bdd424d6be2cbd8959b55de1c349e2d",
+      "mv-shapes.ttl": "4e8f971224f1773241227d76af369ebf870e36ff07cd2ca0613c7a069cc10b5f",
+      "core-shapes.ttl": "d490baf80b956edff0e2aff37218281c0642eb0ddc106d3d10c59e62b595bfa2",
+      "property-contract-shapes.ttl": "4eb20cbd7f304eee25ea0d7a72190f151d743c0bfcee04f13d1081feefd70ebf"
+    },
+    "catalog_queries_sha256": "bb721016477a4470d1b42b1b061f3781a0f1b48ff272fc8268cd915b9746b0dd"
+  },
+  "policy": {
+    "warmups": 1,
+    "measured_repetitions": 10,
+    "query_mode": "raw-data-no-inference",
+    "query_preparation": "graph.query text parsing included",
+    "p95_method": "nearest-rank",
+    "memory_method": "one additional tracemalloc query outside timed repetitions; Windows process working set",
+    "validation_mode": "full data graph plus canonical imported schemas; inference none"
+  },
+  "sizes": [
+    {
+      "image_count": 1250,
+      "project_count": 8,
+      "requested_triples": 10000,
+      "actual_data_triples": 10008,
+      "generation_seconds": 0.1764,
+      "validation_seconds": 1.3243,
+      "shacl_conforms": true,
+      "working_set_after_validation": {
+        "current_bytes": 71426048,
+        "lifetime_peak_bytes": 71430144
+      },
+      "queries": {
+        "BMV-01": {
+          "p50_ms": 8.4077,
+          "p95_ms": 13.6396,
+          "runs_ms": [
+            7.5772,
+            8.0257,
+            10.532,
+            7.9981,
+            7.7888,
+            8.0123,
+            10.1366,
+            8.7897,
+            13.6396,
+            11.3454
+          ],
+          "traced_query_peak_bytes": 277229,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "dc08d9f8c8781a0de35630303f2dad60a733f3445e9593a5cb4f928654296c9a",
+          "answer": {
+            "variables": [
+              "project",
+              "video",
+              "audio",
+              "timeline"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "https://example.test/benchmark/video00",
+                "https://example.test/benchmark/audio00",
+                "https://example.test/benchmark/timeline00"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "https://example.test/benchmark/video01",
+                "https://example.test/benchmark/audio01",
+                "https://example.test/benchmark/timeline01"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "https://example.test/benchmark/video02",
+                "https://example.test/benchmark/audio02",
+                "https://example.test/benchmark/timeline02"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "https://example.test/benchmark/video03",
+                "https://example.test/benchmark/audio03",
+                "https://example.test/benchmark/timeline03"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "https://example.test/benchmark/video04",
+                "https://example.test/benchmark/audio04",
+                "https://example.test/benchmark/timeline04"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "https://example.test/benchmark/video05",
+                "https://example.test/benchmark/audio05",
+                "https://example.test/benchmark/timeline05"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "https://example.test/benchmark/video06",
+                "https://example.test/benchmark/audio06",
+                "https://example.test/benchmark/timeline06"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "https://example.test/benchmark/video07",
+                "https://example.test/benchmark/audio07",
+                "https://example.test/benchmark/timeline07"
+              ]
+            ]
+          }
+        },
+        "BMV-02": {
+          "p50_ms": 208.3592,
+          "p95_ms": 266.4021,
+          "runs_ms": [
+            209.8592,
+            196.9833,
+            266.4021,
+            200.1781,
+            206.8591,
+            199.4097,
+            213.5135,
+            205.106,
+            221.8212,
+            218.1723
+          ],
+          "traced_query_peak_bytes": 346565,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "a65b9ac8cd966f1f98159af2385ac66288a739294b6558e0716ac833fb308f95",
+          "answer": {
+            "variables": [
+              "project",
+              "imageCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "156"
+              ]
+            ]
+          }
+        },
+        "BMV-03": {
+          "p50_ms": 21.9381,
+          "p95_ms": 27.2266,
+          "runs_ms": [
+            24.3391,
+            27.0701,
+            27.2266,
+            21.9481,
+            20.4165,
+            20.8209,
+            21.9281,
+            19.9514,
+            22.1219,
+            18.9297
+          ],
+          "traced_query_peak_bytes": 367325,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "75d820e98da44000636291f739f18542f1155243ce4552bc7304504b1b76ae0c",
+          "answer": {
+            "variables": [
+              "project",
+              "shotCount",
+              "scheduledSeconds"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "4",
+                "20"
+              ]
+            ]
+          }
+        },
+        "BMV-04": {
+          "p50_ms": 3.8078,
+          "p95_ms": 6.0059,
+          "runs_ms": [
+            3.5852,
+            6.0059,
+            3.6682,
+            4.0885,
+            3.6937,
+            5.3243,
+            3.5593,
+            3.9219,
+            3.3779,
+            5.7262
+          ],
+          "traced_query_peak_bytes": 181875,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "63f3d76edb73176149d6defdb7948c9a807728211bd4349f3ae74b23f7a1bd79",
+          "answer": {
+            "variables": [
+              "ancestor"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/raw01"
+              ],
+              [
+                "https://example.test/benchmark/source000001"
+              ]
+            ]
+          }
+        },
+        "BMV-05": {
+          "p50_ms": 168.5263,
+          "p95_ms": 202.7465,
+          "runs_ms": [
+            181.3002,
+            186.7061,
+            165.0556,
+            163.4681,
+            202.7465,
+            183.1601,
+            166.4128,
+            166.873,
+            165.2111,
+            170.1795
+          ],
+          "traced_query_peak_bytes": 351825,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "db9fbcd299188c2a7c92d1b4a3faca924e4f344ee8945bd5af37f4ede7b79bcb",
+          "answer": {
+            "variables": [
+              "project",
+              "missingChecksumCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "156"
+              ]
+            ]
+          }
+        },
+        "BMV-06": {
+          "p50_ms": 178.8019,
+          "p95_ms": 228.0992,
+          "runs_ms": [
+            161.6964,
+            177.5966,
+            228.0992,
+            213.4966,
+            215.15,
+            184.6744,
+            179.9679,
+            177.6359,
+            176.1422,
+            175.9491
+          ],
+          "traced_query_peak_bytes": 357641,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "a8e4b8d80f707326498b8b9c610098fcd4fd9b20069d4e2cc2ecc42e74d763e9",
+          "answer": {
+            "variables": [
+              "project",
+              "unknownSourceCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "53"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "52"
+              ]
+            ]
+          }
+        }
+      },
+      "working_set_after_queries": {
+        "current_bytes": 72646656,
+        "lifetime_peak_bytes": 72650752
+      }
+    },
+    {
+      "image_count": 12862,
+      "project_count": 8,
+      "requested_triples": 100000,
+      "actual_data_triples": 100000,
+      "generation_seconds": 2.0486,
+      "validation_seconds": 7.0766,
+      "shacl_conforms": true,
+      "working_set_after_validation": {
+        "current_bytes": 268333056,
+        "lifetime_peak_bytes": 270479360
+      },
+      "queries": {
+        "BMV-01": {
+          "p50_ms": 8.5153,
+          "p95_ms": 9.896,
+          "runs_ms": [
+            7.408,
+            8.6955,
+            8.7653,
+            8.469,
+            9.896,
+            9.371,
+            8.561,
+            8.4695,
+            7.9852,
+            7.4969
+          ],
+          "traced_query_peak_bytes": 277229,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "dc08d9f8c8781a0de35630303f2dad60a733f3445e9593a5cb4f928654296c9a",
+          "answer": {
+            "variables": [
+              "project",
+              "video",
+              "audio",
+              "timeline"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "https://example.test/benchmark/video00",
+                "https://example.test/benchmark/audio00",
+                "https://example.test/benchmark/timeline00"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "https://example.test/benchmark/video01",
+                "https://example.test/benchmark/audio01",
+                "https://example.test/benchmark/timeline01"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "https://example.test/benchmark/video02",
+                "https://example.test/benchmark/audio02",
+                "https://example.test/benchmark/timeline02"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "https://example.test/benchmark/video03",
+                "https://example.test/benchmark/audio03",
+                "https://example.test/benchmark/timeline03"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "https://example.test/benchmark/video04",
+                "https://example.test/benchmark/audio04",
+                "https://example.test/benchmark/timeline04"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "https://example.test/benchmark/video05",
+                "https://example.test/benchmark/audio05",
+                "https://example.test/benchmark/timeline05"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "https://example.test/benchmark/video06",
+                "https://example.test/benchmark/audio06",
+                "https://example.test/benchmark/timeline06"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "https://example.test/benchmark/video07",
+                "https://example.test/benchmark/audio07",
+                "https://example.test/benchmark/timeline07"
+              ]
+            ]
+          }
+        },
+        "BMV-02": {
+          "p50_ms": 2061.7912,
+          "p95_ms": 3184.0637,
+          "runs_ms": [
+            3184.0637,
+            2053.833,
+            2134.7335,
+            2016.6902,
+            2139.1471,
+            2035.1402,
+            2058.3134,
+            2270.3161,
+            1999.8044,
+            2065.269
+          ],
+          "traced_query_peak_bytes": 1287089,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "efc7a92b0d91ff78707e8c946b33bc360dc7225576bfcdcc55fa7f19e36473fc",
+          "answer": {
+            "variables": [
+              "project",
+              "imageCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "1607"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "1607"
+              ]
+            ]
+          }
+        },
+        "BMV-03": {
+          "p50_ms": 32.1468,
+          "p95_ms": 63.2369,
+          "runs_ms": [
+            28.558,
+            37.0976,
+            23.0083,
+            63.2369,
+            27.3568,
+            47.9016,
+            32.4621,
+            25.586,
+            33.5319,
+            31.8316
+          ],
+          "traced_query_peak_bytes": 367759,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "75d820e98da44000636291f739f18542f1155243ce4552bc7304504b1b76ae0c",
+          "answer": {
+            "variables": [
+              "project",
+              "shotCount",
+              "scheduledSeconds"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "4",
+                "20"
+              ]
+            ]
+          }
+        },
+        "BMV-04": {
+          "p50_ms": 5.8459,
+          "p95_ms": 18.742,
+          "runs_ms": [
+            5.0795,
+            6.7568,
+            6.3889,
+            4.948,
+            3.9298,
+            7.2977,
+            5.0961,
+            5.3028,
+            12.5037,
+            18.742
+          ],
+          "traced_query_peak_bytes": 181763,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "63f3d76edb73176149d6defdb7948c9a807728211bd4349f3ae74b23f7a1bd79",
+          "answer": {
+            "variables": [
+              "ancestor"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/raw01"
+              ],
+              [
+                "https://example.test/benchmark/source000001"
+              ]
+            ]
+          }
+        },
+        "BMV-05": {
+          "p50_ms": 2276.2366,
+          "p95_ms": 2946.957,
+          "runs_ms": [
+            2859.7019,
+            2946.957,
+            2838.3731,
+            2161.9689,
+            1996.2055,
+            2330.5631,
+            2055.9966,
+            2221.9101,
+            2485.7378,
+            1968.9618
+          ],
+          "traced_query_peak_bytes": 326353,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "8d6b1b50284888ddaa24e956466295bf9fe3eac3660b11faf5c2826627431f92",
+          "answer": {
+            "variables": [
+              "project",
+              "missingChecksumCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "1608"
+              ]
+            ]
+          }
+        },
+        "BMV-06": {
+          "p50_ms": 1700.5536,
+          "p95_ms": 2955.8382,
+          "runs_ms": [
+            1830.2623,
+            1609.2815,
+            1660.1946,
+            1897.2921,
+            1599.4834,
+            1655.1296,
+            1625.4909,
+            1740.9125,
+            2955.8382,
+            2681.5326
+          ],
+          "traced_query_peak_bytes": 311581,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "59b6a239fde8a5c770baa4a2ec0dec4dcc114e5ac9dce9bba716e1107163ed5b",
+          "answer": {
+            "variables": [
+              "project",
+              "unknownSourceCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "536"
+              ]
+            ]
+          }
+        }
+      },
+      "working_set_after_queries": {
+        "current_bytes": 267755520,
+        "lifetime_peak_bytes": 270479360
+      }
+    }
+  ],
+  "comparison": {
+    "comparable": null,
+    "reason": "Initial baseline; no previous comparable observation"
+  }
+}

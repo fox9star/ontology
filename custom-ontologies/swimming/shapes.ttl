@@ -1,0 +1,125 @@
+@prefix swim: <https://example.org/ontology/custom/swimming#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+swim:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+swim:SwimmerShape a sh:NodeShape ; sh:targetClass swim:Swimmer ; sh:node swim:LabelShape ;
+    sh:property [ sh:path swim:competitionCategory ; sh:datatype xsd:string ; sh:in ( "women" "men" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:memberOf ; sh:class swim:Club ; sh:maxCount 1 ] .
+
+swim:ClubShape a sh:NodeShape ; sh:targetClass swim:Club ; sh:node swim:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath swim:memberOf ] ; sh:minCount 1 ] .
+
+swim:PoolShape a sh:NodeShape ; sh:targetClass swim:Pool ; sh:node swim:LabelShape ;
+    sh:property [ sh:path swim:poolLengthMeters ; sh:datatype xsd:integer ; sh:in ( 25 50 ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:laneCount ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 12 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+swim:MeetShape a sh:NodeShape ; sh:targetClass swim:Meet ; sh:node swim:LabelShape ;
+    sh:property [ sh:path swim:heldAt ; sh:class swim:Pool ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:hasEvent ; sh:class swim:SwimEvent ; sh:minCount 1 ] ;
+    sh:property [ sh:path swim:startDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThanOrEquals swim:endDate ] ;
+    sh:property [ sh:path swim:endDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+swim:SwimEventShape a sh:NodeShape ; sh:targetClass swim:SwimEvent ; sh:node swim:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath swim:hasEvent ] ; sh:class swim:Meet ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:stroke ; sh:datatype xsd:string ; sh:in ( "freestyle" "backstroke" "breaststroke" "butterfly" "individual-medley" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:distanceMeters ; sh:datatype xsd:integer ; sh:in ( 50 100 200 400 800 1500 ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:eventCategory ; sh:datatype xsd:string ; sh:in ( "women" "men" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "Backstroke, breaststroke and butterfly are swum over 50, 100 or 200 m, and the individual medley over 100, 200 or 400 m." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            $this swim:stroke ?stroke ; swim:distanceMeters ?d .
+            FILTER ((?stroke IN ("backstroke", "breaststroke", "butterfly") && ?d NOT IN (50, 100, 200))
+                    || (?stroke = "individual-medley" && ?d NOT IN (100, 200, 400)))
+          }""" ] ;
+    sh:sparql [ sh:message "The 100 m individual medley is swum only in a 25 m pool." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            $this swim:stroke "individual-medley" ; swim:distanceMeters 100 .
+            ?meet swim:hasEvent $this ; swim:heldAt ?pool .
+            ?pool swim:poolLengthMeters ?length .
+            FILTER (?length != 25)
+          }""" ] .
+
+swim:EntryShape a sh:NodeShape ; sh:targetClass swim:Entry ; sh:node swim:LabelShape ;
+    sh:property [ sh:path swim:forSwimmer ; sh:class swim:Swimmer ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:inEvent ; sh:class swim:SwimEvent ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:entryStatus ; sh:datatype xsd:string ; sh:in ( "entered" "official" "disqualified" "did-not-start" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:seedTimeSeconds ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:finalTimeSeconds ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:timingEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:disqualificationReason ; sh:datatype xsd:string ; sh:in ( "false-start" "stroke-violation" "turn-violation" "finish-violation" "other" ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:placeRank ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:hasSplit ; sh:class swim:Split ] ;
+    sh:or (
+        [ sh:property [ sh:path swim:entryStatus ; sh:hasValue "entered" ] ;
+          sh:property [ sh:path swim:finalTimeSeconds ; sh:maxCount 0 ] ; sh:property [ sh:path swim:timingEvidenceUri ; sh:maxCount 0 ] ;
+          sh:property [ sh:path swim:disqualificationReason ; sh:maxCount 0 ] ; sh:property [ sh:path swim:placeRank ; sh:maxCount 0 ] ;
+          sh:property [ sh:path swim:hasSplit ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path swim:entryStatus ; sh:hasValue "official" ] ;
+          sh:property [ sh:path swim:finalTimeSeconds ; sh:minCount 1 ] ; sh:property [ sh:path swim:timingEvidenceUri ; sh:minCount 1 ] ;
+          sh:property [ sh:path swim:disqualificationReason ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path swim:entryStatus ; sh:hasValue "disqualified" ] ;
+          sh:property [ sh:path swim:disqualificationReason ; sh:minCount 1 ] ; sh:property [ sh:path swim:timingEvidenceUri ; sh:minCount 1 ] ;
+          sh:property [ sh:path swim:finalTimeSeconds ; sh:maxCount 0 ] ; sh:property [ sh:path swim:placeRank ; sh:maxCount 0 ] ;
+          sh:property [ sh:path swim:hasSplit ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path swim:entryStatus ; sh:hasValue "did-not-start" ] ;
+          sh:property [ sh:path swim:finalTimeSeconds ; sh:maxCount 0 ] ; sh:property [ sh:path swim:timingEvidenceUri ; sh:maxCount 0 ] ;
+          sh:property [ sh:path swim:disqualificationReason ; sh:maxCount 0 ] ; sh:property [ sh:path swim:placeRank ; sh:maxCount 0 ] ;
+          sh:property [ sh:path swim:hasSplit ; sh:maxCount 0 ] ]
+    ) ;
+    sh:sparql [ sh:message "A swimmer can enter only events of their own category." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            $this swim:forSwimmer ?swimmer ; swim:inEvent ?event .
+            ?swimmer swim:competitionCategory ?a . ?event swim:eventCategory ?b .
+            FILTER (?a != ?b)
+          }""" ] ;
+    sh:sparql [ sh:message "A swimmer can have only one entry per event." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            $this swim:forSwimmer ?swimmer ; swim:inEvent ?event .
+            ?other swim:forSwimmer ?swimmer ; swim:inEvent ?event .
+            FILTER (?other != $this)
+          }""" ] ;
+    sh:sparql [ sh:message "A faster official time cannot have a worse place in the same event." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            $this swim:inEvent ?event ; swim:finalTimeSeconds ?ta ; swim:placeRank ?ra .
+            ?other swim:inEvent ?event ; swim:finalTimeSeconds ?tb ; swim:placeRank ?rb .
+            FILTER (?ta < ?tb && ?ra >= ?rb)
+          }""" ] .
+
+swim:SplitShape a sh:NodeShape ; sh:targetClass swim:Split ; sh:node swim:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath swim:hasSplit ] ; sh:class swim:Entry ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:splitDistanceMeters ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path swim:splitTimeSeconds ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A split cannot lie beyond the event distance, and must be taken at a multiple of the pool length." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            ?entry swim:hasSplit $this ; swim:inEvent ?event .
+            $this swim:splitDistanceMeters ?d .
+            ?event swim:distanceMeters ?total .
+            ?meet swim:hasEvent ?event ; swim:heldAt ?pool .
+            ?pool swim:poolLengthMeters ?length .
+            FILTER (?d > ?total || ?d - FLOOR(?d / ?length) * ?length != 0)
+          }""" ] ;
+    sh:sparql [ sh:message "Splits of one entry must be distinct and their times must grow with distance." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            ?entry swim:hasSplit $this, ?other .
+            $this swim:splitDistanceMeters ?d1 ; swim:splitTimeSeconds ?t1 .
+            ?other swim:splitDistanceMeters ?d2 ; swim:splitTimeSeconds ?t2 .
+            FILTER (?other != $this && ((?d1 = ?d2) || (?d1 < ?d2 && ?t1 >= ?t2)))
+          }""" ] ;
+    sh:sparql [ sh:message "A split cannot exceed the final time, and a split at the full distance must equal it." ;
+        sh:select """PREFIX swim: <https://example.org/ontology/custom/swimming#>
+          SELECT $this WHERE {
+            ?entry swim:hasSplit $this ; swim:inEvent ?event ; swim:finalTimeSeconds ?final .
+            $this swim:splitDistanceMeters ?d ; swim:splitTimeSeconds ?t .
+            ?event swim:distanceMeters ?total .
+            FILTER (?t > ?final || (?d = ?total && ?t != ?final))
+          }""" ] .

@@ -1,0 +1,631 @@
+@prefix ns1: <https://example.org/ontology/custom/picnic#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/picnic-accept> {
+    <https://example.test/picnic/garden-plan> a ns1:PicnicPlan ;
+        rdfs:label "Synthetic picnic: half day in a garden"@en,
+            "합성 소풍: 정원에서 반나절"@ko ;
+        ns1:budgetAmount 30000.0 ;
+        ns1:currency "KRW" ;
+        ns1:endsAt "2026-10-11T05:00:00+00:00"^^xsd:dateTime ;
+        ns1:hasActivity <https://example.test/picnic/garden-activity-01>,
+            <https://example.test/picnic/garden-activity-02>,
+            <https://example.test/picnic/garden-activity-03>,
+            <https://example.test/picnic/garden-activity-04> ;
+        ns1:hasAssignment <https://example.test/picnic/garden-assignment-food>,
+            <https://example.test/picnic/garden-assignment-mat> ;
+        ns1:hasExpense <https://example.test/picnic/garden-expense-admission>,
+            <https://example.test/picnic/garden-expense-food>,
+            <https://example.test/picnic/garden-expense-other> ;
+        ns1:hasParticipant <https://example.test/picnic/garden-member-a>,
+            <https://example.test/picnic/garden-member-b> ;
+        ns1:hasPlace <https://example.test/picnic/garden-place> ;
+        ns1:hasSupply <https://example.test/picnic/garden-cleanup>,
+            <https://example.test/picnic/garden-food>,
+            <https://example.test/picnic/garden-mat> ;
+        ns1:hasWeatherCheck <https://example.test/picnic/garden-weather> ;
+        ns1:picnicDate "2026-10-11"^^xsd:date ;
+        ns1:planNote "가상 정원 소풍 계획입니다. 준비물 담당자·날씨 확인·예산 초과 항목이 남아 있습니다." ;
+        ns1:recordKind "synthetic" ;
+        ns1:startsAt "2026-10-11T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:status "draft" .
+
+    <https://example.test/picnic/park-plan> a ns1:PicnicPlan ;
+        rdfs:label "Synthetic picnic: a day in a park"@en,
+            "합성 소풍: 공원에서 하루"@ko ;
+        ns1:budgetAmount 60000.0 ;
+        ns1:currency "KRW" ;
+        ns1:endsAt "2026-10-10T07:00:00+00:00"^^xsd:dateTime ;
+        ns1:hasActivity <https://example.test/picnic/park-activity-01>,
+            <https://example.test/picnic/park-activity-02>,
+            <https://example.test/picnic/park-activity-03>,
+            <https://example.test/picnic/park-activity-04> ;
+        ns1:hasAssignment <https://example.test/picnic/park-assignment-cleanup>,
+            <https://example.test/picnic/park-assignment-drink>,
+            <https://example.test/picnic/park-assignment-mat> ;
+        ns1:hasExpense <https://example.test/picnic/park-expense-equipment>,
+            <https://example.test/picnic/park-expense-food>,
+            <https://example.test/picnic/park-expense-transport> ;
+        ns1:hasParticipant <https://example.test/picnic/park-member-a>,
+            <https://example.test/picnic/park-member-b>,
+            <https://example.test/picnic/park-member-c> ;
+        ns1:hasPlace <https://example.test/picnic/park-place> ;
+        ns1:hasSupply <https://example.test/picnic/park-cleanup>,
+            <https://example.test/picnic/park-drink>,
+            <https://example.test/picnic/park-mat> ;
+        ns1:hasWeatherCheck <https://example.test/picnic/park-weather> ;
+        ns1:picnicDate "2026-10-10"^^xsd:date ;
+        ns1:planNote "가상 공원 소풍 계획입니다. 일부 준비물 수량과 날씨 정보가 아직 준비되지 않았습니다." ;
+        ns1:recordKind "synthetic" ;
+        ns1:startsAt "2026-10-10T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:status "draft" .
+
+    <https://example.test/picnic/garden-activity-01> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: travel"@en,
+            "합성 정원 일정: 이동"@ko ;
+        ns1:activityEnd "2026-10-11T01:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "travel" ;
+        ns1:activityNote "가상 이동 일정으로 실제 교통편 예약은 없습니다." ;
+        ns1:activityStart "2026-10-11T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 1 .
+
+    <https://example.test/picnic/garden-activity-02> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: meal"@en,
+            "합성 정원 일정: 식사"@ko ;
+        ns1:activityEnd "2026-10-11T02:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "meal" ;
+        ns1:activityNote "가상 식사 일정입니다." ;
+        ns1:activityStart "2026-10-11T01:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 2 .
+
+    <https://example.test/picnic/garden-activity-03> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: rest"@en,
+            "합성 정원 일정: 휴식"@ko ;
+        ns1:activityEnd "2026-10-11T04:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "rest" ;
+        ns1:activityNote "가상 휴식 일정입니다." ;
+        ns1:activityStart "2026-10-11T02:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 3 .
+
+    <https://example.test/picnic/garden-activity-04> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: cleanup"@en,
+            "합성 정원 일정: 정리"@ko ;
+        ns1:activityEnd "2026-10-11T05:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "cleanup" ;
+        ns1:activityNote "가상 정리 일정입니다." ;
+        ns1:activityStart "2026-10-11T04:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 4 .
+
+    <https://example.test/picnic/garden-assignment-food> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: garden meals"@en,
+            "합성 담당: 정원 도시락"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/garden-food> ;
+        ns1:assignedTo <https://example.test/picnic/garden-member-b> .
+
+    <https://example.test/picnic/garden-assignment-mat> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: garden mat"@en,
+            "합성 담당: 정원 돗자리"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/garden-mat> ;
+        ns1:assignedTo <https://example.test/picnic/garden-member-a> .
+
+    <https://example.test/picnic/garden-cleanup> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden cleanup bags"@en,
+            "합성 준비물: 정원 정리 봉투"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 1.0 ;
+        ns1:supplyKind "cleanup" ;
+        ns1:unit "pack" .
+
+    <https://example.test/picnic/garden-expense-admission> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden admission"@en,
+            "합성 비용: 정원 입장"@ko ;
+        ns1:amount 14000.0 ;
+        ns1:expenseKind "admission" ;
+        ns1:expenseNote "가상의 지불 상태 예제이며 실제 결제를 수행하지 않았습니다." ;
+        ns1:expenseStatus "paid" .
+
+    <https://example.test/picnic/garden-expense-food> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden food"@en,
+            "합성 비용: 정원 식사"@ko ;
+        ns1:amount 18000.0 ;
+        ns1:expenseKind "food" ;
+        ns1:expenseNote "가상의 예정 금액입니다. 실제 식품 가격이 아닙니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/garden-expense-other> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden cancelled extra"@en,
+            "합성 비용: 정원 기타 취소"@ko ;
+        ns1:amount 2000.0 ;
+        ns1:expenseKind "other" ;
+        ns1:expenseNote "가상 취소 항목으로 배정 비용 합계에서 제외합니다." ;
+        ns1:expenseStatus "cancelled" .
+
+    <https://example.test/picnic/garden-place> a ns1:Place ;
+        rdfs:label "Synthetic garden place"@en,
+            "합성 정원 장소"@ko ;
+        ns1:locationNote "실제 정원 이름·주소·입장 조건을 포함하지 않는 가상 장소입니다." ;
+        ns1:placeKind "garden" .
+
+    <https://example.test/picnic/garden-weather> a ns1:WeatherCheck ;
+        rdfs:label "Synthetic garden weather check, unverified"@en,
+            "합성 정원 소풍 날씨 미확인"@ko ;
+        ns1:checkStatus "unverified" ;
+        ns1:forDate "2026-10-11"^^xsd:date ;
+        ns1:weatherSummary "가상 예제의 미확인 상태입니다. 실제 날씨 예보를 조회하지 않았습니다." .
+
+    <https://example.test/picnic/park-activity-01> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: travel"@en,
+            "합성 공원 일정: 이동"@ko ;
+        ns1:activityEnd "2026-10-10T02:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "travel" ;
+        ns1:activityNote "가상 이동 일정입니다." ;
+        ns1:activityStart "2026-10-10T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 1 .
+
+    <https://example.test/picnic/park-activity-02> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: meal"@en,
+            "합성 공원 일정: 식사"@ko ;
+        ns1:activityEnd "2026-10-10T03:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "meal" ;
+        ns1:activityNote "가상 식사 일정으로 식단 권장량을 뜻하지 않습니다." ;
+        ns1:activityStart "2026-10-10T02:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 2 .
+
+    <https://example.test/picnic/park-activity-03> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: play"@en,
+            "합성 공원 일정: 놀이"@ko ;
+        ns1:activityEnd "2026-10-10T06:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "play" ;
+        ns1:activityNote "가상 놀이 일정입니다." ;
+        ns1:activityStart "2026-10-10T03:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 3 .
+
+    <https://example.test/picnic/park-activity-04> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: cleanup"@en,
+            "합성 공원 일정: 정리"@ko ;
+        ns1:activityEnd "2026-10-10T07:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "cleanup" ;
+        ns1:activityNote "가상 정리 일정입니다." ;
+        ns1:activityStart "2026-10-10T06:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 4 .
+
+    <https://example.test/picnic/park-assignment-cleanup> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park cleanup bags"@en,
+            "합성 담당: 공원 정리 봉투"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-cleanup> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-c> .
+
+    <https://example.test/picnic/park-assignment-drink> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park drinks"@en,
+            "합성 담당: 공원 음료"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-drink> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-b> .
+
+    <https://example.test/picnic/park-assignment-mat> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park mats"@en,
+            "합성 담당: 공원 돗자리"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-mat> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-a> .
+
+    <https://example.test/picnic/park-expense-equipment> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park cancelled equipment"@en,
+            "합성 비용: 공원 장비 취소"@ko ;
+        ns1:amount 5000.0 ;
+        ns1:expenseKind "equipment" ;
+        ns1:expenseNote "가상 취소 항목으로 예산 합계에서 제외합니다." ;
+        ns1:expenseStatus "cancelled" .
+
+    <https://example.test/picnic/park-expense-food> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park food"@en,
+            "합성 비용: 공원 식사"@ko ;
+        ns1:amount 24000.0 ;
+        ns1:expenseKind "food" ;
+        ns1:expenseNote "가상 식사 예정 금액으로 실제 가격을 나타내지 않습니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/park-expense-transport> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park transport"@en,
+            "합성 비용: 공원 이동"@ko ;
+        ns1:amount 10000.0 ;
+        ns1:expenseKind "transport" ;
+        ns1:expenseNote "가상 이동 금액으로 실제 교통 요금이나 예약은 없습니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/park-place> a ns1:Place ;
+        rdfs:label "Synthetic park place"@en,
+            "합성 공원 장소"@ko ;
+        ns1:locationNote "실제 공원 이름·주소·운영 정보를 포함하지 않는 가상 장소입니다." ;
+        ns1:placeKind "park" .
+
+    <https://example.test/picnic/park-weather> a ns1:WeatherCheck ;
+        rdfs:label "Synthetic park weather check, unverified"@en,
+            "합성 공원 소풍 날씨 미확인"@ko ;
+        ns1:checkStatus "unverified" ;
+        ns1:forDate "2026-10-10"^^xsd:date ;
+        ns1:weatherSummary "해당 날짜의 실제 예보 정보가 아직 기록되지 않은 가상 예제입니다." .
+
+    <https://example.test/picnic/garden-food> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden packed meals"@en,
+            "합성 준비물: 정원 도시락"@ko ;
+        ns1:packedQuantity 2.0 ;
+        ns1:requiredQuantity 2.0 ;
+        ns1:supplyKind "food" ;
+        ns1:unit "portion" .
+
+    <https://example.test/picnic/garden-mat> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden picnic mat"@en,
+            "합성 준비물: 정원 돗자리"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 1.0 ;
+        ns1:supplyKind "equipment" ;
+        ns1:unit "piece" .
+
+    <https://example.test/picnic/garden-member-a> a ns1:Participant ;
+        rdfs:label "Synthetic garden participant A"@en,
+            "합성 정원 참가자 A"@ko ;
+        ns1:participantNote "가상 소풍의 준비 담당자입니다." ;
+        ns1:role "organizer" .
+
+    <https://example.test/picnic/garden-member-b> a ns1:Participant ;
+        rdfs:label "Synthetic garden participant B"@en,
+            "합성 정원 참가자 B"@ko ;
+        ns1:participantNote "실제 개인 정보가 없는 가상 참가자입니다." ;
+        ns1:role "attendee" .
+
+    <https://example.test/picnic/park-cleanup> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park cleanup bags"@en,
+            "합성 준비물: 공원 정리 봉투"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 3.0 ;
+        ns1:supplyKind "cleanup" ;
+        ns1:unit "pack" .
+
+    <https://example.test/picnic/park-drink> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park drinks"@en,
+            "합성 준비물: 공원 음료"@ko ;
+        ns1:packedQuantity 6.0 ;
+        ns1:requiredQuantity 6.0 ;
+        ns1:supplyKind "drink" ;
+        ns1:unit "bottle" .
+
+    <https://example.test/picnic/park-mat> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park picnic mats"@en,
+            "합성 준비물: 공원 돗자리"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 2.0 ;
+        ns1:supplyKind "equipment" ;
+        ns1:unit "piece" .
+
+    <https://example.test/picnic/park-member-a> a ns1:Participant ;
+        rdfs:label "Synthetic park participant A"@en,
+            "합성 공원 참가자 A"@ko ;
+        ns1:participantNote "가상 공원 소풍의 준비 담당자입니다." ;
+        ns1:role "organizer" .
+
+    <https://example.test/picnic/park-member-b> a ns1:Participant ;
+        rdfs:label "Synthetic park participant B"@en,
+            "합성 공원 참가자 B"@ko ;
+        ns1:participantNote "실제 연락처가 없는 가상 참가자입니다." ;
+        ns1:role "attendee" .
+
+    <https://example.test/picnic/park-member-c> a ns1:Participant ;
+        rdfs:label "Synthetic park participant C"@en,
+            "합성 공원 참가자 C"@ko ;
+        ns1:participantNote "가상 공원 소풍 참가자입니다." ;
+        ns1:role "attendee" .
+}
+
+<https://example.test/consumer/picnic-reject> {
+    <https://example.test/picnic/garden-plan> a ns1:PicnicPlan ;
+        rdfs:label "Synthetic picnic: half day in a garden"@en,
+            "합성 소풍: 정원에서 반나절"@ko ;
+        ns1:budgetAmount 30000.0 ;
+        ns1:currency "KRW" ;
+        ns1:endsAt "2026-10-11T05:00:00+00:00"^^xsd:dateTime ;
+        ns1:hasActivity <https://example.test/picnic/garden-activity-01>,
+            <https://example.test/picnic/garden-activity-02>,
+            <https://example.test/picnic/garden-activity-03>,
+            <https://example.test/picnic/garden-activity-04> ;
+        ns1:hasAssignment <https://example.test/picnic/garden-assignment-food>,
+            <https://example.test/picnic/garden-assignment-mat> ;
+        ns1:hasExpense <https://example.test/picnic/garden-expense-admission>,
+            <https://example.test/picnic/garden-expense-food>,
+            <https://example.test/picnic/garden-expense-other> ;
+        ns1:hasParticipant <https://example.test/picnic/garden-member-a>,
+            <https://example.test/picnic/garden-member-b> ;
+        ns1:hasPlace <https://example.test/picnic/garden-place> ;
+        ns1:hasSupply <https://example.test/picnic/garden-cleanup>,
+            <https://example.test/picnic/garden-food>,
+            <https://example.test/picnic/garden-mat> ;
+        ns1:hasWeatherCheck <https://example.test/picnic/garden-weather> ;
+        ns1:picnicDate "2026-10-11"^^xsd:date ;
+        ns1:planNote "가상 정원 소풍 계획입니다. 준비물 담당자·날씨 확인·예산 초과 항목이 남아 있습니다." ;
+        ns1:recordKind "synthetic" ;
+        ns1:startsAt "2026-10-11T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:status "draft" .
+
+    <https://example.test/picnic/park-plan> a ns1:PicnicPlan ;
+        rdfs:label "Synthetic picnic: a day in a park"@en,
+            "합성 소풍: 공원에서 하루"@ko ;
+        ns1:budgetAmount 60000.0 ;
+        ns1:currency "KRW" ;
+        ns1:endsAt "2026-10-10T07:00:00+00:00"^^xsd:dateTime ;
+        ns1:hasActivity <https://example.test/picnic/park-activity-01>,
+            <https://example.test/picnic/park-activity-02>,
+            <https://example.test/picnic/park-activity-03>,
+            <https://example.test/picnic/park-activity-04> ;
+        ns1:hasAssignment <https://example.test/picnic/park-assignment-cleanup>,
+            <https://example.test/picnic/park-assignment-drink>,
+            <https://example.test/picnic/park-assignment-mat> ;
+        ns1:hasExpense <https://example.test/picnic/park-expense-equipment>,
+            <https://example.test/picnic/park-expense-food>,
+            <https://example.test/picnic/park-expense-transport> ;
+        ns1:hasParticipant <https://example.test/picnic/park-member-a>,
+            <https://example.test/picnic/park-member-b>,
+            <https://example.test/picnic/park-member-c> ;
+        ns1:hasPlace <https://example.test/picnic/park-place> ;
+        ns1:hasSupply <https://example.test/picnic/park-cleanup>,
+            <https://example.test/picnic/park-drink>,
+            <https://example.test/picnic/park-mat> ;
+        ns1:hasWeatherCheck <https://example.test/picnic/park-weather> ;
+        ns1:picnicDate "2026-10-10"^^xsd:date ;
+        ns1:planNote "가상 공원 소풍 계획입니다. 일부 준비물 수량과 날씨 정보가 아직 준비되지 않았습니다." ;
+        ns1:recordKind "synthetic" ;
+        ns1:startsAt "2026-10-10T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:status "ready" .
+
+    <https://example.test/picnic/garden-activity-01> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: travel"@en,
+            "합성 정원 일정: 이동"@ko ;
+        ns1:activityEnd "2026-10-11T01:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "travel" ;
+        ns1:activityNote "가상 이동 일정으로 실제 교통편 예약은 없습니다." ;
+        ns1:activityStart "2026-10-11T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 1 .
+
+    <https://example.test/picnic/garden-activity-02> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: meal"@en,
+            "합성 정원 일정: 식사"@ko ;
+        ns1:activityEnd "2026-10-11T02:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "meal" ;
+        ns1:activityNote "가상 식사 일정입니다." ;
+        ns1:activityStart "2026-10-11T01:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 2 .
+
+    <https://example.test/picnic/garden-activity-03> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: rest"@en,
+            "합성 정원 일정: 휴식"@ko ;
+        ns1:activityEnd "2026-10-11T04:30:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "rest" ;
+        ns1:activityNote "가상 휴식 일정입니다." ;
+        ns1:activityStart "2026-10-11T02:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 3 .
+
+    <https://example.test/picnic/garden-activity-04> a ns1:Activity ;
+        rdfs:label "Synthetic garden activity: cleanup"@en,
+            "합성 정원 일정: 정리"@ko ;
+        ns1:activityEnd "2026-10-11T05:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "cleanup" ;
+        ns1:activityNote "가상 정리 일정입니다." ;
+        ns1:activityStart "2026-10-11T04:30:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 4 .
+
+    <https://example.test/picnic/garden-assignment-food> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: garden meals"@en,
+            "합성 담당: 정원 도시락"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/garden-food> ;
+        ns1:assignedTo <https://example.test/picnic/garden-member-b> .
+
+    <https://example.test/picnic/garden-assignment-mat> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: garden mat"@en,
+            "합성 담당: 정원 돗자리"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/garden-mat> ;
+        ns1:assignedTo <https://example.test/picnic/garden-member-a> .
+
+    <https://example.test/picnic/garden-cleanup> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden cleanup bags"@en,
+            "합성 준비물: 정원 정리 봉투"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 1.0 ;
+        ns1:supplyKind "cleanup" ;
+        ns1:unit "pack" .
+
+    <https://example.test/picnic/garden-expense-admission> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden admission"@en,
+            "합성 비용: 정원 입장"@ko ;
+        ns1:amount 14000.0 ;
+        ns1:expenseKind "admission" ;
+        ns1:expenseNote "가상의 지불 상태 예제이며 실제 결제를 수행하지 않았습니다." ;
+        ns1:expenseStatus "paid" .
+
+    <https://example.test/picnic/garden-expense-food> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden food"@en,
+            "합성 비용: 정원 식사"@ko ;
+        ns1:amount 18000.0 ;
+        ns1:expenseKind "food" ;
+        ns1:expenseNote "가상의 예정 금액입니다. 실제 식품 가격이 아닙니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/garden-expense-other> a ns1:Expense ;
+        rdfs:label "Synthetic expense: garden cancelled extra"@en,
+            "합성 비용: 정원 기타 취소"@ko ;
+        ns1:amount 2000.0 ;
+        ns1:expenseKind "other" ;
+        ns1:expenseNote "가상 취소 항목으로 배정 비용 합계에서 제외합니다." ;
+        ns1:expenseStatus "cancelled" .
+
+    <https://example.test/picnic/garden-place> a ns1:Place ;
+        rdfs:label "Synthetic garden place"@en,
+            "합성 정원 장소"@ko ;
+        ns1:locationNote "실제 정원 이름·주소·입장 조건을 포함하지 않는 가상 장소입니다." ;
+        ns1:placeKind "garden" .
+
+    <https://example.test/picnic/garden-weather> a ns1:WeatherCheck ;
+        rdfs:label "Synthetic garden weather check, unverified"@en,
+            "합성 정원 소풍 날씨 미확인"@ko ;
+        ns1:checkStatus "unverified" ;
+        ns1:forDate "2026-10-11"^^xsd:date ;
+        ns1:weatherSummary "가상 예제의 미확인 상태입니다. 실제 날씨 예보를 조회하지 않았습니다." .
+
+    <https://example.test/picnic/park-activity-01> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: travel"@en,
+            "합성 공원 일정: 이동"@ko ;
+        ns1:activityEnd "2026-10-10T02:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "travel" ;
+        ns1:activityNote "가상 이동 일정입니다." ;
+        ns1:activityStart "2026-10-10T01:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 1 .
+
+    <https://example.test/picnic/park-activity-02> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: meal"@en,
+            "합성 공원 일정: 식사"@ko ;
+        ns1:activityEnd "2026-10-10T03:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "meal" ;
+        ns1:activityNote "가상 식사 일정으로 식단 권장량을 뜻하지 않습니다." ;
+        ns1:activityStart "2026-10-10T02:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 2 .
+
+    <https://example.test/picnic/park-activity-03> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: play"@en,
+            "합성 공원 일정: 놀이"@ko ;
+        ns1:activityEnd "2026-10-10T06:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "play" ;
+        ns1:activityNote "가상 놀이 일정입니다." ;
+        ns1:activityStart "2026-10-10T03:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 3 .
+
+    <https://example.test/picnic/park-activity-04> a ns1:Activity ;
+        rdfs:label "Synthetic park activity: cleanup"@en,
+            "합성 공원 일정: 정리"@ko ;
+        ns1:activityEnd "2026-10-10T07:00:00+00:00"^^xsd:dateTime ;
+        ns1:activityKind "cleanup" ;
+        ns1:activityNote "가상 정리 일정입니다." ;
+        ns1:activityStart "2026-10-10T06:00:00+00:00"^^xsd:dateTime ;
+        ns1:sequence 4 .
+
+    <https://example.test/picnic/park-assignment-cleanup> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park cleanup bags"@en,
+            "합성 담당: 공원 정리 봉투"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-cleanup> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-c> .
+
+    <https://example.test/picnic/park-assignment-drink> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park drinks"@en,
+            "합성 담당: 공원 음료"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-drink> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-b> .
+
+    <https://example.test/picnic/park-assignment-mat> a ns1:Assignment ;
+        rdfs:label "Synthetic assignment: park mats"@en,
+            "합성 담당: 공원 돗자리"@ko ;
+        ns1:assignedSupply <https://example.test/picnic/park-mat> ;
+        ns1:assignedTo <https://example.test/picnic/park-member-a> .
+
+    <https://example.test/picnic/park-expense-equipment> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park cancelled equipment"@en,
+            "합성 비용: 공원 장비 취소"@ko ;
+        ns1:amount 5000.0 ;
+        ns1:expenseKind "equipment" ;
+        ns1:expenseNote "가상 취소 항목으로 예산 합계에서 제외합니다." ;
+        ns1:expenseStatus "cancelled" .
+
+    <https://example.test/picnic/park-expense-food> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park food"@en,
+            "합성 비용: 공원 식사"@ko ;
+        ns1:amount 24000.0 ;
+        ns1:expenseKind "food" ;
+        ns1:expenseNote "가상 식사 예정 금액으로 실제 가격을 나타내지 않습니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/park-expense-transport> a ns1:Expense ;
+        rdfs:label "Synthetic expense: park transport"@en,
+            "합성 비용: 공원 이동"@ko ;
+        ns1:amount 10000.0 ;
+        ns1:expenseKind "transport" ;
+        ns1:expenseNote "가상 이동 금액으로 실제 교통 요금이나 예약은 없습니다." ;
+        ns1:expenseStatus "planned" .
+
+    <https://example.test/picnic/park-place> a ns1:Place ;
+        rdfs:label "Synthetic park place"@en,
+            "합성 공원 장소"@ko ;
+        ns1:locationNote "실제 공원 이름·주소·운영 정보를 포함하지 않는 가상 장소입니다." ;
+        ns1:placeKind "park" .
+
+    <https://example.test/picnic/park-weather> a ns1:WeatherCheck ;
+        rdfs:label "Synthetic park weather check, unverified"@en,
+            "합성 공원 소풍 날씨 미확인"@ko ;
+        ns1:checkStatus "unverified" ;
+        ns1:forDate "2026-10-10"^^xsd:date ;
+        ns1:weatherSummary "해당 날짜의 실제 예보 정보가 아직 기록되지 않은 가상 예제입니다." .
+
+    <https://example.test/picnic/garden-food> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden packed meals"@en,
+            "합성 준비물: 정원 도시락"@ko ;
+        ns1:packedQuantity 2.0 ;
+        ns1:requiredQuantity 2.0 ;
+        ns1:supplyKind "food" ;
+        ns1:unit "portion" .
+
+    <https://example.test/picnic/garden-mat> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: garden picnic mat"@en,
+            "합성 준비물: 정원 돗자리"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 1.0 ;
+        ns1:supplyKind "equipment" ;
+        ns1:unit "piece" .
+
+    <https://example.test/picnic/garden-member-a> a ns1:Participant ;
+        rdfs:label "Synthetic garden participant A"@en,
+            "합성 정원 참가자 A"@ko ;
+        ns1:participantNote "가상 소풍의 준비 담당자입니다." ;
+        ns1:role "organizer" .
+
+    <https://example.test/picnic/garden-member-b> a ns1:Participant ;
+        rdfs:label "Synthetic garden participant B"@en,
+            "합성 정원 참가자 B"@ko ;
+        ns1:participantNote "실제 개인 정보가 없는 가상 참가자입니다." ;
+        ns1:role "attendee" .
+
+    <https://example.test/picnic/park-cleanup> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park cleanup bags"@en,
+            "합성 준비물: 공원 정리 봉투"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 3.0 ;
+        ns1:supplyKind "cleanup" ;
+        ns1:unit "pack" .
+
+    <https://example.test/picnic/park-drink> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park drinks"@en,
+            "합성 준비물: 공원 음료"@ko ;
+        ns1:packedQuantity 6.0 ;
+        ns1:requiredQuantity 6.0 ;
+        ns1:supplyKind "drink" ;
+        ns1:unit "bottle" .
+
+    <https://example.test/picnic/park-mat> a ns1:SupplyItem ;
+        rdfs:label "Synthetic supply: park picnic mats"@en,
+            "합성 준비물: 공원 돗자리"@ko ;
+        ns1:packedQuantity 1.0 ;
+        ns1:requiredQuantity 2.0 ;
+        ns1:supplyKind "equipment" ;
+        ns1:unit "piece" .
+
+    <https://example.test/picnic/park-member-a> a ns1:Participant ;
+        rdfs:label "Synthetic park participant A"@en,
+            "합성 공원 참가자 A"@ko ;
+        ns1:participantNote "가상 공원 소풍의 준비 담당자입니다." ;
+        ns1:role "organizer" .
+
+    <https://example.test/picnic/park-member-b> a ns1:Participant ;
+        rdfs:label "Synthetic park participant B"@en,
+            "합성 공원 참가자 B"@ko ;
+        ns1:participantNote "실제 연락처가 없는 가상 참가자입니다." ;
+        ns1:role "attendee" .
+
+    <https://example.test/picnic/park-member-c> a ns1:Participant ;
+        rdfs:label "Synthetic park participant C"@en,
+            "합성 공원 참가자 C"@ko ;
+        ns1:participantNote "가상 공원 소풍 참가자입니다." ;
+        ns1:role "attendee" .
+}

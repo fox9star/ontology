@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 에이전트 협업 온톨로지</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7fb; color: #263349; font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.85; }
+main { max-width: 1080px; margin: 32px auto; padding: 48px; background: #fff; border: 1px solid #dfe5ef; border-radius: 12px; }
+h1, h2 { color: #142744; line-height: 1.45; word-break: keep-all; }
+h1 { margin: 0 0 32px; font-size: 2rem; }
+h2 { margin: 44px 0 18px; padding-bottom: 10px; border-bottom: 1px solid #dfe5ef; font-size: 1.4rem; }
+p { margin: 0 0 18px; overflow-wrap: anywhere; }
+ul, ol { padding-left: 1.6em; margin: 18px 0 24px; }
+li { margin: 8px 0; }
+a { color: #205bb4; text-underline-offset: 3px; }
+code { padding: .12em .3em; border-radius: 4px; background: #edf2fa; color: #244e87; font-family: ui-monospace, Consolas, monospace; font-size: .9em; overflow-wrap: anywhere; }
+pre { padding: 22px; overflow-x: auto; background: #14213b; color: #e7eefb; border-radius: 8px; line-height: 1.65; }
+pre code { padding: 0; background: transparent; color: inherit; overflow-wrap: normal; }
+.table-wrap { overflow-x: auto; margin: 20px 0; }
+table { width: 100%; min-width: 680px; border-collapse: collapse; text-align: left; }
+th, td { padding: 12px 14px; border: 1px solid #dfe5ef; vertical-align: top; }
+th { background: #edf2fa; color: #193a66; }
+th:first-child, td:first-child { width: 28%; }
+@media (max-width: 700px) { main { margin: 0; padding: 28px 20px; border: 0; border-radius: 0; } h1 { font-size: 1.6rem; } h2 { font-size: 1.2rem; } }
+@media print { body { background: #fff; } main { margin: 0; padding: 0; max-width: none; border: 0; } table { min-width: 0; } pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
+</style>
+</head>
+<body>
+<main>
+<h1>AI 에이전트 협업 온톨로지</h1>
+<h2>1. 목적과 범위</h2>
+<p>AI 에이전트 협업 온톨로지는 여러 에이전트가 하나의 목표를 수행할 때 <strong>역할, 작업, 인계 자료, 결과물, 검수와 책임의 관계</strong>를 공통 어휘로 정의한 지식 모델이다. 예를 들어 조사 에이전트가 근거 자료를 모으고, 작성 에이전트가 초안을 만들며, 검수 에이전트가 출처와 품질을 확인하는 과정을 하나의 그래프로 표현한다. 온톨로지는 실행 순서와 기록의 의미를 알려 주고, 실제 도구 호출·대기·재시도·접근 제어는 작업 실행기와 서비스가 수행한다.</p>
+<p>첫 버전은 하나의 프로젝트에서 여러 에이전트가 작업을 나누고 결과물을 인계하는 상황으로 제한한다. 에이전트 간 자연어 대화 전체를 그래프에 복사하기보다, 다음 작업에 필요한 <strong>구조화된 인계 정보와 결과물의 위치·버전</strong>을 기록한다.</p>
+<p>이 모델이 답해야 할 질문은 다음과 같다.</p>
+<ul>
+<li>지금 어떤 작업이 준비되었고, 어떤 선행 작업의 완료를 기다리는가?</li>
+<li>각 작업의 담당자와 실제 수행자는 누구인가?</li>
+<li>어떤 결과물이 어느 실행에서 만들어졌고, 다음 작업의 입력으로 사용되었는가?</li>
+<li>인계할 때 어떤 결과물, 제한 조건, 완료 기준을 전달했는가?</li>
+<li>검수에서 무엇을 승인하거나 반려했고, 어떤 수정 작업이 이어졌는가?</li>
+<li>최종 결과가 어떤 입력과 에이전트 실행에서 파생되었는가?</li>
+</ul>
+<h2>2. 핵심 개념</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>클래스</th>
+<th>의미</th>
+<th>대표 정보</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Project</code></td>
+<td>공동 목표를 수행하는 단위</td>
+<td>목표, 요청자, 상태, 최종 전달물</td>
+</tr>
+<tr>
+<td><code>Agent</code></td>
+<td>작업에 참여하는 소프트웨어 또는 사람</td>
+<td>식별자, 버전, 역할, 사용 가능한 기능</td>
+</tr>
+<tr>
+<td><code>Role</code></td>
+<td>프로젝트 안에서 맡는 책임</td>
+<td>조사, 작성, 검수, 조정 등</td>
+</tr>
+<tr>
+<td><code>Capability</code></td>
+<td>에이전트가 수행할 수 있는 기능</td>
+<td>검색, 작성, 코드 실행, 이미지 생성 등</td>
+</tr>
+<tr>
+<td><code>Task</code></td>
+<td>계획된 작업</td>
+<td>목표, 입력 조건, 완료 기준, 선행 작업</td>
+</tr>
+<tr>
+<td><code>TaskRun</code></td>
+<td>작업의 한 번의 실행</td>
+<td>수행 에이전트, 시작·종료 시각, 상태, 오류</td>
+</tr>
+<tr>
+<td><code>Artifact</code></td>
+<td>실행이 만들거나 사용한 결과물</td>
+<td>URI, 버전, 유형, 체크섬, 출처</td>
+</tr>
+<tr>
+<td><code>Handoff</code></td>
+<td>한 작업에서 다음 작업으로 넘기는 인계 묶음</td>
+<td>받는 작업·에이전트, 결과물, 지시, 완료 기준</td>
+</tr>
+<tr>
+<td><code>ReviewDecision</code></td>
+<td>결과물에 대한 검수 결과</td>
+<td>검수 대상, 판정, 사유, 수정 요구</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>Task</code>와 <code>TaskRun</code>을 나누면 실패 후 다시 실행해도 계획은 하나이고 실행 기록은 여러 개로 남는다. <code>Artifact</code>는 초안, 검색 결과, 코드, 이미지, 보고서처럼 실제로 주고받는 대상을 뜻한다. 같은 이름의 파일을 수정할 때도 새 버전의 <code>Artifact</code>를 만들고 앞선 버전에서 파생되었음을 기록한다.</p>
+<p>출처 기록에는 <a href="https://www.w3.org/TR/prov-o/">W3C PROV-O</a>를 재사용할 수 있다. <code>Agent</code>는 <code>prov:Agent</code>, <code>TaskRun</code>은 <code>prov:Activity</code>, <code>Artifact</code>와 <code>Handoff</code>는 <code>prov:Entity</code>의 하위 개념으로 둔다. 그러면 실행이 무엇을 사용했는지(<code>prov:used</code>), 결과물이 어떤 실행에서 생성되었는지(<code>prov:wasGeneratedBy</code>), 실행에 어떤 에이전트가 참여했는지(<code>prov:wasAssociatedWith</code>), 결과물이 무엇에서 파생되었는지(<code>prov:wasDerivedFrom</code>)를 표준 어휘로 연결할 수 있다. 다른 에이전트를 대신하여 활동했다는 책임 관계를 기록할 때는 <code>prov:actedOnBehalfOf</code>를 사용할 수 있다. 단순한 작업 인계만으로 대리 관계를 단정해서는 안 된다.</p>
+<h2>3. 관계와 데이터 속성</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>관계</th>
+<th>주체 → 대상</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hasTask</code></td>
+<td>프로젝트 → 계획 작업</td>
+<td>프로젝트를 이루는 작업</td>
+</tr>
+<tr>
+<td><code>dependsOn</code></td>
+<td>계획 작업 → 선행 계획 작업</td>
+<td>완료를 기다리는 의존성</td>
+</tr>
+<tr>
+<td><code>assignedTo</code></td>
+<td>계획 작업 → 에이전트</td>
+<td>계획상의 담당자</td>
+</tr>
+<tr>
+<td><code>implementsTask</code></td>
+<td>실행 → 계획 작업</td>
+<td>어떤 작업을 실행했는지</td>
+</tr>
+<tr>
+<td><code>hasCapability</code></td>
+<td>에이전트 → 기능</td>
+<td>담당 가능 여부를 판단할 근거</td>
+</tr>
+<tr>
+<td><code>hasHandoff</code></td>
+<td>실행 → 인계 묶음</td>
+<td>실행이 전달한 구조화된 정보</td>
+</tr>
+<tr>
+<td><code>toTask</code>, <code>toAgent</code>, <code>containsArtifact</code></td>
+<td>인계 → 받는 작업·에이전트·결과물</td>
+<td>인계의 대상과 내용</td>
+</tr>
+<tr>
+<td><code>reviews</code>, <code>hasDecision</code></td>
+<td>검수 실행 → 결과물·판정</td>
+<td>검수 대상과 결과</td>
+</tr>
+<tr>
+<td><code>prov:used</code></td>
+<td>실행 → 입력 결과물</td>
+<td>실제로 사용한 자료</td>
+</tr>
+<tr>
+<td><code>prov:wasGeneratedBy</code></td>
+<td>결과물 → 실행</td>
+<td>결과물의 생성 출처</td>
+</tr>
+<tr>
+<td><code>prov:wasAssociatedWith</code></td>
+<td>실행 → 에이전트</td>
+<td>실제 수행 또는 참여</td>
+</tr>
+</tbody>
+</table></div>
+<p>문자열·숫자 속성으로 <code>status</code>, <code>version</code>, <code>artifactUri</code>, <code>checksum</code>, <code>acceptanceCriteria</code>, <code>decision</code>, <code>reason</code>, <code>errorCode</code> 등을 둔다. 시각에는 시간대가 포함된 <code>xsd:dateTime</code>을 쓰고, 실행마다 고유 ID를 부여한다. <code>status</code>는 예를 들어 <code>planned → ready → running → completed</code> 또는 <code>failed</code>로 관리한다. 상태 값의 변경 규칙은 실행기에서 적용하고, 그래프에는 관측된 상태와 시각을 기록한다.</p>
+<p>계획의 <code>assignedTo</code>와 실행의 <code>prov:wasAssociatedWith</code>는 다를 수 있다. 담당 에이전트의 장애로 다른 에이전트가 재시도하면 계획상의 배정과 실제 수행 기록을 모두 보존해야 한다. 한 실행에 여러 에이전트가 참여한다면 PROV-O의 <code>prov:qualifiedAssociation</code>과 <code>prov:hadRole</code>로 각 참여자의 역할을 자세히 기록할 수 있다.</p>
+<h2>4. 협업 흐름</h2>
+<ol>
+<li><strong>조정 에이전트</strong>가 요청을 <code>Project</code>로 만들고 목표를 <code>Task</code>들로 분해한다. 작업마다 입력 조건, 담당자, 완료 기준, 선행 작업을 지정한다.</li>
+<li><strong>작업 실행기</strong>가 <code>dependsOn</code>과 상태를 확인해 준비된 작업을 시작한다. 서로 의존하지 않는 조사와 이미지 제작처럼 독립된 작업은 병렬로 진행할 수 있다.</li>
+<li><strong>수행 에이전트</strong>가 <code>TaskRun</code>을 만들고 사용한 입력을 <code>prov:used</code>, 산출물을 <code>prov:wasGeneratedBy</code>로 연결한다. 도구·모델 버전과 오류도 실행 기록에 남긴다.</li>
+<li><strong>보내는 에이전트</strong>가 <code>Handoff</code>에 채택한 결과물, 받는 작업, 다음 에이전트가 지켜야 할 조건을 담는다. 인계의 완료는 메시지 발송 여부만으로 판단하지 않고, 받는 작업이 해당 버전의 결과물을 실제로 읽을 수 있는지도 확인한다.</li>
+<li><strong>받는 에이전트</strong>가 인계의 결과물을 입력으로 사용해 다음 작업을 수행한다. 누락된 근거나 읽을 수 없는 파일이 있으면 인계를 보류하고 보완 작업을 요청한다.</li>
+<li><strong>검수 에이전트</strong>가 결과물을 평가해 <code>ReviewDecision</code>을 만든다. 승인되면 최종 결과물로 채택하고, 반려되면 이유와 수정 요구를 새 작업 또는 다음 실행에 연결한다.</li>
+</ol>
+<p>작업 의존성에 순환이 있으면 시작 가능한 작업이 사라질 수 있으므로 실행기가 이를 검사해야 한다. 병렬 실행이 같은 결과물을 갱신하려고 할 때에는 버전과 채택 정책을 정해 충돌을 처리한다. 실행의 <code>completed</code>와 결과물의 <code>approved</code>는 다른 의미이므로 별도로 기록한다.</p>
+<h2>5. 간단한 RDF/Turtle 예시</h2>
+<p>아래는 <strong>자료 조사 → 글 작성 → 검수</strong>로 이어지는 가상 사례다. <code>https://example.org/agent#</code>의 이름과 데이터는 설명용이며, 실제 구현에서는 조직이 관리하는 URI를 쓴다. 표준 PROV-O 개념과 이 문서의 도메인 개념을 함께 사용한다.</p>
+<pre><code class="language-turtle">@prefix ag:   &lt;https://example.org/agent#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+ag:Agent rdfs:subClassOf prov:Agent .
+ag:TaskRun rdfs:subClassOf prov:Activity .
+ag:Artifact rdfs:subClassOf prov:Entity .
+ag:Handoff rdfs:subClassOf prov:Entity .
+ag:ReviewDecision rdfs:subClassOf prov:Entity .
+
+ag:project01 a ag:Project ;
+    ag:hasTask ag:researchTask, ag:draftTask, ag:reviewTask .
+
+ag:researchAgent a ag:Agent .
+ag:writerAgent   a ag:Agent .
+ag:reviewAgent   a ag:Agent .
+
+ag:researchTask a ag:Task ; ag:assignedTo ag:researchAgent .
+ag:draftTask    a ag:Task ; ag:assignedTo ag:writerAgent ;
+    ag:dependsOn ag:researchTask .
+ag:reviewTask   a ag:Task ; ag:assignedTo ag:reviewAgent ;
+    ag:dependsOn ag:draftTask .
+
+ag:researchRun01 a ag:TaskRun ;
+    ag:implementsTask ag:researchTask ;
+    ag:status &quot;completed&quot; ;
+    prov:wasAssociatedWith ag:researchAgent ;
+    ag:hasHandoff ag:handoff01 .
+
+ag:notesV1 a ag:Artifact ;
+    ag:artifactUri &lt;https://example.org/files/notes-v1.md&gt; ;
+    ag:version &quot;1&quot; ;
+    prov:wasGeneratedBy ag:researchRun01 .
+
+ag:handoff01 a ag:Handoff ;
+    ag:toTask ag:draftTask ;
+    ag:toAgent ag:writerAgent ;
+    ag:containsArtifact ag:notesV1 ;
+    ag:acceptanceCriteria &quot;주요 주장마다 출처를 표시한다&quot; ;
+    prov:wasGeneratedBy ag:researchRun01 .
+
+ag:draftRun01 a ag:TaskRun ;
+    ag:implementsTask ag:draftTask ;
+    ag:status &quot;completed&quot; ;
+    prov:wasAssociatedWith ag:writerAgent ;
+    prov:used ag:handoff01, ag:notesV1 .
+
+ag:articleV1 a ag:Artifact ;
+    ag:artifactUri &lt;https://example.org/files/article-v1.md&gt; ;
+    ag:version &quot;1&quot; ;
+    prov:wasGeneratedBy ag:draftRun01 ;
+    prov:wasDerivedFrom ag:notesV1 .
+
+ag:reviewRun01 a ag:TaskRun ;
+    ag:implementsTask ag:reviewTask ;
+    ag:status &quot;completed&quot; ;
+    prov:wasAssociatedWith ag:reviewAgent ;
+    prov:used ag:articleV1 ;
+    ag:reviews ag:articleV1 ;
+    ag:hasDecision ag:decision01 .
+
+ag:decision01 a ag:ReviewDecision ;
+    ag:decision &quot;approved&quot; ;
+    ag:reason &quot;주장과 출처의 대응을 확인함&quot; ;
+    prov:wasGeneratedBy ag:reviewRun01 .
+</code></pre>
+<p>이 예시에서 <code>ag:draftTask ag:dependsOn ag:researchTask</code>는 <strong>계획상 순서</strong>를 뜻하고, <code>ag:draftRun01 prov:used ag:notesV1</code>은 <strong>실제로 사용한 입력</strong>을 뜻한다. 두 관계를 함께 보아야 계획과 실제 실행이 일치했는지 확인할 수 있다.</p>
+<h2>6. 규칙과 검증</h2>
+<p><a href="https://www.w3.org/TR/owl2-primer/">OWL 2</a>로 클래스 계층, 관계의 주체·대상과 개념적 제약을 표현할 수 있다. OWL의 열린 세계 가정에서는 값이 기록되지 않았다는 이유만으로 누락을 오류로 판정하지 않는다. 필수 입력과 데이터 형식은 <a href="https://www.w3.org/TR/shacl/">SHACL</a>로 검증한다. 다음 모양은 모든 <code>TaskRun</code>에 계획 작업, 상태, 수행 에이전트가 있고, 모든 <code>Handoff</code>에 받는 작업과 결과물 및 완료 기준이 있는지 확인한다.</p>
+<pre><code class="language-turtle">@prefix ag:   &lt;https://example.org/agent#&gt; .
+@prefix prov: &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix sh:   &lt;http://www.w3.org/ns/shacl#&gt; .
+@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+ag:TaskRunShape a sh:NodeShape ;
+    sh:targetClass ag:TaskRun ;
+    sh:property [ sh:path ag:implementsTask ; sh:minCount 1 ;
+                  sh:maxCount 1 ; sh:class ag:Task ] ;
+    sh:property [ sh:path ag:status ; sh:minCount 1 ;
+                  sh:maxCount 1 ; sh:datatype xsd:string ] ;
+    sh:property [ sh:path prov:wasAssociatedWith ; sh:minCount 1 ;
+                  sh:class ag:Agent ] .
+
+ag:HandoffShape a sh:NodeShape ;
+    sh:targetClass ag:Handoff ;
+    sh:property [ sh:path ag:toTask ; sh:minCount 1 ;
+                  sh:maxCount 1 ; sh:class ag:Task ] ;
+    sh:property [ sh:path ag:containsArtifact ; sh:minCount 1 ;
+                  sh:class ag:Artifact ] ;
+    sh:property [ sh:path ag:acceptanceCriteria ; sh:minCount 1 ;
+                  sh:datatype xsd:string ] .
+</code></pre>
+<p>이 모양은 예시의 일부 필수 필드만 검사한다. 운영 단계에서는 상태 값의 허용 목록, 승인 판정의 필수 사유, 고유 버전, 작업별 입력 조건을 추가한다. <strong>의존성 순환, 읽기 권한, 외부 파일의 존재, 사람의 승인 여부</strong>는 그래프 검증만으로 충분하지 않으므로 실행기·저장소·승인 시스템에서 확인한다. 민감한 입력은 그래프에 본문을 넣지 않고 접근 가능한 참조와 분류 등급을 저장한다.</p>
+<h2>7. 구축 순서</h2>
+<ol>
+<li>실제 협업 사례 한 개를 정하고 완료 기준과 추적해야 할 질문을 적는다.</li>
+<li><code>Project</code>, <code>Task</code>, <code>TaskRun</code>, <code>Artifact</code>, <code>Handoff</code>, <code>ReviewDecision</code>에 안정적인 URI와 최소 속성을 부여한다.</li>
+<li>PROV-O 어휘와 도메인 관계를 연결하고, 계획·실행·검수를 별도 기록으로 저장한다.</li>
+<li>SHACL로 필수 필드와 인계 형식을 검사하고, 실행기로 의존성·권한·파일 상태를 확인한다.</li>
+<li>실패·재시도·병렬 실행·검수 반려 사례를 입력해 어느 결과물이 최종 채택되었는지 추적한다.</li>
+<li>사용자가 “누가 무엇을 만들고 검토했는가?”를 그래프에서 조회할 수 있으면 역할과 작업 유형을 점진적으로 확장한다.</li>
+</ol>
+<p>관련 표준: <a href="https://www.w3.org/TR/prov-o/">PROV-O</a> · <a href="https://www.w3.org/TR/owl2-primer/">OWL 2 Primer</a> · <a href="https://www.w3.org/TR/shacl/">SHACL</a></p>
+</main>
+</body>
+</html>

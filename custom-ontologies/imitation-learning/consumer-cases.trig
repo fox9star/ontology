@@ -1,0 +1,462 @@
+@prefix ns1: <https://example.org/ontology/custom/imitation-learning#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/imitation-learning-reject> {
+    <https://example.test/imitation-learning/pick-place-project> a ns1:ImitationLearningProject ;
+        rdfs:label "Synthetic example: robot-arm pick-and-place imitation-learning design"@en,
+            "합성 예시: 로봇팔 집기·놓기 모방학습 설계"@ko ;
+        ns1:projectConsidersMethod <https://example.test/imitation-learning/behavior-cloning>,
+            <https://example.test/imitation-learning/dagger>,
+            <https://example.test/imitation-learning/inverse-rl> ;
+        ns1:projectDataStatus "synthetic_example"^^xsd:string ;
+        ns1:projectHasDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:projectHasDistributionShift <https://example.test/imitation-learning/expert-policy-state-shift> ;
+        ns1:projectHasDocumentationSource <https://example.test/imitation-learning/ng-russell-2000>,
+            <https://example.test/imitation-learning/pomerleau-1989>,
+            <https://example.test/imitation-learning/ross-gordon-bagnell-2011> ;
+        ns1:projectHasEvaluationRun <https://example.test/imitation-learning/evaluation-run-01> ;
+        ns1:projectHasExpert <https://example.test/imitation-learning/reference-controller> ;
+        ns1:projectHasPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:projectHasSafetyConstraint <https://example.test/imitation-learning/simulation-only-constraint> ;
+        ns1:projectHasTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:projectHasTrainingRun <https://example.test/imitation-learning/training-run-01> ;
+        ns1:projectNote "설계 예시만 기록한다. 실제 데이터 수집, 모델 학습, 로봇 제어와 성능 평가는 하지 않았다."^^xsd:string .
+
+    <https://example.test/imitation-learning/action-01> a ns1:Action ;
+        rdfs:label "Synthetic action label 1"@en,
+            "합성 행동 레이블 1"@ko ;
+        ns1:actionLabelSource "synthetic_fixture"^^xsd:string ;
+        ns1:actionType "robot_command"^^xsd:string ;
+        ns1:actionValue "approach_target_pose"^^xsd:string .
+
+    <https://example.test/imitation-learning/action-02> a ns1:Action ;
+        rdfs:label "Synthetic action label 2"@en,
+            "합성 행동 레이블 2"@ko ;
+        ns1:actionLabelSource "synthetic_fixture"^^xsd:string ;
+        ns1:actionType "gripper_command"^^xsd:string ;
+        ns1:actionValue "close_gripper"^^xsd:string .
+
+    <https://example.test/imitation-learning/evaluation-run-01> a ns1:EvaluationRun ;
+        rdfs:label "Unrun policy evaluation plan"@en,
+            "미실행 정책 평가 계획"@ko ;
+        ns1:evaluationEvidenceStatus "none"^^xsd:string ;
+        ns1:evaluationForPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:evaluationName "planned-pick-place-policy-evaluation"^^xsd:string ;
+        ns1:evaluationNote "평가하지 않았다. 아래 지표에 결과 수치는 없다."^^xsd:string ;
+        ns1:evaluationStatus "planned"^^xsd:string ;
+        ns1:evaluationUsesDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:evaluationUsesMetric <https://example.test/imitation-learning/metric-action-error>,
+            <https://example.test/imitation-learning/metric-collision>,
+            <https://example.test/imitation-learning/metric-success> .
+
+    <https://example.test/imitation-learning/expert-policy-state-shift> a ns1:DistributionShift ;
+        rdfs:label "Expert-versus-learner state distribution shift"@en,
+            "전문가·학습 정책 상태 분포 차이"@ko ;
+        ns1:shiftAssessmentStatus "concept_only"^^xsd:string ;
+        ns1:shiftDescription "순차 의사결정에서 정책 오류가 이후 방문 상태를 바꾸어 전문가 시연과 다른 입력 분포를 만들 수 있다."^^xsd:string ;
+        ns1:shiftDiscussedByMethod <https://example.test/imitation-learning/dagger> ;
+        ns1:shiftName "expert-state-distribution-versus-learner-induced-states"^^xsd:string ;
+        ns1:shiftNote "개념만 등록했다. 실제 분포 차이나 DAgger 성능은 측정하지 않았다."^^xsd:string .
+
+    <https://example.test/imitation-learning/inverse-rl> a ns1:LearningMethod ;
+        rdfs:label "Inverse reinforcement learning"@en,
+            "Inverse reinforcement learning"@ko ;
+        ns1:methodApplicabilityNote "행동복제처럼 관측마다 행동 레이블을 바로 예측하는 것과 학습 대상이 다르다."^^xsd:string ;
+        ns1:methodDescription "행동 궤적으로부터 이를 설명하는 보상 또는 목적 함수를 추론한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/ng-russell-2000> ;
+        ns1:methodKind "inverse_reinforcement_learning"^^xsd:string ;
+        ns1:methodName "Inverse reinforcement learning"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-action-error> a ns1:EvaluationMetric ;
+        rdfs:label "행동 모방 오차"@en,
+            "행동 모방 오차"@ko ;
+        ns1:metricDefinition "정렬한 레이블과 정책 출력 사이의 과제별 오차 척도"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "행동 모방 오차"^^xsd:string ;
+        ns1:metricUnit "task-defined"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-collision> a ns1:EvaluationMetric ;
+        rdfs:label "충돌 횟수"@en,
+            "충돌 횟수"@ko ;
+        ns1:metricDefinition "정의한 충돌 판정 기준에 해당한 횟수"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "충돌 횟수"^^xsd:string ;
+        ns1:metricUnit "count"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-success> a ns1:EvaluationMetric ;
+        rdfs:label "과제 성공률"@en,
+            "과제 성공률"@ko ;
+        ns1:metricDefinition "정의한 평가 에피소드 중 목표 배치 조건을 만족한 비율"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "과제 성공률"^^xsd:string ;
+        ns1:metricUnit "ratio"^^xsd:string .
+
+    <https://example.test/imitation-learning/observation-01> a ns1:Observation ;
+        rdfs:label "Synthetic observation 1"@en,
+            "합성 관측 1"@ko ;
+        ns1:observationModality "simulated_image"^^xsd:string ;
+        ns1:observationSummary "가상 장면에서 큐브와 목표 구역을 보는 이미지 관측의 설명용 예시"^^xsd:string .
+
+    <https://example.test/imitation-learning/observation-02> a ns1:Observation ;
+        rdfs:label "Synthetic observation 2"@en,
+            "합성 관측 2"@ko ;
+        ns1:observationModality "simulated_state"^^xsd:string ;
+        ns1:observationSummary "그리퍼가 큐브를 잡았다고 가정한 가상 상태 관측의 설명용 예시"^^xsd:string .
+
+    <https://example.test/imitation-learning/simulation-only-constraint> a ns1:SafetyConstraint ;
+        rdfs:label "Simulation-only constraint"@en,
+            "시뮬레이션 전용 제약"@ko ;
+        ns1:constraintAppliesToTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:constraintDescription "이 픽스처를 실제 하드웨어에 보내지 않는다. 물리 구동 전 속도 제한, 비상 정지, 작업공간과 사람 안전에 대한 별도 검증이 필요하다."^^xsd:string ;
+        ns1:constraintName "no-live-robot-actuation"^^xsd:string ;
+        ns1:constraintNote "안전성이 검증된 제어기가 아니라 범위 설명 항목이다."^^xsd:string ;
+        ns1:constraintStatus "planned"^^xsd:string .
+
+    <https://example.test/imitation-learning/step-01> a ns1:DemonstrationStep ;
+        rdfs:label "Synthetic demonstration step 1"@en,
+            "합성 시연 단계 1"@ko ;
+        ns1:stepAction <https://example.test/imitation-learning/action-01> ;
+        ns1:stepInDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:stepIndex 1 ;
+        ns1:stepObservation <https://example.test/imitation-learning/observation-01> .
+
+    <https://example.test/imitation-learning/step-02> a ns1:DemonstrationStep ;
+        rdfs:label "Synthetic demonstration step 2"@en,
+            "합성 시연 단계 2"@ko ;
+        ns1:stepAction <https://example.test/imitation-learning/action-02> ;
+        ns1:stepInDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:stepIndex 2 ;
+        ns1:stepObservation <https://example.test/imitation-learning/observation-02> .
+
+    <https://example.test/imitation-learning/training-run-01> a ns1:TrainingRun ;
+        rdfs:label "Planned behavior-cloning training run"@en,
+            "계획된 행동복제 학습 실행"@ko ;
+        ns1:trainingName "planned-pick-place-behavior-cloning"^^xsd:string ;
+        ns1:trainingNote "실행되지 않았다. 가중치, 로그 또는 학습 시간은 생성하지 않았다."^^xsd:string ;
+        ns1:trainingProducesPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:trainingUsesDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:trainingUsesMethod <https://example.test/imitation-learning/behavior-cloning> .
+
+    <https://example.test/imitation-learning/dagger> a ns1:LearningMethod ;
+        rdfs:label "DAgger (Dataset Aggregation)"@en,
+            "DAgger (Dataset Aggregation)"@ko ;
+        ns1:methodApplicabilityNote "전문가 분포와 정책 유도 상태 분포의 차이를 다루는 방법이다. 이 예시는 성능을 측정하지 않는다."^^xsd:string ;
+        ns1:methodDescription "학습 정책이 방문한 상태에서 전문가 레이블을 얻고 학습 데이터를 반복적으로 누적한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/ross-gordon-bagnell-2011> ;
+        ns1:methodKind "dagger"^^xsd:string ;
+        ns1:methodName "DAgger (Dataset Aggregation)"^^xsd:string .
+
+    <https://example.test/imitation-learning/ng-russell-2000> a ns1:DocumentationSource ;
+        rdfs:label "Algorithms for Inverse Reinforcement Learning"@en,
+            "Algorithms for Inverse Reinforcement Learning"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Andrew Y. Ng, Stuart Russell"^^xsd:string ;
+        ns1:sourceClaim "Formulates reward inference from observed optimal behavior, including a finite-trajectory case."^^xsd:string ;
+        ns1:sourceTitle "Algorithms for Inverse Reinforcement Learning"^^xsd:string ;
+        ns1:sourceUri "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf"^^xsd:anyURI ;
+        ns1:sourceYear 2000 .
+
+    <https://example.test/imitation-learning/pomerleau-1989> a ns1:DocumentationSource ;
+        rdfs:label "ALVINN: An Autonomous Land Vehicle in a Neural Network"@en,
+            "ALVINN: An Autonomous Land Vehicle in a Neural Network"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Dean A. Pomerleau"^^xsd:string ;
+        ns1:sourceClaim "Describes camera and laser-range inputs, a driving-direction output, and training with simulated road images."^^xsd:string ;
+        ns1:sourceTitle "ALVINN: An Autonomous Land Vehicle in a Neural Network"^^xsd:string ;
+        ns1:sourceUri "https://publications.ri.cmu.edu/alvinn-an-autonomous-land-vehicle-in-a-neural-network"^^xsd:anyURI ;
+        ns1:sourceYear 1989 .
+
+    <https://example.test/imitation-learning/reference-controller> a ns1:Expert ;
+        rdfs:label "Simulated reference controller"@en,
+            "가상 참조 제어기"@ko ;
+        ns1:expertRole "합성 설명 개체이며 실제 사람이나 실행된 제어기 기록이 아니다."^^xsd:string ;
+        ns1:expertType "simulation_reference_policy"^^xsd:string .
+
+    <https://example.test/imitation-learning/ross-gordon-bagnell-2011> a ns1:DocumentationSource ;
+        rdfs:label "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"@en,
+            "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Stéphane Ross, Geoffrey J. Gordon, J. Andrew Bagnell"^^xsd:string ;
+        ns1:sourceClaim "DAgger uses learner-induced states, expert action labels and iterative data aggregation."^^xsd:string ;
+        ns1:sourceTitle "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"^^xsd:string ;
+        ns1:sourceUri "https://proceedings.mlr.press/v15/ross11a.html"^^xsd:anyURI ;
+        ns1:sourceYear 2011 .
+
+    <https://example.test/imitation-learning/behavior-cloning> a ns1:LearningMethod ;
+        rdfs:label "Behavior cloning"@en,
+            "Behavior cloning"@ko ;
+        ns1:methodApplicabilityNote "ALVINN은 직접 입력-출력 학습의 관련 사례다. 논문이 이 방법명을 최초로 정의했다고 주장하지 않는다."^^xsd:string ;
+        ns1:methodDescription "근사 정책을 학습하도록 시연의 관측·행동 쌍을 지도 신호로 사용한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/pomerleau-1989> ;
+        ns1:methodKind "behavior_cloning"^^xsd:string ;
+        ns1:methodName "Behavior cloning"^^xsd:string .
+
+    <https://example.test/imitation-learning/demo-pick-place-01> a ns1:Demonstration ;
+        rdfs:label "Synthetic demonstration example 1"@en,
+            "합성 시연 예시 1"@ko ;
+        ns1:demonstrationByExpert <https://example.test/imitation-learning/reference-controller> ;
+        ns1:demonstrationForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:demonstrationHasStep <https://example.test/imitation-learning/step-01>,
+            <https://example.test/imitation-learning/step-02> ;
+        ns1:demonstrationInDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:demonstrationLabelStatus "synthetic_fixture"^^xsd:string ;
+        ns1:demonstrationNote "실제 전문가가 수행하거나 레이블링한 궤적이 아니라 스키마 설명을 위해 만든 단계 예시다."^^xsd:string ;
+        ns1:demonstrationStatus "synthetic_example"^^xsd:string .
+
+    <https://example.test/imitation-learning/learner-policy> a ns1:Policy ;
+        rdfs:label "Untrained learner policy"@en,
+            "미학습 학습자 정책"@ko ;
+        ns1:policyForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:policyLearnsWithMethod <https://example.test/imitation-learning/behavior-cloning> ;
+        ns1:policyName "pick-place-learner-policy"^^xsd:string ;
+        ns1:policyNote "설계용 정책 개체다. 모델 파일이나 학습 결과가 없다."^^xsd:string ;
+        ns1:policyStatus "not_trained"^^xsd:string .
+
+    <https://example.test/imitation-learning/synthetic-demo-dataset> a ns1:DemonstrationDataset ;
+        rdfs:label "Synthetic demonstration dataset example"@en,
+            "합성 시연 데이터 예시"@ko ;
+        ns1:datasetCollectionStatus "synthetic_fixture_not_collected"^^xsd:string ;
+        ns1:datasetForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:datasetIncludesDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:datasetLimitations "설명용 두 단계 예시만 있다. 실제 프레임, 관절 수치, 데이터 파일, 사람 시연, 분할 또는 수집 절차는 없다."^^xsd:string ;
+        ns1:datasetName "pick-place-synthetic-fixture"^^xsd:string ;
+        ns1:datasetProvenanceType "synthetic_only"^^xsd:string ;
+        ns1:datasetSplitStatus "not_applicable_synthetic_fixture"^^xsd:string .
+
+    <https://example.test/imitation-learning/pick-place-task> a ns1:LearningTask ;
+        rdfs:label "Pick a cube and place it in a target area"@en,
+            "큐브 집어 목표 구역에 놓기"@ko ;
+        ns1:taskGoal "가상 관측을 입력으로 참조 행동 순서를 학습하는 구상이며 실제 로봇 실행은 범위에 포함하지 않는다."^^xsd:string ;
+        ns1:taskName "시뮬레이션 기반 큐브 집기·놓기"^^xsd:string .
+}
+
+<https://example.test/consumer/imitation-learning-accept> {
+    <https://example.test/imitation-learning/pick-place-project> a ns1:ImitationLearningProject ;
+        rdfs:label "Synthetic example: robot-arm pick-and-place imitation-learning design"@en,
+            "합성 예시: 로봇팔 집기·놓기 모방학습 설계"@ko ;
+        ns1:projectConsidersMethod <https://example.test/imitation-learning/behavior-cloning>,
+            <https://example.test/imitation-learning/dagger>,
+            <https://example.test/imitation-learning/inverse-rl> ;
+        ns1:projectDataStatus "synthetic_example"^^xsd:string ;
+        ns1:projectHasDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:projectHasDistributionShift <https://example.test/imitation-learning/expert-policy-state-shift> ;
+        ns1:projectHasDocumentationSource <https://example.test/imitation-learning/ng-russell-2000>,
+            <https://example.test/imitation-learning/pomerleau-1989>,
+            <https://example.test/imitation-learning/ross-gordon-bagnell-2011> ;
+        ns1:projectHasEvaluationRun <https://example.test/imitation-learning/evaluation-run-01> ;
+        ns1:projectHasExpert <https://example.test/imitation-learning/reference-controller> ;
+        ns1:projectHasPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:projectHasSafetyConstraint <https://example.test/imitation-learning/simulation-only-constraint> ;
+        ns1:projectHasTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:projectHasTrainingRun <https://example.test/imitation-learning/training-run-01> ;
+        ns1:projectNote "설계 예시만 기록한다. 실제 데이터 수집, 모델 학습, 로봇 제어와 성능 평가는 하지 않았다."^^xsd:string .
+
+    <https://example.test/imitation-learning/action-01> a ns1:Action ;
+        rdfs:label "Synthetic action label 1"@en,
+            "합성 행동 레이블 1"@ko ;
+        ns1:actionLabelSource "synthetic_fixture"^^xsd:string ;
+        ns1:actionType "robot_command"^^xsd:string ;
+        ns1:actionValue "approach_target_pose"^^xsd:string .
+
+    <https://example.test/imitation-learning/action-02> a ns1:Action ;
+        rdfs:label "Synthetic action label 2"@en,
+            "합성 행동 레이블 2"@ko ;
+        ns1:actionLabelSource "synthetic_fixture"^^xsd:string ;
+        ns1:actionType "gripper_command"^^xsd:string ;
+        ns1:actionValue "close_gripper"^^xsd:string .
+
+    <https://example.test/imitation-learning/evaluation-run-01> a ns1:EvaluationRun ;
+        rdfs:label "Unrun policy evaluation plan"@en,
+            "미실행 정책 평가 계획"@ko ;
+        ns1:evaluationEvidenceStatus "none"^^xsd:string ;
+        ns1:evaluationForPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:evaluationName "planned-pick-place-policy-evaluation"^^xsd:string ;
+        ns1:evaluationNote "평가하지 않았다. 아래 지표에 결과 수치는 없다."^^xsd:string ;
+        ns1:evaluationStatus "planned"^^xsd:string ;
+        ns1:evaluationUsesDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:evaluationUsesMetric <https://example.test/imitation-learning/metric-action-error>,
+            <https://example.test/imitation-learning/metric-collision>,
+            <https://example.test/imitation-learning/metric-success> .
+
+    <https://example.test/imitation-learning/expert-policy-state-shift> a ns1:DistributionShift ;
+        rdfs:label "Expert-versus-learner state distribution shift"@en,
+            "전문가·학습 정책 상태 분포 차이"@ko ;
+        ns1:shiftAssessmentStatus "concept_only"^^xsd:string ;
+        ns1:shiftDescription "순차 의사결정에서 정책 오류가 이후 방문 상태를 바꾸어 전문가 시연과 다른 입력 분포를 만들 수 있다."^^xsd:string ;
+        ns1:shiftDiscussedByMethod <https://example.test/imitation-learning/dagger> ;
+        ns1:shiftName "expert-state-distribution-versus-learner-induced-states"^^xsd:string ;
+        ns1:shiftNote "개념만 등록했다. 실제 분포 차이나 DAgger 성능은 측정하지 않았다."^^xsd:string .
+
+    <https://example.test/imitation-learning/inverse-rl> a ns1:LearningMethod ;
+        rdfs:label "Inverse reinforcement learning"@en,
+            "Inverse reinforcement learning"@ko ;
+        ns1:methodApplicabilityNote "행동복제처럼 관측마다 행동 레이블을 바로 예측하는 것과 학습 대상이 다르다."^^xsd:string ;
+        ns1:methodDescription "행동 궤적으로부터 이를 설명하는 보상 또는 목적 함수를 추론한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/ng-russell-2000> ;
+        ns1:methodKind "inverse_reinforcement_learning"^^xsd:string ;
+        ns1:methodName "Inverse reinforcement learning"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-action-error> a ns1:EvaluationMetric ;
+        rdfs:label "행동 모방 오차"@en,
+            "행동 모방 오차"@ko ;
+        ns1:metricDefinition "정렬한 레이블과 정책 출력 사이의 과제별 오차 척도"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "행동 모방 오차"^^xsd:string ;
+        ns1:metricUnit "task-defined"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-collision> a ns1:EvaluationMetric ;
+        rdfs:label "충돌 횟수"@en,
+            "충돌 횟수"@ko ;
+        ns1:metricDefinition "정의한 충돌 판정 기준에 해당한 횟수"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "충돌 횟수"^^xsd:string ;
+        ns1:metricUnit "count"^^xsd:string .
+
+    <https://example.test/imitation-learning/metric-success> a ns1:EvaluationMetric ;
+        rdfs:label "과제 성공률"@en,
+            "과제 성공률"@ko ;
+        ns1:metricDefinition "정의한 평가 에피소드 중 목표 배치 조건을 만족한 비율"^^xsd:string ;
+        ns1:metricMeasurementStatus "not_measured"^^xsd:string ;
+        ns1:metricName "과제 성공률"^^xsd:string ;
+        ns1:metricUnit "ratio"^^xsd:string .
+
+    <https://example.test/imitation-learning/observation-01> a ns1:Observation ;
+        rdfs:label "Synthetic observation 1"@en,
+            "합성 관측 1"@ko ;
+        ns1:observationModality "simulated_image"^^xsd:string ;
+        ns1:observationSummary "가상 장면에서 큐브와 목표 구역을 보는 이미지 관측의 설명용 예시"^^xsd:string .
+
+    <https://example.test/imitation-learning/observation-02> a ns1:Observation ;
+        rdfs:label "Synthetic observation 2"@en,
+            "합성 관측 2"@ko ;
+        ns1:observationModality "simulated_state"^^xsd:string ;
+        ns1:observationSummary "그리퍼가 큐브를 잡았다고 가정한 가상 상태 관측의 설명용 예시"^^xsd:string .
+
+    <https://example.test/imitation-learning/simulation-only-constraint> a ns1:SafetyConstraint ;
+        rdfs:label "Simulation-only constraint"@en,
+            "시뮬레이션 전용 제약"@ko ;
+        ns1:constraintAppliesToTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:constraintDescription "이 픽스처를 실제 하드웨어에 보내지 않는다. 물리 구동 전 속도 제한, 비상 정지, 작업공간과 사람 안전에 대한 별도 검증이 필요하다."^^xsd:string ;
+        ns1:constraintName "no-live-robot-actuation"^^xsd:string ;
+        ns1:constraintNote "안전성이 검증된 제어기가 아니라 범위 설명 항목이다."^^xsd:string ;
+        ns1:constraintStatus "planned"^^xsd:string .
+
+    <https://example.test/imitation-learning/step-01> a ns1:DemonstrationStep ;
+        rdfs:label "Synthetic demonstration step 1"@en,
+            "합성 시연 단계 1"@ko ;
+        ns1:stepAction <https://example.test/imitation-learning/action-01> ;
+        ns1:stepInDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:stepIndex 1 ;
+        ns1:stepObservation <https://example.test/imitation-learning/observation-01> .
+
+    <https://example.test/imitation-learning/step-02> a ns1:DemonstrationStep ;
+        rdfs:label "Synthetic demonstration step 2"@en,
+            "합성 시연 단계 2"@ko ;
+        ns1:stepAction <https://example.test/imitation-learning/action-02> ;
+        ns1:stepInDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:stepIndex 2 ;
+        ns1:stepObservation <https://example.test/imitation-learning/observation-02> .
+
+    <https://example.test/imitation-learning/training-run-01> a ns1:TrainingRun ;
+        rdfs:label "Planned behavior-cloning training run"@en,
+            "계획된 행동복제 학습 실행"@ko ;
+        ns1:trainingName "planned-pick-place-behavior-cloning"^^xsd:string ;
+        ns1:trainingNote "실행되지 않았다. 가중치, 로그 또는 학습 시간은 생성하지 않았다."^^xsd:string ;
+        ns1:trainingProducesPolicy <https://example.test/imitation-learning/learner-policy> ;
+        ns1:trainingStatus "planned"^^xsd:string ;
+        ns1:trainingUsesDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:trainingUsesMethod <https://example.test/imitation-learning/behavior-cloning> .
+
+    <https://example.test/imitation-learning/dagger> a ns1:LearningMethod ;
+        rdfs:label "DAgger (Dataset Aggregation)"@en,
+            "DAgger (Dataset Aggregation)"@ko ;
+        ns1:methodApplicabilityNote "전문가 분포와 정책 유도 상태 분포의 차이를 다루는 방법이다. 이 예시는 성능을 측정하지 않는다."^^xsd:string ;
+        ns1:methodDescription "학습 정책이 방문한 상태에서 전문가 레이블을 얻고 학습 데이터를 반복적으로 누적한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/ross-gordon-bagnell-2011> ;
+        ns1:methodKind "dagger"^^xsd:string ;
+        ns1:methodName "DAgger (Dataset Aggregation)"^^xsd:string .
+
+    <https://example.test/imitation-learning/ng-russell-2000> a ns1:DocumentationSource ;
+        rdfs:label "Algorithms for Inverse Reinforcement Learning"@en,
+            "Algorithms for Inverse Reinforcement Learning"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Andrew Y. Ng, Stuart Russell"^^xsd:string ;
+        ns1:sourceClaim "Formulates reward inference from observed optimal behavior, including a finite-trajectory case."^^xsd:string ;
+        ns1:sourceTitle "Algorithms for Inverse Reinforcement Learning"^^xsd:string ;
+        ns1:sourceUri "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf"^^xsd:anyURI ;
+        ns1:sourceYear 2000 .
+
+    <https://example.test/imitation-learning/pomerleau-1989> a ns1:DocumentationSource ;
+        rdfs:label "ALVINN: An Autonomous Land Vehicle in a Neural Network"@en,
+            "ALVINN: An Autonomous Land Vehicle in a Neural Network"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Dean A. Pomerleau"^^xsd:string ;
+        ns1:sourceClaim "Describes camera and laser-range inputs, a driving-direction output, and training with simulated road images."^^xsd:string ;
+        ns1:sourceTitle "ALVINN: An Autonomous Land Vehicle in a Neural Network"^^xsd:string ;
+        ns1:sourceUri "https://publications.ri.cmu.edu/alvinn-an-autonomous-land-vehicle-in-a-neural-network"^^xsd:anyURI ;
+        ns1:sourceYear 1989 .
+
+    <https://example.test/imitation-learning/reference-controller> a ns1:Expert ;
+        rdfs:label "Simulated reference controller"@en,
+            "가상 참조 제어기"@ko ;
+        ns1:expertRole "합성 설명 개체이며 실제 사람이나 실행된 제어기 기록이 아니다."^^xsd:string ;
+        ns1:expertType "simulation_reference_policy"^^xsd:string .
+
+    <https://example.test/imitation-learning/ross-gordon-bagnell-2011> a ns1:DocumentationSource ;
+        rdfs:label "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"@en,
+            "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"@ko ;
+        ns1:sourceAccessedAt "2026-10-08"^^xsd:date ;
+        ns1:sourceAuthors "Stéphane Ross, Geoffrey J. Gordon, J. Andrew Bagnell"^^xsd:string ;
+        ns1:sourceClaim "DAgger uses learner-induced states, expert action labels and iterative data aggregation."^^xsd:string ;
+        ns1:sourceTitle "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning"^^xsd:string ;
+        ns1:sourceUri "https://proceedings.mlr.press/v15/ross11a.html"^^xsd:anyURI ;
+        ns1:sourceYear 2011 .
+
+    <https://example.test/imitation-learning/behavior-cloning> a ns1:LearningMethod ;
+        rdfs:label "Behavior cloning"@en,
+            "Behavior cloning"@ko ;
+        ns1:methodApplicabilityNote "ALVINN은 직접 입력-출력 학습의 관련 사례다. 논문이 이 방법명을 최초로 정의했다고 주장하지 않는다."^^xsd:string ;
+        ns1:methodDescription "근사 정책을 학습하도록 시연의 관측·행동 쌍을 지도 신호로 사용한다."^^xsd:string ;
+        ns1:methodDocumentedBy <https://example.test/imitation-learning/pomerleau-1989> ;
+        ns1:methodKind "behavior_cloning"^^xsd:string ;
+        ns1:methodName "Behavior cloning"^^xsd:string .
+
+    <https://example.test/imitation-learning/demo-pick-place-01> a ns1:Demonstration ;
+        rdfs:label "Synthetic demonstration example 1"@en,
+            "합성 시연 예시 1"@ko ;
+        ns1:demonstrationByExpert <https://example.test/imitation-learning/reference-controller> ;
+        ns1:demonstrationForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:demonstrationHasStep <https://example.test/imitation-learning/step-01>,
+            <https://example.test/imitation-learning/step-02> ;
+        ns1:demonstrationInDataset <https://example.test/imitation-learning/synthetic-demo-dataset> ;
+        ns1:demonstrationLabelStatus "synthetic_fixture"^^xsd:string ;
+        ns1:demonstrationNote "실제 전문가가 수행하거나 레이블링한 궤적이 아니라 스키마 설명을 위해 만든 단계 예시다."^^xsd:string ;
+        ns1:demonstrationStatus "synthetic_example"^^xsd:string .
+
+    <https://example.test/imitation-learning/learner-policy> a ns1:Policy ;
+        rdfs:label "Untrained learner policy"@en,
+            "미학습 학습자 정책"@ko ;
+        ns1:policyForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:policyLearnsWithMethod <https://example.test/imitation-learning/behavior-cloning> ;
+        ns1:policyName "pick-place-learner-policy"^^xsd:string ;
+        ns1:policyNote "설계용 정책 개체다. 모델 파일이나 학습 결과가 없다."^^xsd:string ;
+        ns1:policyStatus "not_trained"^^xsd:string .
+
+    <https://example.test/imitation-learning/synthetic-demo-dataset> a ns1:DemonstrationDataset ;
+        rdfs:label "Synthetic demonstration dataset example"@en,
+            "합성 시연 데이터 예시"@ko ;
+        ns1:datasetCollectionStatus "synthetic_fixture_not_collected"^^xsd:string ;
+        ns1:datasetForTask <https://example.test/imitation-learning/pick-place-task> ;
+        ns1:datasetIncludesDemonstration <https://example.test/imitation-learning/demo-pick-place-01> ;
+        ns1:datasetLimitations "설명용 두 단계 예시만 있다. 실제 프레임, 관절 수치, 데이터 파일, 사람 시연, 분할 또는 수집 절차는 없다."^^xsd:string ;
+        ns1:datasetName "pick-place-synthetic-fixture"^^xsd:string ;
+        ns1:datasetProvenanceType "synthetic_only"^^xsd:string ;
+        ns1:datasetSplitStatus "not_applicable_synthetic_fixture"^^xsd:string .
+
+    <https://example.test/imitation-learning/pick-place-task> a ns1:LearningTask ;
+        rdfs:label "Pick a cube and place it in a target area"@en,
+            "큐브 집어 목표 구역에 놓기"@ko ;
+        ns1:taskGoal "가상 관측을 입력으로 참조 행동 순서를 학습하는 구상이며 실제 로봇 실행은 범위에 포함하지 않는다."^^xsd:string ;
+        ns1:taskName "시뮬레이션 기반 큐브 집기·놓기"^^xsd:string .
+}

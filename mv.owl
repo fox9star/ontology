@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/mv#bpm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">분당 박자 수</rdfs:label>
+    <rdfs:label xml:lang="en">BPM</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#AudioAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="en">Records the bpm for a Audio Asset as a integer value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">음원 자산의 빠르기를 분당 박자 수로 기록한다. 확인된 측정값이나 출처 값만 사용한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasBrief">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">제작 요청 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Has Brief</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MusicVideoProject"/>
+    <rdfs:range rdf:resource="https://example.org/mv#CreativeBrief"/>
+    <rdfs:comment xml:lang="en">Links a Music Video Project to a Creative Brief.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">뮤직비디오 프로젝트의 목표 길이와 분위기 등 요구사항을 담은 제작 요청을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#fileUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">파일 위치 URI</rdfs:label>
+    <rdfs:label xml:lang="en">File URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">외부 미디어 파일을 가리키는 IRI. 파일의 존재와 접근 가능 여부는 별도로 검사한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Media Asset to a Resource.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/mv#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#Shot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">장면(샷)</rdfs:label>
+    <rdfs:label xml:lang="en">Shot</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 이미지가 표시되는 시간 구간 및 속성.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a timed visual segment in a production timeline.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#endSecond">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">종료 시간(초)</rdfs:label>
+    <rdfs:label xml:lang="en">End Second</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#Shot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the end second for a Shot as a decimal value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">타임라인에서 장면 표시가 끝나는 위치를 시작점 기준 초 단위로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#width">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가로 해상도(px)</rdfs:label>
+    <rdfs:label xml:lang="en">Width</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#ImageAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="en">Records the width for a Image Asset as a integer value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">이미지 자산의 가로 해상도를 픽셀 단위 정수로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#GenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">생성 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Generation Task</rdfs:label>
+    <rdfs:comment xml:lang="ko">에이전트가 수행하는 자산 생성 또는 렌더링 실행 활동.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a media-generation activity, its inputs, status, and model version.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#TaskRun"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#usesInput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">입력 자료를 사용</rdfs:label>
+    <rdfs:label xml:lang="en">Uses Input</rdfs:label>
+    <rdfs:comment xml:lang="ko">실행이 선행 작업 대신 계획, 파일 또는 기타 PROV 개체를 입력으로 참조할 때 사용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Generation Task to a Entity.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#CreativeBrief">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">제작 요청</rdfs:label>
+    <rdfs:label xml:lang="en">Creative Brief</rdfs:label>
+    <rdfs:comment xml:lang="ko">목표 분위기, 길이, 스타일 기준 및 요구사항.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents production requirements such as target duration, mood, or style.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#targetDurationSeconds">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">목표 재생 시간(초)</rdfs:label>
+    <rdfs:label xml:lang="en">Target Duration Seconds</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#CreativeBrief"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the target duration seconds for a Creative Brief as a decimal value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">제작 요청이 요구하는 목표 재생 길이를 초 단위 소수 값으로 기록한다. 실제 파일 길이와는 구분한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#usesImage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">사용 이미지</rdfs:label>
+    <rdfs:label xml:lang="en">Uses Image</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#Shot"/>
+    <rdfs:range rdf:resource="https://example.org/mv#ImageAsset"/>
+    <rdfs:comment xml:lang="en">Links a Shot to a Image Asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">타임라인의 한 장면 구간에 표시할 이미지 자산을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#Timeline">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">타임라인</rdfs:label>
+    <rdfs:label xml:lang="en">Timeline</rdfs:label>
+    <rdfs:comment xml:lang="ko">영상의 시간 배치 및 샷 구성을 담은 계획.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents the ordered timing and shot structure of a media production.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#lyricText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가사 문장</rdfs:label>
+    <rdfs:label xml:lang="en">Lyric Text</rdfs:label>
+    <rdfs:comment xml:lang="ko">언어 태그가 있으면 문장 언어를 함께 보존한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the lyric text for a Audio Asset as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/mv#AudioAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#checksum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">파일 SHA-256</rdfs:label>
+    <rdfs:label xml:lang="en">Checksum</rdfs:label>
+    <rdfs:comment xml:lang="ko">등록 파일의 SHA-256 해시. 파일 변경 여부를 확인하는 데 사용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the checksum for a Media Asset as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/mv#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#TranslationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">번역 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Translation Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that translates recorded text or media content.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">기록된 문장이나 미디어 내용을 다른 언어로 옮기는 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#AudioGenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">음원 생성 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Audio Generation Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that generates an audio asset from recorded production inputs.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">입력 자료와 생성 설정을 사용해 음원 자산을 만드는 한 번의 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#usesAudio">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">사용 음원</rdfs:label>
+    <rdfs:label xml:lang="en">Uses Audio</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MusicVideo"/>
+    <rdfs:range rdf:resource="https://example.org/mv#AudioAsset"/>
+    <rdfs:comment xml:lang="en">Links a Music Video to a Audio Asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">완성된 뮤직비디오에 실제로 사용된 음원 자산을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#LyricGenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">가사 생성 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Lyric Generation Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that generates lyric text for an audio asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">음원 제작에 사용할 가사 문장을 만드는 작업 실행. 생성 가사와 입력 자료의 출처는 함께 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#AIAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">AI 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">AI Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">작업을 수행하거나 조정하는 소프트웨어 에이전트.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an AI agent that performs or coordinates media production work.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#SoftwareAgent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#modelVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">생성 모델 버전</rdfs:label>
+    <rdfs:label xml:lang="en">Model Version</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the model version for a Generation Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">생성 실행에서 사용한 모델과 버전의 출처 문자열을 기록한다. 확인되지 않은 모델을 추정하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#ImageAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">이미지 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Image Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">장면에 사용될 정지 이미지 자산.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an image file with dimensions and media metadata.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#MediaAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#ImageGenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">이미지 생성 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Image Generation Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that generates an image asset from recorded inputs.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">입력 자료와 생성 설정을 사용해 장면용 이미지 자산을 만드는 한 번의 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#MusicVideoProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">뮤직비디오 프로젝트</rdfs:label>
+    <rdfs:label xml:lang="en">Music Video Project</rdfs:label>
+    <rdfs:comment xml:lang="ko">제작 요청, 음원·이미지 자산, 타임라인, 최종 뮤직비디오를 통합 관리하는 제작 단위.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a music-video production with a brief, assets, timeline, and final video.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Project"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#startSecond">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">시작 시간(초)</rdfs:label>
+    <rdfs:label xml:lang="en">Start Second</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#Shot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the start second for a Shot as a decimal value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">타임라인에서 장면 표시가 시작되는 위치를 시작점 기준 초 단위로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasAudio">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">채택 음원</rdfs:label>
+    <rdfs:label xml:lang="en">Has Audio</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MusicVideoProject"/>
+    <rdfs:range rdf:resource="https://example.org/mv#AudioAsset"/>
+    <rdfs:comment xml:lang="en">Links a Music Video Project to a Audio Asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">뮤직비디오 프로젝트가 제작에 채택한 음원 자산을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#height">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">세로 해상도(px)</rdfs:label>
+    <rdfs:label xml:lang="en">Height</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#ImageAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="en">Records the height for a Image Asset as a integer value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">이미지 자산의 세로 해상도를 픽셀 단위 정수로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#durationSeconds">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">재생 시간(초)</rdfs:label>
+    <rdfs:label xml:lang="en">Duration Seconds</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the duration seconds for a Media Asset as a decimal value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">미디어 자산의 실제 재생 길이를 초 단위 소수 값으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#MusicVideo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">뮤직비디오 영상</rdfs:label>
+    <rdfs:label xml:lang="en">Music Video</rdfs:label>
+    <rdfs:comment xml:lang="ko">렌더링 완료된 최종 뮤직비디오 비디오 자산.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a completed music-video media asset that uses audio and visual material.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#MediaAsset"/>
+    <rdfs:subClassOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b2"/>
+    <rdfs:subClassOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">작업 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Status</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the status for a Generation Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">생성 실행의 현재 상태 코드를 기록한다. 허용 값과 작업 관계 제약은 미디어 SHACL 프로파일에서 검사한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#dependsOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선행 작업 의존</rdfs:label>
+    <rdfs:label xml:lang="en">Depends On</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:range rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Links a Generation Task to a Generation Task.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">생성 작업 실행이 선행 실행의 완료에 의존함을 연결한다. 파일 입력은 usesInput으로 별도 표현한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#genre">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">음악 장르</rdfs:label>
+    <rdfs:label xml:lang="en">Genre</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#AudioAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the genre for a Audio Asset as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">음원 자산에 기록된 음악 장르 이름을 보존한다. 장르가 확인되지 않으면 추정해 채우지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/mv#hasTimeline"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/mv#Timeline"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#AudioAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">음원 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Audio Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">생성되거나 사용된 음악 오디오 파일 자산.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an audio file with optional genre, duration, and BPM metadata.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#MediaAsset"/>
+    <owl:disjointWith rdf:resource="https://example.org/mv#ImageAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#orderIndex">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">장면 순서 번호</rdfs:label>
+    <rdfs:label xml:lang="en">Order Index</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#Shot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="en">Records the order index for a Shot as a integer value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">타임라인 안에서 장면을 배열하는 순서 번호를 기록한다. 표시 시간은 시작·종료 속성으로 별도 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasTimeline">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">타임라인 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Has Timeline</rdfs:label>
+    <rdfs:domain rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b6"/>
+    <rdfs:range rdf:resource="https://example.org/mv#Timeline"/>
+    <rdfs:comment xml:lang="en">Links a subject to a Timeline.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">뮤직비디오 프로젝트 또는 완성 영상에 사용된 장면·시간 배치 계획을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#QualityCheckTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">품질 검수 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Quality Check Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents a task that checks the quality of a generated or assembled media asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">생성되거나 조합된 미디어 자산이 제작 요구사항을 충족하는지 검사하는 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#mimeType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">미디어 형식</rdfs:label>
+    <rdfs:label xml:lang="en">MIME Type</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the mime type for a Media Asset as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">미디어 파일의 콘텐츠 형식을 MIME 유형 문자열로 기록한다. 파일 위치나 확장자와는 별도 메타데이터이다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/mv#hasShot"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/mv#Shot"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasShot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">장면을 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has Shot</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#Timeline"/>
+    <rdfs:range rdf:resource="https://example.org/mv#Shot"/>
+    <rdfs:comment xml:lang="en">Links a Timeline to a Shot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">타임라인을 구성하는 장면 구간을 연결한다. 실제 순서와 시간은 각 장면 속성으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasFinalVideo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">최종 영상 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Has Final Video</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MusicVideoProject"/>
+    <rdfs:range rdf:resource="https://example.org/mv#MusicVideo"/>
+    <rdfs:comment xml:lang="en">Links a Music Video Project to a Music Video.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트가 최종 결과물로 채택한 뮤직비디오 영상 자산을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/mv#hasBrief"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/mv#CreativeBrief"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#hasImage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">채택 이미지</rdfs:label>
+    <rdfs:label xml:lang="en">Has Image</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#MusicVideoProject"/>
+    <rdfs:range rdf:resource="https://example.org/mv#ImageAsset"/>
+    <rdfs:comment xml:lang="en">Links a Music Video Project to a Image Asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">뮤직비디오 프로젝트가 제작에 채택한 이미지 자산을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#RenderTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">렌더링 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Render Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that renders a production timeline into a media asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">음원과 장면의 타임라인 배치를 최종 영상 파일로 렌더링하는 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#promptText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">프롬프트 문구</rdfs:label>
+    <rdfs:label xml:lang="en">Prompt Text</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the prompt text for a Generation Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">생성 작업에 실제로 제공한 프롬프트 문구를 기록한다. 원문이 확인되지 않으면 새 문구로 대체하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/mv#usesImage"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/mv#ImageAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#SubtitleGenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">자막 생성 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Subtitle Generation Task</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/mv#GenerationTask"/>
+    <rdfs:comment xml:lang="en">Represents work that generates subtitle content for a media asset.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">미디어에 사용할 자막 내용을 작성하는 작업 실행. 영상에 자막이 삽입되었다는 사실과는 구분한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv#MediaAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">미디어 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Media Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">파일로 저장된 미디어 결과물의 상위 클래스.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a media file with location, MIME type, duration, and integrity metadata.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/mv#usesAudio"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/mv#AudioAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b7">
+    <rdf:first rdf:resource="https://example.org/mv#MusicVideoProject"/>
+    <rdf:rest rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/mv">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">뮤직비디오 생성 AI 에이전트 온톨로지</rdfs:label>
+    <rdfs:comment xml:lang="ko">mv.md의 음원, 이미지, 타임라인 배치, 뮤직비디오 렌더링 및 생성 에이전트 출처 추적을 형식화한 OWL 2 온톨로지 스키마.</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:imports rdf:resource="https://example.org/ontology/vocab"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/prov-o/"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/shacl/"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/owl2-primer/"/>
+    <owl:versionInfo>1.2.1</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n55f4b99d053744a0bcac3f2d1d025431b8">
+    <rdf:first rdf:resource="https://example.org/mv#MusicVideo"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+</rdf:RDF>

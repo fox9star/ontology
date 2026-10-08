@@ -1,0 +1,565 @@
+@prefix ec: <https://example.org/ontology/custom/electricity-craftsman#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ec:AssessmentRuleShape a sh:NodeShape ;
+    sh:message "평가 기준의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "평가 기준 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:ruleSource ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "만점의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path ec:ruleMaximumScore ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "minimum_score"^^xsd:string "format"^^xsd:string "duration"^^xsd:string "safety"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "기준 유형의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:ruleType ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "합격 최저 점수의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path ec:ruleMinimumScore ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "평가 기준 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:ruleHasEvidence ],
+        [ sh:class ec:ExamStage ;
+            sh:maxCount 1 ;
+            sh:message "적용 시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:ruleAppliesToStage ],
+        [ sh:datatype rdf:langString ;
+            sh:message "평가 기준명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:rulePreferredLabel ],
+        [ sh:datatype rdf:langString ;
+            sh:message "기준 설명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:ruleDescription ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "평가 기준 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:ruleIdentifier ] ;
+    sh:targetClass ec:AssessmentRule .
+
+ec:CompetencyShape a sh:NodeShape ;
+    sh:message "직무 역량의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "역량 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:competencySource ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "역량 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:competencyEvidence ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "역량 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:competencyIdentifier ],
+        [ sh:class ec:PracticalTask ;
+            sh:message "관련 실기 과제의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:competencyRelatedTask ],
+        [ sh:datatype rdf:langString ;
+            sh:message "역량 이름의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:competencyPreferredLabel ],
+        [ sh:datatype rdf:langString ;
+            sh:message "역량 설명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:competencyDescription ] ;
+    sh:targetClass ec:Competency .
+
+ec:ElectricalQualificationShape a sh:NodeShape ;
+    sh:message "전기기능사 자격의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "큐넷 종목 코드의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationQnetCode ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "draft"^^xsd:string "published"^^xsd:string "archived"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "프로필 상태의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "시행 기관의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationAdministeringBody ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자격 등급의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationCategory ],
+        [ sh:datatype rdf:langString ;
+            sh:message "영문·별칭의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationAlternativeLabel ],
+        [ sh:class ec:ExamStandardVersion ;
+            sh:message "출제기준 버전의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:qualificationHasStandard ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자격 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationIdentifier ],
+        [ sh:class ec:SourceDocument ;
+            sh:message "공식 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:qualificationHasSource ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "근거 기록의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:qualificationHasEvidence ],
+        [ sh:class ec:ExamStage ;
+            sh:message "시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:qualificationHasStage ],
+        [ sh:datatype rdf:langString ;
+            sh:message "자격명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationPreferredLabel ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "관련 부처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:qualificationRelatedMinistry ] ;
+    sh:targetClass ec:ElectricalQualification .
+
+ec:EvidenceRecordShape a sh:NodeShape ;
+    sh:message "근거 기록의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "출처 내 위치의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:evidenceSourceLocator ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "근거 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:evidenceSource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "근거 범위·한계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:evidenceScopeNote ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "확인 시점의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:evidenceObservedAt ],
+        [ sh:datatype rdf:langString ;
+            sh:message "근거가 뒷받침하는 주장의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:evidenceClaim ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "verified_as_of_access"^^xsd:string "announced_not_ingested"^^xsd:string "partial_review"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "검증 상태의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:evidenceStatus ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "확인된 적용 종료일의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:evidenceValidThrough ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "근거 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:evidenceIdentifier ] ;
+    sh:targetClass ec:EvidenceRecord .
+
+ec:ExamStageShape a sh:NodeShape ;
+    sh:message "시험 단계의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "시험 단계 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:stageIdentifier ],
+        [ sh:class ec:KnowledgeArea ;
+            sh:message "필기 과목의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:stageHasKnowledgeArea ],
+        [ sh:class ec:SafetyRequirement ;
+            sh:message "안전 요건의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:stageHasSafetyRequirement ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "문항 수의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path ec:stageQuestionCount ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "시험 정보 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:stageSource ],
+        [ sh:class ec:MaterialRequirement ;
+            sh:message "지참 품목의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:stageHasMaterialRequirement ],
+        [ sh:class ec:AssessmentRule ;
+            sh:message "평가 기준의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:stageHasAssessmentRule ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "선택지 수의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 2 ;
+            sh:path ec:stageChoiceCount ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "written"^^xsd:string "practical"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "시험 구분의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:stageType ],
+        [ sh:class ec:PracticalTask ;
+            sh:message "실기 과제의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:stageHasTask ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "만점의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path ec:stageMaximumScore ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "시험 단계 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:stageHasEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:message "시험 단계명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:stagePreferredLabel ],
+        [ sh:class ec:ExamStandardVersion ;
+            sh:maxCount 1 ;
+            sh:message "적용 출제기준의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:stageInStandard ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "시험 시간(분)의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path ec:stageDurationMinutes ],
+        [ sh:datatype rdf:langString ;
+            sh:message "검정 방법의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:stageMethod ] ;
+    sh:targetClass ec:ExamStage .
+
+ec:ExamStandardVersionShape a sh:NodeShape ;
+    sh:message "출제기준 버전의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "active"^^xsd:string "scheduled"^^xsd:string "expired"^^xsd:string "draft"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "기준 상태의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:standardStatus ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "기준 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:standardSource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "기준명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:standardPreferredLabel ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "적용 시작일의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:standardValidFrom ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "complete"^^xsd:string "partial"^^xsd:string "not_ingested"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "세부 기준 반영 상태의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:standardContentStatus ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "기준 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:standardHasEvidence ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "적용 종료일의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:standardValidThrough ],
+        [ sh:class ec:ExamStage ;
+            sh:message "연결 시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:standardHasStage ],
+        [ sh:datatype rdf:langString ;
+            sh:message "기준 메모의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:standardNote ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "기준 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:standardIdentifier ] ;
+    sh:targetClass ec:ExamStandardVersion .
+
+ec:KnowledgeAreaShape a sh:NodeShape ;
+    sh:message "필기 지식 영역의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:class ec:ExamStandardVersion ;
+            sh:maxCount 1 ;
+            sh:message "적용 기준의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:knowledgeAreaInStandard ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "과목 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:knowledgeAreaEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:message "과목 이름의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:knowledgeAreaPreferredLabel ],
+        [ sh:class ec:ExamStage ;
+            sh:maxCount 1 ;
+            sh:message "적용 시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:knowledgeAreaInStage ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "과목 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:knowledgeAreaIdentifier ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "과목 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:knowledgeAreaSource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "과목 설명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:knowledgeAreaDescription ] ;
+    sh:targetClass ec:KnowledgeArea .
+
+ec:MaterialRequirementShape a sh:NodeShape ;
+    sh:message "지참 재료·공구 요건의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:message "규격의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:materialSpecification ],
+        [ sh:datatype rdf:langString ;
+            sh:message "품목명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:materialPreferredLabel ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "수량의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 0.0 ;
+            sh:path ec:materialQuantity ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "tool"^^xsd:string "marking"^^xsd:string "PPE"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "품목 분류의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:materialCategory ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "단위의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:materialUnit ],
+        [ sh:class ec:ExamStage ;
+            sh:maxCount 1 ;
+            sh:message "적용 시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:materialForStage ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "품목 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:materialSource ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "품목 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:materialIdentifier ],
+        [ sh:datatype rdf:langString ;
+            sh:message "사용 제한·비고의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minLength 1 ;
+            sh:path ec:materialRestriction ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "품목 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:materialHasEvidence ] ;
+    sh:targetClass ec:MaterialRequirement .
+
+ec:PracticalTaskShape a sh:NodeShape ;
+    sh:message "실기 수행 과제의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:class ec:ExamStage ;
+            sh:maxCount 1 ;
+            sh:message "실기 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:taskInStage ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "과제 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:taskSource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "실기 과제 설명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:practicalTaskDescription ],
+        [ sh:class ec:SafetyRequirement ;
+            sh:message "관련 안전 요건의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:taskHasSafetyRequirement ],
+        [ sh:datatype rdf:langString ;
+            sh:message "실기 과제 이름의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:practicalTaskPreferredLabel ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "실기 과제 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:practicalTaskIdentifier ],
+        [ sh:class ec:Competency ;
+            sh:message "연결 역량의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:taskHasCompetency ],
+        [ sh:class ec:EvidenceRecord ;
+            sh:message "실기 과제 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:practicalTaskEvidence ] ;
+    sh:targetClass ec:PracticalTask .
+
+ec:SafetyRequirementShape a sh:NodeShape ;
+    sh:message "실기 안전 요건의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:class ec:EvidenceRecord ;
+            sh:message "안전 근거의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:safetyHasEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:message "안전 요건명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:safetyPreferredLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "PPE"^^xsd:string "prohibited"^^xsd:string "scored"^^xsd:string "disqualification_condition"^^xsd:string "published_level"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "안전 요건 유형의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:safetyRequirementType ],
+        [ sh:class ec:ExamStage ;
+            sh:maxCount 1 ;
+            sh:message "적용 시험 단계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:safetyForStage ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 4 ;
+            sh:message "큐넷 게시 안전 등급의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path ec:safetyLevel ],
+        [ sh:class ec:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:message "안전 요건 출처의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:safetySource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "안전 안내의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:safetyText ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "안전 요건 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:safetyIdentifier ] ;
+    sh:targetClass ec:SafetyRequirement .
+
+ec:SourceDocumentShape a sh:NodeShape ;
+    sh:message "공식 출처 문서의 필수 값, 자료형, 허용 값을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "qualification_page"^^xsd:string "exam_details"^^xsd:string "exam_standard"^^xsd:string "public_task"^^xsd:string "required_materials"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "출처 유형의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourceKind ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "출처 식별자의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourceIdentifier ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "발행·운영 기관의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourcePublisher ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "확인일의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path ec:sourceAccessedAt ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "문서명의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourceTitle ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "원문 URI의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourceUri ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "게시일의 자료형과 허용값을 확인하세요."@ko ;
+            sh:path ec:sourcePublicationDate ],
+        [ sh:datatype rdf:langString ;
+            sh:message "출처 한계의 자료형과 허용값을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path ec:sourceLimitations ] ;
+    sh:targetClass ec:SourceDocument .

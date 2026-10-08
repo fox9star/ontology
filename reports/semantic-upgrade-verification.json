@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-05T08:39:39.111295+09:00",
+  "python_version": "3.13.15",
+  "command": ".venv/Scripts/python.exe run_tests.py",
+  "exit_code": 1,
+  "tests_run": 468,
+  "elapsed_seconds": 200.38,
+  "raw_log": ".runtime/semantic-upgrade-tests.log",
+  "log_sha256": "6a637bc0ad3b925a09a6c369979a475ddc2d91750f6e810275d40e24958a0f8f",
+  "failures": 4,
+  "errors": 0,
+  "skipped": 0
+}

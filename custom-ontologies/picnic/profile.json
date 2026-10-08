@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "picnic",
+  "name": "소풍 온톨로지 (picnic)",
+  "description": "소풍 계획·장소·참가자·시간순 일정·준비물 수량과 담당자·예산·날씨 확인 기록을 연결하고, 준비물 부족과 미확인 항목을 탐색합니다.",
+  "name_en": "Picnic (Outing) Ontology",
+  "description_en": "Connects picnic plans, places, participants, ordered activities, supply quantities and assignments, budgets and weather checks. Queries expose shortages, missing assignments and unverified information.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/picnic#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T20:13:34+09:00",
+  "schema": "custom-ontologies/picnic/schema.ttl",
+  "owl": "custom-ontologies/picnic/schema.owl",
+  "shapes": "custom-ontologies/picnic/shapes.ttl",
+  "example": "custom-ontologies/picnic/example.ttl",
+  "questions": "custom-ontologies/picnic/questions.md",
+  "questions_fixture": "custom-ontologies/picnic/question-fixture.ttl",
+  "question_answers": "custom-ontologies/picnic/question-answers.json",
+  "compatibility_cases": "custom-ontologies/picnic/consumer-cases.trig"
+}

@@ -1,0 +1,27 @@
+services:
+  web-studio:
+    build: .
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "5000"
+      PYTHONUNBUFFERED: "1"
+      ONTOLOGY_LOCAL_DOCKER: "1"
+      ONTOLOGY_DOCKER_CLIENT_CIDR: "172.30.71.0/24"
+      ONTOLOGY_CODEX_JOBS_DIR: "/app/.codex-jobs"
+      ONTOLOGY_REGISTERED_ROOT_URI: "${ONTOLOGY_REGISTERED_ROOT_URI:-}"
+    volumes:
+      # Directory binding keeps atomic RDF replacements visible to both
+      # the container and the host Codex worker. File mounts do not.
+      - ./:/app
+    networks:
+      - local-studio
+    restart: unless-stopped
+
+networks:
+  local-studio:
+    ipam:
+      config:
+        - subnet: 172.30.71.0/24
+          gateway: 172.30.71.1

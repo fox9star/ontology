@@ -1,0 +1,153 @@
+@prefix soccer: <https://example.org/ontology/custom/soccer#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+soccer:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+soccer:ClubShape a sh:NodeShape ; sh:targetClass soccer:Club ; sh:node soccer:LabelShape .
+
+soccer:PlayerShape a sh:NodeShape ; sh:targetClass soccer:Player ; sh:node soccer:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath soccer:forPlayer ] ; sh:minCount 1 ] .
+
+soccer:CompetitionShape a sh:NodeShape ; sh:targetClass soccer:Competition ; sh:node soccer:LabelShape ;
+    sh:property [ sh:path soccer:season ; sh:datatype xsd:string ; sh:pattern "^[0-9]{4}(-[0-9]{4})?$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:competitionType ; sh:datatype xsd:string ; sh:in ( "league" "cup" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:substitutionLimit ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 11 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path [ sh:inversePath soccer:inCompetition ] ; sh:minCount 1 ] .
+
+soccer:MatchShape a sh:NodeShape ; sh:targetClass soccer:Match ; sh:node soccer:LabelShape ;
+    sh:property [ sh:path soccer:homeClub ; sh:class soccer:Club ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:awayClub ; sh:class soccer:Club ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:inCompetition ; sh:class soccer:Competition ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:matchDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:matchStatus ; sh:datatype xsd:string ; sh:in ( "scheduled" "finished" "postponed" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:homeGoals ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:awayGoals ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:matchReportUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:matchday ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:hasAppearance ; sh:class soccer:Appearance ] ;
+    sh:property [ sh:path soccer:hasEvent ; sh:class soccer:MatchEvent ] ;
+    sh:or (
+        [ sh:property [ sh:path soccer:matchStatus ; sh:hasValue "scheduled" ] ;
+          sh:property [ sh:path soccer:homeGoals ; sh:maxCount 0 ] ; sh:property [ sh:path soccer:awayGoals ; sh:maxCount 0 ] ;
+          sh:property [ sh:path soccer:matchReportUri ; sh:maxCount 0 ] ; sh:property [ sh:path soccer:hasEvent ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path soccer:matchStatus ; sh:hasValue "finished" ] ;
+          sh:property [ sh:path soccer:homeGoals ; sh:minCount 1 ] ; sh:property [ sh:path soccer:awayGoals ; sh:minCount 1 ] ;
+          sh:property [ sh:path soccer:matchReportUri ; sh:minCount 1 ] ]
+        [ sh:property [ sh:path soccer:matchStatus ; sh:hasValue "postponed" ] ;
+          sh:property [ sh:path soccer:homeGoals ; sh:maxCount 0 ] ; sh:property [ sh:path soccer:awayGoals ; sh:maxCount 0 ] ;
+          sh:property [ sh:path soccer:matchReportUri ; sh:maxCount 0 ] ; sh:property [ sh:path soccer:hasEvent ; sh:maxCount 0 ] ;
+          sh:property [ sh:path soccer:hasAppearance ; sh:maxCount 0 ] ]
+    ) ;
+    sh:sparql [ sh:message "A club cannot play itself." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE { $this soccer:homeClub ?club ; soccer:awayClub ?club . }""" ] ;
+    sh:sparql [ sh:message "A finished match needs exactly eleven starters for each club." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            $this soccer:matchStatus "finished" .
+            { $this soccer:homeClub ?club } UNION { $this soccer:awayClub ?club }
+            OPTIONAL { $this soccer:hasAppearance ?a . ?a soccer:forClub ?club ; soccer:lineupRole "starter" }
+          }
+          GROUP BY $this ?club
+          HAVING (COUNT(DISTINCT ?a) != 11)""" ] ;
+    sh:sparql [ sh:message "A finished match needs exactly one starting goalkeeper for each club." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            $this soccer:matchStatus "finished" .
+            { $this soccer:homeClub ?club } UNION { $this soccer:awayClub ?club }
+            OPTIONAL { $this soccer:hasAppearance ?a . ?a soccer:forClub ?club ; soccer:lineupRole "starter" ; soccer:position "goalkeeper" }
+          }
+          GROUP BY $this ?club
+          HAVING (COUNT(DISTINCT ?a) != 1)""" ] ;
+    sh:sparql [ sh:message "A club cannot bring on more substitutes than its competition allows." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            $this soccer:inCompetition ?competition ; soccer:matchStatus "finished" .
+            ?competition soccer:substitutionLimit ?limit .
+            { $this soccer:homeClub ?club } UNION { $this soccer:awayClub ?club }
+            OPTIONAL { $this soccer:hasAppearance ?a . ?a soccer:forClub ?club ; soccer:lineupRole "substitute" }
+          }
+          GROUP BY $this ?club ?limit
+          HAVING (COUNT(DISTINCT ?a) > ?limit)""" ] ;
+    sh:sparql [ sh:message "The recorded score must equal the goal events credited to each club; an own goal counts for the opponent." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            $this soccer:matchStatus "finished" .
+            { $this soccer:homeClub ?club ; soccer:homeGoals ?goals } UNION { $this soccer:awayClub ?club ; soccer:awayGoals ?goals }
+            OPTIONAL {
+              $this soccer:hasEvent ?e . ?e soccer:eventType ?type ; soccer:byPlayer ?p .
+              $this soccer:hasAppearance ?ap . ?ap soccer:forPlayer ?p ; soccer:forClub ?playerClub .
+              FILTER ((?type = "goal" && ?playerClub = ?club) || (?type = "own-goal" && ?playerClub != ?club))
+            }
+          }
+          GROUP BY $this ?club ?goals
+          HAVING (COUNT(DISTINCT ?e) != ?goals)""" ] .
+
+soccer:AppearanceShape a sh:NodeShape ; sh:targetClass soccer:Appearance ; sh:node soccer:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath soccer:hasAppearance ] ; sh:class soccer:Match ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:forPlayer ; sh:class soccer:Player ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:forClub ; sh:class soccer:Club ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:lineupRole ; sh:datatype xsd:string ; sh:in ( "starter" "substitute" "unused-substitute" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:position ; sh:datatype xsd:string ; sh:in ( "goalkeeper" "defender" "midfielder" "forward" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:shirtNumber ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 99 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:minuteIn ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 130 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:minuteOut ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 130 ; sh:maxCount 1 ] ;
+    sh:or (
+        [ sh:property [ sh:path soccer:lineupRole ; sh:hasValue "starter" ] ;
+          sh:property [ sh:path soccer:minuteIn ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path soccer:lineupRole ; sh:hasValue "substitute" ] ;
+          sh:property [ sh:path soccer:minuteIn ; sh:minCount 1 ] ]
+        [ sh:property [ sh:path soccer:lineupRole ; sh:hasValue "unused-substitute" ] ;
+          sh:property [ sh:path soccer:minuteIn ; sh:maxCount 0 ] ; sh:property [ sh:path soccer:minuteOut ; sh:maxCount 0 ] ]
+    ) ;
+    sh:sparql [ sh:message "A player must appear for the home or away club of the match." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            ?match soccer:hasAppearance $this ; soccer:homeClub ?home ; soccer:awayClub ?away .
+            $this soccer:forClub ?club .
+            FILTER (?club != ?home && ?club != ?away)
+          }""" ] ;
+    sh:sparql [ sh:message "A player can have only one appearance in a match." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            ?match soccer:hasAppearance $this, ?other .
+            $this soccer:forPlayer ?player . ?other soccer:forPlayer ?player .
+            FILTER (?other != $this)
+          }""" ] ;
+    sh:sparql [ sh:message "A shirt number can be used only once per club in a match." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            ?match soccer:hasAppearance $this, ?other .
+            $this soccer:forClub ?club ; soccer:shirtNumber ?n .
+            ?other soccer:forClub ?club ; soccer:shirtNumber ?n .
+            FILTER (?other != $this)
+          }""" ] ;
+    sh:sparql [ sh:message "A player must leave the match after coming on." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE { $this soccer:minuteIn ?in ; soccer:minuteOut ?out . FILTER (?out <= ?in) }""" ] .
+
+soccer:MatchEventShape a sh:NodeShape ; sh:targetClass soccer:MatchEvent ; sh:node soccer:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath soccer:hasEvent ] ; sh:class soccer:Match ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:eventType ; sh:datatype xsd:string ; sh:in ( "goal" "own-goal" "yellow-card" "red-card" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:eventMinute ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 130 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path soccer:byPlayer ; sh:class soccer:Player ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An event can only be caused by a player who actually played in the match." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            ?match soccer:hasEvent $this . $this soccer:byPlayer ?player .
+            FILTER NOT EXISTS {
+              ?match soccer:hasAppearance ?a . ?a soccer:forPlayer ?player ; soccer:lineupRole ?role .
+              FILTER (?role != "unused-substitute")
+            }
+          }""" ] ;
+    sh:sparql [ sh:message "A sent-off player cannot have a later event in the same match." ;
+        sh:select """PREFIX soccer: <https://example.org/ontology/custom/soccer#>
+          SELECT $this WHERE {
+            ?match soccer:hasEvent $this, ?red .
+            $this soccer:byPlayer ?player ; soccer:eventMinute ?minute .
+            ?red soccer:eventType "red-card" ; soccer:byPlayer ?player ; soccer:eventMinute ?redMinute .
+            FILTER (?minute > ?redMinute)
+          }""" ] .

@@ -1,0 +1,22 @@
+# Verified local dependency versions (Python 3.13, 2026-10-04)
+blinker==1.9.0
+certifi==2026.7.22
+charset-normalizer==3.5.2
+click==8.5.0
+Flask==3.1.3
+html5rdf==1.2.1
+idna==3.20
+itsdangerous==2.2.0
+Jinja2==3.1.6
+Markdown==3.11
+MarkupSafe==3.0.4
+owlrl==7.6.2
+packaging==26.3
+prettytable==3.18.0
+pyparsing==3.3.3
+pyshacl==0.40.1
+rdflib==7.6.0
+requests==2.34.2
+urllib3==2.8.0
+wcwidth==0.9.1
+Werkzeug==3.1.9

@@ -1,0 +1,114 @@
+{
+  "created_at": "2026-10-08T04:34:43+00:00",
+  "id": "domain",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 11,
+  "properties": 99,
+  "instance_counts": {
+    "DomainAssignment": 5,
+    "DomainCatalog": 1,
+    "DomainChangeEvent": 1,
+    "DomainMapping": 1,
+    "DomainRelation": 1,
+    "DomainReview": 1,
+    "DomainScopeStatement": 7,
+    "DomainSource": 6,
+    "KnowledgeDomain": 12,
+    "OntologyProfile": 5
+  },
+  "instances": 40,
+  "triples": 524,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 63
+  },
+  "questions": 12,
+  "question_fixture_triples": 524,
+  "question_answer_contracts": 12,
+  "consumer_case_quads": 56,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "query_execution_performed": false,
+  "scope": "An illustrative knowledge and application domain taxonomy aligned with SKOS concepts and direct broader/narrower links. Local profile assignments are proposed examples, external classification mappings have no asserted target URI, and taxonomy authority/release URI remain pending. It is not an official or exhaustive classification.",
+  "release_uri": "pending; profile remains an example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "53c100c6692f040b66b20d27d077c36631b02938962aea0ac90b5071d6c1c55a",
+      "bytes": 3616
+    },
+    "curated-data.json": {
+      "sha256": "fe6771e3fdddf3bcbe842436b20e6eafd0ea6e41bd0e4cdfbf10c81c3bb66641",
+      "bytes": 316
+    },
+    "example.ttl": {
+      "sha256": "afb968a11e3c7babbc3d2fd0bf985248490f7991c6bfeb79c04099e8f9d03c90",
+      "bytes": 33666
+    },
+    "profile.json": {
+      "sha256": "4250913b0168f4af995a5604db3c96ba49a237da34a81fe51d8bdf73e9b4e039",
+      "bytes": 1380
+    },
+    "question-answers.json": {
+      "sha256": "762451e843db86078e85baba6786b062c9b197c2574583b80b148148a226ac42",
+      "bytes": 14323
+    },
+    "question-fixture.ttl": {
+      "sha256": "05f5e9323516d7db950ae7c6cd737b5434ab408ab831494a166146df510d5e71",
+      "bytes": 37514
+    },
+    "questions.md": {
+      "sha256": "786ad16a7d9853472fc0b7f87dce9be4f6e0f785850638b0f80896e0b2171a63",
+      "bytes": 6683
+    },
+    "schema.owl": {
+      "sha256": "4d96f5b7c715c7555f20161881a2671b347695b217f22a15568b5ce6d8140a3f",
+      "bytes": 79685
+    },
+    "schema.ttl": {
+      "sha256": "7d451dca6071bbdf70cefca99431da63c9b3186b1849789b6e6063e588d93e4c",
+      "bytes": 40805
+    },
+    "shapes.ttl": {
+      "sha256": "c6093e3d389c6b3dd1b567708775da94409f4a306467f053180f51f93b842013",
+      "bytes": 28333
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T04:34:57+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 30,
+    "profile_id": "domain",
+    "draft": true,
+    "explorer": {
+      "classes": 11,
+      "properties": 99,
+      "instances": 40
+    },
+    "question_keys": [
+      "DOM-01",
+      "DOM-02",
+      "DOM-03",
+      "DOM-04",
+      "DOM-05",
+      "DOM-06",
+      "DOM-07",
+      "DOM-08",
+      "DOM-09",
+      "DOM-10",
+      "DOM-11",
+      "DOM-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  }
+}

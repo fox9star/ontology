@@ -1,0 +1,60 @@
+@prefix ex: <https://example.test/competency/> .
+@prefix mv: <https://example.org/mv#> .
+@prefix ag: <https://example.org/agent#> .
+@prefix core: <https://example.org/ontology/core#> .
+@prefix ecom: <http://example.org/ontology/ecommerce#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Deterministic invented data. No patient records, real files, or user assets.
+{
+    ex:verifiedAsset a mv:ImageAsset ;
+        prov:wasGeneratedBy ex:verifiedRun ;
+        prov:wasDerivedFrom ex:intermediateAsset ;
+        mv:checksum "synthetic-checksum-verified" .
+    ex:intermediateAsset a mv:ImageAsset ; prov:wasDerivedFrom ex:rawSource .
+    ex:unverifiedAsset a mv:ImageAsset ; prov:wasGeneratedBy ex:importRun .
+    ex:verifiedRun a mv:ImageGenerationTask ; mv:status "completed" ;
+        mv:modelVersion "synthetic-model-v1" ; mv:promptText "invented prompt" ;
+        prov:used ex:generationReceipt .
+    ex:importRun a mv:GenerationTask ; mv:status "completed" .
+    ex:generationReceipt a prov:Entity .
+    ex:rawSource a prov:Entity .
+
+    ex:plan a ag:Task ; ag:taskObjective "Synthetic retry history" .
+    ex:failedRun a ag:TaskRun ; ag:implementsTask ex:plan ; ag:status "failed" ;
+        prov:startedAtTime "2026-10-01T01:00:00Z"^^xsd:dateTime ;
+        prov:endedAtTime "2026-10-01T01:01:00Z"^^xsd:dateTime .
+    ex:successfulRun a ag:TaskRun ; ag:implementsTask ex:plan ; ag:status "completed" ;
+        prov:startedAtTime "2026-10-01T01:02:00Z"^^xsd:dateTime ;
+        prov:endedAtTime "2026-10-01T01:03:00Z"^^xsd:dateTime .
+
+    ex:order a ecom:OrderTask ; ecom:orderStatus "SHIPPED" ;
+        ecom:hasStatusEvent ex:event01, ex:event02 .
+    ex:event01 a ecom:OrderStatusEvent ; ecom:eventOrder ex:order ;
+        ecom:fromStatus "PLACED" ; ecom:toStatus "PROCESSING" ;
+        ecom:changedAt "2026-10-01T02:00:00Z"^^xsd:dateTime .
+    ex:event02 a ecom:OrderStatusEvent ; ecom:eventOrder ex:order ;
+        ecom:fromStatus "PROCESSING" ; ecom:toStatus "SHIPPED" ;
+        ecom:changedAt "2026-10-01T02:01:00Z"^^xsd:dateTime .
+
+    ex:inferenceAsset a mv:ImageAsset .
+    ex:inferenceRun a core:TaskRun ; core:runOutput ex:inferenceAsset .
+    # Local, explicit PROV-O alignment: external imports are never fetched.
+    prov:generated owl:inverseOf prov:wasGeneratedBy .
+}
+
+# Reused business IDs are local to each project. Distinct IRIs are preserved.
+ex:alpha {
+    ex:alphaProject a mv:MusicVideoProject ;
+        mv:hasImage ex:alphaAsset, ex:alphaDuplicate01, ex:alphaDuplicate02 .
+    ex:alphaAsset a mv:ImageAsset ; dct:identifier "SHARED-001" .
+    ex:alphaDuplicate01 a mv:ImageAsset ; dct:identifier "DUP-001" .
+    ex:alphaDuplicate02 a mv:ImageAsset ; dct:identifier "DUP-001" .
+}
+ex:beta {
+    ex:betaProject a mv:MusicVideoProject ; mv:hasImage ex:betaAsset .
+    ex:betaAsset a mv:ImageAsset ; dct:identifier "SHARED-001" .
+}

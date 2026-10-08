@@ -1,0 +1,351 @@
+@prefix item: <https://example.test/marriage/> .
+@prefix marriage: <https://example.org/ontology/custom/marriage#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+item:garden-plan a marriage:MarriagePlan ;
+    rdfs:label "Fictional garden wedding plan"@en,
+        "가상 정원 결혼식 계획"@ko ;
+    marriage:budgetAmount 1000000.0 ;
+    marriage:coordinatedBy item:garden-partner-a ;
+    marriage:currency "KRW" ;
+    marriage:hasBooking item:garden-booking01,
+        item:garden-booking02,
+        item:garden-booking03 ;
+    marriage:hasCeremony item:garden-ceremony ;
+    marriage:hasExpense item:garden-expense01,
+        item:garden-expense02,
+        item:garden-expense03 ;
+    marriage:hasInvitation item:garden-invitation-01,
+        item:garden-invitation-02 ;
+    marriage:hasPartner item:garden-partner-a,
+        item:garden-partner-b ;
+    marriage:hasPerson item:garden-guest-a,
+        item:garden-guest-b,
+        item:garden-partner-a,
+        item:garden-partner-b ;
+    marriage:hasTask item:garden-task-01,
+        item:garden-task-02,
+        item:garden-task-03 ;
+    marriage:marriageInfoStatus "unrecorded" ;
+    marriage:planNote "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다." ;
+    marriage:recordKind "synthetic" ;
+    marriage:status "draft" .
+
+item:hall-plan a marriage:MarriagePlan ;
+    rdfs:label "Fictional hall wedding plan"@en,
+        "가상 실내 결혼식 계획"@ko ;
+    marriage:budgetAmount 2000000.0 ;
+    marriage:coordinatedBy item:hall-partner-a ;
+    marriage:currency "KRW" ;
+    marriage:hasBooking item:hall-booking01,
+        item:hall-booking02 ;
+    marriage:hasCeremony item:hall-ceremony,
+        item:hall-reception ;
+    marriage:hasExpense item:hall-expense01,
+        item:hall-expense02,
+        item:hall-expense03 ;
+    marriage:hasInvitation item:hall-invitation-01,
+        item:hall-invitation-02,
+        item:hall-invitation-03,
+        item:hall-invitation-04 ;
+    marriage:hasPartner item:hall-partner-a,
+        item:hall-partner-b ;
+    marriage:hasPerson item:hall-guest-a,
+        item:hall-guest-b,
+        item:hall-partner-a,
+        item:hall-partner-b ;
+    marriage:hasTask item:hall-task-01,
+        item:hall-task-02,
+        item:hall-task-03 ;
+    marriage:marriageInfoStatus "unrecorded" ;
+    marriage:planNote "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다." ;
+    marriage:recordKind "synthetic" ;
+    marriage:status "draft" .
+
+item:garden-booking01 a marriage:ServiceBooking ;
+    rdfs:label "Fictional booking garden-booking01"@en,
+        "가상 예약 garden-booking01"@ko ;
+    marriage:bookedFor item:garden-ceremony ;
+    marriage:bookingNote "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다." ;
+    marriage:bookingStatus "confirmed" ;
+    marriage:confirmationUri "urn:synthetic:marriage:garden:venue-confirmation"^^xsd:anyURI ;
+    marriage:isRequired true ;
+    marriage:providerLabel "가상 정원 장소 제공자" ;
+    marriage:serviceKind "venue" .
+
+item:garden-booking02 a marriage:ServiceBooking ;
+    rdfs:label "Fictional booking garden-booking02"@en,
+        "가상 예약 garden-booking02"@ko ;
+    marriage:bookedFor item:garden-ceremony ;
+    marriage:bookingNote "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다." ;
+    marriage:bookingStatus "requested" ;
+    marriage:isRequired true ;
+    marriage:providerLabel "가상 정원 음식 서비스 제공자" ;
+    marriage:serviceKind "catering" .
+
+item:garden-booking03 a marriage:ServiceBooking ;
+    rdfs:label "Fictional booking garden-booking03"@en,
+        "가상 예약 garden-booking03"@ko ;
+    marriage:bookedFor item:garden-ceremony ;
+    marriage:bookingNote "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다." ;
+    marriage:bookingStatus "cancelled" ;
+    marriage:isRequired false ;
+    marriage:providerLabel "가상 정원 이동 서비스 제공자" ;
+    marriage:serviceKind "transport" .
+
+item:garden-expense01 a marriage:Expense ;
+    rdfs:label "Fictional expense garden-expense01"@en,
+        "가상 비용 garden-expense01"@ko ;
+    marriage:amount 800000.0 ;
+    marriage:expenseKind "venue" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "planned" .
+
+item:garden-expense02 a marriage:Expense ;
+    rdfs:label "Fictional expense garden-expense02"@en,
+        "가상 비용 garden-expense02"@ko ;
+    marriage:amount 400000.0 ;
+    marriage:expenseKind "catering" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "planned" .
+
+item:garden-expense03 a marriage:Expense ;
+    rdfs:label "Fictional expense garden-expense03"@en,
+        "가상 비용 garden-expense03"@ko ;
+    marriage:amount 50000.0 ;
+    marriage:expenseKind "transport" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "cancelled" .
+
+item:garden-invitation-01 a marriage:Invitation ;
+    rdfs:label "Fictional invitation garden-invitation-01"@en,
+        "가상 초대 garden-invitation-01"@ko ;
+    marriage:forEvent item:garden-ceremony ;
+    marriage:invitedPerson item:garden-guest-a ;
+    marriage:partySize 3 ;
+    marriage:responseRecordedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:rsvpStatus "accepted" .
+
+item:garden-invitation-02 a marriage:Invitation ;
+    rdfs:label "Fictional invitation garden-invitation-02"@en,
+        "가상 초대 garden-invitation-02"@ko ;
+    marriage:forEvent item:garden-ceremony ;
+    marriage:invitedPerson item:garden-guest-b ;
+    marriage:partySize 2 ;
+    marriage:responseRecordedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:rsvpStatus "accepted" .
+
+item:garden-task-02 a marriage:PreparationTask ;
+    rdfs:label "Fictional garden preparation task 02"@en,
+        "가상 정원 준비 작업 02"@ko ;
+    marriage:assignedTo item:garden-partner-a ;
+    marriage:dependsOn item:garden-task-01 ;
+    marriage:dueAt "2026-11-20T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "planned" .
+
+item:garden-task-03 a marriage:PreparationTask ;
+    rdfs:label "Fictional garden preparation task 03"@en,
+        "가상 정원 준비 작업 03"@ko ;
+    marriage:assignedTo item:garden-partner-a ;
+    marriage:dueAt "2026-11-20T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "cancelled" .
+
+item:garden-venue a marriage:Venue ;
+    rdfs:label "Fictional garden venue"@en,
+        "가상 정원 행사장"@ko ;
+    marriage:capacity 4 ;
+    marriage:locationNote "실제 주소가 없는 가상 정원 행사장입니다." ;
+    marriage:venueKind "garden" .
+
+item:hall-booking01 a marriage:ServiceBooking ;
+    rdfs:label "Fictional booking hall-booking01"@en,
+        "가상 예약 hall-booking01"@ko ;
+    marriage:bookedFor item:hall-ceremony ;
+    marriage:bookingNote "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다." ;
+    marriage:bookingStatus "requested" ;
+    marriage:isRequired true ;
+    marriage:providerLabel "가상 실내 장소 제공자" ;
+    marriage:serviceKind "venue" .
+
+item:hall-booking02 a marriage:ServiceBooking ;
+    rdfs:label "Fictional booking hall-booking02"@en,
+        "가상 예약 hall-booking02"@ko ;
+    marriage:bookedFor item:hall-ceremony ;
+    marriage:bookingNote "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다." ;
+    marriage:bookingStatus "confirmed" ;
+    marriage:confirmationUri "urn:synthetic:marriage:hall:photography-confirmation"^^xsd:anyURI ;
+    marriage:isRequired true ;
+    marriage:providerLabel "가상 실내 사진 서비스 제공자" ;
+    marriage:serviceKind "photography" .
+
+item:hall-expense01 a marriage:Expense ;
+    rdfs:label "Fictional expense hall-expense01"@en,
+        "가상 비용 hall-expense01"@ko ;
+    marriage:amount 1500000.0 ;
+    marriage:expenseKind "venue" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "planned" .
+
+item:hall-expense02 a marriage:Expense ;
+    rdfs:label "Fictional expense hall-expense02"@en,
+        "가상 비용 hall-expense02"@ko ;
+    marriage:amount 300000.0 ;
+    marriage:expenseKind "photography" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "paid" .
+
+item:hall-expense03 a marriage:Expense ;
+    rdfs:label "Fictional expense hall-expense03"@en,
+        "가상 비용 hall-expense03"@ko ;
+    marriage:amount 200000.0 ;
+    marriage:expenseKind "attire" ;
+    marriage:expenseNote "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다." ;
+    marriage:expenseStatus "cancelled" .
+
+item:hall-invitation-01 a marriage:Invitation ;
+    rdfs:label "Fictional invitation hall-invitation-01"@en,
+        "가상 초대 hall-invitation-01"@ko ;
+    marriage:forEvent item:hall-ceremony ;
+    marriage:invitedPerson item:hall-guest-a ;
+    marriage:partySize 2 ;
+    marriage:responseRecordedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:rsvpStatus "accepted" .
+
+item:hall-invitation-02 a marriage:Invitation ;
+    rdfs:label "Fictional invitation hall-invitation-02"@en,
+        "가상 초대 hall-invitation-02"@ko ;
+    marriage:forEvent item:hall-ceremony ;
+    marriage:invitedPerson item:hall-guest-b ;
+    marriage:rsvpStatus "pending" .
+
+item:hall-invitation-03 a marriage:Invitation ;
+    rdfs:label "Fictional invitation hall-invitation-03"@en,
+        "가상 초대 hall-invitation-03"@ko ;
+    marriage:forEvent item:hall-reception ;
+    marriage:invitedPerson item:hall-guest-a ;
+    marriage:partySize 2 ;
+    marriage:responseRecordedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:rsvpStatus "accepted" .
+
+item:hall-invitation-04 a marriage:Invitation ;
+    rdfs:label "Fictional invitation hall-invitation-04"@en,
+        "가상 초대 hall-invitation-04"@ko ;
+    marriage:forEvent item:hall-reception ;
+    marriage:invitedPerson item:hall-guest-b ;
+    marriage:rsvpStatus "pending" .
+
+item:hall-task-03 a marriage:PreparationTask ;
+    rdfs:label "Fictional hall preparation task 03"@en,
+        "가상 실내 준비 작업 03"@ko ;
+    marriage:assignedTo item:hall-partner-a ;
+    marriage:dependsOn item:hall-task-02 ;
+    marriage:dueAt "2026-11-01T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "planned" .
+
+item:garden-guest-a a marriage:Person ;
+    rdfs:label "Fictional garden guest A"@en,
+        "가상 정원 초대 대상 A"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:garden-guest-b a marriage:Person ;
+    rdfs:label "Fictional garden guest B"@en,
+        "가상 정원 초대 대상 B"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:garden-partner-b a marriage:Person ;
+    rdfs:label "Fictional garden partner B"@en,
+        "가상 정원 당사자 B"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:garden-task-01 a marriage:PreparationTask ;
+    rdfs:label "Fictional garden preparation task 01"@en,
+        "가상 정원 준비 작업 01"@ko ;
+    marriage:assignedTo item:garden-partner-a ;
+    marriage:completedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:dueAt "2026-11-20T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "completed" .
+
+item:hall-partner-b a marriage:Person ;
+    rdfs:label "Fictional hall partner B"@en,
+        "가상 실내 당사자 B"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:hall-task-01 a marriage:PreparationTask ;
+    rdfs:label "Fictional hall preparation task 01"@en,
+        "가상 실내 준비 작업 01"@ko ;
+    marriage:assignedTo item:hall-partner-a ;
+    marriage:completedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    marriage:dueAt "2026-11-01T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "completed" .
+
+item:hall-task-02 a marriage:PreparationTask ;
+    rdfs:label "Fictional hall preparation task 02"@en,
+        "가상 실내 준비 작업 02"@ko ;
+    marriage:assignedTo item:hall-partner-a ;
+    marriage:dependsOn item:hall-task-01 ;
+    marriage:dueAt "2026-11-01T00:00:00+00:00"^^xsd:dateTime ;
+    marriage:taskNote "진행 상태와 완료 시각 모두 가상 준비 기록입니다." ;
+    marriage:taskStatus "in-progress" .
+
+item:hall-venue a marriage:Venue ;
+    rdfs:label "Fictional hall venue"@en,
+        "가상 실내 행사장"@ko ;
+    marriage:capacity 10 ;
+    marriage:locationNote "실제 주소가 없는 가상 실내 행사장입니다." ;
+    marriage:venueKind "hall" .
+
+item:hall-guest-a a marriage:Person ;
+    rdfs:label "Fictional hall guest A"@en,
+        "가상 실내 초대 대상 A"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:hall-guest-b a marriage:Person ;
+    rdfs:label "Fictional hall guest B"@en,
+        "가상 실내 초대 대상 B"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:hall-reception a marriage:Ceremony ;
+    rdfs:label "Fictional hall reception"@en,
+        "가상 실내 피로연"@ko ;
+    marriage:atVenue item:hall-venue ;
+    marriage:eventEndsAt "2026-11-15T05:00:00+00:00"^^xsd:dateTime ;
+    marriage:eventKind "reception" ;
+    marriage:eventNote "실제로 예약되거나 개최되지 않은 가상 행사입니다." ;
+    marriage:eventStartsAt "2026-11-15T03:30:00+00:00"^^xsd:dateTime ;
+    marriage:sequence 2 .
+
+item:hall-ceremony a marriage:Ceremony ;
+    rdfs:label "Fictional hall ceremony"@en,
+        "가상 실내 결혼식"@ko ;
+    marriage:atVenue item:hall-venue ;
+    marriage:eventEndsAt "2026-11-15T03:00:00+00:00"^^xsd:dateTime ;
+    marriage:eventKind "ceremony" ;
+    marriage:eventNote "실제로 예약되거나 개최되지 않은 가상 행사입니다." ;
+    marriage:eventStartsAt "2026-11-15T02:00:00+00:00"^^xsd:dateTime ;
+    marriage:sequence 1 .
+
+item:garden-ceremony a marriage:Ceremony ;
+    rdfs:label "Fictional garden ceremony"@en,
+        "가상 정원 결혼식"@ko ;
+    marriage:atVenue item:garden-venue ;
+    marriage:eventEndsAt "2026-12-01T04:00:00+00:00"^^xsd:dateTime ;
+    marriage:eventKind "ceremony" ;
+    marriage:eventNote "실제로 예약되거나 개최되지 않은 가상 행사입니다." ;
+    marriage:eventStartsAt "2026-12-01T03:00:00+00:00"^^xsd:dateTime ;
+    marriage:sequence 1 .
+
+item:garden-partner-a a marriage:Person ;
+    rdfs:label "Fictional garden partner A"@en,
+        "가상 정원 당사자 A"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .
+
+item:hall-partner-a a marriage:Person ;
+    rdfs:label "Fictional hall partner A"@en,
+        "가상 실내 당사자 A"@ko ;
+    marriage:personNote "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다." .

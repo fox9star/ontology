@@ -1,0 +1,94 @@
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+health:PatientRecordShape a sh:NodeShape ;
+    sh:targetClass health:PatientRecord ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "환자 기록에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path health:patientId ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ;
+                  sh:message "환자 식별값은 비어 있지 않은 내부 키여야 합니다."@ko ] ;
+    sh:property [ sh:path health:dataClassification ; sh:class health:PrivacyClassification ;
+                  sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:message "기록의 분류 상태를 하나 지정해야 합니다."@ko ] .
+
+health:MedicalAnalysisAgentShape a sh:NodeShape ;
+    sh:targetClass health:MedicalAnalysisAgent ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "에이전트에 표시 라벨이 필요합니다."@ko ] .
+
+health:DiagnosticTaskShape a sh:NodeShape ;
+    sh:targetClass health:DiagnosticTask ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "진단 실행에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path health:diagnosticStatus ; sh:datatype xsd:string ;
+                  sh:in ( "PENDING" "ANALYZING" "COMPLETED" "VERIFIED" "FAILED" "CANCELLED" ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path health:analyzedBy ; sh:class health:MedicalAnalysisAgent ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path health:associatedWithRecord ; sh:class health:PatientRecord ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path health:generatesReport ; sh:class health:ClinicalReport ;
+                  sh:minCount 1 ; sh:maxCount 1 ] .
+
+health:ClinicalReportShape a sh:NodeShape ;
+    sh:targetClass health:ClinicalReport ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "보고서에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path health:confidenceScore ; sh:datatype xsd:decimal ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 0 ; sh:maxInclusive 1 ;
+                  sh:message "모델 점수는 0에서 1 사이의 십진수여야 합니다."@ko ] ;
+    sh:property [ sh:path health:findingText ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:minLength 1 ] .
+
+health:ClinicalReportFhirStatusShape a sh:NodeShape ;
+    sh:targetClass health:ClinicalReport ;
+    sh:property [ sh:path health:reportStatus ; sh:datatype xsd:string ; sh:maxCount 1 ;
+                  sh:in ( "registered" "partial" "preliminary" "modified" "final"
+                          "amended" "corrected" "appended" "cancelled" "entered-in-error" "unknown" ) ] ;
+    sh:property [ sh:path health:reportResult ; sh:class health:ClinicalObservation ] ;
+    sh:or (
+        [ sh:property [ sh:path health:reportCodeSystem ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path health:reportCode ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ]
+        [ sh:property [ sh:path health:reportCodeSystem ; sh:maxCount 0 ] ;
+          sh:property [ sh:path health:reportCode ; sh:maxCount 0 ] ]
+    ) .
+
+health:ClinicalObservationShape a sh:NodeShape ;
+    sh:targetClass health:ClinicalObservation ;
+    sh:property [ sh:path health:observesRecord ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class health:PatientRecord ] ;
+    sh:property [ sh:path health:codeSystem ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path health:observationCode ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path health:observedAt ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path health:observationStatus ; sh:maxCount 1 ; sh:datatype xsd:string ;
+                  sh:in ( "registered" "preliminary" "final" "amended" "corrected"
+                          "cancelled" "entered-in-error" "unknown" ) ] ;
+    sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class health:DiagnosticTask ] ;
+    sh:xone (
+        [ sh:property [ sh:path health:numericValue ; sh:minCount 1 ; sh:maxCount 1 ;
+                        sh:datatype xsd:decimal ] ;
+          sh:property [ sh:path health:unitCode ; sh:minCount 1 ; sh:maxCount 1 ;
+                        sh:datatype xsd:string ; sh:minLength 1 ] ;
+          sh:property [ sh:path health:unitCodeSystem ; sh:minCount 1 ; sh:maxCount 1 ;
+                        sh:nodeKind sh:IRI ] ;
+          sh:property [ sh:path health:textValue ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path health:textValue ; sh:minCount 1 ; sh:maxCount 1 ;
+                        sh:datatype xsd:string ; sh:minLength 1 ] ;
+          sh:property [ sh:path health:numericValue ; sh:maxCount 0 ] ;
+          sh:property [ sh:path health:unitCode ; sh:maxCount 0 ] ;
+          sh:property [ sh:path health:unitCodeSystem ; sh:maxCount 0 ] ]
+    ) .
+
+health:DiagnosticTaskFhirIntentShape a sh:NodeShape ;
+    sh:targetClass health:DiagnosticTask ;
+    sh:property [ sh:path health:taskIntent ; sh:datatype xsd:string ; sh:maxCount 1 ;
+                  sh:in ( "unknown" "proposal" "plan" "order" "original-order"
+                          "reflex-order" "filler-order" "instance-order" "option" ) ] .
+
+health:PrivacyClassificationShape a sh:NodeShape ;
+    sh:targetClass health:PrivacyClassification ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "분류 항목에 표시 라벨이 필요합니다."@ko ] .

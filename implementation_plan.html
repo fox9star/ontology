@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>뮤직비디오 AI 에이전트 온톨로지 구축 계획</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f7fb; color: #263349; font-family: "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: 16px; line-height: 1.85; }
+main { max-width: 1080px; margin: 32px auto; padding: 48px; background: #fff; border: 1px solid #dfe5ef; border-radius: 12px; }
+h1, h2, h3, h4 { color: #142744; line-height: 1.45; word-break: keep-all; }
+h1 { margin: 0 0 32px; font-size: 2rem; border-bottom: 2px solid #205bb4; padding-bottom: 12px; }
+h2 { margin: 40px 0 18px; padding-bottom: 10px; border-bottom: 1px solid #dfe5ef; font-size: 1.4rem; }
+h3 { margin: 28px 0 14px; font-size: 1.2rem; color: #1b3a6b; }
+h4 { margin: 20px 0 10px; font-size: 1.05rem; color: #205bb4; }
+p { margin: 0 0 18px; overflow-wrap: anywhere; }
+ul, ol { padding-left: 1.6em; margin: 14px 0 20px; }
+li { margin: 6px 0; }
+a { color: #205bb4; text-underline-offset: 3px; font-weight: 500; }
+code { padding: .12em .35em; border-radius: 4px; background: #edf2fa; color: #244e87; font-family: ui-monospace, Consolas, monospace; font-size: .9em; overflow-wrap: anywhere; }
+pre { padding: 18px; overflow-x: auto; background: #14213b; color: #e7eefb; border-radius: 8px; line-height: 1.65; }
+pre code { padding: 0; background: transparent; color: inherit; overflow-wrap: normal; }
+hr { border: 0; height: 1px; background: #dfe5ef; margin: 36px 0; }
+.callout { padding: 18px 22px; margin: 20px 0; border-left: 4px solid #205bb4; background: #f0f5ff; border-radius: 0 8px 8px 0; }
+.callout-title { font-weight: bold; margin-bottom: 8px; color: #1b3a6b; display: flex; align-items: center; gap: 8px; }
+.badge { display: inline-block; padding: 2px 8px; font-size: 0.8rem; font-weight: bold; border-radius: 4px; background: #205bb4; color: #fff; vertical-align: middle; margin-right: 6px; }
+@media (max-width: 700px) { main { margin: 0; padding: 28px 20px; border: 0; border-radius: 0; } h1 { font-size: 1.6rem; } h2 { font-size: 1.2rem; } }
+@media print { body { background: #fff; } main { margin: 0; padding: 0; max-width: none; border: 0; } pre { white-space: pre-wrap; overflow-wrap: anywhere; } }
+</style>
+</head>
+<body>
+<main>
+<h1>뮤직비디오 AI 에이전트 온톨로지 구축 계획</h1>
+
+<p>현재 작업 폴더에는 온톨로지 개념 설명(<code>itis.md</code>), 에이전트 협업 온톨로지 수강/일반 모델(<code>agent-schema.ttl</code>, <code>agent.owl</code>), 그리고 <strong>음원·이미지·뮤직비디오 생성 에이전트 온톨로지 명세서(<code>mv.md</code>)</strong>가 포함되어 있습니다.</p>
+
+<p><code>mv.md</code>에는 클래스, 속성, 협업 흐름 및 검증 규칙이 상세히 기재되어 있으나, 이를 실행/검증 가능한 실제 온톨로지 데이터 파일(<code>mv-schema.ttl</code>, <code>mv.owl</code>, <code>mv-shapes.ttl</code>, <code>mv-example.ttl</code>)이 구현되지 않은 상태입니다.</p>
+
+<p>따라서 <code>mv.md</code> 명세와 기존 <code>agent</code> 온톨로지 구축 방식을 참고하여 실행 가능한 <strong>뮤직비디오 AI 에이전트 온톨로지 모듈</strong>을 구축하고자 합니다.</p>
+
+<hr>
+
+<h2>User Review Required</h2>
+
+<div class="callout">
+  <div class="callout-title">📌 NOTE</div>
+  <p><code>mv.md</code> 명세를 기반으로 온톨로지 스키마(<code>mv-schema.ttl</code>), RDF/XML 형태(<code>mv.owl</code>), SHACL 검증 규칙(<code>mv-shapes.ttl</code>), 가상 프로젝트 실행 데이터(<code>mv-example.ttl</code>)를 구축하고 PySHACL 검증까지 완료하는 방안입니다.</p>
+  <p>혹시 <code>mv.md</code> 기반 구축 외에 다른 커스텀 온톨로지(예: 특정 업무 도메인 온톨로지 추가)를 원하시거나 추가하고 싶으신 요구사항이 있으시면 제안해 주시기 바랍니다.</p>
+</div>
+
+<hr>
+
+<h2>Open Questions</h2>
+
+<ol>
+  <li><strong>온톨로지 대상 범위 확인</strong>:
+    <ul>
+      <li>현재 작업 폴더에 구현 명세로 기재된 <code>mv.md</code>(뮤직비디오 생성 에이전트 온톨로지) 파일 세트 구축을 진행하는 것이 맞는지, 아니면 별도의 새로운 도메인 온톨로지를 구축하고자 하시는지 확인 부탁드립니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+
+<h2>Proposed Changes</h2>
+
+<h3>온톨로지 구축 (<code>c:/Users/wood/Desktop/aiwork/ontology</code>)</h3>
+
+<h4><span class="badge">NEW</span> <a href="file:///c:/Users/wood/Desktop/aiwork/ontology/mv-schema.ttl">mv-schema.ttl</a></h4>
+<ul>
+  <li><strong>목적</strong>: OWL 2 어휘 기반의 뮤직비디오 생성 에이전트 온톨로지 스키마 정의 (Turtle 포맷)</li>
+  <li><strong>주요 요소</strong>:
+    <ul>
+      <li>클래스: <code>mv:MusicVideoProject</code>, <code>mv:CreativeBrief</code>, <code>mv:MediaAsset</code>, <code>mv:AudioAsset</code>, <code>mv:ImageAsset</code>, <code>mv:MusicVideo</code>, <code>mv:Timeline</code>, <code>mv:Shot</code>, <code>mv:GenerationTask</code>, <code>mv:AudioGenerationTask</code>, <code>mv:ImageGenerationTask</code>, <code>mv:RenderTask</code>, <code>mv:QualityCheckTask</code>, <code>mv:AIAgent</code> 등</li>
+      <li>PROV-O 매핑 (<code>prov:Entity</code>, <code>prov:Activity</code>, <code>prov:Agent</code> 하위 클래스 지정)</li>
+      <li>객체 및 데이터 속성: <code>mv:hasBrief</code>, <code>mv:hasAudio</code>, <code>mv:hasImage</code>, <code>mv:hasTimeline</code>, <code>mv:hasShot</code>, <code>mv:usesImage</code>, <code>mv:usesAudio</code>, <code>mv:startSecond</code>, <code>mv:endSecond</code>, <code>mv:durationSeconds</code>, <code>mv:fileUri</code>, <code>mv:width</code>, <code>mv:height</code> 등</li>
+    </ul>
+  </li>
+</ul>
+
+<h4><span class="badge">NEW</span> <a href="file:///c:/Users/wood/Desktop/aiwork/ontology/mv.owl">mv.owl</a></h4>
+<ul>
+  <li><strong>목적</strong>: Protégé 등 온톨로지 도구 및 PySHACL 연동을 위한 RDF/XML 변환 직렬화 온톨로지 파일</li>
+</ul>
+
+<h4><span class="badge">NEW</span> <a href="file:///c:/Users/wood/Desktop/aiwork/ontology/mv-shapes.ttl">mv-shapes.ttl</a></h4>
+<ul>
+  <li><strong>목적</strong>: SHACL 기반 필수 정보 및 데이터 타입 검증 스키마</li>
+  <li><strong>검증 규칙</strong>:
+    <ul>
+      <li><code>AudioAsset</code>: <code>fileUri</code> 필수, <code>durationSeconds</code> &gt; 0</li>
+      <li><code>ImageAsset</code>: <code>fileUri</code> 필수, <code>width</code>, <code>height</code> 지정</li>
+      <li><code>Shot</code>: <code>usesImage</code> 1개 이상, <code>startSecond</code>, <code>endSecond</code>, <code>orderIndex</code> 필수</li>
+      <li><code>Timeline</code>: <code>hasShot</code> 1개 이상</li>
+      <li><code>MusicVideo</code>: <code>usesAudio</code>, <code>hasTimeline</code>, <code>fileUri</code> 필수</li>
+    </ul>
+  </li>
+</ul>
+
+<h4><span class="badge">NEW</span> <a href="file:///c:/Users/wood/Desktop/aiwork/ontology/mv-example.ttl">mv-example.ttl</a></h4>
+<ul>
+  <li><strong>목적</strong>: 60초 분량 가상 뮤직비디오 생성 프로젝트의 실제 데이터 그래프</li>
+  <li><strong>내용</strong>: 요청 생성 → 음원 생성 (<code>mv:audio01</code>) → 이미지 생성 (<code>mv:image01</code>, <code>mv:image02</code>) → 타임라인 샷 배치 (<code>mv:shot01</code>: 0~30s, <code>mv:shot02</code>: 30~60s) → 최종 비디오 렌더링 (<code>mv:video01</code>)</li>
+</ul>
+
+<hr>
+
+<h2>Verification Plan</h2>
+
+<h3>Automated Tests</h3>
+<ol>
+  <li><strong>PySHACL 검증</strong>:
+    <ul>
+      <li>실행 명령어: <code>pyshacl -s mv-shapes.ttl -e mv.owl -i rdfs mv-example.ttl</code></li>
+      <li>기대 결과: <code>Validation Report / Conforms: True</code> 출력 및 종료 코드 0 확인</li>
+    </ul>
+  </li>
+  <li><strong>RDFLib 문법 검증</strong>:
+    <ul>
+      <li>Python 스크립트로 생성된 모든 Turtle 및 RDF/XML 파일의 구문 파싱 정상 동작 검증</li>
+    </ul>
+  </li>
+</ol>
+
+<h3>Manual Verification</h3>
+<ul>
+  <li>PySHACL 검증에서 일부 필수 데이터(예: <code>fileUri</code> 또는 <code>usesImage</code>)를 의도적으로 누락시켰을 때 <code>Conforms: False</code> 오류 보고서가 올바르게 감지되는지 테스트</li>
+</ul>
+
+</main>
+</body>
+</html>
+

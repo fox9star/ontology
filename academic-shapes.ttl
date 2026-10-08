@@ -1,0 +1,32 @@
+@prefix academic: <https://example.org/ontology/academic#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+academic:StudentShape a sh:NodeShape ;
+    sh:targetClass academic:Student ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ;
+                  sh:message "학생 인스턴스에는 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path academic:enrollsIn ; sh:class academic:Course ;
+                  sh:message "수강 대상은 Course 인스턴스여야 합니다."@ko ] .
+
+academic:ProfessorShape a sh:NodeShape ;
+    sh:targetClass academic:Professor ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ;
+                  sh:message "교수 인스턴스에는 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path academic:teaches ; sh:class academic:Course ;
+                  sh:message "담당 과목은 Course 인스턴스여야 합니다."@ko ] .
+
+academic:CourseShape a sh:NodeShape ;
+    sh:targetClass academic:Course ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ;
+                  sh:message "과목 인스턴스에는 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path academic:courseCode ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ; sh:minLength 1 ;
+                  sh:message "과목 코드는 비어 있지 않은 문자열 하나만 허용합니다."@ko ] ;
+    sh:property [ sh:path academic:credits ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0 ;
+                  sh:message "학점은 0 이상의 십진수 하나만 허용합니다."@ko ] ;
+    sh:property [ sh:path academic:hasStudent ; sh:class academic:Student ;
+                  sh:message "수강생은 Student 인스턴스여야 합니다."@ko ] .

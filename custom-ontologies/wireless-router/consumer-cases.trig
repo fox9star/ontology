@@ -1,0 +1,24 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wr: <https://example.org/ontology/custom/wireless-router#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/wireless-router/rejected-shape> {
+    <https://example.test/consumer/wireless-router/expected-reject> a wr:RadioInterface ;
+        rdfs:label "expected reject: unsupported band token"@en ;
+        wr:radioBand "13GHz"^^xsd:string ;
+        wr:radioCapabilityEvidenceStatus "not_provided"^^xsd:string ;
+        wr:radioConfiguredState "planned"^^xsd:string ;
+        wr:radioSupportedStandard "unknown"^^xsd:string .
+}
+
+<https://example.test/consumer/wireless-router/accepted-shape> {
+    <https://example.test/consumer/wireless-router/expected-accept> a wr:RouterDevice ;
+        rdfs:label "synthetic consumer example"@en ;
+        wr:deviceIdentifierHandling "synthetic_only"^^xsd:string ;
+        wr:deviceInventoryAlias "ROUTER-CONSUMER-EXAMPLE"^^xsd:string ;
+        wr:deviceLifecycleStatus "planned"^^xsd:string ;
+        wr:deviceManagementExposure "unknown"^^xsd:string ;
+        wr:deviceModelFamily "generic"^^xsd:string ;
+        wr:deviceObservationStatus "synthetic"^^xsd:string ;
+        wr:deviceVendorLabel "not_specified"^^xsd:string .
+}

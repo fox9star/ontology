@@ -1,0 +1,35 @@
+@prefix film: <https://example.org/ontology/custom/ai-film#> .
+@prefix ex: <https://example.org/ontology/custom/ai-film#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely synthetic production plan. No file, submitted job, generation model,
+# completed generation, review approval, rights clearance or final render exists.
+ex:project a film:FilmProject ; rdfs:label "합성 예제: 새벽의 편지"@ko ;
+    film:hasScreenplay ex:screenplay ; film:hasEditVersion ex:edit01 .
+ex:screenplay a film:Screenplay ; rdfs:label "합성 시나리오 초안"@ko ; film:hasScene ex:scene01 .
+ex:scene01 a film:Scene ; rdfs:label "합성 장면: 비어 있는 역"@ko ; film:sceneOrder 1 ; film:hasShot ex:shot01, ex:shot02 .
+ex:shot01 a film:Shot ; rdfs:label "합성 샷: 역 전경"@ko ; film:shotOrder 1 ;
+    film:targetDurationSeconds "6.0"^^xsd:decimal ; film:hasGenerationTask ex:task01 .
+ex:shot02 a film:Shot ; rdfs:label "합성 샷: 봉투의 손"@ko ; film:shotOrder 2 ;
+    film:targetDurationSeconds "4.0"^^xsd:decimal ; film:hasGenerationTask ex:task02 .
+ex:task01 a film:GenerationTask ; rdfs:label "전경 영상 생성 계획"@ko ;
+    film:taskStatus "planned" ; film:promptText "A fictional empty station at dawn, slow camera movement." ;
+    film:modelKnowledgeStatus "unknown" ; film:plannedAsset ex:asset01 .
+ex:task02 a film:GenerationTask ; rdfs:label "봉투 근접 영상 생성 계획"@ko ;
+    film:taskStatus "planned" ; film:promptText "A fictional hand holding an unmarked envelope, close-up." ;
+    film:modelKnowledgeStatus "unknown" ; film:plannedAsset ex:asset02 .
+ex:asset01 a film:MediaAsset ; rdfs:label "전경 영상 계획 자산"@ko ;
+    film:assetStatus "planned" ; film:mediaType "video" ; film:hasReview ex:rights01, ex:quality01 .
+ex:asset02 a film:MediaAsset ; rdfs:label "봉투 영상 계획 자산"@ko ;
+    film:assetStatus "planned" ; film:mediaType "video" ; film:hasReview ex:rights02, ex:quality02 .
+ex:rights01 a film:ReviewDecision ; rdfs:label "전경 권리 검토 대기"@ko ;
+    film:reviewKind "rights" ; film:decision "pending" ; film:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." .
+ex:quality01 a film:ReviewDecision ; rdfs:label "전경 품질 검토 대기"@ko ;
+    film:reviewKind "quality" ; film:decision "pending" ; film:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." .
+ex:rights02 a film:ReviewDecision ; rdfs:label "봉투 권리 검토 대기"@ko ;
+    film:reviewKind "rights" ; film:decision "pending" ; film:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." .
+ex:quality02 a film:ReviewDecision ; rdfs:label "봉투 품질 검토 대기"@ko ;
+    film:reviewKind "quality" ; film:decision "pending" ; film:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." .
+ex:edit01 a film:EditVersion ; rdfs:label "합성 편집 구성 초안"@ko ;
+    film:versionLabel "draft-01" ; film:editStatus "draft" ; film:usesAsset ex:asset01, ex:asset02 .

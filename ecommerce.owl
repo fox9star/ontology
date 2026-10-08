@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">전자상거래 AI 에이전트 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">E-Commerce AI Agent Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">상품 탐색, 추천, 주문 처리를 표현한다. 고객 신원이나 실제 결제 통화는 예시에서 추정하지 않는다.</rdfs:comment>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:imports rdf:resource="https://example.org/ontology/vocab"/>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:versionInfo>1.2.1</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="na69ac17757904abb8512cfd5e3610708b1">
+    <rdf:first rdf:resource="http://example.org/ontology/ecommerce#CustomerSession"/>
+    <rdf:rest rdf:nodeID="na69ac17757904abb8512cfd5e3610708b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#RecommendationAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Agent"/>
+    <rdfs:label xml:lang="ko">추천 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Recommendation Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">상품 추천을 제공하는 에이전트.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an agent that recommends catalog products to a customer session.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#productId">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">상품 식별 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Product ID</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the product id for a Product as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">출처 상품 카탈로그에서 사용하는 상품 식별 문자열을 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#eventOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdfs:label xml:lang="ko">상태 변경 대상 주문</rdfs:label>
+    <rdfs:label xml:lang="en">Event Order</rdfs:label>
+    <rdfs:comment xml:lang="en">Links a Order Status Event to a Order Task.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">상태 변경 이벤트가 대상으로 삼은 주문 처리 실행을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#priceCurrency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가격 통화 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Price Currency</rdfs:label>
+    <rdfs:comment xml:lang="ko">가격에 적용되는 3자리 통화 코드. 예시의 통화는 미확인이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the price currency for a Product as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#OrderStatusEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    <rdfs:label xml:lang="ko">주문 상태 변경 이벤트</rdfs:label>
+    <rdfs:label xml:lang="en">Order Status Event</rdfs:label>
+    <rdfs:comment xml:lang="ko">주문 상태를 바꾼 한 번의 기록. 이전·새 상태와 시각을 보존한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a change in order status and when that change occurred.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#fromStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">변경 전 주문 상태</rdfs:label>
+    <rdfs:label xml:lang="en">From Status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the from status for a Order Status Event as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 상태 변경 이벤트 직전의 상태 코드를 기록한다. 허용 전이는 SHACL에서 검사한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#CustomerSession">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">고객 세션</rdfs:label>
+    <rdfs:label xml:lang="en">Customer Session</rdfs:label>
+    <rdfs:comment xml:lang="ko">상품 탐색 또는 주문 요청을 묶는 세션. 고객의 실명이나 직접 식별정보를 담지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a product discovery or order session without a customer identity.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#recommends">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">상품을 추천</rdfs:label>
+    <rdfs:label xml:lang="en">Recommends</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#CustomerSession"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:comment xml:lang="en">Links a Customer Session to a Product.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">고객 탐색 세션에서 추천된 카탈로그 상품을 연결한다. 이 관계만으로 주문이나 구매가 발생했다고 간주하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#orderStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#taskStatus"/>
+    <rdfs:label xml:lang="ko">주문 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Order Status</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the order status for a Order Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 처리 실행의 현재 상태 코드를 기록한다. 변경 시점과 이전 상태는 이벤트 이력에 별도 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#changedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">주문 상태 변경 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Changed At</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the changed at for a Order Status Event as a date-time value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">한 주문 상태 변경이 발생한 시각을 시간대가 포함된 날짜·시간 값으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#priceCurrencyStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가격 통화 확인 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Price Currency Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">통화 코드가 출처로 확인되었는지 표시한다. 추정 코드로 빈 값을 채우지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the price currency status for a Product as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#handledBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#runAgent"/>
+    <rdfs:label xml:lang="ko">담당 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Handled By</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/ecommerce#RecommendationAgent"/>
+    <rdfs:comment xml:lang="en">Links a Order Task to a Recommendation Agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 처리 실행을 담당한 추천 에이전트를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#hasStatusEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdfs:label xml:lang="ko">상태 변경 이력</rdfs:label>
+    <rdfs:label xml:lang="en">Has Status Event</rdfs:label>
+    <rdfs:comment xml:lang="en">Links a Order Task to a Order Status Event.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 처리 실행에 속하는 상태 변경 이력의 각 이벤트를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#Product">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">상품</rdfs:label>
+    <rdfs:label xml:lang="en">Product</rdfs:label>
+    <rdfs:comment xml:lang="ko">상품 카탈로그 항목.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an item in the product catalog, including its price and currency metadata.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#includesProduct">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">포함 상품</rdfs:label>
+    <rdfs:label xml:lang="en">Includes Product</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:comment xml:lang="en">Links a Order Task to a Product.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 처리 실행에 포함된 카탈로그 상품을 연결한다. 수량과 결제 정보는 이 관계에서 추정하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#toStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">변경 후 주문 상태</rdfs:label>
+    <rdfs:label xml:lang="en">To Status</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the to status for a Order Status Event as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">주문 상태 변경 이벤트 직후의 상태 코드를 기록한다. 이전 상태와의 허용 전이는 SHACL에서 검사한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#OrderTask">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#TaskRun"/>
+    <rdfs:label xml:lang="ko">주문 처리 실행</rdfs:label>
+    <rdfs:label xml:lang="en">Order Fulfillment Task</rdfs:label>
+    <rdfs:comment xml:lang="ko">에이전트가 처리하는 주문 작업 실행.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents processing work for an order and its status history.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#price">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가격 금액</rdfs:label>
+    <rdfs:label xml:lang="en">Price Amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">통화가 확인되지 않은 경우 통화를 추정하지 않는다. 실제 금액은 priceCurrency와 함께 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the price for a Product as a decimal value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="na69ac17757904abb8512cfd5e3610708b2">
+    <rdf:first rdf:resource="http://example.org/ontology/ecommerce#OrderStatusEvent"/>
+    <rdf:rest rdf:nodeID="na69ac17757904abb8512cfd5e3610708b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="na69ac17757904abb8512cfd5e3610708b5">
+    <rdf:first rdf:resource="http://example.org/ontology/ecommerce#RecommendationAgent"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="na69ac17757904abb8512cfd5e3610708b4">
+    <rdf:first rdf:resource="http://example.org/ontology/ecommerce#Product"/>
+    <rdf:rest rdf:nodeID="na69ac17757904abb8512cfd5e3610708b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="na69ac17757904abb8512cfd5e3610708b3">
+    <rdf:first rdf:resource="http://example.org/ontology/ecommerce#OrderTask"/>
+    <rdf:rest rdf:nodeID="na69ac17757904abb8512cfd5e3610708b4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/ecommerce#OrderRoleDisjointness">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="na69ac17757904abb8512cfd5e3610708b1"/>
+  </rdf:Description>
+</rdf:RDF>

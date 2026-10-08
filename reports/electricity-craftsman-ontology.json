@@ -1,0 +1,119 @@
+{
+  "created_at": "2026-10-08T04:49:32+00:00",
+  "id": "electricity-craftsman",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 11,
+  "properties": 102,
+  "instance_counts": {
+    "AssessmentRule": 2,
+    "Competency": 2,
+    "ElectricalQualification": 1,
+    "EvidenceRecord": 11,
+    "ExamStage": 2,
+    "ExamStandardVersion": 2,
+    "KnowledgeArea": 3,
+    "MaterialRequirement": 22,
+    "PracticalTask": 2,
+    "SafetyRequirement": 5,
+    "SourceDocument": 6
+  },
+  "instances": 58,
+  "triples": 848,
+  "sources": 6,
+  "evidence_records": 11,
+  "material_requirements": 22,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 69
+  },
+  "questions": 12,
+  "question_fixture_triples": 848,
+  "question_answer_contracts": 12,
+  "consumer_case_quads": 16,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "query_execution_performed": false,
+  "scope": "Q-Net facts are recorded in a source snapshot observed on 2026-10-08. The active 2024-2026 exam standard is only partially structured; the 2027-2029 standard period is announced but its detailed criteria are not ingested. Practical scope names assessment tasks but is not a field wiring procedure. Required materials and safety notices are an as-accessed snapshot.",
+  "release_uri": "pending; profile remains an example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "1c53c8cacefebb18ef07d2478e19ab567fe618c0c24ee339cdc5e5eac75dd109",
+      "bytes": 1323
+    },
+    "curated-data.json": {
+      "sha256": "d3878a1904c0aacae3c4eb8b1080bc519fe9509aa545c312476e705ec9a9b117",
+      "bytes": 402
+    },
+    "example.ttl": {
+      "sha256": "84fe276cecf5b3eaf0884e5e17a1965720f7929245a21a3099fa36daf4b4a9dd",
+      "bytes": 50322
+    },
+    "profile.json": {
+      "sha256": "04bbbc2bed9b1063dfff84aec65a2df8937e2de2f4f3c9fac83149d925a2269e",
+      "bytes": 1536
+    },
+    "question-answers.json": {
+      "sha256": "0a1b6a924135df3d7d4728330c71be93f8aba5242983eeea0cac1294bd327c4b",
+      "bytes": 15983
+    },
+    "question-fixture.ttl": {
+      "sha256": "544962651ad9b72af194f107ce029b49c9e142a77c48f6f1b9d6c977e7c66742",
+      "bytes": 61452
+    },
+    "questions.md": {
+      "sha256": "901f976b4102bd6fc0932104c88327b3bd2a3d410e50f7f7dde7fda27dc26b20",
+      "bytes": 6267
+    },
+    "schema.owl": {
+      "sha256": "33097b0ad636ef642b9abcfbdbfa9370fd5aaf062f00d946486974c21383cee9",
+      "bytes": 83132
+    },
+    "schema.ttl": {
+      "sha256": "e9b49417a8e7a28298084d54cb3dc7e1dc8159b8b13d2891fea9fc5b0169b43a",
+      "bytes": 39851
+    },
+    "shapes.ttl": {
+      "sha256": "97ea832dac063807e098c547943e75c1dc542cf6bd8a4a8717c11cb3fe822c04",
+      "bytes": 26919
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T04:52:18+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 31,
+    "profile_id": "electricity-craftsman",
+    "draft": true,
+    "explorer": {
+      "classes": 11,
+      "properties": 102,
+      "instances": 58
+    },
+    "question_keys": [
+      "ELEC-01",
+      "ELEC-02",
+      "ELEC-03",
+      "ELEC-04",
+      "ELEC-05",
+      "ELEC-06",
+      "ELEC-07",
+      "ELEC-08",
+      "ELEC-09",
+      "ELEC-10",
+      "ELEC-11",
+      "ELEC-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "selector_label_matches_catalog": true,
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  }
+}

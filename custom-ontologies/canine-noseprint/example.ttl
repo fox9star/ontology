@@ -1,0 +1,241 @@
+@prefix np: <https://example.org/ontology/custom/canine-noseprint#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+np:canine-noseprint-project a np:NosePrintProject ;
+    rdfs:label "Synthetic canine nose-print ontology example"@en,
+        "개의 비문 합성 온톨로지 예시"@ko ;
+    np:projectHasComparisonTask np:verification-task-01 ;
+    np:projectHasDataset np:synthetic-reference-dataset ;
+    np:projectHasEvaluation np:evaluation-run-01 ;
+    np:projectHasModel np:dnnet-reference ;
+    np:projectHasPermission np:permission-01 ;
+    np:projectHasSample np:sample-01,
+        np:sample-02 ;
+    np:projectHasSource np:beagle-longitudinal-2021,
+        np:dnnet-2021,
+        np:viability-2021 ;
+    np:projectHasSubject np:dog-subject-01 ;
+    np:projectScopeNote "개 온톨로지의 합성 콩이 개체 URI와 교차 참조한다. 코 이미지, 템플릿, 비교 결과는 없으며, 연구 주장의 범위는 각 문헌에 귀속한다."^^xsd:string ;
+    np:projectStatus "synthetic_example"^^xsd:string .
+
+np:preprocessing-sample-01 a np:PreprocessingRecord ;
+    rdfs:label "Unrun preprocessing example"@en,
+        "미실행 전처리 예시"@ko ;
+    np:preprocessingOfSample np:sample-01 ;
+    np:preprocessingStatus "not_run"^^xsd:string ;
+    np:preprocessingSteps "관심 영역 검출 및 정규화는 계획된 단계의 예일 뿐 수행하지 않았다."^^xsd:string ;
+    np:preprocessingVersion "not-created"^^xsd:string .
+
+np:template-sample-01 a np:BiometricTemplate ;
+    rdfs:label "Uncreated biometric template"@en,
+        "생성되지 않은 템플릿"@ko ;
+    np:templateFromSample np:sample-01 ;
+    np:templateGeneratedBy np:dnnet-reference ;
+    np:templateMethod "논문별 구현 또는 검증된 알고리즘을 선택하기 전 단계"^^xsd:string ;
+    np:templateStatus "not_generated"^^xsd:string ;
+    np:templateVersion "not-created"^^xsd:string .
+
+np:beagle-longitudinal-2021 a np:DocumentationSource ;
+    rdfs:label "The Formation and Invariance of Canine Nose Pattern of Beagle Dogs from Early Puppy to Young Adult Periods"@en,
+        "The Formation and Invariance of Canine Nose Pattern of Beagle Dogs from Early Puppy to Young Adult Periods"@ko ;
+    np:sourceAuthors "Hyeong In Choi et al."^^xsd:string ;
+    np:sourceClaimScope "비글 10마리의 코 이미지를 생후 2개월부터 11개월까지 관찰해 해당 관찰 기간의 형성과 패턴 안정성을 연구했다."^^xsd:string ;
+    np:sourceLimitations "10마리 비글과 10개월 관찰 결과다. 저자들은 전 생애 안정성에 대한 장기 후속 검증이 필요하다고 명시한다."^^xsd:string ;
+    np:sourceTitle "The Formation and Invariance of Canine Nose Pattern of Beagle Dogs from Early Puppy to Young Adult Periods"^^xsd:string ;
+    np:sourceUri "https://www.mdpi.com/2076-2615/11/9/2664"^^xsd:anyURI ;
+    np:sourceYear 2021 .
+
+np:capture-01 a np:CaptureSession ;
+    rdfs:label "Synthetic capture metadata 1"@en,
+        "합성 촬영 메타데이터 1"@ko ;
+    np:captureDeviceType "not_recorded"^^xsd:string ;
+    np:captureLighting "not_recorded"^^xsd:string ;
+    np:captureNote "실제 촬영은 하지 않았다. 이미지 파일과 촬영 시각이 없는 메타데이터 자리표시자다."^^xsd:string ;
+    np:capturePose "not_recorded"^^xsd:string ;
+    np:captureSurfaceCondition "not_recorded"^^xsd:string .
+
+np:capture-02 a np:CaptureSession ;
+    rdfs:label "Synthetic capture metadata 2"@en,
+        "합성 촬영 메타데이터 2"@ko ;
+    np:captureDeviceType "not_recorded"^^xsd:string ;
+    np:captureLighting "not_recorded"^^xsd:string ;
+    np:captureNote "실제 촬영은 하지 않았다. 이미지 파일과 촬영 시각이 없는 메타데이터 자리표시자다."^^xsd:string ;
+    np:capturePose "not_recorded"^^xsd:string ;
+    np:captureSurfaceCondition "not_recorded"^^xsd:string .
+
+np:evaluation-run-01 a np:EvaluationRun ;
+    rdfs:label "Unrun evaluation record"@en,
+        "미실행 평가 기록"@ko ;
+    np:evaluationNote "메타데이터 픽스처만으로 성능을 측정하지 않았다."^^xsd:string ;
+    np:evaluationProtocol "실제 승인된 이미지와 개체 단위로 분리한 검증 프로토콜이 마련된 뒤 수행해야 한다."^^xsd:string ;
+    np:evaluationStatus "not_run"^^xsd:string ;
+    np:evaluationUsesDataset np:synthetic-reference-dataset ;
+    np:evaluationUsesMetric np:metric-eer,
+        np:metric-far,
+        np:metric-frr,
+        np:metric-rank1 ;
+    np:evaluationUsesModel np:dnnet-reference .
+
+np:match-result-01 a np:MatchResult ;
+    rdfs:label "Uncomputed comparison result"@en,
+        "계산되지 않은 비교 결과"@ko ;
+    np:matchNote "not_computed는 후보 없음이나 비동일 판정이 아니다. 점수와 후보 개체를 만들지 않았다."^^xsd:string ;
+    np:matchStatus "not_computed"^^xsd:string ;
+    np:resultForTask np:verification-task-01 .
+
+np:metric-eer a np:EvaluationMetric ;
+    rdfs:label "Equal error rate"@en,
+        "Equal error rate"@ko ;
+    np:metricKind "equal_error_rate"^^xsd:string ;
+    np:metricMeasurementStatus "not_measured"^^xsd:string ;
+    np:metricName "Equal error rate"^^xsd:string ;
+    np:metricUnit "ratio"^^xsd:string .
+
+np:metric-far a np:EvaluationMetric ;
+    rdfs:label "False accept rate"@en,
+        "False accept rate"@ko ;
+    np:metricKind "false_accept_rate"^^xsd:string ;
+    np:metricMeasurementStatus "not_measured"^^xsd:string ;
+    np:metricName "False accept rate"^^xsd:string ;
+    np:metricUnit "ratio"^^xsd:string .
+
+np:metric-frr a np:EvaluationMetric ;
+    rdfs:label "False reject rate"@en,
+        "False reject rate"@ko ;
+    np:metricKind "false_reject_rate"^^xsd:string ;
+    np:metricMeasurementStatus "not_measured"^^xsd:string ;
+    np:metricName "False reject rate"^^xsd:string ;
+    np:metricUnit "ratio"^^xsd:string .
+
+np:metric-rank1 a np:EvaluationMetric ;
+    rdfs:label "Rank-1 identification rate"@en,
+        "Rank-1 identification rate"@ko ;
+    np:metricKind "rank_1"^^xsd:string ;
+    np:metricMeasurementStatus "not_measured"^^xsd:string ;
+    np:metricName "Rank-1 identification rate"^^xsd:string ;
+    np:metricUnit "ratio"^^xsd:string .
+
+np:permission-01 a np:DataUsePermission ;
+    rdfs:label "Synthetic data-use note"@en,
+        "합성 데이터 이용 메모"@ko ;
+    np:permissionCoversSample np:sample-01,
+        np:sample-02 ;
+    np:permissionCoversSubject np:dog-subject-01 ;
+    np:permissionScope "실제 개 이미지·보호자 정보·연구 자료를 포함하지 않는 합성 메타데이터 예시다."^^xsd:string ;
+    np:permissionStatus "not_applicable_synthetic"^^xsd:string ;
+    np:retentionRule "실제 이미지가 추가되면 승인 범위, 접근 제한, 보존 기간 및 삭제 요청 처리를 별도로 기록한다."^^xsd:string .
+
+np:quality-01 a np:ImageQualityAssessment ;
+    rdfs:label "Unassessed synthetic quality record 1"@en,
+        "미평가 합성 품질 기록 1"@ko ;
+    np:focusStatus "not_assessed"^^xsd:string ;
+    np:glareStatus "not_assessed"^^xsd:string ;
+    np:lightingStatus "not_assessed"^^xsd:string ;
+    np:occlusionStatus "not_assessed"^^xsd:string ;
+    np:poseStatus "not_assessed"^^xsd:string ;
+    np:qualityIssue "not_assessed"^^xsd:string ;
+    np:qualityNote "원본 이미지가 없어 초점·각도·조명·반사·가림을 판단하지 않았다."^^xsd:string ;
+    np:qualityStatus "not_assessed"^^xsd:string .
+
+np:quality-02 a np:ImageQualityAssessment ;
+    rdfs:label "Unassessed synthetic quality record 2"@en,
+        "미평가 합성 품질 기록 2"@ko ;
+    np:focusStatus "not_assessed"^^xsd:string ;
+    np:glareStatus "not_assessed"^^xsd:string ;
+    np:lightingStatus "not_assessed"^^xsd:string ;
+    np:occlusionStatus "not_assessed"^^xsd:string ;
+    np:poseStatus "not_assessed"^^xsd:string ;
+    np:qualityIssue "not_assessed"^^xsd:string ;
+    np:qualityNote "원본 이미지가 없어 초점·각도·조명·반사·가림을 판단하지 않았다."^^xsd:string ;
+    np:qualityStatus "not_assessed"^^xsd:string .
+
+np:dnnet-2021 a np:DocumentationSource ;
+    rdfs:label "Dog Nose-Print Identification Using Deep Neural Networks"@en,
+        "Dog Nose-Print Identification Using Deep Neural Networks"@ko ;
+    np:sourceAuthors "Han Byeol Bae, Daehyun Pak, Sangyoun Lee"^^xsd:string ;
+    np:sourceClaimScope "DNNet은 특징 추출·self-attention을 포함한 CNN 기반 Siamese 구조이며, 저자들은 자신들의 다중 데이터셋 교차검증에서 평균 Rank-1 98.972%를 보고한다."^^xsd:string ;
+    np:sourceLimitations "보고된 수치는 해당 논문의 데이터셋과 프로토콜에 한정한다. 이 온톨로지의 예제 성능이나 일반 환경의 정확도를 뜻하지 않는다."^^xsd:string ;
+    np:sourceTitle "Dog Nose-Print Identification Using Deep Neural Networks"^^xsd:string ;
+    np:sourceUri "https://doi.org/10.1109/ACCESS.2021.3068517"^^xsd:anyURI ;
+    np:sourceYear 2021 .
+
+np:nasal-plane-roi a np:NoseRegion ;
+    rdfs:label "Nasal plane region of interest"@en,
+        "비구부 관심 영역"@ko ;
+    np:regionDefinition "콧구멍 사이와 주위, 인중 부근 및 콧구멍 위쪽의 코끝 영역을 연구에서 관심 영역으로 정의한다."^^xsd:string ;
+    np:regionDocumentedBy np:viability-2021 ;
+    np:regionName "nasal-plane-between-and-around-nares"^^xsd:string .
+
+np:verification-task-01 a np:IdentificationTask ;
+    rdfs:label "Unrun 1:1 comparison plan"@en,
+        "미실행 1:1 비교 계획"@ko ;
+    np:taskGalleryDataset np:synthetic-reference-dataset ;
+    np:taskHasResult np:match-result-01 ;
+    np:taskMode "verification_1_to_1"^^xsd:string ;
+    np:taskNote "실제 이미지가 없으므로 비교·임계값 설정·신원 판정은 수행하지 않았다."^^xsd:string ;
+    np:taskQuerySample np:sample-01 ;
+    np:taskStatus "not_run"^^xsd:string .
+
+np:dnnet-reference a np:RecognitionModel ;
+    rdfs:label "DNNet literature reference"@en,
+        "DNNet 문헌 참조"@ko ;
+    np:modelDescription "논문에 기술된 특징 추출과 self-attention을 포함한 CNN 기반 Siamese 방법에 대한 문헌 참조다."^^xsd:string ;
+    np:modelDocumentedBy np:dnnet-2021 ;
+    np:modelFamily "siamese_cnn"^^xsd:string ;
+    np:modelName "Dog Nose-Print Identification Using Deep Neural Networks"^^xsd:string ;
+    np:modelScopeNote "가중치나 실행 코드는 포함하지 않는다. 성능 수치는 원 논문의 프로토콜에서 보고된 값일 뿐 여기서 재현·검증하지 않았다."^^xsd:string ;
+    np:modelStatus "literature_reference"^^xsd:string .
+
+np:sample-02 a np:NosePrintSample ;
+    rdfs:label "Synthetic no-image sample placeholder 2"@en,
+        "이미지 없는 합성 표본 자리표시자 2"@ko ;
+    np:sampleAssetStatus "no_binary_placeholder"^^xsd:string ;
+    np:sampleAssetUri "urn:synthetic:canine-noseprint:no-image:sample-02"^^xsd:anyURI ;
+    np:sampleCapturedIn np:capture-02 ;
+    np:sampleOfSubject np:dog-subject-01 ;
+    np:sampleQualityAssessment np:quality-02 ;
+    np:sampleStatus "synthetic_placeholder"^^xsd:string ;
+    np:sampleUsesRegion np:nasal-plane-roi .
+
+np:synthetic-reference-dataset a np:ReferenceDataset ;
+    rdfs:label "Synthetic sample-metadata fixture"@en,
+        "합성 표본 메타데이터 픽스처"@ko ;
+    np:datasetDescribedBy np:viability-2021 ;
+    np:datasetIncludesSample np:sample-01,
+        np:sample-02 ;
+    np:datasetLimitations "두 개의 이미지 없는 메타데이터 자리표시자만 있다. 실제 코 이미지나 연구 표본은 포함되지 않는다."^^xsd:string ;
+    np:datasetName "canine-noseprint-metadata-fixture"^^xsd:string ;
+    np:datasetProvenance "synthetic_metadata_only"^^xsd:string ;
+    np:datasetSampleCount 2 ;
+    np:datasetSplitProtocol "not_applicable_no_image_binary"^^xsd:string ;
+    np:datasetStatus "metadata_fixture"^^xsd:string ;
+    np:datasetSubjectCount 1 .
+
+np:viability-2021 a np:DocumentationSource ;
+    rdfs:label "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker"@en,
+        "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker"@ko ;
+    np:sourceAuthors "Hyeong In Choi et al."^^xsd:string ;
+    np:sourceClaimScope "연구진은 60마리·18품종의 180개 이미지를 세 시점에서 수집했고 70마리·19품종·278개 이미지로 확장 분석했다. 저자들은 생물학적 고유성 증거가 완전히 확증되지는 않았다고 논의한다."^^xsd:string ;
+    np:sourceLimitations "특정 연구 표본과 비교 절차의 결과다. 실제 운용 이미지의 품질 문제와 모든 개체군의 보편 성능을 입증하지 않는다."^^xsd:string ;
+    np:sourceTitle "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker"^^xsd:string ;
+    np:sourceUri "https://www.mdpi.com/2076-2615/11/12/3372"^^xsd:anyURI ;
+    np:sourceYear 2021 .
+
+np:dog-subject-01 a np:CanineSubject ;
+    rdfs:label "Synthetic pseudonymous canine subject 01"@en,
+        "합성 가명 개체 01"@ko ;
+    np:subjectDogRecordUri "https://example.org/ontology/custom/dog#kongi"^^xsd:anyURI ;
+    np:subjectPseudonym "nose-subject-01"^^xsd:string ;
+    np:subjectRecordStatus "synthetic"^^xsd:string .
+
+np:sample-01 a np:NosePrintSample ;
+    rdfs:label "Synthetic no-image sample placeholder 1"@en,
+        "이미지 없는 합성 표본 자리표시자 1"@ko ;
+    np:sampleAssetStatus "no_binary_placeholder"^^xsd:string ;
+    np:sampleAssetUri "urn:synthetic:canine-noseprint:no-image:sample-01"^^xsd:anyURI ;
+    np:sampleCapturedIn np:capture-01 ;
+    np:sampleOfSubject np:dog-subject-01 ;
+    np:sampleQualityAssessment np:quality-01 ;
+    np:sampleStatus "synthetic_placeholder"^^xsd:string ;
+    np:sampleUsesRegion np:nasal-plane-roi .

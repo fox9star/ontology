@@ -1,0 +1,120 @@
+{
+  "BUS-01": {
+    "variables": [
+      "case",
+      "commit",
+      "artifact",
+      "environment",
+      "vulnerabilities"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/normal",
+        "synthetic-commit-0001",
+        "https://example.test/business/package",
+        "https://example.test/business/production",
+        "0"
+      ]
+    ]
+  },
+  "BUS-02": {
+    "variables": [
+      "case",
+      "pipeline",
+      "reason"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/conflict",
+        "https://example.test/business/pipeline",
+        "conflicting-status"
+      ],
+      [
+        "https://example.test/business/missing",
+        "https://example.test/business/pipeline",
+        "missing-deployed-artifact"
+      ]
+    ]
+  },
+  "BUS-03": {
+    "variables": [
+      "case",
+      "project",
+      "handoff",
+      "artifact",
+      "reviewer"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/normal",
+        "https://example.test/business/agentproject",
+        "https://example.test/business/handoff",
+        "https://example.test/business/document",
+        "https://example.test/business/reviewer"
+      ]
+    ]
+  },
+  "BUS-04": {
+    "variables": [
+      "case",
+      "project",
+      "reason"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/conflict",
+        "https://example.test/business/agentproject",
+        "conflicting-review"
+      ],
+      [
+        "https://example.test/business/missing",
+        "https://example.test/business/agentproject",
+        "missing-review-chain"
+      ]
+    ]
+  },
+  "BUS-05": {
+    "variables": [
+      "case",
+      "project",
+      "video",
+      "image",
+      "knowledge"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/missing",
+        "https://example.test/business/mediaproject",
+        "https://example.test/business/video",
+        "https://example.test/business/image",
+        "generation-metadata-not-recorded"
+      ],
+      [
+        "https://example.test/business/normal",
+        "https://example.test/business/mediaproject",
+        "https://example.test/business/video",
+        "https://example.test/business/image",
+        "generation-metadata-recorded"
+      ]
+    ]
+  },
+  "BUS-06": {
+    "variables": [
+      "case",
+      "project",
+      "reason"
+    ],
+    "rows": [
+      [
+        "https://example.test/business/conflict",
+        "https://example.test/business/mediaproject",
+        "project-audio-mismatch"
+      ],
+      [
+        "https://example.test/business/missing",
+        "https://example.test/business/mediaproject",
+        "generation-evidence-not-recorded"
+      ]
+    ]
+  }
+}

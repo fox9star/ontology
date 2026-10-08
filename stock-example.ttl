@@ -1,0 +1,236 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stock: <http://example.org/ontology/stock#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# Stock Exchanges (증권 거래소)
+# =============================================================================
+
+stock:Exchange_KRX a stock:StockExchange ;
+    rdfs:label "한국거래소 (KRX)"@ko, "Korea Exchange (KRX)"@en .
+
+stock:Exchange_NASDAQ a stock:StockExchange ;
+    rdfs:label "나스닥 증권시장 (NASDAQ)"@ko, "NASDAQ Stock Market"@en .
+
+# =============================================================================
+# Corporations (상장 법인)
+# =============================================================================
+
+stock:Corp_SamsungElectronics a stock:Corporation ;
+    rdfs:label "삼성전자 주식회사"@ko, "Samsung Electronics Co., Ltd."@en ;
+    stock:marketCap "470000000000000.0"^^xsd:decimal .
+
+stock:Corp_SKHynix a stock:Corporation ;
+    rdfs:label "SK하이닉스 주식회사"@ko, "SK Hynix Inc."@en ;
+    stock:marketCap "138000000000000.0"^^xsd:decimal .
+
+stock:Corp_Apple a stock:Corporation ;
+    rdfs:label "애플 주식회사"@ko, "Apple Inc."@en ;
+    stock:marketCap "3580000000000.0"^^xsd:decimal .
+
+stock:Corp_Nvidia a stock:Corporation ;
+    rdfs:label "엔비디아 코퍼레이션"@ko, "NVIDIA Corporation"@en ;
+    stock:marketCap "3260000000000.0"^^xsd:decimal .
+
+# =============================================================================
+# Stock & Financial Assets (주식 및 상장 자산)
+# =============================================================================
+
+stock:Stock_SamsungElectronics a stock:Stock, stock:CommonStock ;
+    rdfs:label "삼성전자"@ko, "Samsung Electronics"@en ;
+    stock:tickerSymbol "005930" ;
+    stock:isin "KR7005930003" ;
+    stock:issuedBy stock:Corp_SamsungElectronics ;
+    stock:tradedOn stock:Exchange_KRX ;
+    stock:hasDailyPrice stock:Price_Samsung_20261002 ;
+    stock:hasFinancialMetric stock:Metric_Samsung ;
+    stock:hasTechnicalIndicator stock:Tech_Samsung .
+
+stock:Stock_SKHynix a stock:Stock, stock:CommonStock ;
+    rdfs:label "SK하이닉스"@ko, "SK Hynix"@en ;
+    stock:tickerSymbol "000660" ;
+    stock:isin "KR7000660001" ;
+    stock:issuedBy stock:Corp_SKHynix ;
+    stock:tradedOn stock:Exchange_KRX ;
+    stock:hasDailyPrice stock:Price_SKHynix_20261002 ;
+    stock:hasFinancialMetric stock:Metric_SKHynix ;
+    stock:hasTechnicalIndicator stock:Tech_SKHynix .
+
+stock:Stock_Apple a stock:Stock, stock:CommonStock ;
+    rdfs:label "애플"@ko, "Apple"@en ;
+    stock:tickerSymbol "AAPL" ;
+    stock:isin "US0378331005" ;
+    stock:issuedBy stock:Corp_Apple ;
+    stock:tradedOn stock:Exchange_NASDAQ ;
+    stock:hasDailyPrice stock:Price_Apple_20261002 ;
+    stock:hasFinancialMetric stock:Metric_Apple .
+
+stock:Stock_Nvidia a stock:Stock, stock:CommonStock ;
+    rdfs:label "엔비디아"@ko, "NVIDIA"@en ;
+    stock:tickerSymbol "NVDA" ;
+    stock:isin "US67066G1040" ;
+    stock:issuedBy stock:Corp_Nvidia ;
+    stock:tradedOn stock:Exchange_NASDAQ ;
+    stock:hasDailyPrice stock:Price_Nvidia_20261002 ;
+    stock:hasFinancialMetric stock:Metric_Nvidia ;
+    stock:hasTechnicalIndicator stock:Tech_Nvidia .
+
+stock:ETF_KodexSemiconductor a stock:FinancialAsset, stock:ExchangeTradedFund ;
+    rdfs:label "KODEX 반도체 ETF"@ko, "KODEX Semiconductor ETF"@en ;
+    stock:tickerSymbol "091160" ;
+    stock:isin "KR7091160008" ;
+    stock:tradedOn stock:Exchange_KRX .
+
+# =============================================================================
+# Daily Prices (일별 시세 데이터)
+# =============================================================================
+
+stock:Price_Samsung_20261002 a stock:DailyPrice ;
+    rdfs:label "삼성전자 2026-10-02 일별 종가 시세"@ko ;
+    stock:priceDate "2026-10-02"^^xsd:date ;
+    stock:closingPrice "78500.0"^^xsd:decimal ;
+    stock:tradingVolume 14250000 .
+
+stock:Price_SKHynix_20261002 a stock:DailyPrice ;
+    rdfs:label "SK하이닉스 2026-10-02 일별 종가 시세"@ko ;
+    stock:priceDate "2026-10-02"^^xsd:date ;
+    stock:closingPrice "189000.0"^^xsd:decimal ;
+    stock:tradingVolume 3850000 .
+
+stock:Price_Apple_20261002 a stock:DailyPrice ;
+    rdfs:label "애플 2026-10-02 일별 종가 시세"@ko ;
+    stock:priceDate "2026-10-02"^^xsd:date ;
+    stock:closingPrice "235.50"^^xsd:decimal ;
+    stock:tradingVolume 48200000 .
+
+stock:Price_Nvidia_20261002 a stock:DailyPrice ;
+    rdfs:label "엔비디아 2026-10-02 일별 종가 시세"@ko ;
+    stock:priceDate "2026-10-02"^^xsd:date ;
+    stock:closingPrice "132.80"^^xsd:decimal ;
+    stock:tradingVolume 65100000 .
+
+# =============================================================================
+# Financial Metrics (펀더멘털 재무 지표)
+# =============================================================================
+
+stock:Metric_Samsung a stock:FinancialMetric ;
+    rdfs:label "삼성전자 펀더멘털 밸류에이션 지표"@ko ;
+    stock:per "14.2"^^xsd:decimal ;
+    stock:pbr "1.25"^^xsd:decimal ;
+    stock:roe "12.8"^^xsd:decimal ;
+    stock:dividendYield "2.1"^^xsd:decimal .
+
+stock:Metric_SKHynix a stock:FinancialMetric ;
+    rdfs:label "SK하이닉스 펀더멘털 밸류에이션 지표"@ko ;
+    stock:per "9.8"^^xsd:decimal ;
+    stock:pbr "1.82"^^xsd:decimal ;
+    stock:roe "18.5"^^xsd:decimal ;
+    stock:dividendYield "1.2"^^xsd:decimal .
+
+stock:Metric_Apple a stock:FinancialMetric ;
+    rdfs:label "애플 펀더멘털 밸류에이션 지표"@ko ;
+    stock:per "31.4"^^xsd:decimal ;
+    stock:pbr "42.0"^^xsd:decimal ;
+    stock:roe "145.0"^^xsd:decimal ;
+    stock:dividendYield "0.5"^^xsd:decimal .
+
+stock:Metric_Nvidia a stock:FinancialMetric ;
+    rdfs:label "엔비디아 펀더멘털 밸류에이션 지표"@ko ;
+    stock:per "45.2"^^xsd:decimal ;
+    stock:pbr "38.5"^^xsd:decimal ;
+    stock:roe "85.2"^^xsd:decimal ;
+    stock:dividendYield "0.1"^^xsd:decimal .
+
+# =============================================================================
+# Technical Indicators (기술적 분석 지표)
+# =============================================================================
+
+stock:Tech_Samsung a stock:TechnicalIndicator ;
+    rdfs:label "삼성전자 모멘텀 및 이동평균 지표"@ko ;
+    stock:rsi "58.4"^^xsd:decimal ;
+    stock:movingAverage20 "77200.0"^^xsd:decimal .
+
+stock:Tech_SKHynix a stock:TechnicalIndicator ;
+    rdfs:label "SK하이닉스 모멘텀 및 이동평균 지표"@ko ;
+    stock:rsi "64.2"^^xsd:decimal ;
+    stock:movingAverage20 "182500.0"^^xsd:decimal .
+
+stock:Tech_Nvidia a stock:TechnicalIndicator ;
+    rdfs:label "엔비디아 모멘텀 및 이동평균 지표"@ko ;
+    stock:rsi "71.5"^^xsd:decimal ;
+    stock:movingAverage20 "126.40"^^xsd:decimal .
+
+# =============================================================================
+# Trading Strategies & AI Agents (투자 전략 및 AI 에이전트)
+# =============================================================================
+
+stock:Strategy_AI_SemiconductorMomentum a stock:TradingStrategy ;
+    rdfs:label "글로벌 AI 반도체 밸류체인 모멘텀 퀀트 전략"@ko,
+               "Global AI Semiconductor Value Chain Momentum Strategy"@en .
+
+stock:Agent_Quant_Alpha a stock:QuantAnalystAgent ;
+    rdfs:label "알파 팩터 퀀트 분석기 Alpha-01"@ko, "Alpha Factor Quant Agent Alpha-01"@en .
+
+stock:Agent_Risk_Shield a stock:RiskManagerAgent ;
+    rdfs:label "리스크 통제 가디언 Shield-01"@ko, "Risk Control Guardian Shield-01"@en .
+
+stock:Agent_Execution_Router a stock:StockTradingAgent ;
+    rdfs:label "스마트 라우팅 집행기 Router-01"@ko, "Smart Order Routing Execution Agent Router-01"@en .
+
+# =============================================================================
+# Investment Portfolio & Holdings (투자 포트폴리오 및 편입 비중)
+# =============================================================================
+
+stock:Portfolio_SemiconductorGrowth a stock:InvestmentPortfolio ;
+    rdfs:label "글로벌 AI 반도체 성장 포트폴리오"@ko,
+               "Global AI Semiconductor Growth Portfolio"@en ;
+    stock:managedByAgent stock:Agent_Quant_Alpha ;
+    stock:followsStrategy stock:Strategy_AI_SemiconductorMomentum ;
+    stock:totalValue "150000000.0"^^xsd:decimal ;
+    stock:cashBalance "25000000.0"^^xsd:decimal ;
+    stock:sharpeRatio "2.35"^^xsd:decimal ;
+    stock:holdsPosition stock:Pos_Samsung, stock:Pos_SKHynix, stock:Pos_Nvidia ;
+    stock:hasOrder stock:Order_Buy_Samsung_01, stock:Order_Buy_Nvidia_02 .
+
+stock:Pos_Samsung a stock:PortfolioPosition ;
+    rdfs:label "삼성전자 보유 포지션 (800주)"@ko ;
+    stock:positionAsset stock:Stock_SamsungElectronics ;
+    stock:positionQuantity 800 ;
+    stock:averageCost "75000.0"^^xsd:decimal .
+
+stock:Pos_SKHynix a stock:PortfolioPosition ;
+    rdfs:label "SK하이닉스 보유 포지션 (200주)"@ko ;
+    stock:positionAsset stock:Stock_SKHynix ;
+    stock:positionQuantity 200 ;
+    stock:averageCost "175000.0"^^xsd:decimal .
+
+stock:Pos_Nvidia a stock:PortfolioPosition ;
+    rdfs:label "엔비디아 보유 포지션 (150주)"@ko ;
+    stock:positionAsset stock:Stock_Nvidia ;
+    stock:positionQuantity 150 ;
+    stock:averageCost "115.00"^^xsd:decimal .
+
+# =============================================================================
+# Trading Orders (주문 체결 실행 기록)
+# =============================================================================
+
+stock:Order_Buy_Samsung_01 a stock:TradingOrder ;
+    rdfs:label "삼성전자 100주 지정가 매수 체결 주문 #ORD-2026-001"@ko ;
+    stock:orderType "BUY" ;
+    stock:orderStatus "EXECUTED" ;
+    stock:orderQuantity 100 ;
+    stock:orderPrice "78000.0"^^xsd:decimal ;
+    stock:orderAsset stock:Stock_SamsungElectronics ;
+    stock:executedByAgent stock:Agent_Execution_Router .
+
+stock:Order_Buy_Nvidia_02 a stock:TradingOrder ;
+    rdfs:label "엔비디아 50주 지정가 매수 대기 주문 #ORD-2026-002"@ko ;
+    stock:orderType "BUY" ;
+    stock:orderStatus "PENDING" ;
+    stock:orderQuantity 50 ;
+    stock:orderPrice "130.00"^^xsd:decimal ;
+    stock:orderAsset stock:Stock_Nvidia ;
+    stock:executedByAgent stock:Agent_Execution_Router .

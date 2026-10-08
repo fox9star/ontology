@@ -1,0 +1,31 @@
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely constructed test data. No project, server, person, or patient record
+# was consulted when this fixture was authored.
+health:FixturePatient a health:PatientRecord ;
+    health:dataClassification health:Synthetic ;
+    health:patientId "SYNTHETIC-FIXTURE-PRIVATE-KEY" .
+health:FixtureTask a health:DiagnosticTask ;
+    health:associatedWithRecord health:FixturePatient ;
+    health:diagnosticStatus "COMPLETED" ; health:taskIntent "order" ;
+    prov:startedAtTime "2026-10-05T08:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2026-10-05T08:01:00Z"^^xsd:dateTime ;
+    health:generatesObservation health:FixtureObservation ;
+    health:generatesReport health:FixtureReport .
+health:FixtureObservation a health:ClinicalObservation ;
+    health:observesRecord health:FixturePatient ;
+    prov:wasGeneratedBy health:FixtureTask ;
+    health:observationStatus "final" ;
+    health:codeSystem <http://loinc.org> ;
+    health:observationCode "29463-7" ;
+    health:observedAt "2026-10-05T08:00:00Z"^^xsd:dateTime ;
+    health:numericValue "68.25"^^xsd:decimal ;
+    health:unitCode "kg" ; health:unitCodeSystem <http://unitsofmeasure.org> .
+health:FixtureReport a health:ClinicalReport ;
+    health:reportStatus "final" ;
+    health:reportCodeSystem <http://loinc.org> ; health:reportCode "18725-2" ;
+    health:reportResult health:FixtureObservation ;
+    health:findingText "This is a constructed synthetic validator fixture." .

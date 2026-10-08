@@ -1,0 +1,432 @@
+@prefix item: <https://example.org/ontology/custom/autonomous-driving#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+item:campus-shuttle-system a item:AutonomousDrivingSystem ;
+    rdfs:label "Synthetic campus shuttle driving system"@en,
+        "가상 캠퍼스 셔틀 자율주행 구성"@ko ;
+    item:hasAutomationLevel item:level-0,
+        item:level-1,
+        item:level-2,
+        item:level-3,
+        item:level-4,
+        item:level-5 ;
+    item:hasDocumentationSource item:src-autoware-stack,
+        item:src-autoware-vehicle,
+        item:src-awsim,
+        item:src-nhtsa-ads,
+        item:src-nhtsa-odd,
+        item:src-sae-j3016 ;
+    item:hasDrivingFeature item:feature-campus-loop ;
+    item:hasOperationalDesignDomain item:odd-campus-day ;
+    item:hasRoadMap item:map-campus ;
+    item:hasRoute item:route-campus-loop ;
+    item:hasSafetyFunction item:safety-minimal-risk,
+        item:safety-odd-monitor ;
+    item:hasScenario item:scenario-pedestrian-crossing,
+        item:scenario-signalized-junction ;
+    item:hasSensor item:sensor-camera,
+        item:sensor-gnss-imu,
+        item:sensor-lidar,
+        item:sensor-wheel-odometry ;
+    item:hasSoftwareModule item:module-control,
+        item:module-localization,
+        item:module-odd-monitor,
+        item:module-perception,
+        item:module-planning,
+        item:module-sensing,
+        item:module-vehicle-interface ;
+    item:hasTestRun item:test-pedestrian-simulation ;
+    item:hasTrajectory item:trajectory-campus-loop ;
+    item:hasVehicle item:vehicle-campus-shuttle ;
+    item:systemNote "실제 차량·도로 배포, 성능 수준, 인증 또는 안전 검증을 나타내지 않는 설명용 합성 그래프다."^^xsd:string ;
+    item:systemPurpose "자율주행 구성요소, 운행 조건과 시험 계획 사이의 관계를 학습한다."^^xsd:string ;
+    item:systemRecordKind "synthetic"^^xsd:string .
+
+item:actor-approaching-car a item:RoadActor ;
+    rdfs:label "Synthetic approaching vehicle actor"@en,
+        "가상 접근 차량 행위자"@ko ;
+    item:actorKind "vehicle"^^xsd:string ;
+    item:actorMotion "moving"^^xsd:string ;
+    item:actorName "approaching_vehicle"^^xsd:string .
+
+item:actor-pedestrian a item:RoadActor ;
+    rdfs:label "Synthetic pedestrian actor"@en,
+        "가상 보행자 행위자"@ko ;
+    item:actorKind "pedestrian"^^xsd:string ;
+    item:actorMotion "moving"^^xsd:string ;
+    item:actorName "crossing_pedestrian"^^xsd:string .
+
+item:actor-traffic-signal a item:RoadActor ;
+    rdfs:label "Synthetic traffic signal actor"@en,
+        "가상 교통 신호 행위자"@ko ;
+    item:actorKind "traffic_signal"^^xsd:string ;
+    item:actorMotion "traffic_control"^^xsd:string ;
+    item:actorName "campus_signal"^^xsd:string .
+
+item:feature-campus-loop a item:DrivingFeature ;
+    rdfs:label "Synthetic geofenced shuttle loop feature"@en,
+        "가상 지정 구간 셔틀 운행 기능"@ko ;
+    item:documentedBy item:src-autoware-stack,
+        item:src-sae-j3016 ;
+    item:featureKind "automated_driving"^^xsd:string ;
+    item:featureName "geofenced_campus_loop"^^xsd:string ;
+    item:featureNote "SAE 수준을 평가·할당하지 않았다. 제한된 ODD가 있는 가상 학습 기능 이름이며, 운행 가능성이나 안전성을 의미하지 않는다."^^xsd:string ;
+    item:featureODD item:odd-campus-day ;
+    item:featureUsesModule item:module-control,
+        item:module-localization,
+        item:module-odd-monitor,
+        item:module-perception,
+        item:module-planning,
+        item:module-sensing,
+        item:module-vehicle-interface .
+
+item:level-0 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 0"@en,
+        "SAE 주행 자동화 수준 0"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "No Driving Automation"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 0 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:level-1 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 1"@en,
+        "SAE 주행 자동화 수준 1"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "Driver Assistance"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 1 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:level-2 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 2"@en,
+        "SAE 주행 자동화 수준 2"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "Partial Driving Automation"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 2 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:level-3 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 3"@en,
+        "SAE 주행 자동화 수준 3"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "Conditional Driving Automation"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 3 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:level-4 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 4"@en,
+        "SAE 주행 자동화 수준 4"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "High Driving Automation"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 4 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:level-5 a item:AutomationLevel ;
+    rdfs:label "SAE driving automation Level 5"@en,
+        "SAE 주행 자동화 수준 5"@ko ;
+    item:documentedBy item:src-sae-j3016 ;
+    item:levelLabel "Full Driving Automation"^^xsd:string ;
+    item:levelNote "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."^^xsd:string ;
+    item:levelNumber 5 ;
+    item:levelScope "on-road vehicle feature"^^xsd:string .
+
+item:safety-minimal-risk a item:SafetyFunction ;
+    rdfs:label "Synthetic minimal-risk fallback concept"@en,
+        "가상 최소위험상태 전환 개념"@ko ;
+    item:documentedBy item:src-autoware-vehicle,
+        item:src-nhtsa-ads ;
+    item:monitorsODD item:odd-campus-day ;
+    item:responseAction "조건에 따라 감속·정지 등 최소위험상태 전환을 검토한다."^^xsd:string ;
+    item:safetyFunctionKind "minimal_risk_fallback"^^xsd:string ;
+    item:safetyFunctionName "minimal_risk_fallback_demo"^^xsd:string ;
+    item:safetyFunctionNote "차량 제동거리, 위험 분석, 규제 요구사항 또는 안전 성능을 정의하지 않은 학습용 개념이다."^^xsd:string ;
+    item:safetyFunctionStatus "conceptual"^^xsd:string .
+
+item:safety-odd-monitor a item:SafetyFunction ;
+    rdfs:label "Synthetic operating-domain boundary monitor"@en,
+        "가상 운행영역 이탈 감시"@ko ;
+    item:documentedBy item:src-nhtsa-ads ;
+    item:monitorsODD item:odd-campus-day ;
+    item:responseAction "범위 이탈 감지 시 운행 승인 상태를 낮추고 대응 계획으로 전달한다."^^xsd:string ;
+    item:safetyFunctionKind "odd_monitoring"^^xsd:string ;
+    item:safetyFunctionName "odd_boundary_monitor_demo"^^xsd:string ;
+    item:safetyFunctionNote "동작 코드·진단 커버리지·안전 검증이 없는 개념 항목이다."^^xsd:string ;
+    item:safetyFunctionStatus "conceptual"^^xsd:string .
+
+item:scenario-signalized-junction a item:Scenario ;
+    rdfs:label "Synthetic signalized junction scenario"@en,
+        "가상 신호 교차로 시나리오"@ko ;
+    item:documentedBy item:src-awsim ;
+    item:hasRoadActor item:actor-approaching-car,
+        item:actor-ego-shuttle,
+        item:actor-traffic-signal ;
+    item:scenarioKind "intersection"^^xsd:string ;
+    item:scenarioName "signalized_junction_demo"^^xsd:string ;
+    item:scenarioNote "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."^^xsd:string ;
+    item:scenarioODD item:odd-campus-day ;
+    item:scenarioRoute item:route-campus-loop .
+
+item:sensor-camera a item:Sensor ;
+    rdfs:label "Synthetic forward camera"@en,
+        "가상 전방 카메라"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:mountedOnVehicle item:vehicle-campus-shuttle ;
+    item:sensorModality "camera"^^xsd:string ;
+    item:sensorName "front_camera_demo"^^xsd:string ;
+    item:sensorPurpose "차선·신호·물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+item:sensor-gnss-imu a item:Sensor ;
+    rdfs:label "Synthetic GNSS and IMU"@en,
+        "가상 GNSS·IMU"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:mountedOnVehicle item:vehicle-campus-shuttle ;
+    item:sensorModality "gnss_imu"^^xsd:string ;
+    item:sensorName "gnss_imu_demo"^^xsd:string ;
+    item:sensorPurpose "위치·자세 추정 입력을 나타내는 예시다."^^xsd:string .
+
+item:sensor-lidar a item:Sensor ;
+    rdfs:label "Synthetic LiDAR"@en,
+        "가상 라이다"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:mountedOnVehicle item:vehicle-campus-shuttle ;
+    item:sensorModality "lidar"^^xsd:string ;
+    item:sensorName "roof_lidar_demo"^^xsd:string ;
+    item:sensorPurpose "주변 3차원 물체 인지 입력을 나타내는 예시다."^^xsd:string .
+
+item:sensor-wheel-odometry a item:Sensor ;
+    rdfs:label "Synthetic wheel odometry"@en,
+        "가상 휠 오도메트리"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:mountedOnVehicle item:vehicle-campus-shuttle ;
+    item:sensorModality "wheel_odometry"^^xsd:string ;
+    item:sensorName "wheel_odometry_demo"^^xsd:string ;
+    item:sensorPurpose "차량 이동 추정 입력을 나타내는 예시다."^^xsd:string .
+
+item:test-pedestrian-simulation a item:TestRun ;
+    rdfs:label "Unrun synthetic pedestrian simulation plan"@en,
+        "미실행 가상 보행자 시뮬레이션 계획"@ko ;
+    item:testEnvironment "simulation"^^xsd:string ;
+    item:testName "pedestrian_crossing_simulation_plan"^^xsd:string ;
+    item:testNote "실제 시뮬레이터 실행, 결과 측정, 로그 수집 또는 안전 검증이 수행되지 않았다."^^xsd:string ;
+    item:testResult "not_run"^^xsd:string ;
+    item:testStatus "planned"^^xsd:string ;
+    item:testsScenario item:scenario-pedestrian-crossing .
+
+item:trajectory-campus-loop a item:Trajectory ;
+    rdfs:label "Synthetic shuttle loop trajectory plan"@en,
+        "가상 셔틀 순환 궤적 계획"@ko ;
+    item:trajectoryForRoute item:route-campus-loop ;
+    item:trajectoryGeneratedBy item:module-planning ;
+    item:trajectoryName "campus_loop_trajectory_demo"^^xsd:string ;
+    item:trajectoryNote "시뮬레이션에서 생성·추종한 실적이 없는 계획 개념 기록이다."^^xsd:string ;
+    item:trajectoryStatus "planned"^^xsd:string .
+
+item:actor-ego-shuttle a item:RoadActor ;
+    rdfs:label "Synthetic ego shuttle actor"@en,
+        "가상 자율주행 셔틀 행위자"@ko ;
+    item:actorKind "ego_vehicle"^^xsd:string ;
+    item:actorMotion "moving"^^xsd:string ;
+    item:actorName "ego_shuttle"^^xsd:string ;
+    item:actorVehicle item:vehicle-campus-shuttle .
+
+item:map-campus a item:RoadMap ;
+    rdfs:label "Synthetic campus road map"@en,
+        "가상 캠퍼스 도로 지도"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:mapCoverage "가상의 캠퍼스 순환 구간"^^xsd:string ;
+    item:mapFormat "lanelet2"^^xsd:string ;
+    item:mapName "campus_map_demo"^^xsd:string ;
+    item:mapNote "지도 파일·측량 자료·point-cloud 자료를 포함하지 않는 개념 예시다."^^xsd:string .
+
+item:module-odd-monitor a item:SoftwareModule ;
+    rdfs:label "Synthetic ODD monitor module"@en,
+        "가상 ODD 감시 모듈"@ko ;
+    item:documentedBy item:src-nhtsa-ads ;
+    item:moduleInput "vehicle, weather and geofence state"^^xsd:string ;
+    item:moduleKind "safety_monitor"^^xsd:string ;
+    item:moduleName "odd_monitor"^^xsd:string ;
+    item:moduleNote "실제 감시 로직이나 안전 무결성 수준을 구현·평가하지 않았다."^^xsd:string ;
+    item:moduleOutput "odd_status"^^xsd:string ;
+    item:modulePurpose "운행 조건이 합성 ODD 범위에 있는지 감시하는 역할의 예시다."^^xsd:string .
+
+item:module-vehicle-interface a item:SoftwareModule ;
+    rdfs:label "Synthetic vehicle interface module"@en,
+        "가상 차량 인터페이스 모듈"@ko ;
+    item:dependsOnModule item:module-control ;
+    item:documentedBy item:src-autoware-vehicle ;
+    item:moduleInput "steering and velocity commands, vehicle status"^^xsd:string ;
+    item:moduleKind "vehicle_interface"^^xsd:string ;
+    item:moduleName "vehicle_interface"^^xsd:string ;
+    item:moduleNote "CAN, drive-by-wire 또는 실차 프로토콜을 구현하지 않았다."^^xsd:string ;
+    item:moduleOutput "vehicle-specific command and normalized vehicle status"^^xsd:string ;
+    item:modulePurpose "차량별 제어 형식과 상태 형식 사이를 변환하는 역할의 예시다."^^xsd:string .
+
+item:scenario-pedestrian-crossing a item:Scenario ;
+    rdfs:label "Synthetic crosswalk pedestrian scenario"@en,
+        "가상 횡단보도 보행자 시나리오"@ko ;
+    item:documentedBy item:src-awsim,
+        item:src-nhtsa-odd ;
+    item:hasRoadActor item:actor-ego-shuttle,
+        item:actor-pedestrian ;
+    item:scenarioKind "pedestrian_crossing"^^xsd:string ;
+    item:scenarioName "crosswalk_pedestrian_demo"^^xsd:string ;
+    item:scenarioNote "속도·거리·우선권·반응 시간을 규정하지 않은 시험 설계 예시다."^^xsd:string ;
+    item:scenarioODD item:odd-campus-day ;
+    item:scenarioRoute item:route-campus-loop .
+
+item:module-control a item:SoftwareModule ;
+    rdfs:label "Synthetic vehicle control module"@en,
+        "가상 차량 제어 모듈"@ko ;
+    item:dependsOnModule item:module-planning ;
+    item:documentedBy item:src-autoware-stack ;
+    item:moduleInput "planned trajectory and vehicle state"^^xsd:string ;
+    item:moduleKind "control"^^xsd:string ;
+    item:moduleName "control"^^xsd:string ;
+    item:moduleNote "차량의 실제 actuator에 명령하지 않는다."^^xsd:string ;
+    item:moduleOutput "steering and velocity commands"^^xsd:string ;
+    item:modulePurpose "계획 궤적 추종용 조향·종방향 명령을 구성하는 역할의 예시다."^^xsd:string .
+
+item:module-localization a item:SoftwareModule ;
+    rdfs:label "Synthetic localization module"@en,
+        "가상 위치추정 모듈"@ko ;
+    item:dependsOnModule item:module-sensing ;
+    item:documentedBy item:src-autoware-stack ;
+    item:moduleInput "GNSS/IMU, wheel odometry and map"^^xsd:string ;
+    item:moduleKind "localization"^^xsd:string ;
+    item:moduleName "localization"^^xsd:string ;
+    item:moduleNote "정확도나 수렴 상태를 주장하지 않는다."^^xsd:string ;
+    item:moduleOutput "localized vehicle pose"^^xsd:string ;
+    item:modulePurpose "차량 위치·자세를 지도 기준으로 추정하는 역할의 예시다."^^xsd:string .
+
+item:module-perception a item:SoftwareModule ;
+    rdfs:label "Synthetic perception module"@en,
+        "가상 인지 모듈"@ko ;
+    item:dependsOnModule item:module-sensing ;
+    item:documentedBy item:src-autoware-stack ;
+    item:moduleInput "timestamped sensor data"^^xsd:string ;
+    item:moduleKind "perception"^^xsd:string ;
+    item:moduleName "perception"^^xsd:string ;
+    item:moduleNote "출력 형식과 모델 성능은 지정하거나 검증하지 않았다."^^xsd:string ;
+    item:moduleOutput "objects, traffic signal states and lane scene"^^xsd:string ;
+    item:modulePurpose "주변 물체·차선·신호 관련 장면 정보를 구성하는 역할의 예시다."^^xsd:string .
+
+item:src-awsim a item:DocumentationSource ;
+    rdfs:label "AWSIM simulation documentation"@en,
+        "AWSIM 시뮬레이션 문서"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "AWSIM is documented as a simulator for testing and evaluating autonomous-driving perception, planning and control under different configurations and scenarios."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "Autoware Foundation"^^xsd:string ;
+    item:sourceTitle "AWSIM Labs"^^xsd:string ;
+    item:sourceUri "https://autowarefoundation.github.io/AWSIM-Labs/main/Introduction/AWSIM/"^^xsd:anyURI .
+
+item:src-nhtsa-odd a item:DocumentationSource ;
+    rdfs:label "NHTSA operational design domain definition"@en,
+        "NHTSA 운행설계영역 정의"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "The report describes ODD attributes such as roadway type, speed range, lighting, weather and other operating constraints; the sample campus bounds here are synthetic."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+    item:sourceTitle "A Framework for Automated Driving System Testable Cases and Scenarios"^^xsd:string ;
+    item:sourceUri "https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/13882-automateddrivingsystems_092618_v1a_tag.pdf"^^xsd:anyURI .
+
+item:module-planning a item:SoftwareModule ;
+    rdfs:label "Synthetic planning module"@en,
+        "가상 경로계획 모듈"@ko ;
+    item:dependsOnModule item:module-localization,
+        item:module-perception ;
+    item:documentedBy item:src-autoware-stack ;
+    item:moduleInput "localized vehicle pose, objects and route"^^xsd:string ;
+    item:moduleKind "planning"^^xsd:string ;
+    item:moduleName "planning"^^xsd:string ;
+    item:moduleNote "실제 충돌 회피나 통행 규칙 준수 결과는 확인하지 않았다."^^xsd:string ;
+    item:moduleOutput "planned trajectory"^^xsd:string ;
+    item:modulePurpose "목표 경로와 장면 정보를 이용해 궤적을 생성하는 역할의 예시다."^^xsd:string .
+
+item:module-sensing a item:SoftwareModule ;
+    rdfs:label "Synthetic sensing module"@en,
+        "가상 감지 모듈"@ko ;
+    item:documentedBy item:src-autoware-stack ;
+    item:moduleInput "camera frames, LiDAR scans, GNSS/IMU and wheel odometry"^^xsd:string ;
+    item:moduleKind "sensing"^^xsd:string ;
+    item:moduleName "sensing"^^xsd:string ;
+    item:moduleNote "실제 ROS 노드나 드라이버를 가리키지 않는다."^^xsd:string ;
+    item:moduleOutput "timestamped sensor data"^^xsd:string ;
+    item:modulePurpose "센서 입력 수집·전처리 역할의 예시다."^^xsd:string .
+
+item:route-campus-loop a item:Route ;
+    rdfs:label "Synthetic campus loop route"@en,
+        "가상 캠퍼스 순환 경로"@ko ;
+    item:routeEnd "가상 연구동 정류장"^^xsd:string ;
+    item:routeMap item:map-campus ;
+    item:routeName "campus_loop_demo"^^xsd:string ;
+    item:routeNote "측량·접근성·도로 규칙 확인 전의 설명용 경로다."^^xsd:string ;
+    item:routeStart "가상 북문 정류장"^^xsd:string .
+
+item:src-autoware-vehicle a item:DocumentationSource ;
+    rdfs:label "Autoware vehicle interface design"@en,
+        "Autoware 차량 인터페이스 설계"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "Autoware Foundation"^^xsd:string ;
+    item:sourceTitle "Vehicle Interface design"^^xsd:string ;
+    item:sourceUri "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/"^^xsd:anyURI .
+
+item:src-nhtsa-ads a item:DocumentationSource ;
+    rdfs:label "NHTSA automated driving systems guidance"@en,
+        "NHTSA 자동주행 시스템 안전 안내"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "National Highway Traffic Safety Administration"^^xsd:string ;
+    item:sourceTitle "Automated Driving Systems"^^xsd:string ;
+    item:sourceUri "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems"^^xsd:anyURI .
+
+item:odd-campus-day a item:OperationalDesignDomain ;
+    rdfs:label "Synthetic campus daytime dry-condition ODD"@en,
+        "가상 캠퍼스 낮·건조 조건 ODD"@ko ;
+    item:documentedBy item:src-nhtsa-ads,
+        item:src-nhtsa-odd ;
+    item:environmentCondition "daylight"^^xsd:string,
+        "dry"^^xsd:string,
+        "geofenced"^^xsd:string ;
+    item:geographicArea "가상의 분리된 캠퍼스 순환로"^^xsd:string ;
+    item:maxSpeedKph 20 ;
+    item:oddName "campus_day_dry_demo"^^xsd:string ;
+    item:oddNote "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."^^xsd:string ;
+    item:roadwayType "private_campus"^^xsd:string .
+
+item:vehicle-campus-shuttle a item:Vehicle ;
+    rdfs:label "Synthetic electric campus shuttle"@en,
+        "가상 전기 캠퍼스 셔틀"@ko ;
+    item:documentedBy item:src-autoware-vehicle ;
+    item:powertrainType "electric"^^xsd:string ;
+    item:vehicleKind "shuttle"^^xsd:string ;
+    item:vehicleName "campus_shuttle_demo"^^xsd:string ;
+    item:vehicleNote "차량 크기, 제동거리, 조향 응답과 drive-by-wire 연결을 정의하거나 시험하지 않은 가상 차량이다."^^xsd:string .
+
+item:src-sae-j3016 a item:DocumentationSource ;
+    rdfs:label "SAE J3016 driving automation taxonomy"@en,
+        "SAE J3016 자동화 수준 분류"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "SAE International"^^xsd:string ;
+    item:sourceTitle "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles"^^xsd:string ;
+    item:sourceUri "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation"^^xsd:anyURI .
+
+item:src-autoware-stack a item:DocumentationSource ;
+    rdfs:label "Autoware autonomous driving stack architecture"@en,
+        "Autoware 자율주행 스택 구조"@ko ;
+    item:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    item:sourceClaim "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap."^^xsd:string ;
+    item:sourceLanguage "en"^^xsd:string ;
+    item:sourcePublisher "Autoware Foundation"^^xsd:string ;
+    item:sourceTitle "Autonomous Driving Stack Architecture"^^xsd:string ;
+    item:sourceUri "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/"^^xsd:anyURI .

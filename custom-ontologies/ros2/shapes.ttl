@@ -1,0 +1,703 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ros2: <https://example.org/ontology/custom/ros2#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ros2:ActionShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasAction,
+        ros2:Shape_actionClient,
+        ros2:Shape_actionName,
+        ros2:Shape_actionNote,
+        ros2:Shape_actionServer,
+        ros2:Shape_actionType ;
+    sh:sparql ros2:Constraint_ActionEndpointsInSystem,
+        ros2:Constraint_ActionTypeIsAction ;
+    sh:targetClass ros2:Action .
+
+ros2:CommunicationInterfaceShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:targetClass ros2:CommunicationInterface .
+
+ros2:ControllerShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasController,
+        ros2:Shape_controllerKind,
+        ros2:Shape_controllerName,
+        ros2:Shape_controllerNode,
+        ros2:Shape_controllerNote,
+        ros2:Shape_controllerPackage,
+        ros2:Shape_controlsHardware ;
+    sh:sparql ros2:Constraint_ControllerReferencesInSystem ;
+    sh:targetClass ros2:Controller .
+
+ros2:CoordinateFrameShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasCoordinateFrame,
+        ros2:Shape_frameName,
+        ros2:Shape_frameNote,
+        ros2:Shape_frameRole,
+        ros2:Shape_parentFrame ;
+    sh:sparql ros2:Constraint_FrameAcyclic,
+        ros2:Constraint_FrameParentInSystem ;
+    sh:targetClass ros2:CoordinateFrame .
+
+ros2:DocumentationSourceShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasDocumentationSource,
+        ros2:Shape_sourceAccessedAt,
+        ros2:Shape_sourceClaim,
+        ros2:Shape_sourceLanguage,
+        ros2:Shape_sourcePublisher,
+        ros2:Shape_sourceTitle,
+        ros2:Shape_sourceUri ;
+    sh:targetClass ros2:DocumentationSource .
+
+ros2:HardwareComponentShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasHardwareComponent,
+        ros2:Shape_commandInterface,
+        ros2:Shape_componentKind,
+        ros2:Shape_componentName,
+        ros2:Shape_controlledBy,
+        ros2:Shape_hardwareNote,
+        ros2:Shape_hardwareProtocol,
+        ros2:Shape_stateInterface ;
+    sh:sparql ros2:Constraint_ActuatorHasCommand,
+        ros2:Constraint_ControllerInSystem,
+        ros2:Constraint_SensorHasState ;
+    sh:targetClass ros2:HardwareComponent .
+
+ros2:MessageTypeShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Shape_definedInPackage,
+        ros2:Shape_definitionKind,
+        ros2:Shape_typeName,
+        ros2:Shape_typeNote ;
+    sh:targetClass ros2:MessageType .
+
+ros2:NodeShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasNode,
+        ros2:Shape_nodeName,
+        ros2:Shape_nodeNote,
+        ros2:Shape_nodeRole,
+        ros2:Shape_usesPackage ;
+    sh:sparql ros2:Constraint_NodePackageInSystem ;
+    sh:targetClass ros2:Node .
+
+ros2:PackageShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Shape_packageName,
+        ros2:Shape_packageNote,
+        ros2:Shape_packageRole,
+        ros2:Shape_packageUri ;
+    sh:targetClass ros2:Package .
+
+ros2:QoSProfileShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasQoSProfile,
+        ros2:Shape_durability,
+        ros2:Shape_historyDepth,
+        ros2:Shape_historyPolicy,
+        ros2:Shape_qosName,
+        ros2:Shape_qosNote,
+        ros2:Shape_reliability ;
+    sh:sparql ros2:Constraint_KeepLastNeedsDepth ;
+    sh:targetClass ros2:QoSProfile .
+
+ros2:ROS2SystemShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Shape_hasAction,
+        ros2:Shape_hasController,
+        ros2:Shape_hasCoordinateFrame,
+        ros2:Shape_hasDocumentationSource,
+        ros2:Shape_hasHardwareComponent,
+        ros2:Shape_hasNode,
+        ros2:Shape_hasPackage,
+        ros2:Shape_hasQoSProfile,
+        ros2:Shape_hasService,
+        ros2:Shape_hasTopic,
+        ros2:Shape_recordKind,
+        ros2:Shape_systemNote,
+        ros2:Shape_systemPurpose ;
+    sh:targetClass ros2:ROS2System .
+
+ros2:ServiceShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasService,
+        ros2:Shape_serviceClient,
+        ros2:Shape_serviceName,
+        ros2:Shape_serviceNote,
+        ros2:Shape_serviceQoSProfile,
+        ros2:Shape_serviceServer,
+        ros2:Shape_serviceType ;
+    sh:sparql ros2:Constraint_ServiceEndpointsInSystem,
+        ros2:Constraint_ServiceTypeIsSrv ;
+    sh:targetClass ros2:Service .
+
+ros2:TopicShape a sh:NodeShape ;
+    sh:node ros2:LabelShape ;
+    sh:property ros2:Owner_hasTopic,
+        ros2:Shape_hasPublisher,
+        ros2:Shape_hasSubscriber,
+        ros2:Shape_messageType,
+        ros2:Shape_topicName,
+        ros2:Shape_usesQoSProfile ;
+    sh:sparql ros2:Constraint_TopicLinksInSystem,
+        ros2:Constraint_TopicTypeIsMessage ;
+    sh:targetClass ros2:Topic .
+
+ros2:Constraint_ActionEndpointsInSystem sh:message "액션 서버와 클라이언트는 같은 시스템의 노드여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasAction $this . { $this ros2:actionServer ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } UNION { $this ros2:actionClient ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } }""" .
+
+ros2:Constraint_ActionTypeIsAction sh:message "액션 형식 정의는 action 종류여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:actionType ?type . ?type ros2:definitionKind ?kind . FILTER (?kind != "action") }""" .
+
+ros2:Constraint_ActuatorHasCommand sh:message "액추에이터 구성요소에는 명령 인터페이스가 필요합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:componentKind "actuator" . FILTER NOT EXISTS { $this ros2:commandInterface ?interface } }""" .
+
+ros2:Constraint_ControllerInSystem sh:message "하드웨어의 컨트롤러 참조는 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasHardwareComponent $this . $this ros2:controlledBy ?controller . FILTER NOT EXISTS { ?system ros2:hasController ?controller } }""" .
+
+ros2:Constraint_ControllerReferencesInSystem sh:message "컨트롤러 패키지, 관리자 노드와 하드웨어는 같은 시스템에 등록되어야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasController $this . { $this ros2:controllerPackage ?package . FILTER NOT EXISTS { ?system ros2:hasPackage ?package } } UNION { $this ros2:controllerNode ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } UNION { $this ros2:controlsHardware ?hardware . FILTER NOT EXISTS { ?system ros2:hasHardwareComponent ?hardware } } }""" .
+
+ros2:Constraint_FrameAcyclic sh:message "좌표 프레임 계층은 순환할 수 없습니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:parentFrame+ $this . }""" .
+
+ros2:Constraint_FrameParentInSystem sh:message "상위 프레임은 같은 시스템의 좌표 프레임이어야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasCoordinateFrame $this . $this ros2:parentFrame ?parent . FILTER NOT EXISTS { ?system ros2:hasCoordinateFrame ?parent } }""" .
+
+ros2:Constraint_KeepLastNeedsDepth sh:message "keep_last 이력 프로파일에는 양수 큐 깊이가 필요합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:historyPolicy "keep_last" . FILTER NOT EXISTS { $this ros2:historyDepth ?depth } }""" .
+
+ros2:Constraint_NodePackageInSystem sh:message "노드의 실행 패키지는 해당 시스템의 패키지 목록에 있어야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasNode $this . $this ros2:usesPackage ?package . FILTER NOT EXISTS { ?system ros2:hasPackage ?package } }""" .
+
+ros2:Constraint_SensorHasState sh:message "센서 구성요소에는 상태 인터페이스가 필요합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:componentKind "sensor" . FILTER NOT EXISTS { $this ros2:stateInterface ?interface } }""" .
+
+ros2:Constraint_ServiceEndpointsInSystem sh:message "서비스 서버와 클라이언트는 같은 시스템의 노드여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system <https://example.org/ontology/custom/ros2#hasService> $this . { $this ros2:serviceServer ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } UNION { $this ros2:serviceClient ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } }""" .
+
+ros2:Constraint_ServiceTypeIsSrv sh:message "서비스 형식 정의는 srv 종류여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:serviceType ?type . ?type ros2:definitionKind ?kind . FILTER (?kind != "srv") }""" .
+
+ros2:Constraint_TopicLinksInSystem sh:message "토픽의 발행자와 구독자는 같은 ROS 2 시스템의 노드여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { ?system ros2:hasTopic $this . { $this ros2:hasPublisher ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } UNION { $this ros2:hasSubscriber ?node . FILTER NOT EXISTS { ?system ros2:hasNode ?node } } }""" .
+
+ros2:Constraint_TopicTypeIsMessage sh:message "토픽의 형식 정의는 msg 종류여야 합니다."@ko ;
+    sh:select """PREFIX ros2: <https://example.org/ontology/custom/ros2#>
+SELECT $this WHERE { $this ros2:messageType ?type . ?type ros2:definitionKind ?kind . FILTER (?kind != "msg") }""" .
+
+ros2:LabelPropertyShape sh:datatype rdf:langString ;
+    sh:minCount 2 ;
+    sh:minLength 1 ;
+    sh:path rdfs:label ;
+    sh:uniqueLang true .
+
+ros2:Owner_hasAction sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasAction ] .
+
+ros2:Owner_hasController sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasController ] .
+
+ros2:Owner_hasCoordinateFrame sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasCoordinateFrame ] .
+
+ros2:Owner_hasDocumentationSource sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasDocumentationSource ] .
+
+ros2:Owner_hasHardwareComponent sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasHardwareComponent ] .
+
+ros2:Owner_hasNode sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasNode ] .
+
+ros2:Owner_hasQoSProfile sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasQoSProfile ] .
+
+ros2:Owner_hasService sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasService ] .
+
+ros2:Owner_hasTopic sh:class ros2:ROS2System ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path [ sh:inversePath ros2:hasTopic ] .
+
+ros2:Shape_actionClient sh:class ros2:Node ;
+    sh:message "목표를 보내고 진행 상태를 받는 클라이언트 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:actionClient .
+
+ros2:Shape_actionName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "목표를 보낼 액션 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:actionName .
+
+ros2:Shape_actionNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "장시간 작업의 목표, 피드백, 취소 또는 결과 예시를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:actionNote .
+
+ros2:Shape_actionServer sh:class ros2:Node ;
+    sh:maxCount 1 ;
+    sh:message "목표를 실행하고 피드백·결과를 보내는 서버 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:actionServer .
+
+ros2:Shape_actionType sh:class ros2:MessageType ;
+    sh:maxCount 1 ;
+    sh:message ".action 정의 파일의 형식을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:actionType .
+
+ros2:Shape_commandInterface sh:datatype xsd:string ;
+    sh:message "하드웨어에 쓰는 명령 인터페이스 이름을 기록한다."@ko ;
+    sh:path ros2:commandInterface .
+
+ros2:Shape_componentKind sh:datatype xsd:string ;
+    sh:in ( "sensor"^^xsd:string "actuator"^^xsd:string "system"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "장치를 센서, 액추에이터 또는 복합 시스템으로 분류한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:componentKind .
+
+ros2:Shape_componentName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "예시 시스템에서 장치를 식별하는 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:componentName .
+
+ros2:Shape_controlledBy sh:class ros2:Controller ;
+    sh:maxCount 1 ;
+    sh:message "장치에 명령을 전달하는 컨트롤러를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:controlledBy .
+
+ros2:Shape_controllerKind sh:datatype xsd:string ;
+    sh:in ( "broadcaster"^^xsd:string "command"^^xsd:string "custom"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "컨트롤러를 broadcaster, command 또는 custom 구성으로 분류한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:controllerKind .
+
+ros2:Shape_controllerName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "컨트롤러 인스턴스를 식별하는 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:controllerName .
+
+ros2:Shape_controllerNode sh:class ros2:Node ;
+    sh:maxCount 1 ;
+    sh:message "컨트롤러를 관리하는 실행 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:controllerNode .
+
+ros2:Shape_controllerNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "컨트롤 주기와 예시 구현의 범위를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:controllerNote .
+
+ros2:Shape_controllerPackage sh:class ros2:Package ;
+    sh:maxCount 1 ;
+    sh:message "컨트롤러 구현을 제공하는 패키지를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:controllerPackage .
+
+ros2:Shape_controlsHardware sh:class ros2:HardwareComponent ;
+    sh:message "컨트롤러가 읽거나 명령하는 하드웨어 구성요소를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:controlsHardware .
+
+ros2:Shape_definedInPackage sh:class ros2:Package ;
+    sh:maxCount 1 ;
+    sh:message "인터페이스 형식을 선언하는 패키지를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:definedInPackage .
+
+ros2:Shape_definitionKind sh:datatype xsd:string ;
+    sh:in ( "msg"^^xsd:string "srv"^^xsd:string "action"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "형식 정의가 msg, srv 또는 action 파일인지 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:definitionKind .
+
+ros2:Shape_durability sh:datatype xsd:string ;
+    sh:in ( "volatile"^^xsd:string "transient_local"^^xsd:string "system_default"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "늦게 연결한 구독자에게 이전 샘플을 보존할지 정한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:durability .
+
+ros2:Shape_frameName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "tf2 트리에서 사용할 좌표 프레임 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:frameName .
+
+ros2:Shape_frameNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "프레임의 예시 장착 위치와 관계를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:frameNote .
+
+ros2:Shape_frameRole sh:datatype xsd:string ;
+    sh:in ( "world"^^xsd:string "sensor"^^xsd:string "base"^^xsd:string "tool"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "좌표계가 환경 기준인지 센서 기준인지 분류한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:frameRole .
+
+ros2:Shape_hardwareNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "하드웨어 연결과 합성 예시의 범위를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:hardwareNote .
+
+ros2:Shape_hardwareProtocol sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "장치와 제어기 사이의 예시 물리 통신·신호 방식을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:hardwareProtocol .
+
+ros2:Shape_hasAction sh:class ros2:Action ;
+    sh:message "시스템에서 제공하거나 사용하는 액션을 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasAction .
+
+ros2:Shape_hasController sh:class ros2:Controller ;
+    sh:message "시스템에서 관리하는 컨트롤러를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasController .
+
+ros2:Shape_hasCoordinateFrame sh:class ros2:CoordinateFrame ;
+    sh:message "시스템의 tf2 프레임 트리에 속한 프레임을 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasCoordinateFrame .
+
+ros2:Shape_hasDocumentationSource sh:class ros2:DocumentationSource ;
+    sh:message "시스템을 설명하는 출처 기록을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasDocumentationSource .
+
+ros2:Shape_hasHardwareComponent sh:class ros2:HardwareComponent ;
+    sh:message "시스템에 연결된 센서·액추에이터·하드웨어 묶음을 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasHardwareComponent .
+
+ros2:Shape_hasNode sh:class ros2:Node ;
+    sh:message "시스템에서 실행되는 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasNode .
+
+ros2:Shape_hasPackage sh:class ros2:Package ;
+    sh:message "시스템에서 사용하는 패키지를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasPackage .
+
+ros2:Shape_hasPublisher sh:class ros2:Node ;
+    sh:message "토픽에 메시지를 발행하는 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasPublisher .
+
+ros2:Shape_hasQoSProfile sh:class ros2:QoSProfile ;
+    sh:message "시스템에서 참조하는 통신 QoS 프로파일을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasQoSProfile .
+
+ros2:Shape_hasService sh:class ros2:Service ;
+    sh:message "시스템에서 제공하거나 사용하는 서비스를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasService .
+
+ros2:Shape_hasSubscriber sh:class ros2:Node ;
+    sh:message "토픽 메시지를 받는 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasSubscriber .
+
+ros2:Shape_hasTopic sh:class ros2:Topic ;
+    sh:message "시스템에서 사용하는 토픽을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:hasTopic .
+
+ros2:Shape_historyDepth sh:datatype xsd:integer ;
+    sh:maxCount 1 ;
+    sh:message "keep_last 이력에서 보관할 샘플 큐 크기를 기록한다."@ko ;
+    sh:minExclusive 1 ;
+    sh:path ros2:historyDepth .
+
+ros2:Shape_historyPolicy sh:datatype xsd:string ;
+    sh:in ( "keep_last"^^xsd:string "keep_all"^^xsd:string "system_default"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "큐에 최근 샘플만 보관하거나 사용 가능한 샘플을 모두 보관하는 방식을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:historyPolicy .
+
+ros2:Shape_messageType sh:class ros2:MessageType ;
+    sh:maxCount 1 ;
+    sh:message "토픽에서 전달하는 메시지 형식을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:messageType .
+
+ros2:Shape_nodeName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "ROS 그래프에서 노드를 식별하는 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:nodeName .
+
+ros2:Shape_nodeNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "노드의 책임과 예시 구현 여부를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:nodeNote .
+
+ros2:Shape_nodeRole sh:datatype xsd:string ;
+    sh:in ( "driver"^^xsd:string "manager"^^xsd:string "operator"^^xsd:string "controller_manager"^^xsd:string "multipurpose"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "예시 시스템에서 노드가 맡는 주된 기능을 분류한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:nodeRole .
+
+ros2:Shape_packageName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "ROS 2 패키지의 정확한 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:packageName .
+
+ros2:Shape_packageNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "패키지의 용도와 이 예시에서의 사용 범위를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:packageNote .
+
+ros2:Shape_packageRole sh:datatype xsd:string ;
+    sh:in ( "client_library"^^xsd:string "common_interfaces"^^xsd:string "custom_interfaces"^^xsd:string "control_framework"^^xsd:string "controller_plugins"^^xsd:string "transform_library"^^xsd:string "application"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "패키지가 라이브러리, 공통 인터페이스, 제어기 또는 응용 중 무엇을 제공하는지 분류한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:packageRole .
+
+ros2:Shape_packageUri sh:datatype xsd:anyURI ;
+    sh:maxCount 1 ;
+    sh:message "패키지 저장소 주소 또는 합성 예시 식별자를 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:packageUri ;
+    sh:pattern "^(https?://|urn:)[^\\s]+$" .
+
+ros2:Shape_parentFrame sh:class ros2:CoordinateFrame ;
+    sh:maxCount 1 ;
+    sh:message "좌표 프레임 트리에서 바로 위의 프레임을 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:parentFrame .
+
+ros2:Shape_qosName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "정책 묶음을 식별하는 프로파일 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:qosName .
+
+ros2:Shape_qosNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "프로파일 선택 목적과 출처 범위를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:qosNote .
+
+ros2:Shape_recordKind sh:datatype xsd:string ;
+    sh:in ( "documented"^^xsd:string "synthetic"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "학습용 연결 구성을 합성 기록으로 표시하고, 문서화된 개념 사실과 구별한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:recordKind .
+
+ros2:Shape_reliability sh:datatype xsd:string ;
+    sh:in ( "reliable"^^xsd:string "best_effort"^^xsd:string "system_default"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "샘플 전달에 reliable, best effort 또는 시스템 기본 정책을 선택한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:reliability .
+
+ros2:Shape_serviceClient sh:class ros2:Node ;
+    sh:message "서비스에 요청을 보내는 클라이언트 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:serviceClient .
+
+ros2:Shape_serviceName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "호출 가능한 서비스 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:serviceName .
+
+ros2:Shape_serviceNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "서비스가 수행하는 짧은 요청·응답 작업을 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:serviceNote .
+
+ros2:Shape_serviceQoSProfile sh:class ros2:QoSProfile ;
+    sh:maxCount 1 ;
+    sh:message "서비스 서버와 클라이언트에 대한 예시 QoS 프로파일을 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:serviceQoSProfile .
+
+ros2:Shape_serviceServer sh:class ros2:Node ;
+    sh:maxCount 1 ;
+    sh:message "요청을 처리하고 응답하는 서버 노드를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:serviceServer .
+
+ros2:Shape_serviceType sh:class ros2:MessageType ;
+    sh:maxCount 1 ;
+    sh:message "요청·응답 구조를 정의하는 서비스 형식을 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:serviceType .
+
+ros2:Shape_sourceAccessedAt sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:message "이 온톨로지 자료를 작성하면서 문서를 확인한 날짜를 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourceAccessedAt .
+
+ros2:Shape_sourceClaim sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "해당 출처가 뒷받침하는 개념 또는 값의 범위를 요약한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourceClaim .
+
+ros2:Shape_sourceLanguage sh:datatype xsd:string ;
+    sh:in ( "en"^^xsd:string "ko"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "원문 문서의 주 언어를 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourceLanguage .
+
+ros2:Shape_sourcePublisher sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "문서를 관리하는 ROS 프로젝트 또는 패키지를 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourcePublisher .
+
+ros2:Shape_sourceTitle sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "근거 문서의 제목 또는 파일을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourceTitle .
+
+ros2:Shape_sourceUri sh:datatype xsd:anyURI ;
+    sh:maxCount 1 ;
+    sh:message "직접 확인할 수 있는 공식 문서 주소를 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:sourceUri ;
+    sh:pattern "^(https?://|urn:)[^\\s]+$" .
+
+ros2:Shape_stateInterface sh:datatype xsd:string ;
+    sh:message "하드웨어에서 읽는 상태 인터페이스 이름을 기록한다."@ko ;
+    sh:path ros2:stateInterface .
+
+ros2:Shape_systemNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "구성 범위와 예시 여부에 대한 추가 설명을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:systemNote .
+
+ros2:Shape_systemPurpose sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "구성이 지원하는 응용 목적을 요약한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:systemPurpose .
+
+ros2:Shape_topicName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "발행·구독에 사용할 토픽 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:topicName .
+
+ros2:Shape_typeName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "패키지 경로를 포함한 ROS 인터페이스 형식 이름을 기록한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:typeName .
+
+ros2:Shape_typeNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "형식이 전달하는 내용과 표준·사용자 정의 여부를 설명한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ros2:typeNote .
+
+ros2:Shape_usesPackage sh:class ros2:Package ;
+    sh:maxCount 1 ;
+    sh:message "노드 구현을 포함하는 패키지를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:usesPackage .
+
+ros2:Shape_usesQoSProfile sh:class ros2:QoSProfile ;
+    sh:maxCount 1 ;
+    sh:message "토픽 발행자와 구독자의 통신 정책 예시를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ros2:usesQoSProfile .
+
+ros2:LabelShape a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property ros2:LabelPropertyShape .

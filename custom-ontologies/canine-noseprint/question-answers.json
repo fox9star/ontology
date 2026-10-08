@@ -1,0 +1,342 @@
+{
+  "DNP-01": {
+    "variables": [
+      "project",
+      "status",
+      "subject",
+      "pseudonym",
+      "scope"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/canine-noseprint-project",
+        "synthetic_example",
+        "https://example.test/canine-noseprint/dog-subject-01",
+        "nose-subject-01",
+        "개 온톨로지의 합성 콩이 개체 URI와 교차 참조한다. 코 이미지, 템플릿, 비교 결과는 없으며, 연구 주장의 범위는 각 문헌에 귀속한다."
+      ]
+    ]
+  },
+  "DNP-02": {
+    "variables": [
+      "subject",
+      "pseudonym",
+      "record"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/dog-subject-01",
+        "nose-subject-01",
+        "https://example.org/ontology/custom/dog#kongi"
+      ]
+    ]
+  },
+  "DNP-03": {
+    "variables": [
+      "sample",
+      "assetStatus",
+      "asset",
+      "session",
+      "device",
+      "lighting",
+      "pose",
+      "surface"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/sample-01",
+        "no_binary_placeholder",
+        "urn:synthetic:canine-noseprint:no-image:sample-01",
+        "https://example.test/canine-noseprint/capture-01",
+        "not_recorded",
+        "not_recorded",
+        "not_recorded",
+        "not_recorded"
+      ],
+      [
+        "https://example.test/canine-noseprint/sample-02",
+        "no_binary_placeholder",
+        "urn:synthetic:canine-noseprint:no-image:sample-02",
+        "https://example.test/canine-noseprint/capture-02",
+        "not_recorded",
+        "not_recorded",
+        "not_recorded",
+        "not_recorded"
+      ]
+    ]
+  },
+  "DNP-04": {
+    "variables": [
+      "region",
+      "name",
+      "definition",
+      "source",
+      "title"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/nasal-plane-roi",
+        "nasal-plane-between-and-around-nares",
+        "콧구멍 사이와 주위, 인중 부근 및 콧구멍 위쪽의 코끝 영역을 연구에서 관심 영역으로 정의한다.",
+        "https://example.test/canine-noseprint/viability-2021",
+        "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker"
+      ]
+    ]
+  },
+  "DNP-05": {
+    "variables": [
+      "sample",
+      "assessment",
+      "status",
+      "focus",
+      "pose",
+      "lighting",
+      "glare",
+      "occlusion",
+      "issue"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/sample-01",
+        "https://example.test/canine-noseprint/quality-01",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed"
+      ],
+      [
+        "https://example.test/canine-noseprint/sample-02",
+        "https://example.test/canine-noseprint/quality-02",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed",
+        "not_assessed"
+      ]
+    ]
+  },
+  "DNP-06": {
+    "variables": [
+      "sample",
+      "prep",
+      "prepStatus",
+      "steps",
+      "template",
+      "templateStatus",
+      "method"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/sample-01",
+        "https://example.test/canine-noseprint/preprocessing-sample-01",
+        "not_run",
+        "관심 영역 검출 및 정규화는 계획된 단계의 예일 뿐 수행하지 않았다.",
+        "https://example.test/canine-noseprint/template-sample-01",
+        "not_generated",
+        "논문별 구현 또는 검증된 알고리즘을 선택하기 전 단계"
+      ]
+    ]
+  },
+  "DNP-07": {
+    "variables": [
+      "model",
+      "name",
+      "family",
+      "status",
+      "description",
+      "source",
+      "title",
+      "claim",
+      "limits"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/dnnet-reference",
+        "Dog Nose-Print Identification Using Deep Neural Networks",
+        "siamese_cnn",
+        "literature_reference",
+        "논문에 기술된 특징 추출과 self-attention을 포함한 CNN 기반 Siamese 방법에 대한 문헌 참조다.",
+        "https://example.test/canine-noseprint/dnnet-2021",
+        "Dog Nose-Print Identification Using Deep Neural Networks",
+        "DNNet은 특징 추출·self-attention을 포함한 CNN 기반 Siamese 구조이며, 저자들은 자신들의 다중 데이터셋 교차검증에서 평균 Rank-1 98.972%를 보고한다.",
+        "보고된 수치는 해당 논문의 데이터셋과 프로토콜에 한정한다. 이 온톨로지의 예제 성능이나 일반 환경의 정확도를 뜻하지 않는다."
+      ]
+    ]
+  },
+  "DNP-08": {
+    "variables": [
+      "dataset",
+      "name",
+      "provenance",
+      "status",
+      "subjects",
+      "samples",
+      "split",
+      "limits"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "canine-noseprint-metadata-fixture",
+        "synthetic_metadata_only",
+        "metadata_fixture",
+        1,
+        2,
+        "not_applicable_no_image_binary",
+        "두 개의 이미지 없는 메타데이터 자리표시자만 있다. 실제 코 이미지나 연구 표본은 포함되지 않는다."
+      ]
+    ]
+  },
+  "DNP-09": {
+    "variables": [
+      "task",
+      "mode",
+      "status",
+      "query",
+      "gallery",
+      "result",
+      "resultStatus",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/verification-task-01",
+        "verification_1_to_1",
+        "not_run",
+        "https://example.test/canine-noseprint/sample-01",
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "https://example.test/canine-noseprint/match-result-01",
+        "not_computed",
+        "not_computed는 후보 없음이나 비동일 판정이 아니다. 점수와 후보 개체를 만들지 않았다."
+      ]
+    ]
+  },
+  "DNP-10": {
+    "variables": [
+      "run",
+      "status",
+      "dataset",
+      "model",
+      "metric",
+      "name",
+      "kind",
+      "measurement",
+      "value"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/evaluation-run-01",
+        "not_run",
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "https://example.test/canine-noseprint/dnnet-reference",
+        "https://example.test/canine-noseprint/metric-eer",
+        "Equal error rate",
+        "equal_error_rate",
+        "not_measured",
+        null
+      ],
+      [
+        "https://example.test/canine-noseprint/evaluation-run-01",
+        "not_run",
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "https://example.test/canine-noseprint/dnnet-reference",
+        "https://example.test/canine-noseprint/metric-far",
+        "False accept rate",
+        "false_accept_rate",
+        "not_measured",
+        null
+      ],
+      [
+        "https://example.test/canine-noseprint/evaluation-run-01",
+        "not_run",
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "https://example.test/canine-noseprint/dnnet-reference",
+        "https://example.test/canine-noseprint/metric-frr",
+        "False reject rate",
+        "false_reject_rate",
+        "not_measured",
+        null
+      ],
+      [
+        "https://example.test/canine-noseprint/evaluation-run-01",
+        "not_run",
+        "https://example.test/canine-noseprint/synthetic-reference-dataset",
+        "https://example.test/canine-noseprint/dnnet-reference",
+        "https://example.test/canine-noseprint/metric-rank1",
+        "Rank-1 identification rate",
+        "rank_1",
+        "not_measured",
+        null
+      ]
+    ]
+  },
+  "DNP-11": {
+    "variables": [
+      "permission",
+      "status",
+      "scope",
+      "retention",
+      "subject",
+      "sample"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/permission-01",
+        "not_applicable_synthetic",
+        "실제 개 이미지·보호자 정보·연구 자료를 포함하지 않는 합성 메타데이터 예시다.",
+        "실제 이미지가 추가되면 승인 범위, 접근 제한, 보존 기간 및 삭제 요청 처리를 별도로 기록한다.",
+        "https://example.test/canine-noseprint/dog-subject-01",
+        "https://example.test/canine-noseprint/sample-01"
+      ],
+      [
+        "https://example.test/canine-noseprint/permission-01",
+        "not_applicable_synthetic",
+        "실제 개 이미지·보호자 정보·연구 자료를 포함하지 않는 합성 메타데이터 예시다.",
+        "실제 이미지가 추가되면 승인 범위, 접근 제한, 보존 기간 및 삭제 요청 처리를 별도로 기록한다.",
+        "https://example.test/canine-noseprint/dog-subject-01",
+        "https://example.test/canine-noseprint/sample-02"
+      ]
+    ]
+  },
+  "DNP-12": {
+    "variables": [
+      "source",
+      "title",
+      "year",
+      "uri",
+      "claim",
+      "limits"
+    ],
+    "rows": [
+      [
+        "https://example.test/canine-noseprint/dnnet-2021",
+        "Dog Nose-Print Identification Using Deep Neural Networks",
+        2021,
+        "https://doi.org/10.1109/ACCESS.2021.3068517",
+        "DNNet은 특징 추출·self-attention을 포함한 CNN 기반 Siamese 구조이며, 저자들은 자신들의 다중 데이터셋 교차검증에서 평균 Rank-1 98.972%를 보고한다.",
+        "보고된 수치는 해당 논문의 데이터셋과 프로토콜에 한정한다. 이 온톨로지의 예제 성능이나 일반 환경의 정확도를 뜻하지 않는다."
+      ],
+      [
+        "https://example.test/canine-noseprint/viability-2021",
+        "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker",
+        2021,
+        "https://www.mdpi.com/2076-2615/11/12/3372",
+        "연구진은 60마리·18품종의 180개 이미지를 세 시점에서 수집했고 70마리·19품종·278개 이미지로 확장 분석했다. 저자들은 생물학적 고유성 증거가 완전히 확증되지는 않았다고 논의한다.",
+        "특정 연구 표본과 비교 절차의 결과다. 실제 운용 이미지의 품질 문제와 모든 개체군의 보편 성능을 입증하지 않는다."
+      ],
+      [
+        "https://example.test/canine-noseprint/beagle-longitudinal-2021",
+        "The Formation and Invariance of Canine Nose Pattern of Beagle Dogs from Early Puppy to Young Adult Periods",
+        2021,
+        "https://www.mdpi.com/2076-2615/11/9/2664",
+        "비글 10마리의 코 이미지를 생후 2개월부터 11개월까지 관찰해 해당 관찰 기간의 형성과 패턴 안정성을 연구했다.",
+        "10마리 비글과 10개월 관찰 결과다. 저자들은 전 생애 안정성에 대한 장기 후속 검증이 필요하다고 명시한다."
+      ]
+    ]
+  }
+}

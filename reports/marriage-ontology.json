@@ -1,0 +1,100 @@
+{
+  "created_at": "2026-10-05T12:13:03+00:00",
+  "id": "marriage",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 8,
+  "properties": 49,
+  "instance_counts": {
+    "Ceremony": 3,
+    "Expense": 6,
+    "Invitation": 6,
+    "MarriagePlan": 2,
+    "Person": 8,
+    "PreparationTask": 6,
+    "ServiceBooking": 5,
+    "Venue": 2
+  },
+  "triples": 309,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 46
+  },
+  "questions": 8,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Synthetic partners, wedding events, invitations, tasks, bookings and expenses. Marriage information is unrecorded; event records do not determine legal marital status. No real invitations, reservations or payments are made.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "da507580bb37101d571dedebcbe66d9eb188d350a631e9f931912d11ad7d658c",
+      "bytes": 38427
+    },
+    "curated-data.json": {
+      "sha256": "423e87bbcda2e0f1c6c029324ec071bf6240622f00b221431c6bc8257b698e1f",
+      "bytes": 15468
+    },
+    "example.ttl": {
+      "sha256": "50f7a3c840e41dc7b39520284b5d2112a67783a7a6c14e7cafafc0f6118dab1c",
+      "bytes": 15332
+    },
+    "profile.json": {
+      "sha256": "2d3a4f2899a058ab906bd71b3b021ea59032b615904ceecb0b759fb1584d006f",
+      "bytes": 1277
+    },
+    "question-answers.json": {
+      "sha256": "4affdcfc21856ec3bfb486fe009463c932543fb9b5b3622e8e305917179edb6a",
+      "bytes": 16557
+    },
+    "question-fixture.ttl": {
+      "sha256": "bb45849ebc4ab69c2a6c687b5cb7d754d5b544f696f27e217ddccb7797e4c554",
+      "bytes": 16221
+    },
+    "questions.md": {
+      "sha256": "a94423e9824d79d8bb5b6e1bd9bc4e36c2d6c72c3ef70e0ab94fa575abf7635a",
+      "bytes": 7723
+    },
+    "schema.owl": {
+      "sha256": "e26ddab1dbcbb7b7d5b25326e9c1632cc19498f6dfec3b820167b52784085d8a",
+      "bytes": 46829
+    },
+    "schema.ttl": {
+      "sha256": "c24d005930b23511bd7d162683a090afc3711b91aee63ac755ed3562da56c887",
+      "bytes": 30824
+    },
+    "shapes.ttl": {
+      "sha256": "3b64b4af5c6354963739fdec5cfb3b6c4d454f9fa7c81085f984357aa70d6aa9",
+      "bytes": 19948
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-05T12:13:58+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 24,
+    "profile_name": "결혼·결혼식 온톨로지 (marriage)",
+    "profile_id": "marriage",
+    "explorer": {
+      "classes": 8,
+      "properties": 49,
+      "instances": 38
+    },
+    "question_keys": [
+      "MAR-01",
+      "MAR-02",
+      "MAR-03",
+      "MAR-04",
+      "MAR-05",
+      "MAR-06",
+      "MAR-07",
+      "MAR-08"
+    ],
+    "page_status": 200,
+    "page_has_marriage_option": true,
+    "browser_visual_verification": "not_performed"
+  }
+}

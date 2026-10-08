@@ -1,0 +1,201 @@
+@prefix picnic: <https://example.org/ontology/custom/picnic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/picnic> a owl:Ontology ;
+    rdfs:label "소풍 온톨로지"@ko, "Picnic ontology"@en ;
+    rdfs:comment "소풍 계획의 장소·참가자·일정·준비물·분담·비용·날씨 확인 기록을 연결한다. 합성 예시와 관찰 기록을 구분하며 ready는 입력된 준비 기록의 완결 상태일 뿐 안전 인증이나 실제 방문 증명이 아니다. 날씨 기록은 실시간 예보나 안전 판단을 자동 생성하지 않는다."@ko,
+        "Connects a picnic plan's place, participants, activities, supplies, assignments, expenses and weather check records. Synthetic examples are distinguished from observed records. Ready denotes completion of the recorded preparation, not safety certification or proof of a visit. Weather records do not automatically produce live forecasts or safety decisions."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/picnic/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+picnic:PicnicPlan a owl:Class ;
+    rdfs:label "소풍 계획"@ko, "Picnic plan"@en ;
+    rdfs:comment "날짜와 시간 범위, 장소, 참가자 및 준비 기록을 갖는 한 번의 소풍 계획이다. ready는 준비물 포장·담당자·예산·날씨 기록의 구조적 조건이 갖추어졌다는 뜻이며 실제 실행이나 안전을 보장하지 않는다."@ko,
+        "A plan for one picnic with its date, time bounds, place, participants and preparation records. Ready means the recorded packing, assignments, budget and weather conditions are satisfied structurally; it guarantees neither execution nor safety."@en .
+picnic:Place a owl:Class ;
+    rdfs:label "소풍 장소"@ko, "Picnic place"@en ;
+    rdfs:comment "소풍 계획이 사용하는 장소 유형과 위치 설명이다. 여러 계획이 같은 장소를 참조할 수 있으며 기록만으로 방문 사실, 입장 허가나 안전성을 증명하지 않는다."@ko,
+        "A place type and location description used by a picnic plan. Multiple plans may reference the same place; the record proves neither a visit, admission permission nor safety."@en .
+picnic:Participant a owl:Class ;
+    rdfs:label "참가자 기록"@ko, "Participant record"@en ;
+    rdfs:comment "한 소풍 계획의 주최자 또는 참가자 기록이다. 같은 사람의 다른 계획 참여는 별도 기록으로 표현하며 표시 이름은 실명이나 참석 사실의 인증이 아니다."@ko,
+        "An organizer or attendee record belonging to one picnic plan. The same person's participation in another plan uses a separate record; a display label verifies neither identity nor attendance."@en .
+picnic:Activity a owl:Class ;
+    rdfs:label "소풍 활동"@ko, "Picnic activity"@en ;
+    rdfs:comment "한 소풍 계획의 시간 범위 안에 배치한 이동, 식사, 놀이, 휴식, 정리 또는 기타 활동이다. 순서는 계획 안에서 고유하며 활동 시간은 예약이나 실제 수행을 증명하지 않는다."@ko,
+        "A travel, meal, play, rest, cleanup or other activity placed within one picnic plan's time bounds. Sequence is unique within that plan; recorded activity times establish neither reservations nor actual execution."@en .
+picnic:SupplyItem a owl:Class ;
+    rdfs:label "준비물 항목"@ko, "Supply item"@en ;
+    rdfs:comment "한 소풍 계획의 준비물과 필요한 수량, 포장 수량 및 단위이다. 수량은 계획 기록의 값이며 권장 영양량이나 물품의 안전성 기준을 뜻하지 않는다."@ko,
+        "A supply item for one picnic plan, with required and packed quantities and a unit. Quantities are plan values rather than nutritional recommendations or product safety standards."@en .
+picnic:Assignment a owl:Class ;
+    rdfs:label "준비물 담당 배정"@ko, "Supply assignment"@en ;
+    rdfs:comment "한 계획의 참가자에게 같은 계획의 준비물 항목을 배정하는 기록이다. 배정은 책임 분담의 기록이며 실제 소지나 포장을 자동 확인하지 않는다."@ko,
+        "An assignment of a supply item to a participant of the same picnic plan. It records responsibility without automatically confirming possession or packing."@en .
+picnic:Expense a owl:Class ;
+    rdfs:label "소풍 비용 기록"@ko, "Picnic expense"@en ;
+    rdfs:comment "한 소풍 계획의 예상·지급·취소 비용을 원화 금액으로 기록한다. ready 예산 계산은 취소 비용을 제외하며 기록 자체는 결제 증빙이 아니다."@ko,
+        "A planned, paid or cancelled expense recorded in Korean won for one picnic plan. Ready budget calculations exclude cancelled expenses; a record itself is not payment evidence."@en .
+picnic:WeatherCheck a owl:Class ;
+    rdfs:label "날씨 확인 기록"@ko, "Weather check record"@en ;
+    rdfs:comment "한 소풍 날짜에 대한 미확인 또는 기록된 날씨 확인 상태이다. recorded는 확인 시각과 출처 주소가 있다는 뜻이며 출처의 진위, 최신성, 실제 날씨 또는 활동 안전성을 자동 검증하지 않는다."@ko,
+        "An unverified or recorded weather check for one picnic date. Recorded means an access time and source URI are present, not automatic verification of source authenticity, freshness, actual conditions or activity safety."@en .
+
+picnic:recordKind a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:string ;
+    rdfs:label "계획 기록 유형"@ko, "Plan record kind"@en ;
+    rdfs:comment "계획을 synthetic 합성 예시 또는 observed 관찰 기록으로 구분한다. observed 값만으로 실제 방문을 인증하지 않는다."@ko,
+        "Distinguishes a synthetic example plan from an observed record. The observed value alone does not verify an actual visit."@en .
+picnic:picnicDate a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:date ;
+    rdfs:label "소풍 날짜"@ko, "Picnic date"@en ;
+    rdfs:comment "계획의 소풍 날짜를 시간대 없는 YYYY-MM-DD 값으로 기록하며 날씨 확인 대상 날짜와 일치시킨다."@ko,
+        "Records the plan's picnic date in canonical YYYY-MM-DD form without a time zone, matching the weather check target date."@en .
+picnic:startsAt a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:dateTime ;
+    rdfs:label "소풍 시작 시각"@ko, "Picnic start time"@en ;
+    rdfs:comment "계획의 시작 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 종료 시각보다 앞서야 하며 현재 시각과의 비교는 하지 않는다."@ko,
+        "Records the plan's start as an ISO date-time with a time zone. It must precede the end time and is not compared with the current clock."@en .
+picnic:endsAt a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:dateTime ;
+    rdfs:label "소풍 종료 시각"@ko, "Picnic end time"@en ;
+    rdfs:comment "계획의 종료 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 시작 시각 이후여야 하며 실제 귀가를 증명하지 않는다."@ko,
+        "Records the plan's end as an ISO date-time with a time zone. It must follow the start time and does not establish actual return."@en .
+picnic:status a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:string ;
+    rdfs:label "계획 준비 상태"@ko, "Plan preparation status"@en ;
+    rdfs:comment "계획을 draft, ready 또는 cancelled로 기록한다. ready는 입력된 준비 기록의 완결 상태이며 출발 승인이나 안전 인증이 아니다."@ko,
+        "Records draft, ready or cancelled plan status. Ready means completion of the entered preparation records, not departure authorization or safety certification."@en .
+picnic:hasPlace a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:Place ;
+    rdfs:label "소풍 장소 연결"@ko, "Has picnic place"@en ;
+    rdfs:comment "계획을 한 장소 기록에 연결한다. 같은 장소는 다른 계획에서도 사용할 수 있다."@ko,
+        "Links a plan to one place record. The same place may be used by other plans."@en .
+picnic:hasParticipant a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:Participant ;
+    rdfs:label "참가자 연결"@ko, "Has participant"@en ;
+    rdfs:comment "계획을 한 명 이상의 참가자 기록에 연결한다. 각 참가자 기록은 정확히 한 계획에 속한다."@ko,
+        "Links a plan to one or more participant records, each belonging to exactly one plan."@en .
+picnic:hasActivity a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:Activity ;
+    rdfs:label "활동 일정 연결"@ko, "Has activity"@en ;
+    rdfs:comment "계획을 한 개 이상의 활동 일정에 연결한다. 각 활동 기록은 정확히 한 계획에 속한다."@ko,
+        "Links a plan to one or more activities, each belonging to exactly one plan."@en .
+picnic:hasSupply a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:SupplyItem ;
+    rdfs:label "준비물 연결"@ko, "Has supply item"@en ;
+    rdfs:comment "계획을 한 개 이상의 준비물 항목에 연결한다. 각 준비물 기록은 정확히 한 계획에 속한다."@ko,
+        "Links a plan to one or more supply items, each belonging to exactly one plan."@en .
+picnic:hasAssignment a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:Assignment ;
+    rdfs:label "담당 배정 연결"@ko, "Has supply assignment"@en ;
+    rdfs:comment "계획을 준비물 담당 배정에 연결한다. 각 배정은 한 계획에 속하며 ready 계획의 모든 준비물에는 같은 계획 참가자의 배정이 필요하다."@ko,
+        "Links a plan to supply assignments, each belonging to one plan. Every supply in a ready plan requires an assignment to a participant of that plan."@en .
+picnic:hasExpense a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:Expense ;
+    rdfs:label "비용 기록 연결"@ko, "Has expense"@en ;
+    rdfs:comment "계획을 비용 기록에 연결한다. 각 비용은 한 계획에 속하며 취소 비용은 ready 예산 합계에서 제외한다."@ko,
+        "Links a plan to expenses, each belonging to one plan. Cancelled expenses are excluded from the ready budget total."@en .
+picnic:hasWeatherCheck a owl:ObjectProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range picnic:WeatherCheck ;
+    rdfs:label "날씨 확인 연결"@ko, "Has weather check"@en ;
+    rdfs:comment "계획을 소풍 날짜에 대한 하나의 날씨 확인 기록에 연결한다. 각 날씨 기록은 정확히 한 계획에 속한다."@ko,
+        "Links a plan to one weather check for its picnic date, with each weather check belonging to exactly one plan."@en .
+picnic:budgetAmount a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:decimal ;
+    rdfs:label "소풍 예산 금액"@ko, "Picnic budget amount"@en ;
+    rdfs:comment "계획 예산을 0 이상인 원화 십진수로 기록한다. ready 계획의 예정 및 지급 비용 합계는 이 금액 이하여야 한다."@ko,
+        "Records a nonnegative decimal budget in Korean won. A ready plan's planned and paid expenses must not exceed this amount."@en .
+picnic:currency a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:string ;
+    rdfs:label "예산 통화"@ko, "Budget currency"@en ;
+    rdfs:comment "현재 모형의 예산과 비용 통화를 KRW로 고정한다. 환율 변환이나 외화 계산은 수행하지 않는다."@ko,
+        "Fixes the plan budget and expenses to KRW in this model, without exchange rate conversion or foreign currency calculations."@en .
+picnic:planNote a owl:DatatypeProperty ; rdfs:domain picnic:PicnicPlan ; rdfs:range xsd:string ;
+    rdfs:label "계획 설명"@ko, "Plan note"@en ;
+    rdfs:comment "소풍 계획의 범위와 가정 또는 합성 시나리오임을 설명한다. 메모만으로 예약·방문·안전성을 인증하지 않는다."@ko,
+        "Explains the plan's scope, assumptions or synthetic scenario without certifying reservations, visits or safety."@en .
+picnic:placeKind a owl:DatatypeProperty ; rdfs:domain picnic:Place ; rdfs:range xsd:string ;
+    rdfs:label "장소 유형"@ko, "Place kind"@en ;
+    rdfs:comment "장소를 park, garden, riverside, indoor 또는 other로 구분한다. 장소 유형에서 입장 가능 여부나 안전성을 추론하지 않는다."@ko,
+        "Classifies a place as park, garden, riverside, indoor or other without inferring admission availability or safety."@en .
+picnic:locationNote a owl:DatatypeProperty ; rdfs:domain picnic:Place ; rdfs:range xsd:string ;
+    rdfs:label "위치 설명"@ko, "Location note"@en ;
+    rdfs:comment "장소의 위치나 합성 예시의 설정을 설명한다. 검증하지 않은 주소·시설·방문 사실을 자동 생성하지 않는다."@ko,
+        "Describes a place's location or synthetic setting without automatically inventing unverified addresses, facilities or visits."@en .
+picnic:role a owl:DatatypeProperty ; rdfs:domain picnic:Participant ; rdfs:range xsd:string ;
+    rdfs:label "참가 역할"@ko, "Participant role"@en ;
+    rdfs:comment "해당 계획에서의 참가 역할을 organizer 또는 attendee로 기록한다. 법적 책임이나 실제 참석을 자동 확정하지 않는다."@ko,
+        "Records organizer or attendee as the role in this plan without automatically establishing legal responsibility or actual attendance."@en .
+picnic:participantNote a owl:DatatypeProperty ; rdfs:domain picnic:Participant ; rdfs:range xsd:string ;
+    rdfs:label "참가자 설명"@ko, "Participant note"@en ;
+    rdfs:comment "참가 기록의 범위 또는 합성 참가자 설정을 설명한다. 신원 확인이나 동의 증빙으로 해석하지 않는다."@ko,
+        "Explains a participation record's scope or synthetic participant setting without acting as identity verification or consent evidence."@en .
+picnic:sequence a owl:DatatypeProperty ; rdfs:domain picnic:Activity ; rdfs:range xsd:integer ;
+    rdfs:label "활동 순서"@ko, "Activity sequence"@en ;
+    rdfs:comment "활동 순서를 양의 정수로 기록하며 같은 계획 안에서 중복하지 않는다. 순서 번호만으로 다른 활동의 시간 겹침을 금지하지 않는다."@ko,
+        "Records a positive integer activity sequence, unique within the same plan. Sequence numbers alone do not prohibit overlapping activity times."@en .
+picnic:activityKind a owl:DatatypeProperty ; rdfs:domain picnic:Activity ; rdfs:range xsd:string ;
+    rdfs:label "활동 유형"@ko, "Activity kind"@en ;
+    rdfs:comment "활동을 travel, meal, play, rest, cleanup 또는 other로 구분한다. 활동 유형은 영양·교통·안전 지침이 아니다."@ko,
+        "Classifies an activity as travel, meal, play, rest, cleanup or other without providing nutritional, transport or safety instructions."@en .
+picnic:activityStart a owl:DatatypeProperty ; rdfs:domain picnic:Activity ; rdfs:range xsd:dateTime ;
+    rdfs:label "활동 시작 시각"@ko, "Activity start time"@en ;
+    rdfs:comment "활동의 시작 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 종료보다 앞서고 계획의 시작 이후 또는 같은 시각이어야 한다."@ko,
+        "Records an activity's start as an ISO date-time with a time zone, preceding its end and at or after its plan's start."@en .
+picnic:activityEnd a owl:DatatypeProperty ; rdfs:domain picnic:Activity ; rdfs:range xsd:dateTime ;
+    rdfs:label "활동 종료 시각"@ko, "Activity end time"@en ;
+    rdfs:comment "활동의 종료 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 시작 이후이고 계획의 종료 이전 또는 같은 시각이어야 한다."@ko,
+        "Records an activity's end as an ISO date-time with a time zone, following its start and at or before its plan's end."@en .
+picnic:activityNote a owl:DatatypeProperty ; rdfs:domain picnic:Activity ; rdfs:range xsd:string ;
+    rdfs:label "활동 설명"@ko, "Activity note"@en ;
+    rdfs:comment "계획한 활동과 그 범위 또는 합성 시나리오임을 설명한다. 실제 수행이나 시설 예약을 증명하지 않는다."@ko,
+        "Explains a planned activity and its scope or synthetic scenario without proving actual execution or facility reservations."@en .
+picnic:supplyKind a owl:DatatypeProperty ; rdfs:domain picnic:SupplyItem ; rdfs:range xsd:string ;
+    rdfs:label "준비물 유형"@ko, "Supply kind"@en ;
+    rdfs:comment "준비물을 food, drink, equipment, cleanup 또는 other로 구분한다. 식품 유형은 급여량이나 식품 안전성 판단을 뜻하지 않는다."@ko,
+        "Classifies a supply as food, drink, equipment, cleanup or other. A food category does not determine portions or food safety."@en .
+picnic:requiredQuantity a owl:DatatypeProperty ; rdfs:domain picnic:SupplyItem ; rdfs:range xsd:decimal ;
+    rdfs:label "필요 수량"@ko, "Required quantity"@en ;
+    rdfs:comment "계획자가 정한 준비물 필요 수량을 양의 십진수로 기록한다. 이 값은 권장량이나 안전 기준이 아니다."@ko,
+        "Records the planner's required supply quantity as a positive decimal, not a recommended amount or safety standard."@en .
+picnic:packedQuantity a owl:DatatypeProperty ; rdfs:domain picnic:SupplyItem ; rdfs:range xsd:decimal ;
+    rdfs:label "포장 수량"@ko, "Packed quantity"@en ;
+    rdfs:comment "기록된 포장 수량을 0 이상인 십진수로 표시한다. ready 계획에서는 필요 수량 이상이어야 하며 실제 물품 보유를 자동 검증하지 않는다."@ko,
+        "Records a nonnegative decimal packed quantity. In a ready plan it must meet the required quantity, without automatically verifying actual possession."@en .
+picnic:unit a owl:DatatypeProperty ; rdfs:domain picnic:SupplyItem ; rdfs:range xsd:string ;
+    rdfs:label "수량 단위"@ko, "Quantity unit"@en ;
+    rdfs:comment "수량 단위를 piece, bottle, pack, set 또는 portion으로 기록한다. 단위 간 변환이나 단위별 중량은 추론하지 않는다."@ko,
+        "Records piece, bottle, pack, set or portion as the quantity unit, without conversions between units or inferred unit weights."@en .
+picnic:assignedTo a owl:ObjectProperty ; rdfs:domain picnic:Assignment ; rdfs:range picnic:Participant ;
+    rdfs:label "배정받은 참가자"@ko, "Assigned participant"@en ;
+    rdfs:comment "준비물 배정을 같은 계획의 참가자 한 기록에 연결한다. 다른 계획 참가자에게 배정할 수 없다."@ko,
+        "Links a supply assignment to one participant record of the same plan, excluding participants from other plans."@en .
+picnic:assignedSupply a owl:ObjectProperty ; rdfs:domain picnic:Assignment ; rdfs:range picnic:SupplyItem ;
+    rdfs:label "배정된 준비물"@ko, "Assigned supply"@en ;
+    rdfs:comment "담당 배정을 같은 계획의 준비물 항목 하나에 연결한다. 다른 계획의 준비물을 재사용해 배정하지 않는다."@ko,
+        "Links an assignment to one supply item of the same plan, excluding supply records from other plans."@en .
+picnic:expenseKind a owl:DatatypeProperty ; rdfs:domain picnic:Expense ; rdfs:range xsd:string ;
+    rdfs:label "비용 유형"@ko, "Expense kind"@en ;
+    rdfs:comment "비용을 transport, food, equipment, admission 또는 other로 구분한다. 분류는 현재 가격이나 요금 확인을 뜻하지 않는다."@ko,
+        "Classifies an expense as transport, food, equipment, admission or other without verifying current prices or fees."@en .
+picnic:amount a owl:DatatypeProperty ; rdfs:domain picnic:Expense ; rdfs:range xsd:decimal ;
+    rdfs:label "비용 금액"@ko, "Expense amount"@en ;
+    rdfs:comment "해당 계획의 KRW 통화로 0 이상인 십진수 비용을 기록한다. 환율 변환이나 결제 확인을 자동 수행하지 않는다."@ko,
+        "Records a nonnegative decimal expense in the plan's KRW currency without automatic currency conversion or payment verification."@en .
+picnic:expenseStatus a owl:DatatypeProperty ; rdfs:domain picnic:Expense ; rdfs:range xsd:string ;
+    rdfs:label "비용 상태"@ko, "Expense status"@en ;
+    rdfs:comment "비용을 planned, paid 또는 cancelled로 기록한다. planned와 paid만 ready 예산 합계에 포함하며 paid 값 자체는 지급 증빙이 아니다."@ko,
+        "Records planned, paid or cancelled expense status. Only planned and paid values enter the ready budget sum; paid alone is not proof of payment."@en .
+picnic:expenseNote a owl:DatatypeProperty ; rdfs:domain picnic:Expense ; rdfs:range xsd:string ;
+    rdfs:label "비용 설명"@ko, "Expense note"@en ;
+    rdfs:comment "비용의 범위와 가정 또는 합성 금액 설정을 설명한다. 메모만으로 영수증이나 실제 가격을 인증하지 않는다."@ko,
+        "Explains an expense's scope, assumptions or synthetic amount without serving as a receipt or verified actual price."@en .
+picnic:forDate a owl:DatatypeProperty ; rdfs:domain picnic:WeatherCheck ; rdfs:range xsd:date ;
+    rdfs:label "날씨 확인 대상 날짜"@ko, "Weather target date"@en ;
+    rdfs:comment "날씨 확인 대상 날짜를 YYYY-MM-DD로 기록하며 해당 계획의 소풍 날짜와 일치해야 한다."@ko,
+        "Records the weather check target date in YYYY-MM-DD form, matching its plan's picnic date."@en .
+picnic:checkStatus a owl:DatatypeProperty ; rdfs:domain picnic:WeatherCheck ; rdfs:range xsd:string ;
+    rdfs:label "날씨 기록 상태"@ko, "Weather check status"@en ;
+    rdfs:comment "날씨 기록을 unverified 또는 recorded로 구분한다. recorded에는 확인 시각과 출처가 필요하고 unverified에는 둘 다 두지 않으며 상태는 기상 사실 검증을 뜻하지 않는다."@ko,
+        "Distinguishes unverified from recorded weather checks. Recorded requires an access time and source, while unverified contains neither; this status does not verify meteorological facts."@en .
+picnic:checkedAt a owl:DatatypeProperty ; rdfs:domain picnic:WeatherCheck ; rdfs:range xsd:dateTime ;
+    rdfs:label "날씨 확인 시각"@ko, "Weather check time"@en ;
+    rdfs:comment "recorded 날씨 기록의 확인 시각을 시간대가 있는 ISO 날짜·시각으로 표시한다. 현재 시각이나 예보 유효기간과 자동 비교하지 않는다."@ko,
+        "Records a recorded weather check's access time as an ISO date-time with a time zone, without automatic comparison to the current clock or forecast validity period."@en .
+picnic:sourceUri a owl:DatatypeProperty ; rdfs:domain picnic:WeatherCheck ; rdfs:range xsd:anyURI ;
+    rdfs:label "날씨 기록 출처"@ko, "Weather record source"@en ;
+    rdfs:comment "날씨 기록의 출처를 HTTP, HTTPS 또는 URN 주소로 기록한다. 합성 자료의 URN은 실제 예보를 뜻하지 않으며 URI만으로 자료 진위나 최신성을 보증하지 않는다."@ko,
+        "Records an HTTP, HTTPS or URN weather source URI. A synthetic source URN does not represent a real forecast; a URI alone guarantees neither authenticity nor freshness."@en .
+picnic:weatherSummary a owl:DatatypeProperty ; rdfs:domain picnic:WeatherCheck ; rdfs:range xsd:string ;
+    rdfs:label "날씨 기록 요약"@ko, "Weather record summary"@en ;
+    rdfs:comment "날씨 확인 기록의 요약이나 미확인·합성 상태를 설명한다. 설명에서 실시간 날씨나 활동 안전성을 자동 판정하지 않는다."@ko,
+        "Summarizes a weather check record or explains its unverified or synthetic state without automatically determining live conditions or activity safety."@en .

@@ -1,0 +1,837 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wr: <https://example.org/ontology/custom/wireless-router#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wr:AssociationRecordShape a sh:NodeShape ;
+    sh:message "무선 접속 기록의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "수신 신호 dBm의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:associationSignalDbm ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:maxCount 1 ;
+            sh:message "접속 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:associationToNetwork ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:message "접속 관측 시각의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:associationObservedAt ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "not_observed"^^xsd:string "not_provided"^^xsd:string "synthetic"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "접속 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:associationEvidenceStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "associated"^^xsd:string "disconnected"^^xsd:string "denied"^^xsd:string "planned"^^xsd:string "not_observed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "접속 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:associationStatus ],
+        [ sh:class wr:ClientDevice ;
+            sh:maxCount 1 ;
+            sh:message "접속 단말의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:associationForClient ],
+        [ sh:class wr:PerformanceObservation ;
+            sh:message "성능 관측의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:associationHasObservation ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "링크 속도 Mbps의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path wr:associationLinkRateMbps ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "planned"^^xsd:string "illustrative"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "접속 기록 성격의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:associationIntent ] ;
+    sh:targetClass wr:AssociationRecord .
+
+wr:ClientDeviceShape a sh:NodeShape ;
+    sh:message "클라이언트 장치의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "not_observed"^^xsd:string "not_provided"^^xsd:string "synthetic"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "단말 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:clientEvidenceStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "클라이언트 가명의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:clientPseudonym ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "pseudonym_only"^^xsd:string "redacted"^^xsd:string "withheld"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "단말 식별자 처리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:clientIdentityHandling ],
+        [ sh:class wr:RouterSystem ;
+            sh:maxCount 1 ;
+            sh:message "소속 시스템의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:clientPartOfSystem ],
+        [ sh:class wr:AssociationRecord ;
+            sh:message "접속 기록의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:clientHasAssociation ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "클라이언트 종류의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:clientCategory ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "known"^^xsd:string "unknown"^^xsd:string "retired"^^xsd:string "synthetic"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "단말 목록 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:clientInventoryStatus ] ;
+    sh:targetClass wr:ClientDevice .
+
+wr:ConfigurationSnapshotShape a sh:NodeShape ;
+    sh:message "설정 스냅샷의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "변경 요약의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotChangeSummary ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "applied"^^xsd:string "not_applied"^^xsd:string "partially_applied"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "설정 적용 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotAppliedStatus ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:message "스냅샷 시각의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:snapshotCapturedAt ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "current"^^xsd:string "archived"^^xsd:string "superseded"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "스냅샷 생애주기 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotLifecycleStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "manually_entered"^^xsd:string "device_export"^^xsd:string "synthetic"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "스냅샷 출처 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotProvenanceStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "complete"^^xsd:string "partial"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "스냅샷 완전성의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotCompletenessStatus ],
+        [ sh:class wr:DocumentationSource ;
+            sh:message "스냅샷 출처 문서의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:snapshotDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "secrets_omitted"^^xsd:string "identifiers_redacted"^^xsd:string "not_applicable_no_secrets"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "비식별·비밀 제거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:snapshotRedactionStatus ],
+        [ sh:class wr:RouterDevice ;
+            sh:maxCount 1 ;
+            sh:message "대상 장치의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:snapshotForDevice ] ;
+    sh:targetClass wr:ConfigurationSnapshot .
+
+wr:DocumentationSourceShape a sh:NodeShape ;
+    sh:message "문서 출처의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "확인 날짜의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:sourceAccessedAt ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "발행 기관의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourcePublisher ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자료가 뒷받침하는 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourceScope ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "문서 URI의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourceUri ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "발행 연도의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 1900 ;
+            sh:path wr:sourceYear ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "government_guidance"^^xsd:string "standards_catalogue"^^xsd:string "official_specification"^^xsd:string "vendor_documentation"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "자료 종류의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourceMaterialKind ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "문서 제목의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourceTitle ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자료 한계의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:sourceLimitations ] ;
+    sh:targetClass wr:DocumentationSource .
+
+wr:FirmwareReleaseShape a sh:NodeShape ;
+    sh:message "펌웨어 릴리스의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:RouterDevice ;
+            sh:message "대상 장치 계열의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:firmwareReleaseForDevice ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "펌웨어 버전 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:firmwareVersionLabel ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "펌웨어 발행자 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:firmwarePublisherLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "supported"^^xsd:string "unsupported"^^xsd:string "end_of_support"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "지원 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:firmwareSupportStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "vendor_signed"^^xsd:string "vendor_documented"^^xsd:string "not_provided"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "펌웨어 출처 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:firmwareArtifactProvenance ],
+        [ sh:class wr:DocumentationSource ;
+            sh:message "릴리스 근거의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:firmwareReleaseDocumentedBy ] ;
+    sh:targetClass wr:FirmwareRelease .
+
+wr:FirmwareUpdateShape a sh:NodeShape ;
+    sh:message "펌웨어 업데이트의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "documented"^^xsd:string "not_provided"^^xsd:string "not_observed"^^xsd:string "synthetic"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "업데이트 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:updateEvidenceStatus ],
+        [ sh:class wr:DocumentationSource ;
+            sh:message "업데이트 근거의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:updateDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "available"^^xsd:string "downloading"^^xsd:string "installed"^^xsd:string "failed"^^xsd:string "rolled_back"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "업데이트 진행 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:updateLifecycleStatus ],
+        [ sh:class wr:FirmwareRelease ;
+            sh:maxCount 1 ;
+            sh:message "현재 릴리스의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:updateFromRelease ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "required"^^xsd:string "not_required"^^xsd:string "pending"^^xsd:string "completed"^^xsd:string "unknown"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "재시작 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:updateRebootStatus ],
+        [ sh:class wr:FirmwareRelease ;
+            sh:maxCount 1 ;
+            sh:message "목표 릴리스의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:updateToRelease ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "available"^^xsd:string "unavailable"^^xsd:string "planned"^^xsd:string "unknown"^^xsd:string "not_tested"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "롤백 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:updateRollbackStatus ],
+        [ sh:class wr:RouterDevice ;
+            sh:maxCount 1 ;
+            sh:message "업데이트 대상의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:updateTargetsDevice ] ;
+    sh:targetClass wr:FirmwareUpdate .
+
+wr:IncidentRecordShape a sh:NodeShape ;
+    sh:message "장애·보안 사건 기록의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "informational"^^xsd:string "low"^^xsd:string "medium"^^xsd:string "high"^^xsd:string "critical"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "심각도의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentSeverity ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:message "영향 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:incidentAffectsNetwork ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_started"^^xsd:string "planned"^^xsd:string "in_progress"^^xsd:string "completed"^^xsd:string "not_observed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "대응 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentResponseStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "coverage"^^xsd:string "connectivity"^^xsd:string "security"^^xsd:string "performance"^^xsd:string "firmware"^^xsd:string "configuration"^^xsd:string "other"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "사건 분류의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentCategory ],
+        [ sh:class wr:RouterDevice ;
+            sh:message "영향 장치의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:incidentAffectsDevice ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "not_observed"^^xsd:string "synthetic"^^xsd:string "not_provided"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "사건 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentEvidenceStatus ],
+        [ sh:class wr:DocumentationSource ;
+            sh:message "사건 근거의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:incidentEvidenceSource ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "open"^^xsd:string "investigating"^^xsd:string "resolved"^^xsd:string "closed"^^xsd:string "none_recorded"^^xsd:string "not_observed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "사건 진행 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentLifecycleStatus ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:message "발견 시각의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:incidentDetectedAt ],
+        [ sh:class wr:UplinkConnection ;
+            sh:message "영향 상위 연결의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:incidentAffectsUplink ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "영향 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:incidentImpactScope ] ;
+    sh:targetClass wr:IncidentRecord .
+
+wr:IsolationPolicyShape a sh:NodeShape ;
+    sh:message "망 분리 정책의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:DocumentationSource ;
+            sh:message "근거 문서의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:policyDocumentedBy ],
+        [ sh:class wr:NetworkSegment ;
+            sh:message "적용 대상 구간의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:policyAppliesToSegment ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "ingress"^^xsd:string "egress"^^xsd:string "east_west"^^xsd:string "north_south"^^xsd:string "bidirectional"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "정책 트래픽 방향의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:policyTrafficDirection ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "applied"^^xsd:string "disabled"^^xsd:string "not_assessed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "정책 적용 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:policyApplicationStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "차단 흐름 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:policyDeniedFlowScope ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "documented"^^xsd:string "observed"^^xsd:string "not_provided"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "정책 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:policyEvidenceStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "허용 흐름 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:policyAllowedFlowScope ] ;
+    sh:targetClass wr:IsolationPolicy .
+
+wr:NetworkSegmentShape a sh:NodeShape ;
+    sh:message "네트워크 구간의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "trusted"^^xsd:string "guest"^^xsd:string "iot"^^xsd:string "untrusted"^^xsd:string "dmz"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "신뢰 영역의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:segmentTrustZone ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "active"^^xsd:string "disabled"^^xsd:string "unknown"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "구간 생애주기 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:segmentLifecycleStatus ],
+        [ sh:class wr:RouterSystem ;
+            sh:maxCount 1 ;
+            sh:message "소속 시스템의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:segmentWithinSystem ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "구간 용도의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:segmentPurpose ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "구간 합성 별칭의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:segmentAlias ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "omitted"^^xsd:string "synthetic"^^xsd:string "redacted"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "주소 정보 공개 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:segmentAddressDisclosure ],
+        [ sh:class wr:IsolationPolicy ;
+            sh:message "망 분리 정책의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:segmentUsesIsolationPolicy ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:message "포함 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:segmentHasNetwork ] ;
+    sh:targetClass wr:NetworkSegment .
+
+wr:PerformanceObservationShape a sh:NodeShape ;
+    sh:message "성능 관측의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:DocumentationSource ;
+            sh:message "측정 방법 문서의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:observationDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "측정 단위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:observationUnit ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "measured"^^xsd:string "not_measured"^^xsd:string "estimated"^^xsd:string "synthetic"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "측정 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:observationStatus ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:maxCount 1 ;
+            sh:message "관측 대상 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:observationForNetwork ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "측정 방법의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:observationMethod ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "표본 수의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 0 ;
+            sh:path wr:observationSampleCount ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "측정값의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path wr:observationValue ],
+        [ sh:class wr:AssociationRecord ;
+            sh:maxCount 1 ;
+            sh:message "관측 대상 접속의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:observationForAssociation ],
+        [ sh:class wr:UplinkConnection ;
+            sh:maxCount 1 ;
+            sh:message "관측 대상 상위 연결의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:observationForUplink ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:message "측정 시각의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:observationMeasuredAt ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "rssi"^^xsd:string "throughput"^^xsd:string "latency"^^xsd:string "packet_loss"^^xsd:string "jitter"^^xsd:string "client_count"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "측정 지표의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:observationMetric ] ;
+    sh:targetClass wr:PerformanceObservation .
+
+wr:RadioInterfaceShape a sh:NodeShape ;
+    sh:message "무선 인터페이스의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:WirelessNetwork ;
+            sh:message "송출 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:radioBroadcastsNetwork ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "송신 전력 dBm의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:radioTransmitPowerDbm ],
+        [ sh:class wr:RouterDevice ;
+            sh:maxCount 1 ;
+            sh:message "소속 장치의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:radioBelongsToDevice ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "documented"^^xsd:string "vendor_claim"^^xsd:string "not_provided"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "지원 능력 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:radioCapabilityEvidenceStatus ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "설정 채널의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path wr:radioConfiguredChannel ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "채널 폭 MHz의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path wr:radioChannelWidthMHz ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "enabled"^^xsd:string "disabled"^^xsd:string "planned"^^xsd:string "unknown"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "설정 활성 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:radioConfiguredState ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "2.4GHz"^^xsd:string "5GHz"^^xsd:string "6GHz"^^xsd:string "other"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "무선 대역의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:radioBand ],
+        [ sh:datatype xsd:string ;
+            sh:message "지원 표준 주장의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:radioSupportedStandard ] ;
+    sh:targetClass wr:RadioInterface .
+
+wr:RouterDeviceShape a sh:NodeShape ;
+    sh:message "공유기 장치의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:FirmwareUpdate ;
+            sh:message "업데이트 기록의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:deviceHasUpdate ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "not_observed"^^xsd:string "synthetic"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "장치 관측 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceObservationStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "제조사 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceVendorLabel ],
+        [ sh:class wr:RadioInterface ;
+            sh:message "무선 인터페이스의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:deviceHasRadio ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "local_only"^^xsd:string "remote_enabled"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "관리 경로 노출 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceManagementExposure ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "withheld"^^xsd:string "synthetic_only"^^xsd:string "redacted"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "장치 식별자 처리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceIdentifierHandling ],
+        [ sh:class wr:IncidentRecord ;
+            sh:message "사건 기록의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:deviceHasIncident ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "active"^^xsd:string "maintenance"^^xsd:string "retired"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "장치 생애주기 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceLifecycleStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "장치 별칭의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceInventoryAlias ],
+        [ sh:class wr:RouterSystem ;
+            sh:maxCount 1 ;
+            sh:message "소속 시스템의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:devicePartOfSystem ],
+        [ sh:class wr:FirmwareRelease ;
+            sh:message "펌웨어 릴리스의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:deviceHasFirmwareRelease ],
+        [ sh:class wr:ConfigurationSnapshot ;
+            sh:message "설정 스냅샷의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:deviceHasSnapshot ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "모델 계열의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:deviceModelFamily ] ;
+    sh:targetClass wr:RouterDevice .
+
+wr:RouterSystemShape a sh:NodeShape ;
+    sh:message "무선 공유기 시스템의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "시스템 범위 설명의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:systemScopeNote ],
+        [ sh:class wr:RouterDevice ;
+            sh:message "포함 장치의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:systemHasDevice ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic"^^xsd:string "planned"^^xsd:string "observed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "시스템 기록 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:systemRecordStatus ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:message "포함 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:systemHasNetwork ],
+        [ sh:class wr:UplinkConnection ;
+            sh:message "포함 상위 연결의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:systemHasUplink ] ;
+    sh:targetClass wr:RouterSystem .
+
+wr:SecurityProfileShape a sh:NodeShape ;
+    sh:message "보안 프로필의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "open"^^xsd:string "WPA2-Personal"^^xsd:string "WPA2-Enterprise"^^xsd:string "WPA3-Personal"^^xsd:string "WPA3-Enterprise"^^xsd:string "OWE"^^xsd:string "other"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "보안 프로토콜 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityProtocolLabel ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "암호화 프로필 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityEncryptionProfile ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "omitted_by_design"^^xsd:string "external_secret_store"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "자격 증명 처리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityCredentialHandling ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "verified_by_source"^^xsd:string "asserted"^^xsd:string "not_provided"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "인증 주장 근거 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityCertificationClaimStatus ],
+        [ sh:class wr:WirelessNetwork ;
+            sh:message "적용 대상 무선망의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:securityAppliedToNetwork ],
+        [ sh:class wr:DocumentationSource ;
+            sh:message "근거 문서의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:securityDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "인증 방식 표기의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityAuthenticationMode ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "applied"^^xsd:string "disabled"^^xsd:string "deprecated"^^xsd:string "not_assessed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "설정 적용 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:securityConfigurationStatus ] ;
+    sh:targetClass wr:SecurityProfile .
+
+wr:UplinkConnectionShape a sh:NodeShape ;
+    sh:message "상위 연결의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class wr:RouterDevice ;
+            sh:maxCount 1 ;
+            sh:message "연결 장치의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:uplinkAttachedToDevice ],
+        [ sh:class wr:RouterSystem ;
+            sh:maxCount 1 ;
+            sh:message "소속 시스템의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:uplinkWithinSystem ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "omitted_by_design"^^xsd:string "external_secret_store"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "상위 인증 정보 처리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:uplinkCredentialHandling ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "observed"^^xsd:string "not_observed"^^xsd:string "not_assessed"^^xsd:string "synthetic"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "상위 연결 관측 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:uplinkObservationStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "connected"^^xsd:string "disconnected"^^xsd:string "degraded"^^xsd:string "unknown"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "상위 연결 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:uplinkConnectionStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "omitted"^^xsd:string "synthetic"^^xsd:string "redacted"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "사업자 정보 공개 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:uplinkProviderDisclosure ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "internet"^^xsd:string "cellular"^^xsd:string "mesh"^^xsd:string "leased_line"^^xsd:string "other"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "상위 연결 종류의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:uplinkConnectionType ] ;
+    sh:targetClass wr:UplinkConnection .
+
+wr:WirelessNetworkShape a sh:NodeShape ;
+    sh:message "무선 네트워크 프로필의 필수 속성과 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "무선망 합성 별칭의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkProfileAlias ],
+        [ sh:class wr:AssociationRecord ;
+            sh:message "접속 기록의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:networkHasAssociation ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_alias_only"^^xsd:string "withheld"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "무선 식별자 처리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkIdentifierHandling ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "primary"^^xsd:string "guest"^^xsd:string "iot"^^xsd:string "work"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "무선망 용도의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkPurpose ],
+        [ sh:class wr:SecurityProfile ;
+            sh:maxCount 1 ;
+            sh:message "보안 프로필의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:networkUsesSecurityProfile ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "visible"^^xsd:string "hidden"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "관리 화면 표시 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkVisibilityState ],
+        [ sh:class wr:NetworkSegment ;
+            sh:maxCount 1 ;
+            sh:message "연결 논리 구간의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:networkMapsToSegment ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "approval_required"^^xsd:string "user_authentication"^^xsd:string "allowlisted"^^xsd:string "open"^^xsd:string "unknown"^^xsd:string "not_assessed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "접속 정책 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkAssociationRule ],
+        [ sh:class wr:RadioInterface ;
+            sh:message "사용 무선 인터페이스의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path wr:networkUsesRadio ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "enabled"^^xsd:string "disabled"^^xsd:string "retired"^^xsd:string "unknown"^^xsd:string "not_observed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "무선망 설정 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path wr:networkLifecycleStatus ],
+        [ sh:class wr:PerformanceObservation ;
+            sh:message "성능 관측의 값과 형식을 확인하세요."@ko ;
+            sh:path wr:networkHasObservation ] ;
+    sh:targetClass wr:WirelessNetwork .

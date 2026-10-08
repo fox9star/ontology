@@ -1,0 +1,199 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix diet: <http://example.org/ontology/diet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# AI Coaching Agents (인공지능 코칭 에이전트)
+# =============================================================================
+
+diet:Agent_NutritionCoach a diet:NutritionistAgent ;
+    rdfs:label "AI 임상 영양 분석 에이전트"@ko, "AI Clinical Nutrition Specialist Agent"@en .
+
+diet:Agent_FitnessCoach a diet:FitnessTrainerAgent ;
+    rdfs:label "AI 맞춤 운동 처방 트레이너"@ko, "AI Personalized Fitness Trainer Agent"@en .
+
+diet:Agent_MetabolicSupervisor a diet:MetabolicMonitorAgent ;
+    rdfs:label "AI 대사 항상성 모니터링 코치"@ko, "AI Metabolic Homeostasis Monitor Coach"@en .
+
+# =============================================================================
+# Dietary Plans (식이 처방 플랜)
+# =============================================================================
+
+diet:Plan_LowCarbHighProtein a diet:DietaryPlan ;
+    rdfs:label "순수 근육 보존형 저탄고단백 감량 플랜"@ko, "Lean Muscle Preserving Low-Carb High-Protein Plan"@en .
+
+diet:Plan_MediterraneanDeficit a diet:DietaryPlan ;
+    rdfs:label "항산화 지중해식 칼로리 결손 웰니스 플랜"@ko, "Antioxidant Mediterranean Calorie Deficit Wellness Plan"@en .
+
+# =============================================================================
+# Food Items (개별 식품 항목)
+# =============================================================================
+
+diet:Food_ChickenBreast a diet:FoodItem ;
+    rdfs:label "수비드 저염 닭가슴살 150g"@ko, "Sous-vide Low Sodium Chicken Breast 150g"@en .
+
+diet:Food_BrownRice a diet:FoodItem ;
+    rdfs:label "유기농 현미 귀리밥 130g"@ko, "Organic Brown Rice and Oats 130g"@en .
+
+diet:Food_SalmonFillet a diet:FoodItem ;
+    rdfs:label "노르웨이 생연어 오븐구이 180g"@ko, "Baked Norwegian Salmon Fillet 180g"@en .
+
+diet:Food_AvocadoSalad a diet:FoodItem ;
+    rdfs:label "올리브유 아보카도 믹스 샐러드 120g"@ko, "Avocado Mixed Salad with Olive Oil 120g"@en .
+
+diet:Food_GreekYogurt a diet:FoodItem ;
+    rdfs:label "무가당 그릭 요거트 100g"@ko, "Unsweetened Plain Greek Yogurt 100g"@en .
+
+diet:Food_SweetPotato a diet:FoodItem ;
+    rdfs:label "에어프라이어 호박고구마 120g"@ko, "Air-fried Sweet Potato 120g"@en .
+
+# =============================================================================
+# Target Goals (감량 목표 설정)
+# =============================================================================
+
+diet:Goal_KimDiet a diet:TargetGoal ;
+    rdfs:label "김다이어트 1차 체지방 집중 감량 목표"@ko, "Kim Diet Primary Fat Reduction Target"@en ;
+    diet:targetWeightKg "72.0"^^xsd:decimal ;
+    diet:targetBodyFatPercent "15.0"^^xsd:decimal ;
+    diet:targetDailyCalorieDeficit "500.0"^^xsd:decimal .
+
+diet:Goal_LeeHealth a diet:TargetGoal ;
+    rdfs:label "이헬스 건강 유지 및 탄력 강화 감량 목표"@ko, "Lee Health Tone and Metabolic Target"@en ;
+    diet:targetWeightKg "52.0"^^xsd:decimal ;
+    diet:targetBodyFatPercent "20.0"^^xsd:decimal ;
+    diet:targetDailyCalorieDeficit "400.0"^^xsd:decimal .
+
+# =============================================================================
+# Body Composition Records (체성분 계측치)
+# =============================================================================
+
+diet:BodyComp_Kim_Baseline a diet:BodyCompositionRecord ;
+    rdfs:label "김다이어트 9월 초기 체성분 검진"@ko, "Kim Diet Baseline InBody Record (Sep)"@en ;
+    diet:weightKg "84.5"^^xsd:decimal ;
+    diet:bodyFatMassKg "22.8"^^xsd:decimal ;
+    diet:skeletalMuscleMassKg "35.2"^^xsd:decimal ;
+    diet:bmi "27.4"^^xsd:decimal ;
+    diet:bmrKcal "1750.0"^^xsd:decimal ;
+    diet:recordedAt "2026-09-01T07:00:00Z"^^xsd:dateTime .
+
+diet:BodyComp_Kim_Recent a diet:BodyCompositionRecord ;
+    rdfs:label "김다이어트 10월 중간 체성분 검진"@ko, "Kim Diet Follow-up InBody Record (Oct)"@en ;
+    diet:weightKg "78.9"^^xsd:decimal ;
+    diet:bodyFatMassKg "18.2"^^xsd:decimal ;
+    diet:skeletalMuscleMassKg "35.6"^^xsd:decimal ;
+    diet:bmi "25.6"^^xsd:decimal ;
+    diet:bmrKcal "1742.0"^^xsd:decimal ;
+    diet:recordedAt "2026-10-05T07:00:00Z"^^xsd:dateTime .
+
+diet:BodyComp_Lee_Recent a diet:BodyCompositionRecord ;
+    rdfs:label "이헬스 10월 체성분 정밀 계측"@ko, "Lee Health Follow-up InBody Record"@en ;
+    diet:weightKg "57.0"^^xsd:decimal ;
+    diet:bodyFatMassKg "14.5"^^xsd:decimal ;
+    diet:skeletalMuscleMassKg "22.0"^^xsd:decimal ;
+    diet:bmi "21.5"^^xsd:decimal ;
+    diet:bmrKcal "1280.0"^^xsd:decimal ;
+    diet:recordedAt "2026-10-05T07:30:00Z"^^xsd:dateTime .
+
+# =============================================================================
+# Dietary Meal Logs (식단 섭취 기록)
+# =============================================================================
+
+diet:Meal_Kim_Breakfast_20261005 a diet:DietaryMealLog ;
+    rdfs:label "김다이어트 10월 5일 아침 고단백 식단"@ko, "Kim Diet High Protein Breakfast Oct 5"@en ;
+    diet:mealType "BREAKFAST" ;
+    diet:mealCaloriesKcal "420.0"^^xsd:decimal ;
+    diet:carbohydrateGrams "35.0"^^xsd:decimal ;
+    diet:proteinGrams "40.0"^^xsd:decimal ;
+    diet:fatGrams "12.0"^^xsd:decimal ;
+    diet:containsFood diet:Food_ChickenBreast, diet:Food_BrownRice .
+
+diet:Meal_Kim_Lunch_20261005 a diet:DietaryMealLog ;
+    rdfs:label "김다이어트 10월 5일 점심 연어 샐러드 식단"@ko, "Kim Diet Baked Salmon Lunch Oct 5"@en ;
+    diet:mealType "LUNCH" ;
+    diet:mealCaloriesKcal "580.0"^^xsd:decimal ;
+    diet:carbohydrateGrams "45.0"^^xsd:decimal ;
+    diet:proteinGrams "48.0"^^xsd:decimal ;
+    diet:fatGrams "20.0"^^xsd:decimal ;
+    diet:containsFood diet:Food_SalmonFillet, diet:Food_AvocadoSalad .
+
+diet:Meal_Kim_Dinner_20261005 a diet:DietaryMealLog ;
+    rdfs:label "김다이어트 10월 5일 저녁 가벼운 대사 조절 식단"@ko, "Kim Diet Light Dinner Oct 5"@en ;
+    diet:mealType "DINNER" ;
+    diet:mealCaloriesKcal "350.0"^^xsd:decimal ;
+    diet:carbohydrateGrams "25.0"^^xsd:decimal ;
+    diet:proteinGrams "32.0"^^xsd:decimal ;
+    diet:fatGrams "8.0"^^xsd:decimal ;
+    diet:containsFood diet:Food_GreekYogurt, diet:Food_SweetPotato .
+
+# =============================================================================
+# Exercise Sessions (운동 활동 기록)
+# =============================================================================
+
+diet:Exercise_Kim_MorningRun_20261005 a diet:ExerciseSession ;
+    rdfs:label "김다이어트 공복 아침 인터벌 러닝 세션"@ko, "Kim Diet Fasted Morning Running Session"@en ;
+    diet:exerciseType "AEROBIC" ;
+    diet:durationMinutes 45 ;
+    diet:burnedCaloriesKcal "420.0"^^xsd:decimal .
+
+diet:Exercise_Kim_Resistance_20261005 a diet:ExerciseSession ;
+    rdfs:label "김다이어트 저녁 점진적 과부하 근력 트레이닝"@ko, "Kim Diet Progressive Resistance Session"@en ;
+    diet:exerciseType "RESISTANCE" ;
+    diet:durationMinutes 60 ;
+    diet:burnedCaloriesKcal "330.0"^^xsd:decimal .
+
+# =============================================================================
+# Metabolic Daily Summary (일일 대사 수지 요약)
+# =============================================================================
+
+diet:Summary_Kim_20261005 a diet:MetabolicDailySummary ;
+    rdfs:label "김다이어트 2026-10-05 일일 대사 에너지 결손 요약"@ko, "Kim Diet Daily Metabolic Deficit Summary 2026-10-05"@en ;
+    diet:netCalorieDeficitKcal "580.0"^^xsd:decimal .
+
+diet:Summary_Lee_20261005 a diet:MetabolicDailySummary ;
+    rdfs:label "이헬스 2026-10-05 일일 대사 에너지 결손 요약"@ko, "Lee Health Daily Metabolic Deficit Summary 2026-10-05"@en ;
+    diet:netCalorieDeficitKcal "420.0"^^xsd:decimal .
+
+# =============================================================================
+# Plateau Alert & Coaching Intervention (정체기 경보 및 코칭 개입)
+# =============================================================================
+
+diet:Alert_Kim_Plateau_20261004 a diet:PlateauAlert ;
+    rdfs:label "김다이어트 14일 주기 적응성 열발생 정체 경보"@ko, "Kim Diet 14-day Adaptive Plateau Alert"@en ;
+    diet:detectedOnProfile diet:Profile_KimDiet .
+
+diet:Task_Kim_RefeedIntervention a diet:CoachingInterventionTask ;
+    rdfs:label "정체기 극복을 위한 렙틴 재활성화 및 HIIT 유산소 처방"@ko, "Leptin Reset and HIIT Prescription Intervention"@en ;
+    diet:interventionAction "지속적인 열량 제한으로 인한 대사 저하를 극복하기 위해 이번 주 토요일 2500kcal 클린 탄수화물 리피드를 진행하고, 주 2회 고강도 인터벌 러닝 25분을 병행하십시오." ;
+    diet:taskStatus "ACTIVE" ;
+    diet:targetProfile diet:Profile_KimDiet ;
+    diet:executedByCoach diet:Agent_MetabolicSupervisor ;
+    diet:triggeredByAlert diet:Alert_Kim_Plateau_20261004 .
+
+# =============================================================================
+# Weight Loss Profiles (체중감량 관리 프로필)
+# =============================================================================
+
+diet:Profile_KimDiet a diet:WeightLossProfile ;
+    rdfs:label "김다이어트 개인 웰니스 프로필"@ko, "Kim Diet Personalized Wellness Profile"@en ;
+    diet:profileName "김다이어트" ;
+    diet:heightCm "175.5"^^xsd:decimal ;
+    diet:hasTargetGoal diet:Goal_KimDiet ;
+    diet:followsDietPlan diet:Plan_LowCarbHighProtein ;
+    diet:hasBodyComposition diet:BodyComp_Kim_Baseline, diet:BodyComp_Kim_Recent ;
+    diet:logsMeal diet:Meal_Kim_Breakfast_20261005, diet:Meal_Kim_Lunch_20261005, diet:Meal_Kim_Dinner_20261005 ;
+    diet:logsExercise diet:Exercise_Kim_MorningRun_20261005, diet:Exercise_Kim_Resistance_20261005 ;
+    diet:hasDailySummary diet:Summary_Kim_20261005 ;
+    diet:assignedAgent diet:Agent_MetabolicSupervisor .
+
+diet:Profile_LeeHealth a diet:WeightLossProfile ;
+    rdfs:label "이헬스 개인 웰니스 프로필"@ko, "Lee Health Personalized Wellness Profile"@en ;
+    diet:profileName "이헬스" ;
+    diet:heightCm "163.0"^^xsd:decimal ;
+    diet:hasTargetGoal diet:Goal_LeeHealth ;
+    diet:followsDietPlan diet:Plan_MediterraneanDeficit ;
+    diet:hasBodyComposition diet:BodyComp_Lee_Recent ;
+    diet:hasDailySummary diet:Summary_Lee_20261005 ;
+    diet:assignedAgent diet:Agent_NutritionCoach .

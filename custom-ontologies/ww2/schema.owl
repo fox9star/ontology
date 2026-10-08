@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#accessedOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">출처 확인일</rdfs:label>
+    <rdfs:label xml:lang="en">Source access date</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 문서를 확인한 일자를 YYYY-MM-DD 형식으로 기록하며 문서의 작성일과 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the YYYY-MM-DD date a source was accessed, separately from its creation date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#publisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">발행 기관</rdfs:label>
+    <rdfs:label xml:lang="en">Publisher</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 문서를 공개한 기관의 이름을 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the name of the institution publishing a source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#occurredAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#Place"/>
+    <rdfs:label xml:lang="ko">발생 장소</rdfs:label>
+    <rdfs:label xml:lang="en">Occurred at</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건이 발생한 것으로 기록된 한 곳 이상의 장소를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an event to one or more places where it is recorded as occurring.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#citesSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalClaim"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:label xml:lang="ko">인용 출처</rdfs:label>
+    <rdfs:label xml:lang="en">Cites source</rdfs:label>
+    <rdfs:comment xml:lang="ko">주장에 사용한 한 곳 이상의 출처 문서를 연결한다. 인용 범위와 내용의 일치는 별도 검토한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a claim to one or more cited source documents. The scope and agreement of a citation require separate review.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#historicalName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#State"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">당시 국가명</rdfs:label>
+    <rdfs:label xml:lang="en">Historical state name</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건의 역사적 맥락에 맞춰 국가나 정치체의 명칭을 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a state or polity name appropriate to the event's historical context.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#hasParticipation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdfs:label xml:lang="ko">참여 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Has participation</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건에서의 국가 또는 인물의 역할을 기록한 참여를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an event to a record of a state's or person's role in that event.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#sourceKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 자료 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Source kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">일차 사료, 박물관 요약 또는 기록물 전시로 출처 유형을 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes a primary document, museum summary or archive exhibit.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#Conflict">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">전쟁</rdfs:label>
+    <rdfs:label xml:lang="en">Conflict</rdfs:label>
+    <rdfs:comment xml:lang="ko">시작일, 종료일과 그 날짜를 채택한 범위 설명을 가진 전쟁이다. 지역별 전쟁의 기원이나 다른 시대 구분을 부정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A conflict with start and end dates and an explanation of the selected period. Its date convention does not deny regional origins or other periodizations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b4">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#hasClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#HistoricalClaim"/>
+    <rdfs:label xml:lang="ko">역사적 주장 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has historical claim</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건을 그 사건에 관한 출처가 있는 주장에 연결한다. 주장의 대상 사건도 동일하게 연결되어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an event to a sourced claim about that same event; the reciprocal about-event relation must agree.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#sourceURL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">출처 공개 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Source URL</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 문서를 확인한 공개 HTTP 또는 HTTPS 주소를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the public HTTP or HTTPS URL used to inspect a source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b6">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Conflict"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#Person">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">인물</rdfs:label>
+    <rdfs:label xml:lang="en">Person</rdfs:label>
+    <rdfs:comment xml:lang="ko">역사적 사건의 참여자로 연결할 수 있는 인물이다. 지휘나 대표 역할은 인물의 영구 속성이 아니라 해당 사건의 참여 기록에 명시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A person who can participate in an event. A command or representative role is recorded for that participation, rather than asserted as a timeless personal attribute.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#HistoricalClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">출처가 있는 역사적 주장</rdfs:label>
+    <rdfs:label xml:lang="en">Sourced historical claim</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 사건에 대한 설명을 자료의 인용과 함께 기록한 주장이다. 문구와 원자료의 일치 여부는 별도 검토 대상이며 이 모형은 자동 진실 판정을 하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A statement about one event accompanied by source citations. Agreement between the statement and the original material requires separate review; this model makes no automatic truth determination.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#startDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b1"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">시작일</rdfs:label>
+    <rdfs:label xml:lang="en">Start date</rdfs:label>
+    <rdfs:comment xml:lang="ko">전쟁, 사건 또는 참여의 시작을 일 단위의 YYYY-MM-DD 날짜로 기록한다. 사건 날짜의 적용 범위는 날짜 설명으로 밝힌다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a conflict, event or participation start at YYYY-MM-DD day precision. An event date's scope is explained in its date note.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#endDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b5"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">종료일</rdfs:label>
+    <rdfs:label xml:lang="en">End date</rdfs:label>
+    <rdfs:comment xml:lang="ko">전쟁, 사건 또는 참여의 종료를 일 단위의 YYYY-MM-DD 날짜로 기록한다. 시작일과 같으면 해당 날짜에 한정된 기록이며 날짜 설명에서 범위를 밝힌다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an end at YYYY-MM-DD day precision. An end equal to the start denotes a date-bounded record whose scope is explained by the date note.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#claimText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalClaim"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">주장 내용</rdfs:label>
+    <rdfs:label xml:lang="en">Claim text</rdfs:label>
+    <rdfs:comment xml:lang="ko">인용 자료를 바탕으로 정리한 역사적 주장의 문구이다. 자동 판정 결과나 원문의 직접 인용이라는 의미를 갖지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the text of a historical statement summarized from cited material. It denotes neither an automatic verdict nor necessarily a verbatim quotation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#dateNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b9"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">날짜 범위 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Date scope note</rdfs:label>
+    <rdfs:comment xml:lang="ko">채택한 전쟁 기간 또는 사건 날짜가 전체 기간, 시작일, 종점 중 무엇을 뜻하는지 설명한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains the selected conflict period or whether event dates describe the complete duration, inception or endpoint.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">제2차 세계대전 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">World War II ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">전쟁, 사건, 역사적 국가, 인물, 장소와 사건별 참여를 출처가 있는 주장에 연결한다. 날짜의 범위와 의미를 명시하며 출처 연결 자체를 사실 검증으로 간주하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects conflict, events, historical states, people, places and event-specific participation to sourced claims. Date scope is explicit; a citation link alone does not establish historical truth.</rdfs:comment>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/ww2/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#side">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">사건에서의 진영</rdfs:label>
+    <rdfs:label xml:lang="en">Side in event</rdfs:label>
+    <rdfs:comment xml:lang="ko">해당 참여에서 통상적으로 구분하는 추축국, 연합국 또는 특정하지 않은 교전 진영을 선택적으로 기록한다. 공식 조약 가입이나 가입 날짜를 주장하지 않으며 국가나 인물의 모든 시기에 걸친 진영을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Optionally records the conventional Axis, Allied or unspecified belligerent grouping for this participation. It asserts neither formal treaty membership nor its entry date, and does not classify the actor across all periods.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#eventKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">사건 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Event kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">침공, 공격, 상륙, 전투, 전역, 항복, 항복 발표, 항복 서명, 휴전, 집단학살 또는 해방 중 사건의 유형을 기록한다. 항복 유형은 서명 여부나 국가 전체의 항복을 자동으로 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an invasion, attack, landing, battle, campaign, surrender, surrender announcement, surrender signing, ceasefire, genocide or liberation. A surrender kind does not itself imply signing or nationwide capitulation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#SourceDocument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Source document</rdfs:label>
+    <rdfs:comment xml:lang="ko">공개 주소, 발행 기관, 자료 유형과 확인 날짜가 기록된 문서이다. 연결 구조의 검증이 문서의 진위나 모든 주장에 대한 뒷받침을 자동으로 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A document identified by a public URL, publisher, source kind and access date. Structural validation does not automatically authenticate the document or prove each associated claim.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#role">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">사건에서의 역할</rdfs:label>
+    <rdfs:label xml:lang="en">Role in event</rdfs:label>
+    <rdfs:comment xml:lang="ko">공격자, 방어자, 지휘관, 항복 당사자, 수락 당사자, 대표 또는 해방자의 사건별 역할을 기록한다. 항복 당사자는 해당 사건의 병력이나 대표를 가리킬 수 있으며 국가 전체의 항복을 자동으로 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an event-specific attacker, defender, commander, surrendering party, accepting party, representative or liberator role. A surrendering-party role can identify event-specific forces or representatives without implying nationwide surrender.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#documentedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#SourceDocument"/>
+    <rdfs:label xml:lang="ko">참여 근거 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Participation documented by</rdfs:label>
+    <rdfs:comment xml:lang="ko">국가나 인물의 사건 참여 및 역할을 기록하는 출처 문서를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a participation record to source documents describing the actor's participation and role in the event.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#aboutEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalClaim"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:label xml:lang="ko">주장의 대상 사건</rdfs:label>
+    <rdfs:label xml:lang="en">Claim about event</rdfs:label>
+    <rdfs:comment xml:lang="ko">주장이 설명하는 하나의 사건을 연결하며 그 사건의 주장 연결과 일치해야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the one event described by a claim, matching that event's has-claim link.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b13">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#State"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b14"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#eventOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ww2#Conflict"/>
+    <rdfs:label xml:lang="ko">소속 전쟁</rdfs:label>
+    <rdfs:label xml:lang="en">Event of conflict</rdfs:label>
+    <rdfs:comment xml:lang="ko">역사적 사건을 그 사건이 속한 전쟁에 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a historical event to the conflict within which it is modeled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#participant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdfs:range rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b12"/>
+    <rdfs:label xml:lang="ko">참여자</rdfs:label>
+    <rdfs:label xml:lang="en">Participant</rdfs:label>
+    <rdfs:comment xml:lang="ko">참여 기록의 주체인 역사적 국가 또는 인물을 연결한다. 국가를 연결하면 해당 사건에서 그 국가와 관련된 병력이나 대표를 포함하며 국가의 모든 기관이나 병력에 같은 역할을 부여하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the historical state or person represented by a participation record. A state link includes associated forces or representatives in that event without assigning the role to all its institutions or forces.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b2">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Conflict"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#HistoricalEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">역사적 사건</rdfs:label>
+    <rdfs:label xml:lang="en">Historical event</rdfs:label>
+    <rdfs:comment xml:lang="ko">전쟁에 속한 침공, 전투, 상륙, 항복, 해방 등의 사건이다. 단일 날짜는 사건 전체의 기간 대신 시작이나 종점만 기록할 수 있으며 날짜 설명에 이를 밝힌다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An invasion, battle, landing, surrender, liberation or other event within a conflict. A single date can record an inception or endpoint rather than a whole episode, as explained by the date note.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#State">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">역사적 국가</rdfs:label>
+    <rdfs:label xml:lang="en">Historical state</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건 당시의 국가나 정치체를 나타낸다. 현재의 국명과 동일하다고 가정하지 않으며 진영은 국가의 고정 속성이 아니라 사건별 참여에 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A state or polity identified in its historical context. Its name is not assumed to equal a present-day country name; coalition alignment belongs to event participation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#Participation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">사건 참여</rdfs:label>
+    <rdfs:label xml:lang="en">Event participation</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 사건에서 국가나 인물이 맡은 역할과 선택적 진영 및 기간을 기록한다. 국가의 참여는 그 국가와 관련된 병력이나 대표의 역할을 포함하며 국가 전체의 항복이나 공식 동맹 가입을 뜻하지 않는다. 근거 문서를 연결하고 사건 간 진영 변화를 허용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a state's or person's event role, optional side and period, linked to sources. State participation includes associated forces or representatives without implying nationwide surrender or formal coalition membership; alignment can vary between events.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b14">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Person"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#Place">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">장소</rdfs:label>
+    <rdfs:label xml:lang="en">Place</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건의 위치를 기록하는 국가, 지역, 도시, 만, 기지 또는 수용소이다. 이 초기 모형은 현재 국경이나 좌표의 정확성을 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A country, region, city, bay, base or camp recording an event location. This initial model does not infer present-day borders or coordinate accuracy.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ww2#placeKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ww2#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">장소 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Place kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">장소를 국가, 지역, 도시, 만, 기지 또는 수용소로 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies a place as country, region, city, bay, base or camp.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b8">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Participation"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b11">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b3">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b4"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b7">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#HistoricalEvent"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b10">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/ww2#Conflict"/>
+    <rdf:rest rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b11"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b10"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b12">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="n0ee0d8b0e4b84a44aaff03a9b869a697b13"/>
+  </rdf:Description>
+</rdf:RDF>

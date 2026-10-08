@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#CoverageNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">범위 메모</rdfs:label>
+    <rdfs:label xml:lang="en">Coverage note</rdfs:label>
+    <rdfs:comment xml:lang="ko">이 초안에서 포함·제한·제외한 지식 영역을 명시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">States knowledge areas included, limited, or excluded by this draft.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">reproductive evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">번식 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records reproductive evidence for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 번식 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#MorphologicalFeature">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">형태 특성</rdfs:label>
+    <rdfs:label xml:lang="en">Morphological feature</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처에 설명된 깃털·색채 등 종 및 성별 범위가 있는 형태 특성이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A sourced plumage or color feature with a stated species and sex scope.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionAssociatedTerm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:label xml:lang="en">associated sex term</rdfs:label>
+    <rdfs:label xml:lang="ko">관련 성별 용어</rdfs:label>
+    <rdfs:comment xml:lang="en">Records associated sex term for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 관련 성별 용어를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#habitatKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#HabitatRange"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">habitat or range kind</rdfs:label>
+    <rdfs:label xml:lang="ko">서식·분포 유형</rdfs:label>
+    <rdfs:comment xml:lang="en">Records habitat or range kind for HabitatRange.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">HabitatRange의 서식·분포 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionMinimum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">minimum value</rdfs:label>
+    <rdfs:label xml:lang="ko">최솟값</rdfs:label>
+    <rdfs:comment xml:lang="en">Records minimum value for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 최솟값를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#taxonRank">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">taxonomic rank</rdfs:label>
+    <rdfs:label xml:lang="ko">분류 단계</rdfs:label>
+    <rdfs:comment xml:lang="en">Records taxonomic rank for Taxon.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Taxon의 분류 단계를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">behavior kind</rdfs:label>
+    <rdfs:label xml:lang="ko">행동 유형</rdfs:label>
+    <rdfs:comment xml:lang="en">Records behavior kind for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 행동 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#coverageExplanation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">coverage explanation</rdfs:label>
+    <rdfs:label xml:lang="ko">범위 설명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage explanation for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 범위 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">behavior evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">행동 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records behavior evidence for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 행동 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceLocator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">source locator</rdfs:label>
+    <rdfs:label xml:lang="ko">출처 내 위치</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source locator for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 출처 내 위치를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#habitatLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#HabitatRange"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">habitat or range label</rdfs:label>
+    <rdfs:label xml:lang="ko">서식·분포 이름</rdfs:label>
+    <rdfs:comment xml:lang="en">Records habitat or range label for HabitatRange.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">HabitatRange의 서식·분포 이름를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceScope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">claim scope</rdfs:label>
+    <rdfs:label xml:lang="ko">주장 적용 범위</rdfs:label>
+    <rdfs:comment xml:lang="en">Records claim scope for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 주장 적용 범위를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sourceTitle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">source title</rdfs:label>
+    <rdfs:label xml:lang="ko">출처 제목</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source title for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 제목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#Behavior">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">행동</rdfs:label>
+    <rdfs:label xml:lang="en">Behavior</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처에 기술된 구애·섭식·사회 행동을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A sourced courtship, foraging, or social behavior.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sexCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">sex category</rdfs:label>
+    <rdfs:label xml:lang="ko">성별 범주</rdfs:label>
+    <rdfs:comment xml:lang="en">Records sex category for SexTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SexTerm의 성별 범주를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sexTermLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">sex common term</rdfs:label>
+    <rdfs:label xml:lang="ko">성별 보통명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records sex common term for SexTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SexTerm의 성별 보통명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">feature kind</rdfs:label>
+    <rdfs:label xml:lang="ko">특성 유형</rdfs:label>
+    <rdfs:comment xml:lang="en">Records feature kind for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 특성 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#SexTerm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">성별 명칭</rdfs:label>
+    <rdfs:label xml:lang="en">Sex term</rdfs:label>
+    <rdfs:comment xml:lang="ko">공작 수컷·암컷을 가리키는 보통명사와 적용 범위를 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A common term for male or female peafowl and its stated scope.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#taxonCommonName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">common name</rdfs:label>
+    <rdfs:label xml:lang="ko">보통명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records common name for Taxon.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Taxon의 보통명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sourceAccessedOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="en">accessed on</rdfs:label>
+    <rdfs:label xml:lang="ko">확인일</rdfs:label>
+    <rdfs:comment xml:lang="en">Records accessed on for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 확인일를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#HabitatRange">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">서식지·분포</rdfs:label>
+    <rdfs:label xml:lang="en">Habitat or range</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처별 서식 환경 또는 지리적 분포 서술을 보존한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Preserves a source-specific description of habitat or geographic range.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">feature description</rdfs:label>
+    <rdfs:label xml:lang="ko">형태 특성 설명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records feature description for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 형태 특성 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#taxonScientificName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">scientific name</rdfs:label>
+    <rdfs:label xml:lang="ko">학명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records scientific name for Taxon.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Taxon의 학명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#coverageLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">coverage label</rdfs:label>
+    <rdfs:label xml:lang="ko">범위 항목</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage label for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 범위 항목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sourcePublisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">publisher</rdfs:label>
+    <rdfs:label xml:lang="ko">발행 기관</rdfs:label>
+    <rdfs:comment xml:lang="en">Records publisher for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 발행 기관를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionMaximum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">maximum value</rdfs:label>
+    <rdfs:label xml:lang="ko">최댓값</rdfs:label>
+    <rdfs:comment xml:lang="en">Records maximum value for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 최댓값를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorAssociatedSexTerm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:label xml:lang="en">associated sex term</rdfs:label>
+    <rdfs:label xml:lang="ko">관련 성별 용어</rdfs:label>
+    <rdfs:comment xml:lang="en">Records associated sex term for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 관련 성별 용어를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sexTermAppliesToSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">applies to species</rdfs:label>
+    <rdfs:label xml:lang="ko">적용 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records applies to species for SexTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SexTerm의 적용 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorOfSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">behavior of species</rdfs:label>
+    <rdfs:label xml:lang="ko">해당 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records behavior of species for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 해당 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#habitatDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#HabitatRange"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">habitat or range description</rdfs:label>
+    <rdfs:label xml:lang="ko">서식·분포 설명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records habitat or range description for HabitatRange.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">HabitatRange의 서식·분포 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">evidence claim</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 주장</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence claim for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 주장를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionMeasure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">measure</rdfs:label>
+    <rdfs:label xml:lang="ko">측정 항목</rdfs:label>
+    <rdfs:comment xml:lang="en">Records measure for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 측정 항목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#lifeStageCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#LifeStageTerm"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">life-stage category</rdfs:label>
+    <rdfs:label xml:lang="ko">성장 단계 범주</rdfs:label>
+    <rdfs:comment xml:lang="en">Records life-stage category for LifeStageTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">LifeStageTerm의 성장 단계 범주를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sourceURL">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="en">source URL</rdfs:label>
+    <rdfs:label xml:lang="ko">출처 URL</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source URL for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 URL를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#lifeStageEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#LifeStageTerm"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">term evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">용어 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records term evidence for LifeStageTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">LifeStageTerm의 용어 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:label xml:lang="en">evidence source</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 출처</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence source for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 출처를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#ReproductiveObservation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">번식 수치 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Reproductive figure</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처별 산란 수나 포란 기간의 범위·근삿값을 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A source-specific range or approximate figure for eggs or incubation.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/peafowl/0.1.0"/>
+    <rdfs:label xml:lang="ko">Peacock / 공작류 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Peacock / Peafowl Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">인도공작과 녹색공작 예시를 출처 및 주장 범위와 연결하는 초안이다. 보통명사 peacock의 성별 의미, 종별 차이, 상이한 출처 수치를 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A draft connecting Indian and green peafowl examples to their sources and claim scopes. It distinguishes the sex-specific common term peacock, species-specific traits, and differing source figures.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionEstimateType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">estimate type</rdfs:label>
+    <rdfs:label xml:lang="ko">값 유형</rdfs:label>
+    <rdfs:comment xml:lang="en">Records estimate type for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 값 유형를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#DietItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">먹이 항목</rdfs:label>
+    <rdfs:label xml:lang="en">Diet item</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처에 기록된 먹이 종류 또는 먹이 범주이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A food type or feeding category documented by a source.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">evidence status</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 상태</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence status for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureOfSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">feature of species</rdfs:label>
+    <rdfs:label xml:lang="ko">해당 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records feature of species for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 해당 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sourceScope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">source scope and caveat</rdfs:label>
+    <rdfs:label xml:lang="ko">출처 범위·주의</rdfs:label>
+    <rdfs:comment xml:lang="en">Records source scope and caveat for SourceDocument.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SourceDocument의 출처 범위·주의를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#taxonHigherTaxon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:label xml:lang="en">higher taxon</rdfs:label>
+    <rdfs:label xml:lang="ko">상위 분류군</rdfs:label>
+    <rdfs:comment xml:lang="en">Records higher taxon for Taxon.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Taxon의 상위 분류군를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">behavior description</rdfs:label>
+    <rdfs:label xml:lang="ko">행동 설명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records behavior description for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 행동 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionForSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">reproduction for species</rdfs:label>
+    <rdfs:label xml:lang="ko">해당 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records reproduction for species for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 해당 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#dietCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#DietItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">diet category</rdfs:label>
+    <rdfs:label xml:lang="ko">먹이 범주</rdfs:label>
+    <rdfs:comment xml:lang="en">Records diet category for DietItem.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">DietItem의 먹이 범주를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#taxonHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">taxonomic evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">분류 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records taxonomic evidence for Taxon.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Taxon의 분류 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#lifeStageTermLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#LifeStageTerm"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">life-stage common term</rdfs:label>
+    <rdfs:label xml:lang="ko">성장 단계 보통명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records life-stage common term for LifeStageTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">LifeStageTerm의 성장 단계 보통명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">feature label</rdfs:label>
+    <rdfs:label xml:lang="ko">형태 특성 이름</rdfs:label>
+    <rdfs:comment xml:lang="en">Records feature label for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 형태 특성 이름를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#habitatEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#HabitatRange"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">habitat evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">서식·분포 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records habitat evidence for HabitatRange.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">HabitatRange의 서식·분포 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#dietEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#DietItem"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">diet evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">먹이 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records diet evidence for DietItem.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">DietItem의 먹이 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#EvidenceRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">근거 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Evidence record</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 개체·주장과 출처, 위치, 범위 및 검토 상태를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects a described resource or claim to a source, locator, scope, and review status.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">feature evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">형태 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records feature evidence for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 형태 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#behaviorLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#Behavior"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">behavior label</rdfs:label>
+    <rdfs:label xml:lang="ko">행동 이름</rdfs:label>
+    <rdfs:comment xml:lang="en">Records behavior label for Behavior.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">Behavior의 행동 이름를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#dietDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#DietItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">diet description</rdfs:label>
+    <rdfs:label xml:lang="ko">먹이 설명</rdfs:label>
+    <rdfs:comment xml:lang="en">Records diet description for DietItem.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">DietItem의 먹이 설명를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#lifeStageAppliesToSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#LifeStageTerm"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">applies to species</rdfs:label>
+    <rdfs:label xml:lang="ko">적용 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records applies to species for LifeStageTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">LifeStageTerm의 적용 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">evidence identifier</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 식별자</rdfs:label>
+    <rdfs:comment xml:lang="en">Records evidence identifier for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 근거 식별자를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#evidenceAbout">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label xml:lang="en">subject of evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">주장 대상</rdfs:label>
+    <rdfs:comment xml:lang="en">Records subject of evidence for EvidenceRecord.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">EvidenceRecord의 주장 대상를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">reproductive figure label</rdfs:label>
+    <rdfs:label xml:lang="ko">번식 기록 이름</rdfs:label>
+    <rdfs:comment xml:lang="en">Records reproductive figure label for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 번식 기록 이름를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#habitatOfSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#HabitatRange"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">habitat of species</rdfs:label>
+    <rdfs:label xml:lang="ko">해당 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records habitat of species for HabitatRange.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">HabitatRange의 해당 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#LifeStageTerm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">성장 단계 명칭</rdfs:label>
+    <rdfs:label xml:lang="en">Life-stage term</rdfs:label>
+    <rdfs:comment xml:lang="ko">어린 공작류를 가리키는 용어와 적용 범위를 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A common term for a young peafowl and its stated scope.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#sexTermEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#EvidenceRecord"/>
+    <rdfs:label xml:lang="en">term evidence</rdfs:label>
+    <rdfs:label xml:lang="ko">용어 근거</rdfs:label>
+    <rdfs:comment xml:lang="en">Records term evidence for SexTerm.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">SexTerm의 용어 근거를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#Taxon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">분류군</rdfs:label>
+    <rdfs:label xml:lang="en">Taxon</rdfs:label>
+    <rdfs:comment xml:lang="ko">분류 체계의 상위 분류군과 종을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A taxonomic group or species in the recorded classification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#dietLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#DietItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="en">diet item</rdfs:label>
+    <rdfs:label xml:lang="ko">먹이 항목</rdfs:label>
+    <rdfs:comment xml:lang="en">Records diet item for DietItem.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">DietItem의 먹이 항목를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#reproductionUnit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#ReproductiveObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">unit</rdfs:label>
+    <rdfs:label xml:lang="ko">단위</rdfs:label>
+    <rdfs:comment xml:lang="en">Records unit for ReproductiveObservation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">ReproductiveObservation의 단위를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#coverageStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#CoverageNote"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">coverage status</rdfs:label>
+    <rdfs:label xml:lang="ko">포함 범위 상태</rdfs:label>
+    <rdfs:comment xml:lang="en">Records coverage status for CoverageNote.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">CoverageNote의 포함 범위 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#featureAssociatedSexTerm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#MorphologicalFeature"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#SexTerm"/>
+    <rdfs:label xml:lang="en">associated sex term</rdfs:label>
+    <rdfs:label xml:lang="ko">관련 성별 용어</rdfs:label>
+    <rdfs:comment xml:lang="en">Records associated sex term for MorphologicalFeature.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">MorphologicalFeature의 관련 성별 용어를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#SourceDocument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Source document</rdfs:label>
+    <rdfs:comment xml:lang="ko">사육·종 정보 페이지의 발행자, URL, 확인일 및 범위를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a zoo or species profile's publisher, URL, access date, and scope.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#PeafowlSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">공작류 종</rdfs:label>
+    <rdfs:label xml:lang="en">Peafowl species</rdfs:label>
+    <rdfs:comment xml:lang="ko">이 초안에서 다루는 공작류의 종 예시이며 Taxon의 하위 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A peafowl species example covered by this draft; a subclass of Taxon.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/custom/peafowl#Taxon"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/peafowl#dietOfSpecies">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/peafowl#DietItem"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/peafowl#PeafowlSpecies"/>
+    <rdfs:label xml:lang="en">diet of species</rdfs:label>
+    <rdfs:label xml:lang="ko">해당 종</rdfs:label>
+    <rdfs:comment xml:lang="en">Records diet of species for DietItem.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">DietItem의 해당 종를 기록한다.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

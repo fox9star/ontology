@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#targetDurationSeconds">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Shot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">목표 길이 초</rdfs:label>
+    <rdfs:label xml:lang="en">Target duration in seconds</rdfs:label>
+    <rdfs:comment xml:lang="ko">샷의 계획 길이를 초 단위 양의 소수로 기록하며 실제 미디어 길이와 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive planned duration in seconds, separate from measured media duration.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#decisionReason">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">검토 사유</rdfs:label>
+    <rdfs:label xml:lang="en">Decision reason</rdfs:label>
+    <rdfs:comment xml:lang="ko">검토가 미완료인 이유나 승인 또는 거절 판단의 설명을 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains why a review is pending or why an approval or rejection was recorded.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#plannedAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:label xml:lang="ko">계획된 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Planned asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">생성 작업이 확보하려는 자산을 연결한다. 이 관계만으로 파일 생성이나 존재를 주장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a generation task to its intended asset without asserting that a file was generated or exists.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#assetStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">자산 확보 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Asset availability status</rdfs:label>
+    <rdfs:comment xml:lang="ko">자산이 아직 계획이면 planned, 위치와 출처 근거를 기록했으면 available로 표시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes a planned asset from an available asset with a recorded location and source evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#promptText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">계획 프롬프트</rdfs:label>
+    <rdfs:label xml:lang="en">Planned prompt</rdfs:label>
+    <rdfs:comment xml:lang="ko">생성 작업에 사용할 계획 프롬프트이다. 실제 제출 기록은 별도 실행 근거로 확인한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the prompt planned for generation; actual submission is established by separate execution evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#FilmProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Project"/>
+    <rdfs:label xml:lang="ko">영화 프로젝트</rdfs:label>
+    <rdfs:label xml:lang="en">Film project</rdfs:label>
+    <rdfs:comment xml:lang="ko">영화 제작의 시나리오와 편집 버전을 묶는 작업 범위이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Defines the production scope joining the screenplay and successive film edit versions.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasGenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Shot"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:label xml:lang="ko">생성 작업 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has generation task</rdfs:label>
+    <rdfs:comment xml:lang="ko">샷을 구현하기 위해 계획한 생성 작업을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a shot to a generation task planned to realize that shot.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#taskStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">생성 작업 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Generation task status</rdfs:label>
+    <rdfs:comment xml:lang="ko">생성 작업의 planned, running, completed, failed, cancelled 상태 중 하나를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records one generation task state: planned, running, completed, failed or cancelled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#generationEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">생성 실행 근거 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Generation evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">실제 생성 실행 기록을 확인할 수 있는 근거 위치이며 completed 상태에 필수이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to a generation execution record and is required for a completed task assertion.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#editStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#EditVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">편집 승인 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Edit approval status</rdfs:label>
+    <rdfs:comment xml:lang="ko">편집 버전의 draft 또는 approved 상태이며 승인은 자산 확보와 두 종류 검토를 요구한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records draft or approved edit status; approval requires available assets and both kinds of review approval.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#GenerationTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Task"/>
+    <rdfs:label xml:lang="ko">생성 작업 계획</rdfs:label>
+    <rdfs:label xml:lang="en">Generation task</rdfs:label>
+    <rdfs:comment xml:lang="ko">프롬프트와 모델 인지 상태를 기록하는 생성 작업 계획이다. 계획된 결과 자산 연결은 실행 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a generation plan, prompt and model knowledge; its planned asset relation alone is not execution evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasReview">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#ReviewDecision"/>
+    <rdfs:label xml:lang="ko">검토 기록 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has review</rdfs:label>
+    <rdfs:comment xml:lang="ko">자산의 현재 품질 또는 권리 검토 결정을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an asset to its current quality or rights review decision records.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#EditVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">편집 버전</rdfs:label>
+    <rdfs:label xml:lang="en">Edit version</rdfs:label>
+    <rdfs:comment xml:lang="ko">사용할 자산과 버전 식별자를 가진 편집본의 계획 또는 승인 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a draft or approved edit version, its version identifier and the assets selected for it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasScene">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Screenplay"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#Scene"/>
+    <rdfs:label xml:lang="ko">장면 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has scene</rdfs:label>
+    <rdfs:comment xml:lang="ko">시나리오를 구성하는 장면을 연결하며 실제 순서는 장면 순번으로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a screenplay to its scenes; their sequence is recorded by scene order values.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasShot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Scene"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#Shot"/>
+    <rdfs:label xml:lang="ko">샷 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has shot</rdfs:label>
+    <rdfs:comment xml:lang="ko">장면을 구성하는 샷을 연결하며 실제 순서는 샷 순번으로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a scene to its shots; their local sequence is recorded by shot order values.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#assetUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">자산 파일 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Asset file URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">확보된 미디어 파일의 위치이며 계획 단계에서는 가상의 파일 경로를 넣지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the location of an available media file; planned assets do not invent file locations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#Screenplay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">시나리오</rdfs:label>
+    <rdfs:label xml:lang="en">Screenplay</rdfs:label>
+    <rdfs:comment xml:lang="ko">순서가 있는 장면으로 이야기와 영상 제작 계획을 구성하는 문서이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Organizes a film narrative and production plan into an ordered collection of scenes.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#mediaType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">미디어 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Media type</rdfs:label>
+    <rdfs:comment xml:lang="ko">자산이 계획하거나 담고 있는 video, image, audio 중 하나의 미디어 종류이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records whether an asset is intended to contain video, image or audio media.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#Shot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">샷</rdfs:label>
+    <rdfs:label xml:lang="en">Shot</rdfs:label>
+    <rdfs:comment xml:lang="ko">장면 안에서 순서와 목표 길이를 가지며 생성 작업을 계획하는 영상 단위이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Defines a planned visual unit with scene order, target duration and generation tasks.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasEditVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#FilmProject"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#EditVersion"/>
+    <rdfs:label xml:lang="ko">편집 버전 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has edit version</rdfs:label>
+    <rdfs:comment xml:lang="ko">영화 프로젝트에서 관리하는 편집 버전을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a film project to an edit version maintained within its production scope.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#sceneOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Scene"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">장면 순번</rdfs:label>
+    <rdfs:label xml:lang="en">Scene order</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 시나리오 안에서 중복되지 않는 양의 정수 장면 순번이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer scene order that must be unique within a screenplay.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#reviewEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">검토 근거 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Review evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">승인 판단에 사용한 검토 기록의 위치이며 문서의 진위나 법적 효력을 자동 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to the record supporting a review approval without automatically validating authenticity or legal effect.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#MediaAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">미디어 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Media asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">영상, 이미지, 오디오의 계획 또는 확보 상태와 출처 및 검토 기록을 담는 자산이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a planned or available video, image or audio asset with source evidence and reviews.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#Scene">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">장면</rdfs:label>
+    <rdfs:label xml:lang="en">Scene</rdfs:label>
+    <rdfs:comment xml:lang="ko">시나리오 안에서 순서를 가지며 하나 이상의 샷으로 구성되는 이야기 단위이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an ordered narrative unit within a screenplay containing one or more shots.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#modelIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기록된 모델 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">Recorded model identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거가 있어 기록한 생성 모델 식별자이며 unknown 상태에서는 값을 만들지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an available model identifier; no value is fabricated when model knowledge is unknown.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#ReviewDecision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">검토 결정</rdfs:label>
+    <rdfs:label xml:lang="en">Review decision</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 자산에 대한 품질 또는 권리 검토의 결정과 근거를 기록한다. 승인 상태는 법적 보증을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a quality or rights review decision and its evidence; an approval label is not a legal guarantee.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#reviewKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">검토 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Review kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">검토가 권리 확인 rights인지 제작 품질 확인 quality인지를 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes a rights review from a production quality review of an asset.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#shotOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#Shot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">샷 순번</rdfs:label>
+    <rdfs:label xml:lang="en">Shot order</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 장면 안에서 중복되지 않는 양의 정수 샷 순번이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer shot order that must be unique within its scene.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#usesAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#EditVersion"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:label xml:lang="ko">사용 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Uses asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">편집 버전에서 사용할 자산을 지정하며 초안에서는 아직 계획된 자산도 허용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Selects an asset for an edit version; a draft may select an asset that is still planned.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#hasScreenplay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#FilmProject"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/ai-film#Screenplay"/>
+    <rdfs:label xml:lang="ko">시나리오 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has screenplay</rdfs:label>
+    <rdfs:comment xml:lang="ko">영화 프로젝트가 제작에 사용할 시나리오를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a film project to the screenplay used for its production plan.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#decision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">검토 결과</rdfs:label>
+    <rdfs:label xml:lang="en">Review outcome</rdfs:label>
+    <rdfs:comment xml:lang="ko">검토의 pending, approved, rejected 결과를 기록하며 승인에는 별도 근거가 필요하다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a pending, approved or rejected review outcome; approval requires a separate evidence location.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">AI 영화 제작 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">AI film production ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">시나리오와 촬영 계획, 생성 작업, 자산 검토, 편집본의 준비 상태를 연결한다. 예제는 합성 계획이며 실제 생성이나 권리 승인을 주장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects screenplay planning, generation tasks, asset reviews and edit readiness. The example is a synthetic plan and asserts no actual generation or rights approval.</rdfs:comment>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/ai-film/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#modelKnowledgeStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#GenerationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">모델 정보 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Model knowledge status</rdfs:label>
+    <rdfs:comment xml:lang="ko">모델 식별자가 알려지지 않았으면 unknown, 기록되어 있으면 recorded로 표시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Marks model identity as unknown or recorded without inferring it from a file or tool name.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#sourceEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#MediaAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">출처 근거 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Source evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">자산을 확보한 출처나 가져오기 기록의 위치이며 원저작권을 자동 증명하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to source or import evidence for an asset without automatically proving ownership or original authorship.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/ai-film#versionLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/ai-film#EditVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">편집 버전 표기</rdfs:label>
+    <rdfs:label xml:lang="en">Edit version label</rdfs:label>
+    <rdfs:comment xml:lang="ko">사람이 편집 버전을 구별하는 표기로 한 영화 프로젝트 안에서 중복되지 않아야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a human-readable edit version identifier that must be unique within a film project.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

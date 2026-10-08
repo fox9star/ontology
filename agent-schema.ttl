@@ -1,0 +1,285 @@
+@prefix ag:   <https://example.org/agent#> .
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/agent> a owl:Ontology ;
+    rdfs:label "AI 에이전트 협업 온톨로지"@ko ;
+    rdfs:comment "agent.md의 계획 작업, 실행, 결과물 인계, 검수와 출처 추적을 형식화한 예시 온톨로지. example.org URI는 배포 시 교체한다."@ko ;
+    owl:imports <http://www.w3.org/ns/prov-o#> ;
+    rdfs:seeAlso <https://www.w3.org/TR/prov-o/> ,
+                 <https://www.w3.org/TR/shacl/> ,
+                 <https://www.w3.org/TR/owl2-primer/> ;
+    owl:imports <https://example.org/ontology/core> ;
+    owl:imports <https://example.org/ontology/vocab> ;
+    owl:versionInfo "1.2.1" .
+
+ag:Project a owl:Class ;
+    rdfs:label "프로젝트"@ko ;
+    rdfs:comment "하나의 공동 목표와 계획 작업, 최종 전달물을 묶는다."@ko ;
+    rdfs:subClassOf core:Project, [ a owl:Restriction ; owl:onProperty ag:hasTask ;
+                      owl:someValuesFrom ag:Task ] .
+
+ag:Agent a owl:Class ;
+    rdfs:label "에이전트"@ko ;
+    rdfs:comment "프로젝트에 참여하는 소프트웨어 또는 사람."@ko ;
+    rdfs:subClassOf core:Agent, prov:Agent .
+
+ag:SoftwareAgent a owl:Class ;
+    rdfs:label "소프트웨어 에이전트"@ko ;
+    rdfs:subClassOf ag:Agent, prov:SoftwareAgent .
+
+ag:HumanAgent a owl:Class ;
+    rdfs:label "사람 참여자"@ko ;
+    rdfs:subClassOf ag:Agent, prov:Person .
+
+ag:Role a owl:Class ;
+    rdfs:label "역할"@ko ;
+    rdfs:comment "조사, 작성, 검수처럼 프로젝트 안에서 맡는 책임."@ko .
+
+ag:Capability a owl:Class ;
+    rdfs:label "기능"@ko ;
+    rdfs:comment "검색, 작성 등 에이전트가 제공하거나 작업이 요구하는 기능."@ko .
+
+ag:AgentAssignment a owl:Class ;
+    rdfs:label "프로젝트 역할 배정"@ko ;
+    rdfs:comment "역할이 에이전트에게 전역적으로 고정되지 않도록 프로젝트별로 기록한다."@ko .
+
+ag:Task a owl:Class ;
+    rdfs:label "계획 작업"@ko ;
+    rdfs:comment "실행 이전에 정의한 목표, 담당자, 완료 기준과 의존성."@ko ;
+    rdfs:subClassOf core:Task .
+
+ag:TaskRun a owl:Class ;
+    rdfs:label "작업 실행"@ko ;
+    rdfs:comment "계획 작업의 한 번의 실제 실행. 재시도마다 새 개체를 만든다."@ko ;
+    rdfs:subClassOf core:TaskRun, prov:Activity,
+        [ a owl:Restriction ; owl:onProperty ag:implementsTask ;
+          owl:someValuesFrom ag:Task ],
+        [ a owl:Restriction ; owl:onProperty prov:wasAssociatedWith ;
+          owl:someValuesFrom ag:Agent ] .
+
+ag:ReviewRun a owl:Class ;
+    rdfs:label "검수 실행"@ko ;
+    rdfs:subClassOf ag:TaskRun .
+
+ag:Artifact a owl:Class ;
+    rdfs:label "결과물"@ko ;
+    rdfs:comment "파일, 초안, 근거 자료 등 입력 또는 산출물의 특정 버전."@ko ;
+    rdfs:subClassOf core:Artifact, prov:Entity .
+
+ag:Handoff a owl:Class ;
+    rdfs:label "인계 묶음"@ko ;
+    rdfs:comment "받는 작업과 에이전트, 결과물과 완료 기준을 함께 기록한다."@ko ;
+    rdfs:subClassOf prov:Entity,
+        [ a owl:Restriction ; owl:onProperty ag:toTask ;
+          owl:someValuesFrom ag:Task ],
+        [ a owl:Restriction ; owl:onProperty ag:containsArtifact ;
+          owl:someValuesFrom ag:Artifact ] .
+
+ag:ReviewDecision a owl:Class ;
+    rdfs:label "검수 판정"@ko ;
+    rdfs:comment "검수한 결과물에 대한 승인 또는 반려와 사유."@ko ;
+    rdfs:subClassOf prov:Entity,
+        [ a owl:Restriction ; owl:onProperty ag:decisionAbout ;
+          owl:someValuesFrom ag:Artifact ] .
+
+ag:hasTask a owl:ObjectProperty ;
+    rdfs:label "계획 작업을 포함"@ko ;
+    rdfs:domain ag:Project ; rdfs:range ag:Task .
+
+ag:dependsOn a owl:ObjectProperty ;
+    rdfs:label "선행 작업에 의존"@ko ;
+    rdfs:comment "직접 선행 작업만 기록한다. 순환 여부는 실행기에서 검증한다."@ko ;
+    rdfs:domain ag:Task ; rdfs:range ag:Task .
+
+ag:assignedTo a owl:ObjectProperty ;
+    rdfs:label "계획상 담당"@ko ;
+    rdfs:domain ag:Task ; rdfs:range ag:Agent .
+
+ag:implementsTask a owl:ObjectProperty ;
+    rdfs:label "작업을 실행"@ko ;
+    rdfs:domain ag:TaskRun ; rdfs:range ag:Task .
+
+ag:hasCapability a owl:ObjectProperty ;
+    rdfs:label "기능을 보유"@ko ;
+    rdfs:domain ag:Agent ; rdfs:range ag:Capability .
+
+ag:requiresCapability a owl:ObjectProperty ;
+    rdfs:label "기능을 요구"@ko ;
+    rdfs:domain ag:Task ; rdfs:range ag:Capability .
+
+ag:hasAssignment a owl:ObjectProperty ;
+    rdfs:label "프로젝트 역할 배정"@ko ;
+    rdfs:domain ag:Project ; rdfs:range ag:AgentAssignment .
+
+ag:assignmentAgent a owl:ObjectProperty ;
+    rdfs:label "배정된 에이전트"@ko ;
+    rdfs:domain ag:AgentAssignment ; rdfs:range ag:Agent .
+
+ag:assignmentRole a owl:ObjectProperty ;
+    rdfs:label "배정된 역할"@ko ;
+    rdfs:domain ag:AgentAssignment ; rdfs:range ag:Role .
+
+ag:hasHandoff a owl:ObjectProperty ;
+    rdfs:label "인계 묶음을 전달"@ko ;
+    rdfs:domain ag:TaskRun ; rdfs:range ag:Handoff .
+
+ag:toTask a owl:ObjectProperty ;
+    rdfs:label "받는 작업"@ko ;
+    rdfs:domain ag:Handoff ; rdfs:range ag:Task .
+
+ag:toAgent a owl:ObjectProperty ;
+    rdfs:label "받는 에이전트"@ko ;
+    rdfs:domain ag:Handoff ; rdfs:range ag:Agent .
+
+ag:containsArtifact a owl:ObjectProperty ;
+    rdfs:label "인계 결과물을 포함"@ko ;
+    rdfs:domain ag:Handoff ; rdfs:range ag:Artifact .
+
+ag:reviews a owl:ObjectProperty ;
+    rdfs:label "검수 대상"@ko ;
+    rdfs:domain ag:ReviewRun ; rdfs:range ag:Artifact .
+
+ag:hasDecision a owl:ObjectProperty ;
+    rdfs:label "검수 판정을 생성"@ko ;
+    rdfs:domain ag:ReviewRun ; rdfs:range ag:ReviewDecision .
+
+ag:decisionAbout a owl:ObjectProperty ;
+    rdfs:label "판정 대상 결과물"@ko ;
+    rdfs:domain ag:ReviewDecision ; rdfs:range ag:Artifact .
+
+ag:hasFinalArtifact a owl:ObjectProperty ;
+    rdfs:label "최종 채택 결과물"@ko ;
+    rdfs:domain ag:Project ; rdfs:range ag:Artifact .
+
+ag:artifactUri a owl:ObjectProperty ;
+    rdfs:label "결과물 위치"@ko ;
+    rdfs:comment "외부 파일 또는 저장소 항목을 가리키는 IRI. 존재와 접근 권한은 별도로 검사한다."@ko ;
+    rdfs:domain ag:Artifact ; rdfs:range rdfs:Resource .
+
+ag:goal a owl:DatatypeProperty ;
+    rdfs:label "공동 목표"@ko ;
+    rdfs:domain ag:Project ; rdfs:range xsd:string .
+
+ag:taskObjective a owl:DatatypeProperty ;
+    rdfs:label "작업 목표"@ko ;
+    rdfs:domain ag:Task ; rdfs:range xsd:string .
+
+ag:status a owl:DatatypeProperty ;
+    rdfs:label "상태"@ko ;
+    rdfs:comment "허용 값과 전이 규칙은 SHACL 및 실행기에서 관리한다."@ko ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:domain ag:TaskRun ; rdfs:range xsd:string .
+
+ag:version a owl:DatatypeProperty ;
+    rdfs:label "버전"@ko ;
+    rdfs:comment "결과물 또는 에이전트 구현의 버전. 적용 대상을 각각 명시한다."@ko ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( ag:Artifact ag:Agent ) ] ;
+    rdfs:range xsd:string .
+
+ag:artifactType a owl:DatatypeProperty ;
+    rdfs:label "결과물 유형"@ko ;
+    rdfs:domain ag:Artifact ; rdfs:range xsd:string .
+
+ag:checksum a owl:DatatypeProperty ;
+    rdfs:label "체크섬"@ko ;
+    rdfs:domain ag:Artifact ; rdfs:range xsd:string .
+
+ag:acceptanceCriteria a owl:DatatypeProperty ;
+    rdfs:label "완료 기준"@ko ;
+    rdfs:comment "계획 작업과 인계 묶음에서 사용한다."@ko ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( ag:Task ag:Handoff ) ] ;
+    rdfs:range xsd:string .
+
+ag:decision a owl:DatatypeProperty ;
+    rdfs:label "검수 판정 값"@ko ;
+    rdfs:domain ag:ReviewDecision ; rdfs:range xsd:string .
+
+ag:reason a owl:DatatypeProperty ;
+    rdfs:label "검수 사유"@ko ;
+    rdfs:domain ag:ReviewDecision ; rdfs:range xsd:string .
+
+ag:errorCode a owl:DatatypeProperty ;
+    rdfs:label "오류 코드"@ko ;
+    rdfs:domain ag:TaskRun ; rdfs:range xsd:string .
+
+ag:toolVersion a owl:DatatypeProperty ;
+    rdfs:label "사용 도구 버전"@ko ;
+    rdfs:domain ag:TaskRun ; rdfs:range xsd:string .
+
+# English labels and definitions for named schema terms.
+<https://example.org/agent#Agent> rdfs:label "Agent"@en ; rdfs:comment "Represents a person or software actor that plans or performs work."@en .
+<https://example.org/agent#AgentAssignment> rdfs:label "Agent Assignment"@en ; rdfs:comment "Records the agent and role assigned to a project."@en .
+<https://example.org/agent#Artifact> rdfs:label "Artifact"@en ; rdfs:comment "Represents a file, document, dataset, or other resource used or produced by work."@en .
+<https://example.org/agent#Capability> rdfs:label "Capability"@en ; rdfs:comment "Represents a kind of work an agent can perform or a task can require."@en .
+<https://example.org/agent#Handoff> rdfs:label "Handoff"@en ; rdfs:comment "Records transfer of work and its context from one agent to another."@en .
+<https://example.org/agent#HumanAgent> rdfs:label "Human Agent"@en ; rdfs:comment "Represents a person participating in project work or review."@en .
+<https://example.org/agent#Project> rdfs:label "Project"@en ; rdfs:comment "Represents coordinated work directed toward a shared goal and its deliverables."@en .
+<https://example.org/agent#ReviewDecision> rdfs:label "Review Decision"@en ; rdfs:comment "Records an acceptance, rejection, or other decision made during review."@en .
+<https://example.org/agent#ReviewRun> rdfs:label "Review Run"@en ; rdfs:comment "Represents an execution of a review over one or more artifacts."@en .
+<https://example.org/agent#Role> rdfs:label "Role"@en ; rdfs:comment "Represents a responsibility held by an agent within a project."@en .
+<https://example.org/agent#SoftwareAgent> rdfs:label "Software Agent"@en ; rdfs:comment "Represents software that performs project work as an agent."@en .
+<https://example.org/agent#Task> rdfs:label "Task"@en ; rdfs:comment "Represents a planned unit of work with an objective and completion criteria."@en .
+<https://example.org/agent#TaskRun> rdfs:label "Task Run"@en ; rdfs:comment "Represents one execution of a planned task, including its status and provenance."@en .
+<https://example.org/agent#acceptanceCriteria> rdfs:label "Acceptance Criteria"@en ; rdfs:comment "Records the acceptance criteria for a subject as a string value."@en .
+<https://example.org/agent#artifactType> rdfs:label "Artifact Type"@en ; rdfs:comment "Records the artifact type for a Artifact as a string value."@en .
+<https://example.org/agent#artifactUri> rdfs:label "Artifact URI"@en ; rdfs:comment "Links a Artifact to a Resource."@en .
+<https://example.org/agent#assignedTo> rdfs:label "Assigned To"@en ; rdfs:comment "Links a Task to a Agent."@en .
+<https://example.org/agent#assignmentAgent> rdfs:label "Assignment Agent"@en ; rdfs:comment "Links a Agent Assignment to a Agent."@en .
+<https://example.org/agent#assignmentRole> rdfs:label "Assignment Role"@en ; rdfs:comment "Links a Agent Assignment to a Role."@en .
+<https://example.org/agent#checksum> rdfs:label "Checksum"@en ; rdfs:comment "Records the checksum for a Artifact as a string value."@en .
+<https://example.org/agent#containsArtifact> rdfs:label "Contains Artifact"@en ; rdfs:comment "Links a Handoff to a Artifact."@en .
+<https://example.org/agent#decision> rdfs:label "Decision"@en ; rdfs:comment "Records the decision for a Review Decision as a string value."@en .
+<https://example.org/agent#decisionAbout> rdfs:label "Decision About"@en ; rdfs:comment "Links a Review Decision to a Artifact."@en .
+<https://example.org/agent#dependsOn> rdfs:label "Depends On"@en ; rdfs:comment "Links a Task to a Task."@en .
+<https://example.org/agent#errorCode> rdfs:label "Error Code"@en ; rdfs:comment "Records the error code for a Task Run as a string value."@en .
+<https://example.org/agent#goal> rdfs:label "Goal"@en ; rdfs:comment "Records the goal for a Project as a string value."@en .
+<https://example.org/agent#hasAssignment> rdfs:label "Has Assignment"@en ; rdfs:comment "Links a Project to a Agent Assignment."@en .
+<https://example.org/agent#hasCapability> rdfs:label "Has Capability"@en ; rdfs:comment "Links a Agent to a Capability."@en .
+<https://example.org/agent#hasDecision> rdfs:label "Has Decision"@en ; rdfs:comment "Links a Review Run to a Review Decision."@en .
+<https://example.org/agent#hasFinalArtifact> rdfs:label "Has Final Artifact"@en ; rdfs:comment "Links a Project to a Artifact."@en .
+<https://example.org/agent#hasHandoff> rdfs:label "Has Handoff"@en ; rdfs:comment "Links a Task Run to a Handoff."@en .
+<https://example.org/agent#hasTask> rdfs:label "Has Task"@en ; rdfs:comment "Links a Project to a Task."@en .
+<https://example.org/agent#implementsTask> rdfs:label "Implements Task"@en ; rdfs:comment "Links a Task Run to a Task."@en .
+<https://example.org/agent#reason> rdfs:label "Reason"@en ; rdfs:comment "Records the reason for a Review Decision as a string value."@en .
+<https://example.org/agent#requiresCapability> rdfs:label "Requires Capability"@en ; rdfs:comment "Links a Task to a Capability."@en .
+<https://example.org/agent#reviews> rdfs:label "Reviews"@en ; rdfs:comment "Links a Review Run to a Artifact."@en .
+<https://example.org/agent#status> rdfs:label "Status"@en ; rdfs:comment "Records the status for a Task Run as a string value."@en .
+<https://example.org/agent#taskObjective> rdfs:label "Task Objective"@en ; rdfs:comment "Records the task objective for a Task as a string value."@en .
+<https://example.org/agent#toAgent> rdfs:label "To Agent"@en ; rdfs:comment "Links a Handoff to a Agent."@en .
+<https://example.org/agent#toTask> rdfs:label "To Task"@en ; rdfs:comment "Links a Handoff to a Task."@en .
+<https://example.org/agent#toolVersion> rdfs:label "Tool Version"@en ; rdfs:comment "Records the tool version for a Task Run as a string value."@en .
+<https://example.org/agent#version> rdfs:label "Version"@en ; rdfs:comment "Records the version for a subject as a string value."@en .
+
+# Korean definitions for collaboration and review contracts.
+ag:HumanAgent rdfs:comment "프로젝트의 계획, 실행 또는 검수에 참여하는 사람 에이전트."@ko .
+ag:ReviewRun rdfs:comment "하나 이상의 결과물을 검수하고 검수 결정을 남기는 한 번의 작업 실행."@ko .
+ag:SoftwareAgent rdfs:comment "프로젝트 작업을 수행하거나 조정하는 소프트웨어 에이전트."@ko .
+ag:artifactType rdfs:comment "결과물의 파일·문서·데이터 등 종류를 나타내는 출처 문자열을 기록한다."@ko .
+ag:assignedTo rdfs:comment "계획 작업을 담당하도록 지정된 에이전트를 연결한다. 실제 실행의 수행자는 별도로 기록한다."@ko .
+ag:assignmentAgent rdfs:comment "프로젝트 역할 배정에 참여하는 에이전트를 연결한다."@ko .
+ag:assignmentRole rdfs:comment "프로젝트 역할 배정에서 해당 에이전트가 맡은 책임 역할을 연결한다."@ko .
+ag:checksum rdfs:comment "결과물 파일의 무결성을 확인하기 위한 해시 문자열을 기록한다. 파일 존재 여부와 접근 가능성은 별도 검사한다."@ko .
+ag:containsArtifact rdfs:comment "인계 기록에서 다음 담당자에게 전달한 결과물을 연결한다."@ko .
+ag:decision rdfs:comment "검수 결정의 승인·반려 등 결과 코드를 기록한다. 허용 코드는 검수 통제 어휘와 SHACL에서 관리한다."@ko .
+ag:decisionAbout rdfs:comment "검수 결정이 대상으로 삼은 결과물을 연결한다."@ko .
+ag:errorCode rdfs:comment "작업 실행에서 기록한 오류 식별 코드를 보존한다. 오류 코드의 의미는 해당 도구나 실행 로그와 함께 해석한다."@ko .
+ag:goal rdfs:comment "프로젝트 참여자가 공유하는 목표를 문장으로 기록한다."@ko .
+ag:hasAssignment rdfs:comment "프로젝트에 속하는 에이전트와 역할의 배정 기록을 연결한다."@ko .
+ag:hasCapability rdfs:comment "에이전트가 수행할 수 있다고 기록된 작업 능력을 연결한다. 이 관계만으로 실제 수행 성공을 보장하지 않는다."@ko .
+ag:hasDecision rdfs:comment "검수 실행에서 작성한 결과물별 검수 결정을 연결한다."@ko .
+ag:hasFinalArtifact rdfs:comment "프로젝트가 최종 전달물로 채택한 결과물을 연결한다."@ko .
+ag:hasHandoff rdfs:comment "작업 실행에서 다음 담당자나 작업으로 전달한 인계 기록을 연결한다."@ko .
+ag:hasTask rdfs:comment "프로젝트를 구성하는 계획 작업을 연결한다. 작업 실행과 재시도는 별도 자원으로 기록한다."@ko .
+ag:implementsTask rdfs:comment "작업 실행이 수행하려는 계획 작업을 연결한다. 같은 계획 작업은 여러 번 실행될 수 있다."@ko .
+ag:reason rdfs:comment "검수 결정의 판단 근거를 문장으로 기록한다. 출처가 없는 근거는 검증된 사실로 취급하지 않는다."@ko .
+ag:requiresCapability rdfs:comment "계획 작업을 수행하는 데 요구되는 능력을 연결한다."@ko .
+ag:reviews rdfs:comment "검수 실행이 실제로 살펴본 결과물을 연결한다. 검수 승인 여부는 결정 자원에 별도 기록한다."@ko .
+ag:taskObjective rdfs:comment "계획 작업이 달성해야 하는 목표를 문장으로 기록한다."@ko .
+ag:toAgent rdfs:comment "인계 기록의 수신 담당 에이전트를 연결한다."@ko .
+ag:toTask rdfs:comment "인계된 결과물과 맥락을 사용할 다음 계획 작업을 연결한다."@ko .
+ag:toolVersion rdfs:comment "작업 실행에서 사용한 도구의 버전 문자열을 기록한다. 확인되지 않은 버전을 추정하지 않는다."@ko .

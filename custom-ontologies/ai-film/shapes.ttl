@@ -1,0 +1,106 @@
+@prefix film: <https://example.org/ontology/custom/ai-film#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+film:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+film:FilmProjectShape a sh:NodeShape ; sh:targetClass film:FilmProject ; sh:node film:LabelShape ;
+    sh:property [ sh:path film:hasScreenplay ; sh:class film:Screenplay ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:hasEditVersion ; sh:class film:EditVersion ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "Edit version labels must be unique within a film project." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:hasEditVersion ?a, ?b . ?a film:versionLabel ?v . ?b film:versionLabel ?v .
+            FILTER (?a != ?b)
+          }""" ] .
+
+film:ScreenplayShape a sh:NodeShape ; sh:targetClass film:Screenplay ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasScreenplay ] ; sh:minCount 1 ; sh:maxCount 1 ; sh:class film:FilmProject ] ;
+    sh:property [ sh:path film:hasScene ; sh:minCount 1 ; sh:class film:Scene ] ;
+    sh:sparql [ sh:message "Scene order must be unique within a screenplay." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:hasScene ?a, ?b . ?a film:sceneOrder ?n . ?b film:sceneOrder ?n . FILTER (?a != ?b)
+          }""" ] .
+
+film:SceneShape a sh:NodeShape ; sh:targetClass film:Scene ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasScene ] ; sh:minCount 1 ; sh:maxCount 1 ; sh:class film:Screenplay ] ;
+    sh:property [ sh:path film:sceneOrder ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:hasShot ; sh:minCount 1 ; sh:class film:Shot ] ;
+    sh:sparql [ sh:message "Shot order must be unique within a scene." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:hasShot ?a, ?b . ?a film:shotOrder ?n . ?b film:shotOrder ?n . FILTER (?a != ?b)
+          }""" ] .
+
+film:ShotShape a sh:NodeShape ; sh:targetClass film:Shot ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasShot ] ; sh:minCount 1 ; sh:maxCount 1 ; sh:class film:Scene ] ;
+    sh:property [ sh:path film:shotOrder ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:targetDurationSeconds ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:hasGenerationTask ; sh:class film:GenerationTask ; sh:minCount 1 ] .
+
+film:GenerationTaskShape a sh:NodeShape ; sh:targetClass film:GenerationTask ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasGenerationTask ] ; sh:class film:Shot ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:taskStatus ; sh:datatype xsd:string ; sh:in ( "planned" "running" "completed" "failed" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:promptText ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:modelKnowledgeStatus ; sh:datatype xsd:string ; sh:in ( "unknown" "recorded" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:modelIdentifier ; sh:datatype xsd:string ; sh:minLength 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:generationEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:plannedAsset ; sh:class film:MediaAsset ; sh:minCount 1 ] ;
+    sh:or (
+        [ sh:property [ sh:path film:modelKnowledgeStatus ; sh:hasValue "unknown" ] ; sh:property [ sh:path film:modelIdentifier ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path film:modelKnowledgeStatus ; sh:hasValue "recorded" ] ; sh:property [ sh:path film:modelIdentifier ; sh:minCount 1 ] ]
+    ) ;
+    sh:sparql [ sh:message "Completed generation requires execution evidence and available planned assets." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:taskStatus "completed" .
+            { FILTER NOT EXISTS { $this film:generationEvidenceUri ?e } }
+            UNION { $this film:plannedAsset ?asset . FILTER NOT EXISTS { ?asset film:assetStatus "available" } }
+          }""" ] ;
+    sh:sparql [ sh:message "A planned task cannot carry a completed generation evidence claim." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE { $this film:taskStatus "planned" ; film:generationEvidenceUri ?e . }""" ] .
+
+film:MediaAssetShape a sh:NodeShape ; sh:targetClass film:MediaAsset ; sh:node film:LabelShape ;
+    sh:property [ sh:path film:assetStatus ; sh:datatype xsd:string ; sh:in ( "planned" "available" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:mediaType ; sh:datatype xsd:string ; sh:in ( "video" "image" "audio" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:assetUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:sourceEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:hasReview ; sh:class film:ReviewDecision ; sh:minCount 2 ; sh:maxCount 2 ] ;
+    sh:property [ sh:path film:hasReview ; sh:qualifiedValueShape [ sh:property [ sh:path film:reviewKind ; sh:hasValue "rights" ] ] ; sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ] ;
+    sh:property [ sh:path film:hasReview ; sh:qualifiedValueShape [ sh:property [ sh:path film:reviewKind ; sh:hasValue "quality" ] ] ; sh:qualifiedMinCount 1 ; sh:qualifiedMaxCount 1 ] ;
+    sh:or (
+        [ sh:property [ sh:path film:assetStatus ; sh:hasValue "planned" ] ; sh:property [ sh:path film:assetUri ; sh:maxCount 0 ] ; sh:property [ sh:path film:sourceEvidenceUri ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path film:assetStatus ; sh:hasValue "available" ] ; sh:property [ sh:path film:assetUri ; sh:minCount 1 ] ; sh:property [ sh:path film:sourceEvidenceUri ; sh:minCount 1 ] ]
+    ) .
+
+film:ReviewDecisionShape a sh:NodeShape ; sh:targetClass film:ReviewDecision ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasReview ] ; sh:class film:MediaAsset ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:reviewKind ; sh:datatype xsd:string ; sh:in ( "rights" "quality" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:decision ; sh:datatype xsd:string ; sh:in ( "pending" "approved" "rejected" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:decisionReason ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:reviewEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|file:///|urn:)" ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "Approved reviews require an evidence record and an available asset." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:decision "approved" .
+            { FILTER NOT EXISTS { $this film:reviewEvidenceUri ?e } }
+            UNION { ?asset film:hasReview $this . FILTER NOT EXISTS { ?asset film:assetStatus "available" } }
+          }""" ] .
+
+film:EditVersionShape a sh:NodeShape ; sh:targetClass film:EditVersion ; sh:node film:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath film:hasEditVersion ] ; sh:class film:FilmProject ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:versionLabel ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:editStatus ; sh:datatype xsd:string ; sh:in ( "draft" "approved" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path film:usesAsset ; sh:class film:MediaAsset ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "Approved edits require available assets with rights and quality approvals." ;
+        sh:select """PREFIX film: <https://example.org/ontology/custom/ai-film#>
+          SELECT $this WHERE {
+            $this film:editStatus "approved" ; film:usesAsset ?asset .
+            { FILTER NOT EXISTS { ?asset film:assetStatus "available" } }
+            UNION { FILTER NOT EXISTS { ?asset film:hasReview ?r . ?r film:reviewKind "rights" ; film:decision "approved" } }
+            UNION { FILTER NOT EXISTS { ?asset film:hasReview ?q . ?q film:reviewKind "quality" ; film:decision "approved" } }
+          }""" ] .

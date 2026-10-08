@@ -1,0 +1,259 @@
+@prefix marriage: <https://example.org/ontology/custom/marriage#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Validate preparation records, not actual contracts or legal marital status.
+# Events never imply marriage information; ready is recorded preparation only.
+# Date-time values require a time zone; dates use canonical YYYY-MM-DD.
+marriage:LabelShape a sh:NodeShape ; sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:datatype rdf:langString ; sh:minCount 1 ; sh:minLength 1 ; sh:uniqueLang true ] .
+
+marriage:MarriagePlanShape a sh:NodeShape ; sh:targetClass marriage:MarriagePlan ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path marriage:recordKind ; sh:datatype xsd:string ; sh:in ( "synthetic" "observed" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:status ; sh:datatype xsd:string ; sh:in ( "draft" "ready" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:hasPerson ; sh:class marriage:Person ; sh:nodeKind sh:IRI ; sh:minCount 2 ] ;
+    sh:property [ sh:path marriage:hasPartner ; sh:class marriage:Person ; sh:nodeKind sh:IRI ; sh:minCount 2 ] ;
+    sh:property [ sh:path marriage:coordinatedBy ; sh:class marriage:Person ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:hasCeremony ; sh:class marriage:Ceremony ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path marriage:hasInvitation ; sh:class marriage:Invitation ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path marriage:hasTask ; sh:class marriage:PreparationTask ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path marriage:hasBooking ; sh:class marriage:ServiceBooking ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path marriage:hasExpense ; sh:class marriage:Expense ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path marriage:budgetAmount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:currency ; sh:datatype xsd:string ; sh:in ( "KRW" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:planNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:marriageInfoStatus ; sh:datatype xsd:string ; sh:in ( "unrecorded" "recorded" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:marriageDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:marriageInfoNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:pattern "\\S" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:marriageInfoSourceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)[^\\s]+$" ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "Every partner must be among the plan's person records." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:hasPartner ?person .
+            FILTER NOT EXISTS { $this marriage:hasPerson ?person }
+          }""" ] ;
+    sh:sparql [ sh:message "The coordinator must be among the plan's person records." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:coordinatedBy ?person .
+            FILTER NOT EXISTS { $this marriage:hasPerson ?person }
+          }""" ] ;
+    sh:sparql [ sh:message "Unrecorded marriage information must not contain a date, note or source URI." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:marriageInfoStatus "unrecorded" .
+            FILTER (EXISTS { $this marriage:marriageDate ?date } || EXISTS { $this marriage:marriageInfoNote ?note } || EXISTS { $this marriage:marriageInfoSourceUri ?source })
+          }""" ] ;
+    sh:sparql [ sh:message "Recorded marriage information requires a nonempty note and source URI; this does not verify marital status." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:marriageInfoStatus "recorded" .
+            FILTER (NOT EXISTS { $this marriage:marriageInfoNote ?note } || NOT EXISTS { $this marriage:marriageInfoSourceUri ?source })
+          }""" ] ;
+    sh:sparql [ sh:message "Event sequence values must be unique within a plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:hasCeremony ?first, ?second .
+            ?first marriage:sequence ?sequence .
+            ?second marriage:sequence ?sequence .
+            FILTER (?first != ?second)
+          }""" ] ;
+    sh:sparql [ sh:message "A plan must not contain duplicate invitations for the same person and event." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:hasInvitation ?first, ?second .
+            ?first marriage:invitedPerson ?person ; marriage:forEvent ?event .
+            ?second marriage:invitedPerson ?person ; marriage:forEvent ?event .
+            FILTER (?first != ?second)
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan requires every noncancelled preparation task to be completed." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:status "ready" ; marriage:hasTask ?task .
+            ?task marriage:taskStatus ?taskStatus .
+            FILTER (?taskStatus != "cancelled" && ?taskStatus != "completed")
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan requires every required booking record to be confirmed; this does not authenticate actual bookings." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:status "ready" ; marriage:hasBooking ?booking .
+            ?booking marriage:isRequired ?required .
+            FILTER (?required = true)
+            FILTER NOT EXISTS { ?booking marriage:bookingStatus "confirmed" }
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan must not contain pending invitation responses." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:status "ready" ; marriage:hasInvitation ?invitation .
+            ?invitation marriage:rsvpStatus "pending" .
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan's accepted party total for each event must not exceed that event venue's recorded capacity." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:status "ready" .
+            {
+              SELECT $this ?event (SUM(?partySize) AS ?total) WHERE {
+                $this marriage:hasInvitation ?invitation .
+                ?invitation marriage:forEvent ?event ; marriage:rsvpStatus "accepted" ; marriage:partySize ?partySize .
+              } GROUP BY $this ?event
+            }
+            ?event marriage:atVenue ?venue .
+            ?venue marriage:capacity ?capacity .
+            FILTER (?total > ?capacity)
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan's planned and paid expense total must not exceed its budget; cancelled expenses are excluded." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:status "ready" ; marriage:budgetAmount ?budget .
+            {
+              SELECT $this (SUM(?amount) AS ?total) WHERE {
+                $this marriage:hasExpense ?expense .
+                ?expense marriage:expenseStatus ?expenseStatus ; marriage:amount ?amount .
+                FILTER (?expenseStatus IN ("planned", "paid"))
+              } GROUP BY $this
+            }
+            FILTER (?total > ?budget)
+          }""" ] .
+
+marriage:PersonShape a sh:NodeShape ; sh:targetClass marriage:Person ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path marriage:personNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+marriage:CeremonyShape a sh:NodeShape ; sh:targetClass marriage:Ceremony ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath marriage:hasCeremony ] ; sh:class marriage:MarriagePlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:eventKind ; sh:datatype xsd:string ; sh:in ( "ceremony" "reception" "meeting" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:eventStartsAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:eventEndsAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:sequence ; sh:datatype xsd:integer ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:atVenue ; sh:class marriage:Venue ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:eventNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An event's start must precede its end." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:eventStartsAt ?start ; marriage:eventEndsAt ?end .
+            FILTER (?start >= ?end)
+          }""" ] .
+
+marriage:VenueShape a sh:NodeShape ; sh:targetClass marriage:Venue ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path marriage:venueKind ; sh:datatype xsd:string ; sh:in ( "hall" "garden" "restaurant" "home" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:capacity ; sh:datatype xsd:integer ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:locationNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+marriage:InvitationShape a sh:NodeShape ; sh:targetClass marriage:Invitation ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath marriage:hasInvitation ] ; sh:class marriage:MarriagePlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:invitedPerson ; sh:class marriage:Person ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:forEvent ; sh:class marriage:Ceremony ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:rsvpStatus ; sh:datatype xsd:string ; sh:in ( "pending" "accepted" "declined" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:partySize ; sh:datatype xsd:integer ; sh:minExclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:responseRecordedAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An invited person must be included in the invitation's plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            ?plan marriage:hasInvitation $this .
+            $this marriage:invitedPerson ?person .
+            FILTER NOT EXISTS { ?plan marriage:hasPerson ?person }
+          }""" ] ;
+    sh:sparql [ sh:message "An invitation event must belong to the invitation's plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            ?plan marriage:hasInvitation $this .
+            $this marriage:forEvent ?event .
+            FILTER NOT EXISTS { ?plan marriage:hasCeremony ?event }
+          }""" ] ;
+    sh:sparql [ sh:message "An accepted invitation requires party size and response record time." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:rsvpStatus "accepted" .
+            FILTER (NOT EXISTS { $this marriage:partySize ?size } || NOT EXISTS { $this marriage:responseRecordedAt ?response })
+          }""" ] ;
+    sh:sparql [ sh:message "A declined invitation requires response record time and must not contain party size." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:rsvpStatus "declined" .
+            FILTER (NOT EXISTS { $this marriage:responseRecordedAt ?response } || EXISTS { $this marriage:partySize ?size })
+          }""" ] ;
+    sh:sparql [ sh:message "A pending invitation must not contain response record time." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:rsvpStatus "pending" ; marriage:responseRecordedAt ?response .
+          }""" ] .
+
+marriage:PreparationTaskShape a sh:NodeShape ; sh:targetClass marriage:PreparationTask ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath marriage:hasTask ] ; sh:class marriage:MarriagePlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:assignedTo ; sh:class marriage:Person ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:dueAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:taskStatus ; sh:datatype xsd:string ; sh:in ( "planned" "in-progress" "completed" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:taskNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:completedAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:dependsOn ; sh:class marriage:PreparationTask ; sh:nodeKind sh:IRI ] ;
+    sh:sparql [ sh:message "A task assignee must be included in the task's plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            ?plan marriage:hasTask $this .
+            $this marriage:assignedTo ?person .
+            FILTER NOT EXISTS { ?plan marriage:hasPerson ?person }
+          }""" ] ;
+    sh:sparql [ sh:message "A completed task requires a completion record time." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:taskStatus "completed" .
+            FILTER NOT EXISTS { $this marriage:completedAt ?completed }
+          }""" ] ;
+    sh:sparql [ sh:message "A noncompleted task must not contain a completion record time." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:taskStatus ?taskStatus ; marriage:completedAt ?completed .
+            FILTER (?taskStatus != "completed")
+          }""" ] ;
+    sh:sparql [ sh:message "Task dependencies must belong to the same plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            ?plan marriage:hasTask $this .
+            $this marriage:dependsOn ?dependency .
+            FILTER NOT EXISTS { ?plan marriage:hasTask ?dependency }
+          }""" ] ;
+    sh:sparql [ sh:message "Task dependencies must not contain a cycle." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE { $this marriage:dependsOn+ $this . }""" ] ;
+    sh:sparql [ sh:message "Every dependency of a completed task must also be completed." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:taskStatus "completed" ; marriage:dependsOn ?dependency .
+            FILTER NOT EXISTS { ?dependency marriage:taskStatus "completed" }
+          }""" ] .
+
+marriage:ServiceBookingShape a sh:NodeShape ; sh:targetClass marriage:ServiceBooking ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath marriage:hasBooking ] ; sh:class marriage:MarriagePlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:serviceKind ; sh:datatype xsd:string ; sh:in ( "venue" "catering" "photography" "transport" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:bookedFor ; sh:class marriage:Ceremony ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:bookingStatus ; sh:datatype xsd:string ; sh:in ( "requested" "confirmed" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:providerLabel ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:confirmationUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)[^\\s]+$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:bookingNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:isRequired ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A booking event must belong to the booking's plan." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            ?plan marriage:hasBooking $this .
+            $this marriage:bookedFor ?event .
+            FILTER NOT EXISTS { ?plan marriage:hasCeremony ?event }
+          }""" ] ;
+    sh:sparql [ sh:message "A confirmed booking record requires a confirmation URI." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:bookingStatus "confirmed" .
+            FILTER NOT EXISTS { $this marriage:confirmationUri ?confirmation }
+          }""" ] ;
+    sh:sparql [ sh:message "A requested booking record must not contain a confirmation URI." ;
+        sh:select """PREFIX marriage: <https://example.org/ontology/custom/marriage#>
+          SELECT $this WHERE {
+            $this marriage:bookingStatus "requested" ; marriage:confirmationUri ?confirmation .
+          }""" ] .
+
+marriage:ExpenseShape a sh:NodeShape ; sh:targetClass marriage:Expense ; sh:node marriage:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath marriage:hasExpense ] ; sh:class marriage:MarriagePlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:expenseKind ; sh:datatype xsd:string ; sh:in ( "venue" "catering" "attire" "photography" "transport" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:amount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:expenseStatus ; sh:datatype xsd:string ; sh:in ( "planned" "paid" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path marriage:expenseNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .

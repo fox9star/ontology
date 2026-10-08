@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "wireless-router",
+  "name": "무선공유기 온톨로지 (wireless-router)",
+  "description": "무선공유기 장치·무선 인터페이스·네트워크·보안 프로필·망 분리·클라이언트 접속·펌웨어·설정 스냅샷·성능 관측·장애 및 근거 출처를 연결한다. 기능 지원, 설정 상태, 실제 관측 상태를 분리하며 예시는 합성 자료이다.",
+  "name_en": "Wireless Router Ontology",
+  "description_en": "Connects router devices, radios, wireless networks, security profiles, isolation, clients and associations, firmware, configuration snapshots, performance observations, incidents, and evidence sources. Supported capability, configuration, and observed state remain distinct; examples are synthetic.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/wireless-router#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T11:57:02+09:00",
+  "schema": "custom-ontologies/wireless-router/schema.ttl",
+  "owl": "custom-ontologies/wireless-router/schema.owl",
+  "shapes": "custom-ontologies/wireless-router/shapes.ttl",
+  "example": "custom-ontologies/wireless-router/example.ttl",
+  "questions": "custom-ontologies/wireless-router/questions.md",
+  "questions_fixture": "custom-ontologies/wireless-router/question-fixture.ttl",
+  "question_answers": "custom-ontologies/wireless-router/question-answers.json",
+  "compatibility_cases": "custom-ontologies/wireless-router/consumer-cases.trig"
+}

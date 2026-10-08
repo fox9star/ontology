@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#TechnicalIndicator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">기술적 지표</rdfs:label>
+    <rdfs:label xml:lang="en">Technical Indicator</rdfs:label>
+    <rdfs:comment xml:lang="ko">과거 시세와 거래량 데이터의 통계적 패턴을 기반으로 산출된 모멘텀 및 추세 지표.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Quantitative chart indicator derived from mathematical evaluation of historical price trends and volume.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#dividendYield">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">배당수익률</rdfs:label>
+    <rdfs:label xml:lang="en">Dividend Yield</rdfs:label>
+    <rdfs:comment xml:lang="ko">1주당 연간 배당금을 현재 주가로 나눈 백분율 배당 수익률.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Annual financial return generated from dividend distributions relative to stock price.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialMetric"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#PortfolioPosition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">포트폴리오 보유 종목</rdfs:label>
+    <rdfs:label xml:lang="en">Portfolio Position</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 시점에 투자 포트폴리오가 보유하고 있는 개별 유가증권의 수량 및 매입단가 기록.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Detailed individual holding entry tracking asset ownership quantity and unit cost basis in a portfolio.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#per">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">주가수익비율 PER</rdfs:label>
+    <rdfs:label xml:lang="en">Price-to-Earnings Ratio</rdfs:label>
+    <rdfs:comment xml:lang="ko">현재 주가를 1주당 순이익(EPS)으로 나눈 가치평가 배수.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Fundamental valuation multiple dividing market price per share by earnings per share.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialMetric"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#FinancialAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">금융 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Financial Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">투자 대상이 되는 모든 금융 자산의 상위 추상 클래스.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Abstract base class representing any financial asset available for investment and trading.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#isin">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">국제 증권 식별 번호</rdfs:label>
+    <rdfs:label xml:lang="en">ISIN Code</rdfs:label>
+    <rdfs:comment xml:lang="ko">국제 표준화 기구(ISO 6166) 규격에 따른 12자리의 국제 유가증권 식별 번호.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Standardized twelve-character International Securities Identification Number code.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#ExchangeTradedFund">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:label xml:lang="ko">상장지수펀드 ETF</rdfs:label>
+    <rdfs:label xml:lang="en">Exchange Traded Fund</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 주가지수나 자산 바스켓의 수익률을 추종하며 거래소에 상장된 집합투자기구.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An open-ended index-tracking investment fund traded in real time across organized stock exchanges.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#orderAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">주문 대상 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Order Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">매매 주문이 체결을 지시하는 대상 유가증권을 가리킨다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Specifies the financial security targeted for purchase or liquidation by the order.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#marketCap">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">시가 총액</rdfs:label>
+    <rdfs:label xml:lang="en">Market Capitalization</rdfs:label>
+    <rdfs:comment xml:lang="ko">기업의 상장 주식 총수에 현재 주가를 곱하여 산출한 총 시장 가치 금액.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Total aggregate equity valuation computed by multiplying total shares by current price.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#Corporation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#positionQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">포지션 보유 수량</rdfs:label>
+    <rdfs:label xml:lang="en">Position Holding Quantity</rdfs:label>
+    <rdfs:comment xml:lang="ko">해당 포지션에서 현재 계좌에 보유하고 있는 실물 주식의 수량.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Aggregate quantity of shares currently held active within the portfolio holding.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#PortfolioPosition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#TradingOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#TaskRun"/>
+    <rdfs:label xml:lang="ko">주식 매매 주문</rdfs:label>
+    <rdfs:label xml:lang="en">Stock Trading Order</rdfs:label>
+    <rdfs:comment xml:lang="ko">AI 트레이딩 에이전트에 의해 생성되어 시장에 전송·체결되는 매수 또는 매도 작업 실행 기록.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A trade order execution transaction representing an instruction to purchase or liquidate shares.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#rsi">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">상대강도지수 RSI</rdfs:label>
+    <rdfs:label xml:lang="en">Relative Strength Index</rdfs:label>
+    <rdfs:comment xml:lang="ko">일정 기간 주가 상승폭과 하락폭의 상대적 강도를 0부터 100 범위로 표현한 모멘텀 지표.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Bounded momentum technical oscillator evaluating speed and change of price movements.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TechnicalIndicator"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#sharpeRatio">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">샤프 지수</rdfs:label>
+    <rdfs:label xml:lang="en">Portfolio Sharpe Ratio</rdfs:label>
+    <rdfs:comment xml:lang="ko">무위험 수익률 대비 포트폴리오 초과 수익률을 변동성으로 나눈 위험조정 성과 지표.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Annualized risk-adjusted performance metric dividing excess return by standard deviation.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#hasOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">발주 주문 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has Order</rdfs:label>
+    <rdfs:comment xml:lang="ko">투자 포트폴리오 운용을 위해 발생한 매매 체결 주문을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Associates an executed or active trading order with the portfolio account.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#RiskManagerAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#StockTradingAgent"/>
+    <rdfs:label xml:lang="ko">리스크 관리 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Risk Manager Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">포트폴리오 변동성, 최대 낙폭(MDD), 밸류앳리스크(VaR) 한도를 상시 감시하고 조절하는 위험 관리 에이전트.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Supervisory agent monitoring downside risk, maximum drawdown limits, and portfolio value-at-risk exposures.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#orderPrice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">주문 한도 가격</rdfs:label>
+    <rdfs:label xml:lang="en">Order Limit Price</rdfs:label>
+    <rdfs:comment xml:lang="ko">지정가 매매 주문 체결을 위해 지정된 1주당 거래 단가.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Specified unit monetary price limit set for execution of the limit order.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#issuedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">발행 법인</rdfs:label>
+    <rdfs:label xml:lang="en">Issued By</rdfs:label>
+    <rdfs:comment xml:lang="ko">금융 자산을 발행한 법인체를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects a financial asset to its legal issuer corporate entity.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#Corporation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#tickerSymbol">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">티커 심볼 종목 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Ticker Symbol</rdfs:label>
+    <rdfs:comment xml:lang="ko">거래소에서 종목을 식별하기 위해 부여된 고유 식별 코드 문자열.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Official alphanumeric trading symbol or market ticker identifying the security.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#hasTechnicalIndicator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">기술적 지표 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Has Technical Indicator</rdfs:label>
+    <rdfs:comment xml:lang="ko">주식 종목의 시계열 차트 기반 기술적 분석 지표를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a stock security to its computed technical momentum and trend indicators.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#Stock"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#TechnicalIndicator"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">주식투자 AI 에이전트 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Stock Investment AI Agent Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">상장 주식, 재무 펀더멘털 지표, 기술적 분석 지표, 투자 포트폴리오 및 AI 트레이딩 에이전트 협업 체계를 정의한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Defines listed equities, fundamental valuation metrics, technical indicators, investment portfolios, and AI trading agent collaboration.</rdfs:comment>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#tradingVolume">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">당일 누적 거래량</rdfs:label>
+    <rdfs:label xml:lang="en">Trading Volume</rdfs:label>
+    <rdfs:comment xml:lang="ko">해당 거래일 동안 정규 거래소에서 체결된 총 주식 수량.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Total cumulative number of security units exchanged during the daily market session.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#DailyPrice"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#executedByAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#runAgent"/>
+    <rdfs:label xml:lang="ko">주문 집행 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Executed By Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">주문을 생성하고 시장에 발주시킨 담당 AI 트레이딩 에이전트를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Designates the AI trading agent that created and submitted the transaction order.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#StockTradingAgent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#cashBalance">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">가용 현금 잔고</rdfs:label>
+    <rdfs:label xml:lang="en">Available Cash Balance</rdfs:label>
+    <rdfs:comment xml:lang="ko">포트폴리오 계좌에서 신규 매수 주문에 즉시 투입 가능한 미투자 현금 예수금.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Liquid uninvested capital available for allocation and new order execution.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#hasFinancialMetric">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">재무 지표 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Has Financial Metric</rdfs:label>
+    <rdfs:comment xml:lang="ko">주식 종목의 펀더멘털 가치평가 재무 지표를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a stock security to its fundamental financial valuation metrics.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#Stock"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#FinancialMetric"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#PreferredStock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#Stock"/>
+    <rdfs:label xml:lang="ko">우선주</rdfs:label>
+    <rdfs:label xml:lang="en">Preferred Stock</rdfs:label>
+    <rdfs:comment xml:lang="ko">의결권은 제한되거나 배제되나 이익 배당에서 보통주보다 우선권을 가지는 주식.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A class of ownership shares with priority dividend claims ahead of common shares and without voting rights.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#positionAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">보유 대상 자산</rdfs:label>
+    <rdfs:label xml:lang="en">Position Asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">포트폴리오 포지션이 보유하고 있는 대상 금융 자산을 가리킨다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the underlying financial asset owned within a portfolio holding position.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#PortfolioPosition"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#managedByAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">총괄 운용 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Managed By Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">포트폴리오의 비중과 리밸런싱을 총괄 책임지는 AI 에이전트를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the primary portfolio manager AI agent guiding investment decisions.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#StockTradingAgent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#orderQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">주문 수량</rdfs:label>
+    <rdfs:label xml:lang="en">Order Share Quantity</rdfs:label>
+    <rdfs:comment xml:lang="ko">매매 주문에서 체결을 요청한 주식의 주수 단위 수량.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Number of equity security shares specified for execution in the market order.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#DailyPrice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">일별 시세 데이터</rdfs:label>
+    <rdfs:label xml:lang="en">Daily Market Price</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 거래일에 기록된 주식의 종가 및 당일 체결 거래량 데이터 기록.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A daily historical price bar record capturing official market close quotes and executed trading volume.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#pbr">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">주가순자산비율 PBR</rdfs:label>
+    <rdfs:label xml:lang="en">Price-to-Book Ratio</rdfs:label>
+    <rdfs:comment xml:lang="ko">현재 주가를 1주당 순자산가치(BPS)로 나눈 장부가치 배수.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Financial multiple comparing current share price against book value of equity per share.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialMetric"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#StockExchange">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">증권 거래소</rdfs:label>
+    <rdfs:label xml:lang="en">Stock Exchange</rdfs:label>
+    <rdfs:comment xml:lang="ko">유가증권의 공정한 가격 형성과 원활한 유통 거래를 주관하는 공인 금융시장 시설.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An officially recognized and regulated trading venue and marketplace facilitating securities trading.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#averageCost">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">평균 매입 단가</rdfs:label>
+    <rdfs:label xml:lang="en">Average Cost Basis</rdfs:label>
+    <rdfs:comment xml:lang="ko">보유 주식을 매입하는 데 지출된 1주당 가중 평균 매입 가격.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Weighted average dollar cost basis invested per share for currently held securities.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#PortfolioPosition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#priceDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">시세 기준일자</rdfs:label>
+    <rdfs:label xml:lang="en">Price Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">시세와 거래량이 집계된 기준 거래 일자.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Official calendar date for which the market price quote and volume are recorded.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#DailyPrice"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#followsStrategy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">적용 투자 전략</rdfs:label>
+    <rdfs:label xml:lang="en">Follows Strategy</rdfs:label>
+    <rdfs:comment xml:lang="ko">포트폴리오 자산 배분에 적용되는 정량적 또는 규칙 기반 투자 전략을 가리킨다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects an investment portfolio to its formal quantitative or rule-based strategy.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#TradingStrategy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#Corporation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">상장 법인</rdfs:label>
+    <rdfs:label xml:lang="en">Listed Corporation</rdfs:label>
+    <rdfs:comment xml:lang="ko">주식을 발행하여 증권 거래소 시장에 정식 상장한 기업 법인.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A publicly listed corporate enterprise that has issued securities on an organized exchange.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#StockTradingAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Agent"/>
+    <rdfs:label xml:lang="ko">주식 투자 AI 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Stock Trading AI Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">시세 수집, 펀더멘털 분석, 위험 통제 및 주문 발주를 자율 수행하는 소프트웨어 지능형 에이전트.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Autonomous artificial intelligence agent performing financial market analysis, trade routing, and portfolio management.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#CommonStock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#Stock"/>
+    <rdfs:label xml:lang="ko">보통주</rdfs:label>
+    <rdfs:label xml:lang="en">Common Stock</rdfs:label>
+    <rdfs:comment xml:lang="ko">주주총회 의결권과 잔여재산 분배 청구권을 가지는 일반 보통주.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Ordinary voting equity securities conferring proportional corporate rights and dividend participations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#closingPrice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">장마감 종가</rdfs:label>
+    <rdfs:label xml:lang="en">Closing Price</rdfs:label>
+    <rdfs:comment xml:lang="ko">정규 거래 시간 마감 시점에 공식 체결된 주식 1주의 최종 거래 가격.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Final cash settlement price executed at the end of the regular trading day session.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#DailyPrice"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#orderType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">주문 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Order Type</rdfs:label>
+    <rdfs:comment xml:lang="ko">주문의 거래 방향을 나타내며 BUY(매수) 또는 SELL(매도) 값을 취한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Directional action parameter specifying whether the trading order is BUY or SELL.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#hasDailyPrice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">일별 시세 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Has Daily Price</rdfs:label>
+    <rdfs:comment xml:lang="ko">주식 종목의 특정 거래일 시세 정보를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Associates a stock security with a concrete daily price quote record.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#Stock"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#DailyPrice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#InvestmentPortfolio">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">투자 포트폴리오</rdfs:label>
+    <rdfs:label xml:lang="en">Investment Portfolio</rdfs:label>
+    <rdfs:comment xml:lang="ko">복수의 주식 포지션, 가용 현금 예수금, 투자 전략과 위험 관리 한도를 통합 관리하는 계좌 단위.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A structured basket of securities holdings, liquid cash balances, and associated risk-return mandates.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#orderStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#taskStatus"/>
+    <rdfs:label xml:lang="ko">주문 처리 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Order Execution Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">주문 생애주기의 진행 상태로 PENDING, EXECUTED, CANCELLED 값을 취한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Current transactional state of the order lifecycle such as PENDING, EXECUTED, or CANCELLED.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TradingOrder"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#roe">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">자기자본이익률 ROE</rdfs:label>
+    <rdfs:label xml:lang="en">Return on Equity</rdfs:label>
+    <rdfs:comment xml:lang="ko">당기순이익을 자기자본으로 나누어 산출한 기업의 자본 운용 효율성 비율 백분율.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Profitability indicator calculated as annual net income divided by shareholder equity.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialMetric"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#TradingStrategy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">투자 전략</rdfs:label>
+    <rdfs:label xml:lang="en">Trading Strategy</rdfs:label>
+    <rdfs:comment xml:lang="ko">시장 조건에 따라 포지션을 진입, 청산, 조절하는 규칙 및 계량 알고리즘 투자 모델.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Rule-based or algorithmic portfolio management strategy governing asset allocation and trading decisions.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#totalValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">포트폴리오 총 평가액</rdfs:label>
+    <rdfs:label xml:lang="en">Total Portfolio Value</rdfs:label>
+    <rdfs:comment xml:lang="ko">모든 보유 자산 평가액과 예수금 현금을 합산한 포트폴리오의 총 순자산 가치.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Total aggregate portfolio net asset value combining securities valuations and cash.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#tradedOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">상장 거래소</rdfs:label>
+    <rdfs:label xml:lang="en">Traded On</rdfs:label>
+    <rdfs:comment xml:lang="ko">자산이 상장되어 거래되는 정규 증권 거래소를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an asset to the officially authorized exchange venue where it is traded.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#StockExchange"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#movingAverage20">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">20일 이동평균선</rdfs:label>
+    <rdfs:label xml:lang="en">20-Day Moving Average</rdfs:label>
+    <rdfs:comment xml:lang="ko">최근 20거래일 동안의 종가를 단순 산술 평균한 기술적 추세 가격선.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Technical trend indicator tracking the arithmetic mean closing price over 20 sessions.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#TechnicalIndicator"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#FinancialMetric">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">재무 지표</rdfs:label>
+    <rdfs:label xml:lang="en">Financial Metric</rdfs:label>
+    <rdfs:comment xml:lang="ko">기업의 수익성, 장부가치, 성장성을 평가하기 위한 기본적 분석 펀더멘털 배수 지표.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Fundamental corporate valuation ratios measuring profitability, asset strength, and earnings quality.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#Stock">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#FinancialAsset"/>
+    <rdfs:label xml:lang="ko">주식 종목</rdfs:label>
+    <rdfs:label xml:lang="en">Stock Security</rdfs:label>
+    <rdfs:comment xml:lang="ko">주식회사의 소유 지분을 나타내며 거래소에 상장되어 거래되는 유가증권.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An equity security representing proportional fractional ownership in a publicly listed corporate entity.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#QuantAnalystAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://example.org/ontology/stock#StockTradingAgent"/>
+    <rdfs:label xml:lang="ko">퀀트 분석 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Quantitative Analyst Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">다변량 팩터 지표 및 통계적 머신러닝 알고리즘으로 알파 종목을 선별하는 계량 분석 전문 에이전트.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Specialized algorithmic agent evaluating multi-factor statistical models to identify mispriced securities.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/stock#holdsPosition">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">보유 포지션 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Holds Position</rdfs:label>
+    <rdfs:comment xml:lang="ko">투자 포트폴리오에 편입된 개별 종목 포지션을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Associates an investment portfolio with an individual asset holding entry.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/stock#InvestmentPortfolio"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/stock#PortfolioPosition"/>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/agent#hasDecision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">검수 판정을 생성</rdfs:label>
+    <rdfs:label xml:lang="en">Has Decision</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#ReviewRun"/>
+    <rdfs:range rdf:resource="https://example.org/agent#ReviewDecision"/>
+    <rdfs:comment xml:lang="en">Links a Review Run to a Review Decision.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">검수 실행에서 작성한 결과물별 검수 결정을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#reviews">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">검수 대상</rdfs:label>
+    <rdfs:label xml:lang="en">Reviews</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#ReviewRun"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:comment xml:lang="en">Links a Review Run to a Artifact.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">검수 실행이 실제로 살펴본 결과물을 연결한다. 검수 승인 여부는 결정 자원에 별도 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#hasAssignment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">프로젝트 역할 배정</rdfs:label>
+    <rdfs:label xml:lang="en">Has Assignment</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Project"/>
+    <rdfs:range rdf:resource="https://example.org/agent#AgentAssignment"/>
+    <rdfs:comment xml:lang="en">Links a Project to a Agent Assignment.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트에 속하는 에이전트와 역할의 배정 기록을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#assignedTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">계획상 담당</rdfs:label>
+    <rdfs:label xml:lang="en">Assigned To</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:comment xml:lang="en">Links a Task to a Agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">계획 작업을 담당하도록 지정된 에이전트를 연결한다. 실제 실행의 수행자는 별도로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Task">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">계획 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Task</rdfs:label>
+    <rdfs:comment xml:lang="ko">실행 이전에 정의한 목표, 담당자, 완료 기준과 의존성.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a planned unit of work with an objective and completion criteria.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/agent#decisionAbout"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#ReviewDecision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">검수 판정</rdfs:label>
+    <rdfs:label xml:lang="en">Review Decision</rdfs:label>
+    <rdfs:comment xml:lang="ko">검수한 결과물에 대한 승인 또는 반려와 사유.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an acceptance, rejection, or other decision made during review.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#toolVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">사용 도구 버전</rdfs:label>
+    <rdfs:label xml:lang="en">Tool Version</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the tool version for a Task Run as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">작업 실행에서 사용한 도구의 버전 문자열을 기록한다. 확인되지 않은 버전을 추정하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#hasTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">계획 작업을 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has Task</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Project"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:comment xml:lang="en">Links a Project to a Task.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트를 구성하는 계획 작업을 연결한다. 작업 실행과 재시도는 별도 자원으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#hasHandoff">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">인계 묶음을 전달</rdfs:label>
+    <rdfs:label xml:lang="en">Has Handoff</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Handoff"/>
+    <rdfs:comment xml:lang="en">Links a Task Run to a Handoff.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">작업 실행에서 다음 담당자나 작업으로 전달한 인계 기록을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#assignmentAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">배정된 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Assignment Agent</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#AgentAssignment"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:comment xml:lang="en">Links a Agent Assignment to a Agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트 역할 배정에 참여하는 에이전트를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b9">
+    <rdf:first rdf:resource="https://example.org/agent#Agent"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Project">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">프로젝트</rdfs:label>
+    <rdfs:label xml:lang="en">Project</rdfs:label>
+    <rdfs:comment xml:lang="ko">하나의 공동 목표와 계획 작업, 최종 전달물을 묶는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents coordinated work directed toward a shared goal and its deliverables.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Project"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#hasFinalArtifact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">최종 채택 결과물</rdfs:label>
+    <rdfs:label xml:lang="en">Has Final Artifact</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Project"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:comment xml:lang="en">Links a Project to a Artifact.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트가 최종 전달물로 채택한 결과물을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#HumanAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">사람 참여자</rdfs:label>
+    <rdfs:label xml:lang="en">Human Agent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Person"/>
+    <rdfs:comment xml:lang="en">Represents a person participating in project work or review.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트의 계획, 실행 또는 검수에 참여하는 사람 에이전트.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#requiresCapability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">기능을 요구</rdfs:label>
+    <rdfs:label xml:lang="en">Requires Capability</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Capability"/>
+    <rdfs:comment xml:lang="en">Links a Task to a Capability.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">계획 작업을 수행하는 데 요구되는 능력을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#acceptanceCriteria">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">완료 기준</rdfs:label>
+    <rdfs:label xml:lang="en">Acceptance Criteria</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획 작업과 인계 묶음에서 사용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the acceptance criteria for a subject as a string value.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b10"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#hasCapability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">기능을 보유</rdfs:label>
+    <rdfs:label xml:lang="en">Has Capability</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Capability"/>
+    <rdfs:comment xml:lang="en">Links a Agent to a Capability.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">에이전트가 수행할 수 있다고 기록된 작업 능력을 연결한다. 이 관계만으로 실제 수행 성공을 보장하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#ReviewRun">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">검수 실행</rdfs:label>
+    <rdfs:label xml:lang="en">Review Run</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:comment xml:lang="en">Represents an execution of a review over one or more artifacts.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">하나 이상의 결과물을 검수하고 검수 결정을 남기는 한 번의 작업 실행.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#SoftwareAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">소프트웨어 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Software Agent</rdfs:label>
+    <rdfs:subClassOf rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#SoftwareAgent"/>
+    <rdfs:comment xml:lang="en">Represents software that performs project work as an agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트 작업을 수행하거나 조정하는 소프트웨어 에이전트.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#containsArtifact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">인계 결과물을 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Contains Artifact</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Handoff"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:comment xml:lang="en">Links a Handoff to a Artifact.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">인계 기록에서 다음 담당자에게 전달한 결과물을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Capability">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">기능</rdfs:label>
+    <rdfs:label xml:lang="en">Capability</rdfs:label>
+    <rdfs:comment xml:lang="ko">검색, 작성 등 에이전트가 제공하거나 작업이 요구하는 기능.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a kind of work an agent can perform or a task can require.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b2">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/agent#implementsTask"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#artifactType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">결과물 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Artifact Type</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the artifact type for a Artifact as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">결과물의 파일·문서·데이터 등 종류를 나타내는 출처 문자열을 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b11"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#version">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">버전</rdfs:label>
+    <rdfs:label xml:lang="en">Version</rdfs:label>
+    <rdfs:comment xml:lang="ko">결과물 또는 에이전트 구현의 버전. 적용 대상을 각각 명시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the version for a subject as a string value.</rdfs:comment>
+    <rdfs:domain rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b7"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#toTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">받는 작업</rdfs:label>
+    <rdfs:label xml:lang="en">To Task</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Handoff"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:comment xml:lang="en">Links a Handoff to a Task.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">인계된 결과물과 맥락을 사용할 다음 계획 작업을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">상태</rdfs:label>
+    <rdfs:label xml:lang="en">Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">허용 값과 전이 규칙은 SHACL 및 실행기에서 관리한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the status for a Task Run as a string value.</rdfs:comment>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#taskStatus"/>
+    <rdfs:domain rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#TaskRun">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">작업 실행</rdfs:label>
+    <rdfs:label xml:lang="en">Task Run</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획 작업의 한 번의 실제 실행. 재시도마다 새 개체를 만든다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one execution of a planned task, including its status and provenance.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#TaskRun"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Activity"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b2"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Handoff">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">인계 묶음</rdfs:label>
+    <rdfs:label xml:lang="en">Handoff</rdfs:label>
+    <rdfs:comment xml:lang="ko">받는 작업과 에이전트, 결과물과 완료 기준을 함께 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records transfer of work and its context from one agent to another.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b4"/>
+    <rdfs:subClassOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#errorCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">오류 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Error Code</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the error code for a Task Run as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">작업 실행에서 기록한 오류 식별 코드를 보존한다. 오류 코드의 의미는 해당 도구나 실행 로그와 함께 해석한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#toAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">받는 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">To Agent</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Handoff"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Agent"/>
+    <rdfs:comment xml:lang="en">Links a Handoff to a Agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">인계 기록의 수신 담당 에이전트를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Agent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Agent</rdfs:label>
+    <rdfs:comment xml:lang="ko">프로젝트에 참여하는 소프트웨어 또는 사람.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a person or software actor that plans or performs work.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Agent"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#artifactUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">결과물 위치</rdfs:label>
+    <rdfs:label xml:lang="en">Artifact URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">외부 파일 또는 저장소 항목을 가리키는 IRI. 존재와 접근 권한은 별도로 검사한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Artifact to a Resource.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">AI 에이전트 협업 온톨로지</rdfs:label>
+    <rdfs:comment xml:lang="ko">agent.md의 계획 작업, 실행, 결과물 인계, 검수와 출처 추적을 형식화한 예시 온톨로지. example.org URI는 배포 시 교체한다.</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:imports rdf:resource="https://example.org/ontology/vocab"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/prov-o/"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/shacl/"/>
+    <rdfs:seeAlso rdf:resource="https://www.w3.org/TR/owl2-primer/"/>
+    <owl:versionInfo>1.2.1</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#implementsTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">작업을 실행</rdfs:label>
+    <rdfs:label xml:lang="en">Implements Task</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#TaskRun"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:comment xml:lang="en">Links a Task Run to a Task.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">작업 실행이 수행하려는 계획 작업을 연결한다. 같은 계획 작업은 여러 번 실행될 수 있다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#checksum">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">체크섬</rdfs:label>
+    <rdfs:label xml:lang="en">Checksum</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the checksum for a Artifact as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">결과물 파일의 무결성을 확인하기 위한 해시 문자열을 기록한다. 파일 존재 여부와 접근 가능성은 별도 검사한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#decisionAbout">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">판정 대상 결과물</rdfs:label>
+    <rdfs:label xml:lang="en">Decision About</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#ReviewDecision"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Artifact"/>
+    <rdfs:comment xml:lang="en">Links a Review Decision to a Artifact.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">검수 결정이 대상으로 삼은 결과물을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#decision">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">검수 판정 값</rdfs:label>
+    <rdfs:label xml:lang="en">Decision</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the decision for a Review Decision as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">검수 결정의 승인·반려 등 결과 코드를 기록한다. 허용 코드는 검수 통제 어휘와 SHACL에서 관리한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Artifact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">결과물</rdfs:label>
+    <rdfs:label xml:lang="en">Artifact</rdfs:label>
+    <rdfs:comment xml:lang="ko">파일, 초안, 근거 자료 등 입력 또는 산출물의 특정 버전.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a file, document, dataset, or other resource used or produced by work.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#taskObjective">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">작업 목표</rdfs:label>
+    <rdfs:label xml:lang="en">Task Objective</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the task objective for a Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">계획 작업이 달성해야 하는 목표를 문장으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/agent#containsArtifact"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Artifact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#assignmentRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">배정된 역할</rdfs:label>
+    <rdfs:label xml:lang="en">Assignment Role</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#AgentAssignment"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Role"/>
+    <rdfs:comment xml:lang="en">Links a Agent Assignment to a Role.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트 역할 배정에서 해당 에이전트가 맡은 책임 역할을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="http://www.w3.org/ns/prov#wasAssociatedWith"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Agent"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:unionOf rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#goal">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">공동 목표</rdfs:label>
+    <rdfs:label xml:lang="en">Goal</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#Project"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the goal for a Project as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">프로젝트 참여자가 공유하는 목표를 문장으로 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/agent#toTask"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b11">
+    <rdf:first rdf:resource="https://example.org/agent#Task"/>
+    <rdf:rest rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b12"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b12">
+    <rdf:first rdf:resource="https://example.org/agent#Handoff"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#AgentAssignment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">프로젝트 역할 배정</rdfs:label>
+    <rdfs:label xml:lang="en">Agent Assignment</rdfs:label>
+    <rdfs:comment xml:lang="ko">역할이 에이전트에게 전역적으로 고정되지 않도록 프로젝트별로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the agent and role assigned to a project.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#dependsOn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">선행 작업에 의존</rdfs:label>
+    <rdfs:label xml:lang="en">Depends On</rdfs:label>
+    <rdfs:comment xml:lang="ko">직접 선행 작업만 기록한다. 순환 여부는 실행기에서 검증한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Task to a Task.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/agent#Task"/>
+    <rdfs:range rdf:resource="https://example.org/agent#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://example.org/agent#hasTask"/>
+    <owl:someValuesFrom rdf:resource="https://example.org/agent#Task"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#Role">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">역할</rdfs:label>
+    <rdfs:label xml:lang="en">Role</rdfs:label>
+    <rdfs:comment xml:lang="ko">조사, 작성, 검수처럼 프로젝트 안에서 맡는 책임.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a responsibility held by an agent within a project.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/agent#reason">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">검수 사유</rdfs:label>
+    <rdfs:label xml:lang="en">Reason</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/agent#ReviewDecision"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the reason for a Review Decision as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">검수 결정의 판단 근거를 문장으로 기록한다. 출처가 없는 근거는 검증된 사실로 취급하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b8">
+    <rdf:first rdf:resource="https://example.org/agent#Artifact"/>
+    <rdf:rest rdf:nodeID="nf5fe261ad27948659853d1ee266e0de8b9"/>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,78 @@
+@prefix dog: <https://example.org/ontology/custom/dog#> .
+@prefix ex: <https://example.org/ontology/custom/dog#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely fictional dogs, guardians and clinics. Registration numbers and every
+# urn:synthetic: location are placeholders, not real microchips or certificates.
+# Breed size classes are typical values for the breed, not measurements of a dog.
+ex:jindo a dog:Breed ; rdfs:label "진돗개"@ko, "Korean Jindo"@en ; dog:typicalSizeClass "medium" .
+ex:goldenRetriever a dog:Breed ; rdfs:label "골든 리트리버"@ko, "Golden Retriever"@en ; dog:typicalSizeClass "large" .
+ex:maltese a dog:Breed ; rdfs:label "말티즈"@ko, "Maltese"@en ; dog:typicalSizeClass "toy" .
+ex:mixed a dog:Breed ; rdfs:label "믹스견"@ko, "Mixed breed"@en .
+
+ex:guardianA a dog:Guardian ; rdfs:label "가상 보호자 A"@ko .
+ex:guardianB a dog:Guardian ; rdfs:label "가상 보호자 B"@ko .
+ex:guardianC a dog:Guardian ; rdfs:label "가상 보호자 C"@ko .
+ex:clinicA a dog:Clinic ; rdfs:label "가상 동물병원 A"@ko .
+ex:clinicB a dog:Clinic ; rdfs:label "가상 동물병원 B"@ko .
+
+ex:kongi a dog:Dog ; rdfs:label "가상의 개: 콩이"@ko ;
+    dog:hasBreed ex:jindo ; dog:hasGuardian ex:guardianA ; dog:sex "female" ; dog:neuterStatus "neutered" ;
+    dog:birthDate "2021-03-01"^^xsd:date ; dog:birthDateKnowledge "estimated" ;
+    dog:microchipStatus "registered" ; dog:microchipNumber "999000000000001" ;
+    dog:registrationEvidenceUri "urn:synthetic:registration:kongi"^^xsd:anyURI ;
+    dog:hasVaccination ex:kongiRabies, ex:kongiCombination ;
+    dog:hasVisit ex:kongiVisit1, ex:kongiVisit2 ; dog:hasWeightRecord ex:kongiWeight1, ex:kongiWeight2 .
+ex:kongiRabies a dog:Vaccination ; rdfs:label "콩이 광견병 접종"@ko ;
+    dog:vaccineKind "rabies" ; dog:vaccinationStatus "administered" ; dog:administeredDate "2025-04-10"^^xsd:date ;
+    dog:nextDueDate "2026-04-10"^^xsd:date ; dog:administeredAt ex:clinicA ;
+    dog:certificateUri "urn:synthetic:certificate:kongi-rabies"^^xsd:anyURI .
+ex:kongiCombination a dog:Vaccination ; rdfs:label "콩이 종합백신 접종"@ko ;
+    dog:vaccineKind "combination" ; dog:vaccinationStatus "administered" ; dog:administeredDate "2025-04-10"^^xsd:date ;
+    dog:nextDueDate "2026-04-10"^^xsd:date ; dog:administeredAt ex:clinicA ;
+    dog:certificateUri "urn:synthetic:certificate:kongi-combination"^^xsd:anyURI .
+ex:kongiVisit1 a dog:VetVisit ; rdfs:label "콩이 접종 방문"@ko ;
+    dog:visitDate "2025-04-10"^^xsd:date ; dog:visitReason "vaccination" ; dog:visitedClinic ex:clinicA .
+ex:kongiVisit2 a dog:VetVisit ; rdfs:label "콩이 정기 검진"@ko ;
+    dog:visitDate "2026-04-12"^^xsd:date ; dog:visitReason "checkup" ; dog:visitedClinic ex:clinicA .
+ex:kongiWeight1 a dog:WeightRecord ; rdfs:label "콩이 체중 2025-04-10"@ko ;
+    dog:weightKg "14.2"^^xsd:decimal ; dog:measuredDate "2025-04-10"^^xsd:date .
+ex:kongiWeight2 a dog:WeightRecord ; rdfs:label "콩이 체중 2026-04-12"@ko ;
+    dog:weightKg "15.0"^^xsd:decimal ; dog:measuredDate "2026-04-12"^^xsd:date .
+
+ex:bori a dog:Dog ; rdfs:label "가상의 개: 보리"@ko ;
+    dog:hasBreed ex:goldenRetriever ; dog:hasGuardian ex:guardianA, ex:guardianB ; dog:sex "male" ; dog:neuterStatus "intact" ;
+    dog:birthDate "2023-06-15"^^xsd:date ; dog:birthDateKnowledge "exact" ; dog:microchipStatus "unregistered" ;
+    dog:hasVaccination ex:boriRabies, ex:boriCombination ;
+    dog:hasVisit ex:boriVisit1, ex:boriVisit2 ; dog:hasWeightRecord ex:boriWeight1, ex:boriWeight2 .
+ex:boriRabies a dog:Vaccination ; rdfs:label "보리 광견병 접종"@ko ;
+    dog:vaccineKind "rabies" ; dog:vaccinationStatus "administered" ; dog:administeredDate "2026-07-01"^^xsd:date ;
+    dog:nextDueDate "2027-07-01"^^xsd:date ; dog:administeredAt ex:clinicB ;
+    dog:certificateUri "urn:synthetic:certificate:bori-rabies"^^xsd:anyURI .
+ex:boriCombination a dog:Vaccination ; rdfs:label "보리 종합백신 접종 예정"@ko ;
+    dog:vaccineKind "combination" ; dog:vaccinationStatus "scheduled" ; dog:nextDueDate "2026-11-01"^^xsd:date .
+ex:boriVisit1 a dog:VetVisit ; rdfs:label "보리 접종 방문"@ko ;
+    dog:visitDate "2026-07-01"^^xsd:date ; dog:visitReason "vaccination" ; dog:visitedClinic ex:clinicB .
+ex:boriVisit2 a dog:VetVisit ; rdfs:label "보리 정기 검진"@ko ;
+    dog:visitDate "2026-09-15"^^xsd:date ; dog:visitReason "checkup" ; dog:visitedClinic ex:clinicB .
+ex:boriWeight1 a dog:WeightRecord ; rdfs:label "보리 체중 2026-07-01"@ko ;
+    dog:weightKg "29.5"^^xsd:decimal ; dog:measuredDate "2026-07-01"^^xsd:date .
+ex:boriWeight2 a dog:WeightRecord ; rdfs:label "보리 체중 2026-09-15"@ko ;
+    dog:weightKg "30.1"^^xsd:decimal ; dog:measuredDate "2026-09-15"^^xsd:date .
+
+ex:dalgi a dog:Dog ; rdfs:label "가상의 개: 달이"@ko ;
+    dog:hasBreed ex:maltese ; dog:hasGuardian ex:guardianC ; dog:sex "female" ; dog:neuterStatus "neutered" ;
+    dog:birthDateKnowledge "unknown" ; dog:microchipStatus "unregistered" ;
+    dog:hasVisit ex:dalgiVisit ; dog:hasWeightRecord ex:dalgiWeight .
+ex:dalgiVisit a dog:VetVisit ; rdfs:label "달이 진료 방문"@ko ;
+    dog:visitDate "2026-08-20"^^xsd:date ; dog:visitReason "illness" ; dog:visitedClinic ex:clinicA .
+ex:dalgiWeight a dog:WeightRecord ; rdfs:label "달이 체중 2026-08-20"@ko ;
+    dog:weightKg "3.4"^^xsd:decimal ; dog:measuredDate "2026-08-20"^^xsd:date .
+
+ex:nuri a dog:Dog ; rdfs:label "가상의 개: 누리"@ko ;
+    dog:hasBreed ex:mixed ; dog:hasGuardian ex:guardianB ; dog:sex "male" ; dog:neuterStatus "unknown" ;
+    dog:birthDate "2024-01-10"^^xsd:date ; dog:birthDateKnowledge "estimated" ; dog:microchipStatus "unregistered" ;
+    dog:hasVaccination ex:nuriRabies .
+ex:nuriRabies a dog:Vaccination ; rdfs:label "누리 광견병 접종 예정"@ko ;
+    dog:vaccineKind "rabies" ; dog:vaccinationStatus "scheduled" ; dog:nextDueDate "2026-10-20"^^xsd:date .

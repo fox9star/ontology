@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">근거 기록</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Electrical craftsman qualification to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기준 유형</rdfs:label>
+    <rdfs:label xml:lang="en">rule type</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 기준 유형를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the rule type for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialForStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">적용 시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">for exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Material or tool requirement to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialRestriction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">사용 제한·비고</rdfs:label>
+    <rdfs:label xml:lang="en">restriction or note</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 사용 제한·비고를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the restriction or note for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">기준 근거</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam standard version to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">품목 출처</rdfs:label>
+    <rdfs:label xml:lang="en">material source</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Material or tool requirement to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">시험 단계 근거</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleMaximumScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">만점</rdfs:label>
+    <rdfs:label xml:lang="en">maximum score</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 만점를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the maximum score for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceScopeNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">근거 범위·한계</rdfs:label>
+    <rdfs:label xml:lang="en">evidence scope and limits</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 근거 범위·한계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the evidence scope and limits for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#Competency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">직무 역량</rdfs:label>
+    <rdfs:label xml:lang="en">Competency</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 시험 범위와 구별하여 기록하는 능력 또는 수행 역량이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A capability recorded separately from the official exam scope and linked to evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleAppliesToStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">적용 시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">applies to stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Assessment rule to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">품목 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">material identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 품목 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the material identifier for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyLevel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">큐넷 게시 안전 등급</rdfs:label>
+    <rdfs:label xml:lang="en">Q-Net published safety level</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건의 큐넷 게시 안전 등급를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the Q-Net published safety level for Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">품목 근거</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Material or tool requirement to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardValidThrough">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">적용 종료일</rdfs:label>
+    <rdfs:label xml:lang="en">valid through</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 적용 종료일를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the valid through for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">품목 분류</rdfs:label>
+    <rdfs:label xml:lang="en">material category</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 품목 분류를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the material category for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageChoiceCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">선택지 수</rdfs:label>
+    <rdfs:label xml:lang="en">choice count</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 선택지 수를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the choice count for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">전기기능사 자격</rdfs:label>
+    <rdfs:label xml:lang="en">Electrical craftsman qualification</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기설비 분야의 국가기술자격 종목과 공식 시험·운영 정보를 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents the Korean national technical qualification, including its administering body and source-backed exam information.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationHasStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">has exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Electrical craftsman qualification to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#SourceDocument">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">공식 출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Source document</rdfs:label>
+    <rdfs:comment xml:lang="ko">자격·시험·출제기준·공개문제·지참준비물에 대한 공식 출처와 그 한계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an official source for qualification, exam, standards, public tasks, or required materials, together with its limits.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceLimitations">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">출처 한계</rdfs:label>
+    <rdfs:label xml:lang="en">source limitations</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 출처 한계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source limitations for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">필기 지식 영역</rdfs:label>
+    <rdfs:label xml:lang="en">Knowledge area</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 시험 정보에 명시된 필기 시험의 과목 또는 지식 영역이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A written-exam subject or knowledge area explicitly named in official exam information.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourcePublisher">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">발행·운영 기관</rdfs:label>
+    <rdfs:label xml:lang="en">publisher</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 발행·운영 기관를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the publisher for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">기준 설명</rdfs:label>
+    <rdfs:label xml:lang="en">rule description</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 기준 설명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the rule description for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#practicalTaskPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">실기 과제 이름</rdfs:label>
+    <rdfs:label xml:lang="en">practical task label</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제의 실기 과제 이름를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the practical task label for Practical task.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stagePreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">시험 단계명</rdfs:label>
+    <rdfs:label xml:lang="en">stage label</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 시험 단계명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the stage label for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#PracticalTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">실기 수행 과제</rdfs:label>
+    <rdfs:label xml:lang="en">Practical task</rdfs:label>
+    <rdfs:comment xml:lang="ko">큐넷이 안내한 실기 작업의 범위 또는 과제 유형이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A practical-work scope or task type described by Q-Net.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">실기 안전 요건</rdfs:label>
+    <rdfs:label xml:lang="en">Practical safety requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기시험에서 게시된 보호구, 금지사항, 안전 채점 또는 안전 등급 문구를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records published practical PPE, prohibitions, safety scoring, or a stated safety-level label.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationAdministeringBody">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">시행 기관</rdfs:label>
+    <rdfs:label xml:lang="en">administering body</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 시행 기관를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the administering body for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencyEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">역량 근거</rdfs:label>
+    <rdfs:label xml:lang="en">competency evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Competency to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaInStandard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:label xml:lang="ko">적용 기준</rdfs:label>
+    <rdfs:label xml:lang="en">in standard</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역에서 출제기준 버전로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Knowledge area to Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaInStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">적용 시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">in exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Knowledge area to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageDurationMinutes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">시험 시간(분)</rdfs:label>
+    <rdfs:label xml:lang="en">duration in minutes</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 시험 시간(분)를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the duration in minutes for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">품목명</rdfs:label>
+    <rdfs:label xml:lang="en">material label</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 품목명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the material label for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">시험 구분</rdfs:label>
+    <rdfs:label xml:lang="en">stage type</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 시험 구분를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the stage type for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기준 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">standard identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 기준 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the standard identifier for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasKnowledgeArea">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:label xml:lang="ko">필기 과목</rdfs:label>
+    <rdfs:label xml:lang="en">has knowledge area</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 필기 지식 영역로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Knowledge area.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageQuestionCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">문항 수</rdfs:label>
+    <rdfs:label xml:lang="en">question count</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 문항 수를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the question count for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기준 상태</rdfs:label>
+    <rdfs:label xml:lang="en">standard status</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 기준 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the standard status for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">출제기준 버전</rdfs:label>
+    <rdfs:label xml:lang="en">Exam standard version</rdfs:label>
+    <rdfs:comment xml:lang="ko">적용 시작일과 종료일, 발표 상태, 세부 기준의 반영 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an exam standard's applicability period, publication state, and whether its detailed content has been ingested.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasAssessmentRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:label xml:lang="ko">평가 기준</rdfs:label>
+    <rdfs:label xml:lang="en">has assessment rule</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 평가 기준로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencySource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">역량 출처</rdfs:label>
+    <rdfs:label xml:lang="en">competency source</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Competency to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialSpecification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">규격</rdfs:label>
+    <rdfs:label xml:lang="en">specification</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 규격를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the specification for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationHasStandard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:label xml:lang="ko">출제기준 버전</rdfs:label>
+    <rdfs:label xml:lang="en">has exam standard</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격에서 출제기준 버전로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Electrical craftsman qualification to Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#taskSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">과제 출처</rdfs:label>
+    <rdfs:label xml:lang="en">task source</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical task to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#taskInStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">실기 단계</rdfs:label>
+    <rdfs:label xml:lang="en">in exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical task to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationQnetCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">큐넷 종목 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Q-Net item code</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 큐넷 종목 코드를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the Q-Net item code for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">평가 기준 출처</rdfs:label>
+    <rdfs:label xml:lang="en">rule source</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Assessment rule to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasMaterialRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:label xml:lang="ko">지참 품목</rdfs:label>
+    <rdfs:label xml:lang="en">has material requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 지참 재료·공구 요건로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageMethod">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">검정 방법</rdfs:label>
+    <rdfs:label xml:lang="en">assessment method</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 검정 방법를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the assessment method for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">수량</rdfs:label>
+    <rdfs:label xml:lang="en">quantity</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 수량를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the quantity for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasSafetyRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:label xml:lang="ko">안전 요건</rdfs:label>
+    <rdfs:label xml:lang="en">has safety requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 실기 안전 요건로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceAccessedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">확인일</rdfs:label>
+    <rdfs:label xml:lang="en">access date</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 확인일를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the access date for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetySource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">안전 요건 출처</rdfs:label>
+    <rdfs:label xml:lang="en">safety source</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical safety requirement to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#practicalTaskDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">실기 과제 설명</rdfs:label>
+    <rdfs:label xml:lang="en">practical task description</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제의 실기 과제 설명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the practical task description for Practical task.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">기준명</rdfs:label>
+    <rdfs:label xml:lang="en">standard label</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 기준명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the standard label for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#practicalTaskEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">실기 과제 근거</rdfs:label>
+    <rdfs:label xml:lang="en">practical task evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical task to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">과목 이름</rdfs:label>
+    <rdfs:label xml:lang="en">subject label</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역의 과목 이름를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the subject label for Knowledge area.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">안전 안내</rdfs:label>
+    <rdfs:label xml:lang="en">safety statement</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건의 안전 안내를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the safety statement for Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">시험 단계 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">stage identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 시험 단계 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the stage identifier for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">자격 등급</rdfs:label>
+    <rdfs:label xml:lang="en">qualification category</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 자격 등급를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the qualification category for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyForStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">적용 시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">for exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical safety requirement to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageMaximumScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">만점</rdfs:label>
+    <rdfs:label xml:lang="en">maximum score</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 만점를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the maximum score for Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationHasSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">공식 출처</rdfs:label>
+    <rdfs:label xml:lang="en">has source</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Electrical craftsman qualification to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">근거 출처</rdfs:label>
+    <rdfs:label xml:lang="en">evidence source</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Evidence record to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageHasTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:label xml:lang="ko">실기 과제</rdfs:label>
+    <rdfs:label xml:lang="en">has practical task</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 실기 수행 과제로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Practical task.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleMinimumScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">합격 최저 점수</rdfs:label>
+    <rdfs:label xml:lang="en">minimum passing score</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 합격 최저 점수를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the minimum passing score for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ExamStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">Exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 또는 실기처럼 시험의 평가 단계와 검정 방법을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an assessment stage such as the written or practical examination and its published method.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceObservedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">확인 시점</rdfs:label>
+    <rdfs:label xml:lang="en">observed at</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 확인 시점를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the observed at for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">지참 재료·공구 요건</rdfs:label>
+    <rdfs:label xml:lang="en">Material or tool requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기시험에서 큐넷이 게시한 지참 품목, 규격, 수량, 사용 제한을 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a Q-Net listed practical item, specification, quantity, and any stated restriction.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationAlternativeLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">영문·별칭</rdfs:label>
+    <rdfs:label xml:lang="en">alternative label</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 영문·별칭를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the alternative label for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">자격 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">qualification identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 자격 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the qualification identifier for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">기준 출처</rdfs:label>
+    <rdfs:label xml:lang="en">standard source</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam standard version to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">source identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 출처 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source identifier for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencyRelatedTask">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:label xml:lang="ko">관련 실기 과제</rdfs:label>
+    <rdfs:label xml:lang="en">related practical task</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량에서 실기 수행 과제로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Competency to Practical task.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">원문 URI</rdfs:label>
+    <rdfs:label xml:lang="en">source URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 원문 URI를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source URI for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">평가 기준 근거</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Assessment rule to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#ruleIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">평가 기준 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">rule identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 평가 기준 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the rule identifier for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencyIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">역량 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">competency identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량의 역량 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the competency identifier for Competency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#materialUnit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#MaterialRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">단위</rdfs:label>
+    <rdfs:label xml:lang="en">unit</rdfs:label>
+    <rdfs:comment xml:lang="ko">지참 재료·공구 요건의 단위를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the unit for Material or tool requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#taskHasSafetyRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:label xml:lang="ko">관련 안전 요건</rdfs:label>
+    <rdfs:label xml:lang="en">has safety requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제에서 실기 안전 요건로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical task to Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceTitle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">문서명</rdfs:label>
+    <rdfs:label xml:lang="en">source title</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 문서명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source title for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">프로필 상태</rdfs:label>
+    <rdfs:label xml:lang="en">profile status</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 프로필 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the profile status for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#practicalTaskIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">실기 과제 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">practical task identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제의 실기 과제 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the practical task identifier for Practical task.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">안전 요건 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">safety requirement identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건의 안전 요건 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the safety requirement identifier for Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardHasStage">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:label xml:lang="ko">연결 시험 단계</rdfs:label>
+    <rdfs:label xml:lang="en">has exam stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전에서 시험 단계로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam standard version to Exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardContentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">세부 기준 반영 상태</rdfs:label>
+    <rdfs:label xml:lang="en">detailed content ingestion status</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 세부 기준 반영 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the detailed content ingestion status for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyRequirementType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">안전 요건 유형</rdfs:label>
+    <rdfs:label xml:lang="en">safety requirement type</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건의 안전 요건 유형를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the safety requirement type for Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourcePublicationDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">게시일</rdfs:label>
+    <rdfs:label xml:lang="en">publication date</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 게시일를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the publication date for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#sourceKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 유형</rdfs:label>
+    <rdfs:label xml:lang="en">source type</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 출처 문서의 출처 유형를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source type for Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#rulePreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">평가 기준명</rdfs:label>
+    <rdfs:label xml:lang="en">rule label</rdfs:label>
+    <rdfs:comment xml:lang="ko">평가 기준의 평가 기준명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the rule label for Assessment rule.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationRelatedMinistry">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">관련 부처</rdfs:label>
+    <rdfs:label xml:lang="en">related ministry</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 관련 부처를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the related ministry for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardNote">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">기준 메모</rdfs:label>
+    <rdfs:label xml:lang="en">standard note</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 기준 메모를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the standard note for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageInStandard">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:label xml:lang="ko">적용 출제기준</rdfs:label>
+    <rdfs:label xml:lang="en">in standard</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 출제기준 버전로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#AssessmentRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">평가 기준</rdfs:label>
+    <rdfs:label xml:lang="en">Assessment rule</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계의 점수 기준, 문항 형식 또는 시간 조건을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A score threshold, item format, or time condition for an exam stage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">근거 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Evidence record</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 사실의 근거 출처, 확인 시점, 적용 범위, 검토 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a source, observation date, scope, and review status for a specific claim.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">근거가 뒷받침하는 주장</rdfs:label>
+    <rdfs:label xml:lang="en">supported claim</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 근거가 뒷받침하는 주장를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the supported claim for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencyDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">역량 설명</rdfs:label>
+    <rdfs:label xml:lang="en">competency description</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량의 역량 설명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the competency description for Competency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#stageSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStage"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">시험 정보 출처</rdfs:label>
+    <rdfs:label xml:lang="en">stage source</rdfs:label>
+    <rdfs:comment xml:lang="ko">시험 단계에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Exam stage to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">안전 요건명</rdfs:label>
+    <rdfs:label xml:lang="en">safety requirement label</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건의 안전 요건명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the safety requirement label for Practical safety requirement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaSource">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SourceDocument"/>
+    <rdfs:label xml:lang="ko">과목 출처</rdfs:label>
+    <rdfs:label xml:lang="en">subject source</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역에서 공식 출처 문서로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Knowledge area to Source document.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">근거 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">evidence identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 근거 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the evidence identifier for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">과목 식별자</rdfs:label>
+    <rdfs:label xml:lang="en">subject identifier</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역의 과목 식별자를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the subject identifier for Knowledge area.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceValidThrough">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">확인된 적용 종료일</rdfs:label>
+    <rdfs:label xml:lang="en">verified through</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 확인된 적용 종료일를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the verified through for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">과목 근거</rdfs:label>
+    <rdfs:label xml:lang="en">subject evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Knowledge area to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#standardValidFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ExamStandardVersion"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">적용 시작일</rdfs:label>
+    <rdfs:label xml:lang="en">valid from</rdfs:label>
+    <rdfs:comment xml:lang="ko">출제기준 버전의 적용 시작일를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the valid from for Exam standard version.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">검증 상태</rdfs:label>
+    <rdfs:label xml:lang="en">evidence status</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 검증 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the evidence status for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#competencyPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">역량 이름</rdfs:label>
+    <rdfs:label xml:lang="en">competency label</rdfs:label>
+    <rdfs:comment xml:lang="ko">직무 역량의 역량 이름를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the competency label for Competency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#qualificationPreferredLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#ElectricalQualification"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">자격명</rdfs:label>
+    <rdfs:label xml:lang="en">qualification name</rdfs:label>
+    <rdfs:comment xml:lang="ko">전기기능사 자격의 자격명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the qualification name for Electrical craftsman qualification.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#evidenceSourceLocator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 내 위치</rdfs:label>
+    <rdfs:label xml:lang="en">source locator</rdfs:label>
+    <rdfs:comment xml:lang="ko">근거 기록의 출처 내 위치를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source locator for Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#safetyHasEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#SafetyRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#EvidenceRecord"/>
+    <rdfs:label xml:lang="ko">안전 근거</rdfs:label>
+    <rdfs:label xml:lang="en">has evidence</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 안전 요건에서 근거 기록로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical safety requirement to Evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#knowledgeAreaDescription">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#KnowledgeArea"/>
+    <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
+    <rdfs:label xml:lang="ko">과목 설명</rdfs:label>
+    <rdfs:label xml:lang="en">subject description</rdfs:label>
+    <rdfs:comment xml:lang="ko">필기 지식 영역의 과목 설명를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the subject description for Knowledge area.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#taskHasCompetency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/electricity-craftsman#PracticalTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/electricity-craftsman#Competency"/>
+    <rdfs:label xml:lang="ko">연결 역량</rdfs:label>
+    <rdfs:label xml:lang="en">has competency</rdfs:label>
+    <rdfs:comment xml:lang="ko">실기 수행 과제에서 직무 역량로 연결되는 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Practical task to Competency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/electricity-craftsman#">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">전기기능사 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Electricity Craftsman Qualification Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">큐넷의 전기기능사 시험 정보와 출처·적용기간을 연결하는 초안이다. 상세 학습 기준은 버전별 검토 상태와 함께 관리한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A draft connecting Q-Net electricity-craftsman exam facts to provenance and validity periods. Detailed learning criteria are managed with explicit version and review status.</rdfs:comment>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,424 @@
+{
+  "PIC-01": {
+    "variables": [
+      "plan",
+      "name",
+      "recordKind",
+      "date",
+      "start",
+      "end",
+      "status",
+      "place",
+      "placeLabel",
+      "placeKind",
+      "locationNote",
+      "budget",
+      "currency",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "합성 소풍: 정원에서 반나절",
+        "synthetic",
+        "2026-10-11",
+        "2026-10-11T01:00:00+00:00",
+        "2026-10-11T05:00:00+00:00",
+        "draft",
+        "https://example.test/picnic/garden-place",
+        "합성 정원 장소",
+        "garden",
+        "실제 정원 이름·주소·입장 조건을 포함하지 않는 가상 장소입니다.",
+        "30000.0",
+        "KRW",
+        "가상 정원 소풍 계획입니다. 준비물 담당자·날씨 확인·예산 초과 항목이 남아 있습니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "합성 소풍: 공원에서 하루",
+        "synthetic",
+        "2026-10-10",
+        "2026-10-10T01:00:00+00:00",
+        "2026-10-10T07:00:00+00:00",
+        "draft",
+        "https://example.test/picnic/park-place",
+        "합성 공원 장소",
+        "park",
+        "실제 공원 이름·주소·운영 정보를 포함하지 않는 가상 장소입니다.",
+        "60000.0",
+        "KRW",
+        "가상 공원 소풍 계획입니다. 일부 준비물 수량과 날씨 정보가 아직 준비되지 않았습니다."
+      ]
+    ]
+  },
+  "PIC-02": {
+    "variables": [
+      "plan",
+      "participant",
+      "name",
+      "role",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-member-a",
+        "합성 정원 참가자 A",
+        "organizer",
+        "가상 소풍의 준비 담당자입니다."
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-member-b",
+        "합성 정원 참가자 B",
+        "attendee",
+        "실제 개인 정보가 없는 가상 참가자입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-member-a",
+        "합성 공원 참가자 A",
+        "organizer",
+        "가상 공원 소풍의 준비 담당자입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-member-b",
+        "합성 공원 참가자 B",
+        "attendee",
+        "실제 연락처가 없는 가상 참가자입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-member-c",
+        "합성 공원 참가자 C",
+        "attendee",
+        "가상 공원 소풍 참가자입니다."
+      ]
+    ]
+  },
+  "PIC-03": {
+    "variables": [
+      "plan",
+      "activity",
+      "sequence",
+      "kind",
+      "start",
+      "end",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-activity-01",
+        "1",
+        "travel",
+        "2026-10-11T01:00:00+00:00",
+        "2026-10-11T01:30:00+00:00",
+        "가상 이동 일정으로 실제 교통편 예약은 없습니다."
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-activity-02",
+        "2",
+        "meal",
+        "2026-10-11T01:30:00+00:00",
+        "2026-10-11T02:30:00+00:00",
+        "가상 식사 일정입니다."
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-activity-03",
+        "3",
+        "rest",
+        "2026-10-11T02:30:00+00:00",
+        "2026-10-11T04:30:00+00:00",
+        "가상 휴식 일정입니다."
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-activity-04",
+        "4",
+        "cleanup",
+        "2026-10-11T04:30:00+00:00",
+        "2026-10-11T05:00:00+00:00",
+        "가상 정리 일정입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-activity-01",
+        "1",
+        "travel",
+        "2026-10-10T01:00:00+00:00",
+        "2026-10-10T02:00:00+00:00",
+        "가상 이동 일정입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-activity-02",
+        "2",
+        "meal",
+        "2026-10-10T02:00:00+00:00",
+        "2026-10-10T03:00:00+00:00",
+        "가상 식사 일정으로 식단 권장량을 뜻하지 않습니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-activity-03",
+        "3",
+        "play",
+        "2026-10-10T03:00:00+00:00",
+        "2026-10-10T06:00:00+00:00",
+        "가상 놀이 일정입니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-activity-04",
+        "4",
+        "cleanup",
+        "2026-10-10T06:00:00+00:00",
+        "2026-10-10T07:00:00+00:00",
+        "가상 정리 일정입니다."
+      ]
+    ]
+  },
+  "PIC-04": {
+    "variables": [
+      "plan",
+      "supply",
+      "name",
+      "kind",
+      "required",
+      "packed",
+      "unit",
+      "shortage",
+      "participant"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-cleanup",
+        "합성 준비물: 정원 정리 봉투",
+        "cleanup",
+        "1.0",
+        "1.0",
+        "pack",
+        "0",
+        null
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-food",
+        "합성 준비물: 정원 도시락",
+        "food",
+        "2.0",
+        "2.0",
+        "portion",
+        "0",
+        "https://example.test/picnic/garden-member-b"
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-mat",
+        "합성 준비물: 정원 돗자리",
+        "equipment",
+        "1.0",
+        "1.0",
+        "piece",
+        "0",
+        "https://example.test/picnic/garden-member-a"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-cleanup",
+        "합성 준비물: 공원 정리 봉투",
+        "cleanup",
+        "3.0",
+        "1.0",
+        "pack",
+        "2.0",
+        "https://example.test/picnic/park-member-c"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-drink",
+        "합성 준비물: 공원 음료",
+        "drink",
+        "6.0",
+        "6.0",
+        "bottle",
+        "0",
+        "https://example.test/picnic/park-member-b"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-mat",
+        "합성 준비물: 공원 돗자리",
+        "equipment",
+        "2.0",
+        "1.0",
+        "piece",
+        "1.0",
+        "https://example.test/picnic/park-member-a"
+      ]
+    ]
+  },
+  "PIC-05": {
+    "variables": [
+      "plan",
+      "expense",
+      "kind",
+      "status",
+      "amount",
+      "note",
+      "budget",
+      "currency",
+      "committed",
+      "remaining"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-expense-admission",
+        "admission",
+        "paid",
+        "14000.0",
+        "가상의 지불 상태 예제이며 실제 결제를 수행하지 않았습니다.",
+        "30000.0",
+        "KRW",
+        "32000.0",
+        "-2000.0"
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-expense-food",
+        "food",
+        "planned",
+        "18000.0",
+        "가상의 예정 금액입니다. 실제 식품 가격이 아닙니다.",
+        "30000.0",
+        "KRW",
+        "32000.0",
+        "-2000.0"
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-expense-other",
+        "other",
+        "cancelled",
+        "2000.0",
+        "가상 취소 항목으로 배정 비용 합계에서 제외합니다.",
+        "30000.0",
+        "KRW",
+        "32000.0",
+        "-2000.0"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-expense-equipment",
+        "equipment",
+        "cancelled",
+        "5000.0",
+        "가상 취소 항목으로 예산 합계에서 제외합니다.",
+        "60000.0",
+        "KRW",
+        "34000.0",
+        "26000.0"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-expense-food",
+        "food",
+        "planned",
+        "24000.0",
+        "가상 식사 예정 금액으로 실제 가격을 나타내지 않습니다.",
+        "60000.0",
+        "KRW",
+        "34000.0",
+        "26000.0"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-expense-transport",
+        "transport",
+        "planned",
+        "10000.0",
+        "가상 이동 금액으로 실제 교통 요금이나 예약은 없습니다.",
+        "60000.0",
+        "KRW",
+        "34000.0",
+        "26000.0"
+      ]
+    ]
+  },
+  "PIC-06": {
+    "variables": [
+      "plan",
+      "weather",
+      "date",
+      "status",
+      "checkedAt",
+      "source",
+      "summary"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "https://example.test/picnic/garden-weather",
+        "2026-10-11",
+        "unverified",
+        null,
+        null,
+        "가상 예제의 미확인 상태입니다. 실제 날씨 예보를 조회하지 않았습니다."
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "https://example.test/picnic/park-weather",
+        "2026-10-10",
+        "unverified",
+        null,
+        null,
+        "해당 날짜의 실제 예보 정보가 아직 기록되지 않은 가상 예제입니다."
+      ]
+    ]
+  },
+  "PIC-07": {
+    "variables": [
+      "plan",
+      "blocker",
+      "detail"
+    ],
+    "rows": [
+      [
+        "https://example.test/picnic/garden-plan",
+        "budget-exceeded",
+        "2000.0"
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "supply-unassigned",
+        "https://example.test/picnic/garden-cleanup"
+      ],
+      [
+        "https://example.test/picnic/garden-plan",
+        "weather-unverified",
+        "https://example.test/picnic/garden-weather"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "packing-shortage",
+        "https://example.test/picnic/park-cleanup"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "packing-shortage",
+        "https://example.test/picnic/park-mat"
+      ],
+      [
+        "https://example.test/picnic/park-plan",
+        "weather-unverified",
+        "https://example.test/picnic/park-weather"
+      ]
+    ]
+  }
+}

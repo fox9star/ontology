@@ -1,0 +1,178 @@
+@prefix ns1: <https://example.org/ontology/custom/ai-film#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/ai-film-accept> {
+    <https://example.test/ai-film/project> a ns1:FilmProject ;
+        rdfs:label "합성 예제: 새벽의 편지"@ko ;
+        ns1:hasEditVersion <https://example.test/ai-film/edit01> ;
+        ns1:hasScreenplay <https://example.test/ai-film/screenplay> .
+
+    <https://example.test/ai-film/edit01> a ns1:EditVersion ;
+        rdfs:label "합성 편집 구성 초안"@ko ;
+        ns1:editStatus "draft" ;
+        ns1:usesAsset <https://example.test/ai-film/asset01>,
+            <https://example.test/ai-film/asset02> ;
+        ns1:versionLabel "draft-01" .
+
+    <https://example.test/ai-film/quality01> a ns1:ReviewDecision ;
+        rdfs:label "전경 품질 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." ;
+        ns1:reviewKind "quality" .
+
+    <https://example.test/ai-film/quality02> a ns1:ReviewDecision ;
+        rdfs:label "봉투 품질 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." ;
+        ns1:reviewKind "quality" .
+
+    <https://example.test/ai-film/rights01> a ns1:ReviewDecision ;
+        rdfs:label "전경 권리 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." ;
+        ns1:reviewKind "rights" .
+
+    <https://example.test/ai-film/rights02> a ns1:ReviewDecision ;
+        rdfs:label "봉투 권리 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." ;
+        ns1:reviewKind "rights" .
+
+    <https://example.test/ai-film/scene01> a ns1:Scene ;
+        rdfs:label "합성 장면: 비어 있는 역"@ko ;
+        ns1:hasShot <https://example.test/ai-film/shot01>,
+            <https://example.test/ai-film/shot02> ;
+        ns1:sceneOrder 1 .
+
+    <https://example.test/ai-film/screenplay> a ns1:Screenplay ;
+        rdfs:label "합성 시나리오 초안"@ko ;
+        ns1:hasScene <https://example.test/ai-film/scene01> .
+
+    <https://example.test/ai-film/shot01> a ns1:Shot ;
+        rdfs:label "합성 샷: 역 전경"@ko ;
+        ns1:hasGenerationTask <https://example.test/ai-film/task01> ;
+        ns1:shotOrder 1 ;
+        ns1:targetDurationSeconds 6.0 .
+
+    <https://example.test/ai-film/shot02> a ns1:Shot ;
+        rdfs:label "합성 샷: 봉투의 손"@ko ;
+        ns1:hasGenerationTask <https://example.test/ai-film/task02> ;
+        ns1:shotOrder 2 ;
+        ns1:targetDurationSeconds 4.0 .
+
+    <https://example.test/ai-film/task01> a ns1:GenerationTask ;
+        rdfs:label "전경 영상 생성 계획"@ko ;
+        ns1:modelKnowledgeStatus "unknown" ;
+        ns1:plannedAsset <https://example.test/ai-film/asset01> ;
+        ns1:promptText "A fictional empty station at dawn, slow camera movement." ;
+        ns1:taskStatus "planned" .
+
+    <https://example.test/ai-film/task02> a ns1:GenerationTask ;
+        rdfs:label "봉투 근접 영상 생성 계획"@ko ;
+        ns1:modelKnowledgeStatus "unknown" ;
+        ns1:plannedAsset <https://example.test/ai-film/asset02> ;
+        ns1:promptText "A fictional hand holding an unmarked envelope, close-up." ;
+        ns1:taskStatus "planned" .
+
+    <https://example.test/ai-film/asset01> a ns1:MediaAsset ;
+        rdfs:label "전경 영상 계획 자산"@ko ;
+        ns1:assetStatus "planned" ;
+        ns1:hasReview <https://example.test/ai-film/quality01>,
+            <https://example.test/ai-film/rights01> ;
+        ns1:mediaType "video" .
+
+    <https://example.test/ai-film/asset02> a ns1:MediaAsset ;
+        rdfs:label "봉투 영상 계획 자산"@ko ;
+        ns1:assetStatus "planned" ;
+        ns1:hasReview <https://example.test/ai-film/quality02>,
+            <https://example.test/ai-film/rights02> ;
+        ns1:mediaType "video" .
+}
+
+<https://example.test/consumer/ai-film-reject> {
+    <https://example.test/ai-film/project> a ns1:FilmProject ;
+        ns1:hasEditVersion <https://example.test/ai-film/edit01> ;
+        ns1:hasScreenplay <https://example.test/ai-film/screenplay> .
+
+    <https://example.test/ai-film/edit01> a ns1:EditVersion ;
+        rdfs:label "합성 편집 구성 초안"@ko ;
+        ns1:editStatus "draft" ;
+        ns1:usesAsset <https://example.test/ai-film/asset01>,
+            <https://example.test/ai-film/asset02> ;
+        ns1:versionLabel "draft-01" .
+
+    <https://example.test/ai-film/quality01> a ns1:ReviewDecision ;
+        rdfs:label "전경 품질 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." ;
+        ns1:reviewKind "quality" .
+
+    <https://example.test/ai-film/quality02> a ns1:ReviewDecision ;
+        rdfs:label "봉투 품질 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "아직 생성된 영상이 없어 품질을 판단하지 않았습니다." ;
+        ns1:reviewKind "quality" .
+
+    <https://example.test/ai-film/rights01> a ns1:ReviewDecision ;
+        rdfs:label "전경 권리 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." ;
+        ns1:reviewKind "rights" .
+
+    <https://example.test/ai-film/rights02> a ns1:ReviewDecision ;
+        rdfs:label "봉투 권리 검토 대기"@ko ;
+        ns1:decision "pending" ;
+        ns1:decisionReason "합성 계획 단계로 실제 자산과 권리 자료가 없습니다." ;
+        ns1:reviewKind "rights" .
+
+    <https://example.test/ai-film/scene01> a ns1:Scene ;
+        rdfs:label "합성 장면: 비어 있는 역"@ko ;
+        ns1:hasShot <https://example.test/ai-film/shot01>,
+            <https://example.test/ai-film/shot02> ;
+        ns1:sceneOrder 1 .
+
+    <https://example.test/ai-film/screenplay> a ns1:Screenplay ;
+        rdfs:label "합성 시나리오 초안"@ko ;
+        ns1:hasScene <https://example.test/ai-film/scene01> .
+
+    <https://example.test/ai-film/shot01> a ns1:Shot ;
+        rdfs:label "합성 샷: 역 전경"@ko ;
+        ns1:hasGenerationTask <https://example.test/ai-film/task01> ;
+        ns1:shotOrder 1 ;
+        ns1:targetDurationSeconds 6.0 .
+
+    <https://example.test/ai-film/shot02> a ns1:Shot ;
+        rdfs:label "합성 샷: 봉투의 손"@ko ;
+        ns1:hasGenerationTask <https://example.test/ai-film/task02> ;
+        ns1:shotOrder 2 ;
+        ns1:targetDurationSeconds 4.0 .
+
+    <https://example.test/ai-film/task01> a ns1:GenerationTask ;
+        rdfs:label "전경 영상 생성 계획"@ko ;
+        ns1:modelKnowledgeStatus "unknown" ;
+        ns1:plannedAsset <https://example.test/ai-film/asset01> ;
+        ns1:promptText "A fictional empty station at dawn, slow camera movement." ;
+        ns1:taskStatus "planned" .
+
+    <https://example.test/ai-film/task02> a ns1:GenerationTask ;
+        rdfs:label "봉투 근접 영상 생성 계획"@ko ;
+        ns1:modelKnowledgeStatus "unknown" ;
+        ns1:plannedAsset <https://example.test/ai-film/asset02> ;
+        ns1:promptText "A fictional hand holding an unmarked envelope, close-up." ;
+        ns1:taskStatus "planned" .
+
+    <https://example.test/ai-film/asset01> a ns1:MediaAsset ;
+        rdfs:label "전경 영상 계획 자산"@ko ;
+        ns1:assetStatus "planned" ;
+        ns1:hasReview <https://example.test/ai-film/quality01>,
+            <https://example.test/ai-film/rights01> ;
+        ns1:mediaType "video" .
+
+    <https://example.test/ai-film/asset02> a ns1:MediaAsset ;
+        rdfs:label "봉투 영상 계획 자산"@ko ;
+        ns1:assetStatus "planned" ;
+        ns1:hasReview <https://example.test/ai-film/quality02>,
+            <https://example.test/ai-film/rights02> ;
+        ns1:mediaType "video" .
+}

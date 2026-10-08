@@ -1,0 +1,567 @@
+@prefix dom: <https://example.org/ontology/custom/domain#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/domain/assignment-ai-film> a dom:DomainAssignment ;
+    rdfs:label "Proposed domain assignment ai-film"@en,
+        "영역 배정 제안 ai-film"@ko ;
+    dom:assignmentConfidence 0.85 ;
+    dom:assignmentCreatedAt "2026-10-08"^^xsd:date ;
+    dom:assignmentEvidenceSource <https://example.test/domain/source-profile-ai-film> ;
+    dom:assignmentForProfile <https://example.test/domain/profile-ai-film> ;
+    dom:assignmentMethod "manual_scope_review"^^xsd:string ;
+    dom:assignmentRationale "Draft link based on the local profile title and description; awaiting review by a domain owner."@en,
+        "로컬 프로필 'ai-film'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."@ko ;
+    dom:assignmentStatus "proposed"^^xsd:string ;
+    dom:assignmentToDomain <https://example.test/domain/ai-film-production> .
+
+<https://example.test/domain/assignment-autonomous-driving> a dom:DomainAssignment ;
+    rdfs:label "Proposed domain assignment autonomous-driving"@en,
+        "영역 배정 제안 autonomous-driving"@ko ;
+    dom:assignmentConfidence 0.85 ;
+    dom:assignmentCreatedAt "2026-10-08"^^xsd:date ;
+    dom:assignmentEvidenceSource <https://example.test/domain/source-profile-autonomous-driving> ;
+    dom:assignmentForProfile <https://example.test/domain/profile-autonomous-driving> ;
+    dom:assignmentMethod "manual_scope_review"^^xsd:string ;
+    dom:assignmentRationale "Draft link based on the local profile title and description; awaiting review by a domain owner."@en,
+        "로컬 프로필 'autonomous-driving'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."@ko ;
+    dom:assignmentStatus "proposed"^^xsd:string ;
+    dom:assignmentToDomain <https://example.test/domain/autonomous-driving> .
+
+<https://example.test/domain/assignment-imitation-learning> a dom:DomainAssignment ;
+    rdfs:label "Proposed domain assignment imitation-learning"@en,
+        "영역 배정 제안 imitation-learning"@ko ;
+    dom:assignmentConfidence 0.85 ;
+    dom:assignmentCreatedAt "2026-10-08"^^xsd:date ;
+    dom:assignmentEvidenceSource <https://example.test/domain/source-profile-imitation-learning> ;
+    dom:assignmentForProfile <https://example.test/domain/profile-imitation-learning> ;
+    dom:assignmentMethod "manual_scope_review"^^xsd:string ;
+    dom:assignmentRationale "Draft link based on the local profile title and description; awaiting review by a domain owner."@en,
+        "로컬 프로필 'imitation-learning'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."@ko ;
+    dom:assignmentStatus "proposed"^^xsd:string ;
+    dom:assignmentToDomain <https://example.test/domain/imitation-learning> .
+
+<https://example.test/domain/assignment-ros2> a dom:DomainAssignment ;
+    rdfs:label "Proposed domain assignment ros2"@en,
+        "영역 배정 제안 ros2"@ko ;
+    dom:assignmentConfidence 0.85 ;
+    dom:assignmentCreatedAt "2026-10-08"^^xsd:date ;
+    dom:assignmentEvidenceSource <https://example.test/domain/source-profile-ros2> ;
+    dom:assignmentForProfile <https://example.test/domain/profile-ros2> ;
+    dom:assignmentMethod "manual_scope_review"^^xsd:string ;
+    dom:assignmentRationale "Draft link based on the local profile title and description; awaiting review by a domain owner."@en,
+        "로컬 프로필 'ros2'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."@ko ;
+    dom:assignmentStatus "proposed"^^xsd:string ;
+    dom:assignmentToDomain <https://example.test/domain/robot-middleware> .
+
+<https://example.test/domain/assignment-wireless-router> a dom:DomainAssignment ;
+    rdfs:label "Proposed domain assignment wireless-router"@en,
+        "영역 배정 제안 wireless-router"@ko ;
+    dom:assignmentConfidence 0.85 ;
+    dom:assignmentCreatedAt "2026-10-08"^^xsd:date ;
+    dom:assignmentEvidenceSource <https://example.test/domain/source-profile-wireless-router> ;
+    dom:assignmentForProfile <https://example.test/domain/profile-wireless-router> ;
+    dom:assignmentMethod "manual_scope_review"^^xsd:string ;
+    dom:assignmentRationale "Draft link based on the local profile title and description; awaiting review by a domain owner."@en,
+        "로컬 프로필 'wireless-router'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."@ko ;
+    dom:assignmentStatus "proposed"^^xsd:string ;
+    dom:assignmentToDomain <https://example.test/domain/wireless-networking> .
+
+<https://example.test/domain/change-ai-created> a dom:DomainChangeEvent ;
+    rdfs:label "AI domain draft creation event"@en,
+        "인공지능 영역 초안 생성 기록"@ko ;
+    dom:changeAction "created"^^xsd:string ;
+    dom:changeDate "2026-10-08"^^xsd:date ;
+    dom:changeForDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:changeNewStatus "proposed"^^xsd:string ;
+    dom:changePreviousStatus "not_recorded"^^xsd:string ;
+    dom:changeReason "Created an illustrative domain hierarchy to organize and cross-reference local ontology profiles."@en ;
+    dom:changeRecordedByRole "ontology_editor"^^xsd:string .
+
+<https://example.test/domain/mapping-ai-unstarted> a dom:DomainMapping ;
+    rdfs:label "AI external classification mapping not started"@en,
+        "AI 외부 분류 매핑 미착수"@ko ;
+    dom:mappingLocalDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:mappingRationale "No external classification scheme or concept URI has been selected; no equivalence is asserted."@en ;
+    dom:mappingRelationType "unknown"^^xsd:string ;
+    dom:mappingStatus "not_started"^^xsd:string .
+
+<https://example.test/domain/review-ai-pending> a dom:DomainReview ;
+    rdfs:label "AI domain review plan"@en,
+        "인공지능 영역 검토 계획"@ko ;
+    dom:reviewCriteria "Check the definition boundary, direct parents, aliases, profile assignments, and source scope."@en ;
+    dom:reviewForDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:reviewOutcome "not_reviewed"^^xsd:string ;
+    dom:reviewRationale "A review is planned; no domain owner has approved this draft."@en ;
+    dom:reviewStatus "planned"^^xsd:string ;
+    dom:reviewerRole "not_assigned"^^xsd:string .
+
+<https://example.test/domain/scope-ai-exclusion> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example artificial-intelligence exclusion"@en,
+        "범위 예시 artificial-intelligence exclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:scopeKind "exclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "A topic is not automatically classified as AI merely because it uses software or automation."@en .
+
+<https://example.test/domain/scope-ai-film> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example ai-film-production inclusion"@en,
+        "범위 예시 ai-film-production inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/ai-film-production> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "Film and video production activities that use AI for ideation, generation, editing, or review."@en .
+
+<https://example.test/domain/scope-ai-inclusion> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example artificial-intelligence inclusion"@en,
+        "범위 예시 artificial-intelligence inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "AI methods, models, and systems that support perception, prediction, generation, or decision-making."@en .
+
+<https://example.test/domain/scope-networking> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example computer-networking inclusion"@en,
+        "범위 예시 computer-networking inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/computer-networking> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "Network protocols, addressing concepts, routing, switching, and wired or wireless connectivity."@en .
+
+<https://example.test/domain/scope-robotics> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example robotics inclusion"@en,
+        "범위 예시 robotics inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/robotics> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "Integrated robotic platforms, their software architecture, sensing, planning, and actuation."@en .
+
+<https://example.test/domain/scope-transport> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example transportation inclusion"@en,
+        "범위 예시 transportation inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/transportation> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "Movement of people or goods and the systems that support that movement."@en .
+
+<https://example.test/domain/scope-wireless> a dom:DomainScopeStatement ;
+    rdfs:label "Scope example wireless-networking inclusion"@en,
+        "범위 예시 wireless-networking inclusion"@ko ;
+    dom:scopeEvidenceLevel "curated"^^xsd:string ;
+    dom:scopeForDomain <https://example.test/domain/wireless-networking> ;
+    dom:scopeKind "inclusion"^^xsd:string ;
+    dom:scopeReviewStatus "draft"^^xsd:string ;
+    dom:scopeText "Wireless local-area links, radio interfaces, access points, and their network configuration."@en .
+
+<https://example.test/domain/source-skos-reference> a dom:DomainSource ;
+    rdfs:label "W3C SKOS Reference"@en,
+        "W3C SKOS 참조"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "standards_document"^^xsd:string ;
+    dom:sourceLimitations "SKOS supplies a knowledge-organization data model; it does not establish that this illustrative local domain taxonomy is authoritative or that any external mapping is correct."@en ;
+    dom:sourcePublisher "World Wide Web Consortium (W3C)"^^xsd:string ;
+    dom:sourceScope "Defines SKOS concept schemes, concepts, preferred and alternative labels, definitions, direct broader/narrower links, associative links, and mapping properties."@en ;
+    dom:sourceTitle "SKOS Simple Knowledge Organization System Reference"^^xsd:string ;
+    dom:sourceUri "https://www.w3.org/TR/skos-reference/"^^xsd:anyURI ;
+    dom:sourceYear 2009 .
+
+<https://example.test/domain/healthcare> a dom:KnowledgeDomain ;
+    rdfs:label "Healthcare"@en,
+        "헬스케어"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Healthcare; refine the boundary with the domain owner."@en,
+        "헬스케어 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainIdentifier "healthcare"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "HEALTH"^^xsd:string ;
+    dom:domainPreferredLabel "Healthcare"@en,
+        "헬스케어"@ko ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/profile-ai-film> a dom:OntologyProfile ;
+    rdfs:label "AI Film Production Ontology"@en,
+        "로컬 프로필 ai-film"@ko ;
+    dom:ontologyProfileCoversDomain <https://example.test/domain/ai-film-production> ;
+    dom:ontologyProfileDocumentedBy <https://example.test/domain/source-profile-ai-film> ;
+    dom:ontologyProfileId "ai-film"^^xsd:string ;
+    dom:ontologyProfileName "AI Film Production Ontology"@en,
+        "AI 영화 제작 온톨로지 (ai-film)"@ko ;
+    dom:ontologyProfileNamespace "https://example.org/ontology/custom/ai-film#"^^xsd:anyURI ;
+    dom:ontologyProfileScope "Connects screenplay, scene and shot planning to generation tasks, evidence, rights and quality reviews, and edit readiness."@en,
+        "시나리오·장면·샷부터 생성 계획, 출처 및 권리·품질 검토, 편집 버전의 준비 상태까지 연결합니다."@ko ;
+    dom:ontologyProfileStatus "draft"^^xsd:string ;
+    dom:ontologyProfileVersion "0.1.0"^^xsd:string .
+
+<https://example.test/domain/profile-autonomous-driving> a dom:OntologyProfile ;
+    rdfs:label "Autonomous Driving Ontology"@en,
+        "로컬 프로필 autonomous-driving"@ko ;
+    dom:ontologyProfileCoversDomain <https://example.test/domain/autonomous-driving> ;
+    dom:ontologyProfileDocumentedBy <https://example.test/domain/source-profile-autonomous-driving> ;
+    dom:ontologyProfileId "autonomous-driving"^^xsd:string ;
+    dom:ontologyProfileName "Autonomous Driving Ontology"@en,
+        "자율주행 온톨로지 (autonomous-driving)"@ko ;
+    dom:ontologyProfileNamespace "https://example.org/ontology/custom/autonomous-driving#"^^xsd:anyURI ;
+    dom:ontologyProfileScope "Connects driving features, SAE level terms, ODD, vehicles, sensors, perception, localization, planning, control, safety and test evidence."@en,
+        "주행 자동화 기능·SAE 수준 용어·운행설계영역·차량·센서·인지·위치추정·계획·제어·안전·시험 근거를 연결합니다."@ko ;
+    dom:ontologyProfileStatus "draft"^^xsd:string ;
+    dom:ontologyProfileVersion "0.1.0"^^xsd:string .
+
+<https://example.test/domain/profile-imitation-learning> a dom:OntologyProfile ;
+    rdfs:label "Imitation Learning Ontology"@en,
+        "로컬 프로필 imitation-learning"@ko ;
+    dom:ontologyProfileCoversDomain <https://example.test/domain/imitation-learning> ;
+    dom:ontologyProfileDocumentedBy <https://example.test/domain/source-profile-imitation-learning> ;
+    dom:ontologyProfileId "imitation-learning"^^xsd:string ;
+    dom:ontologyProfileName "Imitation Learning Ontology"@en,
+        "모방학습 온톨로지 (imitation-learning)"@ko ;
+    dom:ontologyProfileNamespace "https://example.org/ontology/custom/imitation-learning#"^^xsd:anyURI ;
+    dom:ontologyProfileScope "Connects demonstrations, observation-action labels, behavior cloning, DAgger, inverse reinforcement learning, policies, run status, distribution shift and literature evidence; separates synthetic fixtures from executed experiments."@en,
+        "시연, 관측·행동 레이블, 행동복제·DAgger·역강화학습, 정책, 학습·평가 상태, 분포 변화와 문헌 근거를 연결하며 합성 예시와 실제 실험을 구분한다."@ko ;
+    dom:ontologyProfileStatus "draft"^^xsd:string ;
+    dom:ontologyProfileVersion "0.1.0"^^xsd:string .
+
+<https://example.test/domain/profile-ros2> a dom:OntologyProfile ;
+    rdfs:label "ROS 2 System Ontology"@en,
+        "로컬 프로필 ros2"@ko ;
+    dom:ontologyProfileCoversDomain <https://example.test/domain/robot-middleware> ;
+    dom:ontologyProfileDocumentedBy <https://example.test/domain/source-profile-ros2> ;
+    dom:ontologyProfileId "ros2"^^xsd:string ;
+    dom:ontologyProfileName "ROS 2 System Ontology"@en,
+        "ROS 2 시스템 온톨로지 (ros2)"@ko ;
+    dom:ontologyProfileNamespace "https://example.org/ontology/custom/ros2#"^^xsd:anyURI ;
+    dom:ontologyProfileScope "Connects ROS 2 packages, nodes, topics, services, actions, interface types, QoS, hardware, controllers and tf2 frames with official documentation sources."@en,
+        "ROS 2 패키지·노드·토픽·서비스·액션·메시지 형식·QoS·하드웨어·컨트롤러·tf2 프레임을 연결하고 공식 문서 근거를 조회합니다."@ko ;
+    dom:ontologyProfileStatus "draft"^^xsd:string ;
+    dom:ontologyProfileVersion "0.1.0"^^xsd:string .
+
+<https://example.test/domain/profile-wireless-router> a dom:OntologyProfile ;
+    rdfs:label "Wireless Router Ontology"@en,
+        "로컬 프로필 wireless-router"@ko ;
+    dom:ontologyProfileCoversDomain <https://example.test/domain/wireless-networking> ;
+    dom:ontologyProfileDocumentedBy <https://example.test/domain/source-profile-wireless-router> ;
+    dom:ontologyProfileId "wireless-router"^^xsd:string ;
+    dom:ontologyProfileName "Wireless Router Ontology"@en,
+        "무선공유기 온톨로지 (wireless-router)"@ko ;
+    dom:ontologyProfileNamespace "https://example.org/ontology/custom/wireless-router#"^^xsd:anyURI ;
+    dom:ontologyProfileScope "Connects router devices, radios, wireless networks, security profiles, isolation, clients and associations, firmware, configuration snapshots, performance observations, incidents, and evidence sources. Supported capability, configuration, and observed state remain distinct; examples are synthetic."@en,
+        "무선공유기 장치·무선 인터페이스·네트워크·보안 프로필·망 분리·클라이언트 접속·펌웨어·설정 스냅샷·성능 관측·장애 및 근거 출처를 연결한다. 기능 지원, 설정 상태, 실제 관측 상태를 분리하며 예시는 합성 자료이다."@ko ;
+    dom:ontologyProfileStatus "draft"^^xsd:string ;
+    dom:ontologyProfileVersion "0.1.0"^^xsd:string .
+
+<https://example.test/domain/relation-ai-robotics> a dom:DomainRelation ;
+    rdfs:label "AI and robotics cross-domain relation"@en,
+        "인공지능·로보틱스 교차 영역 관계"@ko ;
+    dom:relationObjectDomain <https://example.test/domain/robotics> ;
+    dom:relationRationale "Illustrative cross-domain relation; review whether to retain an associative link alongside local scope boundaries."@en ;
+    dom:relationRecordedAt "2026-10-08"^^xsd:date ;
+    dom:relationStatus "proposed"^^xsd:string ;
+    dom:relationSubjectDomain <https://example.test/domain/artificial-intelligence> ;
+    dom:relationType "interdisciplinary"^^xsd:string .
+
+<https://example.test/domain/source-profile-ai-film> a dom:DomainSource ;
+    rdfs:label "Local profile record: AI Film Production Ontology"@en,
+        "로컬 프로필 설명: AI 영화 제작 온톨로지 (ai-film)"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "local_profile"^^xsd:string ;
+    dom:sourceLimitations "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."@en ;
+    dom:sourcePublisher "Local ontology studio catalog"^^xsd:string ;
+    dom:sourceScope "Connects screenplay, scene and shot planning to generation tasks, evidence, rights and quality reviews, and edit readiness."@en ;
+    dom:sourceTitle "AI Film Production Ontology"^^xsd:string ;
+    dom:sourceUri "https://example.org/ontology/custom/ai-film#"^^xsd:anyURI ;
+    dom:sourceYear 2026 .
+
+<https://example.test/domain/source-profile-autonomous-driving> a dom:DomainSource ;
+    rdfs:label "Local profile record: Autonomous Driving Ontology"@en,
+        "로컬 프로필 설명: 자율주행 온톨로지 (autonomous-driving)"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "local_profile"^^xsd:string ;
+    dom:sourceLimitations "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."@en ;
+    dom:sourcePublisher "Local ontology studio catalog"^^xsd:string ;
+    dom:sourceScope "Connects driving features, SAE level terms, ODD, vehicles, sensors, perception, localization, planning, control, safety and test evidence."@en ;
+    dom:sourceTitle "Autonomous Driving Ontology"^^xsd:string ;
+    dom:sourceUri "https://example.org/ontology/custom/autonomous-driving#"^^xsd:anyURI ;
+    dom:sourceYear 2026 .
+
+<https://example.test/domain/source-profile-imitation-learning> a dom:DomainSource ;
+    rdfs:label "Local profile record: Imitation Learning Ontology"@en,
+        "로컬 프로필 설명: 모방학습 온톨로지 (imitation-learning)"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "local_profile"^^xsd:string ;
+    dom:sourceLimitations "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."@en ;
+    dom:sourcePublisher "Local ontology studio catalog"^^xsd:string ;
+    dom:sourceScope "Connects demonstrations, observation-action labels, behavior cloning, DAgger, inverse reinforcement learning, policies, run status, distribution shift and literature evidence; separates synthetic fixtures from executed experiments."@en ;
+    dom:sourceTitle "Imitation Learning Ontology"^^xsd:string ;
+    dom:sourceUri "https://example.org/ontology/custom/imitation-learning#"^^xsd:anyURI ;
+    dom:sourceYear 2026 .
+
+<https://example.test/domain/source-profile-ros2> a dom:DomainSource ;
+    rdfs:label "Local profile record: ROS 2 System Ontology"@en,
+        "로컬 프로필 설명: ROS 2 시스템 온톨로지 (ros2)"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "local_profile"^^xsd:string ;
+    dom:sourceLimitations "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."@en ;
+    dom:sourcePublisher "Local ontology studio catalog"^^xsd:string ;
+    dom:sourceScope "Connects ROS 2 packages, nodes, topics, services, actions, interface types, QoS, hardware, controllers and tf2 frames with official documentation sources."@en ;
+    dom:sourceTitle "ROS 2 System Ontology"^^xsd:string ;
+    dom:sourceUri "https://example.org/ontology/custom/ros2#"^^xsd:anyURI ;
+    dom:sourceYear 2026 .
+
+<https://example.test/domain/source-profile-wireless-router> a dom:DomainSource ;
+    rdfs:label "Local profile record: Wireless Router Ontology"@en,
+        "로컬 프로필 설명: 무선공유기 온톨로지 (wireless-router)"@ko ;
+    dom:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    dom:sourceKind "local_profile"^^xsd:string ;
+    dom:sourceLimitations "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."@en ;
+    dom:sourcePublisher "Local ontology studio catalog"^^xsd:string ;
+    dom:sourceScope "Connects router devices, radios, wireless networks, security profiles, isolation, clients and associations, firmware, configuration snapshots, performance observations, incidents, and evidence sources. Supported capability, configuration, and observed state remain distinct; examples are synthetic."@en ;
+    dom:sourceTitle "Wireless Router Ontology"^^xsd:string ;
+    dom:sourceUri "https://example.org/ontology/custom/wireless-router#"^^xsd:anyURI ;
+    dom:sourceYear 2026 .
+
+<https://example.test/domain/digital-media> a dom:KnowledgeDomain ;
+    rdfs:label "Digital Media"@en,
+        "디지털 미디어"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Digital Media; refine the boundary with the domain owner."@en,
+        "디지털 미디어 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainIdentifier "digital-media"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/ai-film-production> ;
+    dom:domainNotation "MEDIA"^^xsd:string ;
+    dom:domainPreferredLabel "Digital Media"@en,
+        "디지털 미디어"@ko ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/machine-learning> a dom:KnowledgeDomain ;
+    rdfs:label "Machine Learning"@en,
+        "머신러닝"@ko ;
+    dom:domainAlternativeLabel "기계학습"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/artificial-intelligence> ;
+    dom:domainDefinition "Illustrative definition for Machine Learning; refine the boundary with the domain owner."@en,
+        "머신러닝 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainIdentifier "machine-learning"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 1 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/imitation-learning> ;
+    dom:domainNotation "AI.ML"^^xsd:string ;
+    dom:domainPreferredLabel "Machine Learning"@en,
+        "머신러닝"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/computer-networking> a dom:KnowledgeDomain ;
+    rdfs:label "Computer Networking"@en,
+        "컴퓨터 네트워킹"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Computer Networking; refine the boundary with the domain owner."@en,
+        "컴퓨터 네트워킹 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-networking> ;
+    dom:domainIdentifier "computer-networking"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/wireless-networking> ;
+    dom:domainNotation "NET"^^xsd:string ;
+    dom:domainPreferredLabel "Computer Networking"@en,
+        "컴퓨터 네트워킹"@ko ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/imitation-learning> a dom:KnowledgeDomain ;
+    rdfs:label "Imitation Learning"@en,
+        "모방학습"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/machine-learning> ;
+    dom:domainDefinition "Illustrative definition for Imitation Learning; refine the boundary with the domain owner."@en,
+        "모방학습 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasAssignment <https://example.test/domain/assignment-imitation-learning> ;
+    dom:domainHasProfile <https://example.test/domain/profile-imitation-learning> ;
+    dom:domainIdentifier "imitation-learning"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 2 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "AI.ML.IMITATION"^^xsd:string ;
+    dom:domainPreferredLabel "Imitation Learning"@en,
+        "모방학습"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/robot-middleware> a dom:KnowledgeDomain ;
+    rdfs:label "Robot Middleware"@en,
+        "로봇 미들웨어"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/robotics> ;
+    dom:domainDefinition "Illustrative definition for Robot Middleware; refine the boundary with the domain owner."@en,
+        "로봇 미들웨어 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasAssignment <https://example.test/domain/assignment-ros2> ;
+    dom:domainHasProfile <https://example.test/domain/profile-ros2> ;
+    dom:domainIdentifier "robot-middleware"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 1 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "ROB.MIDDLEWARE"^^xsd:string ;
+    dom:domainPreferredLabel "Robot Middleware"@en,
+        "로봇 미들웨어"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/transportation> a dom:KnowledgeDomain ;
+    rdfs:label "Transportation"@en,
+        "교통"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Transportation; refine the boundary with the domain owner."@en,
+        "교통 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-transport> ;
+    dom:domainIdentifier "transportation"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/autonomous-driving> ;
+    dom:domainNotation "TRANSPORT"^^xsd:string ;
+    dom:domainPreferredLabel "Transportation"@en,
+        "교통"@ko ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/autonomous-driving> a dom:KnowledgeDomain ;
+    rdfs:label "Autonomous Driving"@en,
+        "자율주행"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/robotics>,
+        <https://example.test/domain/transportation> ;
+    dom:domainDefinition "Illustrative definition for Autonomous Driving; refine the boundary with the domain owner."@en,
+        "자율주행 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasAssignment <https://example.test/domain/assignment-autonomous-driving> ;
+    dom:domainHasProfile <https://example.test/domain/profile-autonomous-driving> ;
+    dom:domainIdentifier "autonomous-driving"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 1 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "TRANSPORT.AUTONOMOUS"^^xsd:string ;
+    dom:domainPreferredLabel "Autonomous Driving"@en,
+        "자율주행"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/wireless-networking> a dom:KnowledgeDomain ;
+    rdfs:label "Wireless Networking"@en,
+        "무선 네트워킹"@ko ;
+    dom:domainAlternativeLabel "WLAN"@en ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/computer-networking> ;
+    dom:domainDefinition "Illustrative definition for Wireless Networking; refine the boundary with the domain owner."@en,
+        "무선 네트워킹 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasAssignment <https://example.test/domain/assignment-wireless-router> ;
+    dom:domainHasProfile <https://example.test/domain/profile-wireless-router> ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-wireless> ;
+    dom:domainIdentifier "wireless-networking"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 1 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "NET.WIRELESS"^^xsd:string ;
+    dom:domainPreferredLabel "Wireless Networking"@en,
+        "무선 네트워킹"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/ai-film-production> a dom:KnowledgeDomain ;
+    rdfs:label "AI Film Production"@en,
+        "AI 영화 제작"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainBroader <https://example.test/domain/artificial-intelligence>,
+        <https://example.test/domain/digital-media> ;
+    dom:domainDefinition "Illustrative definition for AI Film Production; refine the boundary with the domain owner."@en,
+        "AI 영화 제작 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasAssignment <https://example.test/domain/assignment-ai-film> ;
+    dom:domainHasProfile <https://example.test/domain/profile-ai-film> ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-ai-film> ;
+    dom:domainIdentifier "ai-film-production"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 1 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNotation "MEDIA.AI-FILM"^^xsd:string ;
+    dom:domainPreferredLabel "AI Film Production"@en,
+        "AI 영화 제작"@ko ;
+    dom:domainTopConcept false .
+
+<https://example.test/domain/robotics> a dom:KnowledgeDomain ;
+    rdfs:label "Robotics"@en,
+        "로보틱스"@ko ;
+    dom:domainAlternativeLabel "로봇공학"@ko ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Robotics; refine the boundary with the domain owner."@en,
+        "로보틱스 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasRelation <https://example.test/domain/relation-ai-robotics> ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-robotics> ;
+    dom:domainIdentifier "robotics"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/autonomous-driving>,
+        <https://example.test/domain/robot-middleware> ;
+    dom:domainNotation "ROB"^^xsd:string ;
+    dom:domainPreferredLabel "Robotics"@en,
+        "로보틱스"@ko ;
+    dom:domainRelatedTo <https://example.test/domain/artificial-intelligence> ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/artificial-intelligence> a dom:KnowledgeDomain ;
+    rdfs:label "Artificial Intelligence"@en,
+        "인공지능"@ko ;
+    dom:domainAlternativeLabel "AI"@en ;
+    dom:domainBoundaryStatus "partial"^^xsd:string ;
+    dom:domainDefinition "Illustrative definition for Artificial Intelligence; refine the boundary with the domain owner."@en,
+        "인공지능 영역의 예시 정의이다. 실제 범위는 도메인 소유자 검토로 구체화한다."@ko ;
+    dom:domainHasChangeEvent <https://example.test/domain/change-ai-created> ;
+    dom:domainHasMapping <https://example.test/domain/mapping-ai-unstarted> ;
+    dom:domainHasRelation <https://example.test/domain/relation-ai-robotics> ;
+    dom:domainHasReview <https://example.test/domain/review-ai-pending> ;
+    dom:domainHasScopeStatement <https://example.test/domain/scope-ai-exclusion>,
+        <https://example.test/domain/scope-ai-inclusion> ;
+    dom:domainIdentifier "artificial-intelligence"^^xsd:string ;
+    dom:domainInCatalog <https://example.test/domain/catalog-local-domains> ;
+    dom:domainLevel 0 ;
+    dom:domainLifecycleStatus "proposed"^^xsd:string ;
+    dom:domainNarrower <https://example.test/domain/ai-film-production>,
+        <https://example.test/domain/machine-learning> ;
+    dom:domainNotation "AI"^^xsd:string ;
+    dom:domainPreferredLabel "Artificial Intelligence"@en,
+        "인공지능"@ko ;
+    dom:domainRelatedTo <https://example.test/domain/robotics> ;
+    dom:domainTopConcept true .
+
+<https://example.test/domain/catalog-local-domains> a dom:DomainCatalog ;
+    rdfs:label "Illustrative knowledge and application domain catalog"@en,
+        "예시 지식·응용 영역 분류"@ko ;
+    dom:catalogDefinition "An illustrative scheme for connecting local ontology profiles to knowledge and application areas."@en,
+        "로컬 온톨로지 프로필을 지식·업무 분야에 연결하는 예시 분류 체계이다."@ko ;
+    dom:catalogHasDomain <https://example.test/domain/ai-film-production>,
+        <https://example.test/domain/artificial-intelligence>,
+        <https://example.test/domain/autonomous-driving>,
+        <https://example.test/domain/computer-networking>,
+        <https://example.test/domain/digital-media>,
+        <https://example.test/domain/healthcare>,
+        <https://example.test/domain/imitation-learning>,
+        <https://example.test/domain/machine-learning>,
+        <https://example.test/domain/robot-middleware>,
+        <https://example.test/domain/robotics>,
+        <https://example.test/domain/transportation>,
+        <https://example.test/domain/wireless-networking> ;
+    dom:catalogHasSource <https://example.test/domain/source-skos-reference> ;
+    dom:catalogHasTopDomain <https://example.test/domain/artificial-intelligence>,
+        <https://example.test/domain/computer-networking>,
+        <https://example.test/domain/digital-media>,
+        <https://example.test/domain/healthcare>,
+        <https://example.test/domain/robotics>,
+        <https://example.test/domain/transportation> ;
+    dom:catalogLifecycleStatus "draft"^^xsd:string ;
+    dom:catalogPreferredLabel "Illustrative Knowledge and Application Domain Catalog"@en,
+        "예시 지식·응용 영역 분류"@ko ;
+    dom:catalogScopeNote "This is not an official academic classification. Hierarchy and profile assignments are draft examples awaiting review."@en,
+        "공식 학문 분류가 아니다. 상하위 관계와 프로필 연결은 검토 전 초안이다."@ko ;
+    dom:catalogVersion "0.1.0"^^xsd:string .

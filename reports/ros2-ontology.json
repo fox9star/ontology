@@ -1,0 +1,111 @@
+{
+  "created_at": "2026-10-07T07:04:36+00:00",
+  "id": "ros2",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 13,
+  "properties": 71,
+  "instance_counts": {
+    "Action": 1,
+    "Controller": 1,
+    "CoordinateFrame": 4,
+    "DocumentationSource": 7,
+    "HardwareComponent": 3,
+    "MessageType": 4,
+    "Node": 4,
+    "Package": 9,
+    "QoSProfile": 3,
+    "ROS2System": 1,
+    "Service": 1,
+    "Topic": 2
+  },
+  "triples": 370,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 80
+  },
+  "questions": 10,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "ROS 2 communication, interfaces, QoS, hardware, controllers and tf2 concepts are grounded in linked ROS project documentation. The greenhouse system, custom soil message, irrigation action, hardware wiring and runtime nodes/controllers are explicitly synthetic and do not describe a deployed or safety-validated farm.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "8fd783bd65ef4852efc944b47a5f21899c13c97a87cf76e93e00efd58af4c96a",
+      "bytes": 52871
+    },
+    "curated-data.json": {
+      "sha256": "dcf52a3a84452e1ea676b8db8fc5f11a6ce30c9c8c9670a4b0921395e4bd5168",
+      "bytes": 21084
+    },
+    "example.ttl": {
+      "sha256": "df4293aa07288070091c4047dd3d65659ffab2cf83a1a9e75b8edb0f6ea4f91a",
+      "bytes": 22268
+    },
+    "profile.json": {
+      "sha256": "2761cdcb3ff3d592e3879df26daa90bd6076b44b409605a8dd9b4af1bbbbaf3b",
+      "bytes": 1141
+    },
+    "question-answers.json": {
+      "sha256": "ced6c49cd3bf07a912db8ddd30eb073bb564768238f862d133b84706b5e1e07d",
+      "bytes": 27680
+    },
+    "question-fixture.ttl": {
+      "sha256": "84dcbe883e32af961f4006a11e0c8445b70076ced90c89c02b7f4cb035d7ca1a",
+      "bytes": 22313
+    },
+    "questions.md": {
+      "sha256": "c139ed052a2f8519582052c92aa51e274da60bf3775323355eaa211cf04a5a80",
+      "bytes": 7056
+    },
+    "schema.owl": {
+      "sha256": "2b9c743cc0621d7d284c62f8145985360e6be9c8f154efad83c77973247958c3",
+      "bytes": 57678
+    },
+    "schema.ttl": {
+      "sha256": "004a5cfa82842565d7c3e6e6feb4f3a26f116ce79b9cf096f512d497342e36e7",
+      "bytes": 29452
+    },
+    "shapes.ttl": {
+      "sha256": "72529094df4fff37eb32f87ff5d66cc314ca12c8de6ddb97713e448f56ae2d56",
+      "bytes": 28419
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-07T07:10:23+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 25,
+    "profile_name": "ROS 2 시스템 온톨로지 (ros2)",
+    "profile_id": "ros2",
+    "explorer": {
+      "classes": 13,
+      "properties": 71,
+      "instances": 40
+    },
+    "question_keys": [
+      "ROS2-01",
+      "ROS2-02",
+      "ROS2-03",
+      "ROS2-04",
+      "ROS2-05",
+      "ROS2-06",
+      "ROS2-07",
+      "ROS2-08",
+      "ROS2-09",
+      "ROS2-10"
+    ],
+    "page_status": 200,
+    "page_has_ros2_option": true,
+    "browser_visual_verification": "not_performed"
+  },
+  "registry_issue_fixed": {
+    "file": "ontology_modules.json",
+    "detail": "Restored the missing module separator and removed the duplicate politics schema entry so local schema loading and explorer APIs can run."
+  }
+}

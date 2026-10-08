@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-10-05T08:42:02.318423+09:00",
+  "local_url": "http://127.0.0.1:5000/?ont=ai-film",
+  "health": {
+    "service": "ontology-web-studio",
+    "status": "ok"
+  },
+  "profile_count": 8,
+  "ai_film_present": true,
+  "ai_film_classes": 14,
+  "ai_film_properties": 32,
+  "ai_film_instances": 14,
+  "validation_phases": {
+    "conforms": true,
+    "inferred_conforms": true,
+    "inferred_results": 0,
+    "inferred_type_count": 50,
+    "raw_conforms": true,
+    "raw_results": 0
+  },
+  "search_assets_http_status": {
+    "searchable-select.js": 200,
+    "searchable-select.css": 200
+  },
+  "html_search_module_present": true,
+  "html_creation_form_present": true,
+  "browser_visual_verification": "blocked: browser tool returned ERR_BLOCKED_BY_CLIENT; no policy bypass attempted",
+  "interaction_verification": "Node DOM harness passed keyboard, IME, filtering, sync, 1000 options and safe labels; API catalog creation and reload tests passed in temporary workspace"
+}

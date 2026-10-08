@@ -1,0 +1,296 @@
+{
+  "IL-01": {
+    "variables": [
+      "project",
+      "scope",
+      "task",
+      "taskName",
+      "goal",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/pick-place-project",
+        "synthetic_example",
+        "https://example.test/imitation-learning/pick-place-task",
+        "시뮬레이션 기반 큐브 집기·놓기",
+        "가상 관측을 입력으로 참조 행동 순서를 학습하는 구상이며 실제 로봇 실행은 범위에 포함하지 않는다.",
+        "설계 예시만 기록한다. 실제 데이터 수집, 모델 학습, 로봇 제어와 성능 평가는 하지 않았다."
+      ]
+    ]
+  },
+  "IL-02": {
+    "variables": [
+      "dataset",
+      "name",
+      "provenance",
+      "collection",
+      "split",
+      "limits"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/synthetic-demo-dataset",
+        "pick-place-synthetic-fixture",
+        "synthetic_only",
+        "synthetic_fixture_not_collected",
+        "not_applicable_synthetic_fixture",
+        "설명용 두 단계 예시만 있다. 실제 프레임, 관절 수치, 데이터 파일, 사람 시연, 분할 또는 수집 절차는 없다."
+      ]
+    ]
+  },
+  "IL-03": {
+    "variables": [
+      "demo",
+      "step",
+      "index",
+      "obs",
+      "modality",
+      "summary",
+      "action",
+      "type",
+      "value",
+      "labelSource"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/demo-pick-place-01",
+        "https://example.test/imitation-learning/step-01",
+        1,
+        "https://example.test/imitation-learning/observation-01",
+        "simulated_image",
+        "가상 장면에서 큐브와 목표 구역을 보는 이미지 관측의 설명용 예시",
+        "https://example.test/imitation-learning/action-01",
+        "robot_command",
+        "approach_target_pose",
+        "synthetic_fixture"
+      ],
+      [
+        "https://example.test/imitation-learning/demo-pick-place-01",
+        "https://example.test/imitation-learning/step-02",
+        2,
+        "https://example.test/imitation-learning/observation-02",
+        "simulated_state",
+        "그리퍼가 큐브를 잡았다고 가정한 가상 상태 관측의 설명용 예시",
+        "https://example.test/imitation-learning/action-02",
+        "gripper_command",
+        "close_gripper",
+        "synthetic_fixture"
+      ]
+    ]
+  },
+  "IL-04": {
+    "variables": [
+      "method",
+      "name",
+      "kind",
+      "description",
+      "source",
+      "title",
+      "uri",
+      "claim"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/behavior-cloning",
+        "Behavior cloning",
+        "behavior_cloning",
+        "근사 정책을 학습하도록 시연의 관측·행동 쌍을 지도 신호로 사용한다.",
+        "https://example.test/imitation-learning/pomerleau-1989",
+        "ALVINN: An Autonomous Land Vehicle in a Neural Network",
+        "https://publications.ri.cmu.edu/alvinn-an-autonomous-land-vehicle-in-a-neural-network",
+        "Describes camera and laser-range inputs, a driving-direction output, and training with simulated road images."
+      ],
+      [
+        "https://example.test/imitation-learning/dagger",
+        "DAgger (Dataset Aggregation)",
+        "dagger",
+        "학습 정책이 방문한 상태에서 전문가 레이블을 얻고 학습 데이터를 반복적으로 누적한다.",
+        "https://example.test/imitation-learning/ross-gordon-bagnell-2011",
+        "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+        "https://proceedings.mlr.press/v15/ross11a.html",
+        "DAgger uses learner-induced states, expert action labels and iterative data aggregation."
+      ],
+      [
+        "https://example.test/imitation-learning/inverse-rl",
+        "Inverse reinforcement learning",
+        "inverse_reinforcement_learning",
+        "행동 궤적으로부터 이를 설명하는 보상 또는 목적 함수를 추론한다.",
+        "https://example.test/imitation-learning/ng-russell-2000",
+        "Algorithms for Inverse Reinforcement Learning",
+        "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+        "Formulates reward inference from observed optimal behavior, including a finite-trajectory case."
+      ]
+    ]
+  },
+  "IL-05": {
+    "variables": [
+      "run",
+      "name",
+      "status",
+      "dataset",
+      "method",
+      "policy",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/training-run-01",
+        "planned-pick-place-behavior-cloning",
+        "planned",
+        "https://example.test/imitation-learning/synthetic-demo-dataset",
+        "https://example.test/imitation-learning/behavior-cloning",
+        "https://example.test/imitation-learning/learner-policy",
+        "실행되지 않았다. 가중치, 로그 또는 학습 시간은 생성하지 않았다."
+      ]
+    ]
+  },
+  "IL-06": {
+    "variables": [
+      "policy",
+      "name",
+      "status",
+      "task",
+      "method",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/learner-policy",
+        "pick-place-learner-policy",
+        "not_trained",
+        "https://example.test/imitation-learning/pick-place-task",
+        "https://example.test/imitation-learning/behavior-cloning",
+        "설계용 정책 개체다. 모델 파일이나 학습 결과가 없다."
+      ]
+    ]
+  },
+  "IL-07": {
+    "variables": [
+      "run",
+      "status",
+      "evidence",
+      "metric",
+      "name",
+      "measurement",
+      "value",
+      "unit"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/evaluation-run-01",
+        "planned",
+        "none",
+        "https://example.test/imitation-learning/metric-action-error",
+        "행동 모방 오차",
+        "not_measured",
+        null,
+        "task-defined"
+      ],
+      [
+        "https://example.test/imitation-learning/evaluation-run-01",
+        "planned",
+        "none",
+        "https://example.test/imitation-learning/metric-collision",
+        "충돌 횟수",
+        "not_measured",
+        null,
+        "count"
+      ],
+      [
+        "https://example.test/imitation-learning/evaluation-run-01",
+        "planned",
+        "none",
+        "https://example.test/imitation-learning/metric-success",
+        "과제 성공률",
+        "not_measured",
+        null,
+        "ratio"
+      ]
+    ]
+  },
+  "IL-08": {
+    "variables": [
+      "shift",
+      "name",
+      "status",
+      "method",
+      "methodName",
+      "description",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/expert-policy-state-shift",
+        "expert-state-distribution-versus-learner-induced-states",
+        "concept_only",
+        "https://example.test/imitation-learning/dagger",
+        "DAgger (Dataset Aggregation)",
+        "순차 의사결정에서 정책 오류가 이후 방문 상태를 바꾸어 전문가 시연과 다른 입력 분포를 만들 수 있다.",
+        "개념만 등록했다. 실제 분포 차이나 DAgger 성능은 측정하지 않았다."
+      ]
+    ]
+  },
+  "IL-09": {
+    "variables": [
+      "constraint",
+      "name",
+      "description",
+      "status",
+      "task",
+      "taskName",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/simulation-only-constraint",
+        "no-live-robot-actuation",
+        "이 픽스처를 실제 하드웨어에 보내지 않는다. 물리 구동 전 속도 제한, 비상 정지, 작업공간과 사람 안전에 대한 별도 검증이 필요하다.",
+        "planned",
+        "https://example.test/imitation-learning/pick-place-task",
+        "큐브 집어 목표 구역에 놓기",
+        "안전성이 검증된 제어기가 아니라 범위 설명 항목이다."
+      ]
+    ]
+  },
+  "IL-10": {
+    "variables": [
+      "source",
+      "title",
+      "authors",
+      "year",
+      "uri",
+      "claim",
+      "accessed"
+    ],
+    "rows": [
+      [
+        "https://example.test/imitation-learning/pomerleau-1989",
+        "ALVINN: An Autonomous Land Vehicle in a Neural Network",
+        "Dean A. Pomerleau",
+        1989,
+        "https://publications.ri.cmu.edu/alvinn-an-autonomous-land-vehicle-in-a-neural-network",
+        "Describes camera and laser-range inputs, a driving-direction output, and training with simulated road images.",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/imitation-learning/ng-russell-2000",
+        "Algorithms for Inverse Reinforcement Learning",
+        "Andrew Y. Ng, Stuart Russell",
+        2000,
+        "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+        "Formulates reward inference from observed optimal behavior, including a finite-trajectory case.",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/imitation-learning/ross-gordon-bagnell-2011",
+        "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+        "Stéphane Ross, Geoffrey J. Gordon, J. Andrew Bagnell",
+        2011,
+        "https://proceedings.mlr.press/v15/ross11a.html",
+        "DAgger uses learner-induced states, expert action labels and iterative data aggregation.",
+        "2026-10-08"
+      ]
+    ]
+  }
+}

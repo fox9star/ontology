@@ -1,0 +1,15 @@
+{
+  "profile_id": "electricity-craftsman",
+  "taxonomy_status": "source_backed_draft",
+  "source_records": [
+    "qnet-qualification",
+    "qnet-exam-details",
+    "qnet-standard-2024",
+    "qnet-standard-2027",
+    "qnet-public-task-2025",
+    "qnet-materials"
+  ],
+  "observed_at": "2026-10-08",
+  "future_standard_details_ingested": false,
+  "practical_material_snapshot_count": 22
+}

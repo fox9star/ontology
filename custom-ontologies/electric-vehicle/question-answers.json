@@ -1,0 +1,409 @@
+{
+  "EV-01": {
+    "variables": [
+      "vehicle",
+      "label",
+      "plugIn",
+      "propulsion"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#vehicle-bev-pattern",
+        "배터리 전기차 유형 예시",
+        true,
+        "electric-only"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-hev-pattern",
+        "일반 하이브리드 유형 예시",
+        false,
+        "electric-and-liquid-fuel"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-phev-pattern",
+        "플러그인 하이브리드 유형 예시",
+        true,
+        "electric-and-liquid-fuel"
+      ]
+    ]
+  },
+  "EV-02": {
+    "variables": [
+      "component",
+      "label",
+      "role"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#component-auxiliary-battery",
+        "보조 배터리",
+        "auxiliary-storage"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-dcdc",
+        "DC-DC 변환기",
+        "power-conversion"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-electric-motor",
+        "전기 구동 모터",
+        "propulsion"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-inverter",
+        "구동 인버터",
+        "power-conversion"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "차량 탑재 충전기",
+        "power-conversion"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-power-controller",
+        "전력전자 제어기",
+        "power-control"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-thermal-management",
+        "전기차 열관리 시스템",
+        "thermal-control"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-traction-battery",
+        "구동 배터리 팩",
+        "traction-storage"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-vehicle-charge-port",
+        "차량 충전구",
+        "charging-interface"
+      ]
+    ]
+  },
+  "EV-03": {
+    "variables": [
+      "vehicle",
+      "source"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#vehicle-hev-pattern",
+        "internal-combustion-engine"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-hev-pattern",
+        "regenerative-braking"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-phev-pattern",
+        "internal-combustion-engine"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-phev-pattern",
+        "off-board-electricity"
+      ],
+      [
+        "https://example.test/electric-vehicle#vehicle-phev-pattern",
+        "regenerative-braking"
+      ]
+    ]
+  },
+  "EV-04": {
+    "variables": [
+      "flow",
+      "source",
+      "destination",
+      "form"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#flow-ac-evse-onboard",
+        "https://example.test/electric-vehicle#evse-ac-example",
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "ac-electricity"
+      ],
+      [
+        "https://example.test/electric-vehicle#flow-onboard-battery",
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "https://example.test/electric-vehicle#component-traction-battery",
+        "dc-electricity"
+      ]
+    ]
+  },
+  "EV-05": {
+    "variables": [
+      "source",
+      "destination",
+      "form"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#component-electric-motor",
+        "https://example.test/electric-vehicle#component-traction-battery",
+        "dc-electricity"
+      ]
+    ]
+  },
+  "EV-06": {
+    "variables": [
+      "station",
+      "port",
+      "connector",
+      "current"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#station-location-example",
+        "https://example.test/electric-vehicle#evse-ac-example",
+        "https://example.test/electric-vehicle#connector-ac-example",
+        "ac"
+      ],
+      [
+        "https://example.test/electric-vehicle#station-location-example",
+        "https://example.test/electric-vehicle#evse-dc-example",
+        "https://example.test/electric-vehicle#connector-dc-example",
+        "dc"
+      ]
+    ]
+  },
+  "EV-07": {
+    "variables": [
+      "vehicle",
+      "port",
+      "connector",
+      "current",
+      "state"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#vehicle-bev-pattern",
+        "https://example.test/electric-vehicle#evse-ac-example",
+        "https://example.test/electric-vehicle#connector-ac-example",
+        "ac",
+        "completed"
+      ]
+    ]
+  },
+  "EV-08": {
+    "variables": [
+      "claim",
+      "source",
+      "url"
+    ],
+    "rows": [
+      [
+        "AC 충전에서 차량 탑재 충전기는 충전구의 입력 AC를 구동 배터리 충전용 DC로 변환한다.",
+        "미국 에너지부 차량-전력망 통합 평가 보고서",
+        "https://www.energy.gov/sites/default/files/2025-01/Vehicle_Grid_Integration_Asseessment_Report_01162025.pdf"
+      ]
+    ]
+  },
+  "EV-09": {
+    "variables": [
+      "component",
+      "role",
+      "function",
+      "evidence"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#component-auxiliary-battery",
+        "auxiliary-storage",
+        "차량 액세서리에 보조 전력을 공급한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-dcdc",
+        "power-conversion",
+        "구동 배터리의 고전압 DC를 보조 부하용 저전압 DC로 변환한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-dcdc",
+        "power-conversion",
+        "구동 배터리의 고전압 DC를 보조 부하용 저전압 DC로 변환한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-electric-motor",
+        "propulsion",
+        "구동 배터리 에너지로 바퀴를 구동하고 일부 설계에서 회생 기능도 수행한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-electric-motor",
+        "propulsion",
+        "구동 배터리 에너지로 바퀴를 구동하고 일부 설계에서 회생 기능도 수행한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-inverter",
+        "power-conversion",
+        "전력전자 구동계의 전력 변환에 참여한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "power-conversion",
+        "AC 충전 입력을 배터리 충전용 DC로 변환하고 설비와 통신한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "power-conversion",
+        "AC 충전 입력을 배터리 충전용 DC로 변환하고 설비와 통신한다.",
+        "https://example.test/electric-vehicle#e-doe-ac-path"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-onboard-charger",
+        "power-conversion",
+        "AC 충전 입력을 배터리 충전용 DC로 변환하고 설비와 통신한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-power-controller",
+        "power-control",
+        "배터리와 구동계 사이 전력 흐름과 모터 출력을 관리한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-power-controller",
+        "power-control",
+        "배터리와 구동계 사이 전력 흐름과 모터 출력을 관리한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-thermal-management",
+        "thermal-control",
+        "배터리와 모터, 전력전자 등 구성품의 작동 온도를 관리한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-thermal-management",
+        "thermal-control",
+        "배터리와 모터, 전력전자 등 구성품의 작동 온도를 관리한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-traction-battery",
+        "traction-storage",
+        "구동 모터가 사용할 전기를 저장한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-traction-battery",
+        "traction-storage",
+        "구동 모터가 사용할 전기를 저장한다.",
+        "https://example.test/electric-vehicle#e-doe-components"
+      ],
+      [
+        "https://example.test/electric-vehicle#component-vehicle-charge-port",
+        "charging-interface",
+        "외부 충전 설비와 차량을 연결한다.",
+        "https://example.test/electric-vehicle#e-bev-components"
+      ]
+    ]
+  },
+  "EV-10": {
+    "variables": [
+      "claim",
+      "source",
+      "url"
+    ],
+    "rows": [
+      [
+        "충전 시간에는 배터리 상태·용량·종류, 차량 충전기 용량, 설비 출력과 전기 서비스가 영향을 준다.",
+        "미국 에너지부 대체연료 데이터센터: 전기차 충전소",
+        "https://afdc.energy.gov/fuels/electricity-stations"
+      ]
+    ]
+  },
+  "EV-11": {
+    "variables": [
+      "status",
+      "label",
+      "explanation"
+    ],
+    "rows": [
+      [
+        "excluded",
+        "지역별 커넥터 표준과 호환성",
+        "표준별 지원, 제조사 호환성, 법규·요금·보조금은 지역과 시점별 자료가 필요해 제외한다."
+      ],
+      [
+        "excluded",
+        "차종별 성능·배터리 수치",
+        "용량, 충전 속도, 주행거리, 효율과 배터리 건강도는 차종·시험·운행별 자료가 없어 일반화하지 않는다."
+      ],
+      [
+        "included",
+        "구동계와 전력 변환",
+        "구동 배터리, 모터, 탑재 충전기, 인버터, DC-DC 변환기, 제어기와 열관리 역할을 다룬다."
+      ],
+      [
+        "included",
+        "차량 유형",
+        "BEV, PHEV, HEV를 별도 클래스로 두고 외부 충전과 추진 에너지 범주의 차이를 표현한다."
+      ],
+      [
+        "limited",
+        "충전 인프라",
+        "스테이션-포트-커넥터 구조와 AC/DC 인터페이스를 나타낸다. 인프라·세션 자료는 합성 예시다."
+      ]
+    ]
+  },
+  "EV-12": {
+    "variables": [
+      "source",
+      "title",
+      "publisher",
+      "url",
+      "accessed"
+    ],
+    "rows": [
+      [
+        "https://example.test/electric-vehicle#afdc-bev",
+        "미국 에너지부 대체연료 데이터센터: 배터리 전기차 작동 방식",
+        "U.S. Department of Energy, Transportation Technologies Office",
+        "https://afdc.energy.gov/vehicles/how-do-all-electric-cars-work",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/electric-vehicle#afdc-charging",
+        "미국 에너지부 대체연료 데이터센터: 전기차 충전소",
+        "U.S. Department of Energy, Transportation Technologies Office",
+        "https://afdc.energy.gov/fuels/electricity-stations",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/electric-vehicle#afdc-electric",
+        "미국 에너지부 대체연료 데이터센터: 전기차 유형",
+        "U.S. Department of Energy, Transportation Technologies Office",
+        "https://afdc.energy.gov/vehicles/electric",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/electric-vehicle#afdc-hev",
+        "미국 에너지부 대체연료 데이터센터: 하이브리드 전기차",
+        "U.S. Department of Energy, Transportation Technologies Office",
+        "https://afdc.energy.gov/vehicles/electric-basics-hev",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/electric-vehicle#afdc-phev",
+        "미국 에너지부 대체연료 데이터센터: 플러그인 하이브리드 전기차",
+        "U.S. Department of Energy, Transportation Technologies Office",
+        "https://afdc.energy.gov/vehicles/electric-basics-phev",
+        "2026-10-08"
+      ],
+      [
+        "https://example.test/electric-vehicle#doe-vgi",
+        "미국 에너지부 차량-전력망 통합 평가 보고서",
+        "U.S. Department of Energy",
+        "https://www.energy.gov/sites/default/files/2025-01/Vehicle_Grid_Integration_Asseessment_Report_01162025.pdf",
+        "2026-10-08"
+      ]
+    ]
+  }
+}

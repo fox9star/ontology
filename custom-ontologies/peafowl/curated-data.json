@@ -1,0 +1,619 @@
+{
+  "profile_id": "peafowl",
+  "accessed_on": "2026-10-08",
+  "sources": {
+    "smithsonian": {
+      "label_ko": "스미스소니언 국립동물원 공작류 정보",
+      "label_en": "Smithsonian National Zoo common peafowl profile",
+      "title_ko": "공작류 (Common peafowl)",
+      "title_en": "Common peafowl",
+      "publisher": "Smithsonian's National Zoo and Conservation Biology Institute",
+      "url": "https://nationalzoo.si.edu/animals/common-peafowl",
+      "scope_ko": "종 정보 페이지는 Pavo cristatus를 명시한다. 형태, 서식지, 먹이, 사회 행동, 번식 설명을 해당 종 프로필의 출처 주장으로 기록한다. 개체별 관찰 자료는 아니다.",
+      "scope_en": "The taxonomy section identifies Pavo cristatus. Morphology, habitat, diet, social behavior, and reproduction are recorded as claims from this species profile, not as individual observations."
+    },
+    "sandiego": {
+      "label_ko": "샌디에이고 동물원 공작류 정보",
+      "label_en": "San Diego Zoo peafowl profile",
+      "title_ko": "공작류 (Peafowl)",
+      "title_en": "Peafowl",
+      "publisher": "San Diego Zoo Wildlife Alliance",
+      "url": "https://animals.sandiegozoo.org/animals/peafowl",
+      "scope_ko": "인도공작과 녹색공작의 설명을 제공한다. 페이지의 일반 번식 수치는 특정 종이나 개체군의 추정치로 표시하지 않으며, 다른 출처의 값과 합치지 않는다.",
+      "scope_en": "The page describes Indian and green peafowl. Its general reproductive figures are not assigned to a particular species or population and are not combined with estimates from another profile."
+    }
+  },
+  "taxa": [
+    {
+      "id": "taxon-aves",
+      "scientific_name": "Aves",
+      "label_ko": "조강",
+      "label_en": "Aves",
+      "rank": "class",
+      "parent": null
+    },
+    {
+      "id": "taxon-galliformes",
+      "scientific_name": "Galliformes",
+      "label_ko": "닭목",
+      "label_en": "Galliformes",
+      "rank": "order",
+      "parent": "taxon-aves"
+    },
+    {
+      "id": "taxon-phasianidae",
+      "scientific_name": "Phasianidae",
+      "label_ko": "꿩과",
+      "label_en": "Phasianidae",
+      "rank": "family",
+      "parent": "taxon-galliformes"
+    },
+    {
+      "id": "taxon-pavo",
+      "scientific_name": "Pavo",
+      "label_ko": "공작속",
+      "label_en": "Pavo",
+      "rank": "genus",
+      "parent": "taxon-phasianidae"
+    },
+    {
+      "id": "species-indian",
+      "scientific_name": "Pavo cristatus",
+      "label_ko": "인도공작",
+      "label_en": "Indian or blue peafowl",
+      "rank": "species",
+      "parent": "taxon-pavo"
+    },
+    {
+      "id": "species-green",
+      "scientific_name": "Pavo muticus",
+      "label_ko": "녹색공작",
+      "label_en": "Green peafowl",
+      "rank": "species",
+      "parent": "taxon-pavo"
+    }
+  ],
+  "sex_and_life_stage_terms": [
+    {
+      "id": "term-peacock",
+      "class": "SexTerm",
+      "label_ko": "수컷 공작 / peacock",
+      "label_en": "Male peafowl / peacock",
+      "category": "male"
+    },
+    {
+      "id": "term-peahen",
+      "class": "SexTerm",
+      "label_ko": "암컷 공작 / peahen",
+      "label_en": "Female peafowl / peahen",
+      "category": "female"
+    },
+    {
+      "id": "term-peachick",
+      "class": "LifeStageTerm",
+      "label_ko": "어린 공작 / peachick",
+      "label_en": "Young peafowl / peachick",
+      "category": "young"
+    }
+  ],
+  "morphological_features": [
+    {
+      "id": "feature-train-structure",
+      "label_ko": "깃털 구조",
+      "label_en": "Train structure",
+      "kind": "plumage-structure",
+      "description_ko": "전시 때 펼치는 공작의 긴 train은 꼬리 자체가 아니라 꼬리 위를 덮는 긴 상부 꼬리덮깃이다.",
+      "description_en": "The long display train is made of elongated upper-tail coverts rather than the tail itself.",
+      "species": "species-indian",
+      "sex_term": "term-peacock"
+    },
+    {
+      "id": "feature-ocelli",
+      "label_ko": "눈무늬(ocelli)",
+      "label_en": "Ocelli or eyespots",
+      "kind": "ornament",
+      "description_ko": "train 깃에는 눈처럼 보이는 둥근 무늬인 ocelli가 있다.",
+      "description_en": "The train bears rounded eye-like markings called ocelli.",
+      "species": "species-indian",
+      "sex_term": "term-peacock"
+    },
+    {
+      "id": "feature-indian-male-color",
+      "label_ko": "인도공작 수컷의 색",
+      "label_en": "Indian peacock coloration",
+      "kind": "coloration",
+      "description_ko": "인도공작 수컷은 밝은 파란색 머리와 목을 가진다.",
+      "description_en": "The Indian peacock has a bright blue head and neck.",
+      "species": "species-indian",
+      "sex_term": "term-peacock"
+    },
+    {
+      "id": "feature-indian-female",
+      "label_ko": "인도공작 암컷의 색과 train",
+      "label_en": "Indian peahen appearance",
+      "kind": "sexual-dimorphism",
+      "description_ko": "인도공작 암컷은 수컷보다 덜 화려한 얼룩 갈색이며, 공작 암컷의 train은 더 짧고 ocelli가 없다.",
+      "description_en": "The Indian peahen is less brightly colored and mottled brown; the common peafowl profile describes females as having a shorter train without ocelli.",
+      "species": "species-indian",
+      "sex_term": "term-peahen"
+    },
+    {
+      "id": "feature-green-sex-similarity",
+      "label_ko": "녹색공작 암수 색 비교",
+      "label_en": "Green peafowl sex coloration",
+      "kind": "sexual-dimorphism",
+      "description_ko": "녹색공작 암수의 색은 서로 비슷하지만 암컷은 덜 선명하고 수컷의 꼬리가 더 길다고 동물원 자료가 설명한다.",
+      "description_en": "The zoo profile describes green peafowl sexes as similarly colored, with the female less vivid and the male's tail longer.",
+      "species": "species-green",
+      "sex_term": null
+    },
+    {
+      "id": "feature-green-color",
+      "label_ko": "녹색공작 머리와 목",
+      "label_en": "Green peafowl coloration",
+      "kind": "coloration",
+      "description_ko": "녹색공작은 머리와 목에 파란색 대신 녹색 깃털이 있다고 동물원 자료가 설명한다.",
+      "description_en": "The zoo profile describes green rather than blue feathers on the green peafowl's head and neck.",
+      "species": "species-green",
+      "sex_term": null
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "behavior-display",
+      "label_ko": "구애 전시",
+      "label_en": "Courtship display",
+      "kind": "courtship-display",
+      "description_ko": "수컷은 train을 부채꼴로 펼치고 떨거나 흔들어 암컷에게 보이는 구애 전시를 한다.",
+      "description_en": "Males fan and quiver or shake the train in courtship displays.",
+      "species": [
+        "species-indian",
+        "species-green"
+      ]
+    },
+    {
+      "id": "behavior-lek",
+      "label_ko": "lek과 작은 영역",
+      "label_en": "Lek and small territories",
+      "kind": "social-organization",
+      "description_ko": "스미스소니언 자료는 수컷이 작은 개별 영역이 모인 lek을 형성하고 암컷이 여러 수컷을 살펴 짝을 선택한다고 설명한다.",
+      "description_en": "The Smithsonian profile describes males holding small territories in leks, where visiting females can assess several males.",
+      "species": [
+        "species-indian"
+      ]
+    },
+    {
+      "id": "behavior-ground-foraging",
+      "label_ko": "땅 위 먹이 찾기",
+      "label_en": "Ground foraging",
+      "kind": "foraging",
+      "description_ko": "공작류는 땅에서 먹이를 찾는다고 동물원 자료가 기술한다.",
+      "description_en": "The zoo profiles describe peafowl foraging on the ground.",
+      "species": [
+        "species-indian",
+        "species-green"
+      ]
+    },
+    {
+      "id": "behavior-walk-run",
+      "label_ko": "걷기와 달리기",
+      "label_en": "Walking and running",
+      "kind": "movement",
+      "description_ko": "스미스소니언 공작류 페이지는 날기보다 걷거나 달리는 것을 선호한다고 기술한다.",
+      "description_en": "The Smithsonian common peafowl page says they prefer walking or running to flying.",
+      "species": [
+        "species-indian"
+      ]
+    }
+  ],
+  "habitat_and_range": [
+    {
+      "id": "range-indian",
+      "label_ko": "인도공작의 지리적 분포",
+      "label_en": "Indian peafowl geographic range",
+      "kind": "geographic-range",
+      "description_ko": "샌디에이고 동물원 자료는 인도공작 분포 범위에 인도, 파키스탄, 스리랑카를 포함한다.",
+      "description_en": "The San Diego Zoo profile lists India, Pakistan, and Sri Lanka within the Indian peafowl's range.",
+      "species": "species-indian"
+    },
+    {
+      "id": "habitat-indian",
+      "label_ko": "인도공작의 서식 환경",
+      "label_en": "Indian peafowl habitat",
+      "kind": "habitat",
+      "description_ko": "스미스소니언 자료는 하천 근처의 개방된 숲과 경작지에서 산다고 설명한다.",
+      "description_en": "The Smithsonian profile describes open forests near streams and cultivated areas.",
+      "species": "species-indian"
+    },
+    {
+      "id": "range-green",
+      "label_ko": "녹색공작의 지리적 분포",
+      "label_en": "Green peafowl geographic range",
+      "kind": "geographic-range",
+      "description_ko": "샌디에이고 동물원 자료는 녹색공작을 동남아시아 분포 종으로 설명한다.",
+      "description_en": "The San Diego Zoo profile describes green peafowl as occurring in Southeast Asia.",
+      "species": "species-green"
+    }
+  ],
+  "diet": [
+    {
+      "id": "diet-fruit",
+      "label_ko": "열매·과일",
+      "label_en": "Berries and other fruits",
+      "category": "plant"
+    },
+    {
+      "id": "diet-grain-crops",
+      "label_ko": "곡물·녹색 작물",
+      "label_en": "Grain and green crops",
+      "category": "plant"
+    },
+    {
+      "id": "diet-insects",
+      "label_ko": "곤충",
+      "label_en": "Insects",
+      "category": "invertebrate"
+    },
+    {
+      "id": "diet-reptiles",
+      "label_ko": "작은 파충류",
+      "label_en": "Small reptiles",
+      "category": "vertebrate"
+    },
+    {
+      "id": "diet-mammals",
+      "label_ko": "작은 포유류",
+      "label_en": "Small mammals",
+      "category": "vertebrate"
+    },
+    {
+      "id": "diet-snakes",
+      "label_ko": "뱀",
+      "label_en": "Snakes",
+      "category": "vertebrate"
+    }
+  ],
+  "reproductive_figures": [
+    {
+      "id": "repro-eggs-smithsonian",
+      "label_ko": "산란 수: 스미스소니언 기재 범위",
+      "label_en": "Eggs per clutch: Smithsonian range",
+      "measure": "eggs-per-clutch",
+      "minimum": "4",
+      "maximum": "8",
+      "unit": "eggs",
+      "estimate_type": "source-range",
+      "source": "smithsonian"
+    },
+    {
+      "id": "repro-eggs-sandiego",
+      "label_ko": "산란 수: 샌디에이고 동물원 기재 범위",
+      "label_en": "Eggs per clutch: San Diego Zoo range",
+      "measure": "eggs-per-clutch",
+      "minimum": "3",
+      "maximum": "8",
+      "unit": "eggs",
+      "estimate_type": "source-range",
+      "source": "sandiego"
+    },
+    {
+      "id": "repro-incubation-smithsonian",
+      "label_ko": "포란 기간: 약 30일",
+      "label_en": "Incubation: about 30 days",
+      "measure": "incubation-duration",
+      "minimum": "30",
+      "maximum": "30",
+      "unit": "days",
+      "estimate_type": "approximate",
+      "source": "smithsonian"
+    },
+    {
+      "id": "repro-incubation-sandiego",
+      "label_ko": "포란 기간: 샌디에이고 동물원 기재 범위",
+      "label_en": "Incubation: San Diego Zoo range",
+      "measure": "incubation-duration",
+      "minimum": "26",
+      "maximum": "30",
+      "unit": "days",
+      "estimate_type": "source-range",
+      "source": "sandiego"
+    }
+  ],
+  "coverage_notes": [
+    {
+      "id": "coverage-taxonomy",
+      "status": "limited",
+      "label_ko": "분류 범위",
+      "label_en": "Taxonomy scope",
+      "explanation_ko": "인도공작(Pavo cristatus)과 녹색공작(Pavo muticus)을 다루는 예시 초안이다. 공작류 전체에 대한 완전한 분류 목록은 아니다.",
+      "explanation_en": "An example draft covering Indian peafowl (Pavo cristatus) and green peafowl (Pavo muticus), not a complete taxonomic checklist of peafowl."
+    },
+    {
+      "id": "coverage-conservation",
+      "status": "excluded",
+      "label_ko": "보전 등급과 법적 보호",
+      "label_en": "Conservation status and legal protection",
+      "explanation_ko": "종별 현행 보전 등급과 법적 보호 상태는 전문 보전 평가 자료로 검증하지 않아 온톨로지 사실로 넣지 않았다.",
+      "explanation_en": "Species-level current conservation categories and legal protections were not modeled because they were not verified against specialist conservation assessments."
+    },
+    {
+      "id": "coverage-individuals",
+      "status": "excluded",
+      "label_ko": "개체·개체군 관찰",
+      "label_en": "Individual and population observations",
+      "explanation_ko": "야생 개체군, 동물원 개체 이력, 개별 동물 관찰 자료는 포함하지 않는다. 예시의 모든 사실은 출처 프로필의 종 설명이다.",
+      "explanation_en": "Wild population data, zoo specimen histories, and individual animal observations are outside scope; included biological facts are species-profile claims."
+    },
+    {
+      "id": "coverage-source-figures",
+      "status": "limited",
+      "label_ko": "번식 수치의 출처별 보존",
+      "label_en": "Source-specific reproductive figures",
+      "explanation_ko": "산란 수와 포란 기간은 출처별 기재 범위를 각각 보존한다. 하나의 보편적인 값으로 통합하지 않았다.",
+      "explanation_en": "Clutch-size and incubation figures are retained per source and are not collapsed into one universal value."
+    }
+  ],
+  "evidence_records": [
+    {
+      "id": "e-taxonomy-indian",
+      "about": "species-indian",
+      "source": "smithsonian",
+      "locator": "Taxonomic Information: Class, Order, Family, Genus and Species",
+      "claim_ko": "공작류 프로필은 학명을 Pavo cristatus로, 분류를 Aves·Galliformes·Phasianidae·Pavo로 제시한다.",
+      "claim_en": "Pavo cristatus; Aves, Galliformes, Phasianidae, Pavo.",
+      "scope": "common peafowl profile taxonomy"
+    },
+    {
+      "id": "e-taxonomy-green",
+      "about": "species-green",
+      "source": "sandiego",
+      "locator": "ABOUT and taxonomic list: lines 32-40",
+      "claim_ko": "페이지는 녹색공작을 P. muticus로 기재하고 속 Pavo와 강·목·과 정보를 함께 제시한다.",
+      "claim_en": "Pavo muticus is listed as green peafowl under Pavo; the page also lists class Aves, order Galliformes and family Phasianidae.",
+      "scope": "green peafowl page taxonomy"
+    },
+    {
+      "id": "e-peacock-term",
+      "about": "term-peacock",
+      "source": "sandiego",
+      "locator": "ABOUT: lines 43-45",
+      "claim_ko": "peacock은 수컷 공작을 가리키는 명칭이다.",
+      "claim_en": "Peacock is the term for an adult male peafowl.",
+      "scope": "the sex-specific common term for adult male peafowl"
+    },
+    {
+      "id": "e-peahen-term",
+      "about": "term-peahen",
+      "source": "sandiego",
+      "locator": "ABOUT: lines 43-45",
+      "claim_ko": "peahen은 암컷 공작을 가리키는 명칭이다.",
+      "claim_en": "Peahen is the term for an adult female peafowl.",
+      "scope": "the sex-specific common term for adult female peafowl"
+    },
+    {
+      "id": "e-peachick-term",
+      "about": "term-peachick",
+      "source": "sandiego",
+      "locator": "ABOUT: lines 43-45",
+      "claim_ko": "peachick은 어린 공작류를 가리키는 명칭이다.",
+      "claim_en": "Peachick is the term for a young peafowl.",
+      "scope": "the common term for young peafowl"
+    },
+    {
+      "id": "e-train-structure",
+      "about": "feature-train-structure",
+      "source": "sandiego",
+      "locator": "ABOUT: line 50",
+      "claim_ko": "전시 train은 꼬리 자체가 아니라 길게 늘어난 상부 꼬리덮깃으로 이루어진다.",
+      "claim_en": "The train is described as elongated male tail coverts rather than the tail itself.",
+      "scope": "Indian and green peafowl train description"
+    },
+    {
+      "id": "e-train-ocelli",
+      "about": "feature-ocelli",
+      "source": "sandiego",
+      "locator": "ABOUT: line 50",
+      "claim_ko": "train의 둥근 눈 모양 무늬는 ocelli라고 불린다.",
+      "claim_en": "The train is described as having eye-like round spots called ocelli.",
+      "scope": "train ornament description"
+    },
+    {
+      "id": "e-indian-male-color",
+      "about": "feature-indian-male-color",
+      "source": "sandiego",
+      "locator": "ABOUT: line 48",
+      "claim_ko": "인도공작 수컷은 밝은 파란색 머리와 목을 가진다고 설명된다.",
+      "claim_en": "The Indian male is described with a bright blue head and neck.",
+      "scope": "Indian peafowl male appearance"
+    },
+    {
+      "id": "e-indian-sex-difference-sm",
+      "about": "feature-indian-female",
+      "source": "smithsonian",
+      "locator": "Physical Description: lines 20-21",
+      "claim_ko": "암컷은 수컷보다 작고 덜 화려하며, train은 더 짧고 ocelli가 없다고 기술된다.",
+      "claim_en": "The female is described as smaller, duller, with a shorter train lacking ocelli.",
+      "scope": "common peafowl profile, Pavo cristatus"
+    },
+    {
+      "id": "e-indian-sex-difference-sd",
+      "about": "feature-indian-female",
+      "source": "sandiego",
+      "locator": "ABOUT: line 48",
+      "claim_ko": "인도공작 암컷은 수컷과 비교해 얼룩 갈색이라고 기술된다.",
+      "claim_en": "The Indian female is described as mottled brown compared with the brightly colored male.",
+      "scope": "Indian peafowl appearance"
+    },
+    {
+      "id": "e-green-sex-difference",
+      "about": "feature-green-sex-similarity",
+      "source": "sandiego",
+      "locator": "ABOUT: line 49",
+      "claim_ko": "녹색공작 암수의 색은 비슷하나 암컷은 덜 선명하고 수컷 꼬리는 더 길다고 설명된다.",
+      "claim_en": "Green peafowl sexes are described as similarly colored, with the female less vivid and male tail longer.",
+      "scope": "green peafowl appearance"
+    },
+    {
+      "id": "e-green-color",
+      "about": "feature-green-color",
+      "source": "sandiego",
+      "locator": "ABOUT: line 49",
+      "claim_ko": "녹색공작은 머리와 목에 파란색 대신 녹색 깃털이 있다고 설명된다.",
+      "claim_en": "Green peafowl are described with green rather than blue feathers on head and neck.",
+      "scope": "green peafowl appearance"
+    },
+    {
+      "id": "e-display",
+      "about": "behavior-display",
+      "source": "sandiego",
+      "locator": "FAMILY LIFE: lines 69-70",
+      "claim_ko": "수컷은 구애 전시로 train을 펼치고 떨거나 흔든다.",
+      "claim_en": "The male fans the train and quivers it in display; the page discusses courtship display.",
+      "scope": "peafowl courtship behavior"
+    },
+    {
+      "id": "e-lek",
+      "about": "behavior-lek",
+      "source": "smithsonian",
+      "locator": "Social Structure: lines 35-37",
+      "claim_ko": "수컷은 lek 안의 작은 영역을 차지하고 방문한 암컷에게 전시한다.",
+      "claim_en": "Males hold small territories in leks and display to visiting females.",
+      "scope": "common peafowl social behavior"
+    },
+    {
+      "id": "e-ground-foraging",
+      "about": "behavior-ground-foraging",
+      "source": "sandiego",
+      "locator": "HABITAT AND DIET: lines 60-62",
+      "claim_ko": "공작류 무리는 땅 위에서 먹이를 찾는다고 기술된다.",
+      "claim_en": "Peafowl groups forage on the ground.",
+      "scope": "Indian and green peafowl daily behavior"
+    },
+    {
+      "id": "e-walk-run",
+      "about": "behavior-walk-run",
+      "source": "smithsonian",
+      "locator": "Size and Fun Facts: lines 22-24 and 52-54",
+      "claim_ko": "공작류는 날기보다 걷거나 달리는 것을 선호한다고 기술된다.",
+      "claim_en": "The page says peafowl prefer walking and running to flying.",
+      "scope": "common peafowl profile"
+    },
+    {
+      "id": "e-indian-range",
+      "about": "range-indian",
+      "source": "sandiego",
+      "locator": "HABITAT AND DIET: line 60",
+      "claim_ko": "인도공작의 분포 범위에는 인도, 파키스탄, 스리랑카가 포함된다고 기재된다.",
+      "claim_en": "The page lists India, Pakistan, and Sri Lanka for Indian peafowl.",
+      "scope": "Indian peafowl reported range"
+    },
+    {
+      "id": "e-indian-habitat",
+      "about": "habitat-indian",
+      "source": "smithsonian",
+      "locator": "Native Habitat: lines 25-27",
+      "claim_ko": "하천 근처의 개방된 숲과 경작지가 서식 환경으로 설명된다.",
+      "claim_en": "Open forests near streams and cultivated areas are described.",
+      "scope": "common peafowl profile"
+    },
+    {
+      "id": "e-green-range",
+      "about": "range-green",
+      "source": "sandiego",
+      "locator": "HABITAT AND DIET: line 60",
+      "claim_ko": "녹색공작은 동남아시아에 분포한다고 설명된다.",
+      "claim_en": "Green peafowl are described as found in Southeast Asia.",
+      "scope": "green peafowl reported range"
+    },
+    {
+      "id": "e-diet-fruit",
+      "about": "diet-fruit",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "열매와 과일이 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Berries and other fruits are listed among common peafowl food examples.",
+      "scope": "fruit is a listed food example in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-diet-grain",
+      "about": "diet-grain-crops",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "곡물과 녹색 작물이 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Grain and green crops are listed among common peafowl food examples.",
+      "scope": "grain and green crops are listed food examples in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-diet-insects",
+      "about": "diet-insects",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "곤충이 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Insects are listed among common peafowl food examples.",
+      "scope": "insects are a listed food example in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-diet-reptiles",
+      "about": "diet-reptiles",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "작은 파충류가 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Small reptiles are listed among common peafowl food examples.",
+      "scope": "small reptiles are a listed food example in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-diet-mammals",
+      "about": "diet-mammals",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "작은 포유류가 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Small mammals are listed among common peafowl food examples.",
+      "scope": "small mammals are a listed food example in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-diet-snakes",
+      "about": "diet-snakes",
+      "source": "smithsonian",
+      "locator": "Food/Eating Habits: lines 31-33",
+      "claim_ko": "뱀이 공작류의 먹이 예시로 열거된다.",
+      "claim_en": "Snakes are listed among common peafowl food examples.",
+      "scope": "snakes are a listed food example in the Pavo cristatus profile"
+    },
+    {
+      "id": "e-eggs-sm",
+      "about": "repro-eggs-smithsonian",
+      "source": "smithsonian",
+      "locator": "Reproduction and Development: lines 38-41",
+      "claim_ko": "암컷의 한 번 산란 수는 4~8개로 기재된다.",
+      "claim_en": "The peahen is reported to lay four to eight eggs.",
+      "scope": "common peafowl profile; source-specific clutch range"
+    },
+    {
+      "id": "e-eggs-sd",
+      "about": "repro-eggs-sandiego",
+      "source": "sandiego",
+      "locator": "FAMILY LIFE and YOUNG: lines 71 and 86-90",
+      "claim_ko": "암컷의 한 번 산란 수는 3~8개로 기재된다.",
+      "claim_en": "The peahen is reported to lay three to eight eggs.",
+      "scope": "peafowl profile; source-specific clutch range"
+    },
+    {
+      "id": "e-incubation-sm",
+      "about": "repro-incubation-smithsonian",
+      "source": "smithsonian",
+      "locator": "Reproduction and Development: lines 40-41",
+      "claim_ko": "암컷의 포란 기간은 약 30일로 기술된다.",
+      "claim_en": "Female incubation is described as about 30 days.",
+      "scope": "common peafowl profile; approximate duration"
+    },
+    {
+      "id": "e-incubation-sd",
+      "about": "repro-incubation-sandiego",
+      "source": "sandiego",
+      "locator": "YOUNG: lines 86-90",
+      "claim_ko": "포란 기간은 26~30일로 기재된다.",
+      "claim_en": "Incubation is listed as 26 to 30 days.",
+      "scope": "peafowl profile; source-specific duration range"
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+@prefix film: <https://example.org/ontology/custom/ai-film#> .
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/ai-film> a owl:Ontology ;
+    rdfs:label "AI 영화 제작 온톨로지"@ko, "AI film production ontology"@en ;
+    rdfs:comment "시나리오와 촬영 계획, 생성 작업, 자산 검토, 편집본의 준비 상태를 연결한다. 예제는 합성 계획이며 실제 생성이나 권리 승인을 주장하지 않는다."@ko,
+      "Connects screenplay planning, generation tasks, asset reviews and edit readiness. The example is a synthetic plan and asserts no actual generation or rights approval."@en ;
+    owl:imports <https://example.org/ontology/core> ;
+    owl:versionIRI <https://example.org/ontology/custom/ai-film/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+film:FilmProject a owl:Class ; rdfs:subClassOf core:Project ;
+    rdfs:label "영화 프로젝트"@ko, "Film project"@en ;
+    rdfs:comment "영화 제작의 시나리오와 편집 버전을 묶는 작업 범위이다."@ko,
+      "Defines the production scope joining the screenplay and successive film edit versions."@en .
+film:Screenplay a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "시나리오"@ko, "Screenplay"@en ;
+    rdfs:comment "순서가 있는 장면으로 이야기와 영상 제작 계획을 구성하는 문서이다."@ko,
+      "Organizes a film narrative and production plan into an ordered collection of scenes."@en .
+film:Scene a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "장면"@ko, "Scene"@en ;
+    rdfs:comment "시나리오 안에서 순서를 가지며 하나 이상의 샷으로 구성되는 이야기 단위이다."@ko,
+      "Represents an ordered narrative unit within a screenplay containing one or more shots."@en .
+film:Shot a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "샷"@ko, "Shot"@en ;
+    rdfs:comment "장면 안에서 순서와 목표 길이를 가지며 생성 작업을 계획하는 영상 단위이다."@ko,
+      "Defines a planned visual unit with scene order, target duration and generation tasks."@en .
+film:GenerationTask a owl:Class ; rdfs:subClassOf core:Task ;
+    rdfs:label "생성 작업 계획"@ko, "Generation task"@en ;
+    rdfs:comment "프롬프트와 모델 인지 상태를 기록하는 생성 작업 계획이다. 계획된 결과 자산 연결은 실행 증거가 아니다."@ko,
+      "Records a generation plan, prompt and model knowledge; its planned asset relation alone is not execution evidence."@en .
+film:MediaAsset a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "미디어 자산"@ko, "Media asset"@en ;
+    rdfs:comment "영상, 이미지, 오디오의 계획 또는 확보 상태와 출처 및 검토 기록을 담는 자산이다."@ko,
+      "Records a planned or available video, image or audio asset with source evidence and reviews."@en .
+film:ReviewDecision a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "검토 결정"@ko, "Review decision"@en ;
+    rdfs:comment "특정 자산에 대한 품질 또는 권리 검토의 결정과 근거를 기록한다. 승인 상태는 법적 보증을 뜻하지 않는다."@ko,
+      "Records a quality or rights review decision and its evidence; an approval label is not a legal guarantee."@en .
+film:EditVersion a owl:Class ; rdfs:subClassOf core:Artifact ;
+    rdfs:label "편집 버전"@ko, "Edit version"@en ;
+    rdfs:comment "사용할 자산과 버전 식별자를 가진 편집본의 계획 또는 승인 상태를 기록한다."@ko,
+      "Records a draft or approved edit version, its version identifier and the assets selected for it."@en .
+
+film:hasScreenplay a owl:ObjectProperty ; rdfs:domain film:FilmProject ; rdfs:range film:Screenplay ;
+    rdfs:label "시나리오 포함"@ko, "Has screenplay"@en ;
+    rdfs:comment "영화 프로젝트가 제작에 사용할 시나리오를 연결한다."@ko,
+      "Links a film project to the screenplay used for its production plan."@en .
+film:hasScene a owl:ObjectProperty ; rdfs:domain film:Screenplay ; rdfs:range film:Scene ;
+    rdfs:label "장면 포함"@ko, "Has scene"@en ;
+    rdfs:comment "시나리오를 구성하는 장면을 연결하며 실제 순서는 장면 순번으로 기록한다."@ko,
+      "Links a screenplay to its scenes; their sequence is recorded by scene order values."@en .
+film:hasShot a owl:ObjectProperty ; rdfs:domain film:Scene ; rdfs:range film:Shot ;
+    rdfs:label "샷 포함"@ko, "Has shot"@en ;
+    rdfs:comment "장면을 구성하는 샷을 연결하며 실제 순서는 샷 순번으로 기록한다."@ko,
+      "Links a scene to its shots; their local sequence is recorded by shot order values."@en .
+film:hasGenerationTask a owl:ObjectProperty ; rdfs:domain film:Shot ; rdfs:range film:GenerationTask ;
+    rdfs:label "생성 작업 연결"@ko, "Has generation task"@en ;
+    rdfs:comment "샷을 구현하기 위해 계획한 생성 작업을 연결한다."@ko,
+      "Links a shot to a generation task planned to realize that shot."@en .
+film:plannedAsset a owl:ObjectProperty ; rdfs:domain film:GenerationTask ; rdfs:range film:MediaAsset ;
+    rdfs:label "계획된 자산"@ko, "Planned asset"@en ;
+    rdfs:comment "생성 작업이 확보하려는 자산을 연결한다. 이 관계만으로 파일 생성이나 존재를 주장하지 않는다."@ko,
+      "Links a generation task to its intended asset without asserting that a file was generated or exists."@en .
+film:hasReview a owl:ObjectProperty ; rdfs:domain film:MediaAsset ; rdfs:range film:ReviewDecision ;
+    rdfs:label "검토 기록 연결"@ko, "Has review"@en ;
+    rdfs:comment "자산의 현재 품질 또는 권리 검토 결정을 연결한다."@ko,
+      "Links an asset to its current quality or rights review decision records."@en .
+film:hasEditVersion a owl:ObjectProperty ; rdfs:domain film:FilmProject ; rdfs:range film:EditVersion ;
+    rdfs:label "편집 버전 포함"@ko, "Has edit version"@en ;
+    rdfs:comment "영화 프로젝트에서 관리하는 편집 버전을 연결한다."@ko,
+      "Links a film project to an edit version maintained within its production scope."@en .
+film:usesAsset a owl:ObjectProperty ; rdfs:domain film:EditVersion ; rdfs:range film:MediaAsset ;
+    rdfs:label "사용 자산"@ko, "Uses asset"@en ;
+    rdfs:comment "편집 버전에서 사용할 자산을 지정하며 초안에서는 아직 계획된 자산도 허용한다."@ko,
+      "Selects an asset for an edit version; a draft may select an asset that is still planned."@en .
+
+film:sceneOrder a owl:DatatypeProperty ; rdfs:domain film:Scene ; rdfs:range xsd:integer ;
+    rdfs:label "장면 순번"@ko, "Scene order"@en ;
+    rdfs:comment "한 시나리오 안에서 중복되지 않는 양의 정수 장면 순번이다."@ko,
+      "Records a positive integer scene order that must be unique within a screenplay."@en .
+film:shotOrder a owl:DatatypeProperty ; rdfs:domain film:Shot ; rdfs:range xsd:integer ;
+    rdfs:label "샷 순번"@ko, "Shot order"@en ;
+    rdfs:comment "한 장면 안에서 중복되지 않는 양의 정수 샷 순번이다."@ko,
+      "Records a positive integer shot order that must be unique within its scene."@en .
+film:targetDurationSeconds a owl:DatatypeProperty ; rdfs:domain film:Shot ; rdfs:range xsd:decimal ;
+    rdfs:label "목표 길이 초"@ko, "Target duration in seconds"@en ;
+    rdfs:comment "샷의 계획 길이를 초 단위 양의 소수로 기록하며 실제 미디어 길이와 구분한다."@ko,
+      "Records a positive planned duration in seconds, separate from measured media duration."@en .
+film:taskStatus a owl:DatatypeProperty ; rdfs:domain film:GenerationTask ; rdfs:range xsd:string ;
+    rdfs:label "생성 작업 상태"@ko, "Generation task status"@en ;
+    rdfs:comment "생성 작업의 planned, running, completed, failed, cancelled 상태 중 하나를 기록한다."@ko,
+      "Records one generation task state: planned, running, completed, failed or cancelled."@en .
+film:promptText a owl:DatatypeProperty ; rdfs:domain film:GenerationTask ; rdfs:range xsd:string ;
+    rdfs:label "계획 프롬프트"@ko, "Planned prompt"@en ;
+    rdfs:comment "생성 작업에 사용할 계획 프롬프트이다. 실제 제출 기록은 별도 실행 근거로 확인한다."@ko,
+      "Records the prompt planned for generation; actual submission is established by separate execution evidence."@en .
+film:modelKnowledgeStatus a owl:DatatypeProperty ; rdfs:domain film:GenerationTask ; rdfs:range xsd:string ;
+    rdfs:label "모델 정보 상태"@ko, "Model knowledge status"@en ;
+    rdfs:comment "모델 식별자가 알려지지 않았으면 unknown, 기록되어 있으면 recorded로 표시한다."@ko,
+      "Marks model identity as unknown or recorded without inferring it from a file or tool name."@en .
+film:modelIdentifier a owl:DatatypeProperty ; rdfs:domain film:GenerationTask ; rdfs:range xsd:string ;
+    rdfs:label "기록된 모델 식별자"@ko, "Recorded model identifier"@en ;
+    rdfs:comment "근거가 있어 기록한 생성 모델 식별자이며 unknown 상태에서는 값을 만들지 않는다."@ko,
+      "Records an available model identifier; no value is fabricated when model knowledge is unknown."@en .
+film:generationEvidenceUri a owl:DatatypeProperty ; rdfs:domain film:GenerationTask ; rdfs:range xsd:anyURI ;
+    rdfs:label "생성 실행 근거 주소"@ko, "Generation evidence URI"@en ;
+    rdfs:comment "실제 생성 실행 기록을 확인할 수 있는 근거 위치이며 completed 상태에 필수이다."@ko,
+      "Points to a generation execution record and is required for a completed task assertion."@en .
+film:assetStatus a owl:DatatypeProperty ; rdfs:domain film:MediaAsset ; rdfs:range xsd:string ;
+    rdfs:label "자산 확보 상태"@ko, "Asset availability status"@en ;
+    rdfs:comment "자산이 아직 계획이면 planned, 위치와 출처 근거를 기록했으면 available로 표시한다."@ko,
+      "Distinguishes a planned asset from an available asset with a recorded location and source evidence."@en .
+film:assetUri a owl:DatatypeProperty ; rdfs:domain film:MediaAsset ; rdfs:range xsd:anyURI ;
+    rdfs:label "자산 파일 주소"@ko, "Asset file URI"@en ;
+    rdfs:comment "확보된 미디어 파일의 위치이며 계획 단계에서는 가상의 파일 경로를 넣지 않는다."@ko,
+      "Records the location of an available media file; planned assets do not invent file locations."@en .
+film:sourceEvidenceUri a owl:DatatypeProperty ; rdfs:domain film:MediaAsset ; rdfs:range xsd:anyURI ;
+    rdfs:label "출처 근거 주소"@ko, "Source evidence URI"@en ;
+    rdfs:comment "자산을 확보한 출처나 가져오기 기록의 위치이며 원저작권을 자동 증명하지 않는다."@ko,
+      "Points to source or import evidence for an asset without automatically proving ownership or original authorship."@en .
+film:mediaType a owl:DatatypeProperty ; rdfs:domain film:MediaAsset ; rdfs:range xsd:string ;
+    rdfs:label "미디어 종류"@ko, "Media type"@en ;
+    rdfs:comment "자산이 계획하거나 담고 있는 video, image, audio 중 하나의 미디어 종류이다."@ko,
+      "Records whether an asset is intended to contain video, image or audio media."@en .
+film:reviewKind a owl:DatatypeProperty ; rdfs:domain film:ReviewDecision ; rdfs:range xsd:string ;
+    rdfs:label "검토 종류"@ko, "Review kind"@en ;
+    rdfs:comment "검토가 권리 확인 rights인지 제작 품질 확인 quality인지를 구분한다."@ko,
+      "Distinguishes a rights review from a production quality review of an asset."@en .
+film:decision a owl:DatatypeProperty ; rdfs:domain film:ReviewDecision ; rdfs:range xsd:string ;
+    rdfs:label "검토 결과"@ko, "Review outcome"@en ;
+    rdfs:comment "검토의 pending, approved, rejected 결과를 기록하며 승인에는 별도 근거가 필요하다."@ko,
+      "Records a pending, approved or rejected review outcome; approval requires a separate evidence location."@en .
+film:decisionReason a owl:DatatypeProperty ; rdfs:domain film:ReviewDecision ; rdfs:range xsd:string ;
+    rdfs:label "검토 사유"@ko, "Decision reason"@en ;
+    rdfs:comment "검토가 미완료인 이유나 승인 또는 거절 판단의 설명을 기록한다."@ko,
+      "Explains why a review is pending or why an approval or rejection was recorded."@en .
+film:reviewEvidenceUri a owl:DatatypeProperty ; rdfs:domain film:ReviewDecision ; rdfs:range xsd:anyURI ;
+    rdfs:label "검토 근거 주소"@ko, "Review evidence URI"@en ;
+    rdfs:comment "승인 판단에 사용한 검토 기록의 위치이며 문서의 진위나 법적 효력을 자동 보증하지 않는다."@ko,
+      "Points to the record supporting a review approval without automatically validating authenticity or legal effect."@en .
+film:editStatus a owl:DatatypeProperty ; rdfs:domain film:EditVersion ; rdfs:range xsd:string ;
+    rdfs:label "편집 승인 상태"@ko, "Edit approval status"@en ;
+    rdfs:comment "편집 버전의 draft 또는 approved 상태이며 승인은 자산 확보와 두 종류 검토를 요구한다."@ko,
+      "Records draft or approved edit status; approval requires available assets and both kinds of review approval."@en .
+film:versionLabel a owl:DatatypeProperty ; rdfs:domain film:EditVersion ; rdfs:range xsd:string ;
+    rdfs:label "편집 버전 표기"@ko, "Edit version label"@en ;
+    rdfs:comment "사람이 편집 버전을 구별하는 표기로 한 영화 프로젝트 안에서 중복되지 않아야 한다."@ko,
+      "Records a human-readable edit version identifier that must be unique within a film project."@en .

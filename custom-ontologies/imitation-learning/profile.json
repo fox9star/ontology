@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "imitation-learning",
+  "name": "모방학습 온톨로지 (imitation-learning)",
+  "description": "시연, 관측·행동 레이블, 행동복제·DAgger·역강화학습, 정책, 학습·평가 상태, 분포 변화와 문헌 근거를 연결하며 합성 예시와 실제 실험을 구분한다.",
+  "name_en": "Imitation Learning Ontology",
+  "description_en": "Connects demonstrations, observation-action labels, behavior cloning, DAgger, inverse reinforcement learning, policies, run status, distribution shift and literature evidence; separates synthetic fixtures from executed experiments.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/imitation-learning#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T10:51:13+09:00",
+  "schema": "custom-ontologies/imitation-learning/schema.ttl",
+  "owl": "custom-ontologies/imitation-learning/schema.owl",
+  "shapes": "custom-ontologies/imitation-learning/shapes.ttl",
+  "example": "custom-ontologies/imitation-learning/example.ttl",
+  "questions": "custom-ontologies/imitation-learning/questions.md",
+  "questions_fixture": "custom-ontologies/imitation-learning/question-fixture.ttl",
+  "question_answers": "custom-ontologies/imitation-learning/question-answers.json",
+  "compatibility_cases": "custom-ontologies/imitation-learning/consumer-cases.trig"
+}

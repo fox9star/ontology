@@ -1,0 +1,342 @@
+@prefix item: <https://example.org/ontology/custom/cat#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+item:care-01 a item:CareRecord ;
+    rdfs:label "Synthetic record: Nabi feeding preparation"@en,
+        "합성 기록: 나비 급식 준비"@ko ;
+    item:aboutCat item:nabi ;
+    item:careKind "feeding" ;
+    item:carer item:guardian-a ;
+    item:recordNote "가상 예제의 예정 기록입니다. 음식 종류·용량·영양 처방은 포함하지 않습니다." ;
+    item:scheduledFor "2026-10-06T00:00:00+00:00"^^xsd:dateTime ;
+    item:status "planned" .
+
+item:care-02 a item:CareRecord ;
+    rdfs:label "Synthetic record: Tori water refresh"@en,
+        "합성 기록: 토리 물 교체"@ko ;
+    item:aboutCat item:tori ;
+    item:careKind "water-refresh" ;
+    item:carer item:guardian-b ;
+    item:performedAt "2026-10-05T00:05:00+00:00"^^xsd:dateTime ;
+    item:recordNote "가상 예제에서 수행 시각을 가진 물 교체 기록입니다." ;
+    item:scheduledFor "2026-10-05T00:00:00+00:00"^^xsd:dateTime ;
+    item:status "completed" .
+
+item:care-03 a item:CareRecord ;
+    rdfs:label "Synthetic record: Mocha play plan"@en,
+        "합성 기록: 모카 놀이 계획"@ko ;
+    item:aboutCat item:mocha ;
+    item:careKind "play" ;
+    item:carer item:guardian-a ;
+    item:recordNote "가상 놀이 계획입니다. 실제 활동이 수행되었다는 기록은 없습니다." ;
+    item:scheduledFor "2026-10-06T09:00:00+00:00"^^xsd:dateTime ;
+    item:status "planned" .
+
+item:care-04 a item:CareRecord ;
+    rdfs:label "Synthetic record: Luna litter cleaning"@en,
+        "합성 기록: 루나 화장실 청소"@ko ;
+    item:aboutCat item:luna ;
+    item:careKind "litter-cleaning" ;
+    item:carer item:guardian-b ;
+    item:performedAt "2026-10-05T01:00:00+00:00"^^xsd:dateTime ;
+    item:recordNote "가상 예제의 완료 기록으로 수행 시각을 기록했습니다." ;
+    item:status "completed" .
+
+item:care-05 a item:CareRecord ;
+    rdfs:label "Synthetic record: Kong grooming cancellation"@en,
+        "합성 기록: 콩이 손질 취소"@ko ;
+    item:aboutCat item:kong ;
+    item:careKind "grooming" ;
+    item:carer item:guardian-b ;
+    item:recordNote "가상 예제에서 취소된 계획이며 수행 시각은 없습니다." ;
+    item:scheduledFor "2026-10-05T08:00:00+00:00"^^xsd:dateTime ;
+    item:status "cancelled" .
+
+item:care-06 a item:CareRecord ;
+    rdfs:label "Synthetic record: Cloud grooming"@en,
+        "합성 기록: 구름 손질"@ko ;
+    item:aboutCat item:cloud ;
+    item:careKind "grooming" ;
+    item:carer item:guardian-a ;
+    item:performedAt "2026-10-05T06:15:00+00:00"^^xsd:dateTime ;
+    item:recordNote "가상 예제의 손질 완료 기록입니다. 권장 주기를 나타내지 않습니다." ;
+    item:scheduledFor "2026-10-05T06:00:00+00:00"^^xsd:dateTime ;
+    item:status "completed" .
+
+item:observation-01 a item:Observation ;
+    rdfs:label "Synthetic observation: Nabi behavior"@en,
+        "합성 관찰: 나비 행동"@ko ;
+    item:observationKind "behavior" ;
+    item:observationText "가상 예제에서 창가에 앉아 있는 모습을 기록했습니다." ;
+    item:observedAt "2026-10-05T02:00:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:nabi .
+
+item:observation-02 a item:Observation ;
+    rdfs:label "Synthetic observation: Tori appearance"@en,
+        "합성 관찰: 토리 외형"@ko ;
+    item:observationKind "appearance" ;
+    item:observationText "가상 예제의 짧은 털을 기록했습니다. 이 관찰에서 품종을 추론하지 않습니다." ;
+    item:observedAt "2026-10-05T02:10:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:tori .
+
+item:observation-03 a item:Observation ;
+    rdfs:label "Synthetic observation: Mocha weight"@en,
+        "합성 관찰: 모카 체중"@ko ;
+    item:measurementUnit "kg" ;
+    item:measurementValue 5.4 ;
+    item:observationKind "weight" ;
+    item:observationText "가상 측정값입니다. 품종의 표준 체중 또는 건강 판단 기준이 아닙니다." ;
+    item:observedAt "2026-10-05T02:20:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:mocha .
+
+item:observation-04 a item:Observation ;
+    rdfs:label "Synthetic observation: Luna behavior"@en,
+        "합성 관찰: 루나 행동"@ko ;
+    item:observationKind "behavior" ;
+    item:observationText "가상 예제에서 장난감에 관심을 보인 행동을 기록했습니다." ;
+    item:observedAt "2026-10-05T02:30:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:luna .
+
+item:observation-05 a item:Observation ;
+    rdfs:label "Synthetic observation: Kong weight"@en,
+        "합성 관찰: 콩이 체중"@ko ;
+    item:measurementUnit "kg" ;
+    item:measurementValue 4.2 ;
+    item:observationKind "weight" ;
+    item:observationText "가상 측정값이며 개체의 건강 상태를 분류하지 않습니다." ;
+    item:observedAt "2026-10-05T02:40:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:kong .
+
+item:observation-06 a item:Observation ;
+    rdfs:label "Synthetic observation: Cloud appearance"@en,
+        "합성 관찰: 구름 외형"@ko ;
+    item:observationKind "appearance" ;
+    item:observationText "가상 개체의 풍성한 털을 기록했습니다. 품종 표준의 특징을 자동 적용한 관찰이 아닙니다." ;
+    item:observedAt "2026-10-05T02:50:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:cloud .
+
+item:observation-07 a item:Observation ;
+    rdfs:label "Synthetic observation: Nabi weight"@en,
+        "합성 관찰: 나비 체중"@ko ;
+    item:measurementUnit "kg" ;
+    item:measurementValue 3.6 ;
+    item:observationKind "weight" ;
+    item:observationText "품종이 미확인인 가상 개체의 예제 측정값입니다." ;
+    item:observedAt "2026-10-05T03:00:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:nabi .
+
+item:observation-08 a item:Observation ;
+    rdfs:label "Synthetic observation: Tori behavior"@en,
+        "합성 관찰: 토리 행동"@ko ;
+    item:observationKind "behavior" ;
+    item:observationText "가상 예제에서 실내 선반에 올라가 있는 모습을 기록했습니다." ;
+    item:observedAt "2026-10-05T03:10:00+00:00"^^xsd:dateTime ;
+    item:observedCat item:tori .
+
+item:british-shorthair a item:Breed ;
+    rdfs:label "British Shorthair"@en,
+        "브리티시 쇼트헤어"@ko ;
+    item:describedBy item:cfa-british-shorthair ;
+    item:hasTrait item:british-shorthair-body,
+        item:british-shorthair-coat .
+
+item:british-shorthair-body a item:Trait ;
+    rdfs:label "British Shorthair body description"@en,
+        "브리티시 쇼트헤어의 체형 기술"@ko ;
+    item:documentedBy item:cfa-british-shorthair ;
+    item:traitCategory "body" ;
+    item:traitText "CFA 표준은 다부지고 힘 있는 몸과 넓은 가슴을 기술한다." .
+
+item:british-shorthair-coat a item:Trait ;
+    rdfs:label "British Shorthair coat description"@en,
+        "브리티시 쇼트헤어의 털 기술"@ko ;
+    item:documentedBy item:cfa-british-shorthair ;
+    item:traitCategory "coat" ;
+    item:traitText "CFA 표준은 짧고 매우 조밀한 털을 기술한다." .
+
+item:enclosed-space a item:Environment ;
+    rdfs:label "Synthetic enclosed outdoor space"@en,
+        "합성 울타리 외부 공간"@ko ;
+    item:environmentNote "울타리가 있는 외부 공간 유형을 보여 주는 가상 환경입니다. 특정 시설의 안전성을 보증하지 않습니다." ;
+    item:environmentType "enclosed-outdoor" .
+
+item:maine-coon a item:Breed ;
+    rdfs:label "Maine Coon Cat"@en,
+        "메인쿤"@ko ;
+    item:describedBy item:cfa-maine-coon ;
+    item:hasTrait item:maine-coon-body,
+        item:maine-coon-coat .
+
+item:maine-coon-body a item:Trait ;
+    rdfs:label "Maine Coon body description"@en,
+        "메인쿤의 체형 기술"@ko ;
+    item:documentedBy item:cfa-maine-coon ;
+    item:traitCategory "body" ;
+    item:traitText "CFA 표준은 길고 균형 잡힌 직사각형 형태의 몸을 기술한다." .
+
+item:maine-coon-coat a item:Trait ;
+    rdfs:label "Maine Coon coat description"@en,
+        "메인쿤의 털 기술"@ko ;
+    item:documentedBy item:cfa-maine-coon ;
+    item:traitCategory "coat" ;
+    item:traitText "CFA 표준은 풍성하고 길이가 고르지 않은 털을 기술하며, 어깨의 털은 배와 뒷다리 부위보다 짧다." .
+
+item:norwegian-forest a item:Breed ;
+    rdfs:label "Norwegian Forest Cat"@en,
+        "노르웨이 숲"@ko ;
+    item:describedBy item:cfa-norwegian-forest ;
+    item:hasTrait item:norwegian-forest-body,
+        item:norwegian-forest-coat .
+
+item:norwegian-forest-body a item:Trait ;
+    rdfs:label "Norwegian Forest Cat body description"@en,
+        "노르웨이 숲의 체형 기술"@ko ;
+    item:documentedBy item:cfa-norwegian-forest ;
+    item:traitCategory "body" ;
+    item:traitText "CFA 표준은 근육이 발달하고 넓은 가슴을 가진 몸을 기술한다." .
+
+item:norwegian-forest-coat a item:Trait ;
+    rdfs:label "Norwegian Forest Cat double coat description"@en,
+        "노르웨이 숲의 이중모 기술"@ko ;
+    item:documentedBy item:cfa-norwegian-forest ;
+    item:traitCategory "coat" ;
+    item:traitText "CFA 표준은 조밀한 속털과 길고 매끄러운 방수성 겉털로 이루어진 이중모를 기술한다." .
+
+item:siamese a item:Breed ;
+    rdfs:label "Siamese"@en,
+        "샴"@ko ;
+    item:describedBy item:cfa-siamese ;
+    item:hasTrait item:siamese-coat,
+        item:siamese-pattern .
+
+item:siamese-coat a item:Trait ;
+    rdfs:label "Siamese coat description"@en,
+        "샴의 털 기술"@ko ;
+    item:documentedBy item:cfa-siamese ;
+    item:traitCategory "coat" ;
+    item:traitText "CFA 표준은 짧고 가는 털이 몸에 밀착된다고 기술한다." .
+
+item:siamese-pattern a item:Trait ;
+    rdfs:label "Siamese point pattern description"@en,
+        "샴의 포인트 무늬 기술"@ko ;
+    item:documentedBy item:cfa-siamese ;
+    item:traitCategory "pattern" ;
+    item:traitText "CFA 표준은 밝은 몸통과 짙은 얼굴·귀·다리·발·꼬리의 포인트 사이의 대비를 기술한다." .
+
+item:cloud a item:Cat ;
+    rdfs:label "Synthetic cat: Cloud"@en,
+        "합성 고양이: 구름"@ko ;
+    item:breedEvidenceNote "가상 예제의 노르웨이 숲 품종 설정입니다. 실제 고양이의 품종을 확인한 자료가 아닙니다." ;
+    item:breedStatus "recorded" ;
+    item:caredForBy item:guardian-a ;
+    item:hasBreed item:norwegian-forest ;
+    item:livesIn item:enclosed-space ;
+    item:recordKind "synthetic" ;
+    item:sex "unknown" .
+
+item:home-a a item:Environment ;
+    rdfs:label "Synthetic indoor environment A"@en,
+        "합성 실내 환경 A"@ko ;
+    item:environmentNote "가상 고양이의 실내 생활환경 예제입니다. 실제 주소나 주거 안전 평가를 나타내지 않습니다." ;
+    item:environmentType "indoor" .
+
+item:kong a item:Cat ;
+    rdfs:label "Synthetic cat: Kong"@en,
+        "합성 고양이: 콩이"@ko ;
+    item:birthDate "2022-11-08"^^xsd:date ;
+    item:breedEvidenceNote "가상 예제의 브리티시 쇼트헤어 품종 설정입니다. 실제 등록증이나 혈통 증거를 주장하지 않습니다." ;
+    item:breedStatus "recorded" ;
+    item:caredForBy item:guardian-b ;
+    item:hasBreed item:british-shorthair ;
+    item:livesIn item:home-b ;
+    item:recordKind "synthetic" ;
+    item:sex "male" .
+
+item:luna a item:Cat ;
+    rdfs:label "Synthetic cat: Luna"@en,
+        "합성 고양이: 루나"@ko ;
+    item:birthDate "2024-03-10"^^xsd:date ;
+    item:breedEvidenceNote "가상 예제의 샴 품종 설정입니다. 외형 관찰로 추정한 품종이 아닙니다." ;
+    item:breedStatus "recorded" ;
+    item:caredForBy item:guardian-b ;
+    item:hasBreed item:siamese ;
+    item:livesIn item:home-b ;
+    item:recordKind "synthetic" ;
+    item:sex "female" .
+
+item:mocha a item:Cat ;
+    rdfs:label "Synthetic cat: Mocha"@en,
+        "합성 고양이: 모카"@ko ;
+    item:birthDate "2023-05-01"^^xsd:date ;
+    item:breedEvidenceNote "가상 예제의 메인쿤 품종 설정입니다. 실제 고양이의 혈통 확인 기록이 아닙니다." ;
+    item:breedStatus "recorded" ;
+    item:caredForBy item:guardian-a ;
+    item:hasBreed item:maine-coon ;
+    item:livesIn item:home-a ;
+    item:recordKind "synthetic" ;
+    item:sex "male" .
+
+item:cfa-british-shorthair a item:SourceDocument ;
+    rdfs:label "CFA British Shorthair breed standard"@en,
+        "CFA 브리티시 쇼트헤어 품종 표준"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "The Cat Fanciers' Association" ;
+    item:sourceKind "breed-registry" ;
+    item:sourceURL "https://cfa.org/breed/british-shorthair/"^^xsd:anyURI .
+
+item:cfa-maine-coon a item:SourceDocument ;
+    rdfs:label "CFA Maine Coon Cat breed standard"@en,
+        "CFA 메인쿤 품종 표준"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "The Cat Fanciers' Association" ;
+    item:sourceKind "breed-registry" ;
+    item:sourceURL "https://cfa.org/breed/maine-coon-cat/"^^xsd:anyURI .
+
+item:cfa-norwegian-forest a item:SourceDocument ;
+    rdfs:label "CFA Norwegian Forest Cat breed standard"@en,
+        "CFA 노르웨이 숲 품종 표준"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "The Cat Fanciers' Association" ;
+    item:sourceKind "breed-registry" ;
+    item:sourceURL "https://cfa.org/breed/norwegian-forest-cat/"^^xsd:anyURI .
+
+item:cfa-siamese a item:SourceDocument ;
+    rdfs:label "CFA Siamese breed standard"@en,
+        "CFA 샴 품종 표준"@ko ;
+    item:accessedOn "2026-10-05"^^xsd:date ;
+    item:publisher "The Cat Fanciers' Association" ;
+    item:sourceKind "breed-registry" ;
+    item:sourceURL "https://cfa.org/breed/siamese/"^^xsd:anyURI .
+
+item:home-b a item:Environment ;
+    rdfs:label "Synthetic indoor environment B"@en,
+        "합성 실내 환경 B"@ko ;
+    item:environmentNote "두 번째 가상 실내 생활환경입니다. 실제 거주지 정보는 없습니다." ;
+    item:environmentType "indoor" .
+
+item:nabi a item:Cat ;
+    rdfs:label "Synthetic cat: Nabi"@en,
+        "합성 고양이: 나비"@ko ;
+    item:breedStatus "unknown" ;
+    item:caredForBy item:guardian-a ;
+    item:livesIn item:home-a ;
+    item:recordKind "synthetic" ;
+    item:sex "female" .
+
+item:tori a item:Cat ;
+    rdfs:label "Synthetic cat: Tori"@en,
+        "합성 고양이: 토리"@ko ;
+    item:breedStatus "unknown" ;
+    item:caredForBy item:guardian-b ;
+    item:livesIn item:home-b ;
+    item:recordKind "synthetic" ;
+    item:sex "unknown" .
+
+item:guardian-a a item:Guardian ;
+    rdfs:label "Synthetic guardian A"@en,
+        "합성 보호자 A"@ko .
+
+item:guardian-b a item:Guardian ;
+    rdfs:label "Synthetic guardian B"@en,
+        "합성 보호자 B"@ko .

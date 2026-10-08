@@ -1,0 +1,107 @@
+@prefix cat: <https://example.org/ontology/custom/cat#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# These constraints validate records and references, not veterinary advice,
+# individual breed identity, source authenticity or source-text agreement.
+# Date-time values require a time zone; date values use YYYY-MM-DD.
+cat:LabelShape a sh:NodeShape ; sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:datatype rdf:langString ; sh:minCount 1 ; sh:minLength 1 ; sh:uniqueLang true ] .
+
+cat:CatShape a sh:NodeShape ; sh:targetClass cat:Cat ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:recordKind ; sh:datatype xsd:string ; sh:in ( "synthetic" "observed" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:sex ; sh:datatype xsd:string ; sh:in ( "female" "male" "unknown" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:birthDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:breedStatus ; sh:datatype xsd:string ; sh:in ( "unknown" "recorded" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:hasBreed ; sh:class cat:Breed ; sh:nodeKind sh:IRI ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:breedEvidenceNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:pattern "\\S" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:livesIn ; sh:class cat:Environment ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:caredForBy ; sh:class cat:Guardian ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "Recorded breed status requires a breed link and a nonempty individual evidence note." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:breedStatus "recorded" .
+            FILTER (NOT EXISTS { $this cat:hasBreed ?breed } || NOT EXISTS { $this cat:breedEvidenceNote ?note })
+          }""" ] ;
+    sh:sparql [ sh:message "Unknown breed status must not contain a breed link or breed evidence note." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:breedStatus "unknown" .
+            FILTER (EXISTS { $this cat:hasBreed ?breed } || EXISTS { $this cat:breedEvidenceNote ?note })
+          }""" ] .
+
+cat:BreedShape a sh:NodeShape ; sh:targetClass cat:Breed ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:hasTrait ; sh:class cat:Trait ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path cat:describedBy ; sh:class cat:SourceDocument ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+cat:TraitShape a sh:NodeShape ; sh:targetClass cat:Trait ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:traitCategory ; sh:datatype xsd:string ; sh:in ( "coat" "body" "pattern" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:traitText ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:documentedBy ; sh:class cat:SourceDocument ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+cat:EnvironmentShape a sh:NodeShape ; sh:targetClass cat:Environment ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:environmentType ; sh:datatype xsd:string ; sh:in ( "indoor" "enclosed-outdoor" "mixed" "unrecorded" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:environmentNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+cat:GuardianShape a sh:NodeShape ; sh:targetClass cat:Guardian ; sh:node cat:LabelShape .
+
+cat:SourceDocumentShape a sh:NodeShape ; sh:targetClass cat:SourceDocument ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:sourceURL ; sh:datatype xsd:anyURI ; sh:pattern "^https?://[^\\s]+$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:publisher ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:sourceKind ; sh:datatype xsd:string ; sh:in ( "breed-registry" "museum-summary" "official-guide" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:accessedOn ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+cat:CareRecordShape a sh:NodeShape ; sh:targetClass cat:CareRecord ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:aboutCat ; sh:class cat:Cat ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:carer ; sh:class cat:Guardian ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:careKind ; sh:datatype xsd:string ; sh:in ( "feeding" "water-refresh" "litter-cleaning" "play" "grooming" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:status ; sh:datatype xsd:string ; sh:in ( "planned" "completed" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:scheduledFor ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:performedAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:recordNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The recorded carer must be a guardian of the target cat." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:aboutCat ?cat ; cat:carer ?carer .
+            FILTER NOT EXISTS { ?cat cat:caredForBy ?carer }
+          }""" ] ;
+    sh:sparql [ sh:message "Planned care requires a scheduled time and must not have a performed time." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:status "planned" .
+            FILTER (NOT EXISTS { $this cat:scheduledFor ?scheduled } || EXISTS { $this cat:performedAt ?performed })
+          }""" ] ;
+    sh:sparql [ sh:message "Completed care requires a performed time." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:status "completed" .
+            FILTER NOT EXISTS { $this cat:performedAt ?performed }
+          }""" ] ;
+    sh:sparql [ sh:message "Cancelled care must not have a performed time." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:status "cancelled" ; cat:performedAt ?performed .
+          }""" ] .
+
+cat:ObservationShape a sh:NodeShape ; sh:targetClass cat:Observation ; sh:node cat:LabelShape ;
+    sh:property [ sh:path cat:observedCat ; sh:class cat:Cat ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:observedAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:observationKind ; sh:datatype xsd:string ; sh:in ( "behavior" "appearance" "weight" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:observationText ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:measurementValue ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path cat:measurementUnit ; sh:datatype xsd:string ; sh:in ( "kg" ) ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "A weight observation requires one positive decimal measurement and the kg unit." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:observationKind "weight" .
+            FILTER (NOT EXISTS { $this cat:measurementValue ?value } || NOT EXISTS { $this cat:measurementUnit "kg" })
+          }""" ] ;
+    sh:sparql [ sh:message "Behavior and appearance observations must not contain measurement fields." ;
+        sh:select """PREFIX cat: <https://example.org/ontology/custom/cat#>
+          SELECT $this WHERE {
+            $this cat:observationKind ?kind .
+            FILTER (?kind IN ("behavior", "appearance"))
+            FILTER (EXISTS { $this cat:measurementValue ?value } || EXISTS { $this cat:measurementUnit ?unit })
+          }""" ] .

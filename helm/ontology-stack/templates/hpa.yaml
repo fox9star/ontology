@@ -1,0 +1,32 @@
+{{- if .Values.webStudio.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-web-studio-hpa
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "ontology-stack.fullname" . }}-web-studio
+  minReplicas: {{ .Values.webStudio.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.webStudio.autoscaling.maxReplicas }}
+  metrics:
+    {{- if .Values.webStudio.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.webStudio.autoscaling.targetCPUUtilizationPercentage }}
+    {{- end }}
+    {{- if .Values.webStudio.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.webStudio.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- end }}
+{{- end }}

@@ -1,0 +1,306 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix kwar: <http://example.org/ontology/korean-war#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# SHACL NodeShapes for Korean War Ontology
+# =============================================================================
+
+kwar:MilitaryOperationShape a sh:NodeShape ;
+    sh:targetClass kwar:MilitaryOperation ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "군사 작전에는 표시 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:operationName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "작전에는 고유 작전명이 1개 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:startDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "작전 개시 일자가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:endDate ;
+        sh:datatype xsd:date ;
+        sh:message "작전 종료 일자는 유효한 date여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:strategicOutcome ;
+        sh:datatype xsd:string ;
+        sh:in ( "VICTORY" "DEFEAT" "STALEMATE" "TACTICAL_SUCCESS" ) ;
+        sh:message "작전 결과는 VICTORY, DEFEAT, STALEMATE, TACTICAL_SUCCESS 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:occurredAt ;
+        sh:class kwar:BattleLocation ;
+        sh:message "전장 위치 참조는 BattleLocation 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:involvesForce ;
+        sh:class kwar:BelligerentForce ;
+        sh:message "참전 세력 참조는 BelligerentForce 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:ledByCommander ;
+        sh:class kwar:CommandingOfficer ;
+        sh:message "작전 지휘관 참조는 CommandingOfficer 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:evidencedByArtifact ;
+        sh:class kwar:HistoricalArtifact ;
+        sh:message "사료 유물 참조는 HistoricalArtifact 인스턴스여야 합니다."@ko
+    ] .
+
+kwar:BattleLocationShape a sh:NodeShape ;
+    sh:targetClass kwar:BattleLocation ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "전장 위치에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:locationName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "전장 지명 명칭이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:latitude ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 30.0 ;
+        sh:maxInclusive 45.0 ;
+        sh:message "위도는 한반도 및 인접 위도 범위(30.0~45.0)의 수치여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:longitude ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 120.0 ;
+        sh:maxInclusive 135.0 ;
+        sh:message "경도는 한반도 및 인접 경도 범위(120.0~135.0)의 수치여야 합니다."@ko
+    ] .
+
+kwar:BelligerentForceShape a sh:NodeShape ;
+    sh:targetClass kwar:BelligerentForce ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "참전 세력에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:forceName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "참전 세력 명칭이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:allianceSide ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:in ( "UN_ALLIED" "COMMUNIST_BLOC" ) ;
+        sh:message "참전 진영은 UN_ALLIED 또는 COMMUNIST_BLOC 중 하나여야 합니다."@ko
+    ] .
+
+kwar:CommandingOfficerShape a sh:NodeShape ;
+    sh:targetClass kwar:CommandingOfficer ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "지휘관에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:commanderName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "지휘관 성명이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:militaryRank ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "지휘관 군 계급이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:supervisesUnit ;
+        sh:class kwar:MilitaryUnit ;
+        sh:message "지휘 통솔 부대 참조는 MilitaryUnit 인스턴스여야 합니다."@ko
+    ] .
+
+kwar:ArmisticeNegotiationShape a sh:NodeShape ;
+    sh:targetClass kwar:ArmisticeNegotiation ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "정전 회담에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:sessionRound ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "회담 차수는 1 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:negotiationDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:message "회담 진행 일자가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:heldAtLocation ;
+        sh:class kwar:BattleLocation ;
+        sh:message "회담 장소 참조는 BattleLocation 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:concludedWithTreaty ;
+        sh:class kwar:TreatyDocument ;
+        sh:message "결과 조약 참조는 TreatyDocument 인스턴스여야 합니다."@ko
+    ] .
+
+kwar:TreatyDocumentShape a sh:NodeShape ;
+    sh:targetClass kwar:TreatyDocument ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "조약 문건에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:treatyTitle ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "조약 공식 명칭이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:signingDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:message "조약 서명 일자가 필요합니다."@ko
+    ] .
+
+kwar:MilitaryUnitShape a sh:NodeShape ;
+    sh:targetClass kwar:MilitaryUnit ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "참전 부대에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:unitDesignation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "부대 고유 명칭이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:troopCount ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:message "투입 병력 수는 1 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:belongsToForce ;
+        sh:class kwar:BelligerentForce ;
+        sh:minCount 1 ;
+        sh:message "부대에는 소속 참전 세력이 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:participatedIn ;
+        sh:class kwar:MilitaryOperation ;
+        sh:message "참가 작전 참조는 MilitaryOperation 인스턴스여야 합니다."@ko
+    ] .
+
+kwar:WarCasualtyRecordShape a sh:NodeShape ;
+    sh:targetClass kwar:WarCasualtyRecord ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "피해 통계 기록에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:killedInAction ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:message "전사자 수는 0 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:woundedInAction ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:message "부상자 수는 0 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:missingInAction ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:message "실종자 수는 0 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:associatedOperation ;
+        sh:class kwar:MilitaryOperation ;
+        sh:minCount 1 ;
+        sh:message "피해 통계에는 대상 작전이 지정되어야 합니다."@ko
+    ] .
+
+kwar:HistoricalArtifactShape a sh:NodeShape ;
+    sh:targetClass kwar:HistoricalArtifact ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "사료 유물에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:artifactIdentifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "사료 관리 번호가 필요합니다."@ko
+    ] .
+
+kwar:AnalysisTaskShape a sh:NodeShape ;
+    sh:targetClass kwar:AnalysisTask ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "분석 작업에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:taskFindings ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "분석 결론 소견 텍스트가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:taskStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:in ( "PENDING" "ACTIVE" "COMPLETED" ) ;
+        sh:message "작업 상태는 PENDING, ACTIVE, COMPLETED 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:assignedAnalyst ;
+        sh:class kwar:HistoricalAnalysisAgent ;
+        sh:minCount 1 ;
+        sh:message "분석 작업에는 담당 AI 에이전트가 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path kwar:targetOperation ;
+        sh:class kwar:MilitaryOperation ;
+        sh:minCount 1 ;
+        sh:message "분석 작업에는 대상 군사 작전이 지정되어야 합니다."@ko
+    ] .
+
+kwar:HistoricalAnalysisAgentShape a sh:NodeShape ;
+    sh:targetClass kwar:HistoricalAnalysisAgent, kwar:TacticalAnalystAgent, kwar:ArchiveCurationAgent, kwar:CasualtyVerificationAgent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "역사 분석 에이전트에는 라벨이 필요합니다."@ko
+    ] .

@@ -1,0 +1,557 @@
+@prefix dom: <https://example.org/ontology/custom/domain#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dom:DomainAssignmentShape a sh:NodeShape ;
+    sh:message "프로필 영역 배정의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "manual_scope_review"^^xsd:string "imported_mapping"^^xsd:string "user_asserted"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "배정 방법의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:assignmentMethod ],
+        [ sh:class dom:OntologyProfile ;
+            sh:maxCount 1 ;
+            sh:message "배정 대상 프로필의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:assignmentForProfile ],
+        [ sh:datatype rdf:langString ;
+            sh:message "배정 근거 설명의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:assignmentRationale ],
+        [ sh:class dom:DomainSource ;
+            sh:message "배정 근거의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:assignmentEvidenceSource ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "proposed"^^xsd:string "accepted"^^xsd:string "rejected"^^xsd:string "needs_review"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "배정 검토 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:assignmentStatus ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1.0 ;
+            sh:message "배정 신뢰도의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path dom:assignmentConfidence ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "배정 기록 날짜의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:assignmentCreatedAt ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "배정 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:assignmentToDomain ] ;
+    sh:targetClass dom:DomainAssignment .
+
+dom:DomainCatalogShape a sh:NodeShape ;
+    sh:message "영역 분류 체계의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class dom:DomainSource ;
+            sh:message "근거 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:catalogHasSource ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "포함 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:catalogHasDomain ],
+        [ sh:datatype rdf:langString ;
+            sh:message "분류 체계 표제의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:catalogPreferredLabel ],
+        [ sh:datatype rdf:langString ;
+            sh:message "분류 범위 주석의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:catalogScopeNote ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 버전의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:catalogVersion ],
+        [ sh:datatype rdf:langString ;
+            sh:message "분류 체계 정의의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:catalogDefinition ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "draft"^^xsd:string "published"^^xsd:string "deprecated"^^xsd:string "retired"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:catalogLifecycleStatus ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "최상위 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:catalogHasTopDomain ] ;
+    sh:targetClass dom:DomainCatalog .
+
+dom:DomainChangeEventShape a sh:NodeShape ;
+    sh:message "영역 변경 사건의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class dom:DomainSource ;
+            sh:message "변경 근거 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:changeEvidenceSource ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "변경 대상 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:changeForDomain ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "이전 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:changePreviousStatus ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "변경 날짜의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:changeDate ],
+        [ sh:datatype rdf:langString ;
+            sh:message "변경 사유의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:changeReason ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "기록자 역할의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:changeRecordedByRole ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "proposed"^^xsd:string "created"^^xsd:string "label_changed"^^xsd:string "scope_changed"^^xsd:string "hierarchy_changed"^^xsd:string "deprecated"^^xsd:string "retired"^^xsd:string "restored"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "변경 작업의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:changeAction ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "변경 후 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:changeNewStatus ] ;
+    sh:targetClass dom:DomainChangeEvent .
+
+dom:DomainMappingShape a sh:NodeShape ;
+    sh:message "외부 분류 매핑의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class dom:DomainSource ;
+            sh:message "매핑 근거 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:mappingEvidenceSource ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "외부 개념 URI의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minLength 1 ;
+            sh:path dom:mappingExternalConceptUri ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "외부 분류 기호의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minLength 1 ;
+            sh:path dom:mappingExternalNotation ],
+        [ sh:class dom:ExternalClassificationScheme ;
+            sh:maxCount 1 ;
+            sh:message "대상 외부 분류 체계의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:mappingExternalScheme ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 1.0 ;
+            sh:message "매핑 신뢰도의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path dom:mappingConfidence ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "exactMatch"^^xsd:string "closeMatch"^^xsd:string "broadMatch"^^xsd:string "narrowMatch"^^xsd:string "relatedMatch"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "매핑 관계 유형의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:mappingRelationType ],
+        [ sh:datatype rdf:langString ;
+            sh:message "매핑 판단 근거의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:mappingRationale ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_started"^^xsd:string "proposed"^^xsd:string "reviewed"^^xsd:string "accepted"^^xsd:string "rejected"^^xsd:string "obsolete"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "매핑 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:mappingStatus ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "매핑할 로컬 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:mappingLocalDomain ] ;
+    sh:targetClass dom:DomainMapping .
+
+dom:DomainRelationShape a sh:NodeShape ;
+    sh:message "교차 영역 관계의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "관계 기록 날짜의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:relationRecordedAt ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "관계 시작 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:relationSubjectDomain ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "interdisciplinary"^^xsd:string "overlap"^^xsd:string "adjacent"^^xsd:string "cross_cutting"^^xsd:string "depends_on"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "관계 유형의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:relationType ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "관계 대상 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:relationObjectDomain ],
+        [ sh:class dom:DomainSource ;
+            sh:message "관계 근거 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:relationEvidenceSource ],
+        [ sh:datatype rdf:langString ;
+            sh:message "관계 설명의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:relationRationale ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "proposed"^^xsd:string "reviewed"^^xsd:string "accepted"^^xsd:string "rejected"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "관계 검토 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:relationStatus ] ;
+    sh:targetClass dom:DomainRelation .
+
+dom:DomainReviewShape a sh:NodeShape ;
+    sh:message "영역 검토 기록의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "검토 날짜의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:reviewDate ],
+        [ sh:datatype rdf:langString ;
+            sh:message "검토 메모의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:reviewRationale ],
+        [ sh:class dom:DomainSource ;
+            sh:message "검토 근거의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:reviewEvidenceSource ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "검토자 역할의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:reviewerRole ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "검토 대상 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:reviewForDomain ],
+        [ sh:datatype rdf:langString ;
+            sh:message "검토 기준의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:reviewCriteria ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "in_review"^^xsd:string "complete"^^xsd:string "stale"^^xsd:string "not_reviewed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "검토 진행 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:reviewStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_reviewed"^^xsd:string "accepted"^^xsd:string "needs_revision"^^xsd:string "rejected"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "검토 결과의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:reviewOutcome ] ;
+    sh:targetClass dom:DomainReview .
+
+dom:DomainScopeStatementShape a sh:NodeShape ;
+    sh:message "영역 범위 문장의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:class dom:DomainSource ;
+            sh:message "범위 근거 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:scopeEvidenceSource ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "curated"^^xsd:string "source_grounded"^^xsd:string "synthetic"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "범위 근거 수준의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:scopeEvidenceLevel ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:maxCount 1 ;
+            sh:message "범위 대상 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:scopeForDomain ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "inclusion"^^xsd:string "exclusion"^^xsd:string "boundary"^^xsd:string "context"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "범위 문장 유형의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:scopeKind ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "draft"^^xsd:string "reviewed"^^xsd:string "accepted"^^xsd:string "needs_revision"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "범위 검토 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:scopeReviewStatus ],
+        [ sh:datatype rdf:langString ;
+            sh:message "범위 문장의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:scopeText ] ;
+    sh:targetClass dom:DomainScopeStatement .
+
+dom:DomainSourceShape a sh:NodeShape ;
+    sh:message "영역 근거 출처의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:message "자료 한계의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourceLimitations ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자료 제목의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourceTitle ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "standards_document"^^xsd:string "methodology"^^xsd:string "official_classification"^^xsd:string "local_profile"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "자료 유형의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourceKind ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "자료 확인 날짜의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:sourceAccessedAt ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "자료 URI의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourceUri ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "발행자의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourcePublisher ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "발행 연도의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 1900 ;
+            sh:path dom:sourceYear ],
+        [ sh:datatype rdf:langString ;
+            sh:message "자료가 뒷받침하는 범위의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:sourceScope ] ;
+    sh:targetClass dom:DomainSource .
+
+dom:ExternalClassificationSchemeShape a sh:NodeShape ;
+    sh:message "외부 분류 체계의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:message "분류 체계 이름의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 발행자의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemePublisher ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 URI의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeUri ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 버전의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeVersion ],
+        [ sh:datatype rdf:langString ;
+            sh:message "분류 체계 한계의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeLimitations ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 언어의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeLanguage ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "known"^^xsd:string "not_selected"^^xsd:string "retired"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "분류 체계 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:schemeStatus ],
+        [ sh:class dom:DomainSource ;
+            sh:message "분류 체계 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:schemeDocumentedBy ] ;
+    sh:targetClass dom:ExternalClassificationScheme .
+
+dom:KnowledgeDomainShape a sh:NodeShape ;
+    sh:message "지식·업무 영역의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:message "영역 정의의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainDefinition ],
+        [ sh:datatype rdf:langString ;
+            sh:message "대체 표기의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minLength 1 ;
+            sh:path dom:domainAlternativeLabel ],
+        [ sh:class dom:DomainScopeStatement ;
+            sh:message "범위 문장의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasScopeStatement ],
+        [ sh:class dom:OntologyProfile ;
+            sh:message "포함 온톨로지 프로필의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasProfile ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "직접 하위 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainNarrower ],
+        [ sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:message "최상위 개념 여부의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:domainTopConcept ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "proposed"^^xsd:string "active"^^xsd:string "deprecated"^^xsd:string "retired"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "영역 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainLifecycleStatus ],
+        [ sh:datatype rdf:langString ;
+            sh:message "선호 표기의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainPreferredLabel ],
+        [ sh:class dom:DomainRelation ;
+            sh:message "교차 영역 관계 기록의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasRelation ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분류 기호의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainNotation ],
+        [ sh:class dom:DomainMapping ;
+            sh:message "외부 매핑 기록의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasMapping ],
+        [ sh:class dom:DomainAssignment ;
+            sh:message "영역 배정 기록의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasAssignment ],
+        [ sh:class dom:DomainSource ;
+            sh:message "정의 출처의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasSource ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "연관 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainRelatedTo ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "계층 단계의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path dom:domainLevel ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "직접 상위 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainBroader ],
+        [ sh:class dom:DomainReview ;
+            sh:message "검토 기록의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasReview ],
+        [ sh:class dom:DomainCatalog ;
+            sh:maxCount 1 ;
+            sh:message "소속 분류 체계의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:domainInCatalog ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "defined"^^xsd:string "partial"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "경계 정의 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainBoundaryStatus ],
+        [ sh:class dom:DomainChangeEvent ;
+            sh:message "변경 이력의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:path dom:domainHasChangeEvent ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "영역 식별자의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:domainIdentifier ] ;
+    sh:targetClass dom:KnowledgeDomain .
+
+dom:OntologyProfileShape a sh:NodeShape ;
+    sh:message "온톨로지 프로필의 필수 속성, 언어 태그 및 값 형식을 확인하세요."@ko ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "draft"^^xsd:string "published"^^xsd:string "archived"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "프로필 상태의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileStatus ],
+        [ sh:class dom:KnowledgeDomain ;
+            sh:message "포괄 영역의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:ontologyProfileCoversDomain ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "프로필 네임스페이스의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileNamespace ],
+        [ sh:datatype rdf:langString ;
+            sh:message "프로필 범위의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileScope ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "프로필 버전의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileVersion ],
+        [ sh:datatype rdf:langString ;
+            sh:message "프로필 이름의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileName ],
+        [ sh:class dom:DomainSource ;
+            sh:maxCount 1 ;
+            sh:message "프로필 출처 기록의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path dom:ontologyProfileDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "프로필 ID의 값·언어 태그·형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path dom:ontologyProfileId ] ;
+    sh:targetClass dom:OntologyProfile .

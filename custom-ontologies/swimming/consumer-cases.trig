@@ -1,0 +1,542 @@
+@prefix ns1: <https://example.org/ontology/custom/swimming#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/swimming-accept> {
+    <https://example.test/swimming/entryA1> a ns1:Entry ;
+        rdfs:label "선수 A 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 58.42 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:hasSplit <https://example.test/swimming/splitA1a>,
+            <https://example.test/swimming/splitA1b> ;
+        ns1:inEvent <https://example.test/swimming/event1> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryA1"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryA3> a ns1:Entry ;
+        rdfs:label "선수 A 봄 개인혼영 100m 기권"@ko ;
+        ns1:entryStatus "did-not-start" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:inEvent <https://example.test/swimming/event3> .
+
+    <https://example.test/swimming/entryA5> a ns1:Entry ;
+        rdfs:label "선수 A 여름 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.95 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:hasSplit <https://example.test/swimming/splitA5a>,
+            <https://example.test/swimming/splitA5b> ;
+        ns1:inEvent <https://example.test/swimming/event5> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryA5"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryA7> a ns1:Entry ;
+        rdfs:label "선수 A 겨울 자유형 200m 신청"@ko ;
+        ns1:entryStatus "entered" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:inEvent <https://example.test/swimming/event7> ;
+        ns1:seedTimeSeconds 126.50 .
+
+    <https://example.test/swimming/entryB2> a ns1:Entry ;
+        rdfs:label "선수 B 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 52.31 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event2> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB2"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryB4> a ns1:Entry ;
+        rdfs:label "선수 B 봄 접영 50m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 25.80 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event4> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB4"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryB6> a ns1:Entry ;
+        rdfs:label "선수 B 여름 평영 200m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 141.30 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event6> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB6"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC1> a ns1:Entry ;
+        rdfs:label "선수 C 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.90 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:hasSplit <https://example.test/swimming/splitC1a>,
+            <https://example.test/swimming/splitC1b> ;
+        ns1:inEvent <https://example.test/swimming/event1> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC1"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC3> a ns1:Entry ;
+        rdfs:label "선수 C 봄 개인혼영 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 65.20 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:inEvent <https://example.test/swimming/event3> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC3"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC5> a ns1:Entry ;
+        rdfs:label "선수 C 여름 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.10 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:hasSplit <https://example.test/swimming/splitC5a>,
+            <https://example.test/swimming/splitC5b> ;
+        ns1:inEvent <https://example.test/swimming/event5> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC5"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC7> a ns1:Entry ;
+        rdfs:label "선수 C 겨울 자유형 200m 신청"@ko ;
+        ns1:entryStatus "entered" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:inEvent <https://example.test/swimming/event7> ;
+        ns1:seedTimeSeconds 124.80 .
+
+    <https://example.test/swimming/entryD2> a ns1:Entry ;
+        rdfs:label "선수 D 봄 자유형 100m 실격"@ko ;
+        ns1:disqualificationReason "false-start" ;
+        ns1:entryStatus "disqualified" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event2> ;
+        ns1:timingEvidenceUri "urn:synthetic:disqualification:entryD2"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryD4> a ns1:Entry ;
+        rdfs:label "선수 D 봄 접영 50m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 26.45 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event4> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryD4"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryD6> a ns1:Entry ;
+        rdfs:label "선수 D 여름 평영 200m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 143.05 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event6> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryD6"^^xsd:anyURI .
+
+    <https://example.test/swimming/meet1> a ns1:Meet ;
+        rdfs:label "가상 봄 대회"@ko ;
+        ns1:endDate "2026-03-15"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event1>,
+            <https://example.test/swimming/event2>,
+            <https://example.test/swimming/event3>,
+            <https://example.test/swimming/event4> ;
+        ns1:heldAt <https://example.test/swimming/pool25> ;
+        ns1:startDate "2026-03-14"^^xsd:date .
+
+    <https://example.test/swimming/meet2> a ns1:Meet ;
+        rdfs:label "가상 여름 대회"@ko ;
+        ns1:endDate "2026-08-02"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event5>,
+            <https://example.test/swimming/event6> ;
+        ns1:heldAt <https://example.test/swimming/pool50> ;
+        ns1:startDate "2026-08-01"^^xsd:date .
+
+    <https://example.test/swimming/meet3> a ns1:Meet ;
+        rdfs:label "가상 겨울 대회(예정)"@ko ;
+        ns1:endDate "2026-11-21"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event7> ;
+        ns1:heldAt <https://example.test/swimming/pool50> ;
+        ns1:startDate "2026-11-20"^^xsd:date .
+
+    <https://example.test/swimming/clubB> a ns1:Club ;
+        rdfs:label "가상 수영클럽 B"@ko .
+
+    <https://example.test/swimming/pool25> a ns1:Pool ;
+        rdfs:label "가상 시립 수영장(25m)"@ko ;
+        ns1:laneCount 6 ;
+        ns1:poolLengthMeters 25 .
+
+    <https://example.test/swimming/splitA1a> a ns1:Split ;
+        rdfs:label "A1 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 28.10 .
+
+    <https://example.test/swimming/splitA1b> a ns1:Split ;
+        rdfs:label "A1 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 58.42 .
+
+    <https://example.test/swimming/splitA5a> a ns1:Split ;
+        rdfs:label "A5 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.90 .
+
+    <https://example.test/swimming/splitA5b> a ns1:Split ;
+        rdfs:label "A5 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.95 .
+
+    <https://example.test/swimming/splitC1a> a ns1:Split ;
+        rdfs:label "C1 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.90 .
+
+    <https://example.test/swimming/splitC1b> a ns1:Split ;
+        rdfs:label "C1 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.90 .
+
+    <https://example.test/swimming/splitC5a> a ns1:Split ;
+        rdfs:label "C5 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.60 .
+
+    <https://example.test/swimming/splitC5b> a ns1:Split ;
+        rdfs:label "C5 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.10 .
+
+    <https://example.test/swimming/clubA> a ns1:Club ;
+        rdfs:label "가상 수영클럽 A"@ko .
+
+    <https://example.test/swimming/pool50> a ns1:Pool ;
+        rdfs:label "가상 규격 수영장(50m)"@ko ;
+        ns1:laneCount 8 ;
+        ns1:poolLengthMeters 50 .
+
+    <https://example.test/swimming/event1> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event2> a ns1:SwimEvent ;
+        rdfs:label "남자 자유형 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event3> a ns1:SwimEvent ;
+        rdfs:label "여자 개인혼영 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "individual-medley" .
+
+    <https://example.test/swimming/event4> a ns1:SwimEvent ;
+        rdfs:label "남자 접영 50m"@ko ;
+        ns1:distanceMeters 50 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "butterfly" .
+
+    <https://example.test/swimming/event5> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 100m (여름)"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event6> a ns1:SwimEvent ;
+        rdfs:label "남자 평영 200m"@ko ;
+        ns1:distanceMeters 200 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "breaststroke" .
+
+    <https://example.test/swimming/event7> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 200m"@ko ;
+        ns1:distanceMeters 200 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/swimmerB> a ns1:Swimmer ;
+        rdfs:label "가상 선수 B"@ko ;
+        ns1:competitionCategory "men" ;
+        ns1:memberOf <https://example.test/swimming/clubA> .
+
+    <https://example.test/swimming/swimmerD> a ns1:Swimmer ;
+        rdfs:label "가상 선수 D"@ko ;
+        ns1:competitionCategory "men" .
+
+    <https://example.test/swimming/swimmerA> a ns1:Swimmer ;
+        rdfs:label "가상 선수 A"@ko ;
+        ns1:competitionCategory "women" ;
+        ns1:memberOf <https://example.test/swimming/clubA> .
+
+    <https://example.test/swimming/swimmerC> a ns1:Swimmer ;
+        rdfs:label "가상 선수 C"@ko ;
+        ns1:competitionCategory "women" ;
+        ns1:memberOf <https://example.test/swimming/clubB> .
+}
+
+<https://example.test/consumer/swimming-reject> {
+    <https://example.test/swimming/entryA1> a ns1:Entry ;
+        rdfs:label "선수 A 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 58.42 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:hasSplit <https://example.test/swimming/splitA1a>,
+            <https://example.test/swimming/splitA1b> ;
+        ns1:inEvent <https://example.test/swimming/event1> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryA1"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryA3> a ns1:Entry ;
+        rdfs:label "선수 A 봄 개인혼영 100m 기권"@ko ;
+        ns1:entryStatus "did-not-start" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:inEvent <https://example.test/swimming/event3> .
+
+    <https://example.test/swimming/entryA5> a ns1:Entry ;
+        rdfs:label "선수 A 여름 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.95 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:hasSplit <https://example.test/swimming/splitA5a>,
+            <https://example.test/swimming/splitA5b> ;
+        ns1:inEvent <https://example.test/swimming/event5> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryA5"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryA7> a ns1:Entry ;
+        rdfs:label "선수 A 겨울 자유형 200m 신청"@ko ;
+        ns1:entryStatus "entered" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerA> ;
+        ns1:inEvent <https://example.test/swimming/event7> ;
+        ns1:seedTimeSeconds 126.50 .
+
+    <https://example.test/swimming/entryB2> a ns1:Entry ;
+        rdfs:label "선수 B 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 52.31 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event2> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB2"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryB4> a ns1:Entry ;
+        rdfs:label "선수 B 봄 접영 50m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 25.80 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event4> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB4"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryB6> a ns1:Entry ;
+        rdfs:label "선수 B 여름 평영 200m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 141.30 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerB> ;
+        ns1:inEvent <https://example.test/swimming/event6> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryB6"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC1> a ns1:Entry ;
+        rdfs:label "선수 C 봄 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.90 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:hasSplit <https://example.test/swimming/splitC1a>,
+            <https://example.test/swimming/splitC1b> ;
+        ns1:inEvent <https://example.test/swimming/event1> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC1"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC3> a ns1:Entry ;
+        rdfs:label "선수 C 봄 개인혼영 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 65.20 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:inEvent <https://example.test/swimming/event3> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC3"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC5> a ns1:Entry ;
+        rdfs:label "선수 C 여름 자유형 100m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 57.10 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:hasSplit <https://example.test/swimming/splitC5a>,
+            <https://example.test/swimming/splitC5b> ;
+        ns1:inEvent <https://example.test/swimming/event5> ;
+        ns1:placeRank 1 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryC5"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryC7> a ns1:Entry ;
+        rdfs:label "선수 C 겨울 자유형 200m 신청"@ko ;
+        ns1:entryStatus "entered" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerC> ;
+        ns1:inEvent <https://example.test/swimming/event7> ;
+        ns1:seedTimeSeconds 124.80 .
+
+    <https://example.test/swimming/entryD2> a ns1:Entry ;
+        rdfs:label "선수 D 봄 자유형 100m 실격"@ko ;
+        ns1:disqualificationReason "false-start" ;
+        ns1:entryStatus "disqualified" ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event2> ;
+        ns1:timingEvidenceUri "urn:synthetic:disqualification:entryD2"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryD4> a ns1:Entry ;
+        rdfs:label "선수 D 봄 접영 50m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 26.45 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event4> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryD4"^^xsd:anyURI .
+
+    <https://example.test/swimming/entryD6> a ns1:Entry ;
+        rdfs:label "선수 D 여름 평영 200m"@ko ;
+        ns1:entryStatus "official" ;
+        ns1:finalTimeSeconds 143.05 ;
+        ns1:forSwimmer <https://example.test/swimming/swimmerD> ;
+        ns1:inEvent <https://example.test/swimming/event6> ;
+        ns1:placeRank 2 ;
+        ns1:timingEvidenceUri "urn:synthetic:results:entryD6"^^xsd:anyURI .
+
+    <https://example.test/swimming/meet1> a ns1:Meet ;
+        rdfs:label "가상 봄 대회"@ko ;
+        ns1:endDate "2026-03-15"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event1>,
+            <https://example.test/swimming/event2>,
+            <https://example.test/swimming/event3>,
+            <https://example.test/swimming/event4> ;
+        ns1:heldAt <https://example.test/swimming/pool25> ;
+        ns1:startDate "2026-03-14"^^xsd:date .
+
+    <https://example.test/swimming/meet2> a ns1:Meet ;
+        rdfs:label "가상 여름 대회"@ko ;
+        ns1:endDate "2026-08-02"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event5>,
+            <https://example.test/swimming/event6> ;
+        ns1:heldAt <https://example.test/swimming/pool50> ;
+        ns1:startDate "2026-08-01"^^xsd:date .
+
+    <https://example.test/swimming/meet3> a ns1:Meet ;
+        rdfs:label "가상 겨울 대회(예정)"@ko ;
+        ns1:endDate "2026-11-21"^^xsd:date ;
+        ns1:hasEvent <https://example.test/swimming/event7> ;
+        ns1:heldAt <https://example.test/swimming/pool50> ;
+        ns1:startDate "2026-11-20"^^xsd:date .
+
+    <https://example.test/swimming/clubB> a ns1:Club ;
+        rdfs:label "가상 수영클럽 B"@ko .
+
+    <https://example.test/swimming/pool25> a ns1:Pool ;
+        rdfs:label "가상 시립 수영장(25m)"@ko ;
+        ns1:laneCount 6 ;
+        ns1:poolLengthMeters 25 .
+
+    <https://example.test/swimming/splitA1a> a ns1:Split ;
+        rdfs:label "A1 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 28.10 .
+
+    <https://example.test/swimming/splitA1b> a ns1:Split ;
+        rdfs:label "A1 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 58.42 .
+
+    <https://example.test/swimming/splitA5a> a ns1:Split ;
+        rdfs:label "A5 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.90 .
+
+    <https://example.test/swimming/splitA5b> a ns1:Split ;
+        rdfs:label "A5 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.95 .
+
+    <https://example.test/swimming/splitC1a> a ns1:Split ;
+        rdfs:label "C1 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.90 .
+
+    <https://example.test/swimming/splitC1b> a ns1:Split ;
+        rdfs:label "C1 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.90 .
+
+    <https://example.test/swimming/splitC5a> a ns1:Split ;
+        rdfs:label "C5 50m"@ko ;
+        ns1:splitDistanceMeters 50 ;
+        ns1:splitTimeSeconds 27.60 .
+
+    <https://example.test/swimming/splitC5b> a ns1:Split ;
+        rdfs:label "C5 100m"@ko ;
+        ns1:splitDistanceMeters 100 ;
+        ns1:splitTimeSeconds 57.10 .
+
+    <https://example.test/swimming/clubA> a ns1:Club ;
+        rdfs:label "가상 수영클럽 A"@ko .
+
+    <https://example.test/swimming/pool50> a ns1:Pool ;
+        rdfs:label "가상 규격 수영장(50m)"@ko ;
+        ns1:laneCount 8 ;
+        ns1:poolLengthMeters 50 .
+
+    <https://example.test/swimming/event1> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event2> a ns1:SwimEvent ;
+        rdfs:label "남자 자유형 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event3> a ns1:SwimEvent ;
+        rdfs:label "여자 개인혼영 100m"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "individual-medley" .
+
+    <https://example.test/swimming/event4> a ns1:SwimEvent ;
+        rdfs:label "남자 접영 50m"@ko ;
+        ns1:distanceMeters 50 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "butterfly" .
+
+    <https://example.test/swimming/event5> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 100m (여름)"@ko ;
+        ns1:distanceMeters 100 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/event6> a ns1:SwimEvent ;
+        rdfs:label "남자 평영 200m"@ko ;
+        ns1:distanceMeters 200 ;
+        ns1:eventCategory "men" ;
+        ns1:stroke "breaststroke" .
+
+    <https://example.test/swimming/event7> a ns1:SwimEvent ;
+        rdfs:label "여자 자유형 200m"@ko ;
+        ns1:distanceMeters 200 ;
+        ns1:eventCategory "women" ;
+        ns1:stroke "freestyle" .
+
+    <https://example.test/swimming/swimmerB> a ns1:Swimmer ;
+        rdfs:label "가상 선수 B"@ko ;
+        ns1:competitionCategory "men" ;
+        ns1:memberOf <https://example.test/swimming/clubA> .
+
+    <https://example.test/swimming/swimmerD> a ns1:Swimmer ;
+        rdfs:label "가상 선수 D"@ko ;
+        ns1:competitionCategory "men" .
+
+    <https://example.test/swimming/swimmerA> a ns1:Swimmer ;
+        ns1:competitionCategory "women" ;
+        ns1:memberOf <https://example.test/swimming/clubA> .
+
+    <https://example.test/swimming/swimmerC> a ns1:Swimmer ;
+        rdfs:label "가상 선수 C"@ko ;
+        ns1:competitionCategory "women" ;
+        ns1:memberOf <https://example.test/swimming/clubB> .
+}

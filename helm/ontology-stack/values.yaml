@@ -1,0 +1,109 @@
+# Default values for ontology-stack Helm chart.
+
+global:
+  environment: production
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+# -----------------------------------------------------------------------------
+# Web Studio (Core Flask REST API & Graph Services - Port 5000)
+# -----------------------------------------------------------------------------
+webStudio:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: ontology-stack/web-studio
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 5000
+    targetPort: 5000
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    targetMemoryUtilizationPercentage: 80
+  env:
+    FLASK_ENV: production
+    GRAPH_BACKEND: "fuseki" # Options: fuseki | neo4j | neptune
+    ONTOLOGY_PROJECTS_DIR: "/app/projects"
+    MULTIMODAL_ENABLED: "true"
+
+# -----------------------------------------------------------------------------
+# MV Studio (Music Video & Multimedia Studio Server - Port 8766)
+# -----------------------------------------------------------------------------
+mvStudio:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ontology-stack/mv-studio
+    pullPolicy: IfNotPresent
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 8766
+    targetPort: 8766
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+# -----------------------------------------------------------------------------
+# Knowledge Graph Backends Configuration
+# -----------------------------------------------------------------------------
+graphStore:
+  # Active backend: fuseki, neo4j, or neptune
+  backend: fuseki
+  fuseki:
+    embedded: true # If true, deploys Apache Jena Fuseki statefulset
+    endpoint: "http://ontology-fuseki:3030/ds"
+    storageSize: 10Gi
+  neo4j:
+    uri: "bolt://neo4j.database.svc.cluster.local:7687"
+    user: "neo4j"
+    password: "ChangeMeInProduction"
+    vectorDim: 512
+  neptune:
+    endpoint: "https://your-neptune-cluster.cluster-xyz.neptune.amazonaws.com:8182"
+    region: "us-east-1"
+    openSearchEndpoint: "https://your-opensearch.es.amazonaws.com"
+
+# -----------------------------------------------------------------------------
+# Multimodal RAG Configuration
+# -----------------------------------------------------------------------------
+multimodal:
+  device: "cpu" # 'cpu' or 'cuda'
+  clipModel: "ViT-B/32"
+  whisperModel: "base"
+  topK: 5
+
+# -----------------------------------------------------------------------------
+# Ingress Routing
+# -----------------------------------------------------------------------------
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: ontology.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+          service: webStudio
+        - path: /mv-studio
+          pathType: Prefix
+          service: mvStudio
+  tls: []

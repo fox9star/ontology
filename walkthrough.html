@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>온톨로지 스튜디오 안정화 기록</title><style>body{margin:0;background:#f3f5f7;color:#202832;font:16px/1.7 "Segoe UI","Malgun Gothic",sans-serif}main{max-width:1020px;margin:36px auto;padding:36px;background:white;border:1px solid #d8dfe6;border-radius:12px;overflow-wrap:anywhere}h1,h2,h3{line-height:1.35;color:#162335}h1{font-size:30px}h2{margin-top:36px;padding-bottom:8px;border-bottom:1px solid #d8dfe6}a{color:#175fa7}table{width:100%;border-collapse:collapse;font-size:.92em}th,td{padding:10px;border:1px solid #d8dfe6;vertical-align:top;text-align:left}th{background:#edf2f7}pre{padding:18px;background:#152234;color:#eef5ff;border-radius:6px;overflow:auto;line-height:1.5}code{font-family:Consolas,monospace;font-size:.9em;background:#edf2f7;padding:2px 5px;border-radius:3px}pre code{background:transparent;padding:0;color:inherit}li{margin:5px 0}@media(max-width:700px){main{margin:0;border:0;border-radius:0;padding:20px}table{display:block;overflow:auto}h1{font-size:25px}}@media print{body{background:white}main{border:0;margin:0;padding:0;max-width:none}a{color:inherit}pre{white-space:pre-wrap;overflow:visible}h2,h3{break-after:avoid}tr{break-inside:avoid}}</style></head><body><main>
+<h1>온톨로지 스튜디오 안정화 기록</h1>
+<p>2026-10-04 현재 폴더의 구현 변경과 확인 범위를 정리합니다. 실행 방법은 <a href="README.md">README</a>, 상세 사용법은 <a href="manual.md">manual.md</a>에 있습니다.</p>
+<p>온톨로지 품질 개선은 아래 기존 안정화 기준에 추가된 후속 변경입니다. 과거 테스트 수치와 API 확인 내역은 이번 스키마 변경의 검증 결과로 계산하지 않습니다.</p>
+<h2>변경한 동작</h2>
+<table>
+<thead>
+<tr>
+<th>영역</th>
+<th>현재 동작</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Codex 텍스트 생성</td>
+<td>ChatGPT로 로그인한 Codex CLI 또는 현재 Codex 채팅이 실제 텍스트 작성</td>
+</tr>
+<tr>
+<td>작업 기록</td>
+<td><code>.codex-jobs/</code>에 요청·실행권·상태·실제 결과·로그 보관</td>
+</tr>
+<tr>
+<td>결과의 RDF 저장</td>
+<td>선택한 데이터 그래프에 PROV-O 출처를 추가하고 SHACL·미디어 검증 뒤 원자적 저장</td>
+</tr>
+<tr>
+<td>로컬 접속</td>
+<td>단일 사용자, loopback·로컬 Host·Origin 검사, 키 없이 로컬 소유자 식별</td>
+</tr>
+<tr>
+<td>CRUD</td>
+<td>읽기·후보 생성·검증·저장을 동일 파일 잠금 안에서 수행</td>
+</tr>
+<tr>
+<td>스냅샷</td>
+<td>데이터 전용, 도메인·프로젝트 범위, UUID 기반 ID·SHA-256 저장</td>
+</tr>
+<tr>
+<td>롤백</td>
+<td>범위·해시·SHACL·미디어 검사 후 실제 데이터 파일 복원</td>
+</tr>
+<tr>
+<td>Diff</td>
+<td>blank node 구조를 고려한 전체 수치와 URI 예시</td>
+</tr>
+<tr>
+<td>추론·분석</td>
+<td>OWL-RL/RDFS 조회용 확장과 그래프 구조 분석</td>
+</tr>
+<tr>
+<td>실행·중지</td>
+<td>로컬 바인딩, health check, 소유 프로세스 확인, 종료 확인</td>
+</tr>
+<tr>
+<td>Docker</td>
+<td>로컬 웹 서비스, 공유 큐·데이터를 사용하는 호스트 Codex worker</td>
+</tr>
+<tr>
+<td>시뮬레이션</td>
+<td>데모 메타데이터와 계획 이력, 별도 실행 폴더에 저장</td>
+</tr>
+<tr>
+<td>온톨로지</td>
+<td>공통 Agent·Task 코어, 7개 SHACL 프로파일, 로컬 core import 로딩</td>
+</tr>
+<tr>
+<td>RDF 정본</td>
+<td>도메인 Turtle을 정본으로 하고 RDF/XML 호환 파일을 생성·드리프트 점검</td>
+</tr>
+<tr>
+<td>질의 목록</td>
+<td>도메인 competency question과 SPARQL 예시를 문서·UI에 제공</td>
+</tr>
+<tr>
+<td>대학 모델</td>
+<td>academic-schema.ttl 정본과 academic-shapes.ttl로 검증 지원</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP <code>202</code>, 요청 파일 생성, worker 시작은 각각 접수·준비 상태입니다. 완료 여부는 <code>job.json</code>의 상태, 실제 생성된 결과와 <code>result.persisted</code>의 저장 증거로 확인합니다. 생성된 텍스트를 보관했지만 검증·RDF 저장에 실패하면 <code>validation_failed</code>로 기록하고 원래 그래프를 유지합니다.</p>
+<p>Codex가 선택한 실제 모델을 확인하지 못한 경우 모델 출처는 미확인으로 남깁니다. 앱은 모델 API 키를 요구하지 않으며 host worker가 저장된 ChatGPT 로그인을 사용합니다. Docker 웹 컨테이너에는 호스트의 로그인 세션을 복사하지 않습니다.</p>
+<p>실제 Codex CLI 작업 <code>codex_d462c6f4c4244f449fe64129838e1b2a</code>가 <code>completed</code>로 기록됐고 실행 방식은 <code>codex_cli_chatgpt</code>입니다. <a href=".codex-jobs/codex_d462c6f4c4244f449fe64129838e1b2a/output.txt">결과 파일</a>의 SHA-256을 다시 계산해 <code>94db8a7c8663bc7eef6c072f56f8eb5160aac89d71063f5cd5869e6e18ffbb0c</code>와 일치함을 확인했습니다. 이 확인 작업은 <code>save_to_graph: false</code>로 실행해 RDF 저장을 요청하지 않았습니다.</p>
+<h2>복구와 데이터 보존</h2>
+<p>새 스냅샷은 스키마를 포함하지 않은 데이터 그래프만 저장합니다. 웹 복원은 선택한 도메인·프로젝트와 일치하는 새 스냅샷에 한정합니다. 이전 버전의 범위 정보가 없는 스냅샷은 과거 기록으로 보관하고 웹 비교·복원은 거부합니다. 파일 변조나 쓰기 실패에서도 원본 데이터가 유지되는지 검사합니다.</p>
+<p>개체 삭제는 incoming/outgoing 관계를 제거한 후보 그래프를 검증합니다. 필수 참조가 깨지거나 등록 미디어의 RDF/manifest 정보가 달라지면 저장하지 않습니다. Codex 결과·개체 편집·복원은 동일한 공통 파일 잠금과 원자적 저장 경로를 사용합니다.</p>
+<p>Docker의 checkout 디렉터리 공유는 원자적 파일 교체를 host worker와 웹에 함께 반영합니다. 미디어 파일은 <code>ONTOLOGY_REGISTERED_ROOT_URI</code>로 원래 등록 작업 폴더를 명시해 컨테이너 위치에 대응시킵니다. 최초 RDF/manifest의 파일 출처는 다시 쓰지 않고 엄격한 URI·SHA-256 검증을 유지합니다.</p>
+<h2>검증 범위</h2>
+<p>검사는 임시 폴더·임시 데이터 파일을 사용해 실제 예제와 등록 프로젝트 RDF를 수정하지 않습니다. 다음 동작과 실패 사례를 확인 대상으로 포함합니다.</p>
+<ul>
+<li>지속 작업 접수·조회, CLI 가용성, 실행권 충돌, 실제 결과 기록, 검증 실패 상태.</li>
+<li>Codex 결과 출처·hash, 데이터 파일의 범위 분리와 원자적 저장.</li>
+<li>같은 초의 여러 스냅샷 ID, hash 변조, 경로 탈출, 다른 도메인·프로젝트 복원 거부.</li>
+<li>파일에 실제 복원된 그래프 재조회, 쓰기 실패 시 파일·메모리 상태 보존.</li>
+<li>구조가 같은 blank node의 의미적 Diff, 전체 수치와 URI 예시.</li>
+<li>생성 SHACL 실패, 필수 참조를 깨뜨리는 삭제 거부, 동시 생성 데이터 유실 방지.</li>
+<li>스레드·프로세스 간 파일 잠금, 동일 스레드 재진입, 직렬화·교체 실패 보존.</li>
+<li>로컬 클라이언트·Host·Origin 제한, 원격·cross-site 요청 거부, Docker 명시 모드.</li>
+<li>실제 미디어 존재·SHA-256·메타데이터 검사와 파일 누락·변조 실패.</li>
+<li>이전 6-domain 구현 기록에서는 대학 모델 검증을 지원하지 않았다. 현재 구현은 대학 shapes를 추가해 7개 프로파일 모두 SHACL을 지원한다.</li>
+<li>실행기 소유 확인, health check, 잘못된 PID와 점유 포트에서 임의 프로세스 보존.</li>
+</ul>
+<p>전체 검사는 다음 명령으로 재현합니다.</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m pip check
+</code></pre>
+<p>최종 전체 검사는 <strong>194개, 31.552초</strong>였으며 <strong>실패 0·오류 0·건너뜀 0</strong>으로 통과했습니다. 패키지 버전은 <code>requirements.lock.txt</code>에 고정하고 설치 시 <code>requirements.txt</code>와 constraints를 함께 적용합니다.</p>
+<p>최종 HTTP 확인에서 health, OpenAPI, 대학 모델 explorer, Codex 상태·목록, 로컬 identity, 프로젝트 스냅샷 목록, 출처 보고서의 <strong>8개 조회 경로가 200</strong>을 반환했습니다. foreign Origin을 보낸 POST는 <strong>403</strong>으로 거부됐습니다. 확인 시 웹 서버는 <code>127.0.0.1:5000</code>에 실행 중이었으며 실제 TCP listener도 확인했습니다.</p>
+<p>포트 5055의 실행기 검사에서는 시작·동일 PID 재사용·종료 후 listener와 소유권 기록 제거를 확인했습니다. 렌더링된 화면 JavaScript는 <code>node --check</code>를 통과했습니다. Docker 실행 파일이 없어 컨테이너 실행은 확인하지 못했고, 브라우저 자동화 도구의 요청 헤더 정책 오류가 두 번 반복돼 화면 조작 검증은 완료하지 못했습니다. HTTP API·JavaScript 문법·임시 파일 기반 저장 검사는 위 결과에 포함됩니다.</p>
+<p>Git 저장소를 <code>main</code> 브랜치로 초기화했습니다. 기준 커밋은 <code>git log -1 --oneline</code>으로 확인할 수 있고 생성 작업 기록·가상 환경·실행 로그는 소스와 분리해 관리합니다. 현재 확인 결과는 위 실행 기록이며 과거 문서의 일괄 성공 수치로 대체하지 않습니다.</p>
+<h2>실제 미디어와 시뮬레이션 구분</h2>
+<p>Late Night Mood의 실제 등록은 2026-10-03 기록입니다. WAV 1개와 JPEG 2개를 기존 원본에서 복사했고 당시 SHA-256과 메타데이터·SHACL 검증을 통과했습니다. 원본 생성 모델·프롬프트는 미확인입니다. 두 장면은 음원 전체를 나눈 배치 계획이며 최종 영상은 렌더링하지 않았습니다.</p>
+<p><code>simulation.py</code>와 <code>run_pipeline.py</code>는 작업 과정과 메타데이터를 실습합니다. 데모 결과는 계획·시뮬레이션으로 표시하고 외부 SPARQL 업데이트·webhook은 명시적으로 요청한 경우에만 전송합니다. 영상 생성 제출·다운로드·렌더링을 완료했다는 증거는 별도 미디어 실행기에서 확보해야 합니다.</p>
+<p>출처 보고서는 RDF에 기록된 근거를 보여 주는 출력물입니다. 확인하지 못한 모델·원본 출처를 추정하지 않고 외부 인증이나 공식 보증 문서로 표현하지 않습니다.</p>
+<h2>이전 문서의 위치</h2>
+<p>이 <code>walkthrough.md</code>와 <code>walkthrough.html</code>은 현재 온톨로지 폴더의 안정화 기록으로 갱신했습니다. 이전 v3.1 문서의 엔터프라이즈 RBAC, 고정된 model 이름, 공인 인증서, 과거 테스트 수 주장은 현재 운영 설명에서 제거했습니다. 별도 영상 스튜디오의 과거 변경은 이 폴더의 완료 증거로 사용하지 않습니다.</p>
+<p><code>implementation_plan.md</code>와 일부 도메인 개념 문서는 최초 계획·과거 설계를 보관합니다. 현재 기능과 명령은 README·manual·코드를 기준으로 확인합니다. Markdown과 HTML 매뉴얼·안정화 기록은 같은 본문에서 생성합니다.</p>
+</main></body></html>

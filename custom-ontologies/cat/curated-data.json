@@ -1,0 +1,368 @@
+{
+  "description": "공식 CFA 품종 표준의 초기 특징 8개와 가상 고양이·보호자·생활환경·활동·관찰 예제입니다.",
+  "sources": {
+    "cfa-maine-coon": {
+      "label_ko": "CFA 메인쿤 품종 표준",
+      "label_en": "CFA Maine Coon Cat breed standard",
+      "url": "https://cfa.org/breed/maine-coon-cat/",
+      "publisher": "The Cat Fanciers' Association",
+      "kind": "breed-registry"
+    },
+    "cfa-siamese": {
+      "label_ko": "CFA 샴 품종 표준",
+      "label_en": "CFA Siamese breed standard",
+      "url": "https://cfa.org/breed/siamese/",
+      "publisher": "The Cat Fanciers' Association",
+      "kind": "breed-registry"
+    },
+    "cfa-british-shorthair": {
+      "label_ko": "CFA 브리티시 쇼트헤어 품종 표준",
+      "label_en": "CFA British Shorthair breed standard",
+      "url": "https://cfa.org/breed/british-shorthair/",
+      "publisher": "The Cat Fanciers' Association",
+      "kind": "breed-registry"
+    },
+    "cfa-norwegian-forest": {
+      "label_ko": "CFA 노르웨이 숲 품종 표준",
+      "label_en": "CFA Norwegian Forest Cat breed standard",
+      "url": "https://cfa.org/breed/norwegian-forest-cat/",
+      "publisher": "The Cat Fanciers' Association",
+      "kind": "breed-registry"
+    }
+  },
+  "breeds": {
+    "maine-coon": {
+      "label_ko": "메인쿤",
+      "label_en": "Maine Coon Cat",
+      "source": "cfa-maine-coon"
+    },
+    "siamese": {
+      "label_ko": "샴",
+      "label_en": "Siamese",
+      "source": "cfa-siamese"
+    },
+    "british-shorthair": {
+      "label_ko": "브리티시 쇼트헤어",
+      "label_en": "British Shorthair",
+      "source": "cfa-british-shorthair"
+    },
+    "norwegian-forest": {
+      "label_ko": "노르웨이 숲",
+      "label_en": "Norwegian Forest Cat",
+      "source": "cfa-norwegian-forest"
+    }
+  },
+  "traits": {
+    "maine-coon-coat": {
+      "breed": "maine-coon",
+      "category": "coat",
+      "label_ko": "메인쿤의 털 기술",
+      "label_en": "Maine Coon coat description",
+      "text": "CFA 표준은 풍성하고 길이가 고르지 않은 털을 기술하며, 어깨의 털은 배와 뒷다리 부위보다 짧다."
+    },
+    "maine-coon-body": {
+      "breed": "maine-coon",
+      "category": "body",
+      "label_ko": "메인쿤의 체형 기술",
+      "label_en": "Maine Coon body description",
+      "text": "CFA 표준은 길고 균형 잡힌 직사각형 형태의 몸을 기술한다."
+    },
+    "siamese-coat": {
+      "breed": "siamese",
+      "category": "coat",
+      "label_ko": "샴의 털 기술",
+      "label_en": "Siamese coat description",
+      "text": "CFA 표준은 짧고 가는 털이 몸에 밀착된다고 기술한다."
+    },
+    "siamese-pattern": {
+      "breed": "siamese",
+      "category": "pattern",
+      "label_ko": "샴의 포인트 무늬 기술",
+      "label_en": "Siamese point pattern description",
+      "text": "CFA 표준은 밝은 몸통과 짙은 얼굴·귀·다리·발·꼬리의 포인트 사이의 대비를 기술한다."
+    },
+    "british-shorthair-coat": {
+      "breed": "british-shorthair",
+      "category": "coat",
+      "label_ko": "브리티시 쇼트헤어의 털 기술",
+      "label_en": "British Shorthair coat description",
+      "text": "CFA 표준은 짧고 매우 조밀한 털을 기술한다."
+    },
+    "british-shorthair-body": {
+      "breed": "british-shorthair",
+      "category": "body",
+      "label_ko": "브리티시 쇼트헤어의 체형 기술",
+      "label_en": "British Shorthair body description",
+      "text": "CFA 표준은 다부지고 힘 있는 몸과 넓은 가슴을 기술한다."
+    },
+    "norwegian-forest-coat": {
+      "breed": "norwegian-forest",
+      "category": "coat",
+      "label_ko": "노르웨이 숲의 이중모 기술",
+      "label_en": "Norwegian Forest Cat double coat description",
+      "text": "CFA 표준은 조밀한 속털과 길고 매끄러운 방수성 겉털로 이루어진 이중모를 기술한다."
+    },
+    "norwegian-forest-body": {
+      "breed": "norwegian-forest",
+      "category": "body",
+      "label_ko": "노르웨이 숲의 체형 기술",
+      "label_en": "Norwegian Forest Cat body description",
+      "text": "CFA 표준은 근육이 발달하고 넓은 가슴을 가진 몸을 기술한다."
+    }
+  },
+  "guardians": {
+    "guardian-a": {
+      "label_ko": "합성 보호자 A",
+      "label_en": "Synthetic guardian A"
+    },
+    "guardian-b": {
+      "label_ko": "합성 보호자 B",
+      "label_en": "Synthetic guardian B"
+    }
+  },
+  "environments": {
+    "home-a": {
+      "label_ko": "합성 실내 환경 A",
+      "label_en": "Synthetic indoor environment A",
+      "kind": "indoor",
+      "note": "가상 고양이의 실내 생활환경 예제입니다. 실제 주소나 주거 안전 평가를 나타내지 않습니다."
+    },
+    "home-b": {
+      "label_ko": "합성 실내 환경 B",
+      "label_en": "Synthetic indoor environment B",
+      "kind": "indoor",
+      "note": "두 번째 가상 실내 생활환경입니다. 실제 거주지 정보는 없습니다."
+    },
+    "enclosed-space": {
+      "label_ko": "합성 울타리 외부 공간",
+      "label_en": "Synthetic enclosed outdoor space",
+      "kind": "enclosed-outdoor",
+      "note": "울타리가 있는 외부 공간 유형을 보여 주는 가상 환경입니다. 특정 시설의 안전성을 보증하지 않습니다."
+    }
+  },
+  "cats": {
+    "nabi": {
+      "label_ko": "합성 고양이: 나비",
+      "label_en": "Synthetic cat: Nabi",
+      "record_kind": "synthetic",
+      "sex": "female",
+      "birth_date": null,
+      "breed_status": "unknown",
+      "breed": null,
+      "breed_evidence": null,
+      "environment": "home-a",
+      "guardian": "guardian-a"
+    },
+    "tori": {
+      "label_ko": "합성 고양이: 토리",
+      "label_en": "Synthetic cat: Tori",
+      "record_kind": "synthetic",
+      "sex": "unknown",
+      "birth_date": null,
+      "breed_status": "unknown",
+      "breed": null,
+      "breed_evidence": null,
+      "environment": "home-b",
+      "guardian": "guardian-b"
+    },
+    "mocha": {
+      "label_ko": "합성 고양이: 모카",
+      "label_en": "Synthetic cat: Mocha",
+      "record_kind": "synthetic",
+      "sex": "male",
+      "birth_date": "2023-05-01",
+      "breed_status": "recorded",
+      "breed": "maine-coon",
+      "breed_evidence": "가상 예제의 메인쿤 품종 설정입니다. 실제 고양이의 혈통 확인 기록이 아닙니다.",
+      "environment": "home-a",
+      "guardian": "guardian-a"
+    },
+    "luna": {
+      "label_ko": "합성 고양이: 루나",
+      "label_en": "Synthetic cat: Luna",
+      "record_kind": "synthetic",
+      "sex": "female",
+      "birth_date": "2024-03-10",
+      "breed_status": "recorded",
+      "breed": "siamese",
+      "breed_evidence": "가상 예제의 샴 품종 설정입니다. 외형 관찰로 추정한 품종이 아닙니다.",
+      "environment": "home-b",
+      "guardian": "guardian-b"
+    },
+    "kong": {
+      "label_ko": "합성 고양이: 콩이",
+      "label_en": "Synthetic cat: Kong",
+      "record_kind": "synthetic",
+      "sex": "male",
+      "birth_date": "2022-11-08",
+      "breed_status": "recorded",
+      "breed": "british-shorthair",
+      "breed_evidence": "가상 예제의 브리티시 쇼트헤어 품종 설정입니다. 실제 등록증이나 혈통 증거를 주장하지 않습니다.",
+      "environment": "home-b",
+      "guardian": "guardian-b"
+    },
+    "cloud": {
+      "label_ko": "합성 고양이: 구름",
+      "label_en": "Synthetic cat: Cloud",
+      "record_kind": "synthetic",
+      "sex": "unknown",
+      "birth_date": null,
+      "breed_status": "recorded",
+      "breed": "norwegian-forest",
+      "breed_evidence": "가상 예제의 노르웨이 숲 품종 설정입니다. 실제 고양이의 품종을 확인한 자료가 아닙니다.",
+      "environment": "enclosed-space",
+      "guardian": "guardian-a"
+    }
+  },
+  "care_records": {
+    "care-01": {
+      "label_ko": "합성 기록: 나비 급식 준비",
+      "label_en": "Synthetic record: Nabi feeding preparation",
+      "cat": "nabi",
+      "carer": "guardian-a",
+      "kind": "feeding",
+      "status": "planned",
+      "scheduled_for": "2026-10-06T00:00:00Z",
+      "performed_at": null,
+      "note": "가상 예제의 예정 기록입니다. 음식 종류·용량·영양 처방은 포함하지 않습니다."
+    },
+    "care-02": {
+      "label_ko": "합성 기록: 토리 물 교체",
+      "label_en": "Synthetic record: Tori water refresh",
+      "cat": "tori",
+      "carer": "guardian-b",
+      "kind": "water-refresh",
+      "status": "completed",
+      "scheduled_for": "2026-10-05T00:00:00Z",
+      "performed_at": "2026-10-05T00:05:00Z",
+      "note": "가상 예제에서 수행 시각을 가진 물 교체 기록입니다."
+    },
+    "care-03": {
+      "label_ko": "합성 기록: 모카 놀이 계획",
+      "label_en": "Synthetic record: Mocha play plan",
+      "cat": "mocha",
+      "carer": "guardian-a",
+      "kind": "play",
+      "status": "planned",
+      "scheduled_for": "2026-10-06T09:00:00Z",
+      "performed_at": null,
+      "note": "가상 놀이 계획입니다. 실제 활동이 수행되었다는 기록은 없습니다."
+    },
+    "care-04": {
+      "label_ko": "합성 기록: 루나 화장실 청소",
+      "label_en": "Synthetic record: Luna litter cleaning",
+      "cat": "luna",
+      "carer": "guardian-b",
+      "kind": "litter-cleaning",
+      "status": "completed",
+      "scheduled_for": null,
+      "performed_at": "2026-10-05T01:00:00Z",
+      "note": "가상 예제의 완료 기록으로 수행 시각을 기록했습니다."
+    },
+    "care-05": {
+      "label_ko": "합성 기록: 콩이 손질 취소",
+      "label_en": "Synthetic record: Kong grooming cancellation",
+      "cat": "kong",
+      "carer": "guardian-b",
+      "kind": "grooming",
+      "status": "cancelled",
+      "scheduled_for": "2026-10-05T08:00:00Z",
+      "performed_at": null,
+      "note": "가상 예제에서 취소된 계획이며 수행 시각은 없습니다."
+    },
+    "care-06": {
+      "label_ko": "합성 기록: 구름 손질",
+      "label_en": "Synthetic record: Cloud grooming",
+      "cat": "cloud",
+      "carer": "guardian-a",
+      "kind": "grooming",
+      "status": "completed",
+      "scheduled_for": "2026-10-05T06:00:00Z",
+      "performed_at": "2026-10-05T06:15:00Z",
+      "note": "가상 예제의 손질 완료 기록입니다. 권장 주기를 나타내지 않습니다."
+    }
+  },
+  "observations": {
+    "observation-01": {
+      "label_ko": "합성 관찰: 나비 행동",
+      "label_en": "Synthetic observation: Nabi behavior",
+      "cat": "nabi",
+      "at": "2026-10-05T02:00:00Z",
+      "kind": "behavior",
+      "text": "가상 예제에서 창가에 앉아 있는 모습을 기록했습니다.",
+      "value": null,
+      "unit": null
+    },
+    "observation-02": {
+      "label_ko": "합성 관찰: 토리 외형",
+      "label_en": "Synthetic observation: Tori appearance",
+      "cat": "tori",
+      "at": "2026-10-05T02:10:00Z",
+      "kind": "appearance",
+      "text": "가상 예제의 짧은 털을 기록했습니다. 이 관찰에서 품종을 추론하지 않습니다.",
+      "value": null,
+      "unit": null
+    },
+    "observation-03": {
+      "label_ko": "합성 관찰: 모카 체중",
+      "label_en": "Synthetic observation: Mocha weight",
+      "cat": "mocha",
+      "at": "2026-10-05T02:20:00Z",
+      "kind": "weight",
+      "text": "가상 측정값입니다. 품종의 표준 체중 또는 건강 판단 기준이 아닙니다.",
+      "value": "5.4",
+      "unit": "kg"
+    },
+    "observation-04": {
+      "label_ko": "합성 관찰: 루나 행동",
+      "label_en": "Synthetic observation: Luna behavior",
+      "cat": "luna",
+      "at": "2026-10-05T02:30:00Z",
+      "kind": "behavior",
+      "text": "가상 예제에서 장난감에 관심을 보인 행동을 기록했습니다.",
+      "value": null,
+      "unit": null
+    },
+    "observation-05": {
+      "label_ko": "합성 관찰: 콩이 체중",
+      "label_en": "Synthetic observation: Kong weight",
+      "cat": "kong",
+      "at": "2026-10-05T02:40:00Z",
+      "kind": "weight",
+      "text": "가상 측정값이며 개체의 건강 상태를 분류하지 않습니다.",
+      "value": "4.2",
+      "unit": "kg"
+    },
+    "observation-06": {
+      "label_ko": "합성 관찰: 구름 외형",
+      "label_en": "Synthetic observation: Cloud appearance",
+      "cat": "cloud",
+      "at": "2026-10-05T02:50:00Z",
+      "kind": "appearance",
+      "text": "가상 개체의 풍성한 털을 기록했습니다. 품종 표준의 특징을 자동 적용한 관찰이 아닙니다.",
+      "value": null,
+      "unit": null
+    },
+    "observation-07": {
+      "label_ko": "합성 관찰: 나비 체중",
+      "label_en": "Synthetic observation: Nabi weight",
+      "cat": "nabi",
+      "at": "2026-10-05T03:00:00Z",
+      "kind": "weight",
+      "text": "품종이 미확인인 가상 개체의 예제 측정값입니다.",
+      "value": "3.6",
+      "unit": "kg"
+    },
+    "observation-08": {
+      "label_ko": "합성 관찰: 토리 행동",
+      "label_en": "Synthetic observation: Tori behavior",
+      "cat": "tori",
+      "at": "2026-10-05T03:10:00Z",
+      "kind": "behavior",
+      "text": "가상 예제에서 실내 선반에 올라가 있는 모습을 기록했습니다.",
+      "value": null,
+      "unit": null
+    }
+  },
+  "accessed_on": "2026-10-05"
+}

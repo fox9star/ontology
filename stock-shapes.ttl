@@ -1,0 +1,315 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix stock: <http://example.org/ontology/stock#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# SHACL NodeShapes for Stock Investment Ontology
+# =============================================================================
+
+stock:FinancialAssetShape a sh:NodeShape ;
+    sh:targetClass stock:FinancialAsset, stock:ExchangeTradedFund ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "금융 자산에는 표시 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:isin ;
+        sh:datatype xsd:string ;
+        sh:message "ISIN 코드는 문자열이어야 합니다."@ko
+    ] .
+
+stock:StockShape a sh:NodeShape ;
+    sh:targetClass stock:Stock, stock:CommonStock, stock:PreferredStock ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "주식 종목에는 표시 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:tickerSymbol ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "주식 종목에는 유효한 티커 심볼 코드가 1개 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:issuedBy ;
+        sh:class stock:Corporation ;
+        sh:minCount 1 ;
+        sh:message "주식 종목에는 발행 기업(Corporation)이 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:tradedOn ;
+        sh:class stock:StockExchange ;
+        sh:minCount 1 ;
+        sh:message "주식 종목에는 상장 거래소(StockExchange)가 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:hasDailyPrice ;
+        sh:class stock:DailyPrice ;
+        sh:message "일별 시세 참조는 DailyPrice여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:hasFinancialMetric ;
+        sh:class stock:FinancialMetric ;
+        sh:message "재무 지표 참조는 FinancialMetric이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:hasTechnicalIndicator ;
+        sh:class stock:TechnicalIndicator ;
+        sh:message "기술적 지표 참조는 TechnicalIndicator여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:isin ;
+        sh:datatype xsd:string ;
+        sh:message "ISIN 코드는 문자열이어야 합니다."@ko
+    ] .
+
+stock:CorporationShape a sh:NodeShape ;
+    sh:targetClass stock:Corporation ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "상장 법인에는 기업 명칭 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:marketCap ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message "시가총액은 0 이상의 십진수 금액이어야 합니다."@ko
+    ] .
+
+stock:StockExchangeShape a sh:NodeShape ;
+    sh:targetClass stock:StockExchange ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "증권 거래소에는 명칭 라벨이 필요합니다."@ko
+    ] .
+
+stock:DailyPriceShape a sh:NodeShape ;
+    sh:targetClass stock:DailyPrice ;
+    sh:property [
+        sh:path stock:priceDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "일별 시세 데이터에는 기준 일자(priceDate)가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:closingPrice ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minExclusive 0 ;
+        sh:message "장마감 종가는 0보다 큰 양의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:tradingVolume ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "당일 누적 거래량은 0 이상의 정수여야 합니다."@ko
+    ] .
+
+stock:FinancialMetricShape a sh:NodeShape ;
+    sh:targetClass stock:FinancialMetric ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "재무 지표에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:per ;
+        sh:datatype xsd:decimal ;
+        sh:message "PER 지표는 십진수 값이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:pbr ;
+        sh:datatype xsd:decimal ;
+        sh:message "PBR 지표는 십진수 값이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:roe ;
+        sh:datatype xsd:decimal ;
+        sh:message "ROE 지표는 십진수 값이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:dividendYield ;
+        sh:datatype xsd:decimal ;
+        sh:message "배당수익률은 십진수 값이어야 합니다."@ko
+    ] .
+
+stock:TechnicalIndicatorShape a sh:NodeShape ;
+    sh:targetClass stock:TechnicalIndicator ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "기술적 지표에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:rsi ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100 ;
+        sh:message "RSI 지표는 0 이상 100 이하의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:movingAverage20 ;
+        sh:datatype xsd:decimal ;
+        sh:minExclusive 0 ;
+        sh:message "20일 이동평균선은 0보다 큰 양의 십진수여야 합니다."@ko
+    ] .
+
+stock:TradingStrategyShape a sh:NodeShape ;
+    sh:targetClass stock:TradingStrategy ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "투자 전략에는 전략 명칭 라벨이 필요합니다."@ko
+    ] .
+
+stock:PortfolioPositionShape a sh:NodeShape ;
+    sh:targetClass stock:PortfolioPosition ;
+    sh:property [
+        sh:path stock:positionAsset ;
+        sh:class stock:FinancialAsset ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "포트폴리오 보유 종목에는 대상 금융 자산이 1개 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:positionQuantity ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "보유 주식 수량은 0 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:averageCost ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "평균 매입 단가는 0 이상의 십진수 금액이어야 합니다."@ko
+    ] .
+
+stock:TradingOrderShape a sh:NodeShape ;
+    sh:targetClass stock:TradingOrder ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "매매 주문에는 주문 식별 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:orderType ;
+        sh:datatype xsd:string ;
+        sh:in ( "BUY" "SELL" ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문 유형은 'BUY' 또는 'SELL'이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:orderStatus ;
+        sh:datatype xsd:string ;
+        sh:in ( "PENDING" "EXECUTED" "CANCELLED" ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문 처리 상태는 'PENDING', 'EXECUTED', 'CANCELLED' 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:orderQuantity ;
+        sh:datatype xsd:integer ;
+        sh:minExclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문 수량은 0보다 큰 양의 정수(1주 이상)여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:orderPrice ;
+        sh:datatype xsd:decimal ;
+        sh:minExclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문 단가는 0보다 큰 양의 십진수 금액이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:orderAsset ;
+        sh:class stock:FinancialAsset ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문 대상 자산(orderAsset)이 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:executedByAgent ;
+        sh:class stock:StockTradingAgent ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "주문을 발주 및 집행한 AI 에이전트(StockTradingAgent)가 연결되어야 합니다."@ko
+    ] .
+
+stock:InvestmentPortfolioShape a sh:NodeShape ;
+    sh:targetClass stock:InvestmentPortfolio ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "투자 포트폴리오에는 포트폴리오 명칭 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:managedByAgent ;
+        sh:class stock:StockTradingAgent ;
+        sh:minCount 1 ;
+        sh:message "포트폴리오에는 총괄 운용 AI 에이전트가 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:followsStrategy ;
+        sh:class stock:TradingStrategy ;
+        sh:minCount 1 ;
+        sh:message "포트폴리오에는 투자 전략(TradingStrategy)이 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:totalValue ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "포트폴리오 총 평가액은 0 이상의 십진수 금액이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:cashBalance ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "가용 현금 잔고는 0 이상의 십진수 금액이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:sharpeRatio ;
+        sh:datatype xsd:decimal ;
+        sh:message "샤프 지수는 십진수 값이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:holdsPosition ;
+        sh:class stock:PortfolioPosition ;
+        sh:message "보유 포지션 연결은 PortfolioPosition 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path stock:hasOrder ;
+        sh:class stock:TradingOrder ;
+        sh:message "발주 주문 연결은 TradingOrder 인스턴스여야 합니다."@ko
+    ] .
+
+stock:StockTradingAgentShape a sh:NodeShape ;
+    sh:targetClass stock:StockTradingAgent, stock:QuantAnalystAgent, stock:RiskManagerAgent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "주식 투자 AI 에이전트에는 에이전트 명칭 라벨이 필요합니다."@ko
+    ] .

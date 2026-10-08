@@ -1,0 +1,175 @@
+@prefix div: <https://example.org/ontology/custom/divorce#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+div:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+div:DivorceCaseShape a sh:NodeShape ; sh:targetClass div:DivorceCase ; sh:node div:LabelShape ;
+    sh:property [ sh:path div:caseType ; sh:datatype xsd:string ; sh:in ( "consensual" "mediation" "litigation" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:caseStatus ; sh:datatype xsd:string ; sh:in ( "preparing" "filed" "finalized" "withdrawn" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:filedDate ; sh:datatype xsd:date ; sh:maxCount 1 ; sh:lessThanOrEquals div:reflectionEndDate ] ;
+    sh:property [ sh:path div:filedDate ; sh:lessThanOrEquals div:effectiveDate ] ;
+    sh:property [ sh:path div:filedDate ; sh:lessThanOrEquals div:withdrawalDate ] ;
+    sh:property [ sh:path div:reflectionEndDate ; sh:datatype xsd:date ; sh:maxCount 1 ; sh:lessThanOrEquals div:confirmationDate ] ;
+    sh:property [ sh:path div:confirmationDate ; sh:datatype xsd:date ; sh:maxCount 1 ; sh:lessThanOrEquals div:effectiveDate ] ;
+    sh:property [ sh:path div:effectiveDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:decreeEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:withdrawalDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:hasParty ; sh:class div:Party ; sh:minCount 2 ; sh:maxCount 2 ] ;
+    sh:property [ sh:path div:hasChild ; sh:class div:Child ] ;
+    sh:property [ sh:path div:hasCustodyArrangement ; sh:class div:CustodyArrangement ] ;
+    sh:property [ sh:path div:hasSupportObligation ; sh:class div:SupportObligation ] ;
+    sh:property [ sh:path div:hasAsset ; sh:class div:Asset ] ;
+    sh:or (
+        [ sh:property [ sh:path div:caseStatus ; sh:hasValue "preparing" ] ;
+          sh:property [ sh:path div:filedDate ; sh:maxCount 0 ] ; sh:property [ sh:path div:effectiveDate ; sh:maxCount 0 ] ;
+          sh:property [ sh:path div:decreeEvidenceUri ; sh:maxCount 0 ] ; sh:property [ sh:path div:withdrawalDate ; sh:maxCount 0 ] ;
+          sh:property [ sh:path div:confirmationDate ; sh:maxCount 0 ] ; sh:property [ sh:path div:reflectionEndDate ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path div:caseStatus ; sh:hasValue "filed" ] ;
+          sh:property [ sh:path div:filedDate ; sh:minCount 1 ] ; sh:property [ sh:path div:effectiveDate ; sh:maxCount 0 ] ;
+          sh:property [ sh:path div:decreeEvidenceUri ; sh:maxCount 0 ] ; sh:property [ sh:path div:withdrawalDate ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path div:caseStatus ; sh:hasValue "finalized" ] ;
+          sh:property [ sh:path div:filedDate ; sh:minCount 1 ] ; sh:property [ sh:path div:effectiveDate ; sh:minCount 1 ] ;
+          sh:property [ sh:path div:decreeEvidenceUri ; sh:minCount 1 ] ; sh:property [ sh:path div:withdrawalDate ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path div:caseStatus ; sh:hasValue "withdrawn" ] ;
+          sh:property [ sh:path div:filedDate ; sh:minCount 1 ] ; sh:property [ sh:path div:withdrawalDate ; sh:minCount 1 ] ;
+          sh:property [ sh:path div:effectiveDate ; sh:maxCount 0 ] ; sh:property [ sh:path div:decreeEvidenceUri ; sh:maxCount 0 ] ]
+    ) ;
+    sh:or (
+        [ sh:property [ sh:path div:caseType ; sh:hasValue "consensual" ] ]
+        [ sh:property [ sh:path div:caseType ; sh:in ( "mediation" "litigation" ) ] ;
+          sh:property [ sh:path div:reflectionEndDate ; sh:maxCount 0 ] ; sh:property [ sh:path div:confirmationDate ; sh:maxCount 0 ] ]
+    ) ;
+    sh:sparql [ sh:message "A consensual case that has been filed needs a reflection end date, and a finalized one also needs a confirmation date." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:caseType "consensual" ; div:caseStatus ?status .
+            FILTER ((?status IN ("filed", "finalized", "withdrawn") && NOT EXISTS { $this div:reflectionEndDate ?r })
+                    || (?status = "finalized" && NOT EXISTS { $this div:confirmationDate ?c }))
+          }""" ] ;
+    sh:sparql [ sh:message "Both parties of a consensual case are joint petitioners; other cases have no joint petitioner." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:caseType ?type ; div:hasParty ?party . ?party div:partyRole ?role .
+            FILTER ((?type = "consensual" && ?role != "joint-petitioner") || (?type != "consensual" && ?role = "joint-petitioner"))
+          }""" ] ;
+    sh:sparql [ sh:message "A mediation or litigation case needs exactly one petitioner among its parties." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:caseType ?type . FILTER (?type != "consensual")
+            OPTIONAL { $this div:hasParty ?party . ?party div:partyRole "petitioner" }
+          }
+          GROUP BY $this
+          HAVING (COUNT(DISTINCT ?party) != 1)""" ] ;
+    sh:sparql [ sh:message "A finalized case needs a custody arrangement for every child who was a minor at filing." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:caseStatus "finalized" ; div:hasChild ?child . ?child div:minorAtFiling true .
+            FILTER NOT EXISTS { $this div:hasCustodyArrangement ?a . ?a div:custodyOfChild ?child }
+          }""" ] ;
+    sh:sparql [ sh:message "A custody arrangement must concern a child of the same case." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:hasCustodyArrangement ?a . ?a div:custodyOfChild ?child .
+            FILTER NOT EXISTS { $this div:hasChild ?child }
+          }""" ] ;
+    sh:sparql [ sh:message "A custody arrangement is only for a child who was a minor at filing." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:hasCustodyArrangement ?a . ?a div:custodyOfChild ?child . ?child div:minorAtFiling false .
+          }""" ] ;
+    sh:sparql [ sh:message "A child can have only one custody arrangement." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:hasCustodyArrangement ?a, ?b . ?a div:custodyOfChild ?child . ?b div:custodyOfChild ?child .
+            FILTER (?a != ?b)
+          }""" ] ;
+    sh:sparql [ sh:message "The custodian must be a party of the case." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:hasCustodyArrangement ?a . ?a div:custodian ?person .
+            FILTER NOT EXISTS { $this div:hasParty ?person }
+          }""" ] .
+
+div:PartyShape a sh:NodeShape ; sh:targetClass div:Party ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasParty ] ; sh:class div:DivorceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:partyRole ; sh:datatype xsd:string ; sh:in ( "joint-petitioner" "petitioner" "respondent" ) ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+div:ChildShape a sh:NodeShape ; sh:targetClass div:Child ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasChild ] ; sh:class div:DivorceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:minorAtFiling ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+div:CustodyArrangementShape a sh:NodeShape ; sh:targetClass div:CustodyArrangement ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasCustodyArrangement ] ; sh:class div:DivorceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:custodyOfChild ; sh:class div:Child ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:custodian ; sh:class div:Party ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:authorityHolding ; sh:datatype xsd:string ; sh:in ( "sole" "joint" ) ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+div:SupportObligationShape a sh:NodeShape ; sh:targetClass div:SupportObligation ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasSupportObligation ] ; sh:class div:DivorceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:supportForChild ; sh:class div:Child ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:payer ; sh:class div:Party ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:payee ; sh:class div:Party ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:monthlyAmount ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:currencyCode ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:paymentDay ; sh:datatype xsd:integer ; sh:minInclusive 1 ; sh:maxInclusive 31 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The payer and payee must be different parties." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE { $this div:payer ?p ; div:payee ?p . }""" ] ;
+    sh:sparql [ sh:message "The payer and payee must be parties of the same case." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            ?case div:hasSupportObligation $this .
+            { $this div:payer ?p } UNION { $this div:payee ?p }
+            FILTER NOT EXISTS { ?case div:hasParty ?p }
+          }""" ] ;
+    sh:sparql [ sh:message "Support must be for a child of the same case who was a minor at filing." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            ?case div:hasSupportObligation $this . $this div:supportForChild ?child .
+            OPTIONAL { ?case div:hasChild ?own . FILTER (?own = ?child) }
+            OPTIONAL { ?child div:minorAtFiling ?minor }
+            FILTER (!BOUND(?own) || ?minor = false)
+          }""" ] ;
+    sh:sparql [ sh:message "Support is received by the custodian of the child." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            ?case div:hasSupportObligation $this ; div:hasCustodyArrangement ?a .
+            $this div:supportForChild ?child ; div:payee ?payee .
+            ?a div:custodyOfChild ?child ; div:custodian ?custodian .
+            FILTER (?custodian != ?payee)
+          }""" ] .
+
+div:AssetShape a sh:NodeShape ; sh:targetClass div:Asset ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasAsset ] ; sh:class div:DivorceCase ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:assetType ; sh:datatype xsd:string ; sh:in ( "real-estate" "deposit" "vehicle" "pension" "debt" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:estimatedValue ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:valueCurrency ; sh:datatype xsd:string ; sh:pattern "^[A-Z]{3}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:hasAllocation ; sh:class div:AssetAllocation ] ;
+    sh:sparql [ sh:message "In a finalized case the shares of an item must total 100." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            ?case div:hasAsset $this ; div:caseStatus "finalized" .
+            OPTIONAL { $this div:hasAllocation ?a . ?a div:sharePercent ?share }
+          }
+          GROUP BY $this
+          HAVING (COALESCE(SUM(?share), 0) != 100)""" ] ;
+    sh:sparql [ sh:message "An item cannot be allocated twice to the same party." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            $this div:hasAllocation ?a, ?b . ?a div:allocatedTo ?party . ?b div:allocatedTo ?party .
+            FILTER (?a != ?b)
+          }""" ] .
+
+div:AssetAllocationShape a sh:NodeShape ; sh:targetClass div:AssetAllocation ; sh:node div:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath div:hasAllocation ] ; sh:class div:Asset ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:allocatedTo ; sh:class div:Party ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path div:sharePercent ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxInclusive 100 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The share must go to a party of the same case." ;
+        sh:select """PREFIX div: <https://example.org/ontology/custom/divorce#>
+          SELECT $this WHERE {
+            ?case div:hasAsset ?asset . ?asset div:hasAllocation $this . $this div:allocatedTo ?party .
+            FILTER NOT EXISTS { ?case div:hasParty ?party }
+          }""" ] .

@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "domain",
+  "name": "지식·업무 영역 온톨로지 (domain)",
+  "description": "지식·응용 영역의 분류 체계와 하위 계층, 범위 경계, 로컬 온톨로지 프로필 배정, 교차 영역 관계, 외부 분류 매핑의 출처·검토·변경 상태를 관리한다. SKOS 개념 모델과 연결한 예시 분류는 초안이다.",
+  "name_en": "Knowledge and Application Domain Ontology",
+  "description_en": "Manages knowledge and application domain schemes, direct hierarchy, scope boundaries, local ontology profile assignments, cross-domain relations, and evidence, review, and change state for external mappings. The SKOS-aligned example taxonomy is a draft.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/domain#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T13:33:54+09:00",
+  "schema": "custom-ontologies/domain/schema.ttl",
+  "owl": "custom-ontologies/domain/schema.owl",
+  "shapes": "custom-ontologies/domain/shapes.ttl",
+  "example": "custom-ontologies/domain/example.ttl",
+  "questions": "custom-ontologies/domain/questions.md",
+  "questions_fixture": "custom-ontologies/domain/question-fixture.ttl",
+  "question_answers": "custom-ontologies/domain/question-answers.json",
+  "compatibility_cases": "custom-ontologies/domain/consumer-cases.trig"
+}

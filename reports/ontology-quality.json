@@ -1,0 +1,7489 @@
+{
+  "format_version": 1,
+  "valid": true,
+  "summary": {
+    "terms": 231,
+    "classes": 71,
+    "properties": 160,
+    "questions": 45,
+    "terms_with_shapes": 222,
+    "terms_referenced_by_questions": 131,
+    "terms_used_by_bundled_instances": 175,
+    "cq_backlog_terms": 100,
+    "structural_exceptions": 10,
+    "profile_count": 9,
+    "project_count": 1
+  },
+  "errors": [],
+  "modules": [
+    {
+      "file": "core-schema.ttl",
+      "ontology": "https://example.org/ontology/core",
+      "version": "1.1.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#"
+      ]
+    },
+    {
+      "file": "mv-schema.ttl",
+      "ontology": "https://example.org/mv",
+      "version": "1.2.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "agent-schema.ttl",
+      "ontology": "https://example.org/agent",
+      "version": "1.2.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "devops-schema.ttl",
+      "ontology": "http://example.org/ontology/devops",
+      "version": "1.2.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "ecommerce-schema.ttl",
+      "ontology": "http://example.org/ontology/ecommerce",
+      "version": "1.2.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "healthcare-schema.ttl",
+      "ontology": "http://example.org/ontology/healthcare",
+      "version": "1.3.1",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#",
+        "https://example.org/ontology/core",
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "academic-schema.ttl",
+      "ontology": "https://example.org/ontology/academic",
+      "version": "1.2.1",
+      "imports": [
+        "https://example.org/ontology/vocab"
+      ]
+    },
+    {
+      "file": "controlled-vocabularies.ttl",
+      "ontology": "https://example.org/ontology/vocab",
+      "version": "1.0.0",
+      "imports": []
+    },
+    {
+      "file": "evidence-schema.ttl",
+      "ontology": "https://example.org/ontology/evidence",
+      "version": "1.0.0",
+      "imports": [
+        "http://www.w3.org/ns/prov-o#"
+      ]
+    },
+    {
+      "file": "custom-ontologies/ai-film/schema.ttl",
+      "ontology": "https://example.org/ontology/custom/ai-film",
+      "version": "0.1.0",
+      "imports": [
+        "https://example.org/ontology/core"
+      ]
+    }
+  ],
+  "terms": [
+    {
+      "iri": "http://example.org/ontology/devops#BuildArtifact",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#BuildArtifactShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 빌드 산출물 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#BuildTask",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#BuildTaskShape",
+        "http://example.org/ontology/devops#PipelineTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#DeploymentTask",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DeploymentTaskShape",
+        "http://example.org/ontology/devops#PipelineTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#DevOpsAgent",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DevOpsAgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the DevOps 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#DevOpsPipeline",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DevOpsPipelineShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02",
+        "DEV-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#PipelineTask",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#PipelineTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 파이프라인 작업 실행 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#SecurityScanTask",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#PipelineTaskShape",
+        "http://example.org/ontology/devops#SecurityScanTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "DEV-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#TargetEnvironment",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#TargetEnvironmentShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 배포 대상 환경 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#VulnerabilityReport",
+      "kind": "class",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#VulnerabilityReportShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 취약점 보고서 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#branchName",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DevOpsPipeline"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Branch"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 브랜치 이름 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#commitHash",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DevOpsPipeline"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Commit"
+      ],
+      "questions": [
+        "BUS-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#dependsOn",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#PipelineTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#PipelineTask"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#BuildDependency"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 선행 파이프라인 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#deployedTo",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DeploymentTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#TargetEnvironment"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DeploymentTaskShape"
+      ],
+      "questions": [
+        "BUS-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#deploysArtifact",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DeploymentTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#BuildArtifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DeploymentTaskShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#environmentName",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#TargetEnvironment"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#TargetEnvironmentShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 환경 이름 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#executionStatus",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "union(http://example.org/ontology/devops#DevOpsPipeline, http://example.org/ontology/devops#PipelineTask)"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DevOpsPipelineShape",
+        "http://example.org/ontology/devops#PipelineTaskShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02",
+        "DEV-01"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#generatesReport",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#SecurityScanTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#VulnerabilityReport"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#SecurityScanTaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 취약점 보고서를 생성 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#hasTask",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DevOpsPipeline"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#PipelineTask"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DevOpsPipelineShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02",
+        "DEV-01"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#imageTag",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#BuildArtifact"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#BuildArtifactShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 이미지 태그 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#managedBy",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#PipelineTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#DevOpsAgent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#PipelineTaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 담당 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/devops#pipelineId",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#DevOpsPipeline"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#DevOpsPipelineShape"
+      ],
+      "questions": [
+        "DEV-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#producesArtifact",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#BuildTask"
+      ],
+      "range": [
+        "http://example.org/ontology/devops#BuildArtifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#BuildTaskShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "BUS-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/devops#vulnerabilityCount",
+      "kind": "property",
+      "sources": [
+        "devops-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/devops#SecurityScanTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/devops#SecurityScanTaskShape"
+      ],
+      "questions": [
+        "BUS-01",
+        "DEV-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#CustomerSession",
+      "kind": "class",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#CustomerSessionShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 고객 세션 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#OrderStatusEvent",
+      "kind": "class",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderStatusEventShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 주문 상태 변경 이벤트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#OrderTask",
+      "kind": "class",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "EC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#Product",
+      "kind": "class",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#ProductShape"
+      ],
+      "questions": [
+        "EC-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#RecommendationAgent",
+      "kind": "class",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#RecommendationAgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 추천 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#changedAt",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderStatusEvent"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderStatusEventShape"
+      ],
+      "questions": [
+        "SYN-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#eventOrder",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderStatusEvent"
+      ],
+      "range": [
+        "http://example.org/ontology/ecommerce#OrderTask"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderStatusEventShape"
+      ],
+      "questions": [
+        "SYN-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#fromStatus",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderStatusEvent"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderStatusEventShape"
+      ],
+      "questions": [
+        "SYN-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#handledBy",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderTask"
+      ],
+      "range": [
+        "http://example.org/ontology/ecommerce#RecommendationAgent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderTaskShape"
+      ],
+      "questions": [
+        "EC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#hasStatusEvent",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderTask"
+      ],
+      "range": [
+        "http://example.org/ontology/ecommerce#OrderStatusEvent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#StatusEvent"
+      ],
+      "questions": [
+        "SYN-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#includesProduct",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderTask"
+      ],
+      "range": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderTaskShape"
+      ],
+      "questions": [
+        "EC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#orderStatus",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderTaskShape"
+      ],
+      "questions": [
+        "EC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#price",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#ProductShape"
+      ],
+      "questions": [
+        "EC-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#priceCurrency",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#ProductShape"
+      ],
+      "questions": [
+        "EC-01"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#priceCurrencyStatus",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#ProductShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 가격 통화 확인 상태 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#productId",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#ProductShape"
+      ],
+      "questions": [
+        "EC-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#recommends",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#CustomerSession"
+      ],
+      "range": [
+        "http://example.org/ontology/ecommerce#Product"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#CustomerSessionShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 상품을 추천 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/ecommerce#toStatus",
+      "kind": "property",
+      "sources": [
+        "ecommerce-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/ecommerce#OrderStatusEvent"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/ecommerce#OrderStatusEventShape"
+      ],
+      "questions": [
+        "SYN-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#ClinicalObservation",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 임상 관측값 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#ClinicalReport",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportFhirStatusShape",
+        "http://example.org/ontology/healthcare#ClinicalReportShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 임상 분석 보고서 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#DiagnosticTask",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskFhirIntentShape",
+        "http://example.org/ontology/healthcare#DiagnosticTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "HC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#MedicalAnalysisAgent",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#MedicalAnalysisAgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 의료 분석 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#PatientRecord",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#PatientRecordShape"
+      ],
+      "questions": [
+        "HC-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#PrivacyClassification",
+      "kind": "class",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#PrivacyClassificationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 개인정보 분류 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#analyzedBy",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#MedicalAnalysisAgent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 분석 담당 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#associatedWithRecord",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#PatientRecord"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 관련 환자 기록 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#codeSystem",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 코드 체계 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#confidenceScore",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 모델 신뢰 점수 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#dataClassification",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#PatientRecord"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#PrivacyClassification"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#PatientRecordShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 기록 분류 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#diagnosticStatus",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskShape"
+      ],
+      "questions": [
+        "HC-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#findingText",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 분석 소견 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#generatesObservation",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Observation"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 임상 관측값을 생성 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#generatesReport",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 분석 보고서를 생성 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#numericValue",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 수치 관측값 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#observationCode",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 관측 코드 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#observationStatus",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 관측 결과 상태 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#observedAt",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 관측 시각 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#observesRecord",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#PatientRecord"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 관측 대상 환자 기록 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#patientId",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#PatientRecord"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#PatientRecordShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 내부 환자 키 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#reportCode",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportFhirStatusShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 보고서 코드 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#reportCodeSystem",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportFhirStatusShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 보고서 코드 체계 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#reportResult",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportFhirStatusShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 보고서 결과 관측값 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#reportStatus",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalReport"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalReportFhirStatusShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 보고서 상태 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#taskIntent",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#DiagnosticTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#DiagnosticTaskFhirIntentShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 진단 작업 의도 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#textValue",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 문자 관측값 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#unitCode",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the UCUM 단위 코드 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "http://example.org/ontology/healthcare#unitCodeSystem",
+      "kind": "property",
+      "sources": [
+        "healthcare-schema.ttl"
+      ],
+      "domain": [
+        "http://example.org/ontology/healthcare#ClinicalObservation"
+      ],
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "http://example.org/ontology/healthcare#ClinicalObservationShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 단위 코드 체계 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Agent",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#AgentAssignment",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentAssignmentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 프로젝트 역할 배정 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Artifact",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ArtifactShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 결과물 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Capability",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "Capability is a reusable classification; actor/task reference constraints check its type, but no capability-specific required fields are defined."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 기능 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Handoff",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#HandoffShape"
+      ],
+      "questions": [
+        "BUS-03"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#HumanAgent",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 사람 참여자 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Project",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ProjectShape"
+      ],
+      "questions": [
+        "AG-02",
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#ReviewDecision",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AG-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#ReviewRun",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewRunShape",
+        "https://example.org/agent#TaskRunShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [
+        "BUS-03"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#Role",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "Role is a reusable classification; assignments constrain the role reference, while no universal role fields are required."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 역할 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#SoftwareAgent",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 소프트웨어 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#Task",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskShape"
+      ],
+      "questions": [
+        "AG-01"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#TaskRun",
+      "kind": "class",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskRunShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 작업 실행 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#acceptanceCriteria",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "union(https://example.org/agent#Handoff, https://example.org/agent#Task)"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#HandoffShape",
+        "https://example.org/agent#TaskShape"
+      ],
+      "questions": [],
+      "instance_uses": 4,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 완료 기준 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#artifactType",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Artifact"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#ArtifactType"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 결과물 유형 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#artifactUri",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Artifact"
+      ],
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ArtifactShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 결과물 위치 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#assignedTo",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Task"
+      ],
+      "range": [
+        "https://example.org/agent#Agent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskShape"
+      ],
+      "questions": [
+        "AG-01"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#assignmentAgent",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#AgentAssignment"
+      ],
+      "range": [
+        "https://example.org/agent#Agent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentAssignmentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 배정된 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#assignmentRole",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#AgentAssignment"
+      ],
+      "range": [
+        "https://example.org/agent#Role"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentAssignmentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 배정된 역할 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#checksum",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Artifact"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#AgentChecksum"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 체크섬 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#containsArtifact",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Handoff"
+      ],
+      "range": [
+        "https://example.org/agent#Artifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#HandoffShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#decision",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AG-02",
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#decisionAbout",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#ReviewDecision"
+      ],
+      "range": [
+        "https://example.org/agent#Artifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AG-02",
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#dependsOn",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Task"
+      ],
+      "range": [
+        "https://example.org/agent#Task"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskShape"
+      ],
+      "questions": [
+        "AG-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#errorCode",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#ErrorCode"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 오류 코드 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#goal",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Project"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ProjectShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 공동 목표 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#hasAssignment",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Project"
+      ],
+      "range": [
+        "https://example.org/agent#AgentAssignment"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Assignment"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 프로젝트 역할 배정 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#hasCapability",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Agent"
+      ],
+      "range": [
+        "https://example.org/agent#Capability"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentShape"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 기능을 보유 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#hasDecision",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#ReviewRun"
+      ],
+      "range": [
+        "https://example.org/agent#ReviewDecision"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewRunShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#hasFinalArtifact",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Project"
+      ],
+      "range": [
+        "https://example.org/agent#Artifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ProjectShape"
+      ],
+      "questions": [
+        "AG-02",
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#hasHandoff",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#TaskRun"
+      ],
+      "range": [
+        "https://example.org/agent#Handoff"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Handoff"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 인계 묶음을 전달 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#hasTask",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Project"
+      ],
+      "range": [
+        "https://example.org/agent#Task"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ProjectShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#implementsTask",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#TaskRun"
+      ],
+      "range": [
+        "https://example.org/agent#Task"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskRunShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04",
+        "SYN-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#reason",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewDecisionShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 검수 사유 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#requiresCapability",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Task"
+      ],
+      "range": [
+        "https://example.org/agent#Capability"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Capability"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 기능을 요구 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#reviews",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#ReviewRun"
+      ],
+      "range": [
+        "https://example.org/agent#Artifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#ReviewRunShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#status",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#TaskRunShape"
+      ],
+      "questions": [
+        "SYN-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#taskObjective",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Task"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Objective"
+      ],
+      "questions": [
+        "AG-01"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#toAgent",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Handoff"
+      ],
+      "range": [
+        "https://example.org/agent#Agent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#HandoffShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#toTask",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#Handoff"
+      ],
+      "range": [
+        "https://example.org/agent#Task"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#HandoffShape"
+      ],
+      "questions": [
+        "BUS-03",
+        "BUS-04"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/agent#toolVersion",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/agent#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#ToolVersion"
+      ],
+      "questions": [],
+      "instance_uses": 3,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 사용 도구 버전 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/agent#version",
+      "kind": "property",
+      "sources": [
+        "agent-schema.ttl"
+      ],
+      "domain": [
+        "union(https://example.org/agent#Agent, https://example.org/agent#Artifact)"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/agent#AgentShape",
+        "https://example.org/agent#ArtifactShape"
+      ],
+      "questions": [],
+      "instance_uses": 5,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 버전 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#AIAgent",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 9,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "The actor class allows local tools and imported agents with unknown configuration; GenerationTask constrains actor references without requiring fabricated model settings."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the AI 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#AudioAsset",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#AudioAssetShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 음원 자산 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#AudioGenerationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 음원 생성 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#CreativeBrief",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#CreativeBriefShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 제작 요청 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#GenerationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 생성 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#ImageAsset",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ImageAssetShape"
+      ],
+      "questions": [
+        "BMV-02",
+        "SYN-06",
+        "SYN-07"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#ImageGenerationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 이미지 생성 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#LyricGenerationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 가사 생성 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#MediaAsset",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "MediaAsset is a broad base class; concrete audio/image/video classes validate metadata, and predicate contracts validate optional common fields."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 미디어 자산 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#MusicVideo",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 뮤직비디오 영상 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#MusicVideoProject",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoProjectShape"
+      ],
+      "questions": [
+        "BMV-01",
+        "BMV-02",
+        "BMV-03",
+        "BMV-05",
+        "BMV-06",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#QualityCheckTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 품질 검수 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#RenderTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 렌더링 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#Shot",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ShotShape"
+      ],
+      "questions": [
+        "MV-01"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#SubtitleGenerationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 자막 생성 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#Timeline",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#TimelineShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 타임라인 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#TranslationTask",
+      "kind": "class",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape",
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 번역 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#bpm",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#AudioAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Tempo"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 분당 박자 수 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#checksum",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#MediaChecksum"
+      ],
+      "questions": [
+        "BMV-05",
+        "SYN-11"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#dependsOn",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "range": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape"
+      ],
+      "questions": [
+        "E2E-02"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#durationSeconds",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#AudioAssetShape",
+        "https://example.org/mv#MusicVideoShape"
+      ],
+      "questions": [
+        "MV-02"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#endSecond",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#Shot"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ShotShape"
+      ],
+      "questions": [
+        "BMV-03",
+        "MV-01"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#fileUri",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#AudioAssetShape",
+        "https://example.org/mv#ImageAssetShape",
+        "https://example.org/mv#MusicVideoShape"
+      ],
+      "questions": [
+        "MV-02"
+      ],
+      "instance_uses": 8,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#genre",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#AudioAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Genre"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 음악 장르 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#hasAudio",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MusicVideoProject"
+      ],
+      "range": [
+        "https://example.org/mv#AudioAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoProjectShape"
+      ],
+      "questions": [
+        "BMV-01",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#hasBrief",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MusicVideoProject"
+      ],
+      "range": [
+        "https://example.org/mv#CreativeBrief"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoProjectShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 제작 요청 참조 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#hasFinalVideo",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MusicVideoProject"
+      ],
+      "range": [
+        "https://example.org/mv#MusicVideo"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoProjectShape"
+      ],
+      "questions": [
+        "BMV-01",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#hasImage",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MusicVideoProject"
+      ],
+      "range": [
+        "https://example.org/mv#ImageAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#ProjectImage"
+      ],
+      "questions": [
+        "BMV-02",
+        "BMV-05",
+        "BMV-06",
+        "SYN-05",
+        "SYN-10"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#hasShot",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#Timeline"
+      ],
+      "range": [
+        "https://example.org/mv#Shot"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#TimelineShape"
+      ],
+      "questions": [
+        "BMV-03",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#hasTimeline",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "union(https://example.org/mv#MusicVideo, https://example.org/mv#MusicVideoProject)"
+      ],
+      "range": [
+        "https://example.org/mv#Timeline"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoProjectShape",
+        "https://example.org/mv#MusicVideoShape"
+      ],
+      "questions": [
+        "BMV-01",
+        "BMV-03",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#height",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#ImageAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ImageAssetShape"
+      ],
+      "questions": [
+        "MV-02"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#lyricText",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#AudioAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Lyrics"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 가사 문장 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#mimeType",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#MediaType"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 미디어 형식 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#modelVersion",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#ModelVersion"
+      ],
+      "questions": [
+        "BUS-05",
+        "SYN-01"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#orderIndex",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#Shot"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ShotShape"
+      ],
+      "questions": [
+        "MV-01"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#promptText",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#Prompt"
+      ],
+      "questions": [
+        "BUS-05",
+        "SYN-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#startSecond",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#Shot"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ShotShape"
+      ],
+      "questions": [
+        "BMV-03",
+        "MV-01"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#status",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape"
+      ],
+      "questions": [
+        "E2E-01"
+      ],
+      "instance_uses": 8,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#targetDurationSeconds",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#CreativeBrief"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#CreativeBriefShape"
+      ],
+      "questions": [],
+      "instance_uses": 2,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 목표 재생 시간(초) term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/mv#usesAudio",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#MusicVideo"
+      ],
+      "range": [
+        "https://example.org/mv#AudioAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#MusicVideoShape"
+      ],
+      "questions": [
+        "BMV-01",
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#usesImage",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#Shot"
+      ],
+      "range": [
+        "https://example.org/mv#ImageAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ShotShape"
+      ],
+      "questions": [
+        "BUS-05",
+        "BUS-06"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#usesInput",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#GenerationTaskShape"
+      ],
+      "questions": [
+        "E2E-02"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/mv#width",
+      "kind": "property",
+      "sources": [
+        "mv-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/mv#ImageAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/mv#ImageAssetShape"
+      ],
+      "questions": [
+        "MV-02"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/academic#Course",
+      "kind": "class",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#CourseShape"
+      ],
+      "questions": [
+        "AC-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/academic#Professor",
+      "kind": "class",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#ProfessorShape"
+      ],
+      "questions": [
+        "AC-02"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/academic#Student",
+      "kind": "class",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#StudentShape"
+      ],
+      "questions": [],
+      "instance_uses": 1,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 학생 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/academic#courseCode",
+      "kind": "property",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/academic#Course"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#CourseShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 과목 코드 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/academic#credits",
+      "kind": "property",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/academic#Course"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#CourseShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 학점 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/academic#enrollsIn",
+      "kind": "property",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/academic#Student"
+      ],
+      "range": [
+        "https://example.org/ontology/academic#Course"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#StudentShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 수강한다 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/academic#hasStudent",
+      "kind": "property",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/academic#Course"
+      ],
+      "range": [
+        "https://example.org/ontology/academic#Student"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#CourseShape"
+      ],
+      "questions": [
+        "AC-01"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/academic#teaches",
+      "kind": "property",
+      "sources": [
+        "academic-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/academic#Professor"
+      ],
+      "range": [
+        "https://example.org/ontology/academic#Course"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/academic#ProfessorShape"
+      ],
+      "questions": [
+        "AC-02"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/core#Agent",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "The core actor abstraction imposes no domain-specific identity/configuration fields; concrete domain agent shapes supply constraints."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#Artifact",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [
+        "SYN-07"
+      ],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape"
+      ],
+      "exceptions": {
+        "class_shape": "The core artifact abstraction does not assume a file format or location; concrete artifact subclasses and runOutput references supply constraints."
+      },
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/core#Project",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "The core project abstraction does not require a domain-specific deliverable; concrete project subclasses define required relations."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 프로젝트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#SensitiveRecord",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "SensitiveRecord is an access/retention classification, not a universal record structure; healthcare record shapes define clinical constraints."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 민감 기록 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#Task",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "class_shape",
+        "cq"
+      ],
+      "exceptions": {
+        "class_shape": "The planned-task abstraction differs across domains; concrete task shapes supply status and dependency contracts."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 계획 작업 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#TaskRun",
+      "kind": "class",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/core#TaskRunTimeShape"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 작업 실행 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#runAgent",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/core#TaskRun"
+      ],
+      "range": [
+        "https://example.org/ontology/core#Agent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#RunAgent"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 실행 담당 에이전트 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#runEndedAt",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/core#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#RunEnd"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 실행 종료 시각 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#runInput",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/core#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#RunInput"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 실행 입력 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#runOutput",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/core#TaskRun"
+      ],
+      "range": [
+        "https://example.org/ontology/core#Artifact"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#RunOutput"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 실행 결과물 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#runStartedAt",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/core#TaskRun"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#RunStart"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "cq"
+      ],
+      "exceptions": {},
+      "cq_backlog_reason": "Existing query coverage debt: the 실행 시작 시각 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/core#taskStatus",
+      "kind": "property",
+      "sources": [
+        "core-schema.ttl"
+      ],
+      "domain": [],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/quality#TaskStatus"
+      ],
+      "questions": [],
+      "instance_uses": 0,
+      "gaps": [
+        "domain",
+        "cq"
+      ],
+      "exceptions": {
+        "domain": "Domain-neutral status abstraction shared by plans and runs; domain subproperties define their domain, while the optional value contract enforces string values."
+      },
+      "cq_backlog_reason": "Existing query coverage debt: the 작업 상태 term is not directly referenced by a catalog query. Track it for domain CQ expansion; do not count this as completed coverage."
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#EditVersion",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#EditVersionShape"
+      ],
+      "questions": [
+        "AIF-04",
+        "AIF-05"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#FilmProject",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#FilmProjectShape"
+      ],
+      "questions": [
+        "AIF-01",
+        "AIF-05"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#GenerationTask",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-01",
+        "AIF-02"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#MediaAsset",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape"
+      ],
+      "questions": [
+        "AIF-03"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#ReviewDecision",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#Scene",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#SceneShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#Screenplay",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ScreenplayShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#Shot",
+      "kind": "class",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ShotShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#assetStatus",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#assetUri",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#decision",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#decisionReason",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#editStatus",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#EditVersion"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#EditVersionShape"
+      ],
+      "questions": [
+        "AIF-05"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#generationEvidenceUri",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-02"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasEditVersion",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#FilmProject"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#EditVersion"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#EditVersionShape",
+        "https://example.org/ontology/custom/ai-film#FilmProjectShape"
+      ],
+      "questions": [
+        "AIF-04",
+        "AIF-05"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasGenerationTask",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Shot"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape",
+        "https://example.org/ontology/custom/ai-film#ShotShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasReview",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecision"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape",
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasScene",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Screenplay"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#Scene"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#SceneShape",
+        "https://example.org/ontology/custom/ai-film#ScreenplayShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasScreenplay",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#FilmProject"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#Screenplay"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#FilmProjectShape",
+        "https://example.org/ontology/custom/ai-film#ScreenplayShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#hasShot",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Scene"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#Shot"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#SceneShape",
+        "https://example.org/ontology/custom/ai-film#ShotShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#mediaType",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape"
+      ],
+      "questions": [
+        "AIF-03"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#modelIdentifier",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-02"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#modelKnowledgeStatus",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-02"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#plannedAsset",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-02"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#promptText",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#reviewEvidenceUri",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#reviewKind",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#ReviewDecision"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape",
+        "https://example.org/ontology/custom/ai-film#ReviewDecisionShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#sceneOrder",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Scene"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#SceneShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#shotOrder",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Shot"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#integer"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ShotShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#sourceEvidenceUri",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#MediaAssetShape"
+      ],
+      "questions": [
+        "AIF-03",
+        "AIF-04"
+      ],
+      "instance_uses": 0,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#targetDurationSeconds",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#Shot"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#ShotShape"
+      ],
+      "questions": [
+        "AIF-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#taskStatus",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#GenerationTask"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#GenerationTaskShape"
+      ],
+      "questions": [
+        "AIF-01",
+        "AIF-02"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#usesAsset",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#EditVersion"
+      ],
+      "range": [
+        "https://example.org/ontology/custom/ai-film#MediaAsset"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#EditVersionShape"
+      ],
+      "questions": [
+        "AIF-04",
+        "AIF-05"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/custom/ai-film#versionLabel",
+      "kind": "property",
+      "sources": [
+        "custom-ontologies/ai-film/schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/custom/ai-film#EditVersion"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/custom/ai-film#EditVersionShape"
+      ],
+      "questions": [
+        "AIF-04",
+        "AIF-05"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#ClaimScope",
+      "kind": "class",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ScopeShape"
+      ],
+      "questions": [
+        "EV-02"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#EvidenceRecord",
+      "kind": "class",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#EvidenceShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#VerificationClaim",
+      "kind": "class",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#VerificationStatus",
+      "kind": "class",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [],
+      "range": [],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#StatusShape"
+      ],
+      "questions": [
+        "EV-02"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#aboutAsset",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-02"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#assetIdentifier",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#checkedAt",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#checkedBy",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Agent"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#evidenceRole",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#EvidenceRecord"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#EvidenceShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#evidenceURI",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#EvidenceRecord"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#EvidenceShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#expectedSHA256",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#hasEvidence",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "https://example.org/ontology/evidence#EvidenceRecord"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-03"
+      ],
+      "instance_uses": 4,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#originalModel",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-03"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#originalOriginIRI",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-03"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#originalPrompt",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-03"
+      ],
+      "instance_uses": 1,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#projectIdentifier",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#scope",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "https://example.org/ontology/evidence#ClaimScope"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#sha256",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#EvidenceRecord"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#EvidenceShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-03"
+      ],
+      "instance_uses": 3,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#sourceCopyState",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#status",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "https://example.org/ontology/evidence#VerificationStatus"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02",
+        "EV-03"
+      ],
+      "instance_uses": 6,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#unknownReason",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-01",
+        "EV-02"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    },
+    {
+      "iri": "https://example.org/ontology/evidence#verifiedAt",
+      "kind": "property",
+      "sources": [
+        "evidence-schema.ttl"
+      ],
+      "domain": [
+        "https://example.org/ontology/evidence#VerificationClaim"
+      ],
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "labels": {
+        "ko": true,
+        "en": true
+      },
+      "definitions": {
+        "ko": true,
+        "en": true
+      },
+      "shapes": [
+        "https://example.org/ontology/evidence#ClaimShape"
+      ],
+      "questions": [
+        "EV-03"
+      ],
+      "instance_uses": 2,
+      "gaps": [],
+      "exceptions": {},
+      "cq_backlog_reason": null
+    }
+  ],
+  "profiles": {
+    "academic": {
+      "triples": 6,
+      "typed_subjects": 2,
+      "subjects_without_class_shape": 0,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 0,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 6
+      },
+      "schema_version": "1.2.1"
+    },
+    "agent": {
+      "triples": 103,
+      "typed_subjects": 23,
+      "subjects_without_class_shape": 6,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 2,
+      "artifacts_with_provenance_link": 2,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 85
+      },
+      "schema_version": "1.2.1"
+    },
+    "ai-film": {
+      "triples": 72,
+      "typed_subjects": 14,
+      "subjects_without_class_shape": 0,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 11,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 11,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 50
+      },
+      "schema_version": "0.1.0"
+    },
+    "devops": {
+      "triples": 42,
+      "typed_subjects": 10,
+      "subjects_without_class_shape": 0,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 2,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 2,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 43
+      },
+      "schema_version": "1.2.1"
+    },
+    "e2e": {
+      "triples": 81,
+      "typed_subjects": 19,
+      "subjects_without_class_shape": 5,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 4,
+      "artifacts_with_provenance_link": 2,
+      "artifacts_without_provenance_link": 2,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 92
+      },
+      "schema_version": "1.2.1"
+    },
+    "ecommerce": {
+      "triples": 15,
+      "typed_subjects": 4,
+      "subjects_without_class_shape": 0,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 0,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 12
+      },
+      "schema_version": "1.2.1"
+    },
+    "evidence": {
+      "triples": 83,
+      "typed_subjects": 10,
+      "subjects_without_class_shape": 1,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 0,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 43
+      },
+      "schema_version": "1.0.0"
+    },
+    "healthcare": {
+      "triples": 16,
+      "typed_subjects": 4,
+      "subjects_without_class_shape": 0,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 1,
+      "artifacts_with_provenance_link": 0,
+      "artifacts_without_provenance_link": 1,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 1,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 17
+      },
+      "schema_version": "1.3.1"
+    },
+    "mv": {
+      "triples": 87,
+      "typed_subjects": 16,
+      "subjects_without_class_shape": 4,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 4,
+      "artifacts_with_provenance_link": 4,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 78
+      },
+      "schema_version": "1.2.1"
+    }
+  },
+  "projects": [
+    {
+      "triples": 67,
+      "typed_subjects": 10,
+      "subjects_without_class_shape": 1,
+      "unknown_local_classes": 0,
+      "unknown_local_properties": 0,
+      "unresolved_local_references": 0,
+      "unmapped_enum_values": 0,
+      "duplicate_identifier_groups": 0,
+      "artifact_candidates": 3,
+      "artifacts_with_provenance_link": 3,
+      "artifacts_without_provenance_link": 0,
+      "healthcare_classification_counts": {
+        "Pseudonymized": 0,
+        "Sensitive": 0,
+        "Synthetic": 0,
+        "Unverified": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "shacl_conforms": true,
+      "shacl_results": 0,
+      "validation_phases": {
+        "conforms": true,
+        "raw_conforms": true,
+        "inferred_conforms": true,
+        "raw_results": 0,
+        "inferred_results": 0,
+        "inferred_type_count": 51
+      },
+      "provenance_evidence": {
+        "format_version": 1,
+        "checker": "local-evidence-checker-1.0.0",
+        "checked_at": "2026-10-04T23:43:14.648703+00:00",
+        "asset_count": 3,
+        "claim_count": 9,
+        "scope_status_counts": {
+          "LocalFileIntegrity": {
+            "Observed": 3,
+            "Failed": 0
+          },
+          "OriginalGeneration": {
+            "Unverified": 3
+          },
+          "OriginalOrigin": {
+            "Unverified": 3
+          }
+        },
+        "source_copy_state_counts": {
+          "matches": 3
+        },
+        "checks": {
+          "files_conform": true,
+          "evidence_graph_conforms": true,
+          "registration_snapshot_conforms": true,
+          "saved_claims_conform": true
+        },
+        "conforms": true,
+        "limitations": [
+          "A matching local source/copy checksum establishes byte identity only.",
+          "No independently reviewed original generation or origin evidence was supplied.",
+          "Missing source copies do not invalidate an intact registered copy; their current availability is reported separately.",
+          "Checks are observations at the recorded time, not continuous monitoring or independent notarization."
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "CQ coverage means a term is referenced by parsed query algebra; golden-answer tests verify behavior separately.",
+    "Instance use counts are explicit facts in bundled examples, without inferred duplicates.",
+    "Provenance links do not verify original model, prompt, source contents or generation quality.",
+    "Only counts are exported for instances; reports omit patient identities and SHACL value messages.",
+    "CQ backlog is remaining work, not completed test coverage."
+  ]
+}

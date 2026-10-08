@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#sourceURL">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">출처 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Source URL</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 문서의 공개 HTTP 또는 HTTPS 주소이다. 참조가 존재해도 링크의 장기 보존이나 문서 진위를 자동 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a public HTTP or HTTPS document URL without automatically guaranteeing its continued availability or authenticity.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#recordKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">기록 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Record kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">고양이 기록을 합성 예시(synthetic) 또는 관찰된 개체의 기록(observed)으로 구분한다. observed 값 자체는 외부 신원 확인의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes a synthetic cat example from an observed individual record. The observed value itself does not provide independent identity verification.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#observedAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">관찰 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Observation time</rdfs:label>
+    <rdfs:comment xml:lang="ko">관찰을 기록한 시각을 시간대가 있는 ISO 날짜·시각으로 표시한다. 합성 예시의 시각은 실제 관찰을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an observation's time as an ISO date-time with a time zone. A synthetic example timestamp does not establish an actual observation.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:Ontology rdf:about="https://example.org/ontology/custom/cat">
+    <rdfs:label xml:lang="ko">고양이 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Cat ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">개별 고양이와 품종 설명, 생활 환경, 보호자, 돌봄 일정 및 관찰 기록을 연결한다. 품종의 일반적인 특징은 개체의 특징을 보장하지 않으며, 예시 고양이는 합성 기록이다. 돌봄 기록과 관찰은 의학적 진단이나 급여 지침을 생성하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects individual cats, sourced breed descriptions, living environments, guardians, care activities and observations. Breed traits are not guarantees about an individual. Example cats are synthetic records; care records and observations do not produce medical diagnoses or feeding advice.</rdfs:comment>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/cat/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </owl:Ontology>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#hasBreed">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Breed"/>
+    <rdfs:label xml:lang="ko">기록된 품종</rdfs:label>
+    <rdfs:label xml:lang="en">Recorded breed</rdfs:label>
+    <rdfs:comment xml:lang="ko">품종이 recorded 상태인 고양이 기록을 하나의 품종 프로필에 연결한다. 연결에는 개체별 근거 설명이 필요하며 품종의 일반 특징을 개체에 상속하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a cat with recorded breed status to one breed profile. An individual evidence note is required; general breed traits are not inherited as individual facts.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#scheduledFor">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">돌봄 예정 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Scheduled care time</rdfs:label>
+    <rdfs:comment xml:lang="ko">돌봄 예정 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 실제 활동은 예정 시각보다 일찍 또는 늦게 수행될 수 있다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a scheduled care time as an ISO date-time with a time zone. Actual activity may occur earlier or later than the scheduled time.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#traitCategory">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Trait"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">특징 분류</rdfs:label>
+    <rdfs:label xml:lang="en">Trait category</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처의 특징 설명을 coat(털), body(체형), pattern(무늬) 중 하나로 분류한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies a sourced trait description as coat, body or pattern.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#environmentType">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Environment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">환경 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Environment type</rdfs:label>
+    <rdfs:comment xml:lang="ko">환경을 indoor, enclosed-outdoor, mixed 또는 unrecorded로 구분한다. 유형 값은 안전성 평가나 사육 방식 권고가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies an environment as indoor, enclosed-outdoor, mixed or unrecorded. The value is neither a safety assessment nor a husbandry recommendation.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#status">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">돌봄 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Care status</rdfs:label>
+    <rdfs:comment xml:lang="ko">돌봄 기록을 planned, completed 또는 cancelled로 구분한다. planned에는 예정 시각, completed에는 수행 시각이 필요하며 cancelled에는 수행 시각을 두지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records planned, completed or cancelled care status. Planned records require a scheduled time, completed records require a performed time, and cancelled records contain no performed time.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#traitText">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Trait"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">특징 설명문</rdfs:label>
+    <rdfs:label xml:lang="en">Trait description text</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처에 기반한 품종 특징을 설명한다. 품종 내 개체 차이를 무시하거나 건강·성격의 보장으로 해석하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Describes a sourced breed characteristic without erasing individual variation or guaranteeing health or temperament.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#describedBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Breed"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:label xml:lang="ko">품종 설명 출처</rdfs:label>
+    <rdfs:label xml:lang="en">Breed described by</rdfs:label>
+    <rdfs:comment xml:lang="ko">품종 프로필을 설명하는 공개 출처 문서에 연결한다. 개별 고양이의 품종 증명과는 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a breed profile to a public document describing it. This link is distinct from evidence of an individual cat's breed.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#environmentNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Environment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">환경 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Environment note</rdfs:label>
+    <rdfs:comment xml:lang="ko">환경 기록의 범위와 내용 또는 합성 예시임을 설명한다. 설명만으로 위험 요소나 적합성을 자동 판단하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains the environment record's scope, content or synthetic scenario without automatically determining hazards or suitability.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#birthDate">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">출생일</rdfs:label>
+    <rdfs:label xml:lang="en">Birth date</rdfs:label>
+    <rdfs:comment xml:lang="ko">기록 가능한 출생일을 시간대 없는 YYYY-MM-DD 날짜로 표시한다. 날짜가 알려지지 않았으면 값을 생략하며 추정 날짜를 사실로 자동 생성하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Optionally records a birth date in canonical YYYY-MM-DD form without a time zone. Unknown dates are omitted rather than automatically guessed as facts.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#recordNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">돌봄 기록 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Care record note</rdfs:label>
+    <rdfs:comment xml:lang="ko">돌봄 활동의 기록 범위와 설명 또는 합성 일정임을 기록한다. 기록 내용이 권장 절차나 의료 지침이라는 뜻은 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains a care activity's record scope, details or synthetic schedule, without treating the activity as a recommended procedure or medical instruction.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#caredForBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Guardian"/>
+    <rdfs:label xml:lang="ko">돌보는 보호자</rdfs:label>
+    <rdfs:label xml:lang="en">Cared for by</rdfs:label>
+    <rdfs:comment xml:lang="ko">고양이 기록을 한 명 이상의 보호자 기록에 연결한다. 해당 고양이의 돌봄 활동 담당자는 연결된 보호자여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a cat record to one or more guardians. A carer recorded for that cat's care activity must be among these linked guardians.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#performedAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">돌봄 수행 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Performed care time</rdfs:label>
+    <rdfs:comment xml:lang="ko">완료된 돌봄 활동의 수행 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 계획이나 취소 기록에는 수행 시각을 기록하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a completed care activity's performed time as an ISO date-time with a time zone. Planned or cancelled records contain no performed time.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#observedCat">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:label xml:lang="ko">관찰 대상 고양이</rdfs:label>
+    <rdfs:label xml:lang="en">Observed cat</rdfs:label>
+    <rdfs:comment xml:lang="ko">관찰 기록을 대상 고양이 한 개체의 기록에 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an observation to its single target cat record.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#carer">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Guardian"/>
+    <rdfs:label xml:lang="ko">돌봄 담당 보호자</rdfs:label>
+    <rdfs:label xml:lang="en">Carer</rdfs:label>
+    <rdfs:comment xml:lang="ko">돌봄 활동의 담당 보호자 한 명을 연결한다. 담당자는 대상 고양이에 caredForBy로 연결된 보호자여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies one guardian responsible for a care activity. The guardian must be linked to the target cat by caredForBy.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#breedEvidenceNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">품종 기록 근거 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Breed evidence note</rdfs:label>
+    <rdfs:comment xml:lang="ko">개체의 품종을 기록한 근거나 합성 예시의 설정임을 설명한다. 빈 설명과 외모에 의한 자동 분류를 근거로 취급하지 않으며 설명 자체를 검증 완료로 간주하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains the basis for an individual's recorded breed or its synthetic scenario assignment. A note is not itself verified evidence, and empty notes or automatic appearance classification do not establish breed.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#documentedBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Trait"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:label xml:lang="ko">특징 근거 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Trait documented by</rdfs:label>
+    <rdfs:comment xml:lang="ko">특징 설명을 뒷받침하는 공개 출처 문서에 연결한다. 검증 규칙은 참조 구조를 확인하며 원문과 설명의 일치를 자동 판정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trait description to its supporting public source. Validation checks reference structure, not automatic agreement between the text and the original document.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#sex">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">성별 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Recorded sex</rdfs:label>
+    <rdfs:comment xml:lang="ko">기록된 성별을 female, male 또는 unknown으로 표시한다. unknown은 확인하지 않은 상태를 뜻하며 외모에서 자동 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records female, male or unknown sex. Unknown denotes an unconfirmed value; sex is not inferred automatically from appearance.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#measurementValue">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">측정값</rdfs:label>
+    <rdfs:label xml:lang="en">Measurement value</rdfs:label>
+    <rdfs:comment xml:lang="ko">weight 관찰에만 사용하는 양수인 십진수 체중 값이다. 행동이나 외모 관찰에는 숫자 측정값을 부여하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A positive decimal weight value used only for a weight observation. Behavior and appearance observations contain no numeric measurement value.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#sourceKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출처 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Source kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처를 breed-registry, museum-summary 또는 official-guide로 분류한다. 분류는 개별 고양이의 등록 상태나 품질 등급을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies a source as breed-registry, museum-summary or official-guide. The category establishes neither an individual cat's registration nor a quality rating.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#observationKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">관찰 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Observation kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">관찰을 behavior, appearance 또는 weight로 분류한다. 분류는 임상 진단이나 위험 등급을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies an observation as behavior, appearance or weight without providing a clinical diagnosis or risk rating.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#careKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">돌봄 활동 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Care activity kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">활동을 feeding, water-refresh, litter-cleaning, play 또는 grooming으로 기록한다. 유형은 급여량·빈도나 치료 지침을 담지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records feeding, water-refresh, litter-cleaning, play or grooming as an activity kind, without specifying feeding quantities, frequencies or treatment instructions.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#accessedOn">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">출처 확인일</rdfs:label>
+    <rdfs:label xml:lang="en">Source access date</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처를 확인한 날짜를 시간대 없는 YYYY-MM-DD 값으로 기록한다. 문서 발행일이나 이후 내용의 불변성을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source access date in canonical YYYY-MM-DD form without a time zone, distinct from publication date or a guarantee of unchanged future content.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#publisher">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#SourceDocument"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">발행 기관</rdfs:label>
+    <rdfs:label xml:lang="en">Publisher</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처 문서를 발행하는 기관의 이름을 기록한다. 기관명을 통한 문서 인증은 별도 확인이 필요하다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source document's publishing institution. Authentication based on its name requires separate review.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#aboutCat">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#CareRecord"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:label xml:lang="ko">돌봄 대상 고양이</rdfs:label>
+    <rdfs:label xml:lang="en">Care about cat</rdfs:label>
+    <rdfs:comment xml:lang="ko">돌봄 활동 기록을 대상 고양이 한 개체의 기록에 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a care activity record to its single target cat record.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#measurementUnit">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">측정 단위</rdfs:label>
+    <rdfs:label xml:lang="en">Measurement unit</rdfs:label>
+    <rdfs:comment xml:lang="ko">weight 관찰의 체중 단위인 kg를 기록한다. 행동이나 외모 관찰에는 측정 단위를 부여하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records kg as the unit for a weight observation. Behavior and appearance observations contain no measurement unit.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#breedStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">품종 기록 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Breed record status</rdfs:label>
+    <rdfs:comment xml:lang="ko">품종을 기록하지 않은 unknown 또는 품종 연결과 근거 설명을 가진 recorded 상태이다. recorded는 기록 구조의 상태이며 등록이나 유전 검사의 자동 인증을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records unknown breed status or recorded status with a breed link and evidence note. Recorded describes the record structure, not automatic registry or genetic verification.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#hasTrait">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Breed"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Trait"/>
+    <rdfs:label xml:lang="ko">품종 특징 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Has trait description</rdfs:label>
+    <rdfs:comment xml:lang="ko">품종 프로필을 출처가 설명한 한 개 이상의 특징에 연결한다. 이 연결은 개체별 특징을 주장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a breed profile to one or more sourced trait descriptions without asserting those traits for individual cats.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/cat#livesIn">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Cat"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/cat#Environment"/>
+    <rdfs:label xml:lang="ko">생활 환경 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Lives in</rdfs:label>
+    <rdfs:comment xml:lang="ko">고양이 기록을 하나의 생활 환경 기록에 연결한다. 현재 모형은 환경 이동 이력이나 안전성 인증을 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a cat record to one living environment record. This model does not infer environment transition history or safety certification.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/cat#observationText">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/cat#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">관찰 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Observation text</rdfs:label>
+    <rdfs:comment xml:lang="ko">기록한 행동, 외모 또는 체중 측정의 설명이다. 관찰문을 통해 질병·성격·품종을 자동 판정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Describes recorded behavior, appearance or a weight measurement without automatically determining disease, temperament or breed.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Observation">
+    <rdfs:label xml:lang="ko">관찰 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Observation</rdfs:label>
+    <rdfs:comment xml:lang="ko">특정 시점에 기록한 행동, 외모 또는 체중의 관찰이다. 체중은 양수인 킬로그램 값으로 기록하며 관찰만으로 건강 상태를 진단하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A behavior, appearance or weight observation at a recorded time. Weight uses a positive kilogram value; an observation alone does not establish a health diagnosis.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Cat">
+    <rdfs:label xml:lang="ko">고양이</rdfs:label>
+    <rdfs:label xml:lang="en">Cat</rdfs:label>
+    <rdfs:comment xml:lang="ko">개별 고양이의 기록이다. 합성 예시와 관찰 기록을 구분하고, 품종이 확인되지 않았을 때는 미상으로 기록한다. 외모만으로 품종을 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A record for an individual cat, distinguishing synthetic examples from observed records. Unknown breed status is recorded explicitly; appearance alone does not establish breed.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#SourceDocument">
+    <rdfs:label xml:lang="ko">출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">Source document</rdfs:label>
+    <rdfs:comment xml:lang="ko">공개 주소와 발행 기관, 자료 유형 및 확인 날짜를 갖는 품종 등록 기관 자료, 박물관 설명 또는 공식 안내 문서이다. 출처 연결만으로 개체 품종이나 모든 설명의 정확성을 자동 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A breed registry document, museum summary or official guide identified by a public URL, publisher, source kind and access date. A citation alone does not automatically verify an individual's breed or every associated description.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Trait">
+    <rdfs:label xml:lang="ko">특징 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Trait description</rdfs:label>
+    <rdfs:comment xml:lang="ko">품종 출처에 서술된 털, 체형 또는 무늬의 특징이다. 이 설명은 개별 고양이의 관찰 사실이나 행동 보장을 대신하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A coat, body or pattern characteristic described by a breed source. It does not substitute for an observation about an individual cat or guarantee behavior.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Guardian">
+    <rdfs:label xml:lang="ko">보호자</rdfs:label>
+    <rdfs:label xml:lang="en">Guardian</rdfs:label>
+    <rdfs:comment xml:lang="ko">고양이를 돌보는 보호자의 기록이다. 이름표는 표시용이며 법적 소유권이나 개인 신원을 증명하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A record for a guardian caring for a cat. Its display label establishes neither legal ownership nor a person's verified identity.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Environment">
+    <rdfs:label xml:lang="ko">생활 환경</rdfs:label>
+    <rdfs:label xml:lang="en">Living environment</rdfs:label>
+    <rdfs:comment xml:lang="ko">고양이 기록이 연결되는 생활 환경이다. 환경 유형과 설명을 기록하며 환경 안전성이나 적합성을 자동 판정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A living environment associated with a cat record, with a type and explanatory note. The record does not automatically determine safety or suitability.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#CareRecord">
+    <rdfs:label xml:lang="ko">돌봄 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Care record</rdfs:label>
+    <rdfs:comment xml:lang="ko">급여, 물 교체, 화장실 청소, 놀이 또는 털 관리 활동의 계획·완료·취소 상태를 기록한다. 기록된 활동은 영양·의학적 처방이나 권장 횟수를 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records planned, completed or cancelled feeding, water refresh, litter cleaning, play or grooming activities. An activity record does not imply nutritional or medical advice or a recommended frequency.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/cat#Breed">
+    <rdfs:label xml:lang="ko">품종</rdfs:label>
+    <rdfs:label xml:lang="en">Breed</rdfs:label>
+    <rdfs:comment xml:lang="ko">출처가 설명하는 품종 프로필이다. 품종에 연결한 특징은 해당 출처의 일반적인 설명이며 모든 개체의 특징을 단정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A sourced breed profile. Linked traits describe the source's general profile and do not establish characteristics of every individual.</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>

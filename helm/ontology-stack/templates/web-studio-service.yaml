@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-web-studio
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: web-studio
+spec:
+  type: {{ .Values.webStudio.service.type }}
+  ports:
+    - port: {{ .Values.webStudio.service.port }}
+      targetPort: {{ .Values.webStudio.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "ontology-stack.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: web-studio

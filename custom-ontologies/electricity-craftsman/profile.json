@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "electricity-craftsman",
+  "name": "전기기능사 자격·시험 온톨로지",
+  "description": "전기기능사 자격과 필기·실기 구조, 출제기준 버전, 공식 과목·실기 범위, 평가 규칙, 지참 공구·안전 안내 및 출처 근거를 관리한다. 2027-2029 기준 세부 항목은 원문 검토 전까지 미반영 상태로 둔다.",
+  "name_en": "Electricity Craftsman Qualification Ontology",
+  "description_en": "Models the qualification, written and practical exam structure, versioned standards, official subjects and task scope, assessment rules, required tools and safety notices, and provenance. Detailed 2027-2029 criteria remain un-ingested pending source review.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/electricity-craftsman#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T13:49:11+09:00",
+  "schema": "custom-ontologies/electricity-craftsman/schema.ttl",
+  "owl": "custom-ontologies/electricity-craftsman/schema.owl",
+  "shapes": "custom-ontologies/electricity-craftsman/shapes.ttl",
+  "example": "custom-ontologies/electricity-craftsman/example.ttl",
+  "questions": "custom-ontologies/electricity-craftsman/questions.md",
+  "questions_fixture": "custom-ontologies/electricity-craftsman/question-fixture.ttl",
+  "question_answers": "custom-ontologies/electricity-craftsman/question-answers.json",
+  "compatibility_cases": "custom-ontologies/electricity-craftsman/consumer-cases.trig"
+}

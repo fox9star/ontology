@@ -1,0 +1,168 @@
+name: Ontology CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      verify_terminology:
+        description: Run external terminology validation on the constructed synthetic fixture
+        type: boolean
+        required: false
+        default: false
+      benchmark:
+        description: Measure the canonical 10k and 100k triple workloads
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install FFmpeg for registered media tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffprobe -version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -c requirements.lock.txt
+
+      - name: Check generated OWL exports
+        env:
+          PYTHONUTF8: "1"
+        run: python build_ontology_exports.py --check
+
+      - name: Check controlled vocabularies
+        env:
+          PYTHONUTF8: "1"
+        run: python controlled_vocab_check.py
+
+      - name: Check namespace and version policy
+        env:
+          PYTHONUTF8: "1"
+        run: python namespace_policy.py
+
+      - name: Check Korean and English ontology documentation
+        env:
+          PYTHONUTF8: "1"
+        run: python ontology_docs_check.py --json .runtime/ontology-documentation.json
+
+      - name: Check term lifecycle and compatibility baseline
+        env:
+          PYTHONUTF8: "1"
+        run: |
+          python term_lifecycle.py check
+          python term_lifecycle.py compare --previous ontology-compatibility-baseline.json --json .runtime/ontology-compatibility.json
+
+      - name: Check schema, shapes, query and instance coverage
+        env:
+          PYTHONUTF8: "1"
+        run: python ontology_quality.py --json .runtime/ontology-quality.json --markdown .runtime/ontology-quality.md
+
+      - name: Check consumer compatibility against frozen contracts
+        env:
+          PYTHONUTF8: "1"
+        run: python consumer_compatibility.py --report .runtime/consumer-compatibility.json
+
+      - name: SHACL verification (all domains)
+        env:
+          PYTHONUTF8: "1"
+        run: python verify_all.py
+
+      - name: Competency question answer regression
+        env:
+          PYTHONUTF8: "1"
+        run: python -m unittest discover -s tests -p "test_competency_questions.py" -v
+
+      - name: Unit and integration tests
+        env:
+          PYTHONUTF8: "1"
+        run: python run_tests.py
+
+      - name: Save ontology quality evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ontology-quality-python-${{ matrix.python-version }}
+          path: |
+            .runtime/ontology-documentation.json
+            .runtime/ontology-compatibility.json
+            .runtime/ontology-quality.json
+            .runtime/ontology-quality.md
+            .runtime/consumer-compatibility.json
+
+  benchmark:
+    if: github.event_name == 'workflow_dispatch' && inputs.benchmark
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt -c requirements.lock.txt
+      - name: Record runner-specific workload measurements
+        run: python benchmark_sparql.py --sizes 10000 100000 --repeats 10 --output .runtime/sparql-benchmark.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: canonical-sparql-benchmark
+          path: .runtime/sparql-benchmark.json
+
+  fhir:
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Install dependencies
+        run: pip install -r requirements.txt -c requirements.lock.txt
+      - name: Validate constructed FHIR R5 Bundle with pinned official validator
+        env:
+          PYTHONUTF8: "1"
+        run: python fhir_validate.py --synthetic-fixture --official structural --fetch-validator --output-dir .runtime/fhir-validation-structural
+      - name: Validate terminology on the constructed synthetic fixture
+        if: github.event_name == 'workflow_dispatch' && inputs.verify_terminology
+        env:
+          PYTHONUTF8: "1"
+        run: python fhir_validate.py --synthetic-fixture --official terminology --fetch-validator --output-dir .runtime/fhir-validation-terminology
+      - name: Save FHIR validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fhir-r5-structural-validation
+          path: |
+            .runtime/fhir-validation-structural/
+            .runtime/fhir-validation-terminology/
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: verify
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t ontology-studio:ci .

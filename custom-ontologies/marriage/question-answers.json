@@ -1,0 +1,537 @@
+{
+  "MAR-01": {
+    "variables": [
+      "plan",
+      "name",
+      "recordKind",
+      "status",
+      "coordinator",
+      "budget",
+      "currency",
+      "note",
+      "marriageInfoStatus",
+      "marriageDate",
+      "marriageInfoNote",
+      "marriageInfoSource"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "가상 정원 결혼식 계획",
+        "synthetic",
+        "draft",
+        "https://example.test/marriage/garden-partner-a",
+        "1000000.0",
+        "KRW",
+        "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다.",
+        "unrecorded",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "가상 실내 결혼식 계획",
+        "synthetic",
+        "draft",
+        "https://example.test/marriage/hall-partner-a",
+        "2000000.0",
+        "KRW",
+        "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다.",
+        "unrecorded",
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "MAR-02": {
+    "variables": [
+      "plan",
+      "person",
+      "name",
+      "note",
+      "isPartner",
+      "isCoordinator"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-guest-a",
+        "가상 정원 초대 대상 A",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "no",
+        "no"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-guest-b",
+        "가상 정원 초대 대상 B",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "no",
+        "no"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-partner-a",
+        "가상 정원 당사자 A",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "yes",
+        "yes"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-partner-b",
+        "가상 정원 당사자 B",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "yes",
+        "no"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-guest-a",
+        "가상 실내 초대 대상 A",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "no",
+        "no"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-guest-b",
+        "가상 실내 초대 대상 B",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "no",
+        "no"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-partner-a",
+        "가상 실내 당사자 A",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "yes",
+        "yes"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-partner-b",
+        "가상 실내 당사자 B",
+        "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다.",
+        "yes",
+        "no"
+      ]
+    ]
+  },
+  "MAR-03": {
+    "variables": [
+      "plan",
+      "event",
+      "sequence",
+      "kind",
+      "start",
+      "end",
+      "note",
+      "venue",
+      "venueLabel",
+      "venueKind",
+      "capacity",
+      "locationNote"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-ceremony",
+        "1",
+        "ceremony",
+        "2026-12-01T03:00:00+00:00",
+        "2026-12-01T04:00:00+00:00",
+        "실제로 예약되거나 개최되지 않은 가상 행사입니다.",
+        "https://example.test/marriage/garden-venue",
+        "가상 정원 행사장",
+        "garden",
+        "4",
+        "실제 주소가 없는 가상 정원 행사장입니다."
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-ceremony",
+        "1",
+        "ceremony",
+        "2026-11-15T02:00:00+00:00",
+        "2026-11-15T03:00:00+00:00",
+        "실제로 예약되거나 개최되지 않은 가상 행사입니다.",
+        "https://example.test/marriage/hall-venue",
+        "가상 실내 행사장",
+        "hall",
+        "10",
+        "실제 주소가 없는 가상 실내 행사장입니다."
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-reception",
+        "2",
+        "reception",
+        "2026-11-15T03:30:00+00:00",
+        "2026-11-15T05:00:00+00:00",
+        "실제로 예약되거나 개최되지 않은 가상 행사입니다.",
+        "https://example.test/marriage/hall-venue",
+        "가상 실내 행사장",
+        "hall",
+        "10",
+        "실제 주소가 없는 가상 실내 행사장입니다."
+      ]
+    ]
+  },
+  "MAR-04": {
+    "variables": [
+      "plan",
+      "invitation",
+      "person",
+      "event",
+      "status",
+      "partySize",
+      "responseAt"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-invitation-01",
+        "https://example.test/marriage/garden-guest-a",
+        "https://example.test/marriage/garden-ceremony",
+        "accepted",
+        "3",
+        "2026-10-05T01:00:00+00:00"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-invitation-02",
+        "https://example.test/marriage/garden-guest-b",
+        "https://example.test/marriage/garden-ceremony",
+        "accepted",
+        "2",
+        "2026-10-05T01:00:00+00:00"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-invitation-01",
+        "https://example.test/marriage/hall-guest-a",
+        "https://example.test/marriage/hall-ceremony",
+        "accepted",
+        "2",
+        "2026-10-05T01:00:00+00:00"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-invitation-02",
+        "https://example.test/marriage/hall-guest-b",
+        "https://example.test/marriage/hall-ceremony",
+        "pending",
+        null,
+        null
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-invitation-03",
+        "https://example.test/marriage/hall-guest-a",
+        "https://example.test/marriage/hall-reception",
+        "accepted",
+        "2",
+        "2026-10-05T01:00:00+00:00"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-invitation-04",
+        "https://example.test/marriage/hall-guest-b",
+        "https://example.test/marriage/hall-reception",
+        "pending",
+        null,
+        null
+      ]
+    ]
+  },
+  "MAR-05": {
+    "variables": [
+      "plan",
+      "task",
+      "assignee",
+      "dueAt",
+      "status",
+      "note",
+      "completedAt",
+      "dependency"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-task-01",
+        "https://example.test/marriage/garden-partner-a",
+        "2026-11-20T00:00:00+00:00",
+        "completed",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        "2026-10-05T01:00:00+00:00",
+        null
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-task-02",
+        "https://example.test/marriage/garden-partner-a",
+        "2026-11-20T00:00:00+00:00",
+        "planned",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        null,
+        "https://example.test/marriage/garden-task-01"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-task-03",
+        "https://example.test/marriage/garden-partner-a",
+        "2026-11-20T00:00:00+00:00",
+        "cancelled",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        null,
+        null
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-task-01",
+        "https://example.test/marriage/hall-partner-a",
+        "2026-11-01T00:00:00+00:00",
+        "completed",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        "2026-10-05T01:00:00+00:00",
+        null
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-task-02",
+        "https://example.test/marriage/hall-partner-a",
+        "2026-11-01T00:00:00+00:00",
+        "in-progress",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        null,
+        "https://example.test/marriage/hall-task-01"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-task-03",
+        "https://example.test/marriage/hall-partner-a",
+        "2026-11-01T00:00:00+00:00",
+        "planned",
+        "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+        null,
+        "https://example.test/marriage/hall-task-02"
+      ]
+    ]
+  },
+  "MAR-06": {
+    "variables": [
+      "plan",
+      "booking",
+      "kind",
+      "event",
+      "status",
+      "provider",
+      "confirmation",
+      "note",
+      "required"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-booking01",
+        "venue",
+        "https://example.test/marriage/garden-ceremony",
+        "confirmed",
+        "가상 정원 장소 제공자",
+        "urn:synthetic:marriage:garden:venue-confirmation",
+        "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+        "true"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-booking02",
+        "catering",
+        "https://example.test/marriage/garden-ceremony",
+        "requested",
+        "가상 정원 음식 서비스 제공자",
+        null,
+        "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+        "true"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-booking03",
+        "transport",
+        "https://example.test/marriage/garden-ceremony",
+        "cancelled",
+        "가상 정원 이동 서비스 제공자",
+        null,
+        "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+        "false"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-booking01",
+        "venue",
+        "https://example.test/marriage/hall-ceremony",
+        "requested",
+        "가상 실내 장소 제공자",
+        null,
+        "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+        "true"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-booking02",
+        "photography",
+        "https://example.test/marriage/hall-ceremony",
+        "confirmed",
+        "가상 실내 사진 서비스 제공자",
+        "urn:synthetic:marriage:hall:photography-confirmation",
+        "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+        "true"
+      ]
+    ]
+  },
+  "MAR-07": {
+    "variables": [
+      "plan",
+      "expense",
+      "kind",
+      "status",
+      "amount",
+      "note",
+      "budget",
+      "currency",
+      "committed",
+      "remaining"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-expense01",
+        "venue",
+        "planned",
+        "800000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "1000000.0",
+        "KRW",
+        "1200000.0",
+        "-200000.0"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-expense02",
+        "catering",
+        "planned",
+        "400000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "1000000.0",
+        "KRW",
+        "1200000.0",
+        "-200000.0"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "https://example.test/marriage/garden-expense03",
+        "transport",
+        "cancelled",
+        "50000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "1000000.0",
+        "KRW",
+        "1200000.0",
+        "-200000.0"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-expense01",
+        "venue",
+        "planned",
+        "1500000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "2000000.0",
+        "KRW",
+        "1800000.0",
+        "200000.0"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-expense02",
+        "photography",
+        "paid",
+        "300000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "2000000.0",
+        "KRW",
+        "1800000.0",
+        "200000.0"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "https://example.test/marriage/hall-expense03",
+        "attire",
+        "cancelled",
+        "200000.0",
+        "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다.",
+        "2000000.0",
+        "KRW",
+        "1800000.0",
+        "200000.0"
+      ]
+    ]
+  },
+  "MAR-08": {
+    "variables": [
+      "plan",
+      "blocker",
+      "detail"
+    ],
+    "rows": [
+      [
+        "https://example.test/marriage/garden-plan",
+        "budget-exceeded",
+        "200000.0"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "invitation-capacity-exceeded",
+        "https://example.test/marriage/garden-ceremony"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "required-booking-unconfirmed",
+        "https://example.test/marriage/garden-booking02"
+      ],
+      [
+        "https://example.test/marriage/garden-plan",
+        "task-incomplete",
+        "https://example.test/marriage/garden-task-02"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "invitation-pending",
+        "https://example.test/marriage/hall-invitation-02"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "invitation-pending",
+        "https://example.test/marriage/hall-invitation-04"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "required-booking-unconfirmed",
+        "https://example.test/marriage/hall-booking01"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "task-incomplete",
+        "https://example.test/marriage/hall-task-02"
+      ],
+      [
+        "https://example.test/marriage/hall-plan",
+        "task-incomplete",
+        "https://example.test/marriage/hall-task-03"
+      ]
+    ]
+  }
+}

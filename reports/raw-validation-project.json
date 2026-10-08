@@ -1,0 +1,38 @@
+{
+  "conforms": true,
+  "raw_conforms": true,
+  "inferred_conforms": true,
+  "raw_results": 0,
+  "inferred_results": 0,
+  "inferred_type_count": 51,
+  "import_closure": {
+    "root_source": {
+      "file": "mv-schema.ttl",
+      "sha256": "75f11d195496874719dc92c2fa0260dd50a1bf4e1e571ac1db25e60a475b843e"
+    },
+    "modules": [
+      {
+        "file": "controlled-vocabularies.ttl",
+        "ontology": "https://example.org/ontology/vocab",
+        "version": "1.0.0",
+        "sha256": "3ec8776c281411609d48828b992ef5e76bdd424d6be2cbd8959b55de1c349e2d"
+      },
+      {
+        "file": "core-schema.ttl",
+        "ontology": "https://example.org/ontology/core",
+        "version": "1.1.1",
+        "sha256": "21b5a06e6cf6342960d01b656d8bf167be4a08dc3fb9209418761a0c9573c00d"
+      },
+      {
+        "file": "mv-schema.ttl",
+        "ontology": "https://example.org/mv",
+        "version": "1.2.1",
+        "sha256": "75f11d195496874719dc92c2fa0260dd50a1bf4e1e571ac1db25e60a475b843e"
+      }
+    ],
+    "external_references_not_loaded": [
+      "http://www.w3.org/ns/prov-o#"
+    ],
+    "network_imports": false
+  }
+}

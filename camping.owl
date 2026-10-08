@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#Reservation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">야영장 예약</rdfs:label>
+    <rdfs:label xml:lang="en">Campground Reservation</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행 기간 동안 특정 캠핑 사이트를 이용하기 위한 예약이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A booking for a particular campsite over the dates of a camping trip.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#CampingTrip">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 여행</rdfs:label>
+    <rdfs:label xml:lang="en">Camping Trip</rdfs:label>
+    <rdfs:comment xml:lang="ko">일정, 목적지, 참가자와 활동으로 구성되는 캠핑 여행 계획이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A planned camping outing with dates, a destination, participants, and activities.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripHasParticipant">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">여행 참가자</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Participant</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행에 참가하는 사람을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a camping trip to a person participating in it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Camper"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripStartDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">여행 시작일</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Start Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행이 시작되는 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The calendar date on which a camping trip begins.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#itemEquipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">항목의 장비</rdfs:label>
+    <rdfs:label xml:lang="en">Item Equipment</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비물 항목이 가리키는 장비를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the equipment referred to by a packing list entry.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#PackingListItem"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#CampingEquipment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripHasReservation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">여행 예약</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Reservation</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행에 사용되는 사이트 예약을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a camping trip to a campsite reservation used for it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Reservation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#reservationStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">예약 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Reservation Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약의 현재 처리 상태를 나타내는 문자열이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A text value describing the current processing state of a reservation.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#Reservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#PackingListItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">준비물 목록 항목</rdfs:label>
+    <rdfs:label xml:lang="en">Packing List Item</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비물 목록에 포함된 장비와 준비 수량을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An entry identifying a piece of equipment and its required quantity on a packing list.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#siteCapacity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">사이트 수용 인원</rdfs:label>
+    <rdfs:label xml:lang="en">Campsite Capacity</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 사이트에 허용되는 최대 인원수이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The maximum number of people permitted at a campsite.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#Campsite"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripHasPackingList">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">여행 준비물 목록</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Packing List</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행에 사용할 준비물 목록을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a camping trip to its equipment packing list.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#PackingList"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#activityCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">활동 분류</rdfs:label>
+    <rdfs:label xml:lang="en">Activity Category</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 중 수행할 활동의 종류를 나타내는 문자열이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A text value identifying the kind of activity planned during camping.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampActivity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">캠핑 계획 및 야영장 관리 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Camping Planning and Campground Management Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행, 야영장과 사이트, 예약, 참가자, 장비 준비물 및 야외 활동을 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents camping trips, campgrounds and sites, reservations, participants, equipment packing, and outdoor activities.</rdfs:comment>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:versionInfo>1.0.0</owl:versionInfo>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/camping/1.0.0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#CampingEquipment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 장비</rdfs:label>
+    <rdfs:label xml:lang="en">Camping Equipment</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑에 사용하는 텐트, 취사 도구, 조명 또는 안전 장비 등의 물품이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An item used for camping, such as a tent, cooking tool, light, or safety gear.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#reservationForSite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">예약 사이트</rdfs:label>
+    <rdfs:label xml:lang="en">Reserved Campsite</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 대상인 캠핑 사이트를 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the campsite covered by a reservation.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#Reservation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Campsite"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#itemQuantity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">준비 수량</rdfs:label>
+    <rdfs:label xml:lang="en">Required Quantity</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비물 목록 항목에서 가져가야 하는 장비 수량이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The number of equipment units required for a packing list entry.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#PackingListItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#Camper">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 참가자</rdfs:label>
+    <rdfs:label xml:lang="en">Camper</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행에 참가하는 사람을 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A person participating in a camping trip.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#activityDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">활동 날짜</rdfs:label>
+    <rdfs:label xml:lang="en">Activity Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 활동이 계획된 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The calendar date on which a camping activity is planned.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampActivity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#belongsToCampground">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">소속 야영장</rdfs:label>
+    <rdfs:label xml:lang="en">Belongs to Campground</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 사이트가 속한 야영장을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a campsite to the campground it belongs to.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#Campsite"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Campground"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#CampActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 활동</rdfs:label>
+    <rdfs:label xml:lang="en">Camping Activity</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행 중 예정하거나 수행하는 하이킹, 낚시, 요리 등의 활동이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An activity planned or performed during a camping trip, such as hiking, fishing, or cooking.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#hasCampsite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">야영장의 사이트</rdfs:label>
+    <rdfs:label xml:lang="en">Has Campsite</rdfs:label>
+    <rdfs:comment xml:lang="ko">야영장이 제공하는 캠핑 사이트를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a campground to one of the campsites it provides.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#Campground"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Campsite"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripEndDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">여행 종료일</rdfs:label>
+    <rdfs:label xml:lang="en">Trip End Date</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행이 끝나는 날짜이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The calendar date on which a camping trip ends.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#listHasItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">준비물 항목</rdfs:label>
+    <rdfs:label xml:lang="en">Packing List Item</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비물 목록에 포함되는 개별 항목을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a packing list to one of its individual entries.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#PackingList"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#PackingListItem"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#Campground">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">야영장</rdfs:label>
+    <rdfs:label xml:lang="en">Campground</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 사이트와 편의시설을 제공하는 야외 숙박 장소이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An outdoor lodging destination that provides camping sites and facilities.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripDestination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">여행 목적지</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Destination</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행이 향하는 야영장을 지정한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Identifies the campground that is the destination of a trip.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#Campground"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#Campsite">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 사이트</rdfs:label>
+    <rdfs:label xml:lang="en">Campsite</rdfs:label>
+    <rdfs:comment xml:lang="ko">야영장 안에서 텐트나 캠핑 차량을 설치하도록 지정된 개별 구역이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An individual area within a campground designated for a tent or camping vehicle.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#equipmentWeightKg">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">장비 무게(kg)</rdfs:label>
+    <rdfs:label xml:lang="en">Equipment Weight (kg)</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 장비 한 개의 무게를 킬로그램 단위로 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The weight of one piece of camping equipment, measured in kilograms.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingEquipment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#tripHasActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">여행 활동</rdfs:label>
+    <rdfs:label xml:lang="en">Trip Activity</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 여행 중 계획되거나 수행되는 활동을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a camping trip to an activity planned or performed during it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingTrip"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/camping#CampActivity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#equipmentCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">장비 분류</rdfs:label>
+    <rdfs:label xml:lang="en">Equipment Category</rdfs:label>
+    <rdfs:comment xml:lang="ko">캠핑 장비의 용도나 종류를 구분하는 분류이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A category describing the type or purpose of camping equipment.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/camping#CampingEquipment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/camping#PackingList">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:label xml:lang="ko">캠핑 준비물 목록</rdfs:label>
+    <rdfs:label xml:lang="en">Camping Packing List</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행에 필요한 장비와 수량을 정리한 준비물 목록이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A checklist of equipment and quantities needed for a camping trip.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,521 @@
+@prefix iml: <https://example.org/ontology/custom/imitation-learning#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+iml:ActionShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "행동 단위 값과 형식을 확인하세요."@ko ;
+            sh:path iml:actionUnit ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "robot_command"^^xsd:string "gripper_command"^^xsd:string "control_label"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "행동 유형 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:actionType ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_fixture"^^xsd:string "expert"^^xsd:string "recorded_controller"^^xsd:string "annotator"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "레이블 출처 유형 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:actionLabelSource ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "행동 값 또는 레이블 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:actionValue ] ;
+    sh:targetClass iml:Action .
+
+iml:DemonstrationDatasetShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "데이터 한계 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:datasetLimitations ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_only"^^xsd:string "collected"^^xsd:string "published"^^xsd:string "mixed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "출처 유형 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:datasetProvenanceType ],
+        [ sh:class iml:LearningTask ;
+            sh:maxCount 1 ;
+            sh:message "대상 과제 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:datasetForTask ],
+        [ sh:class iml:Demonstration ;
+            sh:message "포함 시연 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:datasetIncludesDemonstration ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_defined"^^xsd:string "not_applicable_synthetic_fixture"^^xsd:string "defined"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "분할 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:datasetSplitStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_fixture_not_collected"^^xsd:string "planned"^^xsd:string "collected"^^xsd:string "partially_collected"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "수집 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:datasetCollectionStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "데이터셋 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:datasetName ] ;
+    sh:targetClass iml:DemonstrationDataset .
+
+iml:DemonstrationShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_fixture"^^xsd:string "expert_labeled"^^xsd:string "reviewed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "레이블 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:demonstrationLabelStatus ],
+        [ sh:class iml:Expert ;
+            sh:maxCount 1 ;
+            sh:message "시연자 또는 참조 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:demonstrationByExpert ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "시연 설명 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:demonstrationNote ],
+        [ sh:class iml:DemonstrationStep ;
+            sh:message "시연 단계 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:demonstrationHasStep ],
+        [ sh:class iml:LearningTask ;
+            sh:maxCount 1 ;
+            sh:message "대상 과제 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:demonstrationForTask ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_example"^^xsd:string "collected"^^xsd:string "published"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "시연 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:demonstrationStatus ],
+        [ sh:class iml:DemonstrationDataset ;
+            sh:maxCount 1 ;
+            sh:message "소속 데이터셋 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:demonstrationInDataset ] ;
+    sh:targetClass iml:Demonstration .
+
+iml:DemonstrationStepShape a sh:NodeShape ;
+    sh:property [ sh:class iml:Demonstration ;
+            sh:maxCount 1 ;
+            sh:message "소속 시연 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:stepInDemonstration ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "단계 순서 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path iml:stepIndex ],
+        [ sh:class iml:Observation ;
+            sh:maxCount 1 ;
+            sh:message "단계 관측 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:stepObservation ],
+        [ sh:class iml:Action ;
+            sh:maxCount 1 ;
+            sh:message "단계 행동 레이블 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:stepAction ] ;
+    sh:targetClass iml:DemonstrationStep .
+
+iml:DistributionShiftShape a sh:NodeShape ;
+    sh:property [ sh:class iml:LearningMethod ;
+            sh:message "관련 방법 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:shiftDiscussedByMethod ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분포 변화 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:shiftNote ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분포 변화 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:shiftName ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "concept_only"^^xsd:string "planned"^^xsd:string "not_assessed"^^xsd:string "observed"^^xsd:string "mitigated"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "분포 변화 평가 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:shiftAssessmentStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "분포 변화 설명 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:shiftDescription ] ;
+    sh:targetClass iml:DistributionShift .
+
+iml:DocumentationSourceShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "자료 제목 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:sourceTitle ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:message "확인 날짜 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:sourceAccessedAt ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "자료 URI 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:sourceUri ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "발행 연도 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:sourceYear ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "저자 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:sourceAuthors ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "뒷받침하는 주장 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:sourceClaim ] ;
+    sh:targetClass iml:DocumentationSource .
+
+iml:EvaluationMetricShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "지표 단위 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:metricUnit ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_measured"^^xsd:string "measured"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "측정 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:metricMeasurementStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "지표 정의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:metricDefinition ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "측정값 값과 형식을 확인하세요."@ko ;
+            sh:path iml:metricMeasuredValue ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "지표 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:metricName ] ;
+    sh:targetClass iml:EvaluationMetric .
+
+iml:EvaluationRunShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "평가 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:evaluationName ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "none"^^xsd:string "planned"^^xsd:string "recorded"^^xsd:string "reviewed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "평가 근거 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:evaluationEvidenceStatus ],
+        [ sh:class iml:DemonstrationDataset ;
+            sh:maxCount 1 ;
+            sh:message "평가 데이터셋 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:evaluationUsesDataset ],
+        [ sh:class iml:EvaluationMetric ;
+            sh:message "평가 지표 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:evaluationUsesMetric ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "평가 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:evaluationNote ],
+        [ sh:class iml:Policy ;
+            sh:maxCount 1 ;
+            sh:message "평가 대상 정책 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:evaluationForPolicy ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "not_run"^^xsd:string "completed"^^xsd:string "failed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "평가 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:evaluationStatus ] ;
+    sh:targetClass iml:EvaluationRun .
+
+iml:ExpertShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "시연자 역할 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:expertRole ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "human_operator"^^xsd:string "simulation_reference_policy"^^xsd:string "recorded_controller"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "시연자 유형 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:expertType ] ;
+    sh:targetClass iml:Expert .
+
+iml:ImitationLearningProjectShape a sh:NodeShape ;
+    sh:property [ sh:class iml:EvaluationRun ;
+            sh:message "평가 실행 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasEvaluationRun ],
+        [ sh:class iml:Policy ;
+            sh:message "정책 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasPolicy ],
+        [ sh:class iml:DocumentationSource ;
+            sh:message "문헌 출처 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasDocumentationSource ],
+        [ sh:class iml:TrainingRun ;
+            sh:message "학습 실행 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasTrainingRun ],
+        [ sh:class iml:SafetyConstraint ;
+            sh:message "안전 제약 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasSafetyConstraint ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "프로젝트 데이터 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:projectDataStatus ],
+        [ sh:class iml:DistributionShift ;
+            sh:message "상태 분포 변화 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasDistributionShift ],
+        [ sh:class iml:Expert ;
+            sh:message "시연자 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasExpert ],
+        [ sh:class iml:LearningTask ;
+            sh:message "학습 과제 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasTask ],
+        [ sh:class iml:LearningMethod ;
+            sh:message "검토 방법 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectConsidersMethod ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "프로젝트 범위 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:projectNote ],
+        [ sh:class iml:DemonstrationDataset ;
+            sh:message "시연 데이터셋 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:projectHasDataset ] ;
+    sh:targetClass iml:ImitationLearningProject .
+
+iml:LearningMethodShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "적용 범위 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:methodApplicabilityNote ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "방법 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:methodName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "방법 설명 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:methodDescription ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "behavior_cloning"^^xsd:string "dagger"^^xsd:string "inverse_reinforcement_learning"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "방법 유형 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:methodKind ],
+        [ sh:class iml:DocumentationSource ;
+            sh:message "문헌 근거 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:methodDocumentedBy ] ;
+    sh:targetClass iml:LearningMethod .
+
+iml:LearningTaskShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "과제 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:taskName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "과제 목표 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:taskGoal ] ;
+    sh:targetClass iml:LearningTask .
+
+iml:ObservationShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "관측 요약 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:observationSummary ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "simulated_image"^^xsd:string "simulated_state"^^xsd:string "image"^^xsd:string "video"^^xsd:string "audio"^^xsd:string "tactile"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "관측 방식 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:observationModality ] ;
+    sh:targetClass iml:Observation .
+
+iml:PolicyShape a sh:NodeShape ;
+    sh:property [ sh:class iml:LearningMethod ;
+            sh:message "학습 방법 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:policyLearnsWithMethod ],
+        [ sh:class iml:LearningTask ;
+            sh:maxCount 1 ;
+            sh:message "대상 과제 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:policyForTask ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "정책 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:policyName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "정책 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:policyNote ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "design_only"^^xsd:string "not_trained"^^xsd:string "trained_unverified"^^xsd:string "evaluated"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "정책 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:policyStatus ] ;
+    sh:targetClass iml:Policy .
+
+iml:SafetyConstraintShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "제약 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:constraintName ],
+        [ sh:class iml:LearningTask ;
+            sh:maxCount 1 ;
+            sh:message "적용 과제 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:constraintAppliesToTask ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "제약 설명 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:constraintDescription ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "제약 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:constraintNote ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "conceptual"^^xsd:string "planned"^^xsd:string "not_verified"^^xsd:string "verified"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "검증 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:constraintStatus ] ;
+    sh:targetClass iml:SafetyConstraint .
+
+iml:TrainingRunShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "학습 실행 이름 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:trainingName ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "not_started"^^xsd:string "running"^^xsd:string "completed"^^xsd:string "failed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "학습 상태 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:trainingStatus ],
+        [ sh:class iml:DemonstrationDataset ;
+            sh:maxCount 1 ;
+            sh:message "사용 데이터셋 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:trainingUsesDataset ],
+        [ sh:class iml:Policy ;
+            sh:maxCount 1 ;
+            sh:message "결과 정책 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:trainingProducesPolicy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "학습 실행 메모 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path iml:trainingNote ],
+        [ sh:class iml:LearningMethod ;
+            sh:maxCount 1 ;
+            sh:message "사용 방법 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path iml:trainingUsesMethod ] ;
+    sh:targetClass iml:TrainingRun .

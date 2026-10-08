@@ -1,0 +1,138 @@
+@prefix dog: <https://example.org/ontology/custom/dog#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/dog> a owl:Ontology ;
+    rdfs:label "개 온톨로지"@ko, "Dog ontology"@en ;
+    rdfs:comment "개의 품종, 보호자, 동물등록, 예방접종, 동물병원 진료와 체중 기록을 연결한다. 등록 완료나 접종 완료 상태에는 증빙 주소를 요구하며 예제는 가상의 개와 보호자만 담는다."@ko,
+      "Connects dogs with their breed, guardians, identification registration, vaccinations, veterinary visits and weight records. Registered and administered states require an evidence location, and the example contains only fictional dogs and guardians."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/dog/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+dog:Dog a owl:Class ;
+    rdfs:label "개"@ko, "Dog"@en ;
+    rdfs:comment "보호자가 돌보는 개 한 마리이다. 성별, 중성화 상태, 생년월일의 확실성과 동물등록 상태를 기록한다."@ko,
+      "A single dog in the care of a guardian, with sex, neuter status, certainty of its birth date and identification registration status."@en .
+dog:Breed a owl:Class ;
+    rdfs:label "품종"@ko, "Breed"@en ;
+    rdfs:comment "진돗개나 골든 리트리버 같은 개의 품종이다. 혼합종은 크기를 정할 수 없으므로 일반적인 크기 구분이 없을 수 있다."@ko,
+      "A dog breed such as the Jindo or Golden Retriever; a mixed breed has no typical size class because its size cannot be assumed."@en .
+dog:Guardian a owl:Class ;
+    rdfs:label "보호자"@ko, "Guardian"@en ;
+    rdfs:comment "개를 돌보는 사람이다. 이름이나 연락처 같은 개인정보는 담지 않고 가명 표시만 기록한다."@ko,
+      "A person who cares for a dog; no name or contact details are recorded, only a pseudonymous label."@en .
+dog:Clinic a owl:Class ;
+    rdfs:label "동물병원"@ko, "Veterinary clinic"@en ;
+    rdfs:comment "접종과 진료를 한 동물병원이다. 주소나 수의사 정보는 담지 않는다."@ko,
+      "A veterinary clinic where vaccinations or visits took place; no address or veterinarian details are recorded."@en .
+dog:Vaccination a owl:Class ;
+    rdfs:label "예방접종"@ko, "Vaccination"@en ;
+    rdfs:comment "개 한 마리의 접종 한 건이다. 예정 상태와 실시 완료 상태를 구분하며 완료에는 접종일과 증명서 주소가 필요하다."@ko,
+      "One vaccination of one dog, distinguishing a scheduled dose from an administered one; an administered dose needs a date and a certificate location."@en .
+dog:VetVisit a owl:Class ;
+    rdfs:label "동물병원 방문"@ko, "Veterinary visit"@en ;
+    rdfs:comment "개 한 마리의 진료 방문 한 건이다. 방문일, 방문 사유와 방문한 병원을 기록하며 진단 내용은 담지 않는다."@ko,
+      "One veterinary visit of one dog with its date, reason and clinic; diagnoses are not recorded."@en .
+dog:WeightRecord a owl:Class ;
+    rdfs:label "체중 기록"@ko, "Weight record"@en ;
+    rdfs:comment "개의 체중을 특정 날짜에 잰 값이다. 같은 날짜에는 한 개의 값만 둔다."@ko,
+      "A dog's weight measured on a specific date; only one value is kept per dog and date."@en .
+
+dog:hasBreed a owl:ObjectProperty ; rdfs:domain dog:Dog ; rdfs:range dog:Breed ;
+    rdfs:label "품종"@ko, "Has breed"@en ;
+    rdfs:comment "개의 품종을 연결한다. 혼합종은 별도의 혼합종 품종으로 연결한다."@ko,
+      "Links a dog to its breed; a mixed-breed dog is linked to a dedicated mixed-breed record."@en .
+dog:hasGuardian a owl:ObjectProperty ; rdfs:domain dog:Dog ; rdfs:range dog:Guardian ;
+    rdfs:label "보호자"@ko, "Has guardian"@en ;
+    rdfs:comment "개를 돌보는 보호자를 연결한다. 개는 보호자가 한 명 이상이어야 한다."@ko,
+      "Links a dog to a guardian who cares for it; every dog needs at least one guardian."@en .
+dog:hasVaccination a owl:ObjectProperty ; rdfs:domain dog:Dog ; rdfs:range dog:Vaccination ;
+    rdfs:label "예방접종 기록"@ko, "Has vaccination"@en ;
+    rdfs:comment "개에게 실시했거나 예정된 접종을 연결한다. 접종 기록은 한 마리의 개에만 속한다."@ko,
+      "Links a dog to a vaccination given or scheduled for it; a vaccination belongs to exactly one dog."@en .
+dog:hasVisit a owl:ObjectProperty ; rdfs:domain dog:Dog ; rdfs:range dog:VetVisit ;
+    rdfs:label "진료 방문 기록"@ko, "Has visit"@en ;
+    rdfs:comment "개의 동물병원 방문을 연결한다. 방문 기록은 한 마리의 개에만 속한다."@ko,
+      "Links a dog to one of its veterinary visits; a visit belongs to exactly one dog."@en .
+dog:hasWeightRecord a owl:ObjectProperty ; rdfs:domain dog:Dog ; rdfs:range dog:WeightRecord ;
+    rdfs:label "체중 기록 연결"@ko, "Has weight record"@en ;
+    rdfs:comment "개의 체중 측정값을 연결한다. 체중 기록은 한 마리의 개에만 속한다."@ko,
+      "Links a dog to one of its weight measurements; a weight record belongs to exactly one dog."@en .
+dog:administeredAt a owl:ObjectProperty ; rdfs:domain dog:Vaccination ; rdfs:range dog:Clinic ;
+    rdfs:label "접종 병원"@ko, "Administered at"@en ;
+    rdfs:comment "접종을 한 동물병원을 연결한다. 실시 완료 접종에는 병원이 필요하다."@ko,
+      "Links a vaccination to the clinic that gave it; an administered vaccination needs a clinic."@en .
+dog:visitedClinic a owl:ObjectProperty ; rdfs:domain dog:VetVisit ; rdfs:range dog:Clinic ;
+    rdfs:label "방문 병원"@ko, "Visited clinic"@en ;
+    rdfs:comment "진료 방문이 이루어진 동물병원을 연결한다."@ko,
+      "Links a veterinary visit to the clinic that was visited."@en .
+
+dog:sex a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:string ;
+    rdfs:label "성별"@ko, "Sex"@en ;
+    rdfs:comment "개의 성별을 male 또는 female로 기록한다."@ko,
+      "Records the dog's sex as male or female."@en .
+dog:neuterStatus a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:string ;
+    rdfs:label "중성화 상태"@ko, "Neuter status"@en ;
+    rdfs:comment "중성화 수술 여부를 intact, neutered, unknown 중 하나로 기록한다. 확인하지 못했으면 unknown을 쓴다."@ko,
+      "Records neutering as intact, neutered or unknown; unknown is used when it has not been confirmed."@en .
+dog:birthDate a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:date ;
+    rdfs:label "생년월일"@ko, "Birth date"@en ;
+    rdfs:comment "개가 태어난 날짜이다. 입양견처럼 모르면 값을 만들지 않고 비워 둔다."@ko,
+      "The date the dog was born; left absent rather than invented when it is not known, as for many adopted dogs."@en .
+dog:birthDateKnowledge a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:string ;
+    rdfs:label "생년월일 확실성"@ko, "Birth date certainty"@en ;
+    rdfs:comment "생년월일이 exact(확실), estimated(추정), unknown(모름) 중 어느 것인지 기록한다. unknown이면 생년월일 값이 없어야 한다."@ko,
+      "Records whether the birth date is exact, estimated or unknown; an unknown birth date must have no date value."@en .
+dog:microchipStatus a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:string ;
+    rdfs:label "동물등록 상태"@ko, "Identification registration status"@en ;
+    rdfs:comment "등록 여부를 registered 또는 unregistered로 기록한다. registered에는 식별번호와 등록 증빙 주소가 필요하다."@ko,
+      "Records whether the dog is registered or unregistered; registered requires an identification number and a registration evidence location."@en .
+dog:microchipNumber a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:string ;
+    rdfs:label "식별번호"@ko, "Identification number"@en ;
+    rdfs:comment "등록된 개의 15자리 숫자 식별번호이다. 등록하지 않은 개에는 번호를 만들지 않는다."@ko,
+      "The 15-digit identification number of a registered dog; no number is invented for an unregistered dog."@en .
+dog:registrationEvidenceUri a owl:DatatypeProperty ; rdfs:domain dog:Dog ; rdfs:range xsd:anyURI ;
+    rdfs:label "등록 증빙 주소"@ko, "Registration evidence URI"@en ;
+    rdfs:comment "동물등록 사실을 확인할 수 있는 증빙의 위치이며 문서의 진위를 자동으로 보증하지 않는다."@ko,
+      "Points to evidence of the registration; it does not by itself guarantee authenticity of the document."@en .
+dog:typicalSizeClass a owl:DatatypeProperty ; rdfs:domain dog:Breed ; rdfs:range xsd:string ;
+    rdfs:label "일반적 크기 구분"@ko, "Typical size class"@en ;
+    rdfs:comment "품종의 일반적인 크기를 toy, small, medium, large, giant 중 하나로 기록하며 개별 개의 체중을 뜻하지 않는다."@ko,
+      "The usual size of the breed as toy, small, medium, large or giant; it says nothing about an individual dog's weight."@en .
+dog:vaccineKind a owl:DatatypeProperty ; rdfs:domain dog:Vaccination ; rdfs:range xsd:string ;
+    rdfs:label "백신 종류"@ko, "Vaccine kind"@en ;
+    rdfs:comment "접종한 백신을 rabies(광견병), combination(종합백신), kennel-cough(켄넬코프), other 중 하나로 기록한다."@ko,
+      "The vaccine given: rabies, combination, kennel-cough or other."@en .
+dog:vaccinationStatus a owl:DatatypeProperty ; rdfs:domain dog:Vaccination ; rdfs:range xsd:string ;
+    rdfs:label "접종 상태"@ko, "Vaccination status"@en ;
+    rdfs:comment "scheduled는 아직 맞히지 않은 예정, administered는 실제로 맞힌 상태이며 후자에는 증빙이 필요하다."@ko,
+      "scheduled is a dose not yet given and administered is a dose actually given, which requires evidence."@en .
+dog:administeredDate a owl:DatatypeProperty ; rdfs:domain dog:Vaccination ; rdfs:range xsd:date ;
+    rdfs:label "접종일"@ko, "Administered date"@en ;
+    rdfs:comment "백신을 실제로 맞힌 날짜이며 예정 상태에서는 값을 두지 않는다."@ko,
+      "The date the vaccine was actually given; absent while the dose is only scheduled."@en .
+dog:nextDueDate a owl:DatatypeProperty ; rdfs:domain dog:Vaccination ; rdfs:range xsd:date ;
+    rdfs:label "다음 접종 예정일"@ko, "Next due date"@en ;
+    rdfs:comment "다음 접종이 필요한 날짜이다. 예정 상태에서는 접종하기로 한 날짜이며 접종일보다 앞설 수 없다."@ko,
+      "The date the next dose is due; for a scheduled dose it is the planned date, and it cannot precede the administered date."@en .
+dog:certificateUri a owl:DatatypeProperty ; rdfs:domain dog:Vaccination ; rdfs:range xsd:anyURI ;
+    rdfs:label "접종 증명서 주소"@ko, "Certificate URI"@en ;
+    rdfs:comment "접종 증명서나 수첩 기록의 위치이며 실시 완료 접종에 필요하다. 문서의 진위를 자동으로 보증하지 않는다."@ko,
+      "Points to a vaccination certificate or booklet entry, required for an administered dose; authenticity is not verified automatically."@en .
+dog:visitDate a owl:DatatypeProperty ; rdfs:domain dog:VetVisit ; rdfs:range xsd:date ;
+    rdfs:label "방문일"@ko, "Visit date"@en ;
+    rdfs:comment "동물병원을 방문한 날짜이며 개의 생년월일보다 앞설 수 없다."@ko,
+      "The date of the veterinary visit; it cannot precede the dog's birth date."@en .
+dog:visitReason a owl:DatatypeProperty ; rdfs:domain dog:VetVisit ; rdfs:range xsd:string ;
+    rdfs:label "방문 사유"@ko, "Visit reason"@en ;
+    rdfs:comment "방문 사유를 checkup, vaccination, illness, injury, surgery, other 중 하나로 기록한다."@ko,
+      "The reason for the visit: checkup, vaccination, illness, injury, surgery or other."@en .
+dog:weightKg a owl:DatatypeProperty ; rdfs:domain dog:WeightRecord ; rdfs:range xsd:decimal ;
+    rdfs:label "체중 킬로그램"@ko, "Weight in kilograms"@en ;
+    rdfs:comment "측정한 체중을 킬로그램 단위의 양의 소수로 기록하며 150kg을 넘을 수 없다."@ko,
+      "The measured weight as a positive decimal in kilograms, not above 150 kg."@en .
+dog:measuredDate a owl:DatatypeProperty ; rdfs:domain dog:WeightRecord ; rdfs:range xsd:date ;
+    rdfs:label "측정일"@ko, "Measured date"@en ;
+    rdfs:comment "체중을 잰 날짜이며 개의 생년월일보다 앞설 수 없다."@ko,
+      "The date the weight was measured; it cannot precede the dog's birth date."@en .

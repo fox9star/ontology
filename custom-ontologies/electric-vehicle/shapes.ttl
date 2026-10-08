@@ -1,0 +1,339 @@
+@prefix ev: <https://example.org/ontology/custom/electric-vehicle#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ev:AuxiliaryBatteryShape a sh:NodeShape ;
+    sh:class ev:AuxiliaryBattery ;
+    sh:targetClass ev:AuxiliaryBattery .
+
+ev:BatteryElectricVehicleShape a sh:NodeShape ;
+    sh:class ev:BatteryElectricVehicle ;
+    sh:targetClass ev:BatteryElectricVehicle .
+
+ev:ChargingConnectorShape a sh:NodeShape ;
+    sh:class ev:ChargingConnector ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "synthetic-example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:connectorDataStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "ac-example"^^xsd:string "dc-example"^^xsd:string "combined-example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:connectorInterfaceType ] ;
+    sh:targetClass ev:ChargingConnector .
+
+ev:ChargingSessionShape a sh:NodeShape ;
+    sh:class ev:ChargingSession ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "synthetic-example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sessionDataStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "in-progress"^^xsd:string "completed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sessionState ],
+        [ sh:class ev:Vehicle ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:sessionVehicle ],
+        [ sh:class ev:EVSEPort ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:sessionEVSEPort ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "ac"^^xsd:string "dc"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sessionCurrentType ],
+        [ sh:class ev:ChargingConnector ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:sessionConnector ] ;
+    sh:targetClass ev:ChargingSession .
+
+ev:ChargingStationLocationShape a sh:NodeShape ;
+    sh:class ev:ChargingStationLocation ;
+    sh:property [ sh:class ev:EVSEPort ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:stationHasPort ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic-example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:stationDataStatus ] ;
+    sh:targetClass ev:ChargingStationLocation .
+
+ev:CoverageNoteShape a sh:NodeShape ;
+    sh:class ev:CoverageNote ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:coverageExplanation ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:coverageLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "included"^^xsd:string "limited"^^xsd:string "excluded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:coverageStatus ] ;
+    sh:targetClass ev:CoverageNote .
+
+ev:DCDCConverterShape a sh:NodeShape ;
+    sh:class ev:DCDCConverter ;
+    sh:targetClass ev:DCDCConverter .
+
+ev:EVSEPortShape a sh:NodeShape ;
+    sh:class ev:EVSEPort ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "ac"^^xsd:string "dc"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:portOutputCurrentType ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic-example"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:portDataStatus ],
+        [ sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:portSingleVehicleAtATime ],
+        [ sh:class ev:ChargingConnector ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:portHasConnector ] ;
+    sh:targetClass ev:EVSEPort .
+
+ev:ElectricTractionMotorShape a sh:NodeShape ;
+    sh:class ev:ElectricTractionMotor ;
+    sh:targetClass ev:ElectricTractionMotor .
+
+ev:ElectrifiedVehicleShape a sh:NodeShape ;
+    sh:class ev:ElectrifiedVehicle ;
+    sh:targetClass ev:ElectrifiedVehicle .
+
+ev:EnergyFlowShape a sh:NodeShape ;
+    sh:class ev:EnergyFlow ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:energyFlowCondition ],
+        [ sh:class ev:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:energyFlowHasEvidence ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "ac-electricity"^^xsd:string "dc-electricity"^^xsd:string "mechanical-energy"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:energyFlowForm ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:energyFlowDestination ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:energyFlowSource ] ;
+    sh:targetClass ev:EnergyFlow .
+
+ev:EvidenceRecordShape a sh:NodeShape ;
+    sh:class ev:EvidenceRecord ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:evidenceScope ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "source-reported"^^xsd:string "synthetic-example"^^xsd:string "editorial-scope"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:evidenceStatus ],
+        [ sh:class ev:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:evidenceSource ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:evidenceIdentifier ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:evidenceClaim ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:evidenceAbout ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:evidenceLocator ] ;
+    sh:targetClass ev:EvidenceRecord .
+
+ev:HybridElectricVehicleShape a sh:NodeShape ;
+    sh:class ev:HybridElectricVehicle ;
+    sh:targetClass ev:HybridElectricVehicle .
+
+ev:InverterShape a sh:NodeShape ;
+    sh:class ev:Inverter ;
+    sh:targetClass ev:Inverter .
+
+ev:OnboardChargerShape a sh:NodeShape ;
+    sh:class ev:OnboardCharger ;
+    sh:targetClass ev:OnboardCharger .
+
+ev:PlugInHybridElectricVehicleShape a sh:NodeShape ;
+    sh:class ev:PlugInHybridElectricVehicle ;
+    sh:targetClass ev:PlugInHybridElectricVehicle .
+
+ev:PowerElectronicsControllerShape a sh:NodeShape ;
+    sh:class ev:PowerElectronicsController ;
+    sh:targetClass ev:PowerElectronicsController .
+
+ev:PowertrainComponentShape a sh:NodeShape ;
+    sh:class ev:PowertrainComponent ;
+    sh:property [ sh:class ev:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:componentHasEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:componentFunction ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "traction-storage"^^xsd:string "auxiliary-storage"^^xsd:string "propulsion"^^xsd:string "power-control"^^xsd:string "power-conversion"^^xsd:string "charging-interface"^^xsd:string "thermal-control"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:componentRole ] ;
+    sh:targetClass ev:PowertrainComponent .
+
+ev:ResourceRecordShape a sh:NodeShape ;
+    sh:class ev:ResourceRecord ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:recordDescription ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:recordIdentifier ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:recordLabel ] ;
+    sh:targetClass ev:ResourceRecord .
+
+ev:SourceDocumentShape a sh:NodeShape ;
+    sh:class ev:SourceDocument ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sourceAccessedOn ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sourceTitle ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sourceURL ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sourcePublisher ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:sourceScope ] ;
+    sh:targetClass ev:SourceDocument .
+
+ev:ThermalManagementSystemShape a sh:NodeShape ;
+    sh:class ev:ThermalManagementSystem ;
+    sh:targetClass ev:ThermalManagementSystem .
+
+ev:TractionBatteryPackShape a sh:NodeShape ;
+    sh:class ev:TractionBatteryPack ;
+    sh:targetClass ev:TractionBatteryPack .
+
+ev:VehicleChargePortShape a sh:NodeShape ;
+    sh:class ev:VehicleChargePort ;
+    sh:targetClass ev:VehicleChargePort .
+
+ev:VehicleShape a sh:NodeShape ;
+    sh:class ev:Vehicle ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "electric-only"^^xsd:string "electric-and-liquid-fuel"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:vehiclePropulsionMode ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "off-board-electricity"^^xsd:string "regenerative-braking"^^xsd:string "internal-combustion-engine"^^xsd:string ) ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:vehicleChargingEnergySource ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "electric-only"^^xsd:string "series"^^xsd:string "parallel"^^xsd:string "series-parallel"^^xsd:string ) ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:vehiclePowertrainConfiguration ],
+        [ sh:class ev:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:vehicleHasEvidence ],
+        [ sh:datatype xsd:boolean ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path ev:vehiclePlugInChargeable ],
+        [ sh:class ev:PowertrainComponent ;
+            sh:nodeKind sh:IRI ;
+            sh:path ev:vehicleHasComponent ] ;
+    sh:targetClass ev:Vehicle .

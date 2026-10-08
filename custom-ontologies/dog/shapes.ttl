@@ -1,0 +1,90 @@
+@prefix dog: <https://example.org/ontology/custom/dog#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dog:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+dog:DogShape a sh:NodeShape ; sh:targetClass dog:Dog ; sh:node dog:LabelShape ;
+    sh:property [ sh:path dog:sex ; sh:datatype xsd:string ; sh:in ( "male" "female" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:neuterStatus ; sh:datatype xsd:string ; sh:in ( "intact" "neutered" "unknown" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:birthDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:birthDateKnowledge ; sh:datatype xsd:string ; sh:in ( "exact" "estimated" "unknown" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:microchipStatus ; sh:datatype xsd:string ; sh:in ( "registered" "unregistered" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:microchipNumber ; sh:datatype xsd:string ; sh:pattern "^[0-9]{15}$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:registrationEvidenceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:hasBreed ; sh:class dog:Breed ; sh:minCount 1 ] ;
+    sh:property [ sh:path dog:hasGuardian ; sh:class dog:Guardian ; sh:minCount 1 ] ;
+    sh:property [ sh:path dog:hasVaccination ; sh:class dog:Vaccination ] ;
+    sh:property [ sh:path dog:hasVisit ; sh:class dog:VetVisit ] ;
+    sh:property [ sh:path dog:hasWeightRecord ; sh:class dog:WeightRecord ] ;
+    sh:or (
+        [ sh:property [ sh:path dog:microchipStatus ; sh:hasValue "unregistered" ] ;
+          sh:property [ sh:path dog:microchipNumber ; sh:maxCount 0 ] ;
+          sh:property [ sh:path dog:registrationEvidenceUri ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path dog:microchipStatus ; sh:hasValue "registered" ] ;
+          sh:property [ sh:path dog:microchipNumber ; sh:minCount 1 ] ;
+          sh:property [ sh:path dog:registrationEvidenceUri ; sh:minCount 1 ] ]
+    ) ;
+    sh:or (
+        [ sh:property [ sh:path dog:birthDateKnowledge ; sh:in ( "exact" "estimated" ) ] ;
+          sh:property [ sh:path dog:birthDate ; sh:minCount 1 ] ]
+        [ sh:property [ sh:path dog:birthDateKnowledge ; sh:hasValue "unknown" ] ;
+          sh:property [ sh:path dog:birthDate ; sh:maxCount 0 ] ]
+    ) ;
+    sh:sparql [ sh:message "Vaccinations, visits and weight measurements cannot predate the dog's birth." ;
+        sh:select """PREFIX dog: <https://example.org/ontology/custom/dog#>
+          SELECT $this WHERE {
+            { $this dog:birthDate ?b ; dog:hasVaccination ?r . ?r dog:administeredDate ?d . FILTER (?d < ?b) }
+            UNION
+            { $this dog:birthDate ?b ; dog:hasVisit ?r . ?r dog:visitDate ?d . FILTER (?d < ?b) }
+            UNION
+            { $this dog:birthDate ?b ; dog:hasWeightRecord ?r . ?r dog:measuredDate ?d . FILTER (?d < ?b) }
+          }""" ] ;
+    sh:sparql [ sh:message "A dog can have only one weight record per date." ;
+        sh:select """PREFIX dog: <https://example.org/ontology/custom/dog#>
+          SELECT $this WHERE {
+            $this dog:hasWeightRecord ?a, ?b .
+            ?a dog:measuredDate ?d . ?b dog:measuredDate ?d .
+            FILTER (?a != ?b)
+          }""" ] .
+
+dog:BreedShape a sh:NodeShape ; sh:targetClass dog:Breed ; sh:node dog:LabelShape ;
+    sh:property [ sh:path dog:typicalSizeClass ; sh:datatype xsd:string ; sh:in ( "toy" "small" "medium" "large" "giant" ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path [ sh:inversePath dog:hasBreed ] ; sh:minCount 1 ] .
+
+dog:GuardianShape a sh:NodeShape ; sh:targetClass dog:Guardian ; sh:node dog:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath dog:hasGuardian ] ; sh:minCount 1 ] .
+
+dog:ClinicShape a sh:NodeShape ; sh:targetClass dog:Clinic ; sh:node dog:LabelShape .
+
+dog:VaccinationShape a sh:NodeShape ; sh:targetClass dog:Vaccination ; sh:node dog:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath dog:hasVaccination ] ; sh:class dog:Dog ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:vaccineKind ; sh:datatype xsd:string ; sh:in ( "rabies" "combination" "kennel-cough" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:vaccinationStatus ; sh:datatype xsd:string ; sh:in ( "scheduled" "administered" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:administeredDate ; sh:datatype xsd:date ; sh:maxCount 1 ; sh:lessThanOrEquals dog:nextDueDate ] ;
+    sh:property [ sh:path dog:nextDueDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:certificateUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:administeredAt ; sh:class dog:Clinic ; sh:maxCount 1 ] ;
+    sh:or (
+        [ sh:property [ sh:path dog:vaccinationStatus ; sh:hasValue "scheduled" ] ;
+          sh:property [ sh:path dog:nextDueDate ; sh:minCount 1 ] ;
+          sh:property [ sh:path dog:administeredDate ; sh:maxCount 0 ] ;
+          sh:property [ sh:path dog:certificateUri ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path dog:vaccinationStatus ; sh:hasValue "administered" ] ;
+          sh:property [ sh:path dog:administeredDate ; sh:minCount 1 ] ;
+          sh:property [ sh:path dog:certificateUri ; sh:minCount 1 ] ;
+          sh:property [ sh:path dog:administeredAt ; sh:minCount 1 ] ]
+    ) .
+
+dog:VetVisitShape a sh:NodeShape ; sh:targetClass dog:VetVisit ; sh:node dog:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath dog:hasVisit ] ; sh:class dog:Dog ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:visitDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:visitReason ; sh:datatype xsd:string ; sh:in ( "checkup" "vaccination" "illness" "injury" "surgery" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:visitedClinic ; sh:class dog:Clinic ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+dog:WeightRecordShape a sh:NodeShape ; sh:targetClass dog:WeightRecord ; sh:node dog:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath dog:hasWeightRecord ] ; sh:class dog:Dog ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:weightKg ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:maxInclusive 150 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dog:measuredDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] .

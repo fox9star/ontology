@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-config
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+data:
+  GRAPH_BACKEND: {{ .Values.graphStore.backend | quote }}
+  FUSEKI_ENDPOINT: {{ .Values.graphStore.fuseki.endpoint | quote }}
+  NEPTUNE_ENDPOINT: {{ .Values.graphStore.neptune.endpoint | quote }}
+  NEPTUNE_REGION: {{ .Values.graphStore.neptune.region | quote }}
+  NEPTUNE_OPENSEARCH_ENDPOINT: {{ .Values.graphStore.neptune.openSearchEndpoint | quote }}
+  MULTIMODAL_ENABLED: {{ .Values.webStudio.env.MULTIMODAL_ENABLED | quote }}
+  MULTIMODAL_DEVICE: {{ .Values.multimodal.device | quote }}
+  CLIP_MODEL: {{ .Values.multimodal.clipModel | quote }}
+  WHISPER_MODEL: {{ .Values.multimodal.whisperModel | quote }}

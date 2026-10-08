@@ -1,0 +1,34 @@
+{
+  "scope": "synthetic metadata only; no nose image binaries, biometric templates, matching or performance evaluation",
+  "dog_ontology_crosswalk": "https://example.org/ontology/custom/dog#kongi",
+  "accessed_on": "2026-10-08",
+  "sources": [
+    {
+      "id": "viability-2021",
+      "title": "Study on the Viability of Canine Nose Pattern as a Unique Biometric Marker",
+      "authors": "Hyeong In Choi et al.",
+      "year": 2021,
+      "uri": "https://www.mdpi.com/2076-2615/11/12/3372",
+      "claim_scope": "연구진은 60마리·18품종의 180개 이미지를 세 시점에서 수집했고 70마리·19품종·278개 이미지로 확장 분석했다. 저자들은 생물학적 고유성 증거가 완전히 확증되지는 않았다고 논의한다.",
+      "limitations": "특정 연구 표본과 비교 절차의 결과다. 실제 운용 이미지의 품질 문제와 모든 개체군의 보편 성능을 입증하지 않는다."
+    },
+    {
+      "id": "beagle-longitudinal-2021",
+      "title": "The Formation and Invariance of Canine Nose Pattern of Beagle Dogs from Early Puppy to Young Adult Periods",
+      "authors": "Hyeong In Choi et al.",
+      "year": 2021,
+      "uri": "https://www.mdpi.com/2076-2615/11/9/2664",
+      "claim_scope": "비글 10마리의 코 이미지를 생후 2개월부터 11개월까지 관찰해 해당 관찰 기간의 형성과 패턴 안정성을 연구했다.",
+      "limitations": "10마리 비글과 10개월 관찰 결과다. 저자들은 전 생애 안정성에 대한 장기 후속 검증이 필요하다고 명시한다."
+    },
+    {
+      "id": "dnnet-2021",
+      "title": "Dog Nose-Print Identification Using Deep Neural Networks",
+      "authors": "Han Byeol Bae, Daehyun Pak, Sangyoun Lee",
+      "year": 2021,
+      "uri": "https://doi.org/10.1109/ACCESS.2021.3068517",
+      "claim_scope": "DNNet은 특징 추출·self-attention을 포함한 CNN 기반 Siamese 구조이며, 저자들은 자신들의 다중 데이터셋 교차검증에서 평균 Rank-1 98.972%를 보고한다.",
+      "limitations": "보고된 수치는 해당 논문의 데이터셋과 프로토콜에 한정한다. 이 온톨로지의 예제 성능이나 일반 환경의 정확도를 뜻하지 않는다."
+    }
+  ]
+}

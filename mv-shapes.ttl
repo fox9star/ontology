@@ -1,0 +1,145 @@
+@prefix mv:   <https://example.org/mv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ==========================================
+# SHACL Shapes for Music Video Ontology Validation
+# ==========================================
+
+mv:MusicVideoProjectShape a sh:NodeShape ;
+    sh:targetClass mv:MusicVideoProject ;
+    sh:property [ sh:path mv:hasBrief ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class mv:CreativeBrief ] ;
+    sh:property [ sh:path mv:hasAudio ; sh:class mv:AudioAsset ] ;
+    sh:property [ sh:path mv:hasTimeline ; sh:class mv:Timeline ] ;
+    sh:property [ sh:path mv:hasFinalVideo ; sh:class mv:MusicVideo ] ;
+    sh:sparql [
+        sh:message "프로젝트 최종 영상은 프로젝트에 지정한 음원과 타임라인을 사용해야 합니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this ?video WHERE {
+                $this mv:hasFinalVideo ?video .
+                FILTER NOT EXISTS {
+                    $this mv:hasAudio ?audio ; mv:hasTimeline ?timeline .
+                    ?video mv:usesAudio ?audio ; mv:hasTimeline ?timeline .
+                }
+            }
+        """
+    ] .
+
+mv:CreativeBriefShape a sh:NodeShape ;
+    sh:targetClass mv:CreativeBrief ;
+    sh:property [ sh:path mv:targetDurationSeconds ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minExclusive 0 ] .
+
+mv:AudioAssetShape a sh:NodeShape ;
+    sh:targetClass mv:AudioAsset ;
+    sh:property [ sh:path mv:fileUri ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path mv:durationSeconds ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minExclusive 0 ] .
+
+mv:ImageAssetShape a sh:NodeShape ;
+    sh:targetClass mv:ImageAsset ;
+    sh:property [ sh:path mv:fileUri ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path mv:width ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:integer ; sh:minExclusive 0 ] ;
+    sh:property [ sh:path mv:height ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:integer ; sh:minExclusive 0 ] .
+
+mv:ShotShape a sh:NodeShape ;
+    sh:targetClass mv:Shot ;
+    sh:property [ sh:path mv:usesImage ; sh:minCount 1 ;
+                  sh:class mv:ImageAsset ] ;
+    sh:property [ sh:path mv:orderIndex ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:integer ; sh:minExclusive 0 ] ;
+    sh:property [ sh:path mv:startSecond ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path mv:endSecond ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ] ;
+    sh:sparql [
+        sh:message "장면의 시작 시간(startSecond)은 종료 시간(endSecond)보다 작아야 합니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this ?start ?end WHERE {
+                $this mv:startSecond ?start .
+                $this mv:endSecond ?end .
+                FILTER (?start >= ?end)
+            }
+        """
+    ] .
+
+mv:TimelineShape a sh:NodeShape ;
+    sh:targetClass mv:Timeline ;
+    sh:property [ sh:path mv:hasShot ; sh:minCount 1 ;
+                  sh:class mv:Shot ] ;
+    sh:sparql [
+        sh:message "타임라인 안에서 장면 순번은 중복될 수 없습니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this ?left ?right ?order WHERE {
+                $this mv:hasShot ?left, ?right .
+                ?left mv:orderIndex ?order .
+                ?right mv:orderIndex ?order .
+                FILTER (STR(?left) < STR(?right))
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "같은 타임라인의 장면 구간은 서로 겹칠 수 없습니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this ?left ?right WHERE {
+                $this mv:hasShot ?left, ?right .
+                ?left mv:startSecond ?leftStart ; mv:endSecond ?leftEnd .
+                ?right mv:startSecond ?rightStart ; mv:endSecond ?rightEnd .
+                FILTER (STR(?left) < STR(?right) &&
+                        ?leftStart < ?rightEnd && ?rightStart < ?leftEnd)
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "장면 종료 시각은 프로젝트 음원 또는 최종 영상의 길이를 넘을 수 없습니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this ?shot ?end WHERE {
+                ?project mv:hasTimeline $this ; mv:hasAudio ?audio ; mv:hasFinalVideo ?video .
+                ?audio mv:durationSeconds ?audioDuration .
+                ?video mv:durationSeconds ?videoDuration .
+                $this mv:hasShot ?shot .
+                ?shot mv:endSecond ?end .
+                FILTER (?end > ?audioDuration || ?end > ?videoDuration)
+            }
+        """
+    ] .
+
+mv:MusicVideoShape a sh:NodeShape ;
+    sh:targetClass mv:MusicVideo ;
+    sh:property [ sh:path mv:usesAudio ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class mv:AudioAsset ] ;
+    sh:property [ sh:path mv:hasTimeline ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class mv:Timeline ] ;
+    sh:property [ sh:path mv:fileUri ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path mv:durationSeconds ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:decimal ; sh:minExclusive 0 ] .
+
+mv:GenerationTaskShape a sh:NodeShape ;
+    sh:targetClass mv:GenerationTask ;
+    sh:property [ sh:path mv:status ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ;
+                  sh:in ( "planned" "running" "completed" "failed" ) ] ;
+    sh:property [ sh:path prov:wasAssociatedWith ; sh:minCount 1 ;
+                  sh:class mv:AIAgent ] ;
+    sh:property [ sh:path mv:dependsOn ; sh:class mv:GenerationTask ] ;
+    sh:property [ sh:path mv:usesInput ; sh:class prov:Entity ] ;
+    sh:sparql [
+        sh:message "작업 의존성에 순환이 있습니다."@ko ;
+        sh:select """
+            PREFIX mv: <https://example.org/mv#>
+            SELECT $this WHERE { $this mv:dependsOn+ $this . }
+        """
+    ] .
+

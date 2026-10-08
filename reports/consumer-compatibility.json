@@ -1,0 +1,13 @@
+{
+  "status": "compatible",
+  "compatible": true,
+  "issues": [],
+  "allowed_additions": [],
+  "scope": "bounded-consumer-compatibility",
+  "limits": [
+    "Separate schema-axiom compatibility gate still required.",
+    "HTTP coverage includes two read-only endpoint key/type contracts, not all API behavior.",
+    "Frozen acceptance cases are constructed examples, not exhaustive contract equivalence.",
+    "FHIR/clinical/partner-profile compatibility is not asserted."
+  ]
+}

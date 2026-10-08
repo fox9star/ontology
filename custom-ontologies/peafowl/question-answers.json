@@ -1,0 +1,603 @@
+{
+  "PEA-01": {
+    "variables": [
+      "species",
+      "scientificName",
+      "label",
+      "rank"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/species-indian",
+        "Pavo cristatus",
+        "인도공작",
+        "species"
+      ],
+      [
+        "https://example.test/peafowl/species-green",
+        "Pavo muticus",
+        "녹색공작",
+        "species"
+      ]
+    ]
+  },
+  "PEA-02": {
+    "variables": [
+      "speciesName",
+      "genusName",
+      "familyName",
+      "orderName",
+      "className"
+    ],
+    "rows": [
+      [
+        "Pavo cristatus",
+        "Pavo",
+        "Phasianidae",
+        "Galliformes",
+        "Aves"
+      ],
+      [
+        "Pavo muticus",
+        "Pavo",
+        "Phasianidae",
+        "Galliformes",
+        "Aves"
+      ]
+    ]
+  },
+  "PEA-03": {
+    "variables": [
+      "term",
+      "category",
+      "label"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/term-peahen",
+        "female",
+        "암컷 공작 / peahen"
+      ],
+      [
+        "https://example.test/peafowl/term-peacock",
+        "male",
+        "수컷 공작 / peacock"
+      ],
+      [
+        "https://example.test/peafowl/term-peachick",
+        "young",
+        "어린 공작 / peachick"
+      ]
+    ]
+  },
+  "PEA-04": {
+    "variables": [
+      "feature",
+      "label",
+      "description",
+      "source"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/feature-ocelli",
+        "눈무늬(ocelli)",
+        "train 깃에는 눈처럼 보이는 둥근 무늬인 ocelli가 있다.",
+        "샌디에이고 동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/feature-train-structure",
+        "깃털 구조",
+        "전시 때 펼치는 공작의 긴 train은 꼬리 자체가 아니라 꼬리 위를 덮는 긴 상부 꼬리덮깃이다.",
+        "샌디에이고 동물원 공작류 정보"
+      ]
+    ]
+  },
+  "PEA-05": {
+    "variables": [
+      "feature",
+      "species",
+      "sex",
+      "description"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/feature-green-sex-similarity",
+        "https://example.test/peafowl/species-green",
+        null,
+        "녹색공작 암수의 색은 서로 비슷하지만 암컷은 덜 선명하고 수컷의 꼬리가 더 길다고 동물원 자료가 설명한다."
+      ],
+      [
+        "https://example.test/peafowl/feature-indian-female",
+        "https://example.test/peafowl/species-indian",
+        "https://example.test/peafowl/term-peahen",
+        "인도공작 암컷은 수컷보다 덜 화려한 얼룩 갈색이며, 공작 암컷의 train은 더 짧고 ocelli가 없다."
+      ]
+    ]
+  },
+  "PEA-06": {
+    "variables": [
+      "item",
+      "species",
+      "kind",
+      "description",
+      "source"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/range-green",
+        "https://example.test/peafowl/species-green",
+        "geographic-range",
+        "샌디에이고 동물원 자료는 녹색공작을 동남아시아 분포 종으로 설명한다.",
+        "샌디에이고 동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/range-indian",
+        "https://example.test/peafowl/species-indian",
+        "geographic-range",
+        "샌디에이고 동물원 자료는 인도공작 분포 범위에 인도, 파키스탄, 스리랑카를 포함한다.",
+        "샌디에이고 동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/habitat-indian",
+        "https://example.test/peafowl/species-indian",
+        "habitat",
+        "스미스소니언 자료는 하천 근처의 개방된 숲과 경작지에서 산다고 설명한다.",
+        "스미스소니언 국립동물원 공작류 정보"
+      ]
+    ]
+  },
+  "PEA-07": {
+    "variables": [
+      "diet",
+      "category",
+      "label",
+      "species"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/diet-insects",
+        "invertebrate",
+        "곤충",
+        "https://example.test/peafowl/species-indian"
+      ],
+      [
+        "https://example.test/peafowl/diet-grain-crops",
+        "plant",
+        "곡물·녹색 작물",
+        "https://example.test/peafowl/species-indian"
+      ],
+      [
+        "https://example.test/peafowl/diet-fruit",
+        "plant",
+        "열매·과일",
+        "https://example.test/peafowl/species-indian"
+      ],
+      [
+        "https://example.test/peafowl/diet-snakes",
+        "vertebrate",
+        "뱀",
+        "https://example.test/peafowl/species-indian"
+      ],
+      [
+        "https://example.test/peafowl/diet-reptiles",
+        "vertebrate",
+        "작은 파충류",
+        "https://example.test/peafowl/species-indian"
+      ],
+      [
+        "https://example.test/peafowl/diet-mammals",
+        "vertebrate",
+        "작은 포유류",
+        "https://example.test/peafowl/species-indian"
+      ]
+    ]
+  },
+  "PEA-08": {
+    "variables": [
+      "behavior",
+      "kind",
+      "label",
+      "species",
+      "description"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/behavior-display",
+        "courtship-display",
+        "구애 전시",
+        "https://example.test/peafowl/species-green",
+        "수컷은 train을 부채꼴로 펼치고 떨거나 흔들어 암컷에게 보이는 구애 전시를 한다."
+      ],
+      [
+        "https://example.test/peafowl/behavior-display",
+        "courtship-display",
+        "구애 전시",
+        "https://example.test/peafowl/species-indian",
+        "수컷은 train을 부채꼴로 펼치고 떨거나 흔들어 암컷에게 보이는 구애 전시를 한다."
+      ],
+      [
+        "https://example.test/peafowl/behavior-ground-foraging",
+        "foraging",
+        "땅 위 먹이 찾기",
+        "https://example.test/peafowl/species-green",
+        "공작류는 땅에서 먹이를 찾는다고 동물원 자료가 기술한다."
+      ],
+      [
+        "https://example.test/peafowl/behavior-ground-foraging",
+        "foraging",
+        "땅 위 먹이 찾기",
+        "https://example.test/peafowl/species-indian",
+        "공작류는 땅에서 먹이를 찾는다고 동물원 자료가 기술한다."
+      ],
+      [
+        "https://example.test/peafowl/behavior-walk-run",
+        "movement",
+        "걷기와 달리기",
+        "https://example.test/peafowl/species-indian",
+        "스미스소니언 공작류 페이지는 날기보다 걷거나 달리는 것을 선호한다고 기술한다."
+      ],
+      [
+        "https://example.test/peafowl/behavior-lek",
+        "social-organization",
+        "lek과 작은 영역",
+        "https://example.test/peafowl/species-indian",
+        "스미스소니언 자료는 수컷이 작은 개별 영역이 모인 lek을 형성하고 암컷이 여러 수컷을 살펴 짝을 선택한다고 설명한다."
+      ]
+    ]
+  },
+  "PEA-09": {
+    "variables": [
+      "record",
+      "measure",
+      "minimum",
+      "maximum",
+      "unit",
+      "estimate",
+      "source"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/repro-eggs-smithsonian",
+        "eggs-per-clutch",
+        "4",
+        "8",
+        "eggs",
+        "source-range",
+        "스미스소니언 국립동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/repro-eggs-sandiego",
+        "eggs-per-clutch",
+        "3",
+        "8",
+        "eggs",
+        "source-range",
+        "샌디에이고 동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/repro-incubation-smithsonian",
+        "incubation-duration",
+        "30",
+        "30",
+        "days",
+        "approximate",
+        "스미스소니언 국립동물원 공작류 정보"
+      ],
+      [
+        "https://example.test/peafowl/repro-incubation-sandiego",
+        "incubation-duration",
+        "26",
+        "30",
+        "days",
+        "source-range",
+        "샌디에이고 동물원 공작류 정보"
+      ]
+    ]
+  },
+  "PEA-10": {
+    "variables": [
+      "source",
+      "title",
+      "publisher",
+      "url",
+      "accessed",
+      "scope"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/sandiego",
+        "공작류 (Peafowl)",
+        "San Diego Zoo Wildlife Alliance",
+        "https://animals.sandiegozoo.org/animals/peafowl",
+        "2026-10-08",
+        "인도공작과 녹색공작의 설명을 제공한다. 페이지의 일반 번식 수치는 특정 종이나 개체군의 추정치로 표시하지 않으며, 다른 출처의 값과 합치지 않는다."
+      ],
+      [
+        "https://example.test/peafowl/smithsonian",
+        "공작류 (Common peafowl)",
+        "Smithsonian's National Zoo and Conservation Biology Institute",
+        "https://nationalzoo.si.edu/animals/common-peafowl",
+        "2026-10-08",
+        "종 정보 페이지는 Pavo cristatus를 명시한다. 형태, 서식지, 먹이, 사회 행동, 번식 설명을 해당 종 프로필의 출처 주장으로 기록한다. 개체별 관찰 자료는 아니다."
+      ]
+    ]
+  },
+  "PEA-11": {
+    "variables": [
+      "evidence",
+      "about",
+      "source",
+      "locator",
+      "status",
+      "claim"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/e-diet-fruit",
+        "https://example.test/peafowl/diet-fruit",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "열매와 과일이 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-diet-grain",
+        "https://example.test/peafowl/diet-grain-crops",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "곡물과 녹색 작물이 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-diet-insects",
+        "https://example.test/peafowl/diet-insects",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "곤충이 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-diet-mammals",
+        "https://example.test/peafowl/diet-mammals",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "작은 포유류가 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-diet-reptiles",
+        "https://example.test/peafowl/diet-reptiles",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "작은 파충류가 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-diet-snakes",
+        "https://example.test/peafowl/diet-snakes",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Food/Eating Habits: lines 31-33",
+        "source-reported",
+        "뱀이 공작류의 먹이 예시로 열거된다."
+      ],
+      [
+        "https://example.test/peafowl/e-display",
+        "https://example.test/peafowl/behavior-display",
+        "샌디에이고 동물원 공작류 정보",
+        "FAMILY LIFE: lines 69-70",
+        "source-reported",
+        "수컷은 구애 전시로 train을 펼치고 떨거나 흔든다."
+      ],
+      [
+        "https://example.test/peafowl/e-eggs-sd",
+        "https://example.test/peafowl/repro-eggs-sandiego",
+        "샌디에이고 동물원 공작류 정보",
+        "FAMILY LIFE and YOUNG: lines 71 and 86-90",
+        "source-reported",
+        "암컷의 한 번 산란 수는 3~8개로 기재된다."
+      ],
+      [
+        "https://example.test/peafowl/e-eggs-sm",
+        "https://example.test/peafowl/repro-eggs-smithsonian",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Reproduction and Development: lines 38-41",
+        "source-reported",
+        "암컷의 한 번 산란 수는 4~8개로 기재된다."
+      ],
+      [
+        "https://example.test/peafowl/e-green-color",
+        "https://example.test/peafowl/feature-green-color",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 49",
+        "source-reported",
+        "녹색공작은 머리와 목에 파란색 대신 녹색 깃털이 있다고 설명된다."
+      ],
+      [
+        "https://example.test/peafowl/e-green-range",
+        "https://example.test/peafowl/range-green",
+        "샌디에이고 동물원 공작류 정보",
+        "HABITAT AND DIET: line 60",
+        "source-reported",
+        "녹색공작은 동남아시아에 분포한다고 설명된다."
+      ],
+      [
+        "https://example.test/peafowl/e-green-sex-difference",
+        "https://example.test/peafowl/feature-green-sex-similarity",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 49",
+        "source-reported",
+        "녹색공작 암수의 색은 비슷하나 암컷은 덜 선명하고 수컷 꼬리는 더 길다고 설명된다."
+      ],
+      [
+        "https://example.test/peafowl/e-ground-foraging",
+        "https://example.test/peafowl/behavior-ground-foraging",
+        "샌디에이고 동물원 공작류 정보",
+        "HABITAT AND DIET: lines 60-62",
+        "source-reported",
+        "공작류 무리는 땅 위에서 먹이를 찾는다고 기술된다."
+      ],
+      [
+        "https://example.test/peafowl/e-incubation-sd",
+        "https://example.test/peafowl/repro-incubation-sandiego",
+        "샌디에이고 동물원 공작류 정보",
+        "YOUNG: lines 86-90",
+        "source-reported",
+        "포란 기간은 26~30일로 기재된다."
+      ],
+      [
+        "https://example.test/peafowl/e-incubation-sm",
+        "https://example.test/peafowl/repro-incubation-smithsonian",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Reproduction and Development: lines 40-41",
+        "source-reported",
+        "암컷의 포란 기간은 약 30일로 기술된다."
+      ],
+      [
+        "https://example.test/peafowl/e-indian-habitat",
+        "https://example.test/peafowl/habitat-indian",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Native Habitat: lines 25-27",
+        "source-reported",
+        "하천 근처의 개방된 숲과 경작지가 서식 환경으로 설명된다."
+      ],
+      [
+        "https://example.test/peafowl/e-indian-male-color",
+        "https://example.test/peafowl/feature-indian-male-color",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 48",
+        "source-reported",
+        "인도공작 수컷은 밝은 파란색 머리와 목을 가진다고 설명된다."
+      ],
+      [
+        "https://example.test/peafowl/e-indian-range",
+        "https://example.test/peafowl/range-indian",
+        "샌디에이고 동물원 공작류 정보",
+        "HABITAT AND DIET: line 60",
+        "source-reported",
+        "인도공작의 분포 범위에는 인도, 파키스탄, 스리랑카가 포함된다고 기재된다."
+      ],
+      [
+        "https://example.test/peafowl/e-indian-sex-difference-sd",
+        "https://example.test/peafowl/feature-indian-female",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 48",
+        "source-reported",
+        "인도공작 암컷은 수컷과 비교해 얼룩 갈색이라고 기술된다."
+      ],
+      [
+        "https://example.test/peafowl/e-indian-sex-difference-sm",
+        "https://example.test/peafowl/feature-indian-female",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Physical Description: lines 20-21",
+        "source-reported",
+        "암컷은 수컷보다 작고 덜 화려하며, train은 더 짧고 ocelli가 없다고 기술된다."
+      ],
+      [
+        "https://example.test/peafowl/e-lek",
+        "https://example.test/peafowl/behavior-lek",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Social Structure: lines 35-37",
+        "source-reported",
+        "수컷은 lek 안의 작은 영역을 차지하고 방문한 암컷에게 전시한다."
+      ],
+      [
+        "https://example.test/peafowl/e-peachick-term",
+        "https://example.test/peafowl/term-peachick",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: lines 43-45",
+        "source-reported",
+        "peachick은 어린 공작류를 가리키는 명칭이다."
+      ],
+      [
+        "https://example.test/peafowl/e-peacock-term",
+        "https://example.test/peafowl/term-peacock",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: lines 43-45",
+        "source-reported",
+        "peacock은 수컷 공작을 가리키는 명칭이다."
+      ],
+      [
+        "https://example.test/peafowl/e-peahen-term",
+        "https://example.test/peafowl/term-peahen",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: lines 43-45",
+        "source-reported",
+        "peahen은 암컷 공작을 가리키는 명칭이다."
+      ],
+      [
+        "https://example.test/peafowl/e-taxonomy-green",
+        "https://example.test/peafowl/species-green",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT and taxonomic list: lines 32-40",
+        "source-reported",
+        "페이지는 녹색공작을 P. muticus로 기재하고 속 Pavo와 강·목·과 정보를 함께 제시한다."
+      ],
+      [
+        "https://example.test/peafowl/e-taxonomy-indian",
+        "https://example.test/peafowl/species-indian",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Taxonomic Information: Class, Order, Family, Genus and Species",
+        "source-reported",
+        "공작류 프로필은 학명을 Pavo cristatus로, 분류를 Aves·Galliformes·Phasianidae·Pavo로 제시한다."
+      ],
+      [
+        "https://example.test/peafowl/e-train-ocelli",
+        "https://example.test/peafowl/feature-ocelli",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 50",
+        "source-reported",
+        "train의 둥근 눈 모양 무늬는 ocelli라고 불린다."
+      ],
+      [
+        "https://example.test/peafowl/e-train-structure",
+        "https://example.test/peafowl/feature-train-structure",
+        "샌디에이고 동물원 공작류 정보",
+        "ABOUT: line 50",
+        "source-reported",
+        "전시 train은 꼬리 자체가 아니라 길게 늘어난 상부 꼬리덮깃으로 이루어진다."
+      ],
+      [
+        "https://example.test/peafowl/e-walk-run",
+        "https://example.test/peafowl/behavior-walk-run",
+        "스미스소니언 국립동물원 공작류 정보",
+        "Size and Fun Facts: lines 22-24 and 52-54",
+        "source-reported",
+        "공작류는 날기보다 걷거나 달리는 것을 선호한다고 기술된다."
+      ]
+    ]
+  },
+  "PEA-12": {
+    "variables": [
+      "note",
+      "status",
+      "label",
+      "explanation"
+    ],
+    "rows": [
+      [
+        "https://example.test/peafowl/coverage-conservation",
+        "excluded",
+        "보전 등급과 법적 보호",
+        "종별 현행 보전 등급과 법적 보호 상태는 전문 보전 평가 자료로 검증하지 않아 온톨로지 사실로 넣지 않았다."
+      ],
+      [
+        "https://example.test/peafowl/coverage-individuals",
+        "excluded",
+        "개체·개체군 관찰",
+        "야생 개체군, 동물원 개체 이력, 개별 동물 관찰 자료는 포함하지 않는다. 예시의 모든 사실은 출처 프로필의 종 설명이다."
+      ],
+      [
+        "https://example.test/peafowl/coverage-source-figures",
+        "limited",
+        "번식 수치의 출처별 보존",
+        "산란 수와 포란 기간은 출처별 기재 범위를 각각 보존한다. 하나의 보편적인 값으로 통합하지 않았다."
+      ],
+      [
+        "https://example.test/peafowl/coverage-taxonomy",
+        "limited",
+        "분류 범위",
+        "인도공작(Pavo cristatus)과 녹색공작(Pavo muticus)을 다루는 예시 초안이다. 공작류 전체에 대한 완전한 분류 목록은 아니다."
+      ]
+    ]
+  }
+}

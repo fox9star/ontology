@@ -1,0 +1,1203 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wr: <https://example.org/ontology/custom/wireless-router#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wr: a owl:Ontology ;
+    rdfs:label "Wireless Router Ontology"@en,
+        "무선공유기 온톨로지"@ko ;
+    rdfs:comment "A local draft connecting wireless router devices and networks with security, associations, firmware, configuration, and observations. Example records are synthetic."@en,
+        "무선공유기 장치와 무선망의 구성·보안·접속·펌웨어·설정·관측을 연결하는 로컬 초안이다. 예시 자료는 합성 데이터이다."@ko ;
+    owl:versionInfo "0.1.0" .
+
+wr:associationEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "association evidence state"@en,
+        "접속 근거 상태"@ko ;
+    rdfs:comment "Records the association evidence state value or state for Wireless association record."@en,
+        "무선 접속 기록의 접속 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:string .
+
+wr:associationForClient a owl:ObjectProperty ;
+    rdfs:label "for client"@en,
+        "접속 단말"@ko ;
+    rdfs:comment "Records a relation from Wireless association record to Client device."@en,
+        "무선 접속 기록에서 클라이언트 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range wr:ClientDevice .
+
+wr:associationHasObservation a owl:ObjectProperty ;
+    rdfs:label "has observation"@en,
+        "성능 관측"@ko ;
+    rdfs:comment "Records a relation from Wireless association record to Performance observation."@en,
+        "무선 접속 기록에서 성능 관측와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range wr:PerformanceObservation .
+
+wr:associationIntent a owl:DatatypeProperty ;
+    rdfs:label "association record intent"@en,
+        "접속 기록 성격"@ko ;
+    rdfs:comment "Records the association record intent value or state for Wireless association record."@en,
+        "무선 접속 기록의 접속 기록 성격 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:string .
+
+wr:associationLinkRateMbps a owl:DatatypeProperty ;
+    rdfs:label "link rate in Mbps"@en,
+        "링크 속도 Mbps"@ko ;
+    rdfs:comment "Records the link rate in Mbps value or state for Wireless association record."@en,
+        "무선 접속 기록의 링크 속도 Mbps 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:decimal .
+
+wr:associationObservedAt a owl:DatatypeProperty ;
+    rdfs:label "association observation time"@en,
+        "접속 관측 시각"@ko ;
+    rdfs:comment "Records the association observation time value or state for Wireless association record."@en,
+        "무선 접속 기록의 접속 관측 시각 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:dateTime .
+
+wr:associationSignalDbm a owl:DatatypeProperty ;
+    rdfs:label "received signal in dBm"@en,
+        "수신 신호 dBm"@ko ;
+    rdfs:comment "Records the received signal in dBm value or state for Wireless association record."@en,
+        "무선 접속 기록의 수신 신호 dBm 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:decimal .
+
+wr:associationStatus a owl:DatatypeProperty ;
+    rdfs:label "association state"@en,
+        "접속 상태"@ko ;
+    rdfs:comment "Records the association state value or state for Wireless association record."@en,
+        "무선 접속 기록의 접속 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range xsd:string .
+
+wr:associationToNetwork a owl:ObjectProperty ;
+    rdfs:label "to network"@en,
+        "접속 무선망"@ko ;
+    rdfs:comment "Records a relation from Wireless association record to Wireless network profile."@en,
+        "무선 접속 기록에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:AssociationRecord ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:clientCategory a owl:DatatypeProperty ;
+    rdfs:label "client category"@en,
+        "클라이언트 종류"@ko ;
+    rdfs:comment "Records the client category value or state for Client device."@en,
+        "클라이언트 장치의 클라이언트 종류 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range xsd:string .
+
+wr:clientEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "client evidence state"@en,
+        "단말 근거 상태"@ko ;
+    rdfs:comment "Records the client evidence state value or state for Client device."@en,
+        "클라이언트 장치의 단말 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range xsd:string .
+
+wr:clientHasAssociation a owl:ObjectProperty ;
+    rdfs:label "has association"@en,
+        "접속 기록"@ko ;
+    rdfs:comment "Records a relation from Client device to Wireless association record."@en,
+        "클라이언트 장치에서 무선 접속 기록와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range wr:AssociationRecord .
+
+wr:clientIdentityHandling a owl:DatatypeProperty ;
+    rdfs:label "client identity handling"@en,
+        "단말 식별자 처리"@ko ;
+    rdfs:comment "Records the client identity handling value or state for Client device."@en,
+        "클라이언트 장치의 단말 식별자 처리 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range xsd:string .
+
+wr:clientInventoryStatus a owl:DatatypeProperty ;
+    rdfs:label "client inventory state"@en,
+        "단말 목록 상태"@ko ;
+    rdfs:comment "Records the client inventory state value or state for Client device."@en,
+        "클라이언트 장치의 단말 목록 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range xsd:string .
+
+wr:clientPartOfSystem a owl:ObjectProperty ;
+    rdfs:label "part of system"@en,
+        "소속 시스템"@ko ;
+    rdfs:comment "Records a relation from Client device to Wireless router system."@en,
+        "클라이언트 장치에서 무선 공유기 시스템와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range wr:RouterSystem .
+
+wr:clientPseudonym a owl:DatatypeProperty ;
+    rdfs:label "client pseudonym"@en,
+        "클라이언트 가명"@ko ;
+    rdfs:comment "Records the client pseudonym value or state for Client device."@en,
+        "클라이언트 장치의 클라이언트 가명 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ClientDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceHasFirmwareRelease a owl:ObjectProperty ;
+    rdfs:label "has firmware release"@en,
+        "펌웨어 릴리스"@ko ;
+    rdfs:comment "Records a relation from Router device to Firmware release."@en,
+        "공유기 장치에서 펌웨어 릴리스와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:FirmwareRelease .
+
+wr:deviceHasIncident a owl:ObjectProperty ;
+    rdfs:label "has incident record"@en,
+        "사건 기록"@ko ;
+    rdfs:comment "Records a relation from Router device to Incident record."@en,
+        "공유기 장치에서 장애·보안 사건 기록와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:IncidentRecord .
+
+wr:deviceHasRadio a owl:ObjectProperty ;
+    rdfs:label "has radio"@en,
+        "무선 인터페이스"@ko ;
+    rdfs:comment "Records a relation from Router device to Radio interface."@en,
+        "공유기 장치에서 무선 인터페이스와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:RadioInterface .
+
+wr:deviceHasSnapshot a owl:ObjectProperty ;
+    rdfs:label "has snapshot"@en,
+        "설정 스냅샷"@ko ;
+    rdfs:comment "Records a relation from Router device to Configuration snapshot."@en,
+        "공유기 장치에서 설정 스냅샷와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:ConfigurationSnapshot .
+
+wr:deviceHasUpdate a owl:ObjectProperty ;
+    rdfs:label "has update"@en,
+        "업데이트 기록"@ko ;
+    rdfs:comment "Records a relation from Router device to Firmware update."@en,
+        "공유기 장치에서 펌웨어 업데이트와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:FirmwareUpdate .
+
+wr:deviceIdentifierHandling a owl:DatatypeProperty ;
+    rdfs:label "device identifier handling"@en,
+        "장치 식별자 처리"@ko ;
+    rdfs:comment "Records the device identifier handling value or state for Router device."@en,
+        "공유기 장치의 장치 식별자 처리 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceInventoryAlias a owl:DatatypeProperty ;
+    rdfs:label "device inventory alias"@en,
+        "장치 별칭"@ko ;
+    rdfs:comment "Records the device inventory alias value or state for Router device."@en,
+        "공유기 장치의 장치 별칭 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "device lifecycle status"@en,
+        "장치 생애주기 상태"@ko ;
+    rdfs:comment "Records the device lifecycle status value or state for Router device."@en,
+        "공유기 장치의 장치 생애주기 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceManagementExposure a owl:DatatypeProperty ;
+    rdfs:label "management exposure state"@en,
+        "관리 경로 노출 상태"@ko ;
+    rdfs:comment "Records the management exposure state value or state for Router device."@en,
+        "공유기 장치의 관리 경로 노출 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceModelFamily a owl:DatatypeProperty ;
+    rdfs:label "model family"@en,
+        "모델 계열"@ko ;
+    rdfs:comment "Records the model family value or state for Router device."@en,
+        "공유기 장치의 모델 계열 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:deviceObservationStatus a owl:DatatypeProperty ;
+    rdfs:label "device observation status"@en,
+        "장치 관측 상태"@ko ;
+    rdfs:comment "Records the device observation status value or state for Router device."@en,
+        "공유기 장치의 장치 관측 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:devicePartOfSystem a owl:ObjectProperty ;
+    rdfs:label "part of system"@en,
+        "소속 시스템"@ko ;
+    rdfs:comment "Records a relation from Router device to Wireless router system."@en,
+        "공유기 장치에서 무선 공유기 시스템와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range wr:RouterSystem .
+
+wr:deviceVendorLabel a owl:DatatypeProperty ;
+    rdfs:label "vendor label"@en,
+        "제조사 표기"@ko ;
+    rdfs:comment "Records the vendor label value or state for Router device."@en,
+        "공유기 장치의 제조사 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterDevice ;
+    rdfs:range xsd:string .
+
+wr:firmwareArtifactProvenance a owl:DatatypeProperty ;
+    rdfs:label "firmware provenance state"@en,
+        "펌웨어 출처 상태"@ko ;
+    rdfs:comment "Records the firmware provenance state value or state for Firmware release."@en,
+        "펌웨어 릴리스의 펌웨어 출처 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range xsd:string .
+
+wr:firmwarePublisherLabel a owl:DatatypeProperty ;
+    rdfs:label "firmware publisher label"@en,
+        "펌웨어 발행자 표기"@ko ;
+    rdfs:comment "Records the firmware publisher label value or state for Firmware release."@en,
+        "펌웨어 릴리스의 펌웨어 발행자 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range xsd:string .
+
+wr:firmwareReleaseDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "릴리스 근거"@ko ;
+    rdfs:comment "Records a relation from Firmware release to Documentation source."@en,
+        "펌웨어 릴리스에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range wr:DocumentationSource .
+
+wr:firmwareReleaseForDevice a owl:ObjectProperty ;
+    rdfs:label "for device family"@en,
+        "대상 장치 계열"@ko ;
+    rdfs:comment "Records a relation from Firmware release to Router device."@en,
+        "펌웨어 릴리스에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range wr:RouterDevice .
+
+wr:firmwareSupportStatus a owl:DatatypeProperty ;
+    rdfs:label "support state"@en,
+        "지원 상태"@ko ;
+    rdfs:comment "Records the support state value or state for Firmware release."@en,
+        "펌웨어 릴리스의 지원 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range xsd:string .
+
+wr:firmwareVersionLabel a owl:DatatypeProperty ;
+    rdfs:label "firmware version label"@en,
+        "펌웨어 버전 표기"@ko ;
+    rdfs:comment "Records the firmware version label value or state for Firmware release."@en,
+        "펌웨어 릴리스의 펌웨어 버전 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareRelease ;
+    rdfs:range xsd:string .
+
+wr:incidentAffectsDevice a owl:ObjectProperty ;
+    rdfs:label "affects device"@en,
+        "영향 장치"@ko ;
+    rdfs:comment "Records a relation from Incident record to Router device."@en,
+        "장애·보안 사건 기록에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range wr:RouterDevice .
+
+wr:incidentAffectsNetwork a owl:ObjectProperty ;
+    rdfs:label "affects network"@en,
+        "영향 무선망"@ko ;
+    rdfs:comment "Records a relation from Incident record to Wireless network profile."@en,
+        "장애·보안 사건 기록에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:incidentAffectsUplink a owl:ObjectProperty ;
+    rdfs:label "affects uplink"@en,
+        "영향 상위 연결"@ko ;
+    rdfs:comment "Records a relation from Incident record to Uplink connection."@en,
+        "장애·보안 사건 기록에서 상위 연결와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range wr:UplinkConnection .
+
+wr:incidentCategory a owl:DatatypeProperty ;
+    rdfs:label "incident category"@en,
+        "사건 분류"@ko ;
+    rdfs:comment "Records the incident category value or state for Incident record."@en,
+        "장애·보안 사건 기록의 사건 분류 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:incidentDetectedAt a owl:DatatypeProperty ;
+    rdfs:label "detection time"@en,
+        "발견 시각"@ko ;
+    rdfs:comment "Records the detection time value or state for Incident record."@en,
+        "장애·보안 사건 기록의 발견 시각 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:dateTime .
+
+wr:incidentEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "evidence source"@en,
+        "사건 근거"@ko ;
+    rdfs:comment "Records a relation from Incident record to Documentation source."@en,
+        "장애·보안 사건 기록에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range wr:DocumentationSource .
+
+wr:incidentEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "incident evidence state"@en,
+        "사건 근거 상태"@ko ;
+    rdfs:comment "Records the incident evidence state value or state for Incident record."@en,
+        "장애·보안 사건 기록의 사건 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:incidentImpactScope a owl:DatatypeProperty ;
+    rdfs:label "impact scope"@en,
+        "영향 범위"@ko ;
+    rdfs:comment "Records the impact scope value or state for Incident record."@en,
+        "장애·보안 사건 기록의 영향 범위 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:incidentLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "incident lifecycle state"@en,
+        "사건 진행 상태"@ko ;
+    rdfs:comment "Records the incident lifecycle state value or state for Incident record."@en,
+        "장애·보안 사건 기록의 사건 진행 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:incidentResponseStatus a owl:DatatypeProperty ;
+    rdfs:label "response state"@en,
+        "대응 상태"@ko ;
+    rdfs:comment "Records the response state value or state for Incident record."@en,
+        "장애·보안 사건 기록의 대응 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:incidentSeverity a owl:DatatypeProperty ;
+    rdfs:label "severity"@en,
+        "심각도"@ko ;
+    rdfs:comment "Records the severity value or state for Incident record."@en,
+        "장애·보안 사건 기록의 심각도 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IncidentRecord ;
+    rdfs:range xsd:string .
+
+wr:networkAssociationRule a owl:DatatypeProperty ;
+    rdfs:label "association rule type"@en,
+        "접속 정책 유형"@ko ;
+    rdfs:comment "Records the association rule type value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 접속 정책 유형 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:networkHasAssociation a owl:ObjectProperty ;
+    rdfs:label "has association"@en,
+        "접속 기록"@ko ;
+    rdfs:comment "Records a relation from Wireless network profile to Wireless association record."@en,
+        "무선 네트워크 프로필에서 무선 접속 기록와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range wr:AssociationRecord .
+
+wr:networkHasObservation a owl:ObjectProperty ;
+    rdfs:label "has performance observation"@en,
+        "성능 관측"@ko ;
+    rdfs:comment "Records a relation from Wireless network profile to Performance observation."@en,
+        "무선 네트워크 프로필에서 성능 관측와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range wr:PerformanceObservation .
+
+wr:networkIdentifierHandling a owl:DatatypeProperty ;
+    rdfs:label "network identifier handling"@en,
+        "무선 식별자 처리"@ko ;
+    rdfs:comment "Records the network identifier handling value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 무선 식별자 처리 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:networkLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "network lifecycle status"@en,
+        "무선망 설정 상태"@ko ;
+    rdfs:comment "Records the network lifecycle status value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 무선망 설정 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:networkMapsToSegment a owl:ObjectProperty ;
+    rdfs:label "maps to segment"@en,
+        "연결 논리 구간"@ko ;
+    rdfs:comment "Records a relation from Wireless network profile to Network segment."@en,
+        "무선 네트워크 프로필에서 네트워크 구간와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range wr:NetworkSegment .
+
+wr:networkProfileAlias a owl:DatatypeProperty ;
+    rdfs:label "synthetic network alias"@en,
+        "무선망 합성 별칭"@ko ;
+    rdfs:comment "Records the synthetic network alias value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 무선망 합성 별칭 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:networkPurpose a owl:DatatypeProperty ;
+    rdfs:label "network purpose"@en,
+        "무선망 용도"@ko ;
+    rdfs:comment "Records the network purpose value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 무선망 용도 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:networkUsesRadio a owl:ObjectProperty ;
+    rdfs:label "uses radio"@en,
+        "사용 무선 인터페이스"@ko ;
+    rdfs:comment "Records a relation from Wireless network profile to Radio interface."@en,
+        "무선 네트워크 프로필에서 무선 인터페이스와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range wr:RadioInterface .
+
+wr:networkUsesSecurityProfile a owl:ObjectProperty ;
+    rdfs:label "uses security profile"@en,
+        "보안 프로필"@ko ;
+    rdfs:comment "Records a relation from Wireless network profile to Security profile."@en,
+        "무선 네트워크 프로필에서 보안 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range wr:SecurityProfile .
+
+wr:networkVisibilityState a owl:DatatypeProperty ;
+    rdfs:label "management visibility state"@en,
+        "관리 화면 표시 상태"@ko ;
+    rdfs:comment "Records the management visibility state value or state for Wireless network profile."@en,
+        "무선 네트워크 프로필의 관리 화면 표시 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:WirelessNetwork ;
+    rdfs:range xsd:string .
+
+wr:observationDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "측정 방법 문서"@ko ;
+    rdfs:comment "Records a relation from Performance observation to Documentation source."@en,
+        "성능 관측에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range wr:DocumentationSource .
+
+wr:observationForAssociation a owl:ObjectProperty ;
+    rdfs:label "for association"@en,
+        "관측 대상 접속"@ko ;
+    rdfs:comment "Records a relation from Performance observation to Wireless association record."@en,
+        "성능 관측에서 무선 접속 기록와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range wr:AssociationRecord .
+
+wr:observationForNetwork a owl:ObjectProperty ;
+    rdfs:label "for network"@en,
+        "관측 대상 무선망"@ko ;
+    rdfs:comment "Records a relation from Performance observation to Wireless network profile."@en,
+        "성능 관측에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:observationForUplink a owl:ObjectProperty ;
+    rdfs:label "for uplink"@en,
+        "관측 대상 상위 연결"@ko ;
+    rdfs:comment "Records a relation from Performance observation to Uplink connection."@en,
+        "성능 관측에서 상위 연결와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range wr:UplinkConnection .
+
+wr:observationMeasuredAt a owl:DatatypeProperty ;
+    rdfs:label "measurement time"@en,
+        "측정 시각"@ko ;
+    rdfs:comment "Records the measurement time value or state for Performance observation."@en,
+        "성능 관측의 측정 시각 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:dateTime .
+
+wr:observationMethod a owl:DatatypeProperty ;
+    rdfs:label "measurement method"@en,
+        "측정 방법"@ko ;
+    rdfs:comment "Records the measurement method value or state for Performance observation."@en,
+        "성능 관측의 측정 방법 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:string .
+
+wr:observationMetric a owl:DatatypeProperty ;
+    rdfs:label "metric name"@en,
+        "측정 지표"@ko ;
+    rdfs:comment "Records the metric name value or state for Performance observation."@en,
+        "성능 관측의 측정 지표 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:string .
+
+wr:observationSampleCount a owl:DatatypeProperty ;
+    rdfs:label "sample count"@en,
+        "표본 수"@ko ;
+    rdfs:comment "Records the sample count value or state for Performance observation."@en,
+        "성능 관측의 표본 수 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:integer .
+
+wr:observationStatus a owl:DatatypeProperty ;
+    rdfs:label "measurement state"@en,
+        "측정 상태"@ko ;
+    rdfs:comment "Records the measurement state value or state for Performance observation."@en,
+        "성능 관측의 측정 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:string .
+
+wr:observationUnit a owl:DatatypeProperty ;
+    rdfs:label "measurement unit"@en,
+        "측정 단위"@ko ;
+    rdfs:comment "Records the measurement unit value or state for Performance observation."@en,
+        "성능 관측의 측정 단위 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:string .
+
+wr:observationValue a owl:DatatypeProperty ;
+    rdfs:label "measured value"@en,
+        "측정값"@ko ;
+    rdfs:comment "Records the measured value value or state for Performance observation."@en,
+        "성능 관측의 측정값 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:PerformanceObservation ;
+    rdfs:range xsd:decimal .
+
+wr:policyAllowedFlowScope a owl:DatatypeProperty ;
+    rdfs:label "allowed flow scope"@en,
+        "허용 흐름 범위"@ko ;
+    rdfs:comment "Records the allowed flow scope value or state for Network isolation policy."@en,
+        "망 분리 정책의 허용 흐름 범위 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range xsd:string .
+
+wr:policyApplicationStatus a owl:DatatypeProperty ;
+    rdfs:label "policy application state"@en,
+        "정책 적용 상태"@ko ;
+    rdfs:comment "Records the policy application state value or state for Network isolation policy."@en,
+        "망 분리 정책의 정책 적용 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range xsd:string .
+
+wr:policyAppliesToSegment a owl:ObjectProperty ;
+    rdfs:label "applies to segment"@en,
+        "적용 대상 구간"@ko ;
+    rdfs:comment "Records a relation from Network isolation policy to Network segment."@en,
+        "망 분리 정책에서 네트워크 구간와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range wr:NetworkSegment .
+
+wr:policyDeniedFlowScope a owl:DatatypeProperty ;
+    rdfs:label "denied flow scope"@en,
+        "차단 흐름 범위"@ko ;
+    rdfs:comment "Records the denied flow scope value or state for Network isolation policy."@en,
+        "망 분리 정책의 차단 흐름 범위 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range xsd:string .
+
+wr:policyDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "근거 문서"@ko ;
+    rdfs:comment "Records a relation from Network isolation policy to Documentation source."@en,
+        "망 분리 정책에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range wr:DocumentationSource .
+
+wr:policyEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "policy evidence state"@en,
+        "정책 근거 상태"@ko ;
+    rdfs:comment "Records the policy evidence state value or state for Network isolation policy."@en,
+        "망 분리 정책의 정책 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range xsd:string .
+
+wr:policyTrafficDirection a owl:DatatypeProperty ;
+    rdfs:label "policy traffic direction"@en,
+        "정책 트래픽 방향"@ko ;
+    rdfs:comment "Records the policy traffic direction value or state for Network isolation policy."@en,
+        "망 분리 정책의 정책 트래픽 방향 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:IsolationPolicy ;
+    rdfs:range xsd:string .
+
+wr:radioBand a owl:DatatypeProperty ;
+    rdfs:label "radio band"@en,
+        "무선 대역"@ko ;
+    rdfs:comment "Records the radio band value or state for Radio interface."@en,
+        "무선 인터페이스의 무선 대역 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:string .
+
+wr:radioBelongsToDevice a owl:ObjectProperty ;
+    rdfs:label "belongs to device"@en,
+        "소속 장치"@ko ;
+    rdfs:comment "Records a relation from Radio interface to Router device."@en,
+        "무선 인터페이스에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range wr:RouterDevice .
+
+wr:radioBroadcastsNetwork a owl:ObjectProperty ;
+    rdfs:label "broadcasts network"@en,
+        "송출 무선망"@ko ;
+    rdfs:comment "Records a relation from Radio interface to Wireless network profile."@en,
+        "무선 인터페이스에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:radioCapabilityEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "capability evidence state"@en,
+        "지원 능력 근거 상태"@ko ;
+    rdfs:comment "Records the capability evidence state value or state for Radio interface."@en,
+        "무선 인터페이스의 지원 능력 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:string .
+
+wr:radioChannelWidthMHz a owl:DatatypeProperty ;
+    rdfs:label "channel width in MHz"@en,
+        "채널 폭 MHz"@ko ;
+    rdfs:comment "Records the channel width in MHz value or state for Radio interface."@en,
+        "무선 인터페이스의 채널 폭 MHz 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:integer .
+
+wr:radioConfiguredChannel a owl:DatatypeProperty ;
+    rdfs:label "configured channel"@en,
+        "설정 채널"@ko ;
+    rdfs:comment "Records the configured channel value or state for Radio interface."@en,
+        "무선 인터페이스의 설정 채널 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:integer .
+
+wr:radioConfiguredState a owl:DatatypeProperty ;
+    rdfs:label "configured enabled state"@en,
+        "설정 활성 상태"@ko ;
+    rdfs:comment "Records the configured enabled state value or state for Radio interface."@en,
+        "무선 인터페이스의 설정 활성 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:string .
+
+wr:radioSupportedStandard a owl:DatatypeProperty ;
+    rdfs:label "supported standard claim"@en,
+        "지원 표준 주장"@ko ;
+    rdfs:comment "Records the supported standard claim value or state for Radio interface."@en,
+        "무선 인터페이스의 지원 표준 주장 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:string .
+
+wr:radioTransmitPowerDbm a owl:DatatypeProperty ;
+    rdfs:label "transmit power in dBm"@en,
+        "송신 전력 dBm"@ko ;
+    rdfs:comment "Records the transmit power in dBm value or state for Radio interface."@en,
+        "무선 인터페이스의 송신 전력 dBm 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RadioInterface ;
+    rdfs:range xsd:decimal .
+
+wr:securityAppliedToNetwork a owl:ObjectProperty ;
+    rdfs:label "applied to network"@en,
+        "적용 대상 무선망"@ko ;
+    rdfs:comment "Records a relation from Security profile to Wireless network profile."@en,
+        "보안 프로필에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:securityAuthenticationMode a owl:DatatypeProperty ;
+    rdfs:label "authentication mode label"@en,
+        "인증 방식 표기"@ko ;
+    rdfs:comment "Records the authentication mode label value or state for Security profile."@en,
+        "보안 프로필의 인증 방식 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:securityCertificationClaimStatus a owl:DatatypeProperty ;
+    rdfs:label "certification claim evidence state"@en,
+        "인증 주장 근거 상태"@ko ;
+    rdfs:comment "Records the certification claim evidence state value or state for Security profile."@en,
+        "보안 프로필의 인증 주장 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:securityConfigurationStatus a owl:DatatypeProperty ;
+    rdfs:label "configuration application state"@en,
+        "설정 적용 상태"@ko ;
+    rdfs:comment "Records the configuration application state value or state for Security profile."@en,
+        "보안 프로필의 설정 적용 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:securityCredentialHandling a owl:DatatypeProperty ;
+    rdfs:label "credential handling"@en,
+        "자격 증명 처리"@ko ;
+    rdfs:comment "Records the credential handling value or state for Security profile."@en,
+        "보안 프로필의 자격 증명 처리 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:securityDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "근거 문서"@ko ;
+    rdfs:comment "Records a relation from Security profile to Documentation source."@en,
+        "보안 프로필에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range wr:DocumentationSource .
+
+wr:securityEncryptionProfile a owl:DatatypeProperty ;
+    rdfs:label "encryption profile label"@en,
+        "암호화 프로필 표기"@ko ;
+    rdfs:comment "Records the encryption profile label value or state for Security profile."@en,
+        "보안 프로필의 암호화 프로필 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:securityProtocolLabel a owl:DatatypeProperty ;
+    rdfs:label "security protocol label"@en,
+        "보안 프로토콜 표기"@ko ;
+    rdfs:comment "Records the security protocol label value or state for Security profile."@en,
+        "보안 프로필의 보안 프로토콜 표기 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:SecurityProfile ;
+    rdfs:range xsd:string .
+
+wr:segmentAddressDisclosure a owl:DatatypeProperty ;
+    rdfs:label "address disclosure state"@en,
+        "주소 정보 공개 상태"@ko ;
+    rdfs:comment "Records the address disclosure state value or state for Network segment."@en,
+        "네트워크 구간의 주소 정보 공개 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range xsd:string .
+
+wr:segmentAlias a owl:DatatypeProperty ;
+    rdfs:label "synthetic segment alias"@en,
+        "구간 합성 별칭"@ko ;
+    rdfs:comment "Records the synthetic segment alias value or state for Network segment."@en,
+        "네트워크 구간의 구간 합성 별칭 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range xsd:string .
+
+wr:segmentHasNetwork a owl:ObjectProperty ;
+    rdfs:label "has network"@en,
+        "포함 무선망"@ko ;
+    rdfs:comment "Records a relation from Network segment to Wireless network profile."@en,
+        "네트워크 구간에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:segmentLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "segment lifecycle status"@en,
+        "구간 생애주기 상태"@ko ;
+    rdfs:comment "Records the segment lifecycle status value or state for Network segment."@en,
+        "네트워크 구간의 구간 생애주기 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range xsd:string .
+
+wr:segmentPurpose a owl:DatatypeProperty ;
+    rdfs:label "segment purpose"@en,
+        "구간 용도"@ko ;
+    rdfs:comment "Records the segment purpose value or state for Network segment."@en,
+        "네트워크 구간의 구간 용도 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range xsd:string .
+
+wr:segmentTrustZone a owl:DatatypeProperty ;
+    rdfs:label "trust zone"@en,
+        "신뢰 영역"@ko ;
+    rdfs:comment "Records the trust zone value or state for Network segment."@en,
+        "네트워크 구간의 신뢰 영역 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range xsd:string .
+
+wr:segmentUsesIsolationPolicy a owl:ObjectProperty ;
+    rdfs:label "uses isolation policy"@en,
+        "망 분리 정책"@ko ;
+    rdfs:comment "Records a relation from Network segment to Network isolation policy."@en,
+        "네트워크 구간에서 망 분리 정책와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range wr:IsolationPolicy .
+
+wr:segmentWithinSystem a owl:ObjectProperty ;
+    rdfs:label "within system"@en,
+        "소속 시스템"@ko ;
+    rdfs:comment "Records a relation from Network segment to Wireless router system."@en,
+        "네트워크 구간에서 무선 공유기 시스템와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:NetworkSegment ;
+    rdfs:range wr:RouterSystem .
+
+wr:snapshotAppliedStatus a owl:DatatypeProperty ;
+    rdfs:label "configuration applied state"@en,
+        "설정 적용 상태"@ko ;
+    rdfs:comment "Records the configuration applied state value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 설정 적용 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:snapshotCapturedAt a owl:DatatypeProperty ;
+    rdfs:label "snapshot time"@en,
+        "스냅샷 시각"@ko ;
+    rdfs:comment "Records the snapshot time value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 스냅샷 시각 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:dateTime .
+
+wr:snapshotChangeSummary a owl:DatatypeProperty ;
+    rdfs:label "change summary"@en,
+        "변경 요약"@ko ;
+    rdfs:comment "Records the change summary value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 변경 요약 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:snapshotCompletenessStatus a owl:DatatypeProperty ;
+    rdfs:label "snapshot completeness"@en,
+        "스냅샷 완전성"@ko ;
+    rdfs:comment "Records the snapshot completeness value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 스냅샷 완전성 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:snapshotDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "스냅샷 출처 문서"@ko ;
+    rdfs:comment "Records a relation from Configuration snapshot to Documentation source."@en,
+        "설정 스냅샷에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range wr:DocumentationSource .
+
+wr:snapshotForDevice a owl:ObjectProperty ;
+    rdfs:label "for device"@en,
+        "대상 장치"@ko ;
+    rdfs:comment "Records a relation from Configuration snapshot to Router device."@en,
+        "설정 스냅샷에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range wr:RouterDevice .
+
+wr:snapshotLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "snapshot lifecycle state"@en,
+        "스냅샷 생애주기 상태"@ko ;
+    rdfs:comment "Records the snapshot lifecycle state value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 스냅샷 생애주기 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:snapshotProvenanceStatus a owl:DatatypeProperty ;
+    rdfs:label "snapshot provenance state"@en,
+        "스냅샷 출처 상태"@ko ;
+    rdfs:comment "Records the snapshot provenance state value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 스냅샷 출처 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:snapshotRedactionStatus a owl:DatatypeProperty ;
+    rdfs:label "redaction and secret omission state"@en,
+        "비식별·비밀 제거 상태"@ko ;
+    rdfs:comment "Records the redaction and secret omission state value or state for Configuration snapshot."@en,
+        "설정 스냅샷의 비식별·비밀 제거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:ConfigurationSnapshot ;
+    rdfs:range xsd:string .
+
+wr:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "access date"@en,
+        "확인 날짜"@ko ;
+    rdfs:comment "Records the access date value or state for Documentation source."@en,
+        "문서 출처의 확인 날짜 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:date .
+
+wr:sourceLimitations a owl:DatatypeProperty ;
+    rdfs:label "source limitations"@en,
+        "자료 한계"@ko ;
+    rdfs:comment "Records the source limitations value or state for Documentation source."@en,
+        "문서 출처의 자료 한계 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:string .
+
+wr:sourceMaterialKind a owl:DatatypeProperty ;
+    rdfs:label "source material kind"@en,
+        "자료 종류"@ko ;
+    rdfs:comment "Records the source material kind value or state for Documentation source."@en,
+        "문서 출처의 자료 종류 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:string .
+
+wr:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "publisher"@en,
+        "발행 기관"@ko ;
+    rdfs:comment "Records the publisher value or state for Documentation source."@en,
+        "문서 출처의 발행 기관 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:string .
+
+wr:sourceScope a owl:DatatypeProperty ;
+    rdfs:label "supported claim scope"@en,
+        "자료가 뒷받침하는 범위"@ko ;
+    rdfs:comment "Records the supported claim scope value or state for Documentation source."@en,
+        "문서 출처의 자료가 뒷받침하는 범위 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:string .
+
+wr:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "document title"@en,
+        "문서 제목"@ko ;
+    rdfs:comment "Records the document title value or state for Documentation source."@en,
+        "문서 출처의 문서 제목 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:string .
+
+wr:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "document URI"@en,
+        "문서 URI"@ko ;
+    rdfs:comment "Records the document URI value or state for Documentation source."@en,
+        "문서 출처의 문서 URI 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:anyURI .
+
+wr:sourceYear a owl:DatatypeProperty ;
+    rdfs:label "publication year"@en,
+        "발행 연도"@ko ;
+    rdfs:comment "Records the publication year value or state for Documentation source."@en,
+        "문서 출처의 발행 연도 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:DocumentationSource ;
+    rdfs:range xsd:integer .
+
+wr:systemHasDevice a owl:ObjectProperty ;
+    rdfs:label "has device"@en,
+        "포함 장치"@ko ;
+    rdfs:comment "Records a relation from Wireless router system to Router device."@en,
+        "무선 공유기 시스템에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterSystem ;
+    rdfs:range wr:RouterDevice .
+
+wr:systemHasNetwork a owl:ObjectProperty ;
+    rdfs:label "has wireless network"@en,
+        "포함 무선망"@ko ;
+    rdfs:comment "Records a relation from Wireless router system to Wireless network profile."@en,
+        "무선 공유기 시스템에서 무선 네트워크 프로필와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterSystem ;
+    rdfs:range wr:WirelessNetwork .
+
+wr:systemHasUplink a owl:ObjectProperty ;
+    rdfs:label "has uplink"@en,
+        "포함 상위 연결"@ko ;
+    rdfs:comment "Records a relation from Wireless router system to Uplink connection."@en,
+        "무선 공유기 시스템에서 상위 연결와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:RouterSystem ;
+    rdfs:range wr:UplinkConnection .
+
+wr:systemRecordStatus a owl:DatatypeProperty ;
+    rdfs:label "system record status"@en,
+        "시스템 기록 상태"@ko ;
+    rdfs:comment "Records the system record status value or state for Wireless router system."@en,
+        "무선 공유기 시스템의 시스템 기록 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterSystem ;
+    rdfs:range xsd:string .
+
+wr:systemScopeNote a owl:DatatypeProperty ;
+    rdfs:label "system scope note"@en,
+        "시스템 범위 설명"@ko ;
+    rdfs:comment "Records the system scope note value or state for Wireless router system."@en,
+        "무선 공유기 시스템의 시스템 범위 설명 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:RouterSystem ;
+    rdfs:range xsd:string .
+
+wr:updateDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "업데이트 근거"@ko ;
+    rdfs:comment "Records a relation from Firmware update to Documentation source."@en,
+        "펌웨어 업데이트에서 문서 출처와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range wr:DocumentationSource .
+
+wr:updateEvidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "update evidence state"@en,
+        "업데이트 근거 상태"@ko ;
+    rdfs:comment "Records the update evidence state value or state for Firmware update."@en,
+        "펌웨어 업데이트의 업데이트 근거 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range xsd:string .
+
+wr:updateFromRelease a owl:ObjectProperty ;
+    rdfs:label "from release"@en,
+        "현재 릴리스"@ko ;
+    rdfs:comment "Records a relation from Firmware update to Firmware release."@en,
+        "펌웨어 업데이트에서 펌웨어 릴리스와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range wr:FirmwareRelease .
+
+wr:updateLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "update lifecycle state"@en,
+        "업데이트 진행 상태"@ko ;
+    rdfs:comment "Records the update lifecycle state value or state for Firmware update."@en,
+        "펌웨어 업데이트의 업데이트 진행 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range xsd:string .
+
+wr:updateRebootStatus a owl:DatatypeProperty ;
+    rdfs:label "reboot state"@en,
+        "재시작 상태"@ko ;
+    rdfs:comment "Records the reboot state value or state for Firmware update."@en,
+        "펌웨어 업데이트의 재시작 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range xsd:string .
+
+wr:updateRollbackStatus a owl:DatatypeProperty ;
+    rdfs:label "rollback state"@en,
+        "롤백 상태"@ko ;
+    rdfs:comment "Records the rollback state value or state for Firmware update."@en,
+        "펌웨어 업데이트의 롤백 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range xsd:string .
+
+wr:updateTargetsDevice a owl:ObjectProperty ;
+    rdfs:label "targets device"@en,
+        "업데이트 대상"@ko ;
+    rdfs:comment "Records a relation from Firmware update to Router device."@en,
+        "펌웨어 업데이트에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range wr:RouterDevice .
+
+wr:updateToRelease a owl:ObjectProperty ;
+    rdfs:label "target firmware release"@en,
+        "목표 릴리스"@ko ;
+    rdfs:comment "Records a relation from Firmware update to Firmware release."@en,
+        "펌웨어 업데이트에서 펌웨어 릴리스와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:FirmwareUpdate ;
+    rdfs:range wr:FirmwareRelease .
+
+wr:uplinkAttachedToDevice a owl:ObjectProperty ;
+    rdfs:label "attached to device"@en,
+        "연결 장치"@ko ;
+    rdfs:comment "Records a relation from Uplink connection to Router device."@en,
+        "상위 연결에서 공유기 장치와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range wr:RouterDevice .
+
+wr:uplinkConnectionStatus a owl:DatatypeProperty ;
+    rdfs:label "uplink state"@en,
+        "상위 연결 상태"@ko ;
+    rdfs:comment "Records the uplink state value or state for Uplink connection."@en,
+        "상위 연결의 상위 연결 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range xsd:string .
+
+wr:uplinkConnectionType a owl:DatatypeProperty ;
+    rdfs:label "uplink type"@en,
+        "상위 연결 종류"@ko ;
+    rdfs:comment "Records the uplink type value or state for Uplink connection."@en,
+        "상위 연결의 상위 연결 종류 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range xsd:string .
+
+wr:uplinkCredentialHandling a owl:DatatypeProperty ;
+    rdfs:label "uplink credential handling"@en,
+        "상위 인증 정보 처리"@ko ;
+    rdfs:comment "Records the uplink credential handling value or state for Uplink connection."@en,
+        "상위 연결의 상위 인증 정보 처리 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range xsd:string .
+
+wr:uplinkObservationStatus a owl:DatatypeProperty ;
+    rdfs:label "uplink observation state"@en,
+        "상위 연결 관측 상태"@ko ;
+    rdfs:comment "Records the uplink observation state value or state for Uplink connection."@en,
+        "상위 연결의 상위 연결 관측 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range xsd:string .
+
+wr:uplinkProviderDisclosure a owl:DatatypeProperty ;
+    rdfs:label "provider disclosure state"@en,
+        "사업자 정보 공개 상태"@ko ;
+    rdfs:comment "Records the provider disclosure state value or state for Uplink connection."@en,
+        "상위 연결의 사업자 정보 공개 상태 값 또는 상태를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range xsd:string .
+
+wr:uplinkWithinSystem a owl:ObjectProperty ;
+    rdfs:label "within system"@en,
+        "소속 시스템"@ko ;
+    rdfs:comment "Records a relation from Uplink connection to Wireless router system."@en,
+        "상위 연결에서 무선 공유기 시스템와의 관계를 기록한다."@ko ;
+    rdfs:domain wr:UplinkConnection ;
+    rdfs:range wr:RouterSystem .
+
+wr:ClientDevice a owl:Class ;
+    rdfs:label "Client device"@en,
+        "클라이언트 장치"@ko ;
+    rdfs:comment "Represents a client category and record state using a synthetic or pseudonymous label instead of a real MAC or IP address."@en,
+        "실제 MAC·IP 주소 대신 합성 또는 가명 식별자로 단말 종류와 기록 상태를 표현한다."@ko .
+
+wr:IsolationPolicy a owl:Class ;
+    rdfs:label "Network isolation policy"@en,
+        "망 분리 정책"@ko ;
+    rdfs:comment "Records intended allowed and denied flows between segments, their applied state, and evidence."@en,
+        "구간 간 허용·차단 의도, 적용 상태와 근거를 기록한다."@ko .
+
+wr:FirmwareRelease a owl:Class ;
+    rdfs:label "Firmware release"@en,
+        "펌웨어 릴리스"@ko ;
+    rdfs:comment "Records firmware version and support or provenance state without inferring support for a particular product."@en,
+        "장치 펌웨어 버전 및 지원·출처 상태를 기록하며 특정 제품 지원을 추정하지 않는다."@ko .
+
+wr:FirmwareUpdate a owl:Class ;
+    rdfs:label "Firmware update"@en,
+        "펌웨어 업데이트"@ko ;
+    rdfs:comment "Represents an update target, source and target release, progress, reboot, and rollback states."@en,
+        "업데이트의 대상, 출발·목표 버전, 진행·재시작·롤백 상태를 표현한다."@ko .
+
+wr:RouterSystem a owl:Class ;
+    rdfs:label "Wireless router system"@en,
+        "무선 공유기 시스템"@ko ;
+    rdfs:comment "A management unit that groups router devices, wireless networks, wired connections, and operational records."@en,
+        "공유기 장치, 무선망, 유선 연결 및 운영 기록을 묶는 관리 단위이다."@ko .
+
+wr:SecurityProfile a owl:Class ;
+    rdfs:label "Security profile"@en,
+        "보안 프로필"@ko ;
+    rdfs:comment "Records security-standard labels, application state, authentication and encryption modes, and evidence state separately."@en,
+        "보안 표준 이름, 적용 상태, 인증·암호화 방식과 근거 상태를 분리해 기록한다."@ko .
+
+wr:ConfigurationSnapshot a owl:Class ;
+    rdfs:label "Configuration snapshot"@en,
+        "설정 스냅샷"@ko ;
+    rdfs:comment "Distinguishes planned, current, and archived configuration while recording application, completeness, redaction, and provenance."@en,
+        "계획·현재·보관 설정을 구분하고 적용·완전성·비식별 상태 및 출처를 기록한다."@ko .
+
+wr:NetworkSegment a owl:Class ;
+    rdfs:label "Network segment"@en,
+        "네트워크 구간"@ko ;
+    rdfs:comment "Represents a trust zone and logical network boundary; address values are outside this ontology."@en,
+        "신뢰 영역과 논리적 네트워크 구분을 표현한다. 주소 값 자체는 이 온톨로지에 두지 않는다."@ko .
+
+wr:UplinkConnection a owl:Class ;
+    rdfs:label "Uplink connection"@en,
+        "상위 연결"@ko ;
+    rdfs:comment "Represents the type and observed state of a router connection to an upstream internet, provider, or mesh path."@en,
+        "공유기에서 상위 인터넷·사업자·메시 경로로 이어지는 연결의 종류와 관측 상태를 표현한다."@ko .
+
+wr:RadioInterface a owl:Class ;
+    rdfs:label "Radio interface"@en,
+        "무선 인터페이스"@ko ;
+    rdfs:comment "Represents supported radio capabilities, configured state, and network links for a band."@en,
+        "무선 대역의 지원 능력, 설정 상태 및 네트워크 연결을 표현한다."@ko .
+
+wr:AssociationRecord a owl:Class ;
+    rdfs:label "Wireless association record"@en,
+        "무선 접속 기록"@ko ;
+    rdfs:comment "Distinguishes whether a client association is observed, planned, or unobserved."@en,
+        "클라이언트가 무선망에 접속했는지, 계획인지, 관측되지 않았는지를 구분한다."@ko .
+
+wr:IncidentRecord a owl:Class ;
+    rdfs:label "Incident record"@en,
+        "장애·보안 사건 기록"@ko ;
+    rdfs:comment "Records the state and impact scope of an outage or security incident with supporting evidence."@en,
+        "장애 또는 보안 사건의 상태와 영향 범위를 근거와 함께 기록한다."@ko .
+
+wr:PerformanceObservation a owl:Class ;
+    rdfs:label "Performance observation"@en,
+        "성능 관측"@ko ;
+    rdfs:comment "Separates measured values from unmeasured state and records target, time, method, and unit."@en,
+        "측정값과 미측정 상태를 구분하고 측정 대상, 시각, 방법 및 단위를 기록한다."@ko .
+
+wr:DocumentationSource a owl:Class ;
+    rdfs:label "Documentation source"@en,
+        "문서 출처"@ko ;
+    rdfs:comment "Preserves the title, scope, and limitations of standards, guidance, and vendor documentation."@en,
+        "표준·지침·제조사 문서의 제목, 범위 및 한계를 보존한다."@ko .
+
+wr:WirelessNetwork a owl:Class ;
+    rdfs:label "Wireless network profile"@en,
+        "무선 네트워크 프로필"@ko ;
+    rdfs:comment "Represents a wireless network alias, purpose, security profile, and logical segment without storing the literal SSID."@en,
+        "SSID 원문을 저장하지 않고 무선망의 별칭, 용도, 보안 프로필 및 논리 구간 연결을 표현한다."@ko .
+
+wr:RouterDevice a owl:Class ;
+    rdfs:label "Router device"@en,
+        "공유기 장치"@ko ;
+    rdfs:comment "Describes the identity metadata and state of a device that provides wireless networking or manages network forwarding."@en,
+        "무선 네트워크를 제공하거나 전달 경로를 관리하는 장치의 식별 정보와 상태를 기술한다."@ko .

@@ -1,0 +1,661 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ros2: <https://example.org/ontology/custom/ros2#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/ros2> a owl:Ontology ;
+    rdfs:label "ROS 2 System Ontology"@en,
+        "ROS 2 시스템 온톨로지"@ko ;
+    rdfs:comment "Represents ROS 2 packages, nodes, topics, services, actions, QoS, hardware, controllers and tf2 frames with documentation evidence. The greenhouse wiring example is marked synthetic."@en,
+        "ROS 2 패키지, 노드, 토픽·서비스·액션, QoS, 하드웨어, 컨트롤러, tf2 프레임의 관계를 문서 근거와 함께 표현한다. 가상 온실 연결 예시는 합성 자료로 표시한다."@ko ;
+    owl:versionIRI <https://example.org/ontology/custom/ros2/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+ros2:actionClient a owl:ObjectProperty ;
+    rdfs:label "Action client"@en,
+        "액션 클라이언트"@ko ;
+    rdfs:comment "Links a client node that sends goals and receives progress."@en,
+        "목표를 보내고 진행 상태를 받는 클라이언트 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Action ;
+    rdfs:range ros2:Node .
+
+ros2:actionName a owl:DatatypeProperty ;
+    rdfs:label "Action name"@en,
+        "액션 이름"@ko ;
+    rdfs:comment "Records the action name to which a goal is sent."@en,
+        "목표를 보낼 액션 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Action ;
+    rdfs:range xsd:string .
+
+ros2:actionNote a owl:DatatypeProperty ;
+    rdfs:label "Action note"@en,
+        "액션 설명"@ko ;
+    rdfs:comment "Describes the example goal, feedback, cancellation or result for long-running work."@en,
+        "장시간 작업의 목표, 피드백, 취소 또는 결과 예시를 설명한다."@ko ;
+    rdfs:domain ros2:Action ;
+    rdfs:range xsd:string .
+
+ros2:actionServer a owl:ObjectProperty ;
+    rdfs:label "Action server"@en,
+        "액션 서버"@ko ;
+    rdfs:comment "Links the server node that executes goals and returns feedback and results."@en,
+        "목표를 실행하고 피드백·결과를 보내는 서버 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Action ;
+    rdfs:range ros2:Node .
+
+ros2:actionType a owl:ObjectProperty ;
+    rdfs:label "Action type"@en,
+        "액션 형식"@ko ;
+    rdfs:comment "Links the type defined by the .action interface file."@en,
+        ".action 정의 파일의 형식을 연결한다."@ko ;
+    rdfs:domain ros2:Action ;
+    rdfs:range ros2:MessageType .
+
+ros2:commandInterface a owl:DatatypeProperty ;
+    rdfs:label "Command interface"@en,
+        "명령 인터페이스"@ko ;
+    rdfs:comment "Records a command interface name written to hardware."@en,
+        "하드웨어에 쓰는 명령 인터페이스 이름을 기록한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:componentKind a owl:DatatypeProperty ;
+    rdfs:label "Component kind"@en,
+        "장치 종류"@ko ;
+    rdfs:comment "Classifies a device as a sensor, actuator or system."@en,
+        "장치를 센서, 액추에이터 또는 복합 시스템으로 분류한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:componentName a owl:DatatypeProperty ;
+    rdfs:label "Component name"@en,
+        "장치 이름"@ko ;
+    rdfs:comment "Records the name identifying the device in the example system."@en,
+        "예시 시스템에서 장치를 식별하는 이름을 기록한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:controlledBy a owl:ObjectProperty ;
+    rdfs:label "Controlled by"@en,
+        "제어 컨트롤러"@ko ;
+    rdfs:comment "Links the controller that sends commands to the device."@en,
+        "장치에 명령을 전달하는 컨트롤러를 연결한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range ros2:Controller .
+
+ros2:controllerKind a owl:DatatypeProperty ;
+    rdfs:label "Controller kind"@en,
+        "컨트롤러 종류"@ko ;
+    rdfs:comment "Classifies the controller as a broadcaster, command or custom component."@en,
+        "컨트롤러를 broadcaster, command 또는 custom 구성으로 분류한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range xsd:string .
+
+ros2:controllerName a owl:DatatypeProperty ;
+    rdfs:label "Controller name"@en,
+        "컨트롤러 이름"@ko ;
+    rdfs:comment "Records the name identifying the controller instance."@en,
+        "컨트롤러 인스턴스를 식별하는 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range xsd:string .
+
+ros2:controllerNode a owl:ObjectProperty ;
+    rdfs:label "Controller manager node"@en,
+        "컨트롤러 관리자 노드"@ko ;
+    rdfs:comment "Links the running node that manages the controller."@en,
+        "컨트롤러를 관리하는 실행 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range ros2:Node .
+
+ros2:controllerNote a owl:DatatypeProperty ;
+    rdfs:label "Controller note"@en,
+        "컨트롤러 설명"@ko ;
+    rdfs:comment "Describes the control role and scope of the example implementation."@en,
+        "컨트롤 주기와 예시 구현의 범위를 설명한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range xsd:string .
+
+ros2:controllerPackage a owl:ObjectProperty ;
+    rdfs:label "Controller package"@en,
+        "컨트롤러 패키지"@ko ;
+    rdfs:comment "Links the package providing the controller implementation."@en,
+        "컨트롤러 구현을 제공하는 패키지를 연결한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range ros2:Package .
+
+ros2:controlsHardware a owl:ObjectProperty ;
+    rdfs:label "Controls hardware"@en,
+        "제어 장치"@ko ;
+    rdfs:comment "Links hardware components read or commanded by the controller."@en,
+        "컨트롤러가 읽거나 명령하는 하드웨어 구성요소를 연결한다."@ko ;
+    rdfs:domain ros2:Controller ;
+    rdfs:range ros2:HardwareComponent .
+
+ros2:definedInPackage a owl:ObjectProperty ;
+    rdfs:label "Defined in package"@en,
+        "형식 정의 패키지"@ko ;
+    rdfs:comment "Links the package declaring the interface type."@en,
+        "인터페이스 형식을 선언하는 패키지를 연결한다."@ko ;
+    rdfs:domain ros2:MessageType ;
+    rdfs:range ros2:Package .
+
+ros2:definitionKind a owl:DatatypeProperty ;
+    rdfs:label "Definition file kind"@en,
+        "정의 파일 종류"@ko ;
+    rdfs:comment "Identifies whether the definition is a msg, srv or action file."@en,
+        "형식 정의가 msg, srv 또는 action 파일인지 구분한다."@ko ;
+    rdfs:domain ros2:MessageType ;
+    rdfs:range xsd:string .
+
+ros2:documentedBy a owl:ObjectProperty ;
+    rdfs:label "Documented by"@en,
+        "문서 근거"@ko ;
+    rdfs:comment "Links a documentation source supporting a concept or example value."@en,
+        "개념 또는 예시 값의 설명을 뒷받침하는 문서 출처를 연결한다."@ko ;
+    rdfs:domain owl:Thing ;
+    rdfs:range ros2:DocumentationSource .
+
+ros2:durability a owl:DatatypeProperty ;
+    rdfs:label "Durability policy"@en,
+        "지속성 정책"@ko ;
+    rdfs:comment "Specifies whether prior samples are retained for late-joining subscribers."@en,
+        "늦게 연결한 구독자에게 이전 샘플을 보존할지 정한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:string .
+
+ros2:frameName a owl:DatatypeProperty ;
+    rdfs:label "Frame name"@en,
+        "프레임 이름"@ko ;
+    rdfs:comment "Records the coordinate frame name used in the tf2 tree."@en,
+        "tf2 트리에서 사용할 좌표 프레임 이름을 기록한다."@ko ;
+    rdfs:domain ros2:CoordinateFrame ;
+    rdfs:range xsd:string .
+
+ros2:frameNote a owl:DatatypeProperty ;
+    rdfs:label "Frame note"@en,
+        "프레임 설명"@ko ;
+    rdfs:comment "Describes the example mounting location and frame relationship."@en,
+        "프레임의 예시 장착 위치와 관계를 설명한다."@ko ;
+    rdfs:domain ros2:CoordinateFrame ;
+    rdfs:range xsd:string .
+
+ros2:frameRole a owl:DatatypeProperty ;
+    rdfs:label "Frame role"@en,
+        "프레임 역할"@ko ;
+    rdfs:comment "Classifies the frame as a world, sensor, base, tool or other reference."@en,
+        "좌표계가 환경 기준인지 센서 기준인지 분류한다."@ko ;
+    rdfs:domain ros2:CoordinateFrame ;
+    rdfs:range xsd:string .
+
+ros2:hardwareNote a owl:DatatypeProperty ;
+    rdfs:label "Hardware note"@en,
+        "하드웨어 설명"@ko ;
+    rdfs:comment "Describes hardware integration and the synthetic example scope."@en,
+        "하드웨어 연결과 합성 예시의 범위를 설명한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:hardwareProtocol a owl:DatatypeProperty ;
+    rdfs:label "Hardware protocol"@en,
+        "하드웨어 연결 방식"@ko ;
+    rdfs:comment "Records the example physical communication or signal method between device and controller."@en,
+        "장치와 제어기 사이의 예시 물리 통신·신호 방식을 기록한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:hasAction a owl:ObjectProperty ;
+    rdfs:label "Has action"@en,
+        "액션 인터페이스"@ko ;
+    rdfs:comment "Links an action provided or used by the system."@en,
+        "시스템에서 제공하거나 사용하는 액션을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Action .
+
+ros2:hasController a owl:ObjectProperty ;
+    rdfs:label "Has controller"@en,
+        "컨트롤러 구성요소"@ko ;
+    rdfs:comment "Links a controller managed by the system."@en,
+        "시스템에서 관리하는 컨트롤러를 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Controller .
+
+ros2:hasCoordinateFrame a owl:ObjectProperty ;
+    rdfs:label "Has coordinate frame"@en,
+        "좌표 프레임"@ko ;
+    rdfs:comment "Links a frame in the system tf2 tree."@en,
+        "시스템의 tf2 프레임 트리에 속한 프레임을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:CoordinateFrame .
+
+ros2:hasDocumentationSource a owl:ObjectProperty ;
+    rdfs:label "Has documentation source"@en,
+        "문서 출처"@ko ;
+    rdfs:comment "Links a source record documenting the system."@en,
+        "시스템을 설명하는 출처 기록을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:DocumentationSource .
+
+ros2:hasHardwareComponent a owl:ObjectProperty ;
+    rdfs:label "Has hardware component"@en,
+        "하드웨어 구성요소"@ko ;
+    rdfs:comment "Links sensors, actuators or hardware systems attached to the system."@en,
+        "시스템에 연결된 센서·액추에이터·하드웨어 묶음을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:HardwareComponent .
+
+ros2:hasNode a owl:ObjectProperty ;
+    rdfs:label "Has node"@en,
+        "실행 노드"@ko ;
+    rdfs:comment "Links a node in the system."@en,
+        "시스템에서 실행되는 노드를 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Node .
+
+ros2:hasPackage a owl:ObjectProperty ;
+    rdfs:label "Includes package"@en,
+        "사용 패키지"@ko ;
+    rdfs:comment "Links a package used by the system."@en,
+        "시스템에서 사용하는 패키지를 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Package .
+
+ros2:hasPublisher a owl:ObjectProperty ;
+    rdfs:label "Has publisher"@en,
+        "발행 노드"@ko ;
+    rdfs:comment "Links a node that publishes messages to the topic."@en,
+        "토픽에 메시지를 발행하는 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Topic ;
+    rdfs:range ros2:Node .
+
+ros2:hasQoSProfile a owl:ObjectProperty ;
+    rdfs:label "Has QoS profile"@en,
+        "QoS 프로파일"@ko ;
+    rdfs:comment "Links a communication QoS profile referenced by the system."@en,
+        "시스템에서 참조하는 통신 QoS 프로파일을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:QoSProfile .
+
+ros2:hasService a owl:ObjectProperty ;
+    rdfs:label "Has service"@en,
+        "서비스 인터페이스"@ko ;
+    rdfs:comment "Links a service provided or used by the system."@en,
+        "시스템에서 제공하거나 사용하는 서비스를 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Service .
+
+ros2:hasSubscriber a owl:ObjectProperty ;
+    rdfs:label "Has subscriber"@en,
+        "구독 노드"@ko ;
+    rdfs:comment "Links a node that subscribes to topic messages."@en,
+        "토픽 메시지를 받는 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Topic ;
+    rdfs:range ros2:Node .
+
+ros2:hasTopic a owl:ObjectProperty ;
+    rdfs:label "Has topic"@en,
+        "토픽 인터페이스"@ko ;
+    rdfs:comment "Links a topic used by the system."@en,
+        "시스템에서 사용하는 토픽을 연결한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range ros2:Topic .
+
+ros2:historyDepth a owl:DatatypeProperty ;
+    rdfs:label "History depth"@en,
+        "이력 깊이"@ko ;
+    rdfs:comment "Records the sample queue size for keep_last history."@en,
+        "keep_last 이력에서 보관할 샘플 큐 크기를 기록한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:integer .
+
+ros2:historyPolicy a owl:DatatypeProperty ;
+    rdfs:label "History policy"@en,
+        "이력 정책"@ko ;
+    rdfs:comment "Records whether the queue keeps the latest samples or all available samples."@en,
+        "큐에 최근 샘플만 보관하거나 사용 가능한 샘플을 모두 보관하는 방식을 기록한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:string .
+
+ros2:messageType a owl:ObjectProperty ;
+    rdfs:label "Topic message type"@en,
+        "토픽 메시지 형식"@ko ;
+    rdfs:comment "Links the message type carried by the topic."@en,
+        "토픽에서 전달하는 메시지 형식을 연결한다."@ko ;
+    rdfs:domain ros2:Topic ;
+    rdfs:range ros2:MessageType .
+
+ros2:nodeName a owl:DatatypeProperty ;
+    rdfs:label "Node name"@en,
+        "노드 이름"@ko ;
+    rdfs:comment "Records the name identifying a node in the ROS graph."@en,
+        "ROS 그래프에서 노드를 식별하는 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Node ;
+    rdfs:range xsd:string .
+
+ros2:nodeNote a owl:DatatypeProperty ;
+    rdfs:label "Node note"@en,
+        "노드 설명"@ko ;
+    rdfs:comment "Describes the node responsibility and whether it is an example implementation."@en,
+        "노드의 책임과 예시 구현 여부를 설명한다."@ko ;
+    rdfs:domain ros2:Node ;
+    rdfs:range xsd:string .
+
+ros2:nodeRole a owl:DatatypeProperty ;
+    rdfs:label "Node role"@en,
+        "노드 역할"@ko ;
+    rdfs:comment "Classifies the node’s primary function in the example system."@en,
+        "예시 시스템에서 노드가 맡는 주된 기능을 분류한다."@ko ;
+    rdfs:domain ros2:Node ;
+    rdfs:range xsd:string .
+
+ros2:packageName a owl:DatatypeProperty ;
+    rdfs:label "Package name"@en,
+        "패키지 이름"@ko ;
+    rdfs:comment "Records the ROS 2 package identifier."@en,
+        "ROS 2 패키지의 정확한 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Package ;
+    rdfs:range xsd:string .
+
+ros2:packageNote a owl:DatatypeProperty ;
+    rdfs:label "Package note"@en,
+        "패키지 설명"@ko ;
+    rdfs:comment "Describes a package purpose and its role in this example."@en,
+        "패키지의 용도와 이 예시에서의 사용 범위를 설명한다."@ko ;
+    rdfs:domain ros2:Package ;
+    rdfs:range xsd:string .
+
+ros2:packageRole a owl:DatatypeProperty ;
+    rdfs:label "Package role"@en,
+        "패키지 역할"@ko ;
+    rdfs:comment "Classifies a package as a library, common interface, controller or application."@en,
+        "패키지가 라이브러리, 공통 인터페이스, 제어기 또는 응용 중 무엇을 제공하는지 분류한다."@ko ;
+    rdfs:domain ros2:Package ;
+    rdfs:range xsd:string .
+
+ros2:packageUri a owl:DatatypeProperty ;
+    rdfs:label "Package URI"@en,
+        "패키지 주소"@ko ;
+    rdfs:comment "Records a repository URI or a synthetic example identifier."@en,
+        "패키지 저장소 주소 또는 합성 예시 식별자를 기록한다."@ko ;
+    rdfs:domain ros2:Package ;
+    rdfs:range xsd:anyURI .
+
+ros2:parentFrame a owl:ObjectProperty ;
+    rdfs:label "Parent frame"@en,
+        "상위 프레임"@ko ;
+    rdfs:comment "Links the immediate parent frame in the coordinate frame tree."@en,
+        "좌표 프레임 트리에서 바로 위의 프레임을 연결한다."@ko ;
+    rdfs:domain ros2:CoordinateFrame ;
+    rdfs:range ros2:CoordinateFrame .
+
+ros2:qosName a owl:DatatypeProperty ;
+    rdfs:label "QoS name"@en,
+        "QoS 이름"@ko ;
+    rdfs:comment "Records a name identifying the policy profile."@en,
+        "정책 묶음을 식별하는 프로파일 이름을 기록한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:string .
+
+ros2:qosNote a owl:DatatypeProperty ;
+    rdfs:label "QoS note"@en,
+        "QoS 설명"@ko ;
+    rdfs:comment "Describes the profile use case and evidence scope."@en,
+        "프로파일 선택 목적과 출처 범위를 설명한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:string .
+
+ros2:recordKind a owl:DatatypeProperty ;
+    rdfs:label "Configuration record kind"@en,
+        "구성 기록 유형"@ko ;
+    rdfs:comment "Marks a learning configuration as synthetic and separates it from documented concept facts."@en,
+        "학습용 연결 구성을 합성 기록으로 표시하고, 문서화된 개념 사실과 구별한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range xsd:string .
+
+ros2:reliability a owl:DatatypeProperty ;
+    rdfs:label "Reliability policy"@en,
+        "신뢰성 정책"@ko ;
+    rdfs:comment "Selects reliable, best-effort or system-default sample delivery."@en,
+        "샘플 전달에 reliable, best effort 또는 시스템 기본 정책을 선택한다."@ko ;
+    rdfs:domain ros2:QoSProfile ;
+    rdfs:range xsd:string .
+
+ros2:serviceClient a owl:ObjectProperty ;
+    rdfs:label "Service client"@en,
+        "서비스 클라이언트"@ko ;
+    rdfs:comment "Links a client node that sends requests to the service."@en,
+        "서비스에 요청을 보내는 클라이언트 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range ros2:Node .
+
+ros2:serviceName a owl:DatatypeProperty ;
+    rdfs:label "Service name"@en,
+        "서비스 이름"@ko ;
+    rdfs:comment "Records the callable service name."@en,
+        "호출 가능한 서비스 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range xsd:string .
+
+ros2:serviceNote a owl:DatatypeProperty ;
+    rdfs:label "Service note"@en,
+        "서비스 설명"@ko ;
+    rdfs:comment "Describes the short request/response operation."@en,
+        "서비스가 수행하는 짧은 요청·응답 작업을 설명한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range xsd:string .
+
+ros2:serviceQoSProfile a owl:ObjectProperty ;
+    rdfs:label "Service QoS profile"@en,
+        "서비스 QoS 프로파일"@ko ;
+    rdfs:comment "Links the example QoS profile for the service endpoints."@en,
+        "서비스 서버와 클라이언트에 대한 예시 QoS 프로파일을 연결한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range ros2:QoSProfile .
+
+ros2:serviceServer a owl:ObjectProperty ;
+    rdfs:label "Service server"@en,
+        "서비스 서버"@ko ;
+    rdfs:comment "Links the server node that handles requests and returns responses."@en,
+        "요청을 처리하고 응답하는 서버 노드를 연결한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range ros2:Node .
+
+ros2:serviceType a owl:ObjectProperty ;
+    rdfs:label "Service type"@en,
+        "서비스 형식"@ko ;
+    rdfs:comment "Links the service type defining request and response fields."@en,
+        "요청·응답 구조를 정의하는 서비스 형식을 연결한다."@ko ;
+    rdfs:domain ros2:Service ;
+    rdfs:range ros2:MessageType .
+
+ros2:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "Access date"@en,
+        "확인 날짜"@ko ;
+    rdfs:comment "Records the date the source was checked for this ontology."@en,
+        "이 온톨로지 자료를 작성하면서 문서를 확인한 날짜를 기록한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:date .
+
+ros2:sourceClaim a owl:DatatypeProperty ;
+    rdfs:label "Evidence claim"@en,
+        "근거 범위"@ko ;
+    rdfs:comment "Summarizes the concept or value supported by this source."@en,
+        "해당 출처가 뒷받침하는 개념 또는 값의 범위를 요약한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ros2:sourceLanguage a owl:DatatypeProperty ;
+    rdfs:label "Source language"@en,
+        "문서 언어"@ko ;
+    rdfs:comment "Records the primary language of the source."@en,
+        "원문 문서의 주 언어를 기록한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ros2:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "Source publisher"@en,
+        "문서 제공자"@ko ;
+    rdfs:comment "Records the ROS project or package maintaining the source."@en,
+        "문서를 관리하는 ROS 프로젝트 또는 패키지를 기록한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ros2:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "Source title"@en,
+        "문서 제목"@ko ;
+    rdfs:comment "Records the title or file name of the source."@en,
+        "근거 문서의 제목 또는 파일을 기록한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:string .
+
+ros2:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "Source URI"@en,
+        "문서 주소"@ko ;
+    rdfs:comment "Records a direct URI for the official documentation."@en,
+        "직접 확인할 수 있는 공식 문서 주소를 기록한다."@ko ;
+    rdfs:domain ros2:DocumentationSource ;
+    rdfs:range xsd:anyURI .
+
+ros2:stateInterface a owl:DatatypeProperty ;
+    rdfs:label "State interface"@en,
+        "상태 인터페이스"@ko ;
+    rdfs:comment "Records a state interface name read from hardware."@en,
+        "하드웨어에서 읽는 상태 인터페이스 이름을 기록한다."@ko ;
+    rdfs:domain ros2:HardwareComponent ;
+    rdfs:range xsd:string .
+
+ros2:systemNote a owl:DatatypeProperty ;
+    rdfs:label "System note"@en,
+        "시스템 설명"@ko ;
+    rdfs:comment "Records additional context and example scope."@en,
+        "구성 범위와 예시 여부에 대한 추가 설명을 기록한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range xsd:string .
+
+ros2:systemPurpose a owl:DatatypeProperty ;
+    rdfs:label "System purpose"@en,
+        "시스템 목적"@ko ;
+    rdfs:comment "Summarizes the application purpose of the configuration."@en,
+        "구성이 지원하는 응용 목적을 요약한다."@ko ;
+    rdfs:domain ros2:ROS2System ;
+    rdfs:range xsd:string .
+
+ros2:topicName a owl:DatatypeProperty ;
+    rdfs:label "Topic name"@en,
+        "토픽 이름"@ko ;
+    rdfs:comment "Records the topic name used by publishers and subscribers."@en,
+        "발행·구독에 사용할 토픽 이름을 기록한다."@ko ;
+    rdfs:domain ros2:Topic ;
+    rdfs:range xsd:string .
+
+ros2:typeName a owl:DatatypeProperty ;
+    rdfs:label "Type name"@en,
+        "형식 이름"@ko ;
+    rdfs:comment "Records the ROS interface type name including its package path."@en,
+        "패키지 경로를 포함한 ROS 인터페이스 형식 이름을 기록한다."@ko ;
+    rdfs:domain ros2:MessageType ;
+    rdfs:range xsd:string .
+
+ros2:typeNote a owl:DatatypeProperty ;
+    rdfs:label "Type note"@en,
+        "형식 설명"@ko ;
+    rdfs:comment "Describes the type payload and whether it is standard or custom."@en,
+        "형식이 전달하는 내용과 표준·사용자 정의 여부를 설명한다."@ko ;
+    rdfs:domain ros2:MessageType ;
+    rdfs:range xsd:string .
+
+ros2:usesPackage a owl:ObjectProperty ;
+    rdfs:label "Uses package"@en,
+        "실행 패키지"@ko ;
+    rdfs:comment "Links the package containing the node implementation."@en,
+        "노드 구현을 포함하는 패키지를 연결한다."@ko ;
+    rdfs:domain ros2:Node ;
+    rdfs:range ros2:Package .
+
+ros2:usesQoSProfile a owl:ObjectProperty ;
+    rdfs:label "Uses QoS profile"@en,
+        "토픽 QoS 프로파일"@ko ;
+    rdfs:comment "Links the communication policy example for the topic endpoints."@en,
+        "토픽 발행자와 구독자의 통신 정책 예시를 연결한다."@ko ;
+    rdfs:domain ros2:Topic ;
+    rdfs:range ros2:QoSProfile .
+
+ros2:CommunicationInterface a owl:Class ;
+    rdfs:label "Communication interface"@en,
+        "통신 인터페이스"@ko ;
+    rdfs:comment "Defines how nodes exchange messages through topics, services or actions."@en,
+        "토픽, 서비스 또는 액션으로 노드 사이의 메시지 교환 방식을 정의한다."@ko .
+
+ros2:Action a owl:Class ;
+    rdfs:label "Action"@en,
+        "액션"@ko ;
+    rdfs:comment "An interface for long-running work that accepts a goal, provides feedback and can be cancelled."@en,
+        "목표를 보내고 진행 피드백을 받으며 필요하면 취소할 수 있는 장시간 작업 인터페이스다."@ko ;
+    rdfs:subClassOf ros2:CommunicationInterface .
+
+ros2:CoordinateFrame a owl:Class ;
+    rdfs:label "Coordinate frame"@en,
+        "좌표 프레임"@ko ;
+    rdfs:comment "A spatial reference frame whose time-varying relationships are managed by tf2."@en,
+        "tf2가 시간에 따라 관계를 관리하는 로봇 또는 환경의 공간 기준 좌표계다."@ko .
+
+ros2:Topic a owl:Class ;
+    rdfs:label "Topic"@en,
+        "토픽"@ko ;
+    rdfs:comment "A named interface for asynchronous message streams between publishers and subscribers."@en,
+        "발행자와 구독자가 메시지 스트림을 비동기적으로 교환하는 이름 있는 인터페이스다."@ko ;
+    rdfs:subClassOf ros2:CommunicationInterface .
+
+ros2:MessageType a owl:Class ;
+    rdfs:label "Interface type"@en,
+        "인터페이스 형식"@ko ;
+    rdfs:comment "A ROS 2 message, service or action type defined by a .msg, .srv or .action file."@en,
+        ".msg, .srv 또는 .action 파일로 정의되는 ROS 2 메시지 형식이다."@ko .
+
+ros2:Service a owl:Class ;
+    rdfs:label "Service"@en,
+        "서비스"@ko ;
+    rdfs:comment "A request/response interface in which a server responds to a client request."@en,
+        "클라이언트 요청에 서버가 응답하는 요청·응답 인터페이스다."@ko ;
+    rdfs:subClassOf ros2:CommunicationInterface .
+
+ros2:Controller a owl:Class ;
+    rdfs:label "Controller"@en,
+        "컨트롤러"@ko ;
+    rdfs:comment "A ros2_control component that reads hardware interfaces and calculates or forwards commands."@en,
+        "하드웨어 인터페이스를 읽고 제어 명령을 계산하거나 전달하는 ros2_control 구성요소다."@ko .
+
+ros2:DocumentationSource a owl:Class ;
+    rdfs:label "Documentation source"@en,
+        "공식 문서 출처"@ko ;
+    rdfs:comment "Records a source URI and the claim it supports for a ROS 2 concept or property value."@en,
+        "ROS 2 개념 설명이나 속성 값의 근거가 되는 문서의 주소와 확인 범위를 기록한다."@ko .
+
+ros2:Package a owl:Class ;
+    rdfs:label "Package"@en,
+        "패키지"@ko ;
+    rdfs:comment "Groups ROS 2 code, interface definitions or reusable components as a package."@en,
+        "ROS 2 코드, 인터페이스 정의 또는 재사용 구성요소를 배포 단위로 묶는다."@ko .
+
+ros2:HardwareComponent a owl:Class ;
+    rdfs:label "Hardware component"@en,
+        "하드웨어 구성요소"@ko ;
+    rdfs:comment "A device that exchanges sensor state or actuator commands through a ROS 2 hardware interface."@en,
+        "ROS 2 하드웨어 인터페이스를 통해 센서 값이나 액추에이터 명령을 주고받는 장치다."@ko .
+
+ros2:QoSProfile a owl:Class ;
+    rdfs:label "QoS profile"@en,
+        "QoS 프로파일"@ko ;
+    rdfs:comment "Groups communication policies such as history, queue depth, reliability and durability."@en,
+        "메시지 보관 방식, 큐 깊이, 신뢰성, 지속성 등 통신 정책을 묶는다."@ko .
+
+ros2:Node a owl:Class ;
+    rdfs:label "Node"@en,
+        "노드"@ko ;
+    rdfs:comment "An executable unit that performs a function and communicates with other nodes in a ROS 2 system."@en,
+        "ROS 2 시스템에서 실행되어 기능을 수행하고 다른 노드와 통신하는 실행 단위다."@ko .
+
+ros2:ROS2System a owl:Class ;
+    rdfs:label "ROS 2 system"@en,
+        "ROS 2 시스템"@ko ;
+    rdfs:comment "Groups packages, nodes, communication interfaces and hardware into a ROS 2 application."@en,
+        "패키지, 노드, 통신 인터페이스와 장치 구성을 하나의 ROS 2 응용으로 묶는다."@ko .

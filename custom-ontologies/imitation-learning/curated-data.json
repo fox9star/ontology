@@ -1,0 +1,53 @@
+{
+  "scope": "synthetic robot-arm example only; no collected demonstrations, trained model, robot actuation or evaluation",
+  "accessed_on": "2026-10-08",
+  "methods": [
+    {
+      "id": "behavior-cloning",
+      "kind": "behavior_cloning",
+      "source_ids": [
+        "pomerleau-1989"
+      ]
+    },
+    {
+      "id": "dagger",
+      "kind": "dagger",
+      "source_ids": [
+        "ross-gordon-bagnell-2011"
+      ]
+    },
+    {
+      "id": "inverse-rl",
+      "kind": "inverse_reinforcement_learning",
+      "source_ids": [
+        "ng-russell-2000"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "ross-gordon-bagnell-2011",
+      "title": "A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning",
+      "authors": "Stéphane Ross, Geoffrey J. Gordon, J. Andrew Bagnell",
+      "year": 2011,
+      "uri": "https://proceedings.mlr.press/v15/ross11a.html",
+      "claim": "DAgger uses learner-induced states, expert action labels and iterative data aggregation."
+    },
+    {
+      "id": "ng-russell-2000",
+      "title": "Algorithms for Inverse Reinforcement Learning",
+      "authors": "Andrew Y. Ng, Stuart Russell",
+      "year": 2000,
+      "uri": "https://ai.stanford.edu/~ang/papers/icml00-irl.pdf",
+      "claim": "Formulates reward inference from observed optimal behavior, including a finite-trajectory case."
+    },
+    {
+      "id": "pomerleau-1989",
+      "title": "ALVINN: An Autonomous Land Vehicle in a Neural Network",
+      "authors": "Dean A. Pomerleau",
+      "year": 1989,
+      "uri": "https://publications.ri.cmu.edu/alvinn-an-autonomous-land-vehicle-in-a-neural-network",
+      "claim": "Describes camera and laser-range inputs, a driving-direction output, and training with simulated road images."
+    }
+  ]
+}

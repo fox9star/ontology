@@ -1,0 +1,255 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wr: <https://example.org/ontology/custom/wireless-router#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/wireless-router/client-example-01> a wr:ClientDevice ;
+    rdfs:label "Synthetic client example A"@en,
+        "합성 클라이언트 예시 A"@ko ;
+    wr:clientCategory "generic_personal_device"^^xsd:string ;
+    wr:clientEvidenceStatus "not_observed"^^xsd:string ;
+    wr:clientHasAssociation <https://example.test/wireless-router/association-example-01> ;
+    wr:clientIdentityHandling "pseudonym_only"^^xsd:string ;
+    wr:clientInventoryStatus "synthetic"^^xsd:string ;
+    wr:clientPartOfSystem <https://example.test/wireless-router/system-synthetic-01> ;
+    wr:clientPseudonym "CLIENT-EXAMPLE-A"^^xsd:string .
+
+<https://example.test/wireless-router/firmware-current-unknown> a wr:FirmwareRelease ;
+    rdfs:label "Unknown firmware version placeholder"@en,
+        "미상 펌웨어 버전 자리표시자"@ko ;
+    wr:firmwareArtifactProvenance "not_provided"^^xsd:string ;
+    wr:firmwarePublisherLabel "not_specified"^^xsd:string ;
+    wr:firmwareReleaseForDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:firmwareSupportStatus "unknown"^^xsd:string ;
+    wr:firmwareVersionLabel "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/firmware-update-unassessed> a wr:FirmwareUpdate ;
+    rdfs:label "Unassessed firmware update placeholder"@en,
+        "미평가 업데이트 자리표시자"@ko ;
+    wr:updateEvidenceStatus "not_provided"^^xsd:string ;
+    wr:updateLifecycleStatus "not_assessed"^^xsd:string ;
+    wr:updateRebootStatus "not_observed"^^xsd:string ;
+    wr:updateRollbackStatus "unknown"^^xsd:string ;
+    wr:updateTargetsDevice <https://example.test/wireless-router/router-synthetic-01> .
+
+<https://example.test/wireless-router/incident-not-observed-example> a wr:IncidentRecord ;
+    rdfs:label "Unobserved incident placeholder"@en,
+        "미관측 사건 자리표시자"@ko ;
+    wr:incidentAffectsDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:incidentAffectsNetwork <https://example.test/wireless-router/network-primary-example> ;
+    wr:incidentAffectsUplink <https://example.test/wireless-router/uplink-example-01> ;
+    wr:incidentCategory "other"^^xsd:string ;
+    wr:incidentEvidenceStatus "not_observed"^^xsd:string ;
+    wr:incidentImpactScope "실제 시스템이 아니므로 영향 평가를 수행하지 않았다."^^xsd:string ;
+    wr:incidentLifecycleStatus "not_observed"^^xsd:string ;
+    wr:incidentResponseStatus "not_observed"^^xsd:string ;
+    wr:incidentSeverity "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/observation-primary-unmeasured> a wr:PerformanceObservation ;
+    rdfs:label "Unmeasured primary network observation"@en,
+        "내부망 미측정 성능 예시"@ko ;
+    wr:observationForNetwork <https://example.test/wireless-router/network-primary-example> ;
+    wr:observationForUplink <https://example.test/wireless-router/uplink-example-01> ;
+    wr:observationMethod "no_measurement_performed"^^xsd:string ;
+    wr:observationMetric "throughput"^^xsd:string ;
+    wr:observationStatus "not_measured"^^xsd:string ;
+    wr:observationUnit "Mbps"^^xsd:string .
+
+<https://example.test/wireless-router/policy-guest-example> a wr:IsolationPolicy ;
+    rdfs:label "Synthetic isolation plan"@en,
+        "합성 망 분리 계획"@ko ;
+    wr:policyAllowedFlowScope "필수 통신만 허용하는 방안을 검토 예정; 실제 ACL 미관측"^^xsd:string ;
+    wr:policyApplicationStatus "planned"^^xsd:string ;
+    wr:policyAppliesToSegment <https://example.test/wireless-router/segment-guest-example> ;
+    wr:policyDeniedFlowScope "게스트에서 내부 구간으로의 접근 차단 의도; 적용 여부 미관측"^^xsd:string ;
+    wr:policyDocumentedBy <https://example.test/wireless-router/source-nist-sp800-153> ;
+    wr:policyEvidenceStatus "not_assessed"^^xsd:string ;
+    wr:policyTrafficDirection "east_west"^^xsd:string .
+
+<https://example.test/wireless-router/policy-primary-example> a wr:IsolationPolicy ;
+    rdfs:label "Synthetic isolation plan"@en,
+        "합성 망 분리 계획"@ko ;
+    wr:policyAllowedFlowScope "필수 통신만 허용하는 방안을 검토 예정; 실제 ACL 미관측"^^xsd:string ;
+    wr:policyApplicationStatus "planned"^^xsd:string ;
+    wr:policyAppliesToSegment <https://example.test/wireless-router/segment-primary-example> ;
+    wr:policyDeniedFlowScope "게스트에서 내부 구간으로의 접근 차단 의도; 적용 여부 미관측"^^xsd:string ;
+    wr:policyDocumentedBy <https://example.test/wireless-router/source-nist-sp800-153> ;
+    wr:policyEvidenceStatus "not_assessed"^^xsd:string ;
+    wr:policyTrafficDirection "east_west"^^xsd:string .
+
+<https://example.test/wireless-router/security-guest-example> a wr:SecurityProfile ;
+    rdfs:label "Synthetic guest security plan"@en,
+        "합성 게스트망 보안 계획"@ko ;
+    wr:securityAppliedToNetwork <https://example.test/wireless-router/network-guest-example> ;
+    wr:securityAuthenticationMode "not_assessed"^^xsd:string ;
+    wr:securityCertificationClaimStatus "not_provided"^^xsd:string ;
+    wr:securityConfigurationStatus "planned"^^xsd:string ;
+    wr:securityCredentialHandling "omitted_by_design"^^xsd:string ;
+    wr:securityEncryptionProfile "not_assessed"^^xsd:string ;
+    wr:securityProtocolLabel "WPA3-Personal"^^xsd:string .
+
+<https://example.test/wireless-router/security-primary-example> a wr:SecurityProfile ;
+    rdfs:label "Synthetic primary security plan"@en,
+        "합성 내부망 보안 계획"@ko ;
+    wr:securityAppliedToNetwork <https://example.test/wireless-router/network-primary-example> ;
+    wr:securityAuthenticationMode "not_assessed"^^xsd:string ;
+    wr:securityCertificationClaimStatus "not_provided"^^xsd:string ;
+    wr:securityConfigurationStatus "planned"^^xsd:string ;
+    wr:securityCredentialHandling "omitted_by_design"^^xsd:string ;
+    wr:securityEncryptionProfile "not_assessed"^^xsd:string ;
+    wr:securityProtocolLabel "WPA3-Personal"^^xsd:string .
+
+<https://example.test/wireless-router/snapshot-planned-example> a wr:ConfigurationSnapshot ;
+    rdfs:label "Unapplied configuration plan"@en,
+        "미적용 설정 계획"@ko ;
+    wr:snapshotAppliedStatus "not_applied"^^xsd:string ;
+    wr:snapshotChangeSummary "내부·게스트 무선망과 논리 구간을 구분하는 교육용 계획이며 실제 설정 덤프가 아니다."^^xsd:string ;
+    wr:snapshotCompletenessStatus "partial"^^xsd:string ;
+    wr:snapshotForDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:snapshotLifecycleStatus "planned"^^xsd:string ;
+    wr:snapshotProvenanceStatus "synthetic"^^xsd:string ;
+    wr:snapshotRedactionStatus "not_applicable_no_secrets"^^xsd:string .
+
+<https://example.test/wireless-router/observation-example-01> a wr:PerformanceObservation ;
+    rdfs:label "Unmeasured guest network observation"@en,
+        "게스트망 미측정 성능 예시"@ko ;
+    wr:observationForAssociation <https://example.test/wireless-router/association-example-01> ;
+    wr:observationForNetwork <https://example.test/wireless-router/network-guest-example> ;
+    wr:observationForUplink <https://example.test/wireless-router/uplink-example-01> ;
+    wr:observationMethod "no_measurement_performed"^^xsd:string ;
+    wr:observationMetric "throughput"^^xsd:string ;
+    wr:observationStatus "not_measured"^^xsd:string ;
+    wr:observationUnit "Mbps"^^xsd:string .
+
+<https://example.test/wireless-router/radio-24-example> a wr:RadioInterface ;
+    rdfs:label "Synthetic 2.4GHz radio"@en,
+        "합성 2.4GHz 무선부"@ko ;
+    wr:radioBand "2.4GHz"^^xsd:string ;
+    wr:radioBelongsToDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:radioBroadcastsNetwork <https://example.test/wireless-router/network-primary-example> ;
+    wr:radioCapabilityEvidenceStatus "not_provided"^^xsd:string ;
+    wr:radioConfiguredState "planned"^^xsd:string ;
+    wr:radioSupportedStandard "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/radio-5-example> a wr:RadioInterface ;
+    rdfs:label "Synthetic 5GHz radio"@en,
+        "합성 5GHz 무선부"@ko ;
+    wr:radioBand "5GHz"^^xsd:string ;
+    wr:radioBelongsToDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:radioBroadcastsNetwork <https://example.test/wireless-router/network-guest-example> ;
+    wr:radioCapabilityEvidenceStatus "not_provided"^^xsd:string ;
+    wr:radioConfiguredState "planned"^^xsd:string ;
+    wr:radioSupportedStandard "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/segment-guest-example> a wr:NetworkSegment ;
+    rdfs:label "Synthetic guest segment"@en,
+        "합성 게스트 구간"@ko ;
+    wr:segmentAddressDisclosure "omitted"^^xsd:string ;
+    wr:segmentAlias "SEGMENT-GUEST-EXAMPLE"^^xsd:string ;
+    wr:segmentHasNetwork <https://example.test/wireless-router/network-guest-example> ;
+    wr:segmentLifecycleStatus "planned"^^xsd:string ;
+    wr:segmentPurpose "방문자용 논리 구간 계획"^^xsd:string ;
+    wr:segmentTrustZone "guest"^^xsd:string ;
+    wr:segmentUsesIsolationPolicy <https://example.test/wireless-router/policy-guest-example> ;
+    wr:segmentWithinSystem <https://example.test/wireless-router/system-synthetic-01> .
+
+<https://example.test/wireless-router/segment-primary-example> a wr:NetworkSegment ;
+    rdfs:label "Synthetic primary segment"@en,
+        "합성 내부 구간"@ko ;
+    wr:segmentAddressDisclosure "omitted"^^xsd:string ;
+    wr:segmentAlias "SEGMENT-PRIMARY-EXAMPLE"^^xsd:string ;
+    wr:segmentHasNetwork <https://example.test/wireless-router/network-primary-example> ;
+    wr:segmentLifecycleStatus "planned"^^xsd:string ;
+    wr:segmentPurpose "내부 단말용 논리 구간 계획"^^xsd:string ;
+    wr:segmentTrustZone "trusted"^^xsd:string ;
+    wr:segmentUsesIsolationPolicy <https://example.test/wireless-router/policy-primary-example> ;
+    wr:segmentWithinSystem <https://example.test/wireless-router/system-synthetic-01> .
+
+<https://example.test/wireless-router/source-nist-sp800-153> a wr:DocumentationSource ;
+    rdfs:label "NIST WLAN security guidance"@en,
+        "NIST WLAN 보안 지침"@ko ;
+    wr:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    wr:sourceLimitations "2012년 발간 자료이며 특정 장비의 기능, 현재 설정, 인증 상태, 지역별 전파 규정 또는 이 합성 예시의 실제 운영 상태를 입증하지 않는다."^^xsd:string ;
+    wr:sourceMaterialKind "government_guidance"^^xsd:string ;
+    wr:sourcePublisher "National Institute of Standards and Technology"^^xsd:string ;
+    wr:sourceScope "WLAN 구성요소의 설계부터 운영·유지보수까지 보안 구성과 모니터링을 다루며, 게스트와 내부용 네트워크의 논리적 분리를 설명한다."^^xsd:string ;
+    wr:sourceTitle "Guidelines for Securing Wireless Local Area Networks (WLANs)"^^xsd:string ;
+    wr:sourceUri "https://doi.org/10.6028/NIST.SP.800-153"^^xsd:anyURI ;
+    wr:sourceYear 2012 .
+
+<https://example.test/wireless-router/association-example-01> a wr:AssociationRecord ;
+    rdfs:label "Synthetic unobserved association"@en,
+        "합성 미관측 접속 기록"@ko ;
+    wr:associationEvidenceStatus "not_observed"^^xsd:string ;
+    wr:associationForClient <https://example.test/wireless-router/client-example-01> ;
+    wr:associationHasObservation <https://example.test/wireless-router/observation-example-01> ;
+    wr:associationIntent "illustrative"^^xsd:string ;
+    wr:associationStatus "not_observed"^^xsd:string ;
+    wr:associationToNetwork <https://example.test/wireless-router/network-guest-example> .
+
+<https://example.test/wireless-router/uplink-example-01> a wr:UplinkConnection ;
+    rdfs:label "Synthetic uplink"@en,
+        "합성 상위 연결"@ko ;
+    wr:uplinkAttachedToDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:uplinkConnectionStatus "not_observed"^^xsd:string ;
+    wr:uplinkConnectionType "internet"^^xsd:string ;
+    wr:uplinkCredentialHandling "omitted_by_design"^^xsd:string ;
+    wr:uplinkObservationStatus "not_observed"^^xsd:string ;
+    wr:uplinkProviderDisclosure "omitted"^^xsd:string ;
+    wr:uplinkWithinSystem <https://example.test/wireless-router/system-synthetic-01> .
+
+<https://example.test/wireless-router/system-synthetic-01> a wr:RouterSystem ;
+    rdfs:label "Synthetic router system 01"@en,
+        "합성 공유기 시스템 01"@ko ;
+    wr:systemHasDevice <https://example.test/wireless-router/router-synthetic-01> ;
+    wr:systemHasNetwork <https://example.test/wireless-router/network-guest-example>,
+        <https://example.test/wireless-router/network-primary-example> ;
+    wr:systemHasUplink <https://example.test/wireless-router/uplink-example-01> ;
+    wr:systemRecordStatus "synthetic"^^xsd:string ;
+    wr:systemScopeNote "교육용 합성 예시. 실물 장치와 운영 네트워크를 나타내지 않는다."^^xsd:string .
+
+<https://example.test/wireless-router/network-guest-example> a wr:WirelessNetwork ;
+    rdfs:label "Synthetic guest network profile"@en,
+        "합성 게스트망 프로필"@ko ;
+    wr:networkAssociationRule "not_assessed"^^xsd:string ;
+    wr:networkHasAssociation <https://example.test/wireless-router/association-example-01> ;
+    wr:networkHasObservation <https://example.test/wireless-router/observation-example-01> ;
+    wr:networkIdentifierHandling "synthetic_alias_only"^^xsd:string ;
+    wr:networkLifecycleStatus "planned"^^xsd:string ;
+    wr:networkMapsToSegment <https://example.test/wireless-router/segment-guest-example> ;
+    wr:networkProfileAlias "GUEST-EXAMPLE"^^xsd:string ;
+    wr:networkPurpose "guest"^^xsd:string ;
+    wr:networkUsesRadio <https://example.test/wireless-router/radio-5-example> ;
+    wr:networkUsesSecurityProfile <https://example.test/wireless-router/security-guest-example> ;
+    wr:networkVisibilityState "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/network-primary-example> a wr:WirelessNetwork ;
+    rdfs:label "Synthetic primary network profile"@en,
+        "합성 내부망 프로필"@ko ;
+    wr:networkAssociationRule "not_assessed"^^xsd:string ;
+    wr:networkHasObservation <https://example.test/wireless-router/observation-primary-unmeasured> ;
+    wr:networkIdentifierHandling "synthetic_alias_only"^^xsd:string ;
+    wr:networkLifecycleStatus "planned"^^xsd:string ;
+    wr:networkMapsToSegment <https://example.test/wireless-router/segment-primary-example> ;
+    wr:networkProfileAlias "PRIMARY-EXAMPLE"^^xsd:string ;
+    wr:networkPurpose "primary"^^xsd:string ;
+    wr:networkUsesRadio <https://example.test/wireless-router/radio-24-example> ;
+    wr:networkUsesSecurityProfile <https://example.test/wireless-router/security-primary-example> ;
+    wr:networkVisibilityState "unknown"^^xsd:string .
+
+<https://example.test/wireless-router/router-synthetic-01> a wr:RouterDevice ;
+    rdfs:label "Synthetic router example 01"@en,
+        "합성 장치 예시 01"@ko ;
+    wr:deviceHasFirmwareRelease <https://example.test/wireless-router/firmware-current-unknown> ;
+    wr:deviceHasIncident <https://example.test/wireless-router/incident-not-observed-example> ;
+    wr:deviceHasRadio <https://example.test/wireless-router/radio-24-example>,
+        <https://example.test/wireless-router/radio-5-example> ;
+    wr:deviceHasSnapshot <https://example.test/wireless-router/snapshot-planned-example> ;
+    wr:deviceHasUpdate <https://example.test/wireless-router/firmware-update-unassessed> ;
+    wr:deviceIdentifierHandling "synthetic_only"^^xsd:string ;
+    wr:deviceInventoryAlias "ROUTER-EXAMPLE-01"^^xsd:string ;
+    wr:deviceLifecycleStatus "planned"^^xsd:string ;
+    wr:deviceManagementExposure "unknown"^^xsd:string ;
+    wr:deviceModelFamily "generic_unidentified_router"^^xsd:string ;
+    wr:deviceObservationStatus "synthetic"^^xsd:string ;
+    wr:devicePartOfSystem <https://example.test/wireless-router/system-synthetic-01> ;
+    wr:deviceVendorLabel "not_specified"^^xsd:string .

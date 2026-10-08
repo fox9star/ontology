@@ -1,0 +1,97 @@
+{
+  "created_at": "2026-10-05T11:15:00+00:00",
+  "id": "picnic",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 8,
+  "properties": 39,
+  "instance_counts": {
+    "Activity": 8,
+    "Assignment": 5,
+    "Expense": 6,
+    "Participant": 5,
+    "PicnicPlan": 2,
+    "Place": 2,
+    "SupplyItem": 6,
+    "WeatherCheck": 2
+  },
+  "triples": 276,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 44
+  },
+  "questions": 7,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Entirely synthetic picnic plans and records; no real addresses, prices, reservations or forecasts.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "eac232e375ae83330fd910a8f5d973ad8a21e98849590de72afced83b363e6f8",
+      "bytes": 31657
+    },
+    "curated-data.json": {
+      "sha256": "6ce600a44cecd07d7fd5b5bfc935ad5fddcfc6c20bc8cd3f5b01493996bc0943",
+      "bytes": 9810
+    },
+    "example.ttl": {
+      "sha256": "fc3ec07be37af9ba6eaaa005629a6858e36b5197bc2fcc5227ce6f38409042e6",
+      "bytes": 12944
+    },
+    "profile.json": {
+      "sha256": "d1aa9c154279a26189a239b6e32c66459cd8b0afb9dfce237b5aafe20010e26c",
+      "bytes": 1216
+    },
+    "question-answers.json": {
+      "sha256": "af96a09eee8a98f872a313be0317adfe12b0b41142536f3ac40ed0c44d4c87b2",
+      "bytes": 11540
+    },
+    "question-fixture.ttl": {
+      "sha256": "b3adca5ab4d9c1f3f78fd38f98ed8ba22c9d1a5f4031ed5b87a544efe3bf02d3",
+      "bytes": 13361
+    },
+    "questions.md": {
+      "sha256": "5eaf4b48bc2441403e92e69245ee8f98e1ec84ab8f86bfe2de8e13a37100595f",
+      "bytes": 6354
+    },
+    "schema.owl": {
+      "sha256": "842aa521d64346d9976814d4529af6e8cbb13166bf26649088f0171ab4864d6c",
+      "bytes": 37083
+    },
+    "schema.ttl": {
+      "sha256": "3577032274acda72f49a67aae5e9f02efca2128c56737b4d2c6c51744b9e7b6c",
+      "bytes": 24029
+    },
+    "shapes.ttl": {
+      "sha256": "6726476a0bb192ab1ac2c8b7c8b92c6ab150f8f8f5ce7ee9c26d8f1a794bc65c",
+      "bytes": 13509
+    }
+  },
+  "live_studio": {
+    "catalog_profiles": 18,
+    "profile_id": "picnic",
+    "profile_name": "소풍 온톨로지 (picnic)",
+    "explorer_counts": {
+      "classes": 8,
+      "properties": 39,
+      "instances": 36
+    },
+    "question_templates": [
+      "PIC-01",
+      "PIC-02",
+      "PIC-03",
+      "PIC-04",
+      "PIC-05",
+      "PIC-06",
+      "PIC-07"
+    ],
+    "page_status": 200,
+    "selector_option_present": true,
+    "browser_visual_verification": "not_performed"
+  }
+}

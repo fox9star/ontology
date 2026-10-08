@@ -1,0 +1,72 @@
+@prefix contract: <https://example.org/ontology/quality#> .
+@prefix core: <https://example.org/ontology/core#> .
+@prefix mv: <https://example.org/mv#> .
+@prefix ag: <https://example.org/agent#> .
+@prefix dev: <http://example.org/ontology/devops#> .
+@prefix ec: <http://example.org/ontology/ecommerce#> .
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Optional fields remain optional. If present, enforce their declared value
+# contract without inventing a model, prompt, checksum, or execution timestamp.
+# Targets by predicate also catch mistyped subjects outside a class target.
+contract:Branch a sh:NodeShape ; sh:targetSubjectsOf dev:branchName ;
+    sh:property [ sh:path dev:branchName ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:Commit a sh:NodeShape ; sh:targetSubjectsOf dev:commitHash ;
+    sh:property [ sh:path dev:commitHash ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:BuildDependency a sh:NodeShape ; sh:targetSubjectsOf dev:dependsOn ;
+    sh:property [ sh:path dev:dependsOn ; sh:nodeKind sh:IRI ; sh:class dev:PipelineTask ] .
+contract:StatusEvent a sh:NodeShape ; sh:targetSubjectsOf ec:hasStatusEvent ;
+    sh:property [ sh:path ec:hasStatusEvent ; sh:nodeKind sh:IRI ; sh:class ec:OrderStatusEvent ] .
+contract:Observation a sh:NodeShape ; sh:targetSubjectsOf health:generatesObservation ;
+    sh:property [ sh:path health:generatesObservation ; sh:nodeKind sh:IRI ; sh:class health:ClinicalObservation ] .
+
+contract:ArtifactType a sh:NodeShape ; sh:targetSubjectsOf ag:artifactType ;
+    sh:property [ sh:path ag:artifactType ; sh:datatype xsd:string ; sh:minLength 1 ] .
+# Algorithm selection is not fixed by the schema: do not impose SHA-256 here.
+contract:AgentChecksum a sh:NodeShape ; sh:targetSubjectsOf ag:checksum ;
+    sh:property [ sh:path ag:checksum ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:ErrorCode a sh:NodeShape ; sh:targetSubjectsOf ag:errorCode ;
+    sh:property [ sh:path ag:errorCode ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:Assignment a sh:NodeShape ; sh:targetSubjectsOf ag:hasAssignment ;
+    sh:property [ sh:path ag:hasAssignment ; sh:nodeKind sh:IRI ; sh:class ag:AgentAssignment ] .
+contract:Handoff a sh:NodeShape ; sh:targetSubjectsOf ag:hasHandoff ;
+    sh:property [ sh:path ag:hasHandoff ; sh:nodeKind sh:IRI ; sh:class ag:Handoff ] .
+contract:Capability a sh:NodeShape ; sh:targetSubjectsOf ag:requiresCapability ;
+    sh:property [ sh:path ag:requiresCapability ; sh:nodeKind sh:IRI ; sh:class ag:Capability ] .
+contract:Objective a sh:NodeShape ; sh:targetSubjectsOf ag:taskObjective ;
+    sh:property [ sh:path ag:taskObjective ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:ToolVersion a sh:NodeShape ; sh:targetSubjectsOf ag:toolVersion ;
+    sh:property [ sh:path ag:toolVersion ; sh:datatype xsd:string ; sh:minLength 1 ] .
+
+contract:Tempo a sh:NodeShape ; sh:targetSubjectsOf mv:bpm ;
+    sh:property [ sh:path mv:bpm ; sh:datatype xsd:integer ; sh:minExclusive 0 ] .
+contract:MediaChecksum a sh:NodeShape ; sh:targetSubjectsOf mv:checksum ;
+    sh:property [ sh:path mv:checksum ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:Genre a sh:NodeShape ; sh:targetSubjectsOf mv:genre ;
+    sh:property [ sh:path mv:genre ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:ProjectImage a sh:NodeShape ; sh:targetSubjectsOf mv:hasImage ;
+    sh:property [ sh:path mv:hasImage ; sh:nodeKind sh:IRI ; sh:class mv:ImageAsset ] .
+contract:Lyrics a sh:NodeShape ; sh:targetSubjectsOf mv:lyricText ;
+    sh:property [ sh:path mv:lyricText ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:MediaType a sh:NodeShape ; sh:targetSubjectsOf mv:mimeType ;
+    sh:property [ sh:path mv:mimeType ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:ModelVersion a sh:NodeShape ; sh:targetSubjectsOf mv:modelVersion ;
+    sh:property [ sh:path mv:modelVersion ; sh:datatype xsd:string ; sh:minLength 1 ] .
+contract:Prompt a sh:NodeShape ; sh:targetSubjectsOf mv:promptText ;
+    sh:property [ sh:path mv:promptText ; sh:datatype xsd:string ; sh:minLength 1 ] .
+
+contract:RunAgent a sh:NodeShape ; sh:targetSubjectsOf core:runAgent ;
+    sh:property [ sh:path core:runAgent ; sh:nodeKind sh:IRI ; sh:class core:Agent ] .
+contract:RunInput a sh:NodeShape ; sh:targetSubjectsOf core:runInput ;
+    sh:property [ sh:path core:runInput ; sh:nodeKind sh:IRI ; sh:class prov:Entity ] .
+contract:RunOutput a sh:NodeShape ; sh:targetSubjectsOf core:runOutput ;
+    sh:property [ sh:path core:runOutput ; sh:nodeKind sh:IRI ; sh:class core:Artifact ] .
+contract:RunStart a sh:NodeShape ; sh:targetSubjectsOf core:runStartedAt ;
+    sh:property [ sh:path core:runStartedAt ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+contract:RunEnd a sh:NodeShape ; sh:targetSubjectsOf core:runEndedAt ;
+    sh:property [ sh:path core:runEndedAt ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] .
+contract:TaskStatus a sh:NodeShape ; sh:targetSubjectsOf core:taskStatus ;
+    sh:property [ sh:path core:taskStatus ; sh:datatype xsd:string ; sh:minLength 1 ] .

@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "electric-vehicle",
+  "name": "전기자동차 온톨로지 (Electric Vehicle)",
+  "description": "BEV·PHEV·HEV 구분, 구동계 구성품, AC/DC 에너지 흐름, 충전소-포트-커넥터 관계와 출처 근거를 연결하는 로컬 초안입니다. 차량 유형은 개념 예시이며 충전 인프라는 합성 데이터입니다.",
+  "name_en": "Electric Vehicle Ontology",
+  "description_en": "Connects BEV/PHEV/HEV distinctions to drivetrain components, AC/DC energy flows, charging infrastructure, and source evidence. Vehicle types are concepts and infrastructure data are synthetic examples.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/electric-vehicle#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T05:39:10+00:00",
+  "schema": "custom-ontologies/electric-vehicle/schema.ttl",
+  "owl": "custom-ontologies/electric-vehicle/schema.owl",
+  "shapes": "custom-ontologies/electric-vehicle/shapes.ttl",
+  "example": "custom-ontologies/electric-vehicle/example.ttl",
+  "questions": "custom-ontologies/electric-vehicle/questions.md",
+  "questions_fixture": "custom-ontologies/electric-vehicle/question-fixture.ttl",
+  "question_answers": "custom-ontologies/electric-vehicle/question-answers.json",
+  "compatibility_cases": "custom-ontologies/electric-vehicle/consumer-cases.trig"
+}

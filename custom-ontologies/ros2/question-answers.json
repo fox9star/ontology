@@ -1,0 +1,737 @@
+{
+  "ROS2-01": {
+    "variables": [
+      "system",
+      "name",
+      "recordKind",
+      "purpose",
+      "packageCount",
+      "nodeCount",
+      "topicCount",
+      "serviceCount",
+      "actionCount",
+      "hardwareCount",
+      "controllerCount",
+      "frameCount",
+      "qosCount",
+      "sourceCount",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "가상 온실 계측·관수 ROS 2 구성",
+        "synthetic",
+        "학습용 구조로 온도·토양 수분을 수집하고 관수 펌프 동작을 요청한다.",
+        "9",
+        "4",
+        "2",
+        "1",
+        "1",
+        "3",
+        "1",
+        "4",
+        "3",
+        "7",
+        "실제 온실 배포, 펌프 회로, 센서 배선이나 검증된 안전 동작이 아닌 개념 예시다. 공식 ROS 개념 근거는 출처 개체에 연결한다."
+      ]
+    ]
+  },
+  "ROS2-02": {
+    "variables": [
+      "system",
+      "node",
+      "name",
+      "role",
+      "package",
+      "packageName",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/node-controller-manager",
+        "가상 controller_manager 노드",
+        "controller_manager",
+        "https://example.test/ros2/pkg-controller-manager",
+        "controller_manager",
+        "온실 펌프 컨트롤러를 관리하는 합성 구성 연결이다. 특정 실행 환경에서 확인한 런타임 상태가 아니다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/node-greenhouse-supervisor",
+        "가상 온실 관리 노드",
+        "manager",
+        "https://example.test/ros2/pkg-greenhouse-app",
+        "greenhouse_application",
+        "센서 토픽을 구독하고 펌프 서비스와 관수 액션을 제공하는 예시 노드다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/node-operator-console",
+        "가상 작업자 패널 노드",
+        "operator",
+        "https://example.test/ros2/pkg-greenhouse-app",
+        "greenhouse_application",
+        "펌프 활성 요청과 관수 사이클 목표를 보내는 예시 노드다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/node-sensor-bridge",
+        "가상 센서 브리지 노드",
+        "driver",
+        "https://example.test/ros2/pkg-greenhouse-app",
+        "greenhouse_application",
+        "가상 센서 읽기를 두 토픽으로 발행하는 예시 노드다."
+      ]
+    ]
+  },
+  "ROS2-03": {
+    "variables": [
+      "system",
+      "topic",
+      "name",
+      "type",
+      "typeName",
+      "packageName",
+      "publisher",
+      "subscriber",
+      "qos"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/topic-soil-moisture",
+        "/greenhouse/soil_moisture",
+        "https://example.test/ros2/type-soil-moisture",
+        "farm_interfaces/msg/SoilMoisture",
+        "farm_interfaces",
+        "https://example.test/ros2/node-sensor-bridge",
+        "https://example.test/ros2/node-greenhouse-supervisor",
+        "https://example.test/ros2/qos-sensor-data"
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/topic-temperature",
+        "/greenhouse/temperature",
+        "https://example.test/ros2/type-temperature",
+        "sensor_msgs/msg/Temperature",
+        "sensor_msgs",
+        "https://example.test/ros2/node-sensor-bridge",
+        "https://example.test/ros2/node-greenhouse-supervisor",
+        "https://example.test/ros2/qos-sensor-data"
+      ]
+    ]
+  },
+  "ROS2-04": {
+    "variables": [
+      "system",
+      "service",
+      "name",
+      "type",
+      "typeName",
+      "server",
+      "client",
+      "qos",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/service-pump-enable",
+        "/greenhouse/pump/set_enabled",
+        "https://example.test/ros2/type-set-bool",
+        "std_srvs/srv/SetBool",
+        "https://example.test/ros2/node-greenhouse-supervisor",
+        "https://example.test/ros2/node-operator-console",
+        "https://example.test/ros2/qos-services",
+        "작업자 패널이 펌프 활성 여부를 요청하는 예시 서비스다. 실제 펌프를 작동시키지 않는다."
+      ]
+    ]
+  },
+  "ROS2-05": {
+    "variables": [
+      "system",
+      "action",
+      "name",
+      "type",
+      "typeName",
+      "server",
+      "client",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/action-irrigation-cycle",
+        "/greenhouse/irrigation/run_cycle",
+        "https://example.test/ros2/type-irrigation-cycle",
+        "farm_interfaces/action/IrrigationCycle",
+        "https://example.test/ros2/node-greenhouse-supervisor",
+        "https://example.test/ros2/node-operator-console",
+        "긴 관수 작업에 목표·진행 피드백·결과·취소를 보여주는 합성 액션 연결이다. 농업 처방이나 안전 로직을 제공하지 않는다."
+      ]
+    ]
+  },
+  "ROS2-06": {
+    "variables": [
+      "package",
+      "name",
+      "role",
+      "uri",
+      "note",
+      "type",
+      "typeName",
+      "definitionKind"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/pkg-controller-manager",
+        "controller_manager",
+        "control_framework",
+        "https://github.com/ros-controls/ros2_control/tree/master/controller_manager",
+        "ros2_control의 컨트롤러와 하드웨어 인터페이스를 관리하는 패키지다.",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/ros2/pkg-farm-interfaces",
+        "farm_interfaces",
+        "custom_interfaces",
+        "urn:synthetic:ros2:package:farm_interfaces",
+        "토양 수분 메시지와 관수 액션을 보여주기 위해 만든 예시 패키지 식별자이며 실제 저장소나 배포물이 아니다.",
+        "https://example.test/ros2/type-irrigation-cycle",
+        "farm_interfaces/action/IrrigationCycle",
+        "action"
+      ],
+      [
+        "https://example.test/ros2/pkg-farm-interfaces",
+        "farm_interfaces",
+        "custom_interfaces",
+        "urn:synthetic:ros2:package:farm_interfaces",
+        "토양 수분 메시지와 관수 액션을 보여주기 위해 만든 예시 패키지 식별자이며 실제 저장소나 배포물이 아니다.",
+        "https://example.test/ros2/type-soil-moisture",
+        "farm_interfaces/msg/SoilMoisture",
+        "msg"
+      ],
+      [
+        "https://example.test/ros2/pkg-greenhouse-app",
+        "greenhouse_application",
+        "application",
+        "urn:synthetic:ros2:package:greenhouse_application",
+        "가상 온실 노드와 사용자 정의 컨트롤러 구현을 나타내는 예시 패키지 식별자다.",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/ros2/pkg-rclcpp",
+        "rclcpp",
+        "client_library",
+        "https://github.com/ros2/rclcpp",
+        "C++ ROS 2 클라이언트 라이브러리다. 이 예시 애플리케이션의 구현 의존성을 나타낸다.",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/ros2/pkg-ros2-control",
+        "ros2_control",
+        "control_framework",
+        "https://github.com/ros-controls/ros2_control",
+        "하드웨어 구성요소·인터페이스와 컨트롤러 관리 구조를 제공한다.",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/ros2/pkg-ros2-controllers",
+        "ros2_controllers",
+        "controller_plugins",
+        "https://github.com/ros-controls/ros2_controllers",
+        "공용 ros2_control 컨트롤러 플러그인 모음이다.",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/ros2/pkg-sensor-msgs",
+        "sensor_msgs",
+        "common_interfaces",
+        "https://github.com/ros2/common_interfaces/tree/rolling/sensor_msgs",
+        "센서 장치와 관련한 ROS 메시지 정의를 제공한다.",
+        "https://example.test/ros2/type-temperature",
+        "sensor_msgs/msg/Temperature",
+        "msg"
+      ],
+      [
+        "https://example.test/ros2/pkg-std-srvs",
+        "std_srvs",
+        "common_interfaces",
+        "https://github.com/ros2/common_interfaces/tree/rolling/std_srvs",
+        "일반적인 단순 서비스 형식을 제공한다.",
+        "https://example.test/ros2/type-set-bool",
+        "std_srvs/srv/SetBool",
+        "srv"
+      ],
+      [
+        "https://example.test/ros2/pkg-tf2",
+        "tf2",
+        "transform_library",
+        "https://github.com/ros2/geometry2",
+        "좌표 프레임 간 관계를 저장하고 변환하는 라이브러리 모음이다.",
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "ROS2-07": {
+    "variables": [
+      "hardware",
+      "name",
+      "kind",
+      "protocol",
+      "stateInterface",
+      "commandInterface",
+      "controller",
+      "controllerName",
+      "controllerKind",
+      "package",
+      "node",
+      "controllerNote",
+      "hardwareNote"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/hardware-pump",
+        "irrigation_pump",
+        "actuator",
+        "가상 절연 릴레이 출력",
+        "enabled",
+        "enable",
+        "https://example.test/ros2/controller-irrigation-pump",
+        "greenhouse_pump_controller",
+        "custom",
+        "https://example.test/ros2/pkg-greenhouse-app",
+        "https://example.test/ros2/node-controller-manager",
+        "예시 전용 사용자 정의 컨트롤러 연결이다. 공식 ros2_controllers 플러그인이나 실제 하드웨어 드라이버가 아니다.",
+        "회로·전원·보호·급수 부품을 나타내지 않는 가상 하드웨어 구성요소다."
+      ],
+      [
+        "https://example.test/ros2/hardware-soil-probe",
+        "soil_moisture_probe",
+        "sensor",
+        "가상 MCU를 통한 아날로그 입력",
+        "moisture",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "센서 측정 단위, 교정, 전기 연결과 ROS 드라이버는 구현하지 않은 예시다."
+      ],
+      [
+        "https://example.test/ros2/hardware-temperature-sensor",
+        "temperature_sensor",
+        "sensor",
+        "가상 MCU를 통한 I2C 센서 읽기",
+        "temperature",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "연결 방식과 상태 인터페이스는 예시이며 실제 센서 모델·드라이버를 검증하지 않았다."
+      ]
+    ]
+  },
+  "ROS2-08": {
+    "variables": [
+      "system",
+      "frame",
+      "name",
+      "role",
+      "parent",
+      "parentName",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/frame-greenhouse-map",
+        "greenhouse_map",
+        "world",
+        null,
+        null,
+        "학습용 프레임 트리의 루트다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/frame-sensor-rack",
+        "sensor_rack",
+        "other",
+        "https://example.test/ros2/frame-greenhouse-map",
+        "greenhouse_map",
+        "온실 기준 프레임에 고정된 합성 장착 프레임이다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/frame-soil-probe",
+        "soil_probe",
+        "sensor",
+        "https://example.test/ros2/frame-sensor-rack",
+        "sensor_rack",
+        "센서 랙에 연결된 합성 토양 프로브 프레임이다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/frame-temperature-probe",
+        "temperature_probe",
+        "sensor",
+        "https://example.test/ros2/frame-sensor-rack",
+        "sensor_rack",
+        "센서 랙에 연결된 합성 센서 프레임이다."
+      ]
+    ]
+  },
+  "ROS2-09": {
+    "variables": [
+      "system",
+      "qos",
+      "name",
+      "reliability",
+      "durability",
+      "history",
+      "depth",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/qos-default",
+        "DefaultQoS",
+        "reliable",
+        "volatile",
+        "keep_last",
+        "10",
+        "ROS 2 문서의 기본 publish/subscribe 설정 예시다. 각 RMW 구현의 세부 기본값은 달라질 수 있다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/qos-sensor-data",
+        "SensorDataQoS",
+        "best_effort",
+        "volatile",
+        "keep_last",
+        "5",
+        "rclcpp SensorDataQoS 정의에 기록된 keep_last 깊이 5, best effort, volatile 조합이다. 애플리케이션의 손실 허용 여부는 별도 검토해야 한다."
+      ],
+      [
+        "https://example.test/ros2/greenhouse-system",
+        "https://example.test/ros2/qos-services",
+        "ServicesQoS",
+        "reliable",
+        "volatile",
+        "keep_last",
+        "10",
+        "rclcpp ServicesQoS 정의에 기록된 reliable, volatile, keep_last 깊이 10 조합이다."
+      ]
+    ]
+  },
+  "ROS2-10": {
+    "variables": [
+      "entity",
+      "entityName",
+      "source",
+      "title",
+      "publisher",
+      "uri",
+      "accessedAt",
+      "claim",
+      "language"
+    ],
+    "rows": [
+      [
+        "https://example.test/ros2/controller-irrigation-pump",
+        "가상 펌프 명령 컨트롤러",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/hardware-pump",
+        "가상 관수 펌프",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/hardware-soil-probe",
+        "가상 토양 수분 프로브",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/hardware-temperature-sensor",
+        "가상 온도 센서",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-controller-manager",
+        "controller_manager",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-ros2-control",
+        "ros2_control",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-ros2-controllers",
+        "ros2_controllers",
+        "https://example.test/ros2/src-control",
+        "ros2_control Getting Started",
+        "ros-controls project",
+        "https://control.ros.org/rolling/doc/getting_started/getting_started.html",
+        "2026-10-07",
+        "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/action-irrigation-cycle",
+        "가상 관수 사이클 액션",
+        "https://example.test/ros2/src-interfaces",
+        "Interfaces: Topics, Services, Actions",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst",
+        "2026-10-07",
+        "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/service-pump-enable",
+        "가상 펌프 활성 서비스",
+        "https://example.test/ros2/src-interfaces",
+        "Interfaces: Topics, Services, Actions",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst",
+        "2026-10-07",
+        "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/topic-soil-moisture",
+        "가상 토양 수분 토픽",
+        "https://example.test/ros2/src-interfaces",
+        "Interfaces: Topics, Services, Actions",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst",
+        "2026-10-07",
+        "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/topic-temperature",
+        "가상 온실 온도 토픽",
+        "https://example.test/ros2/src-interfaces",
+        "Interfaces: Topics, Services, Actions",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst",
+        "2026-10-07",
+        "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/qos-default",
+        "ROS 2 기본 QoS 예시",
+        "https://example.test/ros2/src-qos-guide",
+        "About Quality of Service settings",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.rst",
+        "2026-10-07",
+        "QoS profiles group history, depth, reliability and durability; sensor data favors timely recent samples, and endpoint profiles must be compatible.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/qos-sensor-data",
+        "SensorDataQoS 예시",
+        "https://example.test/ros2/src-qos-guide",
+        "About Quality of Service settings",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.rst",
+        "2026-10-07",
+        "QoS profiles group history, depth, reliability and durability; sensor data favors timely recent samples, and endpoint profiles must be compatible.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-rclcpp",
+        "rclcpp",
+        "https://example.test/ros2/src-rclcpp-qos",
+        "rclcpp qos.hpp: SensorDataQoS and ServicesQoS",
+        "ROS 2 rclcpp project",
+        "https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/qos.hpp",
+        "2026-10-07",
+        "The source defines SensorDataQoS as keep_last depth 5, best effort, volatile; ServicesQoS as keep_last depth 10, reliable, volatile.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/qos-sensor-data",
+        "SensorDataQoS 예시",
+        "https://example.test/ros2/src-rclcpp-qos",
+        "rclcpp qos.hpp: SensorDataQoS and ServicesQoS",
+        "ROS 2 rclcpp project",
+        "https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/qos.hpp",
+        "2026-10-07",
+        "The source defines SensorDataQoS as keep_last depth 5, best effort, volatile; ServicesQoS as keep_last depth 10, reliable, volatile.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/qos-services",
+        "ServicesQoS 예시",
+        "https://example.test/ros2/src-rclcpp-qos",
+        "rclcpp qos.hpp: SensorDataQoS and ServicesQoS",
+        "ROS 2 rclcpp project",
+        "https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/qos.hpp",
+        "2026-10-07",
+        "The source defines SensorDataQoS as keep_last depth 5, best effort, volatile; ServicesQoS as keep_last depth 10, reliable, volatile.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-std-srvs",
+        "std_srvs",
+        "https://example.test/ros2/src-setbool",
+        "SetBool.srv",
+        "ROS 2 common_interfaces project",
+        "https://github.com/ros2/common_interfaces/blob/rolling/std_srvs/srv/SetBool.srv",
+        "2026-10-07",
+        "SetBool defines a boolean request and success/message response; the example uses it as a synthetic pump-enable interface.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/type-set-bool",
+        "std_srvs/srv/SetBool",
+        "https://example.test/ros2/src-setbool",
+        "SetBool.srv",
+        "ROS 2 common_interfaces project",
+        "https://github.com/ros2/common_interfaces/blob/rolling/std_srvs/srv/SetBool.srv",
+        "2026-10-07",
+        "SetBool defines a boolean request and success/message response; the example uses it as a synthetic pump-enable interface.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-sensor-msgs",
+        "sensor_msgs",
+        "https://example.test/ros2/src-temperature",
+        "sensor_msgs README: Temperature",
+        "ROS 2 common_interfaces project",
+        "https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/README.md",
+        "2026-10-07",
+        "sensor_msgs lists Temperature as a single temperature reading.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/type-temperature",
+        "sensor_msgs/msg/Temperature",
+        "https://example.test/ros2/src-temperature",
+        "sensor_msgs README: Temperature",
+        "ROS 2 common_interfaces project",
+        "https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/README.md",
+        "2026-10-07",
+        "sensor_msgs lists Temperature as a single temperature reading.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/frame-greenhouse-map",
+        "가상 온실 기준 프레임",
+        "https://example.test/ros2/src-tf2",
+        "About tf2",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+        "2026-10-07",
+        "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/frame-sensor-rack",
+        "가상 센서 랙 프레임",
+        "https://example.test/ros2/src-tf2",
+        "About tf2",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+        "2026-10-07",
+        "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/frame-soil-probe",
+        "가상 토양 프로브 프레임",
+        "https://example.test/ros2/src-tf2",
+        "About tf2",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+        "2026-10-07",
+        "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/frame-temperature-probe",
+        "가상 온도 프로브 프레임",
+        "https://example.test/ros2/src-tf2",
+        "About tf2",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+        "2026-10-07",
+        "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames.",
+        "en"
+      ],
+      [
+        "https://example.test/ros2/pkg-tf2",
+        "tf2",
+        "https://example.test/ros2/src-tf2",
+        "About tf2",
+        "ROS 2 Documentation project",
+        "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst",
+        "2026-10-07",
+        "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames.",
+        "en"
+      ]
+    ]
+  }
+}

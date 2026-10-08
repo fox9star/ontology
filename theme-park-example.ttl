@@ -1,0 +1,167 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tpark: <http://example.org/ontology/theme-park#> .
+
+# =================================================================
+# Theme Park Complex & Zones
+# =================================================================
+
+tpark:Park_GalaxyWorld a tpark:ThemePark ;
+    rdfs:label "갤럭시월드 어드벤처"@ko , "GalaxyWorld Adventure"@en ;
+    tpark:parkName "갤럭시월드 어드벤처" ;
+    tpark:openingHours "10:00-22:00" ;
+    tpark:totalAreaSqMeters 650000.0 ;
+    tpark:hasZone tpark:Zone_ThrillValley , tpark:Zone_FantasyLagoon , tpark:Zone_SciFiFuture .
+
+tpark:Zone_ThrillValley a tpark:ThemeZone ;
+    rdfs:label "스릴 밸리"@ko , "Thrill Valley Zone"@en ;
+    tpark:zoneTheme "극한의 모험과 급류 협곡 테마" .
+
+tpark:Zone_FantasyLagoon a tpark:ThemeZone ;
+    rdfs:label "판타지 라군"@ko , "Fantasy Lagoon Zone"@en ;
+    tpark:zoneTheme "신비로운 수중 왕국과 마법 호수 테마" .
+
+tpark:Zone_SciFiFuture a tpark:ThemeZone ;
+    rdfs:label "사이파이 퓨처"@ko , "Sci-Fi Future Zone"@en ;
+    tpark:zoneTheme "22세기 미래 우주 도시 및 차원 탐사 테마" .
+
+# =================================================================
+# Attractions
+# =================================================================
+
+tpark:Ride_ThunderCoaster a tpark:Attraction, tpark:RollerCoaster ;
+    rdfs:label "썬더볼트 익스프레스"@ko , "Thunderbolt Express"@en ;
+    tpark:attractionCode "RC-TB-01" ;
+    tpark:rideCapacityPerHour 1400 ;
+    tpark:minHeightRequirementCm 130.0 ;
+    tpark:maxSpeedKmh 105.0 ;
+    tpark:trackLengthMeters 1640.0 ;
+    tpark:rideDurationSeconds 180 ;
+    tpark:operationalStatus "operating" ;
+    tpark:fastPassAvailable true ;
+    tpark:locatedInZone tpark:Zone_ThrillValley ;
+    tpark:hasWaitTime tpark:Wait_ThunderCoaster ;
+    tpark:hasInspection tpark:Insp_ThunderCoaster ;
+    tpark:hasMaintenanceTask tpark:Maint_Thunder_Bearing ;
+    tpark:managedByAgent tpark:Agent_CrowdMaster .
+
+tpark:Ride_AquaSplash a tpark:Attraction, tpark:WaterRide ;
+    rdfs:label "아쿠아 스플래시 후룸라이드"@ko , "Aqua Splash Flume Ride"@en ;
+    tpark:attractionCode "WR-AS-02" ;
+    tpark:rideCapacityPerHour 950 ;
+    tpark:minHeightRequirementCm 110.0 ;
+    tpark:maxSpeedKmh 65.0 ;
+    tpark:trackLengthMeters 450.0 ;
+    tpark:rideDurationSeconds 240 ;
+    tpark:operationalStatus "operating" ;
+    tpark:fastPassAvailable true ;
+    tpark:locatedInZone tpark:Zone_FantasyLagoon ;
+    tpark:hasWaitTime tpark:Wait_AquaSplash ;
+    tpark:hasInspection tpark:Insp_AquaSplash ;
+    tpark:hasMaintenanceTask tpark:Maint_Aqua_Pump ;
+    tpark:managedByAgent tpark:Agent_CrowdMaster .
+
+tpark:Ride_SpaceOdyssey a tpark:Attraction, tpark:DarkRide ;
+    rdfs:label "스페이스 오디세이 4D"@ko , "Space Odyssey 4D Dark Ride"@en ;
+    tpark:attractionCode "DR-SO-03" ;
+    tpark:rideCapacityPerHour 1200 ;
+    tpark:minHeightRequirementCm 100.0 ;
+    tpark:maxSpeedKmh 35.0 ;
+    tpark:trackLengthMeters 320.0 ;
+    tpark:rideDurationSeconds 300 ;
+    tpark:operationalStatus "operating" ;
+    tpark:fastPassAvailable false ;
+    tpark:locatedInZone tpark:Zone_SciFiFuture ;
+    tpark:hasWaitTime tpark:Wait_SpaceOdyssey ;
+    tpark:hasInspection tpark:Insp_SpaceOdyssey ;
+    tpark:hasMaintenanceTask tpark:Maint_Space_Projector ;
+    tpark:managedByAgent tpark:Agent_CrowdMaster .
+
+# =================================================================
+# Wait Time Records
+# =================================================================
+
+tpark:Wait_ThunderCoaster a tpark:WaitTimeRecord ;
+    rdfs:label "썬더볼트 실시간 대기 통계"@ko , "Thunderbolt Queue Metrics"@en ;
+    tpark:currentWaitMinutes 45 ;
+    tpark:queueLengthPersons 320 ;
+    tpark:recordedTimestamp "2026-10-05T14:30:00+09:00"^^xsd:dateTime .
+
+tpark:Wait_AquaSplash a tpark:WaitTimeRecord ;
+    rdfs:label "아쿠아스플래시 실시간 대기 통계"@ko , "Aqua Splash Queue Metrics"@en ;
+    tpark:currentWaitMinutes 20 ;
+    tpark:queueLengthPersons 110 ;
+    tpark:recordedTimestamp "2026-10-05T14:30:00+09:00"^^xsd:dateTime .
+
+tpark:Wait_SpaceOdyssey a tpark:WaitTimeRecord ;
+    rdfs:label "스페이스오디세이 실시간 대기 통계"@ko , "Space Odyssey Queue Metrics"@en ;
+    tpark:currentWaitMinutes 15 ;
+    tpark:queueLengthPersons 75 ;
+    tpark:recordedTimestamp "2026-10-05T14:30:00+09:00"^^xsd:dateTime .
+
+# =================================================================
+# Admission Pass & Visitors
+# =================================================================
+
+tpark:Pass_AllDayVIP a tpark:AdmissionPass ;
+    rdfs:label "올데이 VIP 매직패스 프리미엄"@ko , "All-Day VIP Magic Pass Premium"@en ;
+    tpark:passType "MagicPassVIP" ;
+    tpark:passPrice 88000.0 ;
+    tpark:validForPark tpark:Park_GalaxyWorld .
+
+tpark:Visitor_Kim a tpark:ParkVisitor ;
+    rdfs:label "방문객 김철수"@ko , "Visitor Chulsoo Kim"@en ;
+    tpark:holdsPass tpark:Pass_AllDayVIP ;
+    tpark:visitorAssignedTo tpark:Ride_ThunderCoaster .
+
+# =================================================================
+# Safety Inspections & Maintenance Tasks
+# =================================================================
+
+tpark:Insp_ThunderCoaster a tpark:SafetyInspection ;
+    rdfs:label "썬더볼트 익스프레스 10월 정기 안전검사"@ko , "Thunderbolt October Periodic Inspection"@en ;
+    tpark:inspectionDate "2026-10-01"^^xsd:date ;
+    tpark:inspectionPassed true ;
+    tpark:safetyInspector "한국기계전기전자시험연구원(KTC)" .
+
+tpark:Insp_AquaSplash a tpark:SafetyInspection ;
+    rdfs:label "아쿠아스플래시 수로 수질 및 브레이크 점검"@ko , "Aqua Splash Flume & Brake Inspection"@en ;
+    tpark:inspectionDate "2026-10-02"^^xsd:date ;
+    tpark:inspectionPassed true ;
+    tpark:safetyInspector "안전보건공단 공인검사관" .
+
+tpark:Insp_SpaceOdyssey a tpark:SafetyInspection ;
+    rdfs:label "스페이스오디세이 모션시트 유압장치 점검"@ko , "Space Odyssey Motion Platform Check"@en ;
+    tpark:inspectionDate "2026-10-03"^^xsd:date ;
+    tpark:inspectionPassed true ;
+    tpark:safetyInspector "테마파크안전기술연구소" .
+
+tpark:Maint_Thunder_Bearing a tpark:RideMaintenanceTask ;
+    rdfs:label "휠 베어링 고압 세척 및 합성 윤활유 주입"@ko , "Wheel Bearing High-Pressure Wash and Lube"@en ;
+    tpark:maintenanceCategory "routine" .
+
+tpark:Maint_Aqua_Pump a tpark:RideMaintenanceTask ;
+    rdfs:label "주 수류 순환 펌프 임펠러 정밀 점검"@ko , "Main Water Circulation Pump Impeller Check"@en ;
+    tpark:maintenanceCategory "preventive" .
+
+tpark:Maint_Space_Projector a tpark:RideMaintenanceTask ;
+    rdfs:label "4D 영상 레이저 프로젝터 캘리브레이션"@ko , "4D Laser Projector Optical Calibration"@en ;
+    tpark:maintenanceCategory "routine" .
+
+# =================================================================
+# AI Agents
+# =================================================================
+
+tpark:Agent_CrowdMaster a tpark:CrowdControlAgent ;
+    rdfs:label "스마트 대기열 분산 AI 에이전트 (CrowdMaster)"@ko , "Smart Queue Balancing Agent (CrowdMaster)"@en ;
+    tpark:congestionLevel "moderate" ;
+    tpark:aiRecommendationNote "썬더볼트 익스프레스 대기 시간 45분 초과로 판타지 라군 구역 아쿠아스플래시(대기 20분)로의 동선 분산 유도 및 매직패스 발권 슬롯 조절 추천" ;
+    tpark:monitorsAttraction tpark:Ride_ThunderCoaster , tpark:Ride_AquaSplash , tpark:Ride_SpaceOdyssey ;
+    tpark:executesTask tpark:Maint_Thunder_Bearing .
+
+tpark:Agent_SafetyGuard a tpark:SafetyMonitoringAgent ;
+    rdfs:label "실시간 안전 관제 AI 에이전트 (SafetyGuard)"@ko , "Real-Time Safety Supervisor Agent (SafetyGuard)"@en ;
+    tpark:aiRecommendationNote "모든 어트랙션의 진동·가속도 센서 지표 정상 범위 유지 중, 썬더볼트 트랙 피로도 모니터링 주기를 일일 단위로 강화 권고" ;
+    tpark:auditsInspection tpark:Insp_ThunderCoaster , tpark:Insp_AquaSplash , tpark:Insp_SpaceOdyssey ;
+    tpark:executesTask tpark:Maint_Aqua_Pump .

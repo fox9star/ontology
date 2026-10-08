@@ -1,0 +1,3012 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온톨로지 웹 브라우저 탐색 및 검증 관리자</title>
+<link href="{{ url_for('static', filename='vendor/bootstrap-5.3.2/css/bootstrap.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons-1.11.1/font/bootstrap-icons.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='searchable-select.css') }}">
+<style>
+  body { background-color: #f4f6fb; font-family: "Noto Sans KR", sans-serif; }
+  .navbar-brand { font-weight: 700; color: #1e3a8a; }
+  .card-stat { border-radius: 12px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .stat-icon { font-size: 2.2rem; opacity: 0.8; }
+  .nav-tabs .nav-link { font-weight: 600; color: #475569; }
+  .nav-tabs .nav-link.active { color: #2563eb; border-bottom: 3px solid #2563eb; }
+  .table-hover tbody tr:hover { background-color: #f1f5f9; cursor: pointer; }
+  .badge-class { background-color: #dbeafe; color: #1e40af; }
+  .badge-prop { background-color: #fef3c7; color: #92400e; }
+  .badge-inst { background-color: #d1fae5; color: #065f46; }
+  pre { background-color: #0f172a; color: #f8fafc; border-radius: 8px; padding: 16px; max-height: 400px; }
+  .triple-key { font-weight: 600; color: #1e3a8a; }
+  .project-select { width: min(320px, 100%); }
+  .media-preview { width: 100%; height: 220px; object-fit: contain; background: #e9eef5; }
+  .asset-card { height: 100%; border: 1px solid #e2e8f0; }
+  .source-path { overflow-wrap: anywhere; }
+  .navbar .form-select { max-width: 100%; }
+  .graph-controls label { display: block; margin-bottom: 4px; font-size: .8rem; font-weight: 600; color: #475569; }
+  .graph-node-list { max-height: 290px; overflow-y: auto; }
+  .graph-node-list .list-group-item { border-left: 4px solid transparent; }
+  .graph-node-list .list-group-item.active { background: #eff6ff; color: #1e3a8a; border-color: #bfdbfe; }
+  .graph-legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .graph-relation-row { padding: 10px 0; border-bottom: 1px solid #e2e8f0; }
+  .graph-relation-row:last-child { border-bottom: 0; }
+  .graph-uri { overflow-wrap: anywhere; font-size: .72rem; }
+  .graph-status { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .graph-path-step { display: inline-flex; align-items: center; margin: 3px 4px 3px 0; }
+  #networkCanvas { height: 560px; background: #fbfcfe; cursor: grab; }
+  #networkEmpty { pointer-events: none; }
+  @media (max-width: 800px) {
+    .navbar .container-fluid { gap: 14px; }
+    .navbar .selection-controls { width: 100%; }
+    .navbar .selection-field { flex: 1 1 220px; }
+    .project-select { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <i class="bi bi-diagram-3-fill text-primary"></i>
+      <span>Ontology Web Studio</span>
+    </a>
+    <a class="btn btn-outline-info btn-sm ms-2" id="graphPulseLink" href="/graph"><i class="bi bi-share me-1" aria-hidden="true"></i>관계망 브리프</a>
+    <div class="d-flex flex-wrap align-items-end gap-3 selection-controls">
+      <div class="selection-field">
+        <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
+          <label for="ontSelect" class="text-light small fw-semibold">온톨로지</label>
+          <button class="btn btn-outline-light btn-sm py-0" type="button" data-bs-toggle="modal" data-bs-target="#newOntologyModal"><i class="bi bi-plus-lg me-1" aria-hidden="true"></i>새 온톨로지</button>
+        </div>
+        <select id="ontSelect" class="form-select form-select-sm project-select" onchange="changeOntology()">
+          {% for key, ont in ontologies.items() %}
+            <option value="{{ key }}" data-search-keywords="{{ ont.get('name_en', '') }}">{{ ont.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="selection-field">
+        <label for="projectSelect" class="text-light small mb-1 fw-semibold">프로젝트</label>
+        <select id="projectSelect" class="form-select form-select-sm project-select" onchange="changeProject()">
+          <option value="">가상 예제</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-sm ms-2" onclick="runValidation()">
+        <i class="bi bi-shield-check me-1"></i>PySHACL 검증
+      </button>
+      <div class="dropdown ms-2">
+        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-download me-1"></i>내보내기 (Export)
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><a class="dropdown-item" href="#" onclick="downloadExport('turtle')"><i class="bi bi-file-code me-2 text-primary"></i>Turtle (.ttl)</a></li>
+          <li><a class="dropdown-item" href="#" onclick="downloadExport('jsonld')"><i class="bi bi-filetype-json me-2 text-warning"></i>JSON-LD (.jsonld)</a></li>
+          <li><a class="dropdown-item" href="#" onclick="downloadExport('xml')"><i class="bi bi-file-earmark-code me-2 text-success"></i>RDF/XML (.rdf)</a></li>
+          <li><a class="dropdown-item" href="#" onclick="downloadExport('nt')"><i class="bi bi-list-nested me-2 text-secondary"></i>N-Triples (.nt)</a></li>
+        </ul>
+      </div>
+      <div class="dropdown ms-2">
+        <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="fusekiDropdownBtn">
+          <i class="bi bi-cloud-arrow-up me-1"></i>Fuseki 동기화
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><h6 class="dropdown-header small">Apache Jena Fuseki (:3030)</h6></li>
+          <li><a class="dropdown-item" href="#" onclick="syncToFuseki(false)"><i class="bi bi-arrow-repeat me-2 text-primary"></i>현재 도메인 동기화</a></li>
+          <li><a class="dropdown-item" href="#" onclick="syncToFuseki(true)"><i class="bi bi-layers me-2 text-success"></i>전체 도메인 동기화</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#" onclick="checkFusekiStatus()"><i class="bi bi-activity me-2 text-info"></i>연결 상태 점검</a></li>
+        </ul>
+      </div>
+      <button class="btn btn-outline-success btn-sm ms-2" type="button" onclick="openAuditCertificate()">
+        <i class="bi bi-patch-check me-1"></i>출처 보고서
+      </button>
+      <button class="btn btn-outline-warning btn-sm ms-2" type="button" data-bs-toggle="modal" data-bs-target="#llmModal">
+        <i class="bi bi-robot me-1"></i>Codex 작업
+      </button>
+      <a href="/api/docs" target="_blank" class="btn btn-outline-info btn-sm ms-2">
+        <i class="bi bi-journal-code me-1"></i>API 문서 (/docs)
+      </a>
+      <span class="badge bg-secondary ms-2" title="이 PC에서 사용하는 로컬 단일 사용자 모드">로컬 사용자</span>
+      <span class="badge bg-success-subtle text-success border border-success-subtle ms-2 d-inline-flex align-items-center" id="sseBadge" title="Server-Sent Events 텔레메트리 스트림 정상 연결됨">
+        <span class="spinner-grow spinner-grow-sm me-1 text-success" style="width: 8px; height: 8px;"></span>SSE Live
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid px-4 py-4">
+  <div id="pageAlert" class="alert alert-danger d-none" role="alert"></div>
+
+  <!-- Summary Stats Header -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-3">
+      <div class="card card-stat bg-white p-3 d-flex flex-row align-items-center justify-content-between">
+        <div>
+          <div class="text-muted small fw-semibold">정의된 클래스 (Classes)</div>
+          <div class="h3 mb-0 fw-bold text-primary" id="statClasses">-</div>
+        </div>
+        <i class="bi bi-boxes stat-icon text-primary"></i>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stat bg-white p-3 d-flex flex-row align-items-center justify-content-between">
+        <div>
+          <div class="text-muted small fw-semibold">관계 및 속성 (Properties)</div>
+          <div class="h3 mb-0 fw-bold text-warning" id="statProps">-</div>
+        </div>
+        <i class="bi bi-link-45deg stat-icon text-warning"></i>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stat bg-white p-3 d-flex flex-row align-items-center justify-content-between">
+        <div>
+          <div class="text-muted small fw-semibold">등록된 인스턴스 (Instances)</div>
+          <div class="h3 mb-0 fw-bold text-success" id="statInstances">-</div>
+        </div>
+        <i class="bi bi-database-check stat-icon text-success"></i>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card-stat bg-white p-3 d-flex flex-row align-items-center justify-content-between">
+        <div>
+          <div class="text-muted small fw-semibold">PySHACL 검증 상태</div>
+          <div class="h5 mb-0" id="statValidation"><span class="badge bg-secondary">미검증</span></div>
+        </div>
+        <i class="bi bi-shield-lock stat-icon text-info"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Tabs -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 pt-3 px-4">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li class="nav-item" id="mediaTabItem">
+          <button class="nav-link" id="media-tab" data-bs-toggle="tab" data-bs-target="#media-pane" type="button" role="tab" aria-controls="media-pane" aria-selected="false">
+            <i class="bi bi-collection-play me-1"></i>프로젝트 파일
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link active" id="classes-tab" data-bs-toggle="tab" data-bs-target="#classes-pane">
+            <i class="bi bi-diagram-2 me-1"></i>클래스 및 속성
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="instances-tab" data-bs-toggle="tab" data-bs-target="#instances-pane">
+            <i class="bi bi-tree me-1"></i>인스턴스 지식 그래프
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="shacl-tab" data-bs-toggle="tab" data-bs-target="#shacl-pane">
+            <i class="bi bi-shield-check me-1"></i>PySHACL 검증 리포트
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="sparql-tab" data-bs-toggle="tab" data-bs-target="#sparql-pane">
+            <i class="bi bi-code-slash me-1"></i>SPARQL 대화형 쿼리
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="nlquery-tab" data-bs-toggle="tab" data-bs-target="#nlquery-pane">
+            <i class="bi bi-chat-dots me-1 text-primary"></i>자연어 질의
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="simulator-tab" data-bs-toggle="tab" data-bs-target="#simulator-pane">
+            <i class="bi bi-play-circle me-1 text-success"></i>에이전트 시뮬레이터
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard-pane">
+            <i class="bi bi-bar-chart-line me-1"></i>메트릭 대시보드
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="bridge-tab" data-bs-toggle="tab" data-bs-target="#bridge-pane">
+            <i class="bi bi-intersect me-1 text-info"></i>크로스 도메인 융합
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="snapshots-tab" data-bs-toggle="tab" data-bs-target="#snapshots-pane">
+            <i class="bi bi-clock-history me-1 text-warning"></i>버전 관리 & 롤백
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body p-4">
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade" id="media-pane" role="tabpanel" aria-labelledby="media-tab">
+          <div id="mediaNotice" class="alert alert-info">실제 프로젝트를 선택하면 음원과 이미지를 확인할 수 있습니다.</div>
+          <div id="projectMediaContent" class="d-none">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+              <div>
+                <h5 id="projectTitle" class="fw-bold mb-1"></h5>
+                <div id="projectAssetSummary" class="text-muted small"></div>
+              </div>
+              <button type="button" class="btn btn-outline-success btn-sm" onclick="runValidation()"><i class="bi bi-shield-check me-1"></i>등록 내용과 파일 검증</button>
+            </div>
+            <div id="projectProvenance" class="alert alert-light border mb-4"></div>
+            <div id="mediaAssets" class="row g-3 mb-4"></div>
+            <h6 class="fw-bold mb-2">장면 구성</h6>
+            <p class="text-muted small mb-2">등록한 이미지의 배치 계획입니다. 시간 구간과 사용 파일을 확인할 수 있습니다.</p>
+            <div class="table-responsive border rounded mb-3">
+              <table class="table table-striped align-middle mb-0">
+                <thead class="table-light"><tr><th>순서</th><th>시간 구간</th><th>사용 이미지</th></tr></thead>
+                <tbody id="timelineTableBody"></tbody>
+              </table>
+            </div>
+            <details class="small text-muted">
+              <summary>프로젝트 등록 정보</summary>
+              <dl id="projectImportInfo" class="row mt-2 mb-0 source-path"></dl>
+            </details>
+          </div>
+        </div>
+        
+        <!-- Tab 1: Classes & Properties -->
+        <div class="tab-pane fade show active" id="classes-pane">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <h5 class="fw-bold mb-3"><i class="bi bi-boxes me-2 text-primary"></i>클래스 목록 (Classes)</h5>
+              <div class="table-responsive" style="max-height: 500px;">
+                <table class="table table-hover table-striped border align-middle">
+                  <thead class="table-light sticky-top">
+                    <tr>
+                      <th>라벨 (한국어)</th>
+                      <th>클래스 식별자</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody id="classesTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h5 class="fw-bold mb-3"><i class="bi bi-link-45deg me-2 text-warning"></i>속성 목록 (Properties)</h5>
+              <div class="table-responsive" style="max-height: 500px;">
+                <table class="table table-hover table-striped border align-middle">
+                  <thead class="table-light sticky-top">
+                    <tr>
+                      <th>라벨</th>
+                      <th>유형</th>
+                      <th>Domain (주체)</th>
+                      <th>Range (대상)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="propsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Scoped instance graph, traversal and validated relations -->
+        <div class="tab-pane fade" id="instances-pane">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+            <div>
+              <h5 class="fw-bold mb-1">개체와 관계 탐색</h5>
+              <p class="text-muted small mb-0">선택한 데이터의 개체를 탐색합니다. 화살표는 관계 방향, 점선은 조회용 추론 관계입니다.</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#newInstanceModal">새 개체 등록</button>
+              <button class="btn btn-outline-primary btn-sm" type="button" onclick="loadNetworkGraph()">새로고침</button>
+            </div>
+          </div>
+          <div class="graph-controls p-3 border rounded bg-light mb-3">
+            <div class="row g-2">
+              <div class="col-md-4"><label for="graphSearchInput">이름·URI·클래스 검색</label><input id="graphSearchInput" class="form-control form-control-sm" type="search" placeholder="개체 이름 또는 URI" oninput="graphFiltersChanged()"></div>
+              <div class="col-md-2"><label for="graphGroupFilter">그룹</label><select id="graphGroupFilter" class="form-select form-select-sm" onchange="graphFiltersChanged()"><option value="">전체 그룹</option></select></div>
+              <div class="col-md-3"><label for="graphClassFilter">클래스</label><select id="graphClassFilter" class="form-select form-select-sm" onchange="graphFiltersChanged()"><option value="">전체 클래스</option></select></div>
+              <div class="col-md-3"><label for="graphPredicateFilter">관계</label><select id="graphPredicateFilter" class="form-select form-select-sm" onchange="graphFiltersChanged()"><option value="">전체 관계</option></select></div>
+              <div class="col-md-3"><label for="graphConnectionFilter">필터 내 연결 상태</label><select id="graphConnectionFilter" class="form-select form-select-sm" onchange="graphFiltersChanged()"><option value="all">연결·고립 모두</option><option value="connected">연결된 개체</option><option value="isolated">고립된 개체</option></select></div>
+              <div class="col-md-3"><label for="graphInferenceSelect">조회용 추론</label><select id="graphInferenceSelect" class="form-select form-select-sm" onchange="loadNetworkGraph()"><option value="none">원본 관계</option><option value="rdfs">RDFS 관계 포함</option><option value="owlrl">OWL-RL 관계 포함</option></select></div>
+              <div class="col-md-3"><label for="graphLayoutSelect">배치</label><select id="graphLayoutSelect" class="form-select form-select-sm" onchange="renderInstanceGraph()"><option value="force">힘 기반 배치</option><option value="hierarchical">방향을 따른 계층 배치</option></select></div>
+              <div class="col-md-3 d-flex align-items-end pb-1"><div class="form-check"><input id="graphExternalToggle" type="checkbox" class="form-check-input" onchange="loadNetworkGraph()"><label for="graphExternalToggle" class="form-check-label mb-0">외부 참조 표시 (읽기 전용)</label></div></div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3 align-items-center">
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="resetGraphFilters()">필터 초기화</button>
+              <button id="graphFocusOneBtn" class="btn btn-outline-primary btn-sm" type="button" onclick="focusGraphNeighborhood(1)" disabled>선택 개체 · 1단계 연결</button>
+              <button id="graphFocusTwoBtn" class="btn btn-outline-primary btn-sm" type="button" onclick="focusGraphNeighborhood(2)" disabled>선택 개체 · 2단계 연결</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="restoreGraphOverview()">전체 보기</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="fitNetworkGraph()"><i class="bi bi-arrows-fullscreen me-1"></i>화면 맞춤</button>
+              <button class="btn btn-outline-secondary btn-sm" type="button" id="togglePhysicsBtn" onclick="toggleNetworkPhysics()"><i class="bi bi-pause-circle me-1"></i>물리 고정</button>
+              <span id="graphFocusMeta" class="small text-muted"></span>
+            </div>
+          </div>
+          <div id="graphAlert" class="alert alert-danger d-none graph-status" role="alert"></div>
+          <div id="graphTruncatedNotice" class="alert alert-warning d-none small" role="status"></div>
+          <div id="graphSummary" class="small text-muted mb-2" aria-live="polite">그래프를 불러오면 표시 범위가 나타납니다.</div>
+          <div class="d-flex flex-wrap gap-2 mb-3" id="graphLegend" aria-label="그룹 범례"></div>
+          <div class="row g-3">
+            <div class="col-xl-8">
+              <div class="card border mb-3">
+                <div class="card-header bg-white py-2 d-flex justify-content-between align-items-center">
+                  <span class="fw-semibold">인스턴스 지식 그래프</span>
+                  <small class="text-muted" id="networkGraphMeta">개체와 관계를 선택해 보세요.</small>
+                </div>
+                <div class="card-body p-0 position-relative">
+                  <div id="networkCanvas" role="img" aria-label="개체와 방향이 있는 관계의 지식 그래프"></div>
+                  <div id="networkEmpty" class="d-none position-absolute top-50 start-50 translate-middle text-center text-muted px-3">표시할 개체가 없습니다. 필터를 조정해 보세요.</div>
+                </div>
+              </div>
+              <div class="card border mb-3">
+                <div class="card-header bg-white fw-semibold">두 개체 사이 최단 경로</div>
+                <div class="card-body">
+                  <div class="row g-2 graph-controls">
+                    <div class="col-md-4"><label for="graphPathFrom">출발 개체</label><select id="graphPathFrom" class="form-select form-select-sm"><option value="">개체 선택</option></select></div>
+                    <div class="col-md-4"><label for="graphPathTo">도착 개체</label><select id="graphPathTo" class="form-select form-select-sm"><option value="">개체 선택</option></select></div>
+                    <div class="col-md-4"><label for="graphPathDirection">탐색 방향</label><select id="graphPathDirection" class="form-select form-select-sm"><option value="directed">화살표 방향 따라가기</option><option value="both">방향과 무관하게 연결 탐색</option></select></div>
+                  </div>
+                  <div class="d-flex flex-wrap gap-2 mt-2"><button id="graphPathFindBtn" class="btn btn-primary btn-sm" type="button" onclick="findGraphPath()" disabled>경로 찾기</button><button class="btn btn-outline-secondary btn-sm" type="button" onclick="clearGraphPath()">강조 지우기</button></div>
+                  <div id="graphPathStatus" class="small text-muted mt-2 graph-status" aria-live="polite">현재 검색·필터에 포함된 그래프에서 관계 수가 가장 적은 경로를 찾습니다.</div>
+                  <div id="graphPathSteps" class="small mt-2"></div>
+                </div>
+              </div>
+              <div class="card border">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center"><span class="fw-semibold">표시된 개체 목록</span><span id="instanceCountText" class="badge bg-secondary">0</span></div>
+                <div class="list-group list-group-flush graph-node-list" id="instancesList"></div>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div id="instanceDetailPlaceholder" class="alert alert-info small">그래프나 목록에서 개체를 선택하면 속성·들어오는 관계·나가는 관계를 확인할 수 있습니다.</div>
+              <div id="instanceDetailCard" class="card border d-none mb-3">
+                <div class="card-header bg-white"><strong id="selectedInstanceLabel"></strong><div class="graph-uri text-muted mt-1" id="selectedInstanceTitle"></div><div id="selectedInstanceTypes" class="d-flex flex-wrap gap-1 mt-2"></div><button id="graphCodexSuggestBtn" class="btn btn-outline-primary btn-sm mt-2" type="button" onclick="prepareCodexRelationReview()" disabled>Codex 관계 제안</button></div>
+                <div class="card-body" style="max-height: 640px; overflow-y: auto;">
+                  <div id="selectedInstanceStats" class="small text-muted mb-3"></div>
+                  <h6 class="small fw-bold">속성 값</h6>
+                  <div class="table-responsive"><table class="table table-sm mb-3"><thead><tr><th>속성</th><th>값</th></tr></thead><tbody id="instanceTriplesBody"></tbody></table></div>
+                  <h6 class="small fw-bold">나가는 관계 <span id="instanceOutgoingCount" class="badge bg-light text-dark">0</span></h6><div id="instanceOutgoingList" class="mb-3"></div>
+                  <h6 class="small fw-bold">들어오는 관계 <span id="instanceIncomingCount" class="badge bg-light text-dark">0</span></h6><div id="instanceIncomingList"></div>
+                </div>
+              </div>
+              <div class="card border mb-3">
+                <div class="card-header bg-white fw-semibold">관계 편집</div>
+                <div class="card-body graph-controls">
+                  <p class="small text-muted">선택한 데이터의 두 개체를 연결합니다. 저장 전 자동 스냅샷과 SHACL·파일 검증을 수행합니다.</p>
+                  <label for="graphRelationSubject">출발 개체</label><select id="graphRelationSubject" class="form-select form-select-sm mb-2" onchange="updateRelationButtons()"><option value="">개체 선택</option></select>
+                  <label for="graphRelationPredicate">관계</label><select id="graphRelationPredicate" class="form-select form-select-sm mb-2" onchange="updateRelationButtons()"><option value="">관계 선택</option></select>
+                  <label for="graphRelationObject">도착 개체</label><select id="graphRelationObject" class="form-select form-select-sm mb-2" onchange="updateRelationButtons()"><option value="">개체 선택</option></select>
+                  <div class="d-flex flex-wrap gap-2 mt-3"><button id="graphRelationAddBtn" class="btn btn-success btn-sm" type="button" onclick="submitGraphRelation('POST')" disabled>관계 추가</button><button id="graphRelationDeleteBtn" class="btn btn-outline-danger btn-sm" type="button" onclick="submitGraphRelation('DELETE')" disabled>선택 관계 삭제</button></div>
+                  <div id="graphRelationHint" class="small text-muted mt-2">추론 관계와 외부 참조는 편집할 수 없습니다.</div>
+                  <div id="graphRelationResult" class="d-none mt-3 graph-status" role="status" aria-live="polite"></div>
+                </div>
+              </div>
+              <div id="similarityRecommendationBox" class="card border mt-3 d-none">
+                <div class="card-header bg-light py-2 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold small">구조가 비슷한 개체</span>
+                  <small id="simRecStatus" class="text-muted"></small>
+                </div>
+                <div class="card-body p-2" id="similarityRecommendationsList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: PySHACL Validation -->
+        <div class="tab-pane fade" id="shacl-pane">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="bi bi-shield-check me-2 text-info"></i>PySHACL 데이터 무결성 검토</h5>
+            <button class="btn btn-success btn-sm" onclick="runValidation()"><i class="bi bi-play-fill me-1"></i>검증 재실행</button>
+          </div>
+          <div id="shaclAlert" class="alert alert-secondary">
+            검증을 실행하려면 상단 [PySHACL 검증] 버튼을 누르세요.
+          </div>
+          <div id="fileCheckSummary" class="d-none mb-3"></div>
+          <div id="shaclDetailCard" class="card bg-dark text-light d-none">
+            <div class="card-header border-secondary font-monospace">PySHACL Validation Log</div>
+            <div class="card-body">
+              <pre id="shaclLogText" class="mb-0"></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: SPARQL Console & Visual Query Builder -->
+        <div class="tab-pane fade" id="sparql-pane">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0"><i class="bi bi-terminal me-2 text-primary"></i>SPARQL 대화형 질의 실행기</h5>
+          </div>
+
+          <!-- Visual No-Code SPARQL Query Builder -->
+          <div class="card mb-4 border bg-white shadow-sm">
+            <div class="card-header bg-light py-2 d-flex justify-content-between align-items-center">
+              <span class="fw-bold small text-primary"><i class="bi bi-magic me-1"></i>시각적 노코드(No-Code) SPARQL 쿼리 빌더</span>
+              <span class="badge bg-secondary">Visual Builder</span>
+            </div>
+            <div class="card-body p-3">
+              <div class="row g-2 align-items-end">
+                <div class="col-md-4">
+                  <label class="form-label small fw-semibold mb-1">조회할 대상 클래스</label>
+                  <select class="form-select form-select-sm" id="builderClassSelect">
+                    <option value="">모든 개체 (?s ?p ?o)</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label small fw-semibold mb-1">라벨/명칭 검색어 (선택 필터)</label>
+                  <input type="text" class="form-control form-control-sm" id="builderFilterInput" placeholder="예: 에이전트, 완료, 비디오, 음원">
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label small fw-semibold mb-1">최대 결과 수 (LIMIT)</label>
+                  <select class="form-select form-select-sm" id="builderLimitSelect">
+                    <option value="25">25건</option>
+                    <option value="50" selected>50건</option>
+                    <option value="100">100건</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary btn-sm w-100" onclick="buildAndRunSparql()">
+                    <i class="bi bi-play-circle me-1"></i>쿼리 생성 및 실행
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold small">도메인별 1-Click 프리셋 템플릿:</label>
+            <div class="d-flex flex-wrap gap-2" id="queryPresets"></div>
+          </div>
+          <div class="mb-3">
+            <textarea id="sparqlInput" class="form-control font-monospace" rows="7"></textarea>
+          </div>
+          <button class="btn btn-outline-primary mb-4" onclick="executeSparql()"><i class="bi bi-play-fill me-1"></i>직접 입력 질의 실행</button>
+          <div id="sparqlAlert" class="alert alert-danger d-none" role="alert"></div>
+          
+          <h6 class="fw-bold">질의 결과 (<span id="sparqlResultCount">0</span>건)</h6>
+          <div class="table-responsive border rounded" style="max-height: 400px;">
+            <table class="table table-striped table-hover mb-0" id="sparqlResultTable">
+              <thead class="table-dark" id="sparqlResultHead"></thead>
+              <tbody id="sparqlResultBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 5: Metrics Dashboard -->
+        <div class="tab-pane fade" id="dashboard-pane">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <h5 class="fw-bold mb-0"><i class="bi bi-bar-chart-line me-2 text-primary"></i>지식 그래프 메트릭 대시보드 (전체 도메인)</h5>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary btn-sm" type="button" onclick="loadDashboard()"><i class="bi bi-arrow-clockwise me-1"></i>새로고침</button>
+              <button class="btn btn-success btn-sm" type="button" id="dashValidateBtn" onclick="runDashboardValidation()">전체 도메인 SHACL 검증 실행</button>
+            </div>
+          </div>
+          <div id="dashAlert" class="alert alert-danger d-none" role="alert"></div>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">전체 트리플</div><div class="h3 mb-0 fw-bold text-primary" id="dashTotalTriples">-</div></div></div>
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">전체 클래스</div><div class="h3 mb-0 fw-bold text-warning" id="dashTotalClasses">-</div></div></div>
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">전체 인스턴스</div><div class="h3 mb-0 fw-bold text-success" id="dashTotalInstances">-</div></div></div>
+          </div>
+          <div class="row g-4 mb-4">
+            <div class="col-lg-6"><div class="card card-stat p-3"><h6 class="fw-bold">도메인별 트리플 분포</h6><canvas id="chartTriples" height="200"></canvas></div></div>
+            <div class="col-lg-6"><div class="card card-stat p-3"><h6 class="fw-bold">도메인별 SPARQL 응답속도</h6><canvas id="chartLatency" height="200"></canvas></div></div>
+            <div class="col-lg-6"><div class="card card-stat p-3"><h6 class="fw-bold">클래스 · 속성 · 인스턴스 구성</h6><canvas id="chartStructure" height="200"></canvas></div></div>
+            <div class="col-lg-6"><div class="card card-stat p-3"><h6 class="fw-bold">SHACL 검증 이력</h6><canvas id="chartHistory" height="200"></canvas><div id="dashHistoryEmpty" class="text-muted small mt-2">아직 검증 이력이 없습니다. 위 버튼으로 전체 검증을 실행하세요.</div></div></div>
+          </div>
+          <div class="table-responsive border rounded">
+            <table class="table table-striped align-middle mb-0">
+              <thead class="table-light"><tr><th>도메인</th><th>이름</th><th>트리플</th><th>클래스</th><th>속성</th><th>인스턴스</th><th>SPARQL(ms)</th><th>SHACL</th></tr></thead>
+              <tbody id="dashDomainBody"></tbody>
+            </table>
+          </div>
+
+          <!-- Section: Graph Topology & Bottleneck Diagnosis (v3.0) -->
+          <div class="card shadow-sm border mt-4">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="fw-bold mb-0 text-primary"><i class="bi bi-graph-up-arrow me-2"></i>지식 그래프 위상 분석 및 병목(SPOF) 진단 (Graph Centrality & PageRank)</h6>
+                <small class="text-muted">다차원 차수 중심성, 반복 PageRank, 통신 허브 및 단일 장애점(SPOF) 위험도를 진단합니다.</small>
+              </div>
+              <button class="btn btn-outline-primary btn-sm" type="button" onclick="loadGraphAnalytics()"><i class="bi bi-arrow-repeat me-1"></i>분석 갱신</button>
+            </div>
+            <div class="card-body">
+              <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                  <div class="p-3 border rounded bg-light text-center">
+                    <div class="text-muted small fw-semibold">그래프 건강도 점수</div>
+                    <div class="h3 mb-0 fw-bold text-success" id="gaHealthScore">-</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 border rounded bg-light text-center">
+                    <div class="text-muted small fw-semibold">그래프 연결 밀도 (Density)</div>
+                    <div class="h3 mb-0 fw-bold text-info" id="gaDensity">-</div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="p-3 border rounded bg-light text-center">
+                    <div class="text-muted small fw-semibold">고립/미연결 개체 수</div>
+                    <div class="h3 mb-0 fw-bold text-warning" id="gaIsolated">-</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="gaWarningsBox" class="mb-3 d-none"></div>
+
+              <div class="row g-4">
+                <div class="col-lg-6">
+                  <h6 class="fw-bold small text-primary"><i class="bi bi-star-fill me-1 text-warning"></i>PageRank 상위 핵심 허브 개체</h6>
+                  <div class="table-responsive border rounded">
+                    <table class="table table-sm table-striped mb-0 align-middle">
+                      <thead class="table-light"><tr><th>개체 라벨</th><th>유형</th><th>PageRank</th><th>연결 차수</th></tr></thead>
+                      <tbody id="gaHubsTableBody"><tr><td colspan="4" class="text-center text-muted">분석 대기 중</td></tr></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h6 class="fw-bold small text-danger"><i class="bi bi-exclamation-triangle-fill me-1"></i>SPOF 단일 장애점 / 병목 노드</h6>
+                  <div class="table-responsive border rounded">
+                    <table class="table table-sm table-striped mb-0 align-middle">
+                      <thead class="table-light"><tr><th>개체 라벨</th><th>유형</th><th>병목 지수</th><th>위험도</th></tr></thead>
+                      <tbody id="gaBottlenecksTableBody"><tr><td colspan="4" class="text-center text-muted">분석 대기 중</td></tr></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 6: AI Natural Language Query (GraphRAG) -->
+        <div class="tab-pane fade" id="nlquery-pane">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <h5 class="fw-bold mb-1"><i class="bi bi-chat-dots me-2 text-primary"></i>자연어 패턴으로 SPARQL 조회</h5>
+              <p class="text-muted small mb-0">자연어(한국어/영어)로 질문하면 온톨로지 스키마에 맞는 SPARQL을 자동 추론 및 실행하여 답변을 제공합니다.</p>
+            </div>
+            <span class="badge bg-primary px-3 py-2"><i class="bi bi-cpu me-1"></i>Semantic Engine Active</span>
+          </div>
+
+          <div class="card mb-4 border bg-white shadow-sm">
+            <div class="card-body p-4">
+              <label class="form-label fw-semibold small mb-2"><i class="bi bi-lightbulb me-1 text-warning"></i>도메인별 추천 질문 (클릭 시 자동 입력):</label>
+              <div class="d-flex flex-wrap gap-2 mb-3" id="nlQuestionPresets">
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setNlQuestion('보컬 추출 또는 음원 관련 에셋 목록을 보여줘')">보컬/음원 에셋 목록은?</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setNlQuestion('완료된 생성 작업과 담당 에이전트를 알려줘')">완료된 생성 작업과 에이전트는?</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setNlQuestion('타임라인 장면 구성 순서와 사용 이미지를 알려줘')">장면(Shot) 구성 순서는?</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="setNlQuestion('파이프라인에 참여한 에이전트 목록을 알려줘')">참여한 에이전트 목록은?</button>
+              </div>
+
+              <div class="input-group mb-2">
+                <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
+                <input type="text" id="nlQuestionInput" class="form-control" placeholder="온톨로지에 대해 질문을 입력하세요 (예: 등록된 에이전트 목록과 역할을 알려줘)" onkeydown="if(event.key==='Enter') executeNlQuery()">
+                <button class="btn btn-primary px-4 fw-semibold" id="nlQueryBtn" type="button" onclick="executeNlQuery()">
+                  <i class="bi bi-send me-1"></i>질문하기
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="nlResultContainer" class="d-none">
+            <!-- Natural Answer Card -->
+            <div class="card mb-4 border shadow-sm border-primary">
+              <div class="card-header bg-primary text-white py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-bold"><i class="bi bi-robot me-2"></i>온톨로지 AI 답변 (Summary)</span>
+                <span id="nlResultMeta" class="badge bg-light text-primary"></span>
+              </div>
+              <div class="card-body">
+                <div id="nlAnswerText" class="lead fs-6" style="white-space: pre-line;"></div>
+              </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <!-- Auto-generated SPARQL -->
+              <div class="col-lg-6">
+                <div class="card shadow-sm border h-100">
+                  <div class="card-header bg-light py-2 d-flex justify-content-between align-items-center">
+                    <span class="fw-bold small"><i class="bi bi-code-slash me-1 text-primary"></i>자동 생성된 W3C SPARQL 질의문</span>
+                    <button class="btn btn-outline-secondary btn-sm py-0" onclick="copyNlSparql()"><i class="bi bi-clipboard"></i> 복사</button>
+                  </div>
+                  <div class="card-body p-0">
+                    <pre class="mb-0 p-3 bg-dark text-light" style="max-height: 280px; overflow-y: auto;"><code id="nlSparqlCode"></code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Raw Result Table -->
+              <div class="col-lg-6">
+                <div class="card shadow-sm border h-100">
+                  <div class="card-header bg-light py-2">
+                    <span class="fw-bold small"><i class="bi bi-table me-1 text-success"></i>매칭된 지식 그래프 결과 (<span id="nlRowCount">0</span>건)</span>
+                  </div>
+                  <div class="card-body p-0" style="max-height: 280px; overflow-y: auto;">
+                    <table class="table table-striped table-hover mb-0 small">
+                      <thead class="table-light sticky-top" id="nlTableHead"></thead>
+                      <tbody id="nlTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 7: Agent Workflow Simulator -->
+        <div class="tab-pane fade" id="simulator-pane">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div>
+              <h5 class="fw-bold mb-1"><i class="bi bi-play-circle me-2 text-success"></i>멀티 에이전트 파이프라인 실시간 시뮬레이터</h5>
+              <p class="text-muted small mb-0">기획부터 음악/보컬/비디오 생성 및 품질 검증까지의 에이전트 협업 과정을 가상 실행하고 온톨로지 트리플을 실시간 방출합니다.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary btn-sm fw-semibold" id="simStepBtn" onclick="runSimulationStep()"><i class="bi bi-arrow-right-circle me-1"></i>다음 단계 실행 (Step)</button>
+              <button class="btn btn-success btn-sm fw-semibold" id="simAutoBtn" onclick="runSimulationAuto()"><i class="bi bi-play-fill me-1"></i>전체 자동 재생 (Auto Play)</button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="resetSimulation()"><i class="bi bi-arrow-counterclockwise me-1"></i>초기화</button>
+            </div>
+          </div>
+
+          <!-- Step Progression Badges -->
+          <div class="row g-2 mb-4 text-center" id="simStepBadges">
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge1"><div class="small fw-bold">Step 1</div><div class="badge bg-secondary">기획/스토리보드</div></div></div>
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge2"><div class="small fw-bold">Step 2</div><div class="badge bg-secondary">프롬프트 생성</div></div></div>
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge3"><div class="small fw-bold">Step 3</div><div class="badge bg-secondary">음악 BGM 생성</div></div></div>
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge4"><div class="small fw-bold">Step 4</div><div class="badge bg-secondary">보컬/자막 싱크</div></div></div>
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge5"><div class="small fw-bold">Step 5</div><div class="badge bg-secondary">비디오 렌더링</div></div></div>
+            <div class="col-md-2"><div class="p-2 border rounded bg-light" id="simBadge6"><div class="small fw-bold">Step 6</div><div class="badge bg-secondary">품질 검증/승인</div></div></div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <!-- Active Step Detail -->
+              <div class="card shadow-sm border mb-3">
+                <div class="card-header bg-white py-2 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold"><i class="bi bi-activity me-1 text-primary"></i>현재 에이전트 실행 상태</span>
+                  <span class="badge bg-info" id="simPhaseBadge">대기 중</span>
+                </div>
+                <div class="card-body">
+                  <div class="mb-2"><span class="text-muted small fw-semibold">수행 에이전트:</span> <strong id="simAgentName" class="text-primary">-</strong></div>
+                  <div class="mb-2"><span class="text-muted small fw-semibold">실행 태스크:</span> <strong id="simTaskName">-</strong></div>
+                  <div class="mb-2"><span class="text-muted small fw-semibold">생성된 아티팩트:</span> <code id="simOutputAsset">-</code></div>
+                  <div class="mb-3"><span class="text-muted small fw-semibold">상세 내용:</span> <p id="simDetails" class="text-muted small mb-0 mt-1">-</p></div>
+                  <hr>
+                  <span class="text-muted small fw-semibold">방출된 PROV-O 온톨로지 트리플:</span>
+                  <pre class="bg-dark text-light p-2 rounded small mt-1 mb-0" style="max-height: 150px; overflow-y: auto;"><code id="simTriplesLog">시뮬레이션을 시작하면 실시간으로 트리플이 추가됩니다.</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <!-- Simulation Visualizer Canvas -->
+              <div class="card shadow-sm border">
+                <div class="card-header bg-white py-2 d-flex justify-content-between align-items-center">
+                  <span class="fw-bold"><i class="bi bi-diagram-3 me-1 text-success"></i>실시간 생성 그래프 뷰어 (Vis.js)</span>
+                  <small class="text-muted" id="simCanvasMeta">생성된 노드 0개</small>
+                </div>
+                <div class="card-body p-0">
+                  <div id="simNetworkCanvas" style="height: 380px; background: #fafafa;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 8: Cross-Domain Ontology Alignment (Bridge) -->
+        <div class="tab-pane fade" id="bridge-pane">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div>
+              <h5 class="fw-bold mb-1"><i class="bi bi-intersect me-2 text-info"></i>크로스 도메인 온톨로지 연계 및 교차 추론 (Cross-Domain Bridge)</h5>
+              <p class="text-muted small mb-0">상이한 산업 도메인(MV 영상 ↔ 전자상거래 상품, DevOps 장애 ↔ 자율 에이전트 복구, 헬스케어 ↔ 전문의 협진)을 의미론적으로 융합합니다.</p>
+            </div>
+            <button class="btn btn-info text-white btn-sm fw-semibold" id="bridgeAlignBtn" onclick="runCrossDomainAlignment()">
+              <i class="bi bi-play-circle me-1"></i>교차 추론 실행 (Run Reasoning)
+            </button>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">융합된 전체 트리플</div><div class="h3 mb-0 fw-bold text-info" id="bridgeTotalTriples">-</div></div></div>
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">신규 추론된 교차 관계</div><div class="h3 mb-0 fw-bold text-success" id="bridgeInferredCount">-</div></div></div>
+            <div class="col-md-4"><div class="card card-stat bg-white p-3"><div class="text-muted small fw-semibold">연계된 도메인 수</div><div class="h3 mb-0 fw-bold text-primary" id="bridgeDomainCount">5개 도메인</div></div></div>
+          </div>
+
+          <div class="card shadow-sm border mb-4">
+            <div class="card-header bg-white py-2 d-flex justify-content-between align-items-center">
+              <span class="fw-bold"><i class="bi bi-diagram-2 me-1 text-primary"></i>추론된 도메인 간 교차 관계 목록</span>
+              <span class="badge bg-secondary" id="bridgeResultBadge">추론 대기 중</span>
+            </div>
+            <div class="table-responsive border-0">
+              <table class="table table-striped table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>규칙 (Rule)</th>
+                    <th>출발 개체 (Subject)</th>
+                    <th>교차 서술 관계 (Predicate)</th>
+                    <th>도착 개체 (Object)</th>
+                    <th>의미론적 설명</th>
+                  </tr>
+                </thead>
+                <tbody id="bridgeTableBody">
+                  <tr><td colspan="5" class="text-muted text-center py-4">[교차 추론 실행] 버튼을 누르면 이종 도메인 간 의미론적 융합이 수행됩니다.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Graph Versioning & Snapshot Rollback (v3.1) -->
+        <div class="tab-pane fade" id="snapshots-pane" role="tabpanel" aria-labelledby="snapshots-tab">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 p-3 bg-light border rounded">
+            <div>
+              <h5 class="fw-bold mb-1"><i class="bi bi-clock-history me-2 text-warning"></i>지식 그래프 버전 관리 & 검증 가능한 스냅샷 (Graph VCS)</h5>
+              <p class="text-muted small mb-0">시맨틱 온톨로지 그래프의 변경 이력을 검증 가능한 스냅샷(.snapshots/)으로 기록하고, 차분(Diff) 분석 및 원클릭 롤백을 수행합니다.</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-warning btn-sm fw-semibold text-dark" onclick="promptCreateSnapshot()">
+                <i class="bi bi-camera me-1"></i>현재 상태 스냅샷 생성
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" onclick="loadSnapshotsList()">
+                <i class="bi bi-arrow-clockwise me-1"></i>목록 새로고침
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-3">
+              <div class="card shadow-sm border p-3 text-center">
+                <span class="text-muted small">보관된 스냅샷 수</span>
+                <div class="h3 fw-bold text-primary mb-0" id="snapTotalCount">-</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card shadow-sm border p-3 text-center">
+                <span class="text-muted small">현재 선택 도메인</span>
+                <div class="h4 fw-bold text-dark mb-0 font-monospace" id="snapDomainName">-</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card shadow-sm border p-3 text-center">
+                <span class="text-muted small">최신 스냅샷 일시</span>
+                <div class="small fw-semibold text-secondary mb-0 font-monospace" id="snapLatestTime">-</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card shadow-sm border p-3 text-center">
+                <span class="text-muted small">롤백 무결성 보증</span>
+                <div class="h5 fw-bold text-success mb-0"><i class="bi bi-shield-check me-1"></i>원자적 커밋</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow-sm border">
+            <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+              <span class="fw-bold"><i class="bi bi-journal-bookmark me-1 text-primary"></i>저장된 온톨로지 스냅샷 목록 (타임라인)</span>
+              <span class="badge bg-secondary" id="snapCountBadge">조회 대기 중</span>
+            </div>
+            <div class="table-responsive border-0">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>스냅샷 ID</th>
+                    <th>설명 (Commit Message)</th>
+                    <th>도메인</th>
+                    <th>트리플 수</th>
+                    <th>생성 일시</th>
+                    <th class="text-end">작업</th>
+                  </tr>
+                </thead>
+                <tbody id="snapshotsTableBody">
+                  <tr><td colspan="6" class="text-muted text-center py-4">스냅샷 목록을 조회하는 중입니다...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Create New Instance (CRUD) -->
+<div class="modal fade" id="newInstanceModal" tabindex="-1" aria-labelledby="newInstanceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title fw-bold" id="newInstanceModalLabel"><i class="bi bi-plus-circle me-2"></i>신규 온톨로지 개체(인스턴스) 등록 & SHACL 검증</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div id="crudModalAlert" class="alert alert-danger d-none"></div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">개체 클래스 (Class) *</label>
+          <select class="form-select" id="crudClassSelect" required></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">개체 이름 / 라벨 (Label) *</label>
+          <input type="text" class="form-control" id="crudLabelInput" placeholder="예: 신규 자막 번역 에이전트" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">상태 (mv:status, 선택)</label>
+          <select class="form-select" id="crudStatusSelect">
+            <option value="">선택 안 함</option>
+            <option value="pending">pending (대기)</option>
+            <option value="processing">processing (진행 중)</option>
+            <option value="completed" selected>completed (완료)</option>
+            <option value="failed">failed (실패)</option>
+          </select>
+        </div>
+        <p class="small text-muted mb-0">미디어 파일은 해시와 출처를 함께 기록하는 미디어 등록 도구로 추가합니다.</p>
+      </div>
+      <div class="modal-footer bg-light">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-success btn-sm fw-semibold" id="crudSubmitBtn" onclick="submitCreateInstance()">
+          <i class="bi bi-shield-check me-1"></i>등록 및 SHACL 검증
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Autonomous LLM Agent Execution (v3.0) -->
+<div class="modal fade" id="llmModal" tabindex="-1" aria-labelledby="llmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title fw-bold" id="llmModalLabel"><i class="bi bi-robot me-2 text-warning"></i>Codex 텍스트 작업</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">수행 에이전트 (Agent)</label>
+            <input type="text" class="form-control form-control-sm" id="llmAgentNameInput" value="Codex">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">태스크 명칭 (Task)</label>
+            <input type="text" class="form-control form-control-sm" id="llmTaskNameInput" value="사이버펑크 네온 비주얼 프롬프트 설계">
+          </div>
+        </div>
+        <div class="mb-3">
+          <div id="graphCodexContextNotice" class="alert alert-info small d-none" role="status"></div>
+          <label class="form-label small fw-semibold">프롬프트 지시어 (Prompt)</label>
+          <textarea class="form-control form-control-sm" id="llmPromptInput" rows="3" placeholder="AI 에이전트에게 수행시킬 지시어를 입력하세요...">시네마틱 사이버펑크 8k 뮤직비디오 하이라이트 씬 프롬프트를 생성해줘.</textarea>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">적용 도메인</label>
+            <select class="form-select form-select-sm" id="llmDomainSelect">
+              {% for key, cfg in ontologies.items() %}<option value="{{ key }}">{{ key }}</option>{% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">실행 방식</label>
+            <div id="codexStatus" class="small text-muted">Codex 연결 확인 중</div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-sm fw-semibold w-100 mb-3" id="llmSubmitBtn" onclick="submitLlmGeneration()">
+          <i class="bi bi-lightning-charge-fill me-1"></i>Codex에 요청하기
+        </button>
+
+        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="codexSaveGraph" checked><label class="form-check-label small" for="codexSaveGraph">결과와 실행 출처를 선택한 그래프에 저장</label></div>
+        <div class="d-flex gap-2 mb-3"><select id="codexJobSelect" class="form-select form-select-sm" aria-label="저장한 Codex 작업" onchange="selectSavedCodexJob(this.value)"><option value="">저장한 작업 선택</option></select><button type="button" class="btn btn-outline-secondary btn-sm text-nowrap" onclick="selectSavedCodexJob('')">새 요청</button></div>
+        <p class="small text-muted">API 키 없이 이 PC의 ChatGPT 로그인으로 실행합니다. 요청·결과는 보관되며 영상 생성은 수행하지 않습니다.</p>
+        <div id="codexJobStatus" class="alert alert-secondary small d-none"></div>
+        <button class="btn btn-outline-secondary btn-sm mb-3 d-none" id="codexRunBtn" onclick="runSelectedCodexJob()">대기 작업 실행</button>
+        <div id="llmResultArea" class="d-none">
+          <h6 class="fw-bold small text-primary mb-1"><i class="bi bi-chat-quote me-1"></i>Codex 처리 결과:</h6>
+          <pre class="bg-light p-3 border rounded small mb-3" id="llmOutputText" style="white-space: pre-wrap; max-height: 140px; overflow-y: auto;"></pre>
+
+          <h6 class="fw-bold small text-success mb-1"><i class="bi bi-diagram-2 me-1"></i>실행 출처 기록 (PROV-O):</h6>
+          <div class="table-responsive border rounded" style="max-height: 180px; overflow-y: auto;">
+            <table class="table table-sm table-striped mb-0 align-middle">
+              <thead class="table-light"><tr><th>주체 (Subject)</th><th>서술어 (Predicate)</th><th>대상 (Object)</th></tr></thead>
+              <tbody id="llmTriplesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer bg-light py-2">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Snapshot Semantic Diff Viewer (v3.1) -->
+<div class="modal fade" id="snapshotDiffModal" tabindex="-1" aria-labelledby="snapshotDiffModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title fw-bold" id="snapshotDiffModalLabel"><i class="bi bi-file-diff me-2 text-warning"></i>온톨로지 시맨틱 차분 (Graph Semantic Diff)</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="row g-3 mb-3">
+          <div class="col-md-4">
+            <div class="p-2 border rounded bg-light text-center">
+              <span class="text-muted small">기준 스냅샷:</span>
+              <div class="fw-bold font-monospace small" id="diffSnapA"></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-2 border rounded bg-light text-center">
+              <span class="text-muted small">비교 대상:</span>
+              <div class="fw-bold font-monospace small" id="diffSnapB">현재 그래프 (Current)</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-2 border rounded bg-light text-center">
+              <span class="text-muted small">차분 요약:</span>
+              <div>
+                <span class="badge bg-success me-1" id="diffAddedBadge">+0 추가</span>
+                <span class="badge bg-danger me-1" id="diffRemovedBadge">-0 삭제</span>
+                <span class="badge bg-secondary" id="diffUnchangedBadge">0 일치</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h6 class="fw-bold small text-success mb-2"><i class="bi bi-plus-circle me-1"></i>추가된 트리플 (Added Triples):</h6>
+        <div class="table-responsive border rounded mb-3" style="max-height: 180px; overflow-y: auto;">
+          <table class="table table-sm table-striped mb-0 align-middle">
+            <thead class="table-light"><tr><th>주체 (Subject)</th><th>서술어 (Predicate)</th><th>대상 (Object)</th></tr></thead>
+            <tbody id="diffAddedTableBody"></tbody>
+          </table>
+        </div>
+
+        <h6 class="fw-bold small text-danger mb-2"><i class="bi bi-dash-circle me-1"></i>삭제/변경된 트리플 (Removed Triples):</h6>
+        <div class="table-responsive border rounded" style="max-height: 180px; overflow-y: auto;">
+          <table class="table table-sm table-striped mb-0 align-middle">
+            <thead class="table-light"><tr><th>주체 (Subject)</th><th>서술어 (Predicate)</th><th>대상 (Object)</th></tr></thead>
+            <tbody id="diffRemovedTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer bg-light py-2">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newOntologyModal" tabindex="-1" aria-labelledby="newOntologyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <form class="modal-content" id="newOntologyForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newOntologyModalLabel">새 온톨로지 만들기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted small">분야의 이름과 목적을 적으면 기본 항목(Record)과 표시 이름(displayName)을 갖춘 초안을 만듭니다. 분야에 맞는 개념과 관계는 이후 보강할 수 있습니다. 주소는 example.org의 임시 URI를 사용합니다.</p>
+        <div id="newOntologyError" class="alert alert-danger d-none" role="alert"></div>
+        <div class="row g-3">
+          <div class="col-md-8">
+            <label for="newOntologyName" class="form-label">온톨로지 이름 <span class="text-danger" aria-hidden="true">*</span></label>
+            <input id="newOntologyName" name="name" class="form-control" required maxlength="160" placeholder="예: 지역 문화 행사" autocomplete="off">
+          </div>
+          <div class="col-md-4">
+            <label for="newOntologyId" class="form-label">코드 <span class="text-danger" aria-hidden="true">*</span></label>
+            <input id="newOntologyId" name="id" class="form-control" required pattern="[a-z][a-z0-9]*(?:-[a-z0-9]+)*" minlength="2" maxlength="48" placeholder="예: local-culture" autocomplete="off" aria-describedby="newOntologyIdHelp">
+            <div id="newOntologyIdHelp" class="form-text">영문 소문자로 시작하고 숫자·하이픈을 사용할 수 있습니다.</div>
+          </div>
+          <div class="col-12">
+            <label for="newOntologyDescription" class="form-label">목적과 범위 <span class="text-danger" aria-hidden="true">*</span></label>
+            <textarea id="newOntologyDescription" name="description" class="form-control" rows="3" required maxlength="2000" placeholder="무엇을 기록하고 어떤 관계를 찾으려는지 적어 주세요."></textarea>
+          </div>
+          <div class="col-12">
+            <details>
+              <summary class="small text-primary">영문 이름과 설명 추가 (선택)</summary>
+              <div class="mt-3">
+                <label for="newOntologyNameEn" class="form-label">영문 이름</label>
+                <input id="newOntologyNameEn" name="name_en" class="form-control" maxlength="160" autocomplete="off">
+              </div>
+              <div class="mt-3">
+                <label for="newOntologyDescriptionEn" class="form-label">영문 설명</label>
+                <textarea id="newOntologyDescriptionEn" name="description_en" class="form-control" rows="2" maxlength="2000"></textarea>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+        <button id="newOntologySave" type="submit" class="btn btn-primary">초안 만들기</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Global Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;" id="toastContainer"></div>
+
+<script src="{{ url_for('static', filename='vendor/bootstrap-5.3.2/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/chartjs-4.4.1/chart.umd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/vis-network/vis-network.min.js') }}"></script>
+<script src="{{ url_for('static', filename='searchable-select.js') }}"></script>
+
+<script>
+
+  localStorage.removeItem('ontology_api_key');
+  localStorage.removeItem('ontology_role');
+  let codexJobId = localStorage.getItem('ontology_codex_job') || '';
+  let codexPollTimer = null;
+  const ontologyProfiles = {{ ontologies | tojson }};
+  let currentOnt = 'mv';
+  let currentProject = '';
+  let selectionVersion = 0;
+  let ontologyVersion = 0;
+  const requestVersions = {instance: 0, validation: 0, query: 0, graph: 0, explorer: 0};
+  let networkInstance = null;
+  let networkPhysicsEnabled = true;
+  let graphPayload = null;
+  let graphViewScope = null;
+  let graphSelectedId = '';
+  let graphSelectedDetail = null;
+  let graphFocusDepth = 0;
+  let graphPath = {nodes: [], edges: []};
+  let graphBusy = false;
+  let relationBusy = false;
+  let relationRequestVersion = 0;
+  let graphDisplayedIds = new Set();
+  let graphCodexDraftScope = null;
+  const queryPresetOptions = {
+    mv: [['list_assets', '파일과 등록 출처'], ['trace_video', '최종 영상 출처'], ['list_shots', '장면 순서'], ['list_tasks', '작업 목록']],
+    agent: [['list_tasks', '계획한 작업'], ['list_runs', '실제 실행 이력'], ['list_artifacts', '결과물과 생성 출처']],
+    academic: [['list_people', '학생 및 교수'], ['list_courses', '과목 목록']]
+  };
+  const el = id => document.getElementById(id);
+  function node(tag, text, className = '') {
+    const item = document.createElement(tag);
+    if (text !== undefined && text !== null) item.textContent = String(text);
+    if (className) item.className = className;
+    return item;
+  }
+  function clear(...ids) { ids.forEach(id => el(id).replaceChildren()); }
+  function setBadge(text, color) {
+    el('statValidation').replaceChildren(node('span', text, `badge bg-${color}`));
+  }
+  function showError(id, message) {
+    el(id).textContent = message;
+    el(id).classList.remove('d-none');
+  }
+  function showTab(id) {
+    bootstrap.Tab.getOrCreateInstance(el(id)).show();
+  }
+  function showToast(title, message, type = 'primary') {
+    const container = el('toastContainer');
+    if (!container) return;
+    const toastEl = document.createElement('div');
+    toastEl.className = `toast align-items-center text-bg-${type} border-0 shadow mb-2`;
+    toastEl.setAttribute('role', 'alert');
+    toastEl.setAttribute('aria-live', 'assertive');
+    toastEl.setAttribute('aria-atomic', 'true');
+    const flex = node('div', null, 'd-flex');
+    const body = node('div', null, 'toast-body');
+    body.append(node('strong', title), node('br'), node('small', message));
+    const close = node('button', null, 'btn-close btn-close-white me-2 m-auto');
+    close.type = 'button'; close.dataset.bsDismiss = 'toast'; close.setAttribute('aria-label', 'Close');
+    flex.append(body, close); toastEl.append(flex);
+    container.appendChild(toastEl);
+    const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+    toast.show();
+    toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+  }
+  function selection() { return {ont: currentOnt, project: currentProject, version: selectionVersion}; }
+  function isCurrent(snapshot) { return snapshot.version === selectionVersion; }
+  function apiUrl(path, snapshot, extra = {}) {
+    return path + '?' + new URLSearchParams({ont: snapshot.ont, project: snapshot.project, ...extra});
+  }
+  async function fetchJSON(url, options = {}) {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    if (!response.ok || data.error) throw new Error(data.message || data.error || `요청 실패 (${response.status})`);
+    return data;
+  }
+  function syncUrl() {
+    const url = new URL(window.location.href);
+    url.searchParams.set('ont', currentOnt);
+    // Keep an explicit empty project so a bookmarked example stays an example.
+    if (currentOnt === 'mv') url.searchParams.set('project', currentProject);
+    else url.searchParams.delete('project');
+    history.replaceState(null, '', url.pathname + url.search + url.hash);
+    const graphLink = el('graphPulseLink');
+    if (graphLink) {
+      const graphUrl = new URL('/graph', window.location.origin);
+      graphUrl.searchParams.set('ont', currentOnt);
+      graphUrl.searchParams.set('project', currentProject);
+      graphLink.href = graphUrl.pathname + graphUrl.search;
+    }
+  }
+  function resetSelection() {
+    selectionVersion += 1;
+    Object.keys(requestVersions).forEach(key => requestVersions[key] += 1);
+    resetInstanceGraph();
+    if (networkInstance) {
+      networkInstance.destroy();
+      networkInstance = null;
+    }
+    if (el('networkGraphMeta')) el('networkGraphMeta').textContent = '노드 클릭 시 상세 속성 표시';
+    ['statClasses', 'statProps', 'statInstances'].forEach(id => el(id).textContent = '-');
+    clear('classesTableBody', 'propsTableBody', 'instancesList', 'instanceTriplesBody', 'sparqlResultHead', 'sparqlResultBody', 'mediaAssets', 'timelineTableBody', 'projectImportInfo', 'fileCheckSummary');
+    el('instanceDetailPlaceholder').classList.remove('d-none');
+    el('instanceDetailPlaceholder').textContent = '좌측 목록에서 개체를 클릭하면 속성과 연결 관계가 표시됩니다.';
+    el('instanceDetailCard').classList.add('d-none');
+    el('selectedInstanceTitle').textContent = '';
+    if (el('similarityRecommendationBox')) el('similarityRecommendationBox').classList.add('d-none');
+    setBadge('미검증', 'secondary');
+    el('shaclAlert').className = 'alert alert-secondary';
+    el('shaclAlert').textContent = '등록 내용과 파일을 확인하려면 검증 버튼을 누르세요.';
+    el('shaclDetailCard').classList.add('d-none');
+    el('shaclLogText').textContent = '';
+    el('fileCheckSummary').classList.add('d-none');
+    el('sparqlResultCount').textContent = '0';
+    el('sparqlAlert').classList.add('d-none');
+    el('pageAlert').classList.add('d-none');
+    el('projectMediaContent').classList.add('d-none');
+    el('mediaNotice').classList.remove('d-none');
+    el('mediaNotice').className = 'alert alert-info';
+    el('mediaNotice').textContent = currentProject ? '프로젝트 파일을 불러오는 중입니다.' : '가상 예제는 모델과 질의 학습용 데이터입니다. 실제 프로젝트를 선택하면 음원과 이미지를 확인할 수 있습니다.';
+    el('projectTitle').textContent = '';
+    el('projectAssetSummary').textContent = '';
+    el('projectProvenance').textContent = '';
+    el('sparqlInput').value = '';
+    clear('queryPresets');
+  }
+  async function configurePresets() {
+    clear('queryPresets');
+    const hardcoded = queryPresetOptions[currentOnt] || [];
+    hardcoded.forEach(([key, label]) => {
+      const button = node('button', label, 'btn btn-outline-primary');
+      button.type = 'button';
+      button.onclick = () => loadQueryPreset(key);
+      el('queryPresets').appendChild(button);
+    });
+    if (hardcoded.length) {
+      loadQueryPreset(currentOnt === 'mv' && !currentProject ? 'trace_video' : hardcoded[0][0]);
+    }
+    // Domain templates served by the API (all domains without built-in presets, plus extras).
+    const version = selectionVersion;
+    let templates = [];
+    try {
+      const data = await fetchJSON('/api/sparql-templates?ont=' + encodeURIComponent(currentOnt));
+      templates = data[currentOnt] || [];
+    } catch (error) {
+      return;
+    }
+    if (version !== selectionVersion) return;
+    const builtinKeys = new Set(hardcoded.map(([key]) => key));
+    templates.filter(item => !builtinKeys.has(item.key)).forEach(item => {
+      const button = node('button', item.title, 'btn btn-outline-secondary');
+      button.type = 'button';
+      button.onclick = () => { el('sparqlInput').value = item.query; };
+      el('queryPresets').appendChild(button);
+    });
+    if (!hardcoded.length && templates.length) el('sparqlInput').value = templates[0].query;
+  }
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedOnt = params.get('ont');
+    if ([...el('ontSelect').options].some(option => option.value === requestedOnt)) el('ontSelect').value = requestedOnt;
+    else el('ontSelect').value = 'mv';
+    window.SearchableSelect?.enhance(el('ontSelect'), {label: '온톨로지'});
+    window.SearchableSelect?.enhance(el('projectSelect'), {label: '프로젝트'});
+    el('newOntologyForm').addEventListener('submit', createOntology);
+    el('newOntologyModal').addEventListener('shown.bs.modal', () => {
+      el('newOntologyName').focus();
+      refreshOntologyProfiles().catch(() => {});
+    });
+    changeOntology({project: params.has('project') ? params.get('project') : null});
+  });
+
+  function registerOntologyOption(key, profile) {
+    ontologyProfiles[key] = profile;
+    ['ontSelect', 'llmDomainSelect'].forEach(id => {
+      const select = el(id);
+      if (!select) return;
+      let option = [...select.options].find(item => item.value === key);
+      if (!option) {
+        option = node('option');
+        option.value = key;
+        select.appendChild(option);
+      }
+      option.textContent = id === 'ontSelect' ? profile.name || key : key;
+      option.dataset.searchKeywords = profile.name_en || '';
+      window.SearchableSelect?.refresh(select);
+    });
+  }
+
+  async function refreshOntologyProfiles() {
+    const data = await fetchJSON('/api/v1/ontologies');
+    Object.entries(data.ontologies || {}).forEach(([key, profile]) => registerOntologyOption(key, profile));
+  }
+
+  async function createOntology(event) {
+    event.preventDefault();
+    const form = el('newOntologyForm');
+    if (!form.reportValidity() || el('newOntologySave').disabled) return;
+    const button = el('newOntologySave');
+    const payload = Object.fromEntries(new FormData(form).entries());
+    Object.keys(payload).forEach(key => { payload[key] = payload[key].trim(); });
+    ['name_en', 'description_en'].forEach(key => { if (!payload[key]) delete payload[key]; });
+    el('newOntologyError').classList.add('d-none');
+    button.disabled = true;
+    button.textContent = '초안 만드는 중…';
+    try {
+      const data = await fetchJSON('/api/v1/ontologies', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
+      });
+      if (!data.key || !data.profile) throw new Error('생성 결과를 확인할 수 없습니다. 목록을 다시 확인해 주세요.');
+      registerOntologyOption(data.key, data.profile);
+      el('ontSelect').value = data.key;
+      window.SearchableSelect?.refresh(el('ontSelect'));
+      bootstrap.Modal.getOrCreateInstance(el('newOntologyModal')).hide();
+      form.reset();
+      await changeOntology();
+      showToast('온톨로지 초안 생성됨', `${data.profile.name || data.key} · 기본 구조를 만들었습니다. 분야별 개념과 관계를 보강해 주세요.`, 'success');
+    } catch (error) {
+      showError('newOntologyError', error.message);
+    } finally {
+      button.disabled = false;
+      button.textContent = '초안 만들기';
+    }
+  }
+
+  async function changeOntology(options = {}) {
+    const version = ++ontologyVersion;
+    let warning = '';
+    currentOnt = el('ontSelect').value;
+    window.SearchableSelect?.refresh(el('ontSelect'));
+    currentProject = '';
+    resetSelection();
+    el('projectSelect').replaceChildren(node('option', '가상 예제'));
+    el('projectSelect').options[0].value = '';
+    el('projectSelect').disabled = true;
+    window.SearchableSelect?.refresh(el('projectSelect'));
+    el('mediaTabItem').classList.toggle('d-none', currentOnt !== 'mv');
+    if (currentOnt !== 'mv') {
+      syncUrl();
+      showTab('classes-tab');
+      configurePresets();
+      await loadExplorer();
+      return;
+    }
+    try {
+      const data = await fetchJSON('/api/projects?ont=mv');
+      if (version !== ontologyVersion) return;
+      (data.projects || []).forEach(project => {
+        const option = node('option', project.name || project.id);
+        option.value = project.id;
+        el('projectSelect').appendChild(option);
+      });
+      const requested = options.project === undefined || options.project === null ? data.default_project || '' : options.project;
+      const available = [...el('projectSelect').options].some(option => option.value === requested);
+      currentProject = available ? requested : '';
+      el('projectSelect').value = currentProject;
+      if (!available) warning = '지정한 프로젝트를 찾을 수 없어 가상 예제를 표시합니다.';
+    } catch (error) {
+      if (version !== ontologyVersion) return;
+      warning = `프로젝트 목록을 불러오지 못했습니다. ${error.message}`;
+    }
+    if (version !== ontologyVersion) return;
+    resetSelection();
+    if (warning) showError('pageAlert', warning);
+    el('projectSelect').disabled = false;
+    window.SearchableSelect?.refresh(el('projectSelect'));
+    syncUrl();
+    configurePresets();
+    if (currentProject) showTab('media-tab');
+    else showTab('classes-tab');
+    await Promise.allSettled([loadExplorer(), loadProjectDetail()]);
+  }
+
+  async function changeProject() {
+    currentProject = el('projectSelect').value;
+    window.SearchableSelect?.refresh(el('projectSelect'));
+    resetSelection();
+    syncUrl();
+    configurePresets();
+    if (currentProject) showTab('media-tab');
+    await Promise.allSettled([loadExplorer(), loadProjectDetail()]);
+  }
+
+  async function loadExplorer() {
+    const snapshot = selection();
+    const version = ++requestVersions.explorer;
+    try {
+      const data = await fetchJSON(apiUrl('/api/explorer', snapshot));
+      if (!isCurrent(snapshot) || version !== requestVersions.explorer) return;
+      clear('classesTableBody', 'propsTableBody');
+      el('statClasses').textContent = data.classes.length;
+      el('statProps').textContent = data.properties.length;
+      el('statInstances').textContent = data.instances.length;
+      data.classes.forEach(item => {
+        const row = node('tr');
+        const label = node('td'); label.appendChild(node('span', item.label, 'badge badge-class'));
+        const name = node('td'); name.appendChild(node('code', item.name, 'text-primary'));
+        row.append(label, name, node('td', item.comment || '-', 'small text-muted'));
+        el('classesTableBody').appendChild(row);
+      });
+      data.properties.forEach(item => {
+        const row = node('tr');
+        const type = node('td'); type.appendChild(node('span', item.type, 'badge badge-prop'));
+        const domain = node('td'); domain.appendChild(node('code', item.domain));
+        const range = node('td'); range.appendChild(node('code', item.range));
+        row.append(node('td', item.label, 'fw-bold'), type, domain, range);
+        el('propsTableBody').appendChild(row);
+      });
+      clear('builderClassSelect');
+      const defaultOpt = node('option', '모든 개체 (?s ?p ?o)');
+      defaultOpt.value = '';
+      el('builderClassSelect').appendChild(defaultOpt);
+      data.classes.forEach(item => {
+        const opt = node('option', `${item.label} (${item.name})`);
+        opt.value = item.uri;
+        el('builderClassSelect').appendChild(opt);
+      });
+      if (el('crudClassSelect')) {
+        clear('crudClassSelect');
+        data.classes.forEach(item => {
+          const opt = node('option', `${item.label} (${item.name})`);
+          opt.value = item.uri;
+          el('crudClassSelect').appendChild(opt);
+        });
+      }
+      loadNetworkGraph();
+    } catch (error) {
+      if (isCurrent(snapshot) && version === requestVersions.explorer) showError('pageAlert', `온톨로지를 불러오지 못했습니다. ${error.message}`);
+    }
+  }
+
+  async function loadInstanceDetail(uri) {
+    const snapshot = selection();
+    const version = ++requestVersions.instance;
+    const graphVersion = requestVersions.graph;
+    const inference = el('graphInferenceSelect').value;
+    graphSelectedId = String(uri);
+    graphSelectedDetail = null;
+    el('graphCodexSuggestBtn').disabled = true;
+    el('instanceDetailPlaceholder').textContent = '개체 상세를 불러오는 중입니다.';
+    el('instanceDetailPlaceholder').classList.remove('d-none');
+    el('instanceDetailCard').classList.add('d-none');
+    el('similarityRecommendationBox').classList.add('d-none');
+    syncGraphSelection();
+    try {
+      const data = await fetchJSON(apiUrl('/api/instance-detail', snapshot, {uri, inference}));
+      if (!isCurrent(snapshot) || version !== requestVersions.instance || graphVersion !== requestVersions.graph) return;
+      graphSelectedDetail = {scope: snapshot, uri: String(uri), data};
+      el('instanceDetailPlaceholder').classList.add('d-none');
+      el('instanceDetailCard').classList.remove('d-none');
+      el('selectedInstanceTitle').textContent = data.uri || uri;
+      el('selectedInstanceLabel').textContent = data.label || graphNodeLabel(uri);
+      clear('instanceTriplesBody', 'selectedInstanceTypes');
+      (data.types || []).forEach(type => {
+        const label = typeof type === 'string' ? type : type.label || type.uri;
+        const badge = node('span', label, 'badge badge-class');
+        badge.title = typeof type === 'string' ? type : type.uri;
+        el('selectedInstanceTypes').appendChild(badge);
+      });
+      const selected = graphPayload?.nodes.find(item => String(item.id) === String(uri));
+      if (selected?.external) el('selectedInstanceTypes').appendChild(node('span', '외부 참조 · 읽기 전용', 'badge bg-secondary'));
+      const outgoing = data.outgoing || [];
+      const incoming = data.incoming || [];
+      el('selectedInstanceStats').textContent = `나가는 관계 ${outgoing.length}개 · 들어오는 관계 ${incoming.length}개`;
+      const literals = data.literals || data.triples || [];
+      literals.forEach(item => {
+        const row = node('tr');
+        const property = node('td', item.predicate, 'small fw-semibold source-path');
+        property.title = item.predicate_uri || item.predicate;
+        const value = node('td', null, 'source-path small');
+        value.appendChild(node('span', item.object));
+        if (item.language || item.datatype) value.appendChild(node('div', item.language ? `언어: ${item.language}` : `자료형: ${item.datatype}`, 'text-muted graph-uri mt-1'));
+        row.append(property, value);
+        el('instanceTriplesBody').appendChild(row);
+      });
+      if (!literals.length) {
+        const row = node('tr'); const cell = node('td', '기록된 리터럴 속성이 없습니다.', 'small text-muted'); cell.colSpan = 2; row.appendChild(cell); el('instanceTriplesBody').appendChild(row);
+      }
+      renderInstanceRelations(outgoing, 'instanceOutgoingList', false);
+      renderInstanceRelations(incoming, 'instanceIncomingList', true);
+      el('instanceOutgoingCount').textContent = outgoing.length;
+      el('instanceIncomingCount').textContent = incoming.length;
+      if (!relationBusy && selected && !selected.external) el('graphRelationSubject').value = String(uri);
+      updateRelationButtons();
+      el('graphCodexSuggestBtn').disabled = false;
+      loadSimilarityRecommendations(uri);
+    } catch (error) {
+      if (isCurrent(snapshot) && version === requestVersions.instance && graphVersion === requestVersions.graph) {
+        el('instanceDetailPlaceholder').textContent = `개체 상세를 불러오지 못했습니다. ${error.message}`;
+      }
+    }
+  }
+
+  function renderInstanceRelations(relations, containerId, incoming) {
+    const container = el(containerId);
+    container.replaceChildren();
+    if (!relations.length) { container.appendChild(node('div', '기록된 관계가 없습니다.', 'small text-muted')); return; }
+    relations.forEach(relation => {
+      const row = node('div', null, 'graph-relation-row');
+      const targetUri = incoming ? relation.subject : relation.object;
+      const targetLabel = incoming ? relation.subject_label : relation.object_label;
+      const target = node('button', targetLabel || graphNodeLabel(targetUri), 'btn btn-link btn-sm p-0 text-start source-path');
+      target.type = 'button'; target.title = targetUri;
+      target.onclick = () => loadInstanceDetail(targetUri);
+      const relationLine = node('div', null, 'small mb-1');
+      const predicate = node('span', relation.predicate_label || relation.predicate, 'fw-semibold');
+      predicate.title = relation.predicate;
+      relationLine.append(predicate, node('span', incoming ? ' ← ' : ' → '), target);
+      row.append(relationLine, node('div', targetUri, 'graph-uri text-muted'));
+      if (relation.inferred) row.appendChild(node('span', '추론 · 읽기 전용', 'badge bg-warning-subtle text-dark mt-1'));
+      else if (!relation.editable) row.appendChild(node('span', '읽기 전용', 'badge bg-light text-muted mt-1'));
+      else {
+        const edit = node('button', '편집 폼에 선택', 'btn btn-outline-secondary btn-sm mt-2');
+        edit.type = 'button'; edit.onclick = () => prepareGraphRelation(relation);
+        row.appendChild(edit);
+      }
+      container.appendChild(row);
+    });
+  }
+
+  function secondsText(value) {
+    const valueNumber = Number(value);
+    if (value === undefined || value === null || !Number.isFinite(valueNumber)) return '시간 미확인';
+    const milliseconds = Math.round(valueNumber * 1000);
+    const minutes = Math.floor(milliseconds / 60000);
+    const seconds = ((milliseconds % 60000) / 1000).toFixed(3).replace(/\.?0+$/, '').split('.');
+    return `${minutes}:${seconds[0].padStart(2, '0')}${seconds[1] ? '.' + seconds[1] : ''}`;
+  }
+  function previewUrl(value) {
+    if (!value) return '';
+    try {
+      const url = new URL(value, window.location.href);
+      return url.origin === window.location.origin && url.pathname.startsWith('/media/') ? url.pathname + url.search : '';
+    } catch { return ''; }
+  }
+  function addInfo(list, label, value) {
+    if (value === undefined || value === null || value === '') return;
+    list.append(node('dt', label, 'col-sm-3'), node('dd', value, 'col-sm-9 source-path'));
+  }
+
+  async function loadProjectDetail() {
+    const snapshot = selection();
+    if (!snapshot.project || snapshot.ont !== 'mv') return;
+    try {
+      const data = await fetchJSON(apiUrl('/api/project-detail', snapshot));
+      if (!isCurrent(snapshot)) return;
+      el('mediaNotice').classList.add('d-none');
+      el('projectMediaContent').classList.remove('d-none');
+      el('projectTitle').textContent = data.project.name || data.project.id;
+      const assets = data.assets || [];
+      const typeNames = {audio: '음원', image: '이미지', video: '영상'};
+      el('projectAssetSummary').textContent = Object.entries(typeNames).map(([kind, label]) => `${label} ${assets.filter(asset => asset.kind === kind).length}개`).join(' · ');
+      const info = data.import_info || {};
+      el('projectProvenance').textContent = info.provenance_note || '등록된 원본 파일의 출처 정보가 아직 없습니다.';
+      assets.forEach(asset => {
+        const column = node('div', null, 'col-md-6 col-xl-4');
+        const card = node('article', null, 'card asset-card shadow-sm');
+        const url = previewUrl(asset.preview_url);
+        if (url && asset.kind === 'image') {
+          const image = node('img', null, 'media-preview rounded-top');
+          image.src = url; image.alt = asset.label || asset.file_name; image.loading = 'lazy';
+          card.appendChild(image);
+        } else if (url && ['audio', 'video'].includes(asset.kind)) {
+          const media = node(asset.kind, null, asset.kind === 'video' ? 'media-preview rounded-top' : 'w-100 px-3 pt-3');
+          media.controls = true; media.preload = 'metadata'; media.src = url;
+          media.setAttribute('aria-label', asset.label || asset.file_name);
+          card.appendChild(media);
+        } else card.appendChild(node('p', '미리보기를 제공할 수 없는 파일입니다.', 'text-muted p-3 mb-0'));
+        const body = node('div', null, 'card-body');
+        body.append(node('span', typeNames[asset.kind] || '미디어', 'badge bg-secondary mb-2'), node('h6', asset.label || asset.file_name, 'card-title fw-bold source-path'));
+        const metadata = [];
+        if (asset.duration_seconds !== undefined && asset.duration_seconds !== null) metadata.push(`${secondsText(asset.duration_seconds)} (${Number(asset.duration_seconds).toFixed(3)}초)`);
+        if (asset.width && asset.height) metadata.push(`${asset.width} × ${asset.height}px`);
+        body.appendChild(node('p', metadata.join(' · ') || '크기 정보 미확인', 'small text-muted mb-2'));
+        if (url) {
+          const link = node('a', '파일 열기', 'small d-inline-block mb-2');
+          link.href = url; link.target = '_blank'; link.rel = 'noopener';
+          body.appendChild(link);
+        }
+        const details = node('details', null, 'small');
+        details.appendChild(node('summary', '원본 파일과 등록 정보', 'text-muted'));
+        const list = node('dl', null, 'mt-2 mb-0');
+        ['file_name', 'source_file', 'sha256'].forEach((key, index) => {
+          if (asset[key]) list.append(node('dt', ['파일명', '원본 위치', '파일 지문 (SHA-256)'][index]), node('dd', asset[key], 'source-path'));
+        });
+        details.appendChild(list); body.appendChild(details); card.appendChild(body); column.appendChild(card);
+        el('mediaAssets').appendChild(column);
+      });
+      const assetLabels = new Map(assets.map(asset => [asset.id, asset.label || asset.file_name]));
+      (data.timeline || []).forEach(shot => {
+        const row = node('tr');
+        row.append(node('td', shot.order_index), node('td', `${secondsText(shot.start_second)} – ${secondsText(shot.end_second)}`), node('td', assetLabels.get(shot.image_id) || shot.image_id, 'source-path'));
+        el('timelineTableBody').appendChild(row);
+      });
+      if (!(data.timeline || []).length) {
+        const row = node('tr'); const cell = node('td', '등록된 장면이 없습니다.', 'text-muted'); cell.colSpan = 3;
+        row.appendChild(cell); el('timelineTableBody').appendChild(row);
+      }
+      addInfo(el('projectImportInfo'), '원본 폴더', info.source_directory);
+      addInfo(el('projectImportInfo'), '등록 시각', info.imported_at);
+      addInfo(el('projectImportInfo'), '등록 도구', [info.tool, info.tool_version].filter(Boolean).join(' '));
+    } catch (error) {
+      if (!isCurrent(snapshot)) return;
+      el('mediaNotice').className = 'alert alert-danger';
+      el('mediaNotice').textContent = `프로젝트 파일을 불러오지 못했습니다. ${error.message}`;
+    }
+  }
+
+  function renderFileChecks(value) {
+    clear('fileCheckSummary');
+    if (!value) return true;
+    const checks = Array.isArray(value) ? value : value.files || value.checks || value.items || [];
+    if (!checks.length && !Object.keys(value).length) return true;
+    el('fileCheckSummary').classList.remove('d-none');
+    const invalid = checks.filter(check => check.valid === false || check.exists === false || (check.errors || []).length);
+    const valid = value.valid !== false && invalid.length === 0;
+    const summary = node('div', null, `alert alert-${valid ? 'success' : 'warning'} mb-2`);
+    summary.appendChild(node('strong', valid ? `파일 검사 통과 · ${checks.length}개 파일 확인` : `파일 검사에 확인이 필요합니다 · ${invalid.length}개 파일`));
+    if (valid) summary.appendChild(node('div', '파일 존재, 파일 지문과 재생 시간·해상도를 확인했습니다.', 'small mt-1'));
+    el('fileCheckSummary').appendChild(summary);
+    const list = node('ul', null, 'list-group small');
+    checks.forEach(check => {
+      const item = node('li', null, 'list-group-item');
+      const errors = check.errors || [];
+      const parts = [check.file_name || check.filename || check.label || check.path || check.id || '등록 파일'];
+      parts.push(check.exists === false ? '파일 없음' : check.valid === false || errors.length ? '검사 실패' : '정상');
+      if (errors.length) parts.push(errors.join(' · '));
+      item.textContent = parts.join(' — '); list.appendChild(item);
+    });
+    el('fileCheckSummary').appendChild(list);
+    if (!checks.length && value.errors) el('fileCheckSummary').appendChild(node('p', value.errors.join(' · '), 'small text-danger'));
+    return valid;
+  }
+
+  async function runValidation() {
+    const snapshot = selection();
+    const version = ++requestVersions.validation;
+    showTab('shacl-tab');
+    el('shaclAlert').className = 'alert alert-info';
+    el('shaclAlert').textContent = '등록 내용과 파일을 검증하고 있습니다…';
+    setBadge('검증 중', 'info');
+    el('shaclDetailCard').classList.add('d-none');
+    el('fileCheckSummary').classList.add('d-none');
+    try {
+      const data = await fetchJSON(apiUrl('/api/validate', snapshot));
+      if (!isCurrent(snapshot) || version !== requestVersions.validation) return;
+      el('shaclDetailCard').classList.toggle('d-none', !data.report_text);
+      el('shaclLogText').textContent = data.report_text || '';
+      const filesValid = renderFileChecks(data.file_checks);
+      if (data.supported === false) {
+        el('shaclAlert').className = 'alert alert-secondary';
+        setBadge('검증 규칙 없음', 'secondary');
+      } else if (data.conforms === null) {
+        el('shaclAlert').className = 'alert alert-danger';
+        setBadge('검증 오류', 'danger');
+      } else if (data.conforms && filesValid) {
+        el('shaclAlert').className = 'alert alert-success fw-semibold';
+        setBadge('검증 통과', 'success');
+      } else {
+        el('shaclAlert').className = 'alert alert-danger fw-semibold';
+        setBadge('확인 필요', 'danger');
+      }
+      el('shaclAlert').textContent = data.message || (data.conforms ? '등록한 내용이 검증 규칙에 맞습니다.' : '검증 결과를 확인해 주세요.');
+    } catch (error) {
+      if (!isCurrent(snapshot) || version !== requestVersions.validation) return;
+      el('shaclAlert').className = 'alert alert-danger';
+      el('shaclAlert').textContent = error.message;
+      setBadge('검증 오류', 'danger');
+    }
+  }
+
+  function loadQueryPreset(type) {
+    let q = "";
+    if (currentOnt === 'agent') {
+      const prefix = `PREFIX ag: <https://example.org/agent#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+`;
+      if (type === 'list_tasks') {
+        q = prefix + `SELECT ?task ?objective ?agent ?dependsOn WHERE {
+    ?task a ag:Task ;
+          ag:taskObjective ?objective ;
+          ag:assignedTo ?agent .
+    OPTIONAL { ?task ag:dependsOn ?dependsOn }
+} ORDER BY ?task`;
+      } else if (type === 'list_runs') {
+        q = prefix + `SELECT DISTINCT ?run ?task ?status ?agent ?toolVersion WHERE {
+    ?run rdf:type/rdfs:subClassOf* ag:TaskRun ;
+         ag:implementsTask ?task ;
+         ag:status ?status ;
+         prov:wasAssociatedWith ?agent .
+    OPTIONAL { ?run ag:toolVersion ?toolVersion }
+} ORDER BY ?run`;
+      } else if (type === 'list_artifacts') {
+        q = prefix + `SELECT ?artifact ?version ?file ?generatedBy WHERE {
+    ?artifact a ag:Artifact ;
+              ag:version ?version ;
+              ag:artifactUri ?file ;
+              prov:wasGeneratedBy ?generatedBy .
+} ORDER BY ?artifact`;
+      }
+    } else if (currentOnt === 'academic') {
+      const prefix = `PREFIX ex: <https://example.org/ontology/academic#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+`;
+      if (type === 'list_people') {
+        q = prefix + `SELECT ?person ?label ?type WHERE {
+    VALUES ?type { ex:Student ex:Professor }
+    ?person a ?type .
+    OPTIONAL { ?person rdfs:label ?label }
+} ORDER BY ?person`;
+      } else if (type === 'list_courses') {
+        q = prefix + `SELECT ?course ?label ?code ?credits WHERE {
+    ?course a ex:Course .
+    OPTIONAL { ?course rdfs:label ?label }
+    OPTIONAL { ?course ex:courseCode ?code }
+    OPTIONAL { ?course ex:credits ?credits }
+} ORDER BY ?course`;
+      }
+    } else if (type === 'list_assets') {
+      q = `PREFIX mv: <https://example.org/mv#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?assetName ?file ?source ?taskName ?registeredBy WHERE {
+    ?asset rdf:type/rdfs:subClassOf* mv:MediaAsset ;
+           mv:fileUri ?file .
+    OPTIONAL { ?asset rdfs:label ?assetName }
+    OPTIONAL { ?asset prov:wasDerivedFrom ?source }
+    OPTIONAL {
+        ?asset prov:wasGeneratedBy ?task .
+        OPTIONAL { ?task rdfs:label ?taskName }
+        OPTIONAL {
+            ?task prov:wasAssociatedWith ?agent .
+            OPTIONAL { ?agent rdfs:label ?registeredBy }
+        }
+    }
+} ORDER BY ?assetName`;
+    } else if (type === 'trace_video') {
+      q = `PREFIX mv: <https://example.org/mv#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?videoName ?shotOrder ?imageName ?agentName WHERE {
+    ?video a mv:MusicVideo ;
+           rdfs:label ?videoName ;
+           mv:hasTimeline ?timeline .
+    ?timeline mv:hasShot ?shot .
+    ?shot mv:orderIndex ?shotOrder ;
+          mv:usesImage ?image .
+    ?image rdfs:label ?imageName ;
+           prov:wasGeneratedBy ?task .
+    ?task prov:wasAssociatedWith ?agent .
+    ?agent rdfs:label ?agentName .
+} ORDER BY ?shotOrder`;
+    } else if (type === 'list_shots') {
+      q = `PREFIX mv: <https://example.org/mv#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?shotName ?order ?startSec ?endSec WHERE {
+    ?shot a mv:Shot ;
+          rdfs:label ?shotName ;
+          mv:orderIndex ?order ;
+          mv:startSecond ?startSec ;
+          mv:endSecond ?endSec .
+} ORDER BY ?order`;
+    } else if (type === 'list_tasks') {
+      q = `PREFIX mv: <https://example.org/mv#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?taskName ?status ?agentName ?model WHERE {
+    ?task rdf:type/rdfs:subClassOf* mv:GenerationTask ;
+          rdfs:label ?taskName ;
+          mv:status ?status ;
+          prov:wasAssociatedWith ?agent .
+    ?agent rdfs:label ?agentName .
+    OPTIONAL { ?task mv:modelVersion ?model }
+}`;
+    }
+    document.getElementById('sparqlInput').value = q;
+  }
+
+
+
+  async function executeSparql() {
+    const snapshot = selection();
+    const version = ++requestVersions.query;
+    clear('sparqlResultHead', 'sparqlResultBody');
+    el('sparqlResultCount').textContent = '0';
+    el('sparqlAlert').classList.add('d-none');
+    try {
+      const data = await fetchJSON('/api/sparql', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ont: snapshot.ont, project: snapshot.project, query: el('sparqlInput').value})
+      });
+      if (!isCurrent(snapshot) || version !== requestVersions.query) return;
+      el('sparqlResultCount').textContent = data.count;
+      const heading = node('tr');
+      data.vars.forEach(variable => heading.appendChild(node('th', '?' + variable)));
+      el('sparqlResultHead').appendChild(heading);
+      data.rows.forEach(item => {
+        const row = node('tr');
+        data.vars.forEach(variable => row.appendChild(node('td', item[variable] || '', 'source-path')));
+        el('sparqlResultBody').appendChild(row);
+      });
+    } catch (error) {
+      if (isCurrent(snapshot) && version === requestVersions.query) showError('sparqlAlert', error.message);
+    }
+  }
+
+  // ---- Scoped instance graph: filtering, traversal and explicit relation edits ----
+  async function loadNetworkGraph() {
+    const snapshot = selection();
+    const version = ++requestVersions.graph;
+    requestVersions.instance += 1;
+    graphSelectedDetail = null;
+    graphBusy = true;
+    el('graphCodexSuggestBtn').disabled = true;
+    el('networkGraphMeta').textContent = '개체와 관계를 불러오는 중입니다.';
+    el('graphAlert').classList.add('d-none');
+    updateRelationButtons();
+    const query = {include_external: el('graphExternalToggle').checked ? '1' : '0', inference: el('graphInferenceSelect').value, limit: 500};
+    try {
+      const data = await fetchJSON(apiUrl('/api/graph-data', snapshot, query));
+      if (!isCurrent(snapshot) || version !== requestVersions.graph) return;
+      graphPayload = {...data, nodes: data.nodes || [], edges: data.edges || []};
+      graphViewScope = snapshot;
+      graphBusy = false;
+      graphPath = {nodes: [], edges: []};
+      el('graphPathSteps').replaceChildren();
+      el('graphPathStatus').textContent = '현재 검색·필터에 포함된 그래프에서 관계 수가 가장 적은 경로를 찾습니다.';
+      if (!graphPayload.nodes.some(item => String(item.id) === graphSelectedId)) {
+        graphSelectedId = '';
+        graphFocusDepth = 0;
+        el('instanceDetailCard').classList.add('d-none');
+        el('instanceDetailPlaceholder').textContent = '개체를 선택하면 속성과 관계가 표시됩니다.';
+        el('instanceDetailPlaceholder').classList.remove('d-none');
+      }
+      populateGraphControls();
+      renderInstanceGraph();
+      if (graphSelectedId) loadInstanceDetail(graphSelectedId);
+    } catch (error) {
+      if (!isCurrent(snapshot) || version !== requestVersions.graph) return;
+      graphPayload = null;
+      graphViewScope = null;
+      graphBusy = false;
+      renderInstanceGraph();
+      showError('graphAlert', `그래프를 불러오지 못했습니다. ${error.message}`);
+      el('networkGraphMeta').textContent = '불러오기 실패';
+    } finally {
+      if (isCurrent(snapshot) && version === requestVersions.graph) {
+        graphBusy = false;
+        updateRelationButtons();
+      }
+    }
+  }
+
+  function resetInstanceGraph() {
+    graphPayload = null;
+    graphViewScope = null;
+    graphSelectedId = '';
+    graphSelectedDetail = null;
+    graphFocusDepth = 0;
+    graphPath = {nodes: [], edges: []};
+    graphDisplayedIds = new Set();
+    graphBusy = false;
+    ['graphSearchInput', 'graphGroupFilter', 'graphClassFilter', 'graphPredicateFilter'].forEach(id => el(id).value = '');
+    el('graphConnectionFilter').value = 'all';
+    el('graphSummary').textContent = '그래프를 불러오면 표시 범위가 나타납니다.';
+    el('graphTruncatedNotice').classList.add('d-none');
+    el('graphAlert').classList.add('d-none');
+    el('graphRelationResult').classList.add('d-none');
+    ['graphLegend', 'graphPathSteps', 'instanceOutgoingList', 'instanceIncomingList', 'selectedInstanceTypes'].forEach(id => el(id).replaceChildren());
+    ['graphGroupFilter', 'graphClassFilter', 'graphPredicateFilter', 'graphPathFrom', 'graphPathTo', 'graphRelationSubject', 'graphRelationObject', 'graphRelationPredicate'].forEach(id => {
+      const empty = node('option', id.includes('Filter') ? '전체' : '선택하세요'); empty.value = ''; el(id).replaceChildren(empty);
+    });
+    el('graphPathStatus').textContent = '현재 검색·필터에 포함된 그래프에서 관계 수가 가장 적은 경로를 찾습니다.';
+    el('graphFocusMeta').textContent = '';
+    el('graphFocusOneBtn').disabled = true;
+    el('graphFocusTwoBtn').disabled = true;
+    el('graphPathFindBtn').disabled = true;
+    el('graphCodexSuggestBtn').disabled = true;
+    if (graphCodexDraftScope) {
+      graphCodexDraftScope = null;
+      el('llmPromptInput').value = '';
+      el('graphCodexContextNotice').textContent = '선택 범위가 바뀌어 이전 개체의 맥락을 지웠습니다. 개체를 다시 선택해 주세요.';
+      el('graphCodexContextNotice').className = 'alert alert-warning small';
+      bootstrap.Modal.getInstance(el('llmModal'))?.hide();
+    }
+    updateRelationButtons();
+  }
+
+  function fillGraphSelect(id, entries, emptyLabel) {
+    const select = el(id);
+    const previous = select.value;
+    const empty = node('option', emptyLabel); empty.value = '';
+    select.replaceChildren(empty);
+    entries.forEach(entry => {
+      const option = node('option', entry.label || entry.uri || entry.id);
+      option.value = String(entry.uri ?? entry.id); option.title = String(entry.uri ?? entry.id);
+      select.appendChild(option);
+    });
+    select.value = [...select.options].some(option => option.value === previous) ? previous : '';
+  }
+
+  function graphNodeLabel(id) {
+    const item = graphPayload?.nodes.find(candidate => String(candidate.id) === String(id));
+    return item?.label || String(id).split(/[\/#]/).pop() || String(id);
+  }
+
+  function populateGraphControls() {
+    const data = graphPayload;
+    if (!data) return;
+    fillGraphSelect('graphGroupFilter', (data.groups || []).map(group => ({id: group.id, label: group.label})), '전체 그룹');
+    const classes = new Map();
+    data.nodes.forEach(item => (item.types || []).forEach(type => classes.set(type.uri, {uri: type.uri, label: type.label || type.uri})));
+    fillGraphSelect('graphClassFilter', [...classes.values()].sort((a, b) => a.label.localeCompare(b.label)), '전체 클래스');
+    fillGraphSelect('graphPredicateFilter', data.predicates || [], '전체 관계');
+    const endpoints = [...data.nodes].sort((a, b) => String(a.label).localeCompare(String(b.label))).map(item => ({id: item.id, label: `${item.label || graphNodeLabel(item.id)} · ${String(item.id).split(/[\/#]/).pop()}`}));
+    fillGraphSelect('graphPathFrom', endpoints, '출발 개체 선택');
+    fillGraphSelect('graphPathTo', endpoints, '도착 개체 선택');
+    const editable = endpoints.filter(item => !data.nodes.find(candidate => candidate.id === item.id)?.external);
+    fillGraphSelect('graphRelationSubject', editable, '출발 개체 선택');
+    fillGraphSelect('graphRelationObject', editable, '도착 개체 선택');
+    fillGraphSelect('graphRelationPredicate', data.relation_predicates || [], '관계 선택');
+    const notice = el('graphTruncatedNotice');
+    notice.classList.toggle('d-none', !data.truncated);
+    notice.textContent = '일부 개체·관계만 불러왔습니다. 필터·연결 수·경로 탐색은 불러온 범위 기준이며 전체 데이터의 경로 부재를 판단할 수 없습니다.';
+    el('graphPathFindBtn').disabled = !data.nodes.length;
+  }
+
+  function filteredInstanceGraph() {
+    if (!graphPayload) return {nodes: [], edges: []};
+    const search = el('graphSearchInput').value.trim().toLocaleLowerCase();
+    const group = el('graphGroupFilter').value;
+    const typeUri = el('graphClassFilter').value;
+    const predicate = el('graphPredicateFilter').value;
+    let nodes = graphPayload.nodes.filter(item => {
+      const matchesSearch = !search || [item.id, item.label, ...(item.types || []).flatMap(type => [type.uri, type.label])].some(value => String(value || '').toLocaleLowerCase().includes(search));
+      return matchesSearch && (!group || String(item.group) === group) && (!typeUri || (item.types || []).some(type => type.uri === typeUri));
+    });
+    let ids = new Set(nodes.map(item => String(item.id)));
+    let edges = graphPayload.edges.filter(edge => ids.has(String(edge.from)) && ids.has(String(edge.to)) && (!predicate || edge.predicate === predicate));
+    const connection = el('graphConnectionFilter').value;
+    if (connection !== 'all') {
+      const connected = new Set(edges.flatMap(edge => [String(edge.from), String(edge.to)]));
+      nodes = nodes.filter(item => connection === 'connected' ? connected.has(String(item.id)) : !connected.has(String(item.id)));
+      ids = new Set(nodes.map(item => String(item.id)));
+      edges = edges.filter(edge => ids.has(String(edge.from)) && ids.has(String(edge.to)));
+    }
+    return {nodes, edges};
+  }
+
+  function graphFiltersChanged() {
+    graphFocusDepth = 0;
+    graphPath = {nodes: [], edges: []};
+    el('graphPathSteps').replaceChildren();
+    el('graphPathStatus').textContent = '필터가 바뀌었습니다. 현재 범위에서 경로를 다시 찾을 수 있습니다.';
+    renderInstanceGraph();
+  }
+
+  function resetGraphFilters() {
+    ['graphSearchInput', 'graphGroupFilter', 'graphClassFilter', 'graphPredicateFilter'].forEach(id => el(id).value = '');
+    el('graphConnectionFilter').value = 'all';
+    graphFiltersChanged();
+  }
+
+  function graphNeighborhood(graph, origin, depth) {
+    const adjacency = new Map(graph.nodes.map(item => [String(item.id), new Set()]));
+    graph.edges.forEach(edge => { adjacency.get(String(edge.from))?.add(String(edge.to)); adjacency.get(String(edge.to))?.add(String(edge.from)); });
+    const visited = new Set([origin]);
+    let frontier = [origin];
+    for (let hop = 0; hop < depth; hop += 1) {
+      const next = [];
+      frontier.forEach(id => (adjacency.get(id) || []).forEach(other => { if (!visited.has(other)) { visited.add(other); next.push(other); } }));
+      frontier = next;
+    }
+    return visited;
+  }
+
+  function renderInstanceGraph() {
+    const filtered = filteredInstanceGraph();
+    let display = filtered;
+    if (graphFocusDepth && graphSelectedId && filtered.nodes.some(item => String(item.id) === graphSelectedId)) {
+      const ids = graphNeighborhood(filtered, graphSelectedId, graphFocusDepth);
+      display = {nodes: filtered.nodes.filter(item => ids.has(String(item.id))), edges: filtered.edges.filter(edge => ids.has(String(edge.from)) && ids.has(String(edge.to)))};
+    } else if (graphFocusDepth) graphFocusDepth = 0;
+    graphDisplayedIds = new Set(display.nodes.map(item => String(item.id)));
+    const pathNodes = new Set(graphPath.nodes);
+    const pathEdges = new Set(graphPath.edges);
+    const hierarchical = el('graphLayoutSelect').value === 'hierarchical';
+    const nodes = display.nodes.map(item => {
+      const title = node('div');
+      title.append(node('strong', item.label), node('div', item.id), node('div', (item.types || []).map(type => type.label || type.uri).join(', ')), node('div', `들어오는 관계 ${item.incoming_count || 0} · 나가는 관계 ${item.outgoing_count || 0}`));
+      if (item.external) title.appendChild(node('div', '외부 참조 · 읽기 전용'));
+      const background = typeof item.color === 'string' ? item.color : item.color?.background || '#64748b';
+      const emphasized = pathNodes.has(String(item.id));
+      return {...item, label: String(item.label || graphNodeLabel(item.id)), title,
+        color: {background, border: emphasized ? '#ea580c' : item.external ? '#64748b' : background,
+          highlight: {background, border: '#1d4ed8'}, hover: {background, border: '#1d4ed8'}},
+        shape: item.external ? 'diamond' : item.shape || 'dot', borderWidth: emphasized ? 5 : item.external ? 2 : 1,
+        size: Number(item.size || 16) + (emphasized ? 3 : 0)};
+    });
+    const edges = display.edges.map(edge => ({...edge, title: node('div', `${graphNodeLabel(edge.from)} → ${edge.label || edge.predicate} → ${graphNodeLabel(edge.to)}${edge.inferred ? '\n조회용 추론 관계 · 읽기 전용' : ''}`),
+      dashes: Boolean(edge.inferred), arrows: {to: {enabled: true, scaleFactor: .65}}, width: pathEdges.has(String(edge.id)) ? 4 : 1.4,
+      color: {color: pathEdges.has(String(edge.id)) ? '#ea580c' : edge.inferred ? '#d97706' : '#94a3b8', highlight: '#2563eb', hover: '#2563eb'},
+      smooth: hierarchical ? false : {type: 'continuous'}}));
+    const options = {
+      nodes: {shape: 'dot', font: {size: 12, face: 'system-ui, sans-serif'}, shadow: false},
+      edges: {font: {size: 10, align: 'middle', background: '#ffffff', strokeWidth: 0}},
+      layout: {hierarchical: {enabled: hierarchical, direction: 'LR', sortMethod: 'directed', levelSeparation: 170, nodeSpacing: 100}},
+      physics: {enabled: networkPhysicsEnabled, solver: hierarchical ? 'hierarchicalRepulsion' : 'barnesHut', barnesHut: {gravitationalConstant: -2600, centralGravity: .3, springLength: 130, damping: .12}, stabilization: {iterations: 120}},
+      interaction: {hover: true, tooltipDelay: 180, keyboard: {enabled: true, bindToWindow: false}, navigationButtons: true}
+    };
+    const data = {nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges)};
+    if (networkInstance) { networkInstance.setOptions(options); networkInstance.setData(data); }
+    else {
+      networkInstance = new vis.Network(el('networkCanvas'), data, options);
+      networkInstance.on('click', params => {
+        if (graphBusy || !graphViewScope || !isCurrent(graphViewScope)) return;
+        if (params.nodes.length) loadInstanceDetail(params.nodes[0]);
+        else if (params.edges.length) {
+          const edge = graphPayload?.edges.find(item => String(item.id) === String(params.edges[0]));
+          if (edge) {
+            loadInstanceDetail(edge.from);
+            prepareGraphRelation({...edge, subject: edge.from, object: edge.to});
+          }
+        }
+      });
+    }
+    const summary = graphPayload?.summary || {};
+    const connected = new Set(display.edges.flatMap(edge => [String(edge.from), String(edge.to)]));
+    const isolated = display.nodes.filter(item => !connected.has(String(item.id))).length;
+    el('graphSummary').textContent = `범위 전체 ${summary.total_nodes ?? graphPayload?.count_nodes ?? 0}개 개체 · ${summary.total_edges ?? graphPayload?.count_edges ?? 0}개 관계 | 불러옴 ${graphPayload?.nodes.length || 0}개 개체 · ${graphPayload?.edges.length || 0}개 관계 | 표시 ${display.nodes.length}개 개체 · ${display.edges.length}개 관계 · 고립 ${isolated}개 · 추론 ${display.edges.filter(edge => edge.inferred).length}개`;
+    el('networkGraphMeta').textContent = `표시 ${display.nodes.length}개 개체 / ${display.edges.length}개 관계`;
+    el('networkEmpty').classList.toggle('d-none', display.nodes.length > 0 || graphBusy);
+    el('graphFocusMeta').textContent = graphFocusDepth ? `${graphNodeLabel(graphSelectedId)}의 ${graphFocusDepth}단계 연결 · 현재 필터 기준` : '전체 보기 · 현재 필터 기준';
+    renderGraphLegend(display);
+    renderGraphList(display.nodes);
+    syncGraphSelection();
+    updateRelationButtons();
+  }
+
+  function renderGraphLegend(display) {
+    const container = el('graphLegend'); container.replaceChildren();
+    (graphPayload?.groups || []).forEach(group => {
+      const count = display.nodes.filter(item => String(item.group) === String(group.id)).length;
+      const button = node('button', null, 'btn btn-sm btn-outline-secondary'); button.type = 'button';
+      const dot = node('span', null, 'graph-legend-dot'); dot.style.backgroundColor = group.color || '#64748b';
+      button.append(dot, node('span', `${group.label} ${count}`));
+      button.title = '이 그룹으로 필터';
+      button.onclick = () => { el('graphGroupFilter').value = el('graphGroupFilter').value === String(group.id) ? '' : String(group.id); graphFiltersChanged(); };
+      container.appendChild(button);
+    });
+    container.appendChild(node('span', '→ 관계 방향 · 점선: 추론 · 마름모: 외부 참조 · 주황: 찾은 경로', 'small text-muted align-self-center'));
+  }
+
+  function renderGraphList(nodes) {
+    const container = el('instancesList'); container.replaceChildren();
+    el('instanceCountText').textContent = nodes.length;
+    const degrees = new Map(nodes.map(item => [String(item.id), {incoming: 0, outgoing: 0}]));
+    const visible = filteredInstanceGraph().edges.filter(edge => graphDisplayedIds.has(String(edge.from)) && graphDisplayedIds.has(String(edge.to)));
+    visible.forEach(edge => { if (degrees.has(String(edge.from))) degrees.get(String(edge.from)).outgoing += 1; if (degrees.has(String(edge.to))) degrees.get(String(edge.to)).incoming += 1; });
+    [...nodes].sort((a, b) => String(a.label).localeCompare(String(b.label))).forEach(item => {
+      const button = node('button', null, 'list-group-item list-group-item-action'); button.type = 'button'; button.dataset.nodeId = String(item.id); button.title = String(item.id);
+      const heading = node('div', null, 'd-flex justify-content-between align-items-start gap-2');
+      heading.append(node('strong', item.label || graphNodeLabel(item.id), 'small source-path'), node('span', item.external ? '외부 참조' : (item.types || []).map(type => type.label).filter(Boolean).slice(0, 2).join(' · ') || '유형 없음', 'badge badge-inst text-wrap'));
+      const count = degrees.get(String(item.id));
+      button.append(heading, node('div', item.id, 'graph-uri text-muted mt-1'), node('div', `← ${count.incoming} · → ${count.outgoing}`, 'small text-muted mt-1'));
+      button.onclick = () => { loadInstanceDetail(item.id); if (networkInstance) networkInstance.focus(item.id, {scale: 1.15, animation: {duration: 350}}); };
+      container.appendChild(button);
+    });
+    if (!nodes.length) container.appendChild(node('div', '표시할 개체가 없습니다.', 'small text-muted p-3'));
+  }
+
+  function syncGraphSelection() {
+    if (networkInstance && graphDisplayedIds.has(graphSelectedId)) networkInstance.selectNodes([graphSelectedId]);
+    el('instancesList').querySelectorAll('button[data-node-id]').forEach(button => { const selected = button.dataset.nodeId === graphSelectedId; button.classList.toggle('active', selected); button.setAttribute('aria-pressed', String(selected)); });
+    const available = !graphBusy && graphDisplayedIds.has(graphSelectedId);
+    el('graphFocusOneBtn').disabled = !available;
+    el('graphFocusTwoBtn').disabled = !available;
+  }
+
+  function focusGraphNeighborhood(depth) {
+    if (!graphDisplayedIds.has(graphSelectedId) || graphBusy) return;
+    graphFocusDepth = depth;
+    graphPath = {nodes: [], edges: []};
+    el('graphPathSteps').replaceChildren();
+    renderInstanceGraph(); fitNetworkGraph();
+  }
+
+  function restoreGraphOverview() {
+    graphFocusDepth = 0;
+    renderInstanceGraph(); fitNetworkGraph();
+  }
+
+  function clearGraphPath() {
+    graphPath = {nodes: [], edges: []};
+    el('graphPathSteps').replaceChildren();
+    el('graphPathStatus').textContent = '경로 강조를 지웠습니다. 현재 필터에서 다시 탐색할 수 있습니다.';
+    renderInstanceGraph();
+  }
+
+  function findGraphPath() {
+    const from = el('graphPathFrom').value, to = el('graphPathTo').value;
+    const status = el('graphPathStatus');
+    if (graphBusy || !graphPayload) { status.textContent = '그래프를 불러온 뒤 다시 시도해 주세요.'; return; }
+    graphPath = {nodes: [], edges: []}; el('graphPathSteps').replaceChildren();
+    const graph = filteredInstanceGraph();
+    const ids = new Set(graph.nodes.map(item => String(item.id)));
+    const caution = graphPayload.truncated ? ' 일부만 불러온 범위이므로 전체 데이터에 대한 결과가 아닙니다.' : '';
+    if (!from || !to) { status.textContent = '출발과 도착 개체를 선택해 주세요.'; renderInstanceGraph(); return; }
+    if (!ids.has(from) || !ids.has(to)) { status.textContent = '출발 또는 도착 개체가 현재 필터에서 숨겨져 있습니다. 필터를 조정해 주세요.' + caution; renderInstanceGraph(); return; }
+    const both = el('graphPathDirection').value === 'both';
+    const adjacency = new Map([...ids].map(id => [id, []]));
+    graph.edges.forEach(edge => { adjacency.get(String(edge.from)).push({id: String(edge.to), edge}); if (both) adjacency.get(String(edge.to)).push({id: String(edge.from), edge}); });
+    const previous = new Map([[from, null]]); const queue = [from];
+    for (let cursor = 0; cursor < queue.length && !previous.has(to); cursor += 1) {
+      (adjacency.get(queue[cursor]) || []).forEach(next => { if (!previous.has(next.id)) { previous.set(next.id, {id: queue[cursor], edge: next.edge}); queue.push(next.id); } });
+    }
+    if (!previous.has(to)) { status.textContent = `${both ? '연결' : '화살표 방향을 따르는 연결'} 경로를 현재 필터 범위에서 찾지 못했습니다.` + caution; renderInstanceGraph(); return; }
+    const pathNodes = [to], pathEdges = []; const relations = [];
+    let at = to;
+    while (previous.get(at)) { const step = previous.get(at); pathEdges.unshift(String(step.edge.id)); relations.unshift(step.edge); pathNodes.unshift(step.id); at = step.id; }
+    graphPath = {nodes: pathNodes, edges: pathEdges}; graphFocusDepth = 0;
+    status.textContent = `최단 경로: 개체 ${pathNodes.length}개 · 관계 ${pathEdges.length}개 · ${both ? '방향과 무관한 연결' : '화살표 방향'} · 현재 필터 기준.` + caution;
+    pathNodes.forEach((id, index) => {
+      if (index) { const edge = relations[index - 1]; const label = node('span', ` ${String(edge.from) === pathNodes[index - 1] ? '→' : '←'} ${edge.label || edge.predicate} ${String(edge.from) === pathNodes[index - 1] ? '→' : '←'} `, 'text-muted'); label.title = edge.predicate; el('graphPathSteps').appendChild(label); }
+      const button = node('button', graphNodeLabel(id), 'btn btn-link btn-sm p-0 graph-path-step'); button.type = 'button'; button.title = id; button.onclick = () => loadInstanceDetail(id); el('graphPathSteps').appendChild(button);
+    });
+    renderInstanceGraph();
+    if (networkInstance) networkInstance.fit({nodes: pathNodes, animation: {duration: 400}});
+  }
+
+  function selectedGraphRelation() {
+    const subject = el('graphRelationSubject').value;
+    const predicate = el('graphRelationPredicate').value;
+    const object = el('graphRelationObject').value;
+    const edge = graphPayload?.edges.find(item => String(item.from) === subject && item.predicate === predicate && String(item.to) === object);
+    return {subject, predicate, object, edge};
+  }
+
+  function updateRelationButtons() {
+    const relation = selectedGraphRelation();
+    const ready = !graphBusy && !relationBusy && graphPayload && graphViewScope && isCurrent(graphViewScope);
+    const ids = new Set((graphPayload?.nodes || []).filter(item => !item.external).map(item => String(item.id)));
+    const knownPredicate = (graphPayload?.relation_predicates || []).some(item => item.uri === relation.predicate);
+    const valid = Boolean(ready && ids.has(relation.subject) && ids.has(relation.object) && knownPredicate);
+    el('graphRelationAddBtn').disabled = !valid || Boolean(relation.edge && !relation.edge.inferred);
+    el('graphRelationDeleteBtn').disabled = !valid || !relation.edge || relation.edge.inferred || !relation.edge.editable;
+    ['graphRelationSubject', 'graphRelationPredicate', 'graphRelationObject'].forEach(id => el(id).disabled = !ready);
+    el('graphPathFindBtn').disabled = graphBusy || !graphPayload?.nodes.length;
+    if (relationBusy) el('graphRelationHint').textContent = '관계 변경을 검증·저장하는 중입니다.';
+    else if (relation.edge?.inferred) el('graphRelationHint').textContent = '이 관계는 조회용 추론 결과입니다. 직접 삭제할 수 없습니다.';
+    else if (relation.edge && !relation.edge.editable) el('graphRelationHint').textContent = '이 관계는 읽기 전용입니다.';
+    else if (relation.edge) el('graphRelationHint').textContent = '기록된 관계가 선택됐습니다. 삭제 버튼을 눌렀을 때만 변경됩니다.';
+    else el('graphRelationHint').textContent = '두 개체와 관계를 선택한 뒤 추가 버튼을 누르세요. 추론·외부 참조는 읽기 전용입니다.';
+  }
+
+  function prepareGraphRelation(relation) {
+    if (relationBusy || graphBusy || !graphPayload) return;
+    const external = (graphPayload.nodes || []).filter(item => item.external).map(item => String(item.id));
+    if (relation.inferred || !relation.editable || external.includes(String(relation.subject)) || external.includes(String(relation.object))) {
+      el('graphRelationHint').textContent = '선택한 관계는 추론 결과 또는 외부 참조로 읽기 전용입니다.';
+      return;
+    }
+    el('graphRelationSubject').value = relation.subject;
+    el('graphRelationPredicate').value = relation.predicate;
+    el('graphRelationObject').value = relation.object;
+    updateRelationButtons();
+    el('graphRelationResult').classList.add('d-none');
+  }
+
+  async function submitGraphRelation(method) {
+    updateRelationButtons();
+    const button = el(method === 'POST' ? 'graphRelationAddBtn' : 'graphRelationDeleteBtn');
+    if (button.disabled) return;
+    const scope = selection();
+    const relation = selectedGraphRelation();
+    const selected = graphSelectedId;
+    const version = ++relationRequestVersion;
+    relationBusy = true;
+    updateRelationButtons();
+    const result = el('graphRelationResult');
+    result.className = 'alert alert-info small mt-3 graph-status';
+    result.textContent = '자동 스냅샷과 후보 검증을 수행하는 중입니다.';
+    try {
+      const data = await fetchJSON('/api/v1/relations', {method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ont: scope.ont, project: scope.project, subject: relation.subject, predicate: relation.predicate, object: relation.object})});
+      if (!data.success) throw new Error(data.message || data.validation?.report || '관계 변경에 실패했습니다.');
+      const summary = data.message || (data.changed ? '관계를 저장했습니다.' : '데이터 변경이 없습니다.');
+      showToast('관계 변경 결과', `${scope.ont} / ${scope.project || '가상 예제'}: ${summary}`, 'success');
+      if (!isCurrent(scope) || version !== relationRequestVersion) return;
+      result.className = 'alert alert-success small mt-3 graph-status';
+      result.replaceChildren(node('div', summary));
+      if (data.snapshot_id) result.append(node('div', '변경 전 스냅샷:'), node('code', data.snapshot_id, 'graph-uri'));
+      if (data.validation) {
+        result.appendChild(node('div', data.validation.shacl_supported ? `SHACL: ${data.validation.shacl_conforms ? '통과' : '실패'}` : 'SHACL 규칙 없음 · 검증 미지원', 'mt-1'));
+        if (data.validation.report) { const details = node('details', null, 'mt-2'); details.append(node('summary', '검증 보고서'), node('pre', data.validation.report, 'small mb-0 mt-2')); result.appendChild(details); }
+      }
+      await loadNetworkGraph();
+      if (isCurrent(scope) && selected) loadInstanceDetail(selected);
+      if (isCurrent(scope)) { loadExplorer(); loadSnapshotsList(); }
+    } catch (error) {
+      if (isCurrent(scope) && version === relationRequestVersion) {
+        result.className = 'alert alert-danger small mt-3 graph-status';
+        result.textContent = `변경하지 못했습니다. ${error.message}`;
+      } else showToast('관계 변경 오류', `${scope.ont} / ${scope.project || '가상 예제'}: ${error.message}`, 'danger');
+    } finally {
+      if (version === relationRequestVersion) { relationBusy = false; updateRelationButtons(); }
+    }
+  }
+
+  function fitNetworkGraph() {
+    if (networkInstance) {
+      networkInstance.fit({ animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
+    }
+  }
+
+  function toggleNetworkPhysics() {
+    networkPhysicsEnabled = !networkPhysicsEnabled;
+    if (networkInstance) {
+      networkInstance.setOptions({ physics: { enabled: networkPhysicsEnabled } });
+    }
+    const btn = el('togglePhysicsBtn');
+    if (btn) {
+      btn.innerHTML = networkPhysicsEnabled 
+        ? '<i class="bi bi-pause-circle me-1"></i>물리 고정' 
+        : '<i class="bi bi-play-circle me-1"></i>물리 활성화';
+    }
+  }
+
+  // ---- Visual No-Code SPARQL Query Builder ----
+  function buildAndRunSparql() {
+    const classUri = el('builderClassSelect').value;
+    const keyword = (el('builderFilterInput').value || '').trim();
+    const limit = el('builderLimitSelect').value || '50';
+
+    let prefixes = `PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n`;
+    let whereClause = '';
+
+    if (classUri) {
+      whereClause = `  ?s a <${classUri}> ;\n     ?p ?o .\n`;
+    } else {
+      whereClause = `  ?s ?p ?o .\n`;
+    }
+
+    if (keyword) {
+      const escaped = keyword.replace(/"/g, '\\"');
+      whereClause += `  FILTER(CONTAINS(LCASE(STR(?s)), LCASE("${escaped}")) || CONTAINS(LCASE(STR(?p)), LCASE("${escaped}")) || CONTAINS(LCASE(STR(?o)), LCASE("${escaped}")))\n`;
+    }
+
+    const query = `${prefixes}\nSELECT ?s ?p ?o WHERE {\n${whereClause}} LIMIT ${limit}`;
+    el('sparqlInput').value = query;
+    executeSparql();
+  }
+
+  // ---- Multi-format Export ----
+  function downloadExport(format) {
+    const snapshot = selection();
+    const url = apiUrl('/api/v1/export', snapshot, {format: format, download: '1'});
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  // ---- Metrics dashboard ----
+  const dashboardCharts = {};
+  const shaclColors = {PASS: '#16a34a', FAIL: '#dc2626', SKIPPED: '#94a3b8', UNKNOWN: '#cbd5e1'};
+  function drawChart(id, config) {
+    if (dashboardCharts[id]) dashboardCharts[id].destroy();
+    dashboardCharts[id] = new Chart(el(id), config);
+  }
+  async function loadDashboard() {
+    el('dashAlert').classList.add('d-none');
+    try {
+      const data = await fetchJSON('/api/v1/metrics');
+      renderDashboard(data);
+    } catch (error) {
+      showError('dashAlert', `대시보드를 불러오지 못했습니다. ${error.message}`);
+    }
+  }
+  async function runDashboardValidation() {
+    const button = el('dashValidateBtn');
+    button.disabled = true;
+    button.textContent = '전체 도메인 검증 중…';
+    try {
+      await fetchJSON('/api/v1/validate-all');
+      await loadDashboard();
+    } catch (error) {
+      showError('dashAlert', `검증 실행 실패: ${error.message}`);
+    } finally {
+      button.disabled = false;
+      button.textContent = '전체 도메인 SHACL 검증 실행';
+    }
+  }
+  function renderDashboard(data) {
+    const labels = data.domains.map(d => d.key);
+    el('dashTotalTriples').textContent = data.totals.triples;
+    el('dashTotalClasses').textContent = data.totals.classes;
+    el('dashTotalInstances').textContent = data.totals.instances;
+    drawChart('chartTriples', {
+      type: 'doughnut',
+      data: {labels, datasets: [{data: data.domains.map(d => d.triples)}]},
+      options: {plugins: {legend: {position: 'right'}}}
+    });
+    drawChart('chartLatency', {
+      type: 'bar',
+      data: {labels, datasets: [{label: 'SPARQL 응답 (ms)', data: data.domains.map(d => d.sparql_ms), backgroundColor: '#2563eb'}]},
+      options: {scales: {y: {beginAtZero: true}}, plugins: {legend: {display: false}}}
+    });
+    drawChart('chartStructure', {
+      type: 'bar',
+      data: {labels, datasets: [
+        {label: '클래스', data: data.domains.map(d => d.classes), backgroundColor: '#3b82f6'},
+        {label: '속성', data: data.domains.map(d => d.properties), backgroundColor: '#f59e0b'},
+        {label: '인스턴스', data: data.domains.map(d => d.instances), backgroundColor: '#10b981'}
+      ]},
+      options: {scales: {y: {beginAtZero: true}}}
+    });
+    const history = data.history || [];
+    drawChart('chartHistory', {
+      type: 'line',
+      data: {labels: history.map(h => h.at.slice(11)), datasets: [
+        {label: '통과 도메인 수', data: history.map(h => h.passed), borderColor: '#16a34a', tension: 0.2},
+        {label: '실패 도메인 수', data: history.map(h => h.failed), borderColor: '#dc2626', tension: 0.2}
+      ]},
+      options: {scales: {y: {beginAtZero: true, ticks: {precision: 0}}}}
+    });
+    el('dashHistoryEmpty').classList.toggle('d-none', history.length > 0);
+    el('dashDomainBody').replaceChildren(...data.domains.map(d => {
+      const row = node('tr');
+      const status = node('td'); const badge = node('span', d.shacl, 'badge'); badge.style.backgroundColor = shaclColors[d.shacl] || shaclColors.UNKNOWN; status.appendChild(badge);
+      row.append(node('td', d.key, 'fw-bold'), node('td', d.name, 'small'), node('td', d.triples), node('td', d.classes), node('td', d.properties), node('td', d.instances), node('td', d.sparql_ms), status);
+      return row;
+    }));
+  }
+
+  // ---- Instance CRUD (Authoring) ----
+  async function submitCreateInstance() {
+    const classUri = el('crudClassSelect').value;
+    const label = el('crudLabelInput').value.trim();
+    const status = el('crudStatusSelect').value;
+    const alertBox = el('crudModalAlert');
+    const submitBtn = el('crudSubmitBtn');
+
+    if (!classUri || !label) {
+      alertBox.textContent = '클래스와 라벨을 입력해주세요.';
+      alertBox.classList.remove('d-none');
+      return;
+    }
+
+    alertBox.classList.add('d-none');
+    submitBtn.disabled = true;
+    submitBtn.textContent = '등록 및 검증 중...';
+
+    const properties = {};
+    if (status) properties['status'] = status;
+
+    try {
+      const res = await fetchJSON('/api/v1/instances', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: currentOnt,
+          project: currentProject,
+          class_uri: classUri,
+          label: label,
+          properties: properties
+        })
+      });
+
+      if (!res.success) {
+        throw new Error(res.report || 'SHACL 검증 실패');
+      }
+
+      // Close modal
+      const modalEl = el('newInstanceModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      if (modal) modal.hide();
+
+      el('crudLabelInput').value = '';
+
+      // Refresh view
+      await loadExplorer();
+      loadNetworkGraph();
+      alert(`[성공] 신규 개체가 등록되었습니다!\nURI: ${res.instance_uri}\nPySHACL 검증: 통과`);
+    } catch (err) {
+      alertBox.textContent = `등록 실패: ${err.message}`;
+      alertBox.classList.remove('d-none');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="bi bi-shield-check me-1"></i>등록 및 SHACL 검증';
+    }
+  }
+
+  // ---- AI Natural Language Query (GraphRAG) ----
+  function setNlQuestion(text) {
+    el('nlQuestionInput').value = text;
+    executeNlQuery();
+  }
+
+  async function executeNlQuery() {
+    const question = el('nlQuestionInput').value.trim();
+    if (!question) return;
+    const btn = el('nlQueryBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>질의 중...';
+
+    try {
+      const data = await fetchJSON('/api/v1/nl-query', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: currentOnt,
+          project: currentProject,
+          question: question
+        })
+      });
+
+      el('nlResultContainer').classList.remove('d-none');
+      el('nlAnswerText').textContent = data.answer;
+      el('nlResultMeta').textContent = `결과 ${data.count}건 도출`;
+      el('nlSparqlCode').textContent = data.sparql;
+      el('nlRowCount').textContent = data.count;
+
+      // Render table
+      clear('nlTableHead', 'nlTableBody');
+      const headRow = node('tr');
+      data.vars.forEach(v => headRow.appendChild(node('th', '?' + v)));
+      el('nlTableHead').appendChild(headRow);
+
+      data.rows.forEach(r => {
+        const row = node('tr');
+        data.vars.forEach(v => row.appendChild(node('td', r[v] || '', 'source-path')));
+        el('nlTableBody').appendChild(row);
+      });
+    } catch (err) {
+      alert(`자연어 질의 실패: ${err.message}`);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-send me-1"></i>질문하기';
+    }
+  }
+
+  function copyNlSparql() {
+    const code = el('nlSparqlCode').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      alert('SPARQL 질의문이 클립보드에 복사되었습니다.');
+    });
+  }
+
+  // ---- Multi-Agent Workflow Simulator ----
+  let simCurrentStep = 0;
+  let simSessionId = 'sim_' + Date.now().toString(36);
+  let simNetwork = null;
+  let simNodes = new vis.DataSet([]);
+  let simEdges = new vis.DataSet([]);
+
+  function initSimNetwork() {
+    if (simNetwork) return;
+    const container = el('simNetworkCanvas');
+    if (!container) return;
+    simNetwork = new vis.Network(container, {nodes: simNodes, edges: simEdges}, {
+      nodes: { font: { size: 11 }, shadow: true },
+      edges: { arrows: 'to', font: { size: 9, align: 'middle' }, color: '#94a3b8' },
+      physics: { barnesHut: { springLength: 80, gravitationalConstant: -1800 } }
+    });
+  }
+
+  async function runSimulationStep() {
+    if (simCurrentStep >= 6) {
+      alert('시뮬레이션이 이미 완료되었습니다. [초기화] 후 다시 실행하세요.');
+      return;
+    }
+    simCurrentStep++;
+    initSimNetwork();
+
+    try {
+      const data = await fetchJSON('/api/v1/simulate', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({step: simCurrentStep, session_id: simSessionId})
+      });
+
+      // Update badges
+      for (let i = 1; i <= 6; i++) {
+        const b = el(`simBadge${i}`);
+        if (i < simCurrentStep) {
+          b.className = 'p-2 border rounded bg-success-subtle text-success';
+        } else if (i === simCurrentStep) {
+          b.className = 'p-2 border border-2 border-primary rounded bg-primary-subtle text-primary fw-bold';
+        } else {
+          b.className = 'p-2 border rounded bg-light text-muted';
+        }
+      }
+
+      el('simPhaseBadge').textContent = `Step ${data.step}/6: ${data.phase}`;
+      el('simAgentName').textContent = data.agent;
+      el('simTaskName').textContent = data.task;
+      el('simOutputAsset').textContent = data.output_asset;
+      el('simDetails').textContent = data.details;
+
+      const logLines = data.triples.map(t => `<${t.subject.split('#').pop()}> <${t.predicate.split('#').pop()}> "${t.object.split('#').pop()}" .`).join('\n');
+      el('simTriplesLog').textContent = logLines;
+
+      // Add to Vis.js Network
+      data.new_nodes.forEach(n => {
+        if (!simNodes.get(n.id)) simNodes.add(n);
+      });
+      data.new_edges.forEach(e => simEdges.add(e));
+      el('simCanvasMeta').textContent = `생성된 노드 ${simNodes.length}개 · 엣지 ${simEdges.length}개`;
+      simNetwork.fit({animation: {duration: 400}});
+
+      if (data.is_completed) {
+        el('simStepBtn').disabled = true;
+        el('simAutoBtn').disabled = true;
+      }
+    } catch (err) {
+      alert(`시뮬레이션 실패: ${err.message}`);
+    }
+  }
+
+  async function runSimulationAuto() {
+    resetSimulation();
+    for (let s = 1; s <= 6; s++) {
+      await runSimulationStep();
+      await new Promise(r => setTimeout(r, 1200));
+    }
+  }
+
+  function resetSimulation() {
+    simCurrentStep = 0;
+    simSessionId = 'sim_' + Date.now().toString(36);
+    simNodes.clear();
+    simEdges.clear();
+    for (let i = 1; i <= 6; i++) {
+      el(`simBadge${i}`).className = 'p-2 border rounded bg-light';
+    }
+    el('simPhaseBadge').textContent = '대기 중';
+    el('simAgentName').textContent = '-';
+    el('simTaskName').textContent = '-';
+    el('simOutputAsset').textContent = '-';
+    el('simDetails').textContent = '-';
+    el('simTriplesLog').textContent = '시뮬레이션을 시작하면 실시간으로 트리플이 추가됩니다.';
+    el('simCanvasMeta').textContent = '생성된 노드 0개';
+    el('simStepBtn').disabled = false;
+    el('simAutoBtn').disabled = false;
+  }
+
+  // ---- AI Similarity Recommendations (Option 2) ----
+  async function loadSimilarityRecommendations(uri) {
+    const box = el('similarityRecommendationBox');
+    const list = el('similarityRecommendationsList');
+    const status = el('simRecStatus');
+    if (!box || !list) return;
+
+    box.classList.remove('d-none');
+    list.innerHTML = '<div class="text-muted small p-2"><span class="spinner-border spinner-border-sm me-1"></span>유사 개체 분석 중...</div>';
+    if (status) status.textContent = '';
+
+    try {
+      const data = await fetchJSON(apiUrl('/api/v1/recommend-similar', selection(), {uri: uri}));
+      list.innerHTML = '';
+      if (!data.recommendations || data.recommendations.length === 0) {
+        list.innerHTML = '<div class="text-muted small p-2">유사도 조건을 만족하는 다른 개체가 없습니다.</div>';
+        return;
+      }
+      if (status) status.textContent = `${data.count}개 추천`;
+
+      data.recommendations.forEach(item => {
+        const pct = Math.round(item.similarity * 100);
+        const card = node('div', null, 'p-2 border rounded mb-2 bg-light');
+        const header = node('div', null, 'd-flex justify-content-between align-items-center mb-1');
+        const title = node('strong', item.label || item.name, 'small text-primary');
+        const badge = node('span', `${pct}% 일치`, `badge bg-${pct > 70 ? 'success' : pct > 40 ? 'primary' : 'secondary'}`);
+        header.append(title, badge);
+
+        const feats = node('div', (item.shared_features || []).join(' · '), 'text-muted small mb-1');
+        feats.style.fontSize = '0.78rem';
+
+        const btn = node('button', '이 개체로 이동 및 상세 조회', 'btn btn-outline-primary btn-sm py-0');
+        btn.style.fontSize = '0.75rem';
+        btn.onclick = () => loadInstanceDetail(item.uri);
+
+        card.append(header, feats, btn);
+        list.appendChild(card);
+      });
+    } catch (e) {
+      list.innerHTML = `<div class="text-muted small p-2">추천 조회 불가 (${e.message})</div>`;
+    }
+  }
+
+  // ---- Fuseki Sync (Option 1) ----
+  async function syncToFuseki(allDomains) {
+    const btn = el('fusekiDropdownBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Fuseki 동기화 중...';
+    try {
+      const data = await fetchJSON('/api/v1/fuseki/sync', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: allDomains ? 'all' : currentOnt,
+          project: currentProject
+        })
+      });
+      if (data.connected === false || data.success === false) {
+        alert(`[Fuseki 동기화 알림]\n${data.message}`);
+      } else {
+        const count = data.triples_synced !== undefined ? data.triples_synced : data.total_triples_synced;
+        alert(`[Fuseki 동기화 성공]\n총 ${count}개 트리플이 Fuseki triplestore(:3030)에 동기화되었습니다.`);
+      }
+    } catch (err) {
+      alert(`Fuseki 동기화 실패: ${err.message}`);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-cloud-arrow-up me-1"></i>Fuseki 동기화';
+    }
+  }
+
+  async function checkFusekiStatus() {
+    try {
+      const data = await fetchJSON('/api/v1/fuseki/status');
+      alert(`[Apache Jena Fuseki 연결 점검]\n상태: ${data.message}\n엔드포인트: ${data.endpoint}\n지연시간: ${data.ping_ms}ms`);
+    } catch (err) {
+      alert(`Fuseki 점검 실패: ${err.message}`);
+    }
+  }
+
+  // ---- Audit Certificate (Option 3) ----
+  function openAuditCertificate() {
+    const snapshot = selection();
+    const url = apiUrl('/api/v1/audit-report', snapshot);
+    window.open(url, '_blank');
+  }
+
+  // ---- Cross-Domain Alignment (Option 4) ----
+  async function runCrossDomainAlignment() {
+    const btn = el('bridgeAlignBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>융합 추론 중...';
+    try {
+      const data = await fetchJSON('/api/v1/cross-domain/align');
+      el('bridgeTotalTriples').textContent = `${data.total_fused_triples}개`;
+      el('bridgeInferredCount').textContent = `${data.inferred_count}개`;
+      el('bridgeResultBadge').textContent = `추론 완료 (${data.inferred_count}개 생성)`;
+      el('bridgeResultBadge').className = 'badge bg-success';
+
+      const tbody = el('bridgeTableBody');
+      tbody.innerHTML = '';
+      if (data.inferred_triples.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">추론된 새로운 관계가 없습니다.</td></tr>';
+        return;
+      }
+      data.inferred_triples.forEach(item => {
+        const row = node('tr');
+        row.append(
+          node('td', item.rule, 'fw-semibold text-primary small'),
+          node('td', item.subject, 'source-path small'),
+          node('td', item.predicate, 'badge bg-info-subtle text-info-emphasis'),
+          node('td', item.object, 'source-path small'),
+          node('td', item.description, 'small text-muted')
+        );
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      alert(`크로스 도메인 추론 실패: ${err.message}`);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-play-circle me-1"></i>교차 추론 실행 (Run Reasoning)';
+    }
+  }
+
+  // ---- Server-Sent Events (SSE) Bus (v3.0) ----
+  function initSSE() {
+    if (!window.EventSource) return;
+    const evtSource = new EventSource('/api/v1/stream/events');
+    const badge = el('sseBadge');
+    
+    evtSource.onopen = () => {
+      if (badge) {
+        badge.className = 'badge bg-success-subtle text-success border border-success-subtle ms-2 d-inline-flex align-items-center';
+        badge.innerHTML = '<span class="spinner-grow spinner-grow-sm me-1 text-success" style="width: 8px; height: 8px;"></span>SSE Live';
+      }
+    };
+    
+    evtSource.onerror = () => {
+      if (badge) {
+        badge.className = 'badge bg-secondary-subtle text-secondary border border-secondary-subtle ms-2 d-inline-flex align-items-center';
+        badge.innerHTML = '<i class="bi bi-circle me-1"></i>SSE Standby';
+      }
+    };
+
+    evtSource.addEventListener('SIMULATION_STEP_EXECUTED', (e) => {
+      const data = JSON.parse(e.data);
+      console.log('[SSE] Simulation step:', data);
+    });
+
+    evtSource.addEventListener('CODEX_JOB_FINISHED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('Codex 처리 완료', `${data.job_id}: ${data.status}`, 'info');
+      if (data.job_id === codexJobId) pollCodexJob();
+      if (data.ont === currentOnt) { loadExplorer(); loadNetworkGraph(); }
+    });
+
+    evtSource.addEventListener('INSTANCE_CREATED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('개체 등록 감지', `도메인 [${data.domain}]에 새 개체 '${data.label}' 등록됨`, 'primary');
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+    });
+
+    evtSource.addEventListener('INSTANCE_DELETED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('개체 삭제 감지', `개체 '${data.label || data.uri}'가 삭제되었습니다.`, 'secondary');
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+    });
+
+    evtSource.addEventListener('GRAPH_SNAPSHOT_CREATED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('스냅샷 생성 알림', `스냅샷 [${data.snapshot_id}] 생성 완료 (${data.triple_count}개 트리플)`, 'warning');
+      loadSnapshotsList();
+    });
+
+    evtSource.addEventListener('GRAPH_ROLLBACK_EXECUTED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('스냅샷 롤백 알림', `스냅샷 [${data.snapshot_id}]으로 원자적 롤백 완료`, 'danger');
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+      loadSnapshotsList();
+    });
+
+    evtSource.addEventListener('OWL_REASONING_EXPANDED', (e) => {
+      const data = JSON.parse(e.data);
+      showToast('OWL-RL 추론 확장 알림', `도메인 [${data.domain}]에 ${data.inferred_count}개의 추론 트리플을 미리보기로 계산`, 'success');
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+    });
+  }
+
+  // ---- Graph Analytics & Bottleneck Diagnosis (v3.0) ----
+  async function loadGraphAnalytics() {
+    try {
+      const snapshot = selection();
+      const data = await fetchJSON(apiUrl('/api/v1/analytics/centrality', snapshot));
+      
+      el('gaHealthScore').textContent = `${data.health_score}점`;
+      el('gaHealthScore').className = data.health_score >= 80 ? 'h3 mb-0 fw-bold text-success' : 'h3 mb-0 fw-bold text-warning';
+      el('gaDensity').textContent = data.density;
+      el('gaIsolated').textContent = `${data.isolated_nodes_count}개`;
+
+      // Warnings
+      const warnBox = el('gaWarningsBox');
+      if (data.warnings && data.warnings.length > 0) {
+        warnBox.className = 'alert alert-warning py-2 mb-3 small';
+        warnBox.innerHTML = '<strong><i class="bi bi-exclamation-triangle me-1"></i>그래프 위상 진단 경고:</strong><ul class="mb-0 ps-3">' +
+          data.warnings.map(w => `<li>${w}</li>`).join('') + '</ul>';
+      } else {
+        warnBox.className = 'alert alert-success py-2 mb-3 small';
+        warnBox.innerHTML = '<i class="bi bi-check-circle me-1"></i>모든 워크플로우 노드가 단일 장애점 없이 안정적으로 연결되어 있습니다.';
+      }
+
+      // Top Hubs Table
+      const hubsTbody = el('gaHubsTableBody');
+      hubsTbody.innerHTML = '';
+      if (!data.top_hubs || data.top_hubs.length === 0) {
+        hubsTbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">허브 개체 없음</td></tr>';
+      } else {
+        data.top_hubs.forEach(h => {
+          const row = node('tr');
+          row.append(
+            node('td', h.label, 'fw-semibold source-path small'),
+            node('td', h.type, 'badge bg-light text-dark border small'),
+            node('td', `${(h.pagerank * 100).toFixed(2)}%`, 'font-monospace small text-primary fw-bold'),
+            node('td', `${h.total_degree} (In:${h.in_degree}/Out:${h.out_degree})`, 'small text-muted')
+          );
+          hubsTbody.appendChild(row);
+        });
+      }
+
+      // Top Bottlenecks Table
+      const bTbody = el('gaBottlenecksTableBody');
+      bTbody.innerHTML = '';
+      if (!data.top_bottlenecks || data.top_bottlenecks.length === 0) {
+        bTbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">병목 개체 없음</td></tr>';
+      } else {
+        data.top_bottlenecks.forEach(b => {
+          const row = node('tr');
+          const riskBadge = b.bottleneck_score > 25.0 ? 'badge bg-danger' : (b.bottleneck_score > 10.0 ? 'badge bg-warning text-dark' : 'badge bg-secondary');
+          const riskText = b.bottleneck_score > 25.0 ? '고위험 (SPOF)' : (b.bottleneck_score > 10.0 ? '중간 위험' : '정상');
+          row.append(
+            node('td', b.label, 'fw-semibold source-path small'),
+            node('td', b.type, 'badge bg-light text-dark border small'),
+            node('td', b.bottleneck_score.toFixed(1), 'font-monospace small fw-bold'),
+            node('td', riskText, riskBadge)
+          );
+          bTbody.appendChild(row);
+        });
+      }
+    } catch (err) {
+      console.error('그래프 분석 로드 실패:', err);
+    }
+  }
+
+  // Durable Codex jobs: reload polls the saved job rather than resubmitting.
+  async function loadCodexJobs() {
+    try {
+      const data = await fetchJSON(apiUrl('/api/v1/codex/jobs', selection()));
+      const selector = el('codexJobSelect'); selector.replaceChildren(node('option', '저장한 작업 선택'));
+      selector.firstChild.value = '';
+      for (const job of data.jobs) {
+        const option = node('option', `${job.request.task_name} · ${job.status} · ${job.job_id.slice(-8)}`);
+        option.value = job.job_id; selector.append(option);
+      }
+      selector.value = codexJobId;
+    } catch (err) { showToast('작업 목록 오류', err.message, 'danger'); }
+  }
+  function selectSavedCodexJob(jobId) {
+    clearTimeout(codexPollTimer); codexJobId = jobId;
+    if (jobId) { localStorage.setItem('ontology_codex_job', jobId); pollCodexJob(); }
+    else {
+      localStorage.removeItem('ontology_codex_job');
+      el('codexJobStatus').classList.add('d-none'); el('llmResultArea').classList.add('d-none');
+      el('codexRunBtn').classList.add('d-none'); el('llmSubmitBtn').disabled = false;
+      el('llmSubmitBtn').textContent = 'Codex에 요청하기'; el('codexJobSelect').value = '';
+    }
+  }
+  async function refreshCodexStatus() {
+    try {
+      const status = await fetchJSON('/api/v1/codex/status');
+      el('codexStatus').textContent = status.message;
+    } catch (err) { el('codexStatus').textContent = err.message; }
+  }
+  function displayCodexJob(job) {
+    const labels = {awaiting_codex: 'Codex 처리 대기', running: 'Codex 처리 중', completed: '완료', failed: '실행 실패', validation_failed: '결과 생성됨 · 그래프 저장 실패'};
+    el('codexJobStatus').classList.remove('d-none');
+    el('codexJobStatus').textContent = `${labels[job.status] || job.status} · ${job.job_id}${job.error ? '\n' + job.error : ''}`;
+    el('codexRunBtn').classList.toggle('d-none', job.status !== 'awaiting_codex');
+    const busy = ['awaiting_codex', 'running'].includes(job.status);
+    el('llmSubmitBtn').disabled = busy;
+    el('llmSubmitBtn').textContent = busy ? '저장한 요청 처리 중' : 'Codex에 요청하기';
+    el('llmResultArea').classList.toggle('d-none', !job.result);
+    el('llmTriplesBody').replaceChildren();
+    if (job.result) {
+      el('llmOutputText').textContent = job.result.generated_content;
+      for (const t of job.result.triples || []) {
+        const row = node('tr');
+        row.append(node('td', t.subject, 'source-path small'), node('td', t.predicate, 'source-path small'), node('td', t.object, 'source-path small'));
+        el('llmTriplesBody').append(row);
+      }
+      const saved = job.result.persisted.saved ? '그래프에 저장됨' : '작업 폴더에 결과 보관';
+      el('codexJobStatus').textContent += ` · ${saved}`;
+    }
+  }
+  async function pollCodexJob() {
+    clearTimeout(codexPollTimer);
+    if (!codexJobId) return;
+    try {
+      const job = await fetchJSON('/api/v1/codex/jobs/' + encodeURIComponent(codexJobId));
+      displayCodexJob(job);
+      if (['running', 'awaiting_codex'].includes(job.status)) codexPollTimer = setTimeout(pollCodexJob, 2000);
+    } catch (err) {
+      el('codexJobStatus').classList.remove('d-none');
+      el('codexJobStatus').textContent = err.message;
+      el('llmSubmitBtn').disabled = false;
+    }
+  }
+  async function submitLlmGeneration() {
+    const btn = el('llmSubmitBtn'); btn.disabled = true;
+    try {
+      const domain = el('llmDomainSelect').value;
+      const job = await fetchJSON('/api/v1/codex/jobs', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ont: domain, project: domain === currentOnt ? currentProject : null,
+          agent_name: el('llmAgentNameInput').value.trim() || 'Codex', task_name: el('llmTaskNameInput').value.trim(),
+          prompt: el('llmPromptInput').value.trim(), save_to_graph: el('codexSaveGraph').checked})
+      });
+      codexJobId = job.job_id; localStorage.setItem('ontology_codex_job', codexJobId);
+      displayCodexJob(job); loadCodexJobs(); pollCodexJob();
+    } catch (err) { btn.disabled = false; showToast('Codex 요청 오류', err.message, 'danger'); }
+  }
+  async function runSelectedCodexJob() {
+    try { await fetchJSON(`/api/v1/codex/jobs/${encodeURIComponent(codexJobId)}/run`, {method: 'POST'}); refreshCodexStatus(); pollCodexJob(); }
+    catch (err) { showToast('Codex 실행 오류', err.message, 'danger'); }
+  }
+
+  // ---- OWL 2 RL Semantic Deductive Reasoning (v3.1) ----
+  async function runOwlReasoning() {
+    const btn = el('owlReasonBtn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>추론 확장 중...';
+    }
+    try {
+      const data = await fetchJSON('/api/v1/reasoning/expand', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: currentOnt,
+          project: currentProject,
+          semantics: 'owlrl'
+        })
+      });
+      showToast('OWL 2 RL 추론 성공', `원본을 변경하지 않고 총 ${data.inferred_count}개의 새로운 지식 트리플이 추론되었습니다. (기존: ${data.original_count}개 → 확장: ${data.expanded_count}개)`, 'success');
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+      if (typeof loadDashboard === 'function') loadDashboard();
+    } catch (err) {
+      alert(`OWL 추론 확장 실패: ${err.message}`);
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-magic me-1"></i>OWL-RL 추론 확장';
+      }
+    }
+  }
+
+  // ---- Graph Versioning & Snapshot Management (v3.1) ----
+  async function loadSnapshotsList() {
+    try {
+      const data = await fetchJSON(apiUrl('/api/v1/snapshots', selection()));
+      const snapshots = data.snapshots || [];
+      const tbody = el('snapshotsTableBody');
+      tbody.innerHTML = '';
+
+      el('snapTotalCount').textContent = `${snapshots.length}개`;
+      el('snapDomainName').textContent = currentOnt;
+      el('snapCountBadge').textContent = `총 ${snapshots.length}개 보관`;
+      el('snapCountBadge').className = snapshots.length > 0 ? 'badge bg-success' : 'badge bg-secondary';
+
+      if (snapshots.length === 0) {
+        el('snapLatestTime').textContent = '-';
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-4">보관된 스냅샷이 없습니다. 우측 상단 [현재 상태 스냅샷 생성]을 클릭하세요.</td></tr>';
+        return;
+      }
+
+      el('snapLatestTime').textContent = snapshots[0].created_at ? snapshots[0].created_at.replace('T', ' ').substring(0, 19) : '-';
+
+      snapshots.forEach(s => {
+        const row = node('tr');
+        const dtStr = s.created_at ? s.created_at.replace('T', ' ').substring(0, 19) : '-';
+        const actionsTd = node('td', null, 'text-end');
+
+        const diffBtn = node('button', '차분 (Diff)', 'btn btn-outline-primary btn-sm me-1');
+        diffBtn.type = 'button';
+        diffBtn.disabled = s.source_kind !== 'data_only';
+        diffBtn.onclick = () => openSnapshotDiff(s.snapshot_id);
+
+        const rollbackBtn = node('button', '롤백 (Rollback)', 'btn btn-outline-danger btn-sm');
+        rollbackBtn.type = 'button';
+        rollbackBtn.disabled = s.source_kind !== 'data_only';
+        rollbackBtn.onclick = () => rollbackSnapshot(s.snapshot_id);
+
+        actionsTd.append(diffBtn, rollbackBtn);
+
+        row.append(
+          node('td', s.snapshot_id, 'font-monospace small fw-bold text-primary'),
+          node('td', s.description || '-', 'small text-dark'),
+          node('td', s.domain, 'badge bg-light text-secondary border small mt-2'),
+          node('td', `${s.triple_count}개`, 'font-monospace small fw-semibold'),
+          node('td', dtStr, 'small text-muted font-monospace'),
+          actionsTd
+        );
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      console.error('스냅샷 목록 로드 실패:', err);
+    }
+  }
+
+  async function promptCreateSnapshot() {
+    const desc = prompt(`[${currentOnt}] 온톨로지 상태를 스냅샷으로 저장합니다.\n스냅샷 커밋 메시지를 입력하세요:`, '정기 온톨로지 상태 보관');
+    if (!desc) return;
+
+    try {
+      const data = await fetchJSON('/api/v1/snapshots/create', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: currentOnt,
+          project: currentProject,
+          description: desc
+        })
+      });
+      showToast('스냅샷 생성 성공', `새로운 검증 가능한 스냅샷 [${data.snapshot.snapshot_id}]이 저장되었습니다.`, 'success');
+      loadSnapshotsList();
+    } catch (err) {
+      alert(`스냅샷 생성 실패: ${err.message}`);
+    }
+  }
+
+  async function rollbackSnapshot(snapshotId) {
+    if (!confirm(`[주의] 온톨로지 지식 그래프를 스냅샷 [${snapshotId}] 시점으로 롤백하시겠습니까?\n현재 그래프의 변경사항이 스냅샷 저장 상태로 원자적 복원됩니다.`)) {
+      return;
+    }
+
+    try {
+      const data = await fetchJSON('/api/v1/snapshots/rollback', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ont: currentOnt,
+          project: currentProject,
+          snapshot_id: snapshotId
+        })
+      });
+      showToast('롤백 복원 완료', `스냅샷 [${snapshotId}] 시점으로 롤백되었습니다. (${data.triples_restored} 트리플 복원)`, 'warning');
+      loadSnapshotsList();
+      if (typeof loadNetworkGraph === 'function') loadNetworkGraph();
+      if (typeof loadDashboard === 'function') loadDashboard();
+    } catch (err) {
+      alert(`스냅샷 롤백 실패: ${err.message}`);
+    }
+  }
+
+  async function openSnapshotDiff(snapshotId) {
+    try {
+      const data = await fetchJSON(`/api/v1/snapshots/diff?snapshot_a=${snapshotId}&ont=${currentOnt}&project=${currentProject}`);
+      const diff = data.diff || { added: [], removed: [], added_count: 0, removed_count: 0, unchanged_count: 0 };
+
+      el('diffSnapA').textContent = data.snapshot_a;
+      el('diffSnapB').textContent = data.snapshot_b === 'current' ? '현재 그래프 (Current)' : data.snapshot_b;
+      el('diffAddedBadge').textContent = `+${diff.added_count} 추가`;
+      el('diffRemovedBadge').textContent = `-${diff.removed_count} 삭제`;
+      el('diffUnchangedBadge').textContent = `${diff.unchanged_count} 일치`;
+
+      const addedTbody = el('diffAddedTableBody');
+      addedTbody.innerHTML = '';
+      if (!diff.added || diff.added.length === 0) {
+        addedTbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted small py-2">추가된 트리플이 없습니다.</td></tr>';
+      } else {
+        diff.added.forEach(t => {
+          const row = node('tr');
+          row.append(
+            node('td', t.subject.split('#').pop(), 'source-path small text-success'),
+            node('td', t.predicate, 'badge bg-success-subtle text-success border small'),
+            node('td', t.object.split('#').pop(), 'source-path small text-success')
+          );
+          addedTbody.appendChild(row);
+        });
+      }
+
+      const removedTbody = el('diffRemovedTableBody');
+      removedTbody.innerHTML = '';
+      if (!diff.removed || diff.removed.length === 0) {
+        removedTbody.innerHTML = '<tr><td colspan="3" class="text-center text-muted small py-2">삭제된 트리플이 없습니다.</td></tr>';
+      } else {
+        diff.removed.forEach(t => {
+          const row = node('tr');
+          row.append(
+            node('td', t.subject.split('#').pop(), 'source-path small text-danger'),
+            node('td', t.predicate, 'badge bg-danger-subtle text-danger border small'),
+            node('td', t.object.split('#').pop(), 'source-path small text-danger')
+          );
+          removedTbody.appendChild(row);
+        });
+      }
+
+      bootstrap.Modal.getOrCreateInstance(el('snapshotDiffModal')).show();
+    } catch (err) {
+      alert(`스냅샷 차분 조회 실패: ${err.message}`);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initSSE();
+    el('llmModal').addEventListener('shown.bs.modal', () => { el('llmDomainSelect').value = currentOnt; refreshCodexStatus(); loadCodexJobs(); pollCodexJob(); });
+    pollCodexJob();
+    el('dashboard-tab').addEventListener('shown.bs.tab', () => {
+      loadDashboard();
+      loadGraphAnalytics();
+    });
+    el('instances-tab').addEventListener('shown.bs.tab', () => {
+      if (networkInstance) fitNetworkGraph();
+      else loadNetworkGraph();
+    });
+    el('simulator-tab').addEventListener('shown.bs.tab', () => {
+      initSimNetwork();
+      if (simNetwork) simNetwork.fit();
+    });
+    el('snapshots-tab').addEventListener('shown.bs.tab', () => {
+      loadSnapshotsList();
+    });
+  });
+</script>
+</body>
+</html>
+

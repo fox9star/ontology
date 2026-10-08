@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "marriage",
+  "name": "결혼·결혼식 온톨로지 (marriage)",
+  "description": "결혼 당사자와 결혼 정보 기록, 행사·장소·초대 응답·준비 작업·서비스 예약·예산을 연결하고 준비 누락과 수용 인원·예산 초과를 탐색합니다.",
+  "name_en": "Marriage (Wedding) Ontology",
+  "description_en": "Connects partners and recorded marriage information with wedding events, venues, invitations, preparation tasks, service bookings and expenses. Queries reveal preparation gaps, invitation capacity and budget overruns.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/marriage#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T21:12:25+09:00",
+  "schema": "custom-ontologies/marriage/schema.ttl",
+  "owl": "custom-ontologies/marriage/schema.owl",
+  "shapes": "custom-ontologies/marriage/shapes.ttl",
+  "example": "custom-ontologies/marriage/example.ttl",
+  "questions": "custom-ontologies/marriage/questions.md",
+  "questions_fixture": "custom-ontologies/marriage/question-fixture.ttl",
+  "question_answers": "custom-ontologies/marriage/question-answers.json",
+  "compatibility_cases": "custom-ontologies/marriage/consumer-cases.trig"
+}

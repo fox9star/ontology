@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateRebootStatus">
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트의 재시작 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the reboot state value or state for Firmware update.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">재시작 상태</rdfs:label>
+    <rdfs:label xml:lang="en">reboot state</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientEvidenceStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdfs:label xml:lang="ko">단말 근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">client evidence state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the client evidence state value or state for Client device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">클라이언트 장치의 단말 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceScope">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:comment xml:lang="en">Records the supported claim scope value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 자료가 뒷받침하는 범위 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">자료가 뒷받침하는 범위</rdfs:label>
+    <rdfs:label xml:lang="en">supported claim scope</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityDocumentedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 문서</rdfs:label>
+    <rdfs:comment xml:lang="ko">보안 프로필에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Security profile to Documentation source.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#systemRecordStatus">
+    <rdfs:label xml:lang="en">system record status</rdfs:label>
+    <rdfs:label xml:lang="ko">시스템 기록 상태</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">무선 공유기 시스템의 시스템 기록 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the system record status value or state for Wireless router system.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationMethod">
+    <rdfs:label xml:lang="ko">측정 방법</rdfs:label>
+    <rdfs:label xml:lang="en">measurement method</rdfs:label>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정 방법 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the measurement method value or state for Performance observation.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentEvidenceSource">
+    <rdfs:comment xml:lang="en">Records a relation from Incident record to Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:label xml:lang="ko">사건 근거</rdfs:label>
+    <rdfs:label xml:lang="en">evidence source</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotForDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="en">Records a relation from Configuration snapshot to Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">for device</rdfs:label>
+    <rdfs:label xml:lang="ko">대상 장치</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceAccessedAt">
+    <rdfs:label xml:lang="ko">확인 날짜</rdfs:label>
+    <rdfs:label xml:lang="en">access date</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the access date value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 확인 날짜 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentResponseStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">대응 상태</rdfs:label>
+    <rdfs:label xml:lang="en">response state</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 대응 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the response state value or state for Incident record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkConnectionStatus">
+    <rdfs:label xml:lang="en">uplink state</rdfs:label>
+    <rdfs:label xml:lang="ko">상위 연결 상태</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the uplink state value or state for Uplink connection.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">상위 연결의 상위 연결 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientCategory">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">클라이언트 장치의 클라이언트 종류 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the client category value or state for Client device.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdfs:label xml:lang="en">client category</rdfs:label>
+    <rdfs:label xml:lang="ko">클라이언트 종류</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkVisibilityState">
+    <rdfs:label xml:lang="ko">관리 화면 표시 상태</rdfs:label>
+    <rdfs:label xml:lang="en">management visibility state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the management visibility state value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 관리 화면 표시 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentAddressDisclosure">
+    <rdfs:label xml:lang="ko">주소 정보 공개 상태</rdfs:label>
+    <rdfs:label xml:lang="en">address disclosure state</rdfs:label>
+    <rdfs:comment xml:lang="ko">네트워크 구간의 주소 정보 공개 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the address disclosure state value or state for Network segment.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientIdentityHandling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdfs:label xml:lang="ko">단말 식별자 처리</rdfs:label>
+    <rdfs:label xml:lang="en">client identity handling</rdfs:label>
+    <rdfs:comment xml:lang="ko">클라이언트 장치의 단말 식별자 처리 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the client identity handling value or state for Client device.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyDeniedFlowScope">
+    <rdfs:label xml:lang="ko">차단 흐름 범위</rdfs:label>
+    <rdfs:label xml:lang="en">denied flow scope</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the denied flow scope value or state for Network isolation policy.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">망 분리 정책의 차단 흐름 범위 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationSampleCount">
+    <rdfs:comment xml:lang="en">Records the sample count value or state for Performance observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">성능 관측의 표본 수 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">표본 수</rdfs:label>
+    <rdfs:label xml:lang="en">sample count</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationToNetwork">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:label xml:lang="en">to network</rdfs:label>
+    <rdfs:label xml:lang="ko">접속 무선망</rdfs:label>
+    <rdfs:comment xml:lang="ko">무선 접속 기록에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless association record to Wireless network profile.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationValue">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the measured value value or state for Performance observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정값 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:label xml:lang="en">measured value</rdfs:label>
+    <rdfs:label xml:lang="ko">측정값</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkProviderDisclosure">
+    <rdfs:label xml:lang="en">provider disclosure state</rdfs:label>
+    <rdfs:label xml:lang="ko">사업자 정보 공개 상태</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the provider disclosure state value or state for Uplink connection.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">상위 연결의 사업자 정보 공개 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateFromRelease">
+    <rdfs:label xml:lang="ko">현재 릴리스</rdfs:label>
+    <rdfs:label xml:lang="en">from release</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트에서 펌웨어 릴리스와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware update to Firmware release.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyDocumentedBy">
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:label xml:lang="ko">근거 문서</rdfs:label>
+    <rdfs:comment xml:lang="en">Records a relation from Network isolation policy to Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">망 분리 정책에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentAffectsNetwork">
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Incident record to Wireless network profile.</rdfs:comment>
+    <rdfs:label xml:lang="en">affects network</rdfs:label>
+    <rdfs:label xml:lang="ko">영향 무선망</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentImpactScope">
+    <rdfs:comment xml:lang="en">Records the impact scope value or state for Incident record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 영향 범위 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdfs:label xml:lang="ko">영향 범위</rdfs:label>
+    <rdfs:label xml:lang="en">impact scope</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentCategory">
+    <rdfs:label xml:lang="ko">사건 분류</rdfs:label>
+    <rdfs:label xml:lang="en">incident category</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the incident category value or state for Incident record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 사건 분류 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateLifecycleStatus">
+    <rdfs:comment xml:lang="en">Records the update lifecycle state value or state for Firmware update.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트의 업데이트 진행 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">업데이트 진행 상태</rdfs:label>
+    <rdfs:label xml:lang="en">update lifecycle state</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotProvenanceStatus">
+    <rdfs:comment xml:lang="en">Records the snapshot provenance state value or state for Configuration snapshot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 스냅샷 출처 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:label xml:lang="ko">스냅샷 출처 상태</rdfs:label>
+    <rdfs:label xml:lang="en">snapshot provenance state</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwareReleaseDocumentedBy">
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:label xml:lang="ko">릴리스 근거</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware release to Documentation source.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkUsesRadio">
+    <rdfs:label xml:lang="ko">사용 무선 인터페이스</rdfs:label>
+    <rdfs:label xml:lang="en">uses radio</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless network profile to Radio interface.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필에서 무선 인터페이스와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateEvidenceStatus">
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트의 업데이트 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the update evidence state value or state for Firmware update.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+    <rdfs:label xml:lang="ko">업데이트 근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">update evidence state</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientInventoryStatus">
+    <rdfs:label xml:lang="en">client inventory state</rdfs:label>
+    <rdfs:label xml:lang="ko">단말 목록 상태</rdfs:label>
+    <rdfs:comment xml:lang="ko">클라이언트 장치의 단말 목록 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the client inventory state value or state for Client device.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioConfiguredState">
+    <rdfs:comment xml:lang="en">Records the configured enabled state value or state for Radio interface.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 설정 활성 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">설정 활성 상태</rdfs:label>
+    <rdfs:label xml:lang="en">configured enabled state</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyAllowedFlowScope">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">allowed flow scope</rdfs:label>
+    <rdfs:label xml:lang="ko">허용 흐름 범위</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the allowed flow scope value or state for Network isolation policy.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">망 분리 정책의 허용 흐름 범위 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotCapturedAt">
+    <rdfs:label xml:lang="en">snapshot time</rdfs:label>
+    <rdfs:label xml:lang="ko">스냅샷 시각</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:comment xml:lang="en">Records the snapshot time value or state for Configuration snapshot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 스냅샷 시각 값 또는 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#systemScopeNote">
+    <rdfs:label xml:lang="ko">시스템 범위 설명</rdfs:label>
+    <rdfs:label xml:lang="en">system scope note</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">무선 공유기 시스템의 시스템 범위 설명 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the system scope note value or state for Wireless router system.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceModelFamily">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:label xml:lang="en">model family</rdfs:label>
+    <rdfs:label xml:lang="ko">모델 계열</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the model family value or state for Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치의 모델 계열 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentLifecycleStatus">
+    <rdfs:comment xml:lang="en">Records the incident lifecycle state value or state for Incident record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 사건 진행 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">incident lifecycle state</rdfs:label>
+    <rdfs:label xml:lang="ko">사건 진행 상태</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationForUplink">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="ko">성능 관측에서 상위 연결와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Performance observation to Uplink connection.</rdfs:comment>
+    <rdfs:label xml:lang="en">for uplink</rdfs:label>
+    <rdfs:label xml:lang="ko">관측 대상 상위 연결</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceMaterialKind">
+    <rdfs:label xml:lang="en">source material kind</rdfs:label>
+    <rdfs:label xml:lang="ko">자료 종류</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:comment xml:lang="ko">문서 출처의 자료 종류 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source material kind value or state for Documentation source.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentWithinSystem">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:comment xml:lang="ko">네트워크 구간에서 무선 공유기 시스템와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Network segment to Wireless router system.</rdfs:comment>
+    <rdfs:label xml:lang="ko">소속 시스템</rdfs:label>
+    <rdfs:label xml:lang="en">within system</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentAffectsDevice">
+    <rdfs:comment xml:lang="en">Records a relation from Incident record to Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">affects device</rdfs:label>
+    <rdfs:label xml:lang="ko">영향 장치</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceInventoryAlias">
+    <rdfs:label xml:lang="en">device inventory alias</rdfs:label>
+    <rdfs:label xml:lang="ko">장치 별칭</rdfs:label>
+    <rdfs:comment xml:lang="ko">공유기 장치의 장치 별칭 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the device inventory alias value or state for Router device.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityConfigurationStatus">
+    <rdfs:comment xml:lang="ko">보안 프로필의 설정 적용 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the configuration application state value or state for Security profile.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+    <rdfs:label xml:lang="en">configuration application state</rdfs:label>
+    <rdfs:label xml:lang="ko">설정 적용 상태</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkHasAssociation">
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필에서 무선 접속 기록와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless network profile to Wireless association record.</rdfs:comment>
+    <rdfs:label xml:lang="ko">접속 기록</rdfs:label>
+    <rdfs:label xml:lang="en">has association</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkPurpose">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">network purpose</rdfs:label>
+    <rdfs:label xml:lang="ko">무선망 용도</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the network purpose value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 무선망 용도 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceHasFirmwareRelease">
+    <rdfs:label xml:lang="en">has firmware release</rdfs:label>
+    <rdfs:label xml:lang="ko">펌웨어 릴리스</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Firmware release.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 펌웨어 릴리스와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceHasSnapshot">
+    <rdfs:label xml:lang="ko">설정 스냅샷</rdfs:label>
+    <rdfs:label xml:lang="en">has snapshot</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Configuration snapshot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 설정 스냅샷와의 관계를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentLifecycleStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:comment xml:lang="en">Records the segment lifecycle status value or state for Network segment.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">네트워크 구간의 구간 생애주기 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">segment lifecycle status</rdfs:label>
+    <rdfs:label xml:lang="ko">구간 생애주기 상태</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityAuthenticationMode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">인증 방식 표기</rdfs:label>
+    <rdfs:label xml:lang="en">authentication mode label</rdfs:label>
+    <rdfs:comment xml:lang="ko">보안 프로필의 인증 방식 표기 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the authentication mode label value or state for Security profile.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateToRelease">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware update to Firmware release.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트에서 펌웨어 릴리스와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">목표 릴리스</rdfs:label>
+    <rdfs:label xml:lang="en">target firmware release</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyTrafficDirection">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">망 분리 정책의 정책 트래픽 방향 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the policy traffic direction value or state for Network isolation policy.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">정책 트래픽 방향</rdfs:label>
+    <rdfs:label xml:lang="en">policy traffic direction</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationDocumentedBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:comment xml:lang="ko">성능 관측에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Performance observation to Documentation source.</rdfs:comment>
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:label xml:lang="ko">측정 방법 문서</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationHasObservation">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:label xml:lang="ko">성능 관측</rdfs:label>
+    <rdfs:label xml:lang="en">has observation</rdfs:label>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless association record to Performance observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록에서 성능 관측와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentHasNetwork">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has network</rdfs:label>
+    <rdfs:label xml:lang="ko">포함 무선망</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:comment xml:lang="en">Records a relation from Network segment to Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">네트워크 구간에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioCapabilityEvidenceStatus">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 지원 능력 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the capability evidence state value or state for Radio interface.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:label xml:lang="ko">지원 능력 근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">capability evidence state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateDocumentedBy">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:label xml:lang="ko">업데이트 근거</rdfs:label>
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware update to Documentation source.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#SecurityProfile">
+    <rdfs:label xml:lang="ko">보안 프로필</rdfs:label>
+    <rdfs:label xml:lang="en">Security profile</rdfs:label>
+    <rdfs:comment xml:lang="ko">보안 표준 이름, 적용 상태, 인증·암호화 방식과 근거 상태를 분리해 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records security-standard labels, application state, authentication and encryption modes, and evidence state separately.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#systemHasUplink">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdfs:comment xml:lang="ko">무선 공유기 시스템에서 상위 연결와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless router system to Uplink connection.</rdfs:comment>
+    <rdfs:label xml:lang="en">has uplink</rdfs:label>
+    <rdfs:label xml:lang="ko">포함 상위 연결</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceLimitations">
+    <rdfs:comment xml:lang="ko">문서 출처의 자료 한계 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the source limitations value or state for Documentation source.</rdfs:comment>
+    <rdfs:label xml:lang="en">source limitations</rdfs:label>
+    <rdfs:label xml:lang="ko">자료 한계</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceVendorLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">제조사 표기</rdfs:label>
+    <rdfs:label xml:lang="en">vendor label</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="ko">공유기 장치의 제조사 표기 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the vendor label value or state for Router device.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#DocumentationSource">
+    <rdfs:comment xml:lang="ko">표준·지침·제조사 문서의 제목, 범위 및 한계를 보존한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Preserves the title, scope, and limitations of standards, guidance, and vendor documentation.</rdfs:comment>
+    <rdfs:label xml:lang="ko">문서 출처</rdfs:label>
+    <rdfs:label xml:lang="en">Documentation source</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationObservedAt">
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 접속 관측 시각 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the association observation time value or state for Wireless association record.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">접속 관측 시각</rdfs:label>
+    <rdfs:label xml:lang="en">association observation time</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#systemHasDevice">
+    <rdfs:label xml:lang="en">has device</rdfs:label>
+    <rdfs:label xml:lang="ko">포함 장치</rdfs:label>
+    <rdfs:comment xml:lang="ko">무선 공유기 시스템에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless router system to Router device.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationUnit">
+    <rdfs:label xml:lang="en">measurement unit</rdfs:label>
+    <rdfs:label xml:lang="ko">측정 단위</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:comment xml:lang="en">Records the measurement unit value or state for Performance observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정 단위 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityCertificationClaimStatus">
+    <rdfs:comment xml:lang="ko">보안 프로필의 인증 주장 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the certification claim evidence state value or state for Security profile.</rdfs:comment>
+    <rdfs:label xml:lang="en">certification claim evidence state</rdfs:label>
+    <rdfs:label xml:lang="ko">인증 주장 근거 상태</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentAffectsUplink">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdfs:comment xml:lang="en">Records a relation from Incident record to Uplink connection.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록에서 상위 연결와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">영향 상위 연결</rdfs:label>
+    <rdfs:label xml:lang="en">affects uplink</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioConfiguredChannel">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 설정 채널 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the configured channel value or state for Radio interface.</rdfs:comment>
+    <rdfs:label xml:lang="en">configured channel</rdfs:label>
+    <rdfs:label xml:lang="ko">설정 채널</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#">
+    <rdfs:label xml:lang="ko">무선공유기 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Wireless Router Ontology</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+    <rdfs:comment xml:lang="ko">무선공유기 장치와 무선망의 구성·보안·접속·펌웨어·설정·관측을 연결하는 로컬 초안이다. 예시 자료는 합성 데이터이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A local draft connecting wireless router devices and networks with security, associations, firmware, configuration, and observations. Example records are synthetic.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationMetric">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:comment xml:lang="en">Records the metric name value or state for Performance observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정 지표 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">측정 지표</rdfs:label>
+    <rdfs:label xml:lang="en">metric name</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyAppliesToSegment">
+    <rdfs:label xml:lang="en">applies to segment</rdfs:label>
+    <rdfs:label xml:lang="ko">적용 대상 구간</rdfs:label>
+    <rdfs:comment xml:lang="ko">망 분리 정책에서 네트워크 구간와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Network isolation policy to Network segment.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationForNetwork">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">Records a relation from Performance observation to Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">성능 관측에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">관측 대상 무선망</rdfs:label>
+    <rdfs:label xml:lang="en">for network</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityAppliedToNetwork">
+    <rdfs:label xml:lang="ko">적용 대상 무선망</rdfs:label>
+    <rdfs:label xml:lang="en">applied to network</rdfs:label>
+    <rdfs:comment xml:lang="ko">보안 프로필에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Security profile to Wireless network profile.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwareReleaseForDevice">
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware release to Router device.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:label xml:lang="en">for device family</rdfs:label>
+    <rdfs:label xml:lang="ko">대상 장치 계열</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkMapsToSegment">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필에서 네트워크 구간와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless network profile to Network segment.</rdfs:comment>
+    <rdfs:label xml:lang="ko">연결 논리 구간</rdfs:label>
+    <rdfs:label xml:lang="en">maps to segment</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationEvidenceStatus">
+    <rdfs:label xml:lang="en">association evidence state</rdfs:label>
+    <rdfs:label xml:lang="ko">접속 근거 상태</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 접속 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the association evidence state value or state for Wireless association record.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientHasAssociation">
+    <rdfs:label xml:lang="ko">접속 기록</rdfs:label>
+    <rdfs:label xml:lang="en">has association</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="ko">클라이언트 장치에서 무선 접속 기록와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Client device to Wireless association record.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceIdentifierHandling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">device identifier handling</rdfs:label>
+    <rdfs:label xml:lang="ko">장치 식별자 처리</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="en">Records the device identifier handling value or state for Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치의 장치 식별자 처리 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#IsolationPolicy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Network isolation policy</rdfs:label>
+    <rdfs:label xml:lang="ko">망 분리 정책</rdfs:label>
+    <rdfs:comment xml:lang="ko">구간 간 허용·차단 의도, 적용 상태와 근거를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records intended allowed and denied flows between segments, their applied state, and evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationSignalDbm">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the received signal in dBm value or state for Wireless association record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 수신 신호 dBm 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:label xml:lang="ko">수신 신호 dBm</rdfs:label>
+    <rdfs:label xml:lang="en">received signal in dBm</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationForAssociation">
+    <rdfs:comment xml:lang="ko">성능 관측에서 무선 접속 기록와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Performance observation to Wireless association record.</rdfs:comment>
+    <rdfs:label xml:lang="en">for association</rdfs:label>
+    <rdfs:label xml:lang="ko">관측 대상 접속</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#RouterSystem">
+    <rdfs:comment xml:lang="en">A management unit that groups router devices, wireless networks, wired connections, and operational records.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치, 무선망, 유선 연결 및 운영 기록을 묶는 관리 단위이다.</rdfs:comment>
+    <rdfs:label xml:lang="en">Wireless router system</rdfs:label>
+    <rdfs:label xml:lang="ko">무선 공유기 시스템</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyEvidenceStatus">
+    <rdfs:label xml:lang="ko">정책 근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">policy evidence state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the policy evidence state value or state for Network isolation policy.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">망 분리 정책의 정책 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityEncryptionProfile">
+    <rdfs:label xml:lang="en">encryption profile label</rdfs:label>
+    <rdfs:label xml:lang="ko">암호화 프로필 표기</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the encryption profile label value or state for Security profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">보안 프로필의 암호화 프로필 표기 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceHasIncident">
+    <rdfs:label xml:lang="ko">사건 기록</rdfs:label>
+    <rdfs:label xml:lang="en">has incident record</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 장애·보안 사건 기록와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Incident record.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkIdentifierHandling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the network identifier handling value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 무선 식별자 처리 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:label xml:lang="en">network identifier handling</rdfs:label>
+    <rdfs:label xml:lang="ko">무선 식별자 처리</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwareSupportStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스의 지원 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the support state value or state for Firmware release.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">지원 상태</rdfs:label>
+    <rdfs:label xml:lang="en">support state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwareVersionLabel">
+    <rdfs:label xml:lang="ko">펌웨어 버전 표기</rdfs:label>
+    <rdfs:label xml:lang="en">firmware version label</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+    <rdfs:comment xml:lang="en">Records the firmware version label value or state for Firmware release.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스의 펌웨어 버전 표기 값 또는 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceUri">
+    <rdfs:comment xml:lang="en">Records the document URI value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 문서 URI 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:label xml:lang="en">document URI</rdfs:label>
+    <rdfs:label xml:lang="ko">문서 URI</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#AssociationRecord">
+    <rdfs:label xml:lang="en">Wireless association record</rdfs:label>
+    <rdfs:label xml:lang="ko">무선 접속 기록</rdfs:label>
+    <rdfs:comment xml:lang="ko">클라이언트가 무선망에 접속했는지, 계획인지, 관측되지 않았는지를 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes whether a client association is observed, planned, or unobserved.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotDocumentedBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:label xml:lang="ko">스냅샷 출처 문서</rdfs:label>
+    <rdfs:label xml:lang="en">documented by</rdfs:label>
+    <rdfs:comment xml:lang="en">Records a relation from Configuration snapshot to Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷에서 문서 출처와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationStatus">
+    <rdfs:comment xml:lang="en">Records the association state value or state for Wireless association record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 접속 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:label xml:lang="en">association state</rdfs:label>
+    <rdfs:label xml:lang="ko">접속 상태</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkCredentialHandling">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">상위 연결의 상위 인증 정보 처리 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the uplink credential handling value or state for Uplink connection.</rdfs:comment>
+    <rdfs:label xml:lang="ko">상위 인증 정보 처리</rdfs:label>
+    <rdfs:label xml:lang="en">uplink credential handling</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#NetworkSegment">
+    <rdfs:label xml:lang="en">Network segment</rdfs:label>
+    <rdfs:label xml:lang="ko">네트워크 구간</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="ko">신뢰 영역과 논리적 네트워크 구분을 표현한다. 주소 값 자체는 이 온톨로지에 두지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a trust zone and logical network boundary; address values are outside this ontology.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#systemHasNetwork">
+    <rdfs:label xml:lang="ko">포함 무선망</rdfs:label>
+    <rdfs:label xml:lang="en">has wireless network</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless router system to Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 공유기 시스템에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkConnectionType">
+    <rdfs:label xml:lang="ko">상위 연결 종류</rdfs:label>
+    <rdfs:label xml:lang="en">uplink type</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the uplink type value or state for Uplink connection.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">상위 연결의 상위 연결 종류 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationStatus">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the measurement state value or state for Performance observation.</rdfs:comment>
+    <rdfs:label xml:lang="en">measurement state</rdfs:label>
+    <rdfs:label xml:lang="ko">측정 상태</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#PerformanceObservation">
+    <rdfs:label xml:lang="en">Performance observation</rdfs:label>
+    <rdfs:label xml:lang="ko">성능 관측</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="ko">측정값과 미측정 상태를 구분하고 측정 대상, 시각, 방법 및 단위를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Separates measured values from unmeasured state and records target, time, method, and unit.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentDetectedAt">
+    <rdfs:label xml:lang="ko">발견 시각</rdfs:label>
+    <rdfs:label xml:lang="en">detection time</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">Records the detection time value or state for Incident record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 발견 시각 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotRedactionStatus">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">redaction and secret omission state</rdfs:label>
+    <rdfs:label xml:lang="ko">비식별·비밀 제거 상태</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:comment xml:lang="en">Records the redaction and secret omission state value or state for Configuration snapshot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 비식별·비밀 제거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourcePublisher">
+    <rdfs:label xml:lang="en">publisher</rdfs:label>
+    <rdfs:label xml:lang="ko">발행 기관</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the publisher value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 발행 기관 값 또는 상태를 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceManagementExposure">
+    <rdfs:label xml:lang="en">management exposure state</rdfs:label>
+    <rdfs:label xml:lang="ko">관리 경로 노출 상태</rdfs:label>
+    <rdfs:comment xml:lang="ko">공유기 장치의 관리 경로 노출 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the management exposure state value or state for Router device.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioChannelWidthMHz">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 채널 폭 MHz 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the channel width in MHz value or state for Radio interface.</rdfs:comment>
+    <rdfs:label xml:lang="ko">채널 폭 MHz</rdfs:label>
+    <rdfs:label xml:lang="en">channel width in MHz</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#FirmwareRelease">
+    <rdfs:label xml:lang="ko">펌웨어 릴리스</rdfs:label>
+    <rdfs:label xml:lang="en">Firmware release</rdfs:label>
+    <rdfs:comment xml:lang="en">Records firmware version and support or provenance state without inferring support for a particular product.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장치 펌웨어 버전 및 지원·출처 상태를 기록하며 특정 제품 지원을 추정하지 않는다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkWithinSystem">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdfs:label xml:lang="ko">소속 시스템</rdfs:label>
+    <rdfs:label xml:lang="en">within system</rdfs:label>
+    <rdfs:comment xml:lang="ko">상위 연결에서 무선 공유기 시스템와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Uplink connection to Wireless router system.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioBroadcastsNetwork">
+    <rdfs:label xml:lang="ko">송출 무선망</rdfs:label>
+    <rdfs:label xml:lang="en">broadcasts network</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="en">Records a relation from Radio interface to Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 인터페이스에서 무선 네트워크 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentUsesIsolationPolicy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:comment xml:lang="ko">네트워크 구간에서 망 분리 정책와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Network segment to Network isolation policy.</rdfs:comment>
+    <rdfs:label xml:lang="en">uses isolation policy</rdfs:label>
+    <rdfs:label xml:lang="ko">망 분리 정책</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotChangeSummary">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 변경 요약 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the change summary value or state for Configuration snapshot.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:label xml:lang="ko">변경 요약</rdfs:label>
+    <rdfs:label xml:lang="en">change summary</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioBelongsToDevice">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:label xml:lang="en">belongs to device</rdfs:label>
+    <rdfs:label xml:lang="ko">소속 장치</rdfs:label>
+    <rdfs:comment xml:lang="en">Records a relation from Radio interface to Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 인터페이스에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientPseudonym">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">클라이언트 장치의 클라이언트 가명 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the client pseudonym value or state for Client device.</rdfs:comment>
+    <rdfs:label xml:lang="ko">클라이언트 가명</rdfs:label>
+    <rdfs:label xml:lang="en">client pseudonym</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioSupportedStandard">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 지원 표준 주장 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the supported standard claim value or state for Radio interface.</rdfs:comment>
+    <rdfs:label xml:lang="ko">지원 표준 주장</rdfs:label>
+    <rdfs:label xml:lang="en">supported standard claim</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkObservationStatus">
+    <rdfs:label xml:lang="ko">상위 연결 관측 상태</rdfs:label>
+    <rdfs:label xml:lang="en">uplink observation state</rdfs:label>
+    <rdfs:comment xml:lang="ko">상위 연결의 상위 연결 관측 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the uplink observation state value or state for Uplink connection.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#uplinkAttachedToDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">attached to device</rdfs:label>
+    <rdfs:label xml:lang="ko">연결 장치</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#UplinkConnection"/>
+    <rdfs:comment xml:lang="en">Records a relation from Uplink connection to Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">상위 연결에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#policyApplicationStatus">
+    <rdfs:label xml:lang="ko">정책 적용 상태</rdfs:label>
+    <rdfs:label xml:lang="en">policy application state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the policy application state value or state for Network isolation policy.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">망 분리 정책의 정책 적용 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IsolationPolicy"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentAlias">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">네트워크 구간의 구간 합성 별칭 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the synthetic segment alias value or state for Network segment.</rdfs:comment>
+    <rdfs:label xml:lang="ko">구간 합성 별칭</rdfs:label>
+    <rdfs:label xml:lang="en">synthetic segment alias</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#WirelessNetwork">
+    <rdfs:label xml:lang="ko">무선 네트워크 프로필</rdfs:label>
+    <rdfs:label xml:lang="en">Wireless network profile</rdfs:label>
+    <rdfs:comment xml:lang="ko">SSID 원문을 저장하지 않고 무선망의 별칭, 용도, 보안 프로필 및 논리 구간 연결을 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a wireless network alias, purpose, security profile, and logical segment without storing the literal SSID.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotAppliedStatus">
+    <rdfs:label xml:lang="ko">설정 적용 상태</rdfs:label>
+    <rdfs:label xml:lang="en">configuration applied state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 설정 적용 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the configuration applied state value or state for Configuration snapshot.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#IncidentRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="en">Records the state and impact scope of an outage or security incident with supporting evidence.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">장애 또는 보안 사건의 상태와 영향 범위를 근거와 함께 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">장애·보안 사건 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Incident record</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceHasUpdate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+    <rdfs:label xml:lang="ko">업데이트 기록</rdfs:label>
+    <rdfs:label xml:lang="en">has update</rdfs:label>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Firmware update.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 펌웨어 업데이트와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkUsesSecurityProfile">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필에서 보안 프로필와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless network profile to Security profile.</rdfs:comment>
+    <rdfs:label xml:lang="en">uses security profile</rdfs:label>
+    <rdfs:label xml:lang="ko">보안 프로필</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceHasRadio">
+    <rdfs:label xml:lang="en">has radio</rdfs:label>
+    <rdfs:label xml:lang="ko">무선 인터페이스</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Radio interface.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 무선 인터페이스와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateRollbackStatus">
+    <rdfs:comment xml:lang="en">Records the rollback state value or state for Firmware update.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트의 롤백 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">롤백 상태</rdfs:label>
+    <rdfs:label xml:lang="en">rollback state</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotCompletenessStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:label xml:lang="en">snapshot completeness</rdfs:label>
+    <rdfs:label xml:lang="ko">스냅샷 완전성</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 스냅샷 완전성 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the snapshot completeness value or state for Configuration snapshot.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceTitle">
+    <rdfs:label xml:lang="ko">문서 제목</rdfs:label>
+    <rdfs:label xml:lang="en">document title</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the document title value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 문서 제목 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot">
+    <rdfs:comment xml:lang="ko">계획·현재·보관 설정을 구분하고 적용·완전성·비식별 상태 및 출처를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes planned, current, and archived configuration while recording application, completeness, redaction, and provenance.</rdfs:comment>
+    <rdfs:label xml:lang="en">Configuration snapshot</rdfs:label>
+    <rdfs:label xml:lang="ko">설정 스냅샷</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwarePublisherLabel">
+    <rdfs:label xml:lang="ko">펌웨어 발행자 표기</rdfs:label>
+    <rdfs:label xml:lang="en">firmware publisher label</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스의 펌웨어 발행자 표기 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the firmware publisher label value or state for Firmware release.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityCredentialHandling">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the credential handling value or state for Security profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">보안 프로필의 자격 증명 처리 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">credential handling</rdfs:label>
+    <rdfs:label xml:lang="ko">자격 증명 처리</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#observationMeasuredAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:label xml:lang="en">measurement time</rdfs:label>
+    <rdfs:label xml:lang="ko">측정 시각</rdfs:label>
+    <rdfs:comment xml:lang="ko">성능 관측의 측정 시각 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the measurement time value or state for Performance observation.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#snapshotLifecycleStatus">
+    <rdfs:label xml:lang="ko">스냅샷 생애주기 상태</rdfs:label>
+    <rdfs:label xml:lang="en">snapshot lifecycle state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the snapshot lifecycle state value or state for Configuration snapshot.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">설정 스냅샷의 스냅샷 생애주기 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ConfigurationSnapshot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#clientPartOfSystem">
+    <rdfs:label xml:lang="ko">소속 시스템</rdfs:label>
+    <rdfs:label xml:lang="en">part of system</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdfs:comment xml:lang="ko">클라이언트 장치에서 무선 공유기 시스템와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Client device to Wireless router system.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#UplinkConnection">
+    <rdfs:label xml:lang="en">Uplink connection</rdfs:label>
+    <rdfs:label xml:lang="ko">상위 연결</rdfs:label>
+    <rdfs:comment xml:lang="en">Represents the type and observed state of a router connection to an upstream internet, provider, or mesh path.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기에서 상위 인터넷·사업자·메시 경로로 이어지는 연결의 종류와 관측 상태를 표현한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceLifecycleStatus">
+    <rdfs:label xml:lang="en">device lifecycle status</rdfs:label>
+    <rdfs:label xml:lang="ko">장치 생애주기 상태</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="en">Records the device lifecycle status value or state for Router device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치의 장치 생애주기 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkAssociationRule">
+    <rdfs:comment xml:lang="en">Records the association rule type value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 접속 정책 유형 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">접속 정책 유형</rdfs:label>
+    <rdfs:label xml:lang="en">association rule type</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#ClientDevice">
+    <rdfs:comment xml:lang="en">Represents a client category and record state using a synthetic or pseudonymous label instead of a real MAC or IP address.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">실제 MAC·IP 주소 대신 합성 또는 가명 식별자로 단말 종류와 기록 상태를 표현한다.</rdfs:comment>
+    <rdfs:label xml:lang="ko">클라이언트 장치</rdfs:label>
+    <rdfs:label xml:lang="en">Client device</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioBand">
+    <rdfs:label xml:lang="ko">무선 대역</rdfs:label>
+    <rdfs:label xml:lang="en">radio band</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the radio band value or state for Radio interface.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 무선 대역 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#devicePartOfSystem">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterSystem"/>
+    <rdfs:comment xml:lang="en">Records a relation from Router device to Wireless router system.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">공유기 장치에서 무선 공유기 시스템와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">part of system</rdfs:label>
+    <rdfs:label xml:lang="ko">소속 시스템</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#deviceObservationStatus">
+    <rdfs:comment xml:lang="ko">공유기 장치의 장치 관측 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the device observation status value or state for Router device.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="en">device observation status</rdfs:label>
+    <rdfs:label xml:lang="ko">장치 관측 상태</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkLifecycleStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+    <rdfs:label xml:lang="en">network lifecycle status</rdfs:label>
+    <rdfs:label xml:lang="ko">무선망 설정 상태</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the network lifecycle status value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 무선망 설정 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#FirmwareUpdate">
+    <rdfs:label xml:lang="en">Firmware update</rdfs:label>
+    <rdfs:label xml:lang="ko">펌웨어 업데이트</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:comment xml:lang="ko">업데이트의 대상, 출발·목표 버전, 진행·재시작·롤백 상태를 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents an update target, source and target release, progress, reboot, and rollback states.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentEvidenceStatus">
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 사건 근거 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the incident evidence state value or state for Incident record.</rdfs:comment>
+    <rdfs:label xml:lang="ko">사건 근거 상태</rdfs:label>
+    <rdfs:label xml:lang="en">incident evidence state</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentPurpose">
+    <rdfs:label xml:lang="en">segment purpose</rdfs:label>
+    <rdfs:label xml:lang="ko">구간 용도</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the segment purpose value or state for Network segment.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">네트워크 구간의 구간 용도 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkProfileAlias">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">무선망 합성 별칭</rdfs:label>
+    <rdfs:label xml:lang="en">synthetic network alias</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the synthetic network alias value or state for Wireless network profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필의 무선망 합성 별칭 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#updateTargetsDevice">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#RouterDevice"/>
+    <rdfs:comment xml:lang="ko">펌웨어 업데이트에서 공유기 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Firmware update to Router device.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">targets device</rdfs:label>
+    <rdfs:label xml:lang="ko">업데이트 대상</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareUpdate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#firmwareArtifactProvenance">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">펌웨어 출처 상태</rdfs:label>
+    <rdfs:label xml:lang="en">firmware provenance state</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the firmware provenance state value or state for Firmware release.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">펌웨어 릴리스의 펌웨어 출처 상태 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#FirmwareRelease"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationForClient">
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#ClientDevice"/>
+    <rdfs:label xml:lang="en">for client</rdfs:label>
+    <rdfs:label xml:lang="ko">접속 단말</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless association record to Client device.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록에서 클라이언트 장치와의 관계를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#sourceYear">
+    <rdfs:label xml:lang="ko">발행 연도</rdfs:label>
+    <rdfs:label xml:lang="en">publication year</rdfs:label>
+    <rdfs:comment xml:lang="en">Records the publication year value or state for Documentation source.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">문서 출처의 발행 연도 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#DocumentationSource"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#segmentTrustZone">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#NetworkSegment"/>
+    <rdfs:comment xml:lang="ko">네트워크 구간의 신뢰 영역 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the trust zone value or state for Network segment.</rdfs:comment>
+    <rdfs:label xml:lang="en">trust zone</rdfs:label>
+    <rdfs:label xml:lang="ko">신뢰 영역</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#securityProtocolLabel">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the security protocol label value or state for Security profile.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">보안 프로필의 보안 프로토콜 표기 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">security protocol label</rdfs:label>
+    <rdfs:label xml:lang="ko">보안 프로토콜 표기</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#SecurityProfile"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#radioTransmitPowerDbm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">무선 인터페이스의 송신 전력 dBm 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the transmit power in dBm value or state for Radio interface.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#RadioInterface"/>
+    <rdfs:label xml:lang="ko">송신 전력 dBm</rdfs:label>
+    <rdfs:label xml:lang="en">transmit power in dBm</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#RouterDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">공유기 장치</rdfs:label>
+    <rdfs:label xml:lang="en">Router device</rdfs:label>
+    <rdfs:comment xml:lang="en">Describes the identity metadata and state of a device that provides wireless networking or manages network forwarding.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 네트워크를 제공하거나 전달 경로를 관리하는 장치의 식별 정보와 상태를 기술한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationLinkRateMbps">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="en">Records the link rate in Mbps value or state for Wireless association record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 링크 속도 Mbps 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:label xml:lang="en">link rate in Mbps</rdfs:label>
+    <rdfs:label xml:lang="ko">링크 속도 Mbps</rdfs:label>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#networkHasObservation">
+    <rdfs:label xml:lang="ko">성능 관측</rdfs:label>
+    <rdfs:label xml:lang="en">has performance observation</rdfs:label>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/wireless-router#PerformanceObservation"/>
+    <rdfs:comment xml:lang="ko">무선 네트워크 프로필에서 성능 관측와의 관계를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a relation from Wireless network profile to Performance observation.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#WirelessNetwork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#RadioInterface">
+    <rdfs:comment xml:lang="ko">무선 대역의 지원 능력, 설정 상태 및 네트워크 연결을 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents supported radio capabilities, configured state, and network links for a band.</rdfs:comment>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Radio interface</rdfs:label>
+    <rdfs:label xml:lang="ko">무선 인터페이스</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#associationIntent">
+    <rdfs:comment xml:lang="en">Records the association record intent value or state for Wireless association record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">무선 접속 기록의 접속 기록 성격 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#AssociationRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">association record intent</rdfs:label>
+    <rdfs:label xml:lang="ko">접속 기록 성격</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/wireless-router#incidentSeverity">
+    <rdfs:label xml:lang="ko">심각도</rdfs:label>
+    <rdfs:label xml:lang="en">severity</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:comment xml:lang="ko">장애·보안 사건 기록의 심각도 값 또는 상태를 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the severity value or state for Incident record.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/wireless-router#IncidentRecord"/>
+  </rdf:Description>
+</rdf:RDF>

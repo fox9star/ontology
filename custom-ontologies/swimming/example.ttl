@@ -1,0 +1,89 @@
+@prefix swim: <https://example.org/ontology/custom/swimming#> .
+@prefix ex: <https://example.org/ontology/custom/swimming#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely fictional swimmers, clubs, pools and meets. Times, places and every
+# urn:synthetic: location are invented placeholders, not real results or records.
+ex:clubA a swim:Club ; rdfs:label "가상 수영클럽 A"@ko .
+ex:clubB a swim:Club ; rdfs:label "가상 수영클럽 B"@ko .
+
+ex:swimmerA a swim:Swimmer ; rdfs:label "가상 선수 A"@ko ; swim:competitionCategory "women" ; swim:memberOf ex:clubA .
+ex:swimmerB a swim:Swimmer ; rdfs:label "가상 선수 B"@ko ; swim:competitionCategory "men" ; swim:memberOf ex:clubA .
+ex:swimmerC a swim:Swimmer ; rdfs:label "가상 선수 C"@ko ; swim:competitionCategory "women" ; swim:memberOf ex:clubB .
+ex:swimmerD a swim:Swimmer ; rdfs:label "가상 선수 D"@ko ; swim:competitionCategory "men" .
+
+ex:pool25 a swim:Pool ; rdfs:label "가상 시립 수영장(25m)"@ko ; swim:poolLengthMeters 25 ; swim:laneCount 6 .
+ex:pool50 a swim:Pool ; rdfs:label "가상 규격 수영장(50m)"@ko ; swim:poolLengthMeters 50 ; swim:laneCount 8 .
+
+ex:meet1 a swim:Meet ; rdfs:label "가상 봄 대회"@ko ; swim:heldAt ex:pool25 ;
+    swim:startDate "2026-03-14"^^xsd:date ; swim:endDate "2026-03-15"^^xsd:date ;
+    swim:hasEvent ex:event1, ex:event2, ex:event3, ex:event4 .
+ex:meet2 a swim:Meet ; rdfs:label "가상 여름 대회"@ko ; swim:heldAt ex:pool50 ;
+    swim:startDate "2026-08-01"^^xsd:date ; swim:endDate "2026-08-02"^^xsd:date ;
+    swim:hasEvent ex:event5, ex:event6 .
+ex:meet3 a swim:Meet ; rdfs:label "가상 겨울 대회(예정)"@ko ; swim:heldAt ex:pool50 ;
+    swim:startDate "2026-11-20"^^xsd:date ; swim:endDate "2026-11-21"^^xsd:date ;
+    swim:hasEvent ex:event7 .
+
+ex:event1 a swim:SwimEvent ; rdfs:label "여자 자유형 100m"@ko ; swim:stroke "freestyle" ; swim:distanceMeters 100 ; swim:eventCategory "women" .
+ex:event2 a swim:SwimEvent ; rdfs:label "남자 자유형 100m"@ko ; swim:stroke "freestyle" ; swim:distanceMeters 100 ; swim:eventCategory "men" .
+ex:event3 a swim:SwimEvent ; rdfs:label "여자 개인혼영 100m"@ko ; swim:stroke "individual-medley" ; swim:distanceMeters 100 ; swim:eventCategory "women" .
+ex:event4 a swim:SwimEvent ; rdfs:label "남자 접영 50m"@ko ; swim:stroke "butterfly" ; swim:distanceMeters 50 ; swim:eventCategory "men" .
+ex:event5 a swim:SwimEvent ; rdfs:label "여자 자유형 100m (여름)"@ko ; swim:stroke "freestyle" ; swim:distanceMeters 100 ; swim:eventCategory "women" .
+ex:event6 a swim:SwimEvent ; rdfs:label "남자 평영 200m"@ko ; swim:stroke "breaststroke" ; swim:distanceMeters 200 ; swim:eventCategory "men" .
+ex:event7 a swim:SwimEvent ; rdfs:label "여자 자유형 200m"@ko ; swim:stroke "freestyle" ; swim:distanceMeters 200 ; swim:eventCategory "women" .
+
+ex:entryA1 a swim:Entry ; rdfs:label "선수 A 봄 자유형 100m"@ko ; swim:forSwimmer ex:swimmerA ; swim:inEvent ex:event1 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "58.42"^^xsd:decimal ; swim:placeRank 2 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryA1"^^xsd:anyURI ; swim:hasSplit ex:splitA1a, ex:splitA1b .
+ex:splitA1a a swim:Split ; rdfs:label "A1 50m"@ko ; swim:splitDistanceMeters 50 ; swim:splitTimeSeconds "28.10"^^xsd:decimal .
+ex:splitA1b a swim:Split ; rdfs:label "A1 100m"@ko ; swim:splitDistanceMeters 100 ; swim:splitTimeSeconds "58.42"^^xsd:decimal .
+ex:entryC1 a swim:Entry ; rdfs:label "선수 C 봄 자유형 100m"@ko ; swim:forSwimmer ex:swimmerC ; swim:inEvent ex:event1 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "57.90"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryC1"^^xsd:anyURI ; swim:hasSplit ex:splitC1a, ex:splitC1b .
+ex:splitC1a a swim:Split ; rdfs:label "C1 50m"@ko ; swim:splitDistanceMeters 50 ; swim:splitTimeSeconds "27.90"^^xsd:decimal .
+ex:splitC1b a swim:Split ; rdfs:label "C1 100m"@ko ; swim:splitDistanceMeters 100 ; swim:splitTimeSeconds "57.90"^^xsd:decimal .
+
+ex:entryB2 a swim:Entry ; rdfs:label "선수 B 봄 자유형 100m"@ko ; swim:forSwimmer ex:swimmerB ; swim:inEvent ex:event2 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "52.31"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryB2"^^xsd:anyURI .
+ex:entryD2 a swim:Entry ; rdfs:label "선수 D 봄 자유형 100m 실격"@ko ; swim:forSwimmer ex:swimmerD ; swim:inEvent ex:event2 ;
+    swim:entryStatus "disqualified" ; swim:disqualificationReason "false-start" ;
+    swim:timingEvidenceUri "urn:synthetic:disqualification:entryD2"^^xsd:anyURI .
+
+ex:entryA3 a swim:Entry ; rdfs:label "선수 A 봄 개인혼영 100m 기권"@ko ; swim:forSwimmer ex:swimmerA ; swim:inEvent ex:event3 ;
+    swim:entryStatus "did-not-start" .
+ex:entryC3 a swim:Entry ; rdfs:label "선수 C 봄 개인혼영 100m"@ko ; swim:forSwimmer ex:swimmerC ; swim:inEvent ex:event3 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "65.20"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryC3"^^xsd:anyURI .
+
+ex:entryB4 a swim:Entry ; rdfs:label "선수 B 봄 접영 50m"@ko ; swim:forSwimmer ex:swimmerB ; swim:inEvent ex:event4 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "25.80"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryB4"^^xsd:anyURI .
+ex:entryD4 a swim:Entry ; rdfs:label "선수 D 봄 접영 50m"@ko ; swim:forSwimmer ex:swimmerD ; swim:inEvent ex:event4 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "26.45"^^xsd:decimal ; swim:placeRank 2 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryD4"^^xsd:anyURI .
+
+ex:entryA5 a swim:Entry ; rdfs:label "선수 A 여름 자유형 100m"@ko ; swim:forSwimmer ex:swimmerA ; swim:inEvent ex:event5 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "57.95"^^xsd:decimal ; swim:placeRank 2 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryA5"^^xsd:anyURI ; swim:hasSplit ex:splitA5a, ex:splitA5b .
+ex:splitA5a a swim:Split ; rdfs:label "A5 50m"@ko ; swim:splitDistanceMeters 50 ; swim:splitTimeSeconds "27.90"^^xsd:decimal .
+ex:splitA5b a swim:Split ; rdfs:label "A5 100m"@ko ; swim:splitDistanceMeters 100 ; swim:splitTimeSeconds "57.95"^^xsd:decimal .
+ex:entryC5 a swim:Entry ; rdfs:label "선수 C 여름 자유형 100m"@ko ; swim:forSwimmer ex:swimmerC ; swim:inEvent ex:event5 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "57.10"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryC5"^^xsd:anyURI ; swim:hasSplit ex:splitC5a, ex:splitC5b .
+ex:splitC5a a swim:Split ; rdfs:label "C5 50m"@ko ; swim:splitDistanceMeters 50 ; swim:splitTimeSeconds "27.60"^^xsd:decimal .
+ex:splitC5b a swim:Split ; rdfs:label "C5 100m"@ko ; swim:splitDistanceMeters 100 ; swim:splitTimeSeconds "57.10"^^xsd:decimal .
+
+ex:entryB6 a swim:Entry ; rdfs:label "선수 B 여름 평영 200m"@ko ; swim:forSwimmer ex:swimmerB ; swim:inEvent ex:event6 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "141.30"^^xsd:decimal ; swim:placeRank 1 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryB6"^^xsd:anyURI .
+ex:entryD6 a swim:Entry ; rdfs:label "선수 D 여름 평영 200m"@ko ; swim:forSwimmer ex:swimmerD ; swim:inEvent ex:event6 ;
+    swim:entryStatus "official" ; swim:finalTimeSeconds "143.05"^^xsd:decimal ; swim:placeRank 2 ;
+    swim:timingEvidenceUri "urn:synthetic:results:entryD6"^^xsd:anyURI .
+
+ex:entryA7 a swim:Entry ; rdfs:label "선수 A 겨울 자유형 200m 신청"@ko ; swim:forSwimmer ex:swimmerA ; swim:inEvent ex:event7 ;
+    swim:entryStatus "entered" ; swim:seedTimeSeconds "126.50"^^xsd:decimal .
+ex:entryC7 a swim:Entry ; rdfs:label "선수 C 겨울 자유형 200m 신청"@ko ; swim:forSwimmer ex:swimmerC ; swim:inEvent ex:event7 ;
+    swim:entryStatus "entered" ; swim:seedTimeSeconds "124.80"^^xsd:decimal .

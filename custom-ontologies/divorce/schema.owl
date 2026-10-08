@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasAsset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Asset"/>
+    <rdfs:label xml:lang="ko">재산 항목 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has asset</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건에서 분할 대상으로 다루는 재산·채무 항목을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a case to an asset or debt item it divides.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasChild">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Child"/>
+    <rdfs:label xml:lang="ko">자녀 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has child</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건에 관련된 부부의 자녀를 연결한다. 자녀는 한 사건에만 속한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a case to a child of the couple; a child belongs to one case.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#Party">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">당사자</rdfs:label>
+    <rdfs:label xml:lang="en">Party</rdfs:label>
+    <rdfs:comment xml:lang="ko">이혼 사건의 부부 중 한 사람이다. 이름이나 연락처 없이 가명 표시만 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One of the two spouses in a divorce case; only a pseudonymous label is kept, never a name or contact details.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#minorAtFiling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Child"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="ko">접수 시 미성년 여부</rdfs:label>
+    <rdfs:label xml:lang="en">Minor at filing</rdfs:label>
+    <rdfs:comment xml:lang="ko">접수 시점에 자녀가 미성년이었는지를 true 또는 false로 기록한다. 미성년 자녀에게만 양육 결정이 필요하다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Whether the child was a minor at filing, true or false; only a minor child needs a custody arrangement.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasAllocation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Asset"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#AssetAllocation"/>
+    <rdfs:label xml:lang="ko">분할 비율 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has allocation</rdfs:label>
+    <rdfs:comment xml:lang="ko">재산·채무 항목의 당사자별 분할 비율을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an asset or debt item to its per-party allocations.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#custodyOfChild">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#CustodyArrangement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Child"/>
+    <rdfs:label xml:lang="ko">양육 대상 자녀</rdfs:label>
+    <rdfs:label xml:lang="en">Custody of child</rdfs:label>
+    <rdfs:comment xml:lang="ko">양육 결정이 대상으로 하는 미성년 자녀를 연결한다. 자녀 한 명에 결정은 하나이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a custody arrangement to the minor child it concerns; one arrangement per child.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#decreeEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">종결 증빙 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Decree evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">판결문, 조정 조서, 등록 기록처럼 이혼 성립을 확인할 수 있는 문서의 위치이다. 종결된 사건에 필요하며 진위를 자동으로 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to a judgment, mediation record or registration record showing the divorce took effect; required for a finalized case and not verified automatically.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#withdrawalDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">철회일</rdfs:label>
+    <rdfs:label xml:lang="en">Withdrawal date</rdfs:label>
+    <rdfs:comment xml:lang="ko">신청을 거두어들인 날짜이다. 철회된 사건에만 있으며 접수일보다 앞설 수 없다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date the application was withdrawn; only for withdrawn cases and not before the filed date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#monthlyAmount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">월 양육비</rdfs:label>
+    <rdfs:label xml:lang="en">Monthly amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">매달 지급하기로 한 양육비 금액이며 0보다 큰 소수이다. 통화는 별도로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The monthly support amount, a decimal above zero, with the currency recorded separately.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#paymentDay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">지급일</rdfs:label>
+    <rdfs:label xml:lang="en">Payment day</rdfs:label>
+    <rdfs:comment xml:lang="ko">매달 지급하는 날짜를 1에서 31 사이의 정수로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The day of the month on which payment is due, an integer from 1 to 31.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasCustodyArrangement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#CustodyArrangement"/>
+    <rdfs:label xml:lang="ko">양육 결정 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has custody arrangement</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건에서 정해진 양육 결정을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a case to a custody arrangement made in it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasParty">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:label xml:lang="ko">당사자 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has party</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건의 당사자를 연결한다. 사건에는 당사자가 정확히 두 명이며 당사자는 한 사건에만 속한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a case to its parties; a case has exactly two, and a party belongs to one case.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#payer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:label xml:lang="ko">지급 당사자</rdfs:label>
+    <rdfs:label xml:lang="en">Payer</rdfs:label>
+    <rdfs:comment xml:lang="ko">양육비를 지급하는 당사자를 연결한다. 받는 당사자와 달라야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a support obligation to the party who pays, who differs from the payee.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#partyRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">당사자 역할</rdfs:label>
+    <rdfs:label xml:lang="en">Party role</rdfs:label>
+    <rdfs:comment xml:lang="ko">joint-petitioner(공동 신청), petitioner(신청·원고), respondent(상대방·피고) 중 하나이다. 협의 사건은 두 사람 모두 공동 신청이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One of joint-petitioner, petitioner or respondent; both parties of a consensual case are joint petitioners.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#assetType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Asset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">항목 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Item type</rdfs:label>
+    <rdfs:comment xml:lang="ko">real-estate, deposit, vehicle, pension, debt, other 중 하나이다. debt는 분할할 채무를 뜻한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One of real-estate, deposit, vehicle, pension, debt or other; debt means a liability to be divided.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#confirmationDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">의사 확인일</rdfs:label>
+    <rdfs:label xml:lang="en">Confirmation date</rdfs:label>
+    <rdfs:comment xml:lang="ko">협의 이혼에서 법원이 이혼 의사를 확인한 날짜이며 숙려 종료일보다 앞설 수 없다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date the court confirmed the intention to divorce in a consensual case; it cannot precede the reflection end date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#payee">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:label xml:lang="ko">수령 당사자</rdfs:label>
+    <rdfs:label xml:lang="en">Payee</rdfs:label>
+    <rdfs:comment xml:lang="ko">양육비를 받는 당사자를 연결한다. 그 자녀의 양육자와 같아야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a support obligation to the party who receives it, who must be the child's custodian.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#supportForChild">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Child"/>
+    <rdfs:label xml:lang="ko">양육비 대상 자녀</rdfs:label>
+    <rdfs:label xml:lang="en">Support for child</rdfs:label>
+    <rdfs:comment xml:lang="ko">양육비를 지급하는 대상인 미성년 자녀를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a support obligation to the minor child it is paid for.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#currencyCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">양육비 통화</rdfs:label>
+    <rdfs:label xml:lang="en">Support currency</rdfs:label>
+    <rdfs:comment xml:lang="ko">양육비의 통화를 KRW 같은 세 글자 대문자 코드로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The currency of the support amount as a three-letter uppercase code such as KRW.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#Asset">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">재산·채무 항목</rdfs:label>
+    <rdfs:label xml:lang="en">Asset or debt item</rdfs:label>
+    <rdfs:comment xml:lang="ko">재산분할 대상인 부동산, 예금, 연금 같은 재산이나 채무 한 항목이다. 종결된 사건에서는 분할 비율의 합이 100이어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One asset or debt subject to division, such as property, deposits or pensions; in a finalized case its shares must total 100.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#caseType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">사건 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Case type</rdfs:label>
+    <rdfs:comment xml:lang="ko">consensual(협의), mediation(조정), litigation(소송) 중 하나이다. 협의 유형에만 숙려 종료일과 확인일이 있다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One of consensual, mediation or litigation; only the consensual type has a reflection end date and a confirmation date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#allocatedTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#AssetAllocation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:label xml:lang="ko">분할 대상 당사자</rdfs:label>
+    <rdfs:label xml:lang="en">Allocated to</rdfs:label>
+    <rdfs:comment xml:lang="ko">분할 비율이 돌아가는 당사자를 연결한다. 같은 사건의 당사자여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an allocation to the party who receives the share, who must be a party of the same case.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#DivorceCase">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">이혼 사건</rdfs:label>
+    <rdfs:label xml:lang="en">Divorce case</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 부부의 이혼 절차 하나이다. 협의, 조정, 소송 가운데 한 유형과 준비·접수·종결·철회 중 한 단계를 가진다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One divorce proceeding of a couple, with a type of consensual, mediation or litigation and a stage of preparing, filed, finalized or withdrawn.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#reflectionEndDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">숙려 종료일</rdfs:label>
+    <rdfs:label xml:lang="en">Reflection end date</rdfs:label>
+    <rdfs:comment xml:lang="ko">협의 이혼에서 법원이 알린 숙려 기간의 마지막 날짜이다. 기간의 길이는 법원 안내에 따르며 이 온톨로지가 계산하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The last day of the reflection period given by the court in a consensual divorce; its length follows the court's notice and is not computed here.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#authorityHolding">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#CustodyArrangement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">친권 행사 방식</rdfs:label>
+    <rdfs:label xml:lang="en">Authority arrangement</rdfs:label>
+    <rdfs:comment xml:lang="ko">친권을 sole(한 사람) 또는 joint(공동)로 행사하기로 했는지 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Whether parental authority is exercised by one parent (sole) or jointly (joint).</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#hasSupportObligation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#SupportObligation"/>
+    <rdfs:label xml:lang="ko">양육비 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has support obligation</rdfs:label>
+    <rdfs:comment xml:lang="ko">사건에서 정해진 양육비 의무를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a case to a child support obligation set in it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#filedDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">접수일</rdfs:label>
+    <rdfs:label xml:lang="en">Filed date</rdfs:label>
+    <rdfs:comment xml:lang="ko">법원에 신청이나 소장을 낸 날짜이다. 준비 단계에서는 값이 없다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date the application or complaint was filed with the court; absent while the case is only being prepared.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#CustodyArrangement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">양육 결정</rdfs:label>
+    <rdfs:label xml:lang="en">Custody arrangement</rdfs:label>
+    <rdfs:comment xml:lang="ko">미성년 자녀 한 명을 누가 양육하는지와 친권을 어떻게 행사하는지에 관한 결정이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The decision on who raises one minor child and how parental authority is exercised.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#effectiveDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">효력 발생일</rdfs:label>
+    <rdfs:label xml:lang="en">Effective date</rdfs:label>
+    <rdfs:comment xml:lang="ko">이혼이 법적으로 성립한 날짜이다. 종결된 사건에만 있으며 접수일과 의사 확인일보다 앞설 수 없다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The date the divorce took legal effect; only for finalized cases, and not before the filed or confirmation date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#caseStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#DivorceCase"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">사건 단계</rdfs:label>
+    <rdfs:label xml:lang="en">Case stage</rdfs:label>
+    <rdfs:comment xml:lang="ko">preparing(준비), filed(접수), finalized(종결), withdrawn(철회) 중 하나이며 단계마다 필요한 날짜와 증빙이 다르다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">One of preparing, filed, finalized or withdrawn, each needing different dates and evidence.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#estimatedValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Asset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">추정 가액</rdfs:label>
+    <rdfs:label xml:lang="en">Estimated value</rdfs:label>
+    <rdfs:comment xml:lang="ko">항목의 추정 금액이며 0보다 큰 소수이다. 채무도 양수로 적고 종류로 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The estimated amount of the item, a decimal above zero; a debt is also positive and told apart by its type.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#valueCurrency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#Asset"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">가액 통화</rdfs:label>
+    <rdfs:label xml:lang="en">Value currency</rdfs:label>
+    <rdfs:comment xml:lang="ko">추정 가액의 통화를 KRW 같은 세 글자 대문자 코드로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The currency of the estimated value as a three-letter uppercase code such as KRW.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">이혼 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Divorce ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">이혼 사건의 절차 단계, 당사자, 자녀, 양육 결정, 양육비, 재산분할을 연결한다. 종결된 사건에는 법원 문서나 등록 증빙과 효력 발생일을 요구하며, 법정 기간 같은 법적 요건은 담지 않고 법원이 정한 날짜의 순서만 검사한다. 법률 자문이 아니며 예제는 가상 사건만 담는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects the procedural stages, parties, children, custody decisions, child support and property division of a divorce case. A finalized case requires a court or registration document and an effective date; statutory requirements are not encoded and only the order of court-set dates is checked. It is not legal advice and the example contains only fictional cases.</rdfs:comment>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/divorce/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#sharePercent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#AssetAllocation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">분할 비율 퍼센트</rdfs:label>
+    <rdfs:label xml:lang="en">Share percent</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 당사자에게 돌아가는 비율이며 0보다 크고 100 이하이다. 항목별 합은 종결된 사건에서 100이어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The share going to one party, above 0 and up to 100; per item the shares total 100 in a finalized case.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#custodian">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/divorce#CustodyArrangement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/divorce#Party"/>
+    <rdfs:label xml:lang="ko">양육자</rdfs:label>
+    <rdfs:label xml:lang="en">Custodian</rdfs:label>
+    <rdfs:comment xml:lang="ko">자녀를 맡아 양육하기로 한 당사자를 연결한다. 같은 사건의 당사자여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an arrangement to the party who will raise the child, who must be a party of the same case.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#Child">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">자녀</rdfs:label>
+    <rdfs:label xml:lang="en">Child</rdfs:label>
+    <rdfs:comment xml:lang="ko">이혼하는 부부의 자녀이다. 접수 시점에 미성년인지 여부를 기록하며 이름과 생년월일은 담지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A child of the couple, recorded with whether they were a minor at filing; name and birth date are not kept.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#AssetAllocation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">분할 비율</rdfs:label>
+    <rdfs:label xml:lang="en">Asset allocation</rdfs:label>
+    <rdfs:comment xml:lang="ko">재산·채무 항목 하나 중 한 당사자에게 돌아가는 비율이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The share of one asset or debt item that goes to one party.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/divorce#SupportObligation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">양육비 의무</rdfs:label>
+    <rdfs:label xml:lang="en">Child support obligation</rdfs:label>
+    <rdfs:comment xml:lang="ko">미성년 자녀 한 명을 위해 한 당사자가 다른 당사자에게 매달 지급하기로 한 금액이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A monthly amount one party pays to the other for one minor child.</rdfs:comment>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>온톨로지 관계망 브리프</title>
+  <link href="{{ url_for('static', filename='vendor/bootstrap-5.3.2/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons-1.11.1/font/bootstrap-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='graph-pulse.css') }}">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="/"><i class="bi bi-diagram-3-fill text-info"></i>Ontology Web Studio</a>
+      <div class="d-flex flex-wrap align-items-end gap-2 ms-auto">
+        <div class="nav-field">
+          <label class="form-label text-light small mb-1" for="ontologySelect">온톨로지</label>
+          <select id="ontologySelect" class="form-select form-select-sm">
+            {% for key, ont in ontologies.items() %}<option value="{{ key }}">{{ ont.name }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="nav-field">
+          <label class="form-label text-light small mb-1" for="projectSelect">프로젝트</label>
+          <select id="projectSelect" class="form-select form-select-sm" disabled><option value="">가상 예제</option></select>
+        </div>
+        <button class="btn btn-outline-light btn-sm" type="button" id="shareButton" title="현재 그래프 주소 복사"><i class="bi bi-link-45deg me-1"></i>공유</button>
+        <a class="btn btn-outline-info btn-sm" id="studioLink" href="/">스튜디오로</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-fluid px-3 px-lg-4 py-4">
+    <section class="page-heading d-flex flex-wrap align-items-end justify-content-between gap-3 mb-4">
+      <div>
+        <div class="eyebrow">ONTOLOGY / GRAPH EXPLORER</div>
+        <h1 class="h3 fw-bold mb-1">관계망 브리프</h1>
+        <p class="text-secondary mb-0">개체 간 연결을 탐색하고, 그래프에 기록된 속성과 출처 근거를 한 화면에서 확인합니다.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary" type="button" id="refreshButton"><i class="bi bi-arrow-clockwise me-1"></i>그래프 새로고침</button>
+        <button class="btn btn-outline-secondary" type="button" id="fitButton"><i class="bi bi-arrows-fullscreen me-1"></i>화면 맞춤</button>
+      </div>
+    </section>
+
+    <div id="pageError" class="alert alert-danger d-none" role="alert"></div>
+    <div id="truncationNotice" class="alert alert-warning d-none small" role="status"></div>
+
+    <section class="row g-3 mb-3" aria-label="그래프 요약">
+      <div class="col-6 col-xl-3"><div class="stat-card"><span class="stat-label">개체</span><strong id="statNodes">—</strong><span class="stat-icon"><i class="bi bi-record-circle"></i></span></div></div>
+      <div class="col-6 col-xl-3"><div class="stat-card"><span class="stat-label">관계</span><strong id="statEdges">—</strong><span class="stat-icon"><i class="bi bi-share"></i></span></div></div>
+      <div class="col-6 col-xl-3"><div class="stat-card"><span class="stat-label">유형 / 관계 종류</span><strong id="statKinds">—</strong><span class="stat-icon"><i class="bi bi-diagram-2"></i></span></div></div>
+      <div class="col-6 col-xl-3"><div class="stat-card"><span class="stat-label">기록된 리터럴</span><strong id="statLiterals">—</strong><span class="stat-icon"><i class="bi bi-card-text"></i></span></div></div>
+    </section>
+
+    <section class="filter-bar card border-0 shadow-sm mb-3" aria-label="그래프 필터">
+      <div class="card-body py-3">
+        <div class="row g-2 align-items-end">
+          <div class="col-lg-4">
+            <label class="form-label small fw-semibold" for="searchInput">개체 검색</label>
+            <div class="input-group input-group-sm"><span class="input-group-text"><i class="bi bi-search"></i></span><input id="searchInput" class="form-control" type="search" placeholder="이름 또는 URI"></div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <label class="form-label small fw-semibold" for="classFilter">유형</label>
+            <select id="classFilter" class="form-select form-select-sm"><option value="">모든 유형</option></select>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <label class="form-label small fw-semibold" for="predicateFilter">관계</label>
+            <select id="predicateFilter" class="form-select form-select-sm"><option value="">모든 관계</option></select>
+          </div>
+          <div class="col-sm-6 col-lg-1">
+            <label class="form-label small fw-semibold" for="inferenceSelect">추론</label>
+            <select id="inferenceSelect" class="form-select form-select-sm"><option value="none">원본</option><option value="rdfs">RDFS</option><option value="owlrl">OWL-RL</option></select>
+          </div>
+          <div class="col-sm-6 col-lg-1 pb-1">
+            <div class="form-check"><input id="externalToggle" class="form-check-input" type="checkbox"><label class="form-check-label small" for="externalToggle">외부</label></div>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-2">
+          <div id="graphMeta" class="small text-secondary" aria-live="polite">그래프를 불러오는 중입니다.</div>
+          <div class="small text-secondary d-flex flex-wrap gap-3"><span><i class="legend-dot legend-asserted"></i>기록된 관계</span><span><i class="legend-dot legend-inferred"></i>조회용 추론</span><span id="selectionMeta"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row g-3 align-items-start">
+      <div class="col-xl-8">
+        <div class="card border-0 shadow-sm graph-card">
+          <div class="card-header bg-white d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <strong><i class="bi bi-share me-2 text-primary"></i>개체 관계망</strong>
+            <div class="small text-secondary">노드를 선택하면 오른쪽에 기록과 근거가 표시됩니다. 드래그·확대·축소할 수 있습니다.</div>
+          </div>
+          <div class="position-relative"><div id="graphCanvas" role="img" aria-label="온톨로지 개체 관계망"></div><div id="graphEmpty" class="empty-state d-none">조건에 맞는 개체가 없습니다.</div><div id="graphLoading" class="graph-loading"><span class="spinner-border spinner-border-sm me-2"></span>관계망을 불러오는 중입니다.</div></div>
+        </div>
+        <div class="card border-0 shadow-sm mt-3">
+          <div class="card-header bg-white d-flex justify-content-between align-items-center"><strong>연결이 많은 개체</strong><span id="nodeCount" class="badge text-bg-secondary">0</span></div>
+          <div id="nodeList" class="node-list list-group list-group-flush"></div>
+        </div>
+      </div>
+
+      <aside class="col-xl-4" aria-label="선택 개체 정보">
+        <div id="detailPlaceholder" class="card border-0 shadow-sm mb-3"><div class="card-body text-secondary py-5 text-center"><i class="bi bi-cursor fs-2 d-block mb-2"></i>그래프에서 개체를 선택하세요.</div></div>
+        <div id="detailCard" class="card border-0 shadow-sm mb-3 d-none">
+          <div class="card-header bg-white">
+            <div class="eyebrow">SELECTED ENTITY</div>
+            <h2 class="h5 fw-bold mb-1" id="entityLabel"></h2>
+            <div class="uri-text text-secondary" id="entityUri"></div>
+            <div id="entityTypes" class="d-flex flex-wrap gap-1 mt-2"></div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex gap-3 small text-secondary mb-3" id="entityCounts"></div>
+            <h3 class="section-label">기록된 속성</h3>
+            <div id="propertyList" class="property-list"></div>
+            <h3 class="section-label mt-4">출처와 근거 표기</h3>
+            <div id="evidenceList" class="evidence-list"></div>
+            <p class="source-note">출처 링크와 근거 문구는 선택 데이터에 저장된 내용입니다. 원문과의 일치 여부는 이 화면에서 검증하지 않습니다.</p>
+            <h3 class="section-label mt-4">기록된 날짜 단서</h3>
+            <div id="dateList" class="date-list"></div>
+            <h3 class="section-label mt-4">연결 관계</h3>
+            <div id="relationList" class="relation-list"></div>
+            <div class="d-grid mt-3"><button class="btn btn-outline-secondary btn-sm" type="button" id="copyBriefButton"><i class="bi bi-clipboard me-1"></i>근거 포함 브리프 복사</button></div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-header bg-white d-flex align-items-center gap-2"><i class="bi bi-stars text-primary"></i><strong>Codex 요약</strong><span class="badge text-bg-light ms-auto">API 키 불필요</span></div>
+          <div class="card-body">
+            <p class="small text-secondary mb-2">체크하면 선택 개체의 속성, 1단계 관계, 기록된 출처가 로컬 Codex 작업으로 전달됩니다. 결과는 그래프에 저장되지 않습니다.</p>
+            <div id="codexAvailability" class="small text-secondary mb-2">Codex 연결 상태 확인 중입니다.</div>
+            <div class="form-check mb-2"><input class="form-check-input" type="checkbox" id="sendContextCheck"><label class="form-check-label small" for="sendContextCheck">선택한 개체 맥락을 Codex에 전달합니다.</label></div>
+            <button class="btn btn-primary btn-sm w-100" type="button" id="codexButton" disabled><i class="bi bi-stars me-1"></i>선택 개체 요약 요청</button>
+            <button class="btn btn-outline-secondary btn-sm w-100 mt-2 d-none" type="button" id="runCodexButton">대기 중인 Codex 작업 실행</button>
+            <div id="codexResult" class="codex-result d-none mt-3" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+    <footer class="small text-secondary py-4">그래프 범위와 수치는 현재 선택한 온톨로지·프로젝트를 기준으로 합니다. 추론 관계는 조회 전용이며 원본 데이터에 추가되지 않습니다.</footer>
+  </main>
+  <script src="{{ url_for('static', filename='vendor/bootstrap-5.3.2/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/vis-network/vis-network.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='graph-pulse.js') }}"></script>
+</body>
+</html>

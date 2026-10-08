@@ -1,0 +1,607 @@
+@prefix np: <https://example.org/ontology/custom/canine-noseprint#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+np:BiometricTemplateShape a sh:NodeShape ;
+    sh:property [ sh:class np:NosePrintSample ;
+            sh:maxCount 1 ;
+            sh:message "원본 표본의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:templateFromSample ],
+        [ sh:class np:RecognitionModel ;
+            sh:maxCount 1 ;
+            sh:message "생성 방법·모델의 값과 형식을 확인하세요."@ko ;
+            sh:path np:templateGeneratedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "템플릿 해시의 값과 형식을 확인하세요."@ko ;
+            sh:path np:templateDigest ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_generated"^^xsd:string "planned"^^xsd:string "generated"^^xsd:string "deleted"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "템플릿 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:templateStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "템플릿 버전의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:templateVersion ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "템플릿 생성 방법의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:templateMethod ] ;
+    sh:targetClass np:BiometricTemplate .
+
+np:CanineSubjectShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "개 온톨로지 개체 URI의 값과 형식을 확인하세요."@ko ;
+            sh:path np:subjectDogRecordUri ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "가명 개체 ID의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:subjectPseudonym ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic"^^xsd:string "pseudonymous"^^xsd:string "verified"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "개체 기록 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:subjectRecordStatus ] ;
+    sh:targetClass np:CanineSubject .
+
+np:CaptureSessionShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "촬영 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:captureNote ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "phone_camera"^^xsd:string "digital_camera"^^xsd:string "scanner"^^xsd:string "other"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "촬영 장치 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:captureDeviceType ],
+        [ sh:datatype xsd:dateTime ;
+            sh:maxCount 1 ;
+            sh:message "촬영 시각의 값과 형식을 확인하세요."@ko ;
+            sh:path np:captureTime ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "diffuse"^^xsd:string "direct"^^xsd:string "low_light"^^xsd:string "mixed"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "조명 조건의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:captureLighting ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "dry"^^xsd:string "wet_or_reflective"^^xsd:string "not_observed"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "코 표면 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:captureSurfaceCondition ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "frontal"^^xsd:string "oblique"^^xsd:string "multiple_views"^^xsd:string "not_recorded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "코 각도·자세의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:capturePose ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "장치 모델의 값과 형식을 확인하세요."@ko ;
+            sh:path np:captureDeviceModel ] ;
+    sh:targetClass np:CaptureSession .
+
+np:DataUsePermissionShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "보존·삭제 조건의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:retentionRule ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_applicable_synthetic"^^xsd:string "pending"^^xsd:string "granted"^^xsd:string "withdrawn"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "이용 허가 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:permissionStatus ],
+        [ sh:class np:NosePrintSample ;
+            sh:message "대상 표본의 값과 형식을 확인하세요."@ko ;
+            sh:path np:permissionCoversSample ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "이용 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:permissionScope ],
+        [ sh:class np:CanineSubject ;
+            sh:message "대상 개체의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:permissionCoversSubject ] ;
+    sh:targetClass np:DataUsePermission .
+
+np:DocumentationSourceShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "발행 연도의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sourceYear ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "문헌 URI의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sourceUri ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "인용 주장 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sourceClaimScope ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "연구 한계의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sourceLimitations ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "저자의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sourceAuthors ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "문헌 제목의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sourceTitle ] ;
+    sh:targetClass np:DocumentationSource .
+
+np:EvaluationMetricShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "측정값의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path np:metricValue ],
+        [ sh:class np:DocumentationSource ;
+            sh:maxCount 1 ;
+            sh:message "수치 출처의 값과 형식을 확인하세요."@ko ;
+            sh:path np:metricDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "지표 이름의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:metricName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "지표 단위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:metricUnit ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "rank_1"^^xsd:string "equal_error_rate"^^xsd:string "false_accept_rate"^^xsd:string "false_reject_rate"^^xsd:string "roc_auc"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "지표 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:metricKind ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_measured"^^xsd:string "measured"^^xsd:string "reported_by_source"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "측정 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:metricMeasurementStatus ] ;
+    sh:targetClass np:EvaluationMetric .
+
+np:EvaluationRunShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "평가 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:evaluationNote ],
+        [ sh:class np:RecognitionModel ;
+            sh:maxCount 1 ;
+            sh:message "평가 방법·모델의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:evaluationUsesModel ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "평가 프로토콜의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:evaluationProtocol ],
+        [ sh:class np:ReferenceDataset ;
+            sh:maxCount 1 ;
+            sh:message "평가 데이터셋의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:evaluationUsesDataset ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "not_run"^^xsd:string "completed"^^xsd:string "failed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "평가 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:evaluationStatus ],
+        [ sh:class np:EvaluationMetric ;
+            sh:message "평가 지표의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:evaluationUsesMetric ] ;
+    sh:targetClass np:EvaluationRun .
+
+np:IdentificationTaskShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "판정 임계값 설정의 값과 형식을 확인하세요."@ko ;
+            sh:path np:taskThresholdSetting ],
+        [ sh:class np:ReferenceDataset ;
+            sh:maxCount 1 ;
+            sh:message "비교 갤러리의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:taskGalleryDataset ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "not_run"^^xsd:string "running"^^xsd:string "completed"^^xsd:string "failed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "작업 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:taskStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "작업 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:taskNote ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "verification_1_to_1"^^xsd:string "identification_1_to_n"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "비교 작업 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:taskMode ],
+        [ sh:class np:MatchResult ;
+            sh:message "비교 결과의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:taskHasResult ],
+        [ sh:class np:NosePrintSample ;
+            sh:maxCount 1 ;
+            sh:message "질의 표본의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:taskQuerySample ] ;
+    sh:targetClass np:IdentificationTask .
+
+np:ImageQualityAssessmentShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "acceptable"^^xsd:string "concern"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "반사 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:glareStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "acceptable"^^xsd:string "concern"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "초점 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:focusStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "accepted"^^xsd:string "needs_review"^^xsd:string "rejected"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "종합 품질 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:qualityStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "acceptable"^^xsd:string "concern"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "각도 적합성의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:poseStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "motion_blur"^^xsd:string "oblique_view"^^xsd:string "glare_or_moisture"^^xsd:string "partial_occlusion"^^xsd:string "low_resolution"^^xsd:string "other"^^xsd:string ) ;
+            sh:message "품질 이슈의 값과 형식을 확인하세요."@ko ;
+            sh:path np:qualityIssue ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "acceptable"^^xsd:string "concern"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "조명 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:lightingStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "품질 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:qualityNote ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_assessed"^^xsd:string "acceptable"^^xsd:string "concern"^^xsd:string "not_applicable"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "가림 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:occlusionStatus ] ;
+    sh:targetClass np:ImageQualityAssessment .
+
+np:MatchResultShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "후보 순위의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 1 ;
+            sh:path np:matchRank ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "not_computed"^^xsd:string "candidate_for_review"^^xsd:string "no_candidate_under_protocol"^^xsd:string "human_review_required"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "비교 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:matchStatus ],
+        [ sh:class np:CanineSubject ;
+            sh:maxCount 1 ;
+            sh:message "후보 개체의 값과 형식을 확인하세요."@ko ;
+            sh:path np:resultCandidateSubject ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "결과 해석 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:matchNote ],
+        [ sh:class np:NosePrintSample ;
+            sh:maxCount 1 ;
+            sh:message "후보 표본의 값과 형식을 확인하세요."@ko ;
+            sh:path np:resultCandidateSample ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:message "유사도 또는 거리 점수의 값과 형식을 확인하세요."@ko ;
+            sh:minInclusive 0.0 ;
+            sh:path np:matchScore ],
+        [ sh:class np:IdentificationTask ;
+            sh:maxCount 1 ;
+            sh:message "대상 비교 작업의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:resultForTask ] ;
+    sh:targetClass np:MatchResult .
+
+np:NosePrintProjectShape a sh:NodeShape ;
+    sh:property [ sh:class np:RecognitionModel ;
+            sh:message "인식 방법 또는 모델의 값과 형식을 확인하세요."@ko ;
+            sh:path np:projectHasModel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_example"^^xsd:string "research"^^xsd:string "operational"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "프로젝트 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:projectStatus ],
+        [ sh:class np:ReferenceDataset ;
+            sh:message "참조 데이터셋의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasDataset ],
+        [ sh:class np:DocumentationSource ;
+            sh:message "문헌 출처의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasSource ],
+        [ sh:class np:IdentificationTask ;
+            sh:message "비교 작업의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasComparisonTask ],
+        [ sh:class np:EvaluationRun ;
+            sh:message "평가 실행의 값과 형식을 확인하세요."@ko ;
+            sh:path np:projectHasEvaluation ],
+        [ sh:class np:DataUsePermission ;
+            sh:message "표본 이용 권한의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasPermission ],
+        [ sh:class np:CanineSubject ;
+            sh:message "개체 참조의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasSubject ],
+        [ sh:class np:NosePrintSample ;
+            sh:message "비문 표본의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:projectHasSample ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "범위 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:projectScopeNote ] ;
+    sh:targetClass np:NosePrintProject .
+
+np:NosePrintSampleShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_placeholder"^^xsd:string "captured_unreviewed"^^xsd:string "quality_reviewed"^^xsd:string "rejected"^^xsd:string "restricted"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "표본 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sampleStatus ],
+        [ sh:class np:NoseRegion ;
+            sh:maxCount 1 ;
+            sh:message "분석 영역의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sampleUsesRegion ],
+        [ sh:class np:CanineSubject ;
+            sh:maxCount 1 ;
+            sh:message "대상 개체의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sampleOfSubject ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "no_binary_placeholder"^^xsd:string "available"^^xsd:string "restricted"^^xsd:string "deleted"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "이미지 자산 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:sampleAssetStatus ],
+        [ sh:class np:ImageQualityAssessment ;
+            sh:maxCount 1 ;
+            sh:message "품질 평가의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sampleQualityAssessment ],
+        [ sh:class np:CaptureSession ;
+            sh:maxCount 1 ;
+            sh:message "촬영 세션의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sampleCapturedIn ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:message "이미지 자산 참조의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:sampleAssetUri ] ;
+    sh:targetClass np:NosePrintSample .
+
+np:NoseRegionShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "해부학적 범위의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:regionDefinition ],
+        [ sh:class np:DocumentationSource ;
+            sh:message "해부 근거 문헌의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:regionDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "관심 영역 이름의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:regionName ] ;
+    sh:targetClass np:NoseRegion .
+
+np:PreprocessingRecordShape a sh:NodeShape ;
+    sh:property [ sh:class np:NosePrintSample ;
+            sh:maxCount 1 ;
+            sh:message "처리 대상 표본의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:preprocessingOfSample ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "전처리 버전의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:preprocessingVersion ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "planned"^^xsd:string "not_run"^^xsd:string "completed"^^xsd:string "failed"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "전처리 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:preprocessingStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "전처리 단계의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:preprocessingSteps ] ;
+    sh:targetClass np:PreprocessingRecord .
+
+np:RecognitionModelShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "방법 또는 모델 이름의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:modelName ],
+        [ sh:class np:DocumentationSource ;
+            sh:message "근거 문헌의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:modelDocumentedBy ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "적용 범위 메모의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:modelScopeNote ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "방법 설명의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:modelDescription ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "literature_reference"^^xsd:string "design_only"^^xsd:string "prototype"^^xsd:string "evaluated"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "구현 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:modelStatus ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "gabor_hamming"^^xsd:string "feature_matching"^^xsd:string "siamese_cnn"^^xsd:string "other"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "방법 계열의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:modelFamily ] ;
+    sh:targetClass np:RecognitionModel .
+
+np:ReferenceDatasetShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "synthetic_metadata_only"^^xsd:string "collected_research"^^xsd:string "published"^^xsd:string "mixed"^^xsd:string "unknown"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "데이터 출처 유형의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:datasetProvenance ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "표본 수의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path np:datasetSampleCount ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "데이터 분할 절차의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:datasetSplitProtocol ],
+        [ sh:class np:DocumentationSource ;
+            sh:maxCount 1 ;
+            sh:message "문헌 출처의 값과 형식을 확인하세요."@ko ;
+            sh:path np:datasetDescribedBy ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "metadata_fixture"^^xsd:string "available_for_research"^^xsd:string "restricted"^^xsd:string "not_available"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:message "사용 상태의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:datasetStatus ],
+        [ sh:class np:NosePrintSample ;
+            sh:message "포함 표본의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:path np:datasetIncludesSample ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "데이터셋 이름의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:datasetName ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:message "데이터 한계의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:path np:datasetLimitations ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:message "개체 수의 값과 형식을 확인하세요."@ko ;
+            sh:minCount 1 ;
+            sh:minInclusive 0 ;
+            sh:path np:datasetSubjectCount ] ;
+    sh:targetClass np:ReferenceDataset .

@@ -1,0 +1,888 @@
+@prefix dom: <https://example.org/ontology/custom/domain#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dom: a owl:Ontology ;
+    rdfs:label "Knowledge and Application Domain Ontology"@en,
+        "지식·업무 영역 온톨로지"@ko ;
+    rdfs:comment "A draft for assigning local ontology profiles to knowledge and application domains and managing hierarchy, scope, external mappings, evidence, review, and change."@en,
+        "로컬 온톨로지 프로필을 지식·업무 영역에 연결하고 계층, 범위, 외부 매핑, 출처, 검토와 변경을 관리하는 초안이다."@ko ;
+    owl:versionInfo "0.1.0" .
+
+dom:assignmentConfidence a owl:DatatypeProperty ;
+    rdfs:label "assignment confidence"@en,
+        "배정 신뢰도"@ko ;
+    rdfs:comment "Records the assignment confidence for Domain assignment."@en,
+        "프로필 영역 배정의 배정 신뢰도를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range xsd:decimal .
+
+dom:assignmentCreatedAt a owl:DatatypeProperty ;
+    rdfs:label "assignment date"@en,
+        "배정 기록 날짜"@ko ;
+    rdfs:comment "Records the assignment date for Domain assignment."@en,
+        "프로필 영역 배정의 배정 기록 날짜를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range xsd:date .
+
+dom:assignmentEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "assignment evidence"@en,
+        "배정 근거"@ko ;
+    rdfs:comment "Records a relation from Domain assignment to Domain evidence source."@en,
+        "프로필 영역 배정에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range dom:DomainSource .
+
+dom:assignmentForProfile a owl:ObjectProperty ;
+    rdfs:label "for ontology profile"@en,
+        "배정 대상 프로필"@ko ;
+    rdfs:comment "Records a relation from Domain assignment to Ontology profile."@en,
+        "프로필 영역 배정에서 온톨로지 프로필로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range dom:OntologyProfile .
+
+dom:assignmentMethod a owl:DatatypeProperty ;
+    rdfs:label "assignment method"@en,
+        "배정 방법"@ko ;
+    rdfs:comment "Records the assignment method for Domain assignment."@en,
+        "프로필 영역 배정의 배정 방법를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range xsd:string .
+
+dom:assignmentRationale a owl:DatatypeProperty ;
+    rdfs:label "assignment rationale"@en,
+        "배정 근거 설명"@ko ;
+    rdfs:comment "Records the assignment rationale for Domain assignment."@en,
+        "프로필 영역 배정의 배정 근거 설명를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range rdf:langString .
+
+dom:assignmentStatus a owl:DatatypeProperty ;
+    rdfs:label "assignment review status"@en,
+        "배정 검토 상태"@ko ;
+    rdfs:comment "Records the assignment review status for Domain assignment."@en,
+        "프로필 영역 배정의 배정 검토 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range xsd:string .
+
+dom:assignmentToDomain a owl:ObjectProperty ;
+    rdfs:label "assigned domain"@en,
+        "배정 영역"@ko ;
+    rdfs:comment "Records a relation from Domain assignment to Knowledge domain."@en,
+        "프로필 영역 배정에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainAssignment ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:catalogDefinition a owl:DatatypeProperty ;
+    rdfs:label "catalog definition"@en,
+        "분류 체계 정의"@ko ;
+    rdfs:comment "Records the catalog definition for Domain catalog."@en,
+        "영역 분류 체계의 분류 체계 정의를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:definition .
+
+dom:catalogHasDomain a owl:ObjectProperty ;
+    rdfs:label "has domain"@en,
+        "포함 영역"@ko ;
+    rdfs:comment "Records a relation from Domain catalog to Knowledge domain."@en,
+        "영역 분류 체계에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:catalogHasSource a owl:ObjectProperty ;
+    rdfs:label "has evidence source"@en,
+        "근거 출처"@ko ;
+    rdfs:comment "Records a relation from Domain catalog to Domain evidence source."@en,
+        "영역 분류 체계에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range dom:DomainSource .
+
+dom:catalogHasTopDomain a owl:ObjectProperty ;
+    rdfs:label "has top domain"@en,
+        "최상위 영역"@ko ;
+    rdfs:comment "Records a relation from Domain catalog to Knowledge domain."@en,
+        "영역 분류 체계에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range dom:KnowledgeDomain ;
+    rdfs:subPropertyOf skos:hasTopConcept .
+
+dom:catalogLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "catalog lifecycle status"@en,
+        "분류 체계 상태"@ko ;
+    rdfs:comment "Records the catalog lifecycle status for Domain catalog."@en,
+        "영역 분류 체계의 분류 체계 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range xsd:string .
+
+dom:catalogPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "catalog preferred label"@en,
+        "분류 체계 표제"@ko ;
+    rdfs:comment "Records the catalog preferred label for Domain catalog."@en,
+        "영역 분류 체계의 분류 체계 표제를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:prefLabel .
+
+dom:catalogScopeNote a owl:DatatypeProperty ;
+    rdfs:label "catalog scope note"@en,
+        "분류 범위 주석"@ko ;
+    rdfs:comment "Records the catalog scope note for Domain catalog."@en,
+        "영역 분류 체계의 분류 범위 주석를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:scopeNote .
+
+dom:catalogVersion a owl:DatatypeProperty ;
+    rdfs:label "catalog version"@en,
+        "분류 체계 버전"@ko ;
+    rdfs:comment "Records the catalog version for Domain catalog."@en,
+        "영역 분류 체계의 분류 체계 버전를 기록한다."@ko ;
+    rdfs:domain dom:DomainCatalog ;
+    rdfs:range xsd:string .
+
+dom:changeAction a owl:DatatypeProperty ;
+    rdfs:label "change action"@en,
+        "변경 작업"@ko ;
+    rdfs:comment "Records the change action for Domain change event."@en,
+        "영역 변경 사건의 변경 작업를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range xsd:string .
+
+dom:changeDate a owl:DatatypeProperty ;
+    rdfs:label "change date"@en,
+        "변경 날짜"@ko ;
+    rdfs:comment "Records the change date for Domain change event."@en,
+        "영역 변경 사건의 변경 날짜를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range xsd:date .
+
+dom:changeEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "change evidence"@en,
+        "변경 근거 출처"@ko ;
+    rdfs:comment "Records a relation from Domain change event to Domain evidence source."@en,
+        "영역 변경 사건에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range dom:DomainSource .
+
+dom:changeForDomain a owl:ObjectProperty ;
+    rdfs:label "change for domain"@en,
+        "변경 대상 영역"@ko ;
+    rdfs:comment "Records a relation from Domain change event to Knowledge domain."@en,
+        "영역 변경 사건에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:changeNewStatus a owl:DatatypeProperty ;
+    rdfs:label "new state"@en,
+        "변경 후 상태"@ko ;
+    rdfs:comment "Records the new state for Domain change event."@en,
+        "영역 변경 사건의 변경 후 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range xsd:string .
+
+dom:changePreviousStatus a owl:DatatypeProperty ;
+    rdfs:label "previous state"@en,
+        "이전 상태"@ko ;
+    rdfs:comment "Records the previous state for Domain change event."@en,
+        "영역 변경 사건의 이전 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range xsd:string .
+
+dom:changeReason a owl:DatatypeProperty ;
+    rdfs:label "change reason"@en,
+        "변경 사유"@ko ;
+    rdfs:comment "Records the change reason for Domain change event."@en,
+        "영역 변경 사건의 변경 사유를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range rdf:langString .
+
+dom:changeRecordedByRole a owl:DatatypeProperty ;
+    rdfs:label "recorded by role"@en,
+        "기록자 역할"@ko ;
+    rdfs:comment "Records the recorded by role for Domain change event."@en,
+        "영역 변경 사건의 기록자 역할를 기록한다."@ko ;
+    rdfs:domain dom:DomainChangeEvent ;
+    rdfs:range xsd:string .
+
+dom:domainAlternativeLabel a owl:DatatypeProperty ;
+    rdfs:label "alternative label"@en,
+        "대체 표기"@ko ;
+    rdfs:comment "Records the alternative label for Knowledge domain."@en,
+        "지식·업무 영역의 대체 표기를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:altLabel .
+
+dom:domainBoundaryStatus a owl:DatatypeProperty ;
+    rdfs:label "boundary definition status"@en,
+        "경계 정의 상태"@ko ;
+    rdfs:comment "Records the boundary definition status for Knowledge domain."@en,
+        "지식·업무 영역의 경계 정의 상태를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:string .
+
+dom:domainBroader a owl:ObjectProperty ;
+    rdfs:label "immediate broader domain"@en,
+        "직접 상위 영역"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Knowledge domain."@en,
+        "지식·업무 영역에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:KnowledgeDomain ;
+    rdfs:subPropertyOf skos:broader ;
+    owl:inverseOf dom:domainNarrower .
+
+dom:domainDefinition a owl:DatatypeProperty ;
+    rdfs:label "domain definition"@en,
+        "영역 정의"@ko ;
+    rdfs:comment "Records the domain definition for Knowledge domain."@en,
+        "지식·업무 영역의 영역 정의를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:definition .
+
+dom:domainHasAssignment a owl:ObjectProperty ;
+    rdfs:label "has domain assignment"@en,
+        "영역 배정 기록"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain assignment."@en,
+        "지식·업무 영역에서 프로필 영역 배정로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainAssignment .
+
+dom:domainHasChangeEvent a owl:ObjectProperty ;
+    rdfs:label "has change event"@en,
+        "변경 이력"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain change event."@en,
+        "지식·업무 영역에서 영역 변경 사건로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainChangeEvent .
+
+dom:domainHasMapping a owl:ObjectProperty ;
+    rdfs:label "has external mapping"@en,
+        "외부 매핑 기록"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to External classification mapping."@en,
+        "지식·업무 영역에서 외부 분류 매핑로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainMapping .
+
+dom:domainHasProfile a owl:ObjectProperty ;
+    rdfs:label "has ontology profile"@en,
+        "포함 온톨로지 프로필"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Ontology profile."@en,
+        "지식·업무 영역에서 온톨로지 프로필로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:OntologyProfile .
+
+dom:domainHasRelation a owl:ObjectProperty ;
+    rdfs:label "has cross-domain relation"@en,
+        "교차 영역 관계 기록"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Cross-domain relation."@en,
+        "지식·업무 영역에서 교차 영역 관계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainRelation .
+
+dom:domainHasReview a owl:ObjectProperty ;
+    rdfs:label "has review"@en,
+        "검토 기록"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain review record."@en,
+        "지식·업무 영역에서 영역 검토 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainReview .
+
+dom:domainHasScopeStatement a owl:ObjectProperty ;
+    rdfs:label "has scope statement"@en,
+        "범위 문장"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain scope statement."@en,
+        "지식·업무 영역에서 영역 범위 문장로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainScopeStatement .
+
+dom:domainHasSource a owl:ObjectProperty ;
+    rdfs:label "has source"@en,
+        "정의 출처"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain evidence source."@en,
+        "지식·업무 영역에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainSource .
+
+dom:domainIdentifier a owl:DatatypeProperty ;
+    rdfs:label "domain identifier"@en,
+        "영역 식별자"@ko ;
+    rdfs:comment "Records the domain identifier for Knowledge domain."@en,
+        "지식·업무 영역의 영역 식별자를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:string .
+
+dom:domainInCatalog a owl:ObjectProperty ;
+    rdfs:label "in catalog"@en,
+        "소속 분류 체계"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Domain catalog."@en,
+        "지식·업무 영역에서 영역 분류 체계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:DomainCatalog ;
+    rdfs:subPropertyOf skos:inScheme .
+
+dom:domainLevel a owl:DatatypeProperty ;
+    rdfs:label "hierarchy level"@en,
+        "계층 단계"@ko ;
+    rdfs:comment "Records the hierarchy level for Knowledge domain."@en,
+        "지식·업무 영역의 계층 단계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:integer .
+
+dom:domainLifecycleStatus a owl:DatatypeProperty ;
+    rdfs:label "domain lifecycle status"@en,
+        "영역 상태"@ko ;
+    rdfs:comment "Records the domain lifecycle status for Knowledge domain."@en,
+        "지식·업무 영역의 영역 상태를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:string .
+
+dom:domainNotation a owl:DatatypeProperty ;
+    rdfs:label "domain notation"@en,
+        "분류 기호"@ko ;
+    rdfs:comment "Records the domain notation for Knowledge domain."@en,
+        "지식·업무 영역의 분류 기호를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf skos:notation .
+
+dom:domainPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "preferred label"@en,
+        "선호 표기"@ko ;
+    rdfs:comment "Records the preferred label for Knowledge domain."@en,
+        "지식·업무 영역의 선호 표기를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:prefLabel .
+
+dom:domainRelatedTo a owl:ObjectProperty,
+        owl:SymmetricProperty ;
+    rdfs:label "related domain"@en,
+        "연관 영역"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Knowledge domain."@en,
+        "지식·업무 영역에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:KnowledgeDomain ;
+    rdfs:subPropertyOf skos:related .
+
+dom:domainTopConcept a owl:DatatypeProperty ;
+    rdfs:label "top concept flag"@en,
+        "최상위 개념 여부"@ko ;
+    rdfs:comment "Records the top concept flag for Knowledge domain."@en,
+        "지식·업무 영역의 최상위 개념 여부를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range xsd:boolean .
+
+dom:mappingConfidence a owl:DatatypeProperty ;
+    rdfs:label "mapping confidence"@en,
+        "매핑 신뢰도"@ko ;
+    rdfs:comment "Records the mapping confidence for External classification mapping."@en,
+        "외부 분류 매핑의 매핑 신뢰도를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range xsd:decimal .
+
+dom:mappingEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "mapping evidence"@en,
+        "매핑 근거 출처"@ko ;
+    rdfs:comment "Records a relation from External classification mapping to Domain evidence source."@en,
+        "외부 분류 매핑에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range dom:DomainSource .
+
+dom:mappingExternalConceptUri a owl:DatatypeProperty ;
+    rdfs:label "external concept URI"@en,
+        "외부 개념 URI"@ko ;
+    rdfs:comment "Records the external concept URI for External classification mapping."@en,
+        "외부 분류 매핑의 외부 개념 URI를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range xsd:anyURI .
+
+dom:mappingExternalNotation a owl:DatatypeProperty ;
+    rdfs:label "external notation"@en,
+        "외부 분류 기호"@ko ;
+    rdfs:comment "Records the external notation for External classification mapping."@en,
+        "외부 분류 매핑의 외부 분류 기호를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range xsd:string .
+
+dom:mappingExternalScheme a owl:ObjectProperty ;
+    rdfs:label "target external scheme"@en,
+        "대상 외부 분류 체계"@ko ;
+    rdfs:comment "Records a relation from External classification mapping to External classification scheme."@en,
+        "외부 분류 매핑에서 외부 분류 체계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range dom:ExternalClassificationScheme .
+
+dom:mappingLocalDomain a owl:ObjectProperty ;
+    rdfs:label "local domain"@en,
+        "매핑할 로컬 영역"@ko ;
+    rdfs:comment "Records a relation from External classification mapping to Knowledge domain."@en,
+        "외부 분류 매핑에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:mappingRationale a owl:DatatypeProperty ;
+    rdfs:label "mapping rationale"@en,
+        "매핑 판단 근거"@ko ;
+    rdfs:comment "Records the mapping rationale for External classification mapping."@en,
+        "외부 분류 매핑의 매핑 판단 근거를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range rdf:langString .
+
+dom:mappingRelationType a owl:DatatypeProperty ;
+    rdfs:label "mapping relation type"@en,
+        "매핑 관계 유형"@ko ;
+    rdfs:comment "Records the mapping relation type for External classification mapping."@en,
+        "외부 분류 매핑의 매핑 관계 유형를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range xsd:string .
+
+dom:mappingStatus a owl:DatatypeProperty ;
+    rdfs:label "mapping lifecycle status"@en,
+        "매핑 상태"@ko ;
+    rdfs:comment "Records the mapping lifecycle status for External classification mapping."@en,
+        "외부 분류 매핑의 매핑 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainMapping ;
+    rdfs:range xsd:string .
+
+dom:ontologyProfileCoversDomain a owl:ObjectProperty ;
+    rdfs:label "covers domain"@en,
+        "포괄 영역"@ko ;
+    rdfs:comment "Records a relation from Ontology profile to Knowledge domain."@en,
+        "온톨로지 프로필에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:ontologyProfileDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "프로필 출처 기록"@ko ;
+    rdfs:comment "Records a relation from Ontology profile to Domain evidence source."@en,
+        "온톨로지 프로필에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range dom:DomainSource .
+
+dom:ontologyProfileId a owl:DatatypeProperty ;
+    rdfs:label "profile ID"@en,
+        "프로필 ID"@ko ;
+    rdfs:comment "Records the profile ID for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 ID를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range xsd:string .
+
+dom:ontologyProfileName a owl:DatatypeProperty ;
+    rdfs:label "profile name"@en,
+        "프로필 이름"@ko ;
+    rdfs:comment "Records the profile name for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 이름를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range rdf:langString .
+
+dom:ontologyProfileNamespace a owl:DatatypeProperty ;
+    rdfs:label "profile namespace"@en,
+        "프로필 네임스페이스"@ko ;
+    rdfs:comment "Records the profile namespace for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 네임스페이스를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range xsd:anyURI .
+
+dom:ontologyProfileScope a owl:DatatypeProperty ;
+    rdfs:label "profile scope"@en,
+        "프로필 범위"@ko ;
+    rdfs:comment "Records the profile scope for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 범위를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range rdf:langString .
+
+dom:ontologyProfileStatus a owl:DatatypeProperty ;
+    rdfs:label "profile lifecycle status"@en,
+        "프로필 상태"@ko ;
+    rdfs:comment "Records the profile lifecycle status for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 상태를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range xsd:string .
+
+dom:ontologyProfileVersion a owl:DatatypeProperty ;
+    rdfs:label "profile version"@en,
+        "프로필 버전"@ko ;
+    rdfs:comment "Records the profile version for Ontology profile."@en,
+        "온톨로지 프로필의 프로필 버전를 기록한다."@ko ;
+    rdfs:domain dom:OntologyProfile ;
+    rdfs:range xsd:string .
+
+dom:relationEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "relation evidence"@en,
+        "관계 근거 출처"@ko ;
+    rdfs:comment "Records a relation from Cross-domain relation to Domain evidence source."@en,
+        "교차 영역 관계에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range dom:DomainSource .
+
+dom:relationObjectDomain a owl:ObjectProperty ;
+    rdfs:label "relation object"@en,
+        "관계 대상 영역"@ko ;
+    rdfs:comment "Records a relation from Cross-domain relation to Knowledge domain."@en,
+        "교차 영역 관계에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:relationRationale a owl:DatatypeProperty ;
+    rdfs:label "relation rationale"@en,
+        "관계 설명"@ko ;
+    rdfs:comment "Records the relation rationale for Cross-domain relation."@en,
+        "교차 영역 관계의 관계 설명를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range rdf:langString .
+
+dom:relationRecordedAt a owl:DatatypeProperty ;
+    rdfs:label "relation record date"@en,
+        "관계 기록 날짜"@ko ;
+    rdfs:comment "Records the relation record date for Cross-domain relation."@en,
+        "교차 영역 관계의 관계 기록 날짜를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range xsd:date .
+
+dom:relationStatus a owl:DatatypeProperty ;
+    rdfs:label "relation review status"@en,
+        "관계 검토 상태"@ko ;
+    rdfs:comment "Records the relation review status for Cross-domain relation."@en,
+        "교차 영역 관계의 관계 검토 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range xsd:string .
+
+dom:relationSubjectDomain a owl:ObjectProperty ;
+    rdfs:label "relation subject"@en,
+        "관계 시작 영역"@ko ;
+    rdfs:comment "Records a relation from Cross-domain relation to Knowledge domain."@en,
+        "교차 영역 관계에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:relationType a owl:DatatypeProperty ;
+    rdfs:label "relation type"@en,
+        "관계 유형"@ko ;
+    rdfs:comment "Records the relation type for Cross-domain relation."@en,
+        "교차 영역 관계의 관계 유형를 기록한다."@ko ;
+    rdfs:domain dom:DomainRelation ;
+    rdfs:range xsd:string .
+
+dom:reviewCriteria a owl:DatatypeProperty ;
+    rdfs:label "review criteria"@en,
+        "검토 기준"@ko ;
+    rdfs:comment "Records the review criteria for Domain review record."@en,
+        "영역 검토 기록의 검토 기준를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range rdf:langString .
+
+dom:reviewDate a owl:DatatypeProperty ;
+    rdfs:label "review date"@en,
+        "검토 날짜"@ko ;
+    rdfs:comment "Records the review date for Domain review record."@en,
+        "영역 검토 기록의 검토 날짜를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range xsd:date .
+
+dom:reviewEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "review evidence"@en,
+        "검토 근거"@ko ;
+    rdfs:comment "Records a relation from Domain review record to Domain evidence source."@en,
+        "영역 검토 기록에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range dom:DomainSource .
+
+dom:reviewForDomain a owl:ObjectProperty ;
+    rdfs:label "reviews domain"@en,
+        "검토 대상 영역"@ko ;
+    rdfs:comment "Records a relation from Domain review record to Knowledge domain."@en,
+        "영역 검토 기록에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:reviewOutcome a owl:DatatypeProperty ;
+    rdfs:label "review outcome"@en,
+        "검토 결과"@ko ;
+    rdfs:comment "Records the review outcome for Domain review record."@en,
+        "영역 검토 기록의 검토 결과를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range xsd:string .
+
+dom:reviewRationale a owl:DatatypeProperty ;
+    rdfs:label "review rationale"@en,
+        "검토 메모"@ko ;
+    rdfs:comment "Records the review rationale for Domain review record."@en,
+        "영역 검토 기록의 검토 메모를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range rdf:langString .
+
+dom:reviewStatus a owl:DatatypeProperty ;
+    rdfs:label "review status"@en,
+        "검토 진행 상태"@ko ;
+    rdfs:comment "Records the review status for Domain review record."@en,
+        "영역 검토 기록의 검토 진행 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range xsd:string .
+
+dom:reviewerRole a owl:DatatypeProperty ;
+    rdfs:label "reviewer role"@en,
+        "검토자 역할"@ko ;
+    rdfs:comment "Records the reviewer role for Domain review record."@en,
+        "영역 검토 기록의 검토자 역할를 기록한다."@ko ;
+    rdfs:domain dom:DomainReview ;
+    rdfs:range xsd:string .
+
+dom:schemeDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en,
+        "분류 체계 출처"@ko ;
+    rdfs:comment "Records a relation from External classification scheme to Domain evidence source."@en,
+        "외부 분류 체계에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range dom:DomainSource .
+
+dom:schemeLanguage a owl:DatatypeProperty ;
+    rdfs:label "scheme language"@en,
+        "분류 체계 언어"@ko ;
+    rdfs:comment "Records the scheme language for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 언어를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range xsd:string .
+
+dom:schemeLimitations a owl:DatatypeProperty ;
+    rdfs:label "scheme limitations"@en,
+        "분류 체계 한계"@ko ;
+    rdfs:comment "Records the scheme limitations for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 한계를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range rdf:langString .
+
+dom:schemeName a owl:DatatypeProperty ;
+    rdfs:label "scheme name"@en,
+        "분류 체계 이름"@ko ;
+    rdfs:comment "Records the scheme name for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 이름를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range rdf:langString .
+
+dom:schemePublisher a owl:DatatypeProperty ;
+    rdfs:label "scheme publisher"@en,
+        "분류 체계 발행자"@ko ;
+    rdfs:comment "Records the scheme publisher for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 발행자를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range xsd:string .
+
+dom:schemeStatus a owl:DatatypeProperty ;
+    rdfs:label "scheme status"@en,
+        "분류 체계 상태"@ko ;
+    rdfs:comment "Records the scheme status for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 상태를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range xsd:string .
+
+dom:schemeUri a owl:DatatypeProperty ;
+    rdfs:label "scheme URI"@en,
+        "분류 체계 URI"@ko ;
+    rdfs:comment "Records the scheme URI for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 URI를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range xsd:anyURI .
+
+dom:schemeVersion a owl:DatatypeProperty ;
+    rdfs:label "scheme version"@en,
+        "분류 체계 버전"@ko ;
+    rdfs:comment "Records the scheme version for External classification scheme."@en,
+        "외부 분류 체계의 분류 체계 버전를 기록한다."@ko ;
+    rdfs:domain dom:ExternalClassificationScheme ;
+    rdfs:range xsd:string .
+
+dom:scopeEvidenceLevel a owl:DatatypeProperty ;
+    rdfs:label "scope evidence level"@en,
+        "범위 근거 수준"@ko ;
+    rdfs:comment "Records the scope evidence level for Domain scope statement."@en,
+        "영역 범위 문장의 범위 근거 수준를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range xsd:string .
+
+dom:scopeEvidenceSource a owl:ObjectProperty ;
+    rdfs:label "scope evidence"@en,
+        "범위 근거 출처"@ko ;
+    rdfs:comment "Records a relation from Domain scope statement to Domain evidence source."@en,
+        "영역 범위 문장에서 영역 근거 출처로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range dom:DomainSource .
+
+dom:scopeForDomain a owl:ObjectProperty ;
+    rdfs:label "scope for domain"@en,
+        "범위 대상 영역"@ko ;
+    rdfs:comment "Records a relation from Domain scope statement to Knowledge domain."@en,
+        "영역 범위 문장에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range dom:KnowledgeDomain .
+
+dom:scopeKind a owl:DatatypeProperty ;
+    rdfs:label "scope statement kind"@en,
+        "범위 문장 유형"@ko ;
+    rdfs:comment "Records the scope statement kind for Domain scope statement."@en,
+        "영역 범위 문장의 범위 문장 유형를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range xsd:string .
+
+dom:scopeReviewStatus a owl:DatatypeProperty ;
+    rdfs:label "scope review status"@en,
+        "범위 검토 상태"@ko ;
+    rdfs:comment "Records the scope review status for Domain scope statement."@en,
+        "영역 범위 문장의 범위 검토 상태를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range xsd:string .
+
+dom:scopeText a owl:DatatypeProperty ;
+    rdfs:label "scope text"@en,
+        "범위 문장"@ko ;
+    rdfs:comment "Records the scope text for Domain scope statement."@en,
+        "영역 범위 문장의 범위 문장를 기록한다."@ko ;
+    rdfs:domain dom:DomainScopeStatement ;
+    rdfs:range rdf:langString ;
+    rdfs:subPropertyOf skos:scopeNote .
+
+dom:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "source access date"@en,
+        "자료 확인 날짜"@ko ;
+    rdfs:comment "Records the source access date for Domain evidence source."@en,
+        "영역 근거 출처의 자료 확인 날짜를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:date .
+
+dom:sourceKind a owl:DatatypeProperty ;
+    rdfs:label "source kind"@en,
+        "자료 유형"@ko ;
+    rdfs:comment "Records the source kind for Domain evidence source."@en,
+        "영역 근거 출처의 자료 유형를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:string .
+
+dom:sourceLimitations a owl:DatatypeProperty ;
+    rdfs:label "source limitations"@en,
+        "자료 한계"@ko ;
+    rdfs:comment "Records the source limitations for Domain evidence source."@en,
+        "영역 근거 출처의 자료 한계를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range rdf:langString .
+
+dom:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "publisher"@en,
+        "발행자"@ko ;
+    rdfs:comment "Records the publisher for Domain evidence source."@en,
+        "영역 근거 출처의 발행자를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:string .
+
+dom:sourceScope a owl:DatatypeProperty ;
+    rdfs:label "supported source scope"@en,
+        "자료가 뒷받침하는 범위"@ko ;
+    rdfs:comment "Records the supported source scope for Domain evidence source."@en,
+        "영역 근거 출처의 자료가 뒷받침하는 범위를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range rdf:langString .
+
+dom:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "source title"@en,
+        "자료 제목"@ko ;
+    rdfs:comment "Records the source title for Domain evidence source."@en,
+        "영역 근거 출처의 자료 제목를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:string .
+
+dom:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "source URI"@en,
+        "자료 URI"@ko ;
+    rdfs:comment "Records the source URI for Domain evidence source."@en,
+        "영역 근거 출처의 자료 URI를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:anyURI .
+
+dom:sourceYear a owl:DatatypeProperty ;
+    rdfs:label "publication year"@en,
+        "발행 연도"@ko ;
+    rdfs:comment "Records the publication year for Domain evidence source."@en,
+        "영역 근거 출처의 발행 연도를 기록한다."@ko ;
+    rdfs:domain dom:DomainSource ;
+    rdfs:range xsd:integer .
+
+dom:domainNarrower a owl:ObjectProperty ;
+    rdfs:label "immediate narrower domain"@en,
+        "직접 하위 영역"@ko ;
+    rdfs:comment "Records a relation from Knowledge domain to Knowledge domain."@en,
+        "지식·업무 영역에서 지식·업무 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain dom:KnowledgeDomain ;
+    rdfs:range dom:KnowledgeDomain ;
+    rdfs:subPropertyOf skos:narrower .
+
+dom:DomainScopeStatement a owl:Class ;
+    rdfs:label "Domain scope statement"@en,
+        "영역 범위 문장"@ko ;
+    rdfs:comment "A statement about what a domain includes, excludes, or where its boundary lies."@en,
+        "영역에 포함되는 내용, 제외되는 내용 또는 경계에 대한 범위 문장이다."@ko .
+
+dom:DomainRelation a owl:Class ;
+    rdfs:label "Cross-domain relation"@en,
+        "교차 영역 관계"@ko ;
+    rdfs:comment "Records interdisciplinary, overlapping, or adjacent relations separately from hierarchy, with explanation and status."@en,
+        "계층 관계와 구별되는 학제성·중첩·인접 관계와 그 설명 및 상태를 기록한다."@ko .
+
+dom:DomainAssignment a owl:Class ;
+    rdfs:label "Domain assignment"@en,
+        "프로필 영역 배정"@ko ;
+    rdfs:comment "Records a proposed or accepted assignment between a profile and a domain with method, evidence, and review state."@en,
+        "프로필과 지식 영역 간 제안 또는 승인된 배정을 방법·근거·검토 상태와 함께 기록한다."@ko .
+
+dom:DomainCatalog a owl:Class ;
+    rdfs:label "Domain catalog"@en,
+        "영역 분류 체계"@ko ;
+    rdfs:comment "A concept scheme that groups knowledge or application domains and its classification criteria as a versioned catalog."@en,
+        "지식·업무 영역 개념과 그 분류 기준을 한 버전으로 묶는 개념 체계이다."@ko ;
+    rdfs:subClassOf skos:ConceptScheme .
+
+dom:DomainChangeEvent a owl:Class ;
+    rdfs:label "Domain change event"@en,
+        "영역 변경 사건"@ko ;
+    rdfs:comment "Records a change to a domain label, scope, hierarchy, or state with its reason and source."@en,
+        "영역 명칭·범위·계층·상태의 변경 이력을 이유와 출처와 함께 기록한다."@ko .
+
+dom:DomainReview a owl:Class ;
+    rdfs:label "Domain review record"@en,
+        "영역 검토 기록"@ko ;
+    rdfs:comment "Records review criteria, outcome, and status for a domain definition, hierarchy, or scope statement."@en,
+        "영역 정의·계층·범위 문장의 검토 기준, 결과와 상태를 기록한다."@ko .
+
+dom:ExternalClassificationScheme a owl:Class ;
+    rdfs:label "External classification scheme"@en,
+        "외부 분류 체계"@ko ;
+    rdfs:comment "An external domain classification scheme managed with its version, publisher, URI, and limitations."@en,
+        "버전·발행자·URI와 한계를 함께 관리하는 외부 영역 분류 체계이다."@ko .
+
+dom:DomainMapping a owl:Class ;
+    rdfs:label "External classification mapping"@en,
+        "외부 분류 매핑"@ko ;
+    rdfs:comment "Records a candidate mapping to an external classification concept, relation type, evidence, and review state."@en,
+        "외부 분류 체계의 개념과 연결하려는 매핑 후보, 관계 유형, 근거 및 검토 상태를 기록한다."@ko .
+
+dom:OntologyProfile a owl:Class ;
+    rdfs:label "Ontology profile"@en,
+        "온톨로지 프로필"@ko ;
+    rdfs:comment "Records the ID, version, namespace, and scope of an ontology module in the local catalog."@en,
+        "로컬 카탈로그에 등록된 온톨로지 모듈의 ID, 버전, 네임스페이스와 범위를 기록한다."@ko .
+
+dom:DomainSource a owl:Class ;
+    rdfs:label "Domain evidence source"@en,
+        "영역 근거 출처"@ko ;
+    rdfs:comment "Describes a source document for the classification structure or a local profile scope and its limits."@en,
+        "분류 구조 또는 로컬 프로필 범위의 근거 문서와 적용 한계를 기술한다."@ko .
+
+dom:KnowledgeDomain a owl:Class ;
+    rdfs:label "Knowledge domain"@en,
+        "지식·업무 영역"@ko ;
+    rdfs:comment "A knowledge or application concept with a defined scope and boundary. Broader links name only the immediate parent."@en,
+        "정의된 범위와 경계를 가진 지식 또는 응용 분야 개념이다. 상위 관계는 바로 위의 직접 부모만 표시한다."@ko ;
+    rdfs:subClassOf skos:Concept .

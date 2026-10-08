@@ -1,0 +1,66 @@
+@prefix academic: <https://example.org/ontology/academic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/academic> a owl:Ontology ;
+    rdfs:label "대학 수강 예시 온톨로지"@ko ;
+    rdfs:comment "학생, 교수, 과목과 수강 관계를 표현한다. 예시 데이터에 없는 수강 기록이나 값을 추정하지 않는다."@ko ;
+    rdfs:seeAlso <https://www.w3.org/TR/owl2-primer/> , <https://www.w3.org/TR/shacl/> ;
+    owl:versionInfo "1.2.1" ;
+    owl:imports <https://example.org/ontology/vocab> .
+
+academic:Student a owl:Class ;
+    rdfs:label "학생"@ko ;
+    rdfs:comment "과목을 수강할 수 있는 사람의 종류."@ko .
+
+academic:Professor a owl:Class ;
+    rdfs:label "교수"@ko ;
+    rdfs:comment "과목을 가르칠 수 있는 사람의 종류."@ko .
+
+academic:Course a owl:Class ;
+    rdfs:label "과목"@ko ;
+    rdfs:comment "과목 코드가 필요한 학업 과정."@ko ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty academic:courseCode ; owl:minCardinality 1 ] .
+
+academic:enrollsIn a owl:ObjectProperty ;
+    rdfs:label "수강한다"@ko ;
+    rdfs:comment "학생이 수강하는 과목을 가리킨다."@ko ;
+    rdfs:domain academic:Student ;
+    rdfs:range academic:Course ;
+    owl:inverseOf academic:hasStudent .
+
+academic:hasStudent a owl:ObjectProperty ;
+    rdfs:label "수강생이 있다"@ko ;
+    rdfs:comment "과목의 수강생을 가리키는 수강 관계의 역방향 표현."@ko ;
+    rdfs:domain academic:Course ;
+    rdfs:range academic:Student .
+
+academic:teaches a owl:ObjectProperty ;
+    rdfs:label "가르친다"@ko ;
+    rdfs:comment "교수가 담당하는 과목을 가리킨다."@ko ;
+    rdfs:domain academic:Professor ;
+    rdfs:range academic:Course .
+
+academic:courseCode a owl:DatatypeProperty ;
+    rdfs:label "과목 코드"@ko ;
+    rdfs:comment "과목을 식별하는 문자열 코드."@ko ;
+    rdfs:domain academic:Course ;
+    rdfs:range xsd:string .
+
+academic:credits a owl:DatatypeProperty ;
+    rdfs:label "학점"@ko ;
+    rdfs:comment "과목의 학점 수. 0 이상의 십진수로 표현한다."@ko ;
+    rdfs:domain academic:Course ;
+    rdfs:range xsd:decimal .
+
+# English labels and definitions for named schema terms.
+<https://example.org/ontology/academic#Course> rdfs:label "Course"@en ; rdfs:comment "Represents an academic course identified by a course code and credit value."@en .
+<https://example.org/ontology/academic#Professor> rdfs:label "Professor"@en ; rdfs:comment "Represents an instructor who teaches academic courses."@en .
+<https://example.org/ontology/academic#Student> rdfs:label "Student"@en ; rdfs:comment "Represents a learner who may enroll in academic courses."@en .
+<https://example.org/ontology/academic#courseCode> rdfs:label "Course Code"@en ; rdfs:comment "Records the course code for a Course as a string value."@en .
+<https://example.org/ontology/academic#credits> rdfs:label "Credits"@en ; rdfs:comment "Records the credits for a Course as a decimal value."@en .
+<https://example.org/ontology/academic#enrollsIn> rdfs:label "Enrolls In"@en ; rdfs:comment "Links a Student to a Course."@en .
+<https://example.org/ontology/academic#hasStudent> rdfs:label "Has Student"@en ; rdfs:comment "Links a Course to a Student."@en .
+<https://example.org/ontology/academic#teaches> rdfs:label "Teaches"@en ; rdfs:comment "Links a Professor to a Course."@en .

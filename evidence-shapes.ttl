@@ -1,0 +1,95 @@
+@prefix ev: <https://example.org/ontology/evidence#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ev:ScopeShape a sh:NodeShape ; sh:targetClass ev:ClaimScope ;
+    sh:in ( ev:LocalFileIntegrity ev:OriginalGeneration ev:OriginalOrigin ) .
+ev:StatusShape a sh:NodeShape ; sh:targetClass ev:VerificationStatus ;
+    sh:in ( ev:Observed ev:Verified ev:Unverified ev:Failed ) .
+
+ev:EvidenceShape a sh:NodeShape ; sh:targetClass ev:EvidenceRecord ;
+    sh:property [ sh:path ev:evidenceURI ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ev:sha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9a-f]{64}$" ] ;
+    sh:property [ sh:path ev:evidenceRole ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:in ( "registration-manifest" "registration-graph" "registered-copy" "local-source-copy" "independently-reviewed-document" ) ] .
+
+ev:ClaimShape a sh:NodeShape ; sh:targetClass ev:VerificationClaim ;
+    sh:property [ sh:path ev:aboutAsset ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ev:scope ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( ev:LocalFileIntegrity ev:OriginalGeneration ev:OriginalOrigin ) ] ;
+    sh:property [ sh:path ev:status ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( ev:Observed ev:Verified ev:Unverified ev:Failed ) ] ;
+    sh:property [ sh:path ev:checkedAt ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path ev:checkedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class prov:Agent ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ev:verifiedAt ; sh:maxCount 1 ; sh:datatype xsd:dateTime ] ;
+    sh:property [ sh:path ev:hasEvidence ; sh:class ev:EvidenceRecord ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ev:unknownReason ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 12 ] ;
+    sh:property [ sh:path ev:expectedSHA256 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[0-9a-f]{64}$" ] ;
+    sh:property [ sh:path ev:projectIdentifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$" ] ;
+    sh:property [ sh:path ev:assetIdentifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:pattern "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$" ] ;
+    sh:property [ sh:path ev:sourceCopyState ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:in ( "matches" "mismatch" "missing" "not-recorded" "unreadable" ) ] ;
+    sh:property [ sh:path ev:originalModel ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path ev:originalPrompt ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+    sh:property [ sh:path ev:originalOriginIRI ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:sparql [ sh:message "Scope and status must agree: observations and failures concern local integrity; verified original assertions require separate review."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:scope ?scope ; ev:status ?status .
+                FILTER ((?status IN (ev:Observed, ev:Failed) && ?scope != ev:LocalFileIntegrity)
+                    || (?status = ev:Verified && ?scope = ev:LocalFileIntegrity))
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Unverified claims require an unknown reason and carry no affirmative evidence, verification time, model, prompt, or original origin."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:status ev:Unverified .
+                FILTER (NOT EXISTS { $this ev:unknownReason ?reason }
+                    || EXISTS { $this ?forbidden ?value . FILTER (?forbidden IN (ev:hasEvidence, ev:verifiedAt, ev:originalModel, ev:originalPrompt, ev:originalOriginIRI)) })
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Failed claims require a failure reason; verification time is exclusive to verified original claims."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:status ?status .
+                FILTER ((?status = ev:Failed && NOT EXISTS { $this ev:unknownReason ?reason })
+                    || (?status != ev:Verified && EXISTS { $this ev:verifiedAt ?time }))
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Observed integrity requires an actually read registered copy matching the expected hash and a non-failing source-copy comparison."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:status ev:Observed .
+                FILTER (NOT EXISTS { $this ev:expectedSHA256 ?expected ; ev:hasEvidence ?record .
+                    ?record ev:evidenceRole "registered-copy" ; ev:sha256 ?actual . FILTER (?actual = ?expected) }
+                    || EXISTS { $this ev:sourceCopyState ?state . FILTER (?state IN ("mismatch", "unreadable")) })
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Verified original claims require independently reviewed evidence and verification time; local-copy records alone never establish originals."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:status ev:Verified ; ev:scope ?scope .
+                FILTER (NOT EXISTS { $this ev:verifiedAt ?time }
+                    || NOT EXISTS { $this ev:hasEvidence ?record . ?record ev:evidenceRole "independently-reviewed-document" }
+                    || (?scope = ev:OriginalGeneration && (NOT EXISTS { $this ev:originalModel ?model } || NOT EXISTS { $this ev:originalPrompt ?prompt }))
+                    || (?scope = ev:OriginalOrigin && NOT EXISTS { $this ev:originalOriginIRI ?origin }))
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Original generation fields and original origin fields are limited to independently verified claims of the matching scope."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE {
+                $this ev:scope ?scope ; ev:status ?status ; ?field ?value .
+                FILTER (?field IN (ev:originalModel, ev:originalPrompt, ev:originalOriginIRI))
+                FILTER (?status != ev:Verified || (?field IN (ev:originalModel, ev:originalPrompt) && ?scope != ev:OriginalGeneration)
+                    || (?field = ev:originalOriginIRI && ?scope != ev:OriginalOrigin))
+            }
+        """ ] ;
+    sh:sparql [ sh:message "Independent verification cannot occur after the recorded check."@en ;
+        sh:select """
+            PREFIX ev: <https://example.org/ontology/evidence#>
+            SELECT $this WHERE { $this ev:checkedAt ?checked ; ev:verifiedAt ?verified . FILTER (?verified > ?checked) }
+        """ ] .

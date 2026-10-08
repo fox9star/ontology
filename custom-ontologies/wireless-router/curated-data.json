@@ -1,0 +1,7 @@
+{
+  "profile_id": "wireless-router",
+  "source_records": [
+    "source-nist-sp800-153"
+  ],
+  "synthetic_only": true
+}

@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "cat",
+  "name": "고양이 온톨로지 (cat)",
+  "description": "고양이 개체·품종·출처가 있는 특징·생활환경·보호자·돌봄·관찰 기록을 연결합니다. 공식 품종 정보와 가상 개체 예제를 구분하고, 품종 미확인 상태와 돌봄 계획·수행 상태를 보존합니다.",
+  "name_en": "Cat (Feline, Kitten) Ontology",
+  "description_en": "Connects cats, breeds, sourced traits, environments, guardians, care and observations. Separates breed references from synthetic animal examples, preserves unknown breed information, and distinguishes planned care from performed activities.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/cat#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T19:33:59+09:00",
+  "schema": "custom-ontologies/cat/schema.ttl",
+  "owl": "custom-ontologies/cat/schema.owl",
+  "shapes": "custom-ontologies/cat/shapes.ttl",
+  "example": "custom-ontologies/cat/example.ttl",
+  "questions": "custom-ontologies/cat/questions.md",
+  "questions_fixture": "custom-ontologies/cat/question-fixture.ttl",
+  "question_answers": "custom-ontologies/cat/question-answers.json",
+  "compatibility_cases": "custom-ontologies/cat/consumer-cases.trig"
+}

@@ -1,0 +1,121 @@
+{
+  "created_at": "2026-10-08T05:26:33+00:00",
+  "id": "peafowl",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 12,
+  "properties": 59,
+  "instance_counts": {
+    "Behavior": 4,
+    "CoverageNote": 4,
+    "DietItem": 6,
+    "EvidenceRecord": 29,
+    "HabitatRange": 3,
+    "LifeStageTerm": 1,
+    "MorphologicalFeature": 6,
+    "PeafowlSpecies": 2,
+    "ReproductiveObservation": 4,
+    "SexTerm": 2,
+    "SourceDocument": 2,
+    "Taxon": 6
+  },
+  "instances": 67,
+  "triples": 697,
+  "source_documents": 2,
+  "evidence_records": 29,
+  "coverage_notes": 4,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 107
+  },
+  "questions": 12,
+  "question_fixture_triples": 697,
+  "question_answer_contracts": 12,
+  "consumer_case_quads": 699,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "query_execution_performed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "Two source-backed Pavo species examples. Conservation status, legal protection, wild populations, and individual observations are excluded. Egg and incubation figures remain source-specific; no universal value is inferred.",
+  "release_uri": "pending; profile remains an example.org draft",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "c5503da279274639a97bf201ce52718515a14480aa374e38229b82d0bce97b7a",
+      "bytes": 43709
+    },
+    "curated-data.json": {
+      "sha256": "5a0012ca6e14cb91f4d55dc1c5104a26024b834b21e24fd50f964928c6049984",
+      "bytes": 26385
+    },
+    "example.ttl": {
+      "sha256": "9cd3f74c68b64d32435ed5b6499ffae80f5ea282046fb56b3371547880412857",
+      "bytes": 39904
+    },
+    "profile.json": {
+      "sha256": "61e294eaa6ae87b8b6affdd0a64c2b1ef12aedb7374446f87de17ac7c614c9b6",
+      "bytes": 1393
+    },
+    "question-answers.json": {
+      "sha256": "eae52e15c918b9bf6a37a8f22af187699fdb9fc42b48b436f3d62d2016340d99",
+      "bytes": 21070
+    },
+    "question-fixture.ttl": {
+      "sha256": "ed6e7a569cf86efec132a1fdc940daeb1a4dcc67c774d74f1c626f6c350fb7e1",
+      "bytes": 39951
+    },
+    "questions.md": {
+      "sha256": "c1497e9a6e3313a6e29b3ea48eb894b6f941da3cca8e1f6a6bc1277d5625100b",
+      "bytes": 7795
+    },
+    "schema.owl": {
+      "sha256": "3033b2b67f39e3eab6ad468cbafd6a145491e8151b021b986bb9f3b30454ca1c",
+      "bytes": 47235
+    },
+    "schema.ttl": {
+      "sha256": "6a39bf267bf5249c5539545012e25f26cafacd5e0f4a825f1aecdf80289af3f8",
+      "bytes": 22823
+    },
+    "shapes.ttl": {
+      "sha256": "d245f9993f2bc6a3201ae332e94f60390f94a293bbfa181e4d1e1053ef0dae1b",
+      "bytes": 12368
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T05:27:20+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 32,
+    "profile_id": "peafowl",
+    "draft": true,
+    "explorer": {
+      "classes": 12,
+      "properties": 59,
+      "instances": 67
+    },
+    "question_keys": [
+      "PEA-01",
+      "PEA-02",
+      "PEA-03",
+      "PEA-04",
+      "PEA-05",
+      "PEA-06",
+      "PEA-07",
+      "PEA-08",
+      "PEA-09",
+      "PEA-10",
+      "PEA-11",
+      "PEA-12"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "selector_label_matches_catalog": true,
+    "selector_search_keywords": "Peacock / Peafowl Ontology",
+    "query_execution_performed": false,
+    "browser_visual_verification": "not_performed"
+  }
+}

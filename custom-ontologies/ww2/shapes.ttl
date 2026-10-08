@@ -1,0 +1,96 @@
+@prefix ww2: <https://example.org/ontology/custom/ww2#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# These shapes verify record structure and consistency. They do not decide
+# whether a source actually supports a statement or authenticate a document.
+# Day values deliberately use canonical YYYY-MM-DD, without time zones.
+ww2:LabelShape a sh:NodeShape ; sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:datatype rdf:langString ; sh:minCount 1 ; sh:minLength 1 ; sh:uniqueLang true ] .
+
+ww2:DateOrderShape a sh:NodeShape ;
+    sh:sparql [ sh:message "Start date must not be after end date." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            $this ww2:startDate ?start ; ww2:endDate ?end .
+            FILTER (STR(?start) > STR(?end))
+          }""" ] .
+
+ww2:ConflictShape a sh:NodeShape ; sh:targetClass ww2:Conflict ; sh:node ww2:LabelShape, ww2:DateOrderShape ;
+    sh:property [ sh:path ww2:startDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:endDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:dateNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww2:HistoricalEventShape a sh:NodeShape ; sh:targetClass ww2:HistoricalEvent ; sh:node ww2:LabelShape, ww2:DateOrderShape ;
+    sh:property [ sh:path ww2:eventOf ; sh:class ww2:Conflict ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:eventKind ; sh:datatype xsd:string ; sh:in ( "invasion" "attack" "landing" "battle" "campaign" "surrender" "surrender-announcement" "surrender-signing" "ceasefire" "genocide" "liberation" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:startDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:endDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:dateNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:occurredAt ; sh:class ww2:Place ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path ww2:hasParticipation ; sh:class ww2:Participation ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ww2:hasClaim ; sh:class ww2:HistoricalClaim ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "Event dates must stay within the selected conflict period." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            $this ww2:eventOf ?conflict ; ww2:startDate ?start ; ww2:endDate ?end .
+            ?conflict ww2:startDate ?conflictStart ; ww2:endDate ?conflictEnd .
+            FILTER (STR(?start) < STR(?conflictStart) || STR(?end) > STR(?conflictEnd))
+          }""" ] ;
+    sh:sparql [ sh:message "A linked historical claim must describe the same event." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            $this ww2:hasClaim ?claim .
+            FILTER NOT EXISTS { ?claim ww2:aboutEvent $this }
+          }""" ] .
+
+ww2:StateShape a sh:NodeShape ; sh:targetClass ww2:State ; sh:node ww2:LabelShape ;
+    sh:property [ sh:path ww2:historicalName ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww2:PersonShape a sh:NodeShape ; sh:targetClass ww2:Person ; sh:node ww2:LabelShape .
+
+ww2:PlaceShape a sh:NodeShape ; sh:targetClass ww2:Place ; sh:node ww2:LabelShape ;
+    sh:property [ sh:path ww2:placeKind ; sh:datatype xsd:string ; sh:in ( "country" "region" "city" "bay" "base" "camp" ) ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww2:ParticipationShape a sh:NodeShape ; sh:targetClass ww2:Participation ; sh:node ww2:LabelShape, ww2:DateOrderShape ;
+    sh:property [ sh:path [ sh:inversePath ww2:hasParticipation ] ; sh:class ww2:HistoricalEvent ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:participant ; sh:nodeKind sh:IRI ; sh:or ( [ sh:class ww2:State ] [ sh:class ww2:Person ] ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:role ; sh:datatype xsd:string ; sh:in ( "attacker" "defender" "commander" "surrendering-party" "accepting-party" "representative" "liberator" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:side ; sh:datatype xsd:string ; sh:in ( "Axis" "Allied" "unspecified" ) ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:startDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:endDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:documentedBy ; sh:class ww2:SourceDocument ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "A participation start date must stay within its event's dates." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            ?event ww2:hasParticipation $this ; ww2:startDate ?eventStart ; ww2:endDate ?eventEnd .
+            $this ww2:startDate ?start .
+            FILTER (STR(?start) < STR(?eventStart) || STR(?start) > STR(?eventEnd))
+          }""" ] ;
+    sh:sparql [ sh:message "A participation end date must stay within its event's dates." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            ?event ww2:hasParticipation $this ; ww2:startDate ?eventStart ; ww2:endDate ?eventEnd .
+            $this ww2:endDate ?end .
+            FILTER (STR(?end) < STR(?eventStart) || STR(?end) > STR(?eventEnd))
+          }""" ] .
+
+ww2:SourceDocumentShape a sh:NodeShape ; sh:targetClass ww2:SourceDocument ; sh:node ww2:LabelShape ;
+    sh:property [ sh:path ww2:sourceURL ; sh:datatype xsd:anyURI ; sh:pattern "^https?://[^ ]+$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:publisher ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:sourceKind ; sh:datatype xsd:string ; sh:in ( "primary-document" "museum-summary" "archive-exhibit" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:accessedOn ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww2:HistoricalClaimShape a sh:NodeShape ; sh:targetClass ww2:HistoricalClaim ; sh:node ww2:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath ww2:hasClaim ] ; sh:class ww2:HistoricalEvent ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:aboutEvent ; sh:class ww2:HistoricalEvent ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:claimText ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww2:citesSource ; sh:class ww2:SourceDocument ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:sparql [ sh:message "The claimed event must link back to this historical claim." ;
+        sh:select """PREFIX ww2: <https://example.org/ontology/custom/ww2#>
+          SELECT $this WHERE {
+            $this ww2:aboutEvent ?event .
+            FILTER NOT EXISTS { ?event ww2:hasClaim $this }
+          }""" ] .

@@ -1,0 +1,188 @@
+@prefix ww1: <https://example.org/ontology/custom/ww1#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ww1:LabelShape a sh:NodeShape ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+
+# Records that assert a historical statement stay unverified until a source is cited.
+ww1:ClaimShape a sh:NodeShape ; sh:targetClass ww1:HistoricalClaim ;
+    sh:property [ sh:path ww1:verificationStatus ; sh:datatype xsd:string ; sh:in ( "unverified" "source-checked" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:supportedBy ; sh:class ww1:SourceReference ] ;
+    sh:sparql [ sh:message "A source-checked record must cite at least one source." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:verificationStatus "source-checked" .
+            FILTER NOT EXISTS { $this ww1:supportedBy ?source }
+          }""" ] ;
+    sh:sparql [ sh:message "An unverified record must not cite a source; mark it source-checked once the source has been consulted." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE { $this ww1:verificationStatus "unverified" ; ww1:supportedBy ?source . }""" ] .
+
+ww1:ConflictShape a sh:NodeShape ; sh:targetClass ww1:Conflict ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path ww1:conflictStartDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThanOrEquals ww1:conflictEndDate ] ;
+    sh:property [ sh:path ww1:conflictEndDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww1:StateShape a sh:NodeShape ; sh:targetClass ww1:State ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path ww1:governmentForm ; sh:datatype xsd:string ; sh:in ( "empire" "kingdom" "republic" ) ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww1:SideShape a sh:NodeShape ; sh:targetClass ww1:Side ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath ww1:onSide ] ; sh:minCount 1 ] .
+
+ww1:AllianceShape a sh:NodeShape ; sh:targetClass ww1:Alliance ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path ww1:hasMember ; sh:class ww1:State ; sh:minCount 2 ] ;
+    sh:property [ sh:path ww1:correspondingSide ; sh:class ww1:Side ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+ww1:TheatreShape a sh:NodeShape ; sh:targetClass ww1:Theatre ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath ww1:inTheatre ] ; sh:minCount 1 ] .
+
+ww1:PersonShape a sh:NodeShape ; sh:targetClass ww1:Person ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path ww1:servedState ; sh:class ww1:State ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:birthYear ; sh:datatype xsd:integer ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThan ww1:deathYear ] ;
+    sh:property [ sh:path ww1:deathYear ; sh:datatype xsd:integer ; sh:maxCount 1 ] ;
+    sh:property [ sh:path [ sh:inversePath ww1:hadCommander ] ; sh:minCount 1 ] .
+
+ww1:SourceReferenceShape a sh:NodeShape ; sh:targetClass ww1:SourceReference ; sh:node ww1:LabelShape ;
+    sh:property [ sh:path ww1:citationText ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:sourceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path [ sh:inversePath ww1:supportedBy ] ; sh:minCount 1 ] .
+
+ww1:ParticipationShape a sh:NodeShape ; sh:targetClass ww1:Participation ; sh:node ww1:LabelShape ; sh:node ww1:ClaimShape ;
+    sh:property [ sh:path ww1:participant ; sh:class ww1:State ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:inConflict ; sh:class ww1:Conflict ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:onSide ; sh:class ww1:Side ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:enteredVia ; sh:class ww1:Event ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:endedByAgreement ; sh:class ww1:Agreement ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:entryDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThanOrEquals ww1:exitDate ] ;
+    sh:property [ sh:path ww1:exitDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An exit date and an ending agreement must be recorded together." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            { $this ww1:exitDate ?d . FILTER NOT EXISTS { $this ww1:endedByAgreement ?a } }
+            UNION
+            { $this ww1:endedByAgreement ?a . FILTER NOT EXISTS { $this ww1:exitDate ?d } }
+          }""" ] ;
+    sh:sparql [ sh:message "The exit date must equal the signing date of the ending agreement." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:exitDate ?d ; ww1:endedByAgreement ?a .
+            ?a ww1:signedDate ?s .
+            FILTER (?d != ?s)
+          }""" ] ;
+    sh:sparql [ sh:message "A state that exits through an agreement must be one of its parties." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:participant ?state ; ww1:endedByAgreement ?a .
+            FILTER NOT EXISTS { ?a ww1:hasParty ?state }
+          }""" ] ;
+    sh:sparql [ sh:message "The entry date must equal the start date of the triggering event." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:entryDate ?d ; ww1:enteredVia ?event .
+            ?event ww1:startDate ?s .
+            FILTER (?d != ?s)
+          }""" ] ;
+    sh:sparql [ sh:message "The triggering event must involve the state." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:participant ?state ; ww1:enteredVia ?event .
+            FILTER NOT EXISTS { { ?event ww1:initiatedBy ?state } UNION { ?event ww1:directedAgainst ?state } }
+          }""" ] ;
+    sh:sparql [ sh:message "The triggering event must be a war declaration, invasion or naval raid of the same war." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:inConflict ?c ; ww1:enteredVia ?event .
+            ?event ww1:eventKind ?kind ; ww1:relatedConflict ?other .
+            FILTER (?c != ?other || ?kind NOT IN ("war-declaration", "invasion", "naval-raid"))
+          }""" ] ;
+    sh:sparql [ sh:message "Entry and exit dates must fall within the war." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:inConflict ?c ; ww1:entryDate ?entry .
+            ?c ww1:conflictStartDate ?start ; ww1:conflictEndDate ?end .
+            OPTIONAL { $this ww1:exitDate ?exit }
+            FILTER (?entry < ?start || ?entry > ?end || (BOUND(?exit) && (?exit < ?start || ?exit > ?end)))
+          }""" ] ;
+    sh:sparql [ sh:message "A state can have only one participation record per war." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:participant ?state ; ww1:inConflict ?c .
+            ?other ww1:participant ?state ; ww1:inConflict ?c .
+            FILTER (?other != $this)
+          }""" ] .
+
+ww1:EventShape a sh:NodeShape ; sh:targetClass ww1:Event ; sh:node ww1:LabelShape ; sh:node ww1:ClaimShape ;
+    sh:property [ sh:path ww1:eventKind ; sh:datatype xsd:string ; sh:in ( "assassination" "war-declaration" "invasion" "naval-raid" "battle" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:startDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThanOrEquals ww1:endDate ] ;
+    sh:property [ sh:path ww1:endDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:locationName ; sh:datatype xsd:string ; sh:minLength 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:relatedConflict ; sh:class ww1:Conflict ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:initiatedBy ; sh:class ww1:State ] ;
+    sh:property [ sh:path ww1:directedAgainst ; sh:class ww1:State ] ;
+    sh:property [ sh:path ww1:inTheatre ; sh:class ww1:Theatre ] ;
+    sh:property [ sh:path ww1:outcome ; sh:datatype xsd:string ; sh:in ( "allied-victory" "central-victory" "contested" ) ] ;
+    sh:property [ sh:path ww1:hasBelligerent ; sh:class ww1:Participation ] ;
+    sh:property [ sh:path ww1:hadCommander ; sh:class ww1:Person ] ;
+    sh:or (
+        [ sh:property [ sh:path ww1:eventKind ; sh:hasValue "assassination" ] ;
+          sh:property [ sh:path ww1:initiatedBy ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:directedAgainst ; sh:maxCount 0 ] ;
+          sh:property [ sh:path ww1:inTheatre ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:outcome ; sh:maxCount 0 ] ;
+          sh:property [ sh:path ww1:hasBelligerent ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:hadCommander ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path ww1:eventKind ; sh:in ( "war-declaration" "invasion" "naval-raid" ) ] ;
+          sh:property [ sh:path ww1:initiatedBy ; sh:minCount 1 ; sh:maxCount 1 ] ; sh:property [ sh:path ww1:directedAgainst ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path ww1:inTheatre ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:outcome ; sh:maxCount 0 ] ;
+          sh:property [ sh:path ww1:hasBelligerent ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:hadCommander ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path ww1:eventKind ; sh:hasValue "battle" ] ;
+          sh:property [ sh:path ww1:initiatedBy ; sh:maxCount 0 ] ; sh:property [ sh:path ww1:directedAgainst ; sh:maxCount 0 ] ;
+          sh:property [ sh:path ww1:inTheatre ; sh:minCount 1 ; sh:maxCount 1 ] ; sh:property [ sh:path ww1:outcome ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path ww1:hasBelligerent ; sh:minCount 2 ] ]
+    ) ;
+    sh:sparql [ sh:message "Events other than battles take place on a single day, and a state cannot act against itself." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            { $this ww1:eventKind ?kind ; ww1:startDate ?s ; ww1:endDate ?e . FILTER (?kind != "battle" && ?s != ?e) }
+            UNION
+            { $this ww1:initiatedBy ?state ; ww1:directedAgainst ?state . }
+          }""" ] ;
+    sh:sparql [ sh:message "Events after the outbreak must fall within the war's dates." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:eventKind ?kind ; ww1:relatedConflict ?c ; ww1:startDate ?s ; ww1:endDate ?e .
+            ?c ww1:conflictStartDate ?start ; ww1:conflictEndDate ?end .
+            FILTER (?kind != "assassination" && (?s < ?start || ?e > ?end))
+          }""" ] ;
+    sh:sparql [ sh:message "A battle needs belligerents from at least two different sides." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:eventKind "battle" .
+            FILTER NOT EXISTS {
+              $this ww1:hasBelligerent ?p1, ?p2 . ?p1 ww1:onSide ?s1 . ?p2 ww1:onSide ?s2 . FILTER (?s1 != ?s2)
+            }
+          }""" ] ;
+    sh:sparql [ sh:message "Each belligerent must belong to the same war and must have entered it before the battle began and not left before it ended." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:eventKind "battle" ; ww1:relatedConflict ?c ; ww1:startDate ?s ; ww1:endDate ?e ; ww1:hasBelligerent ?p .
+            ?p ww1:entryDate ?entry ; ww1:inConflict ?pc .
+            OPTIONAL { ?p ww1:exitDate ?exit }
+            FILTER (?entry > ?s || (BOUND(?exit) && ?exit < ?e) || ?pc != ?c)
+          }""" ] ;
+    sh:sparql [ sh:message "A commander must have served a state that fought in the battle and must have been alive during it." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE {
+            $this ww1:eventKind "battle" ; ww1:startDate ?s ; ww1:endDate ?e ; ww1:hadCommander ?m .
+            ?m ww1:servedState ?state ; ww1:birthYear ?born .
+            OPTIONAL { ?m ww1:deathYear ?died }
+            FILTER (?born > YEAR(?s) || (BOUND(?died) && ?died < YEAR(?e))
+                    || NOT EXISTS { $this ww1:hasBelligerent ?p . ?p ww1:participant ?state })
+          }""" ] .
+
+ww1:AgreementShape a sh:NodeShape ; sh:targetClass ww1:Agreement ; sh:node ww1:LabelShape ; sh:node ww1:ClaimShape ;
+    sh:property [ sh:path ww1:agreementKind ; sh:datatype xsd:string ; sh:in ( "armistice" "peace-treaty" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:signedDate ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ; sh:lessThanOrEquals ww1:inForceDate ] ;
+    sh:property [ sh:path ww1:inForceDate ; sh:datatype xsd:date ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ww1:hasParty ; sh:class ww1:State ; sh:minCount 2 ] ;
+    sh:sparql [ sh:message "Only a peace treaty can have an in-force date." ;
+        sh:select """PREFIX ww1: <https://example.org/ontology/custom/ww1#>
+          SELECT $this WHERE { $this ww1:agreementKind "armistice" ; ww1:inForceDate ?d . }""" ] .

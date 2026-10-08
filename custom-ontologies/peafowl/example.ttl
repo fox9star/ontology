@@ -1,0 +1,767 @@
+@prefix pea: <https://example.org/ontology/custom/peafowl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+pea:coverage-conservation a pea:CoverageNote ;
+    rdfs:label "Conservation status and legal protection"@en,
+        "보전 등급과 법적 보호"@ko ;
+    pea:coverageExplanation "Species-level current conservation categories and legal protections were not modeled because they were not verified against specialist conservation assessments."@en,
+        "종별 현행 보전 등급과 법적 보호 상태는 전문 보전 평가 자료로 검증하지 않아 온톨로지 사실로 넣지 않았다."@ko ;
+    pea:coverageLabel "Conservation status and legal protection"@en,
+        "보전 등급과 법적 보호"@ko ;
+    pea:coverageStatus "excluded"^^xsd:string .
+
+pea:coverage-individuals a pea:CoverageNote ;
+    rdfs:label "Individual and population observations"@en,
+        "개체·개체군 관찰"@ko ;
+    pea:coverageExplanation "Wild population data, zoo specimen histories, and individual animal observations are outside scope; included biological facts are species-profile claims."@en,
+        "야생 개체군, 동물원 개체 이력, 개별 동물 관찰 자료는 포함하지 않는다. 예시의 모든 사실은 출처 프로필의 종 설명이다."@ko ;
+    pea:coverageLabel "Individual and population observations"@en,
+        "개체·개체군 관찰"@ko ;
+    pea:coverageStatus "excluded"^^xsd:string .
+
+pea:coverage-source-figures a pea:CoverageNote ;
+    rdfs:label "Source-specific reproductive figures"@en,
+        "번식 수치의 출처별 보존"@ko ;
+    pea:coverageExplanation "Clutch-size and incubation figures are retained per source and are not collapsed into one universal value."@en,
+        "산란 수와 포란 기간은 출처별 기재 범위를 각각 보존한다. 하나의 보편적인 값으로 통합하지 않았다."@ko ;
+    pea:coverageLabel "Source-specific reproductive figures"@en,
+        "번식 수치의 출처별 보존"@ko ;
+    pea:coverageStatus "limited"^^xsd:string .
+
+pea:coverage-taxonomy a pea:CoverageNote ;
+    rdfs:label "Taxonomy scope"@en,
+        "분류 범위"@ko ;
+    pea:coverageExplanation "An example draft covering Indian peafowl (Pavo cristatus) and green peafowl (Pavo muticus), not a complete taxonomic checklist of peafowl."@en,
+        "인도공작(Pavo cristatus)과 녹색공작(Pavo muticus)을 다루는 예시 초안이다. 공작류 전체에 대한 완전한 분류 목록은 아니다."@ko ;
+    pea:coverageLabel "Taxonomy scope"@en,
+        "분류 범위"@ko ;
+    pea:coverageStatus "limited"^^xsd:string .
+
+pea:behavior-display a pea:Behavior ;
+    rdfs:label "Courtship display"@en,
+        "구애 전시"@ko ;
+    pea:behaviorAssociatedSexTerm pea:term-peacock ;
+    pea:behaviorDescription "Males fan and quiver or shake the train in courtship displays."@en,
+        "수컷은 train을 부채꼴로 펼치고 떨거나 흔들어 암컷에게 보이는 구애 전시를 한다."@ko ;
+    pea:behaviorEvidence pea:e-display ;
+    pea:behaviorKind "courtship-display"^^xsd:string ;
+    pea:behaviorLabel "Courtship display"@en,
+        "구애 전시"@ko ;
+    pea:behaviorOfSpecies pea:species-green,
+        pea:species-indian .
+
+pea:behavior-ground-foraging a pea:Behavior ;
+    rdfs:label "Ground foraging"@en,
+        "땅 위 먹이 찾기"@ko ;
+    pea:behaviorDescription "The zoo profiles describe peafowl foraging on the ground."@en,
+        "공작류는 땅에서 먹이를 찾는다고 동물원 자료가 기술한다."@ko ;
+    pea:behaviorEvidence pea:e-ground-foraging ;
+    pea:behaviorKind "foraging"^^xsd:string ;
+    pea:behaviorLabel "Ground foraging"@en,
+        "땅 위 먹이 찾기"@ko ;
+    pea:behaviorOfSpecies pea:species-green,
+        pea:species-indian .
+
+pea:behavior-lek a pea:Behavior ;
+    rdfs:label "Lek and small territories"@en,
+        "lek과 작은 영역"@ko ;
+    pea:behaviorAssociatedSexTerm pea:term-peacock ;
+    pea:behaviorDescription "The Smithsonian profile describes males holding small territories in leks, where visiting females can assess several males."@en,
+        "스미스소니언 자료는 수컷이 작은 개별 영역이 모인 lek을 형성하고 암컷이 여러 수컷을 살펴 짝을 선택한다고 설명한다."@ko ;
+    pea:behaviorEvidence pea:e-lek ;
+    pea:behaviorKind "social-organization"^^xsd:string ;
+    pea:behaviorLabel "Lek and small territories"@en,
+        "lek과 작은 영역"@ko ;
+    pea:behaviorOfSpecies pea:species-indian .
+
+pea:behavior-walk-run a pea:Behavior ;
+    rdfs:label "Walking and running"@en,
+        "걷기와 달리기"@ko ;
+    pea:behaviorDescription "The Smithsonian common peafowl page says they prefer walking or running to flying."@en,
+        "스미스소니언 공작류 페이지는 날기보다 걷거나 달리는 것을 선호한다고 기술한다."@ko ;
+    pea:behaviorEvidence pea:e-walk-run ;
+    pea:behaviorKind "movement"^^xsd:string ;
+    pea:behaviorLabel "Walking and running"@en,
+        "걷기와 달리기"@ko ;
+    pea:behaviorOfSpecies pea:species-indian .
+
+pea:diet-fruit a pea:DietItem ;
+    rdfs:label "Berries and other fruits"@en,
+        "열매·과일"@ko ;
+    pea:dietCategory "plant"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-fruit ;
+    pea:dietLabel "Berries and other fruits"@en,
+        "열매·과일"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:diet-grain-crops a pea:DietItem ;
+    rdfs:label "Grain and green crops"@en,
+        "곡물·녹색 작물"@ko ;
+    pea:dietCategory "plant"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-grain ;
+    pea:dietLabel "Grain and green crops"@en,
+        "곡물·녹색 작물"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:diet-insects a pea:DietItem ;
+    rdfs:label "Insects"@en,
+        "곤충"@ko ;
+    pea:dietCategory "invertebrate"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-insects ;
+    pea:dietLabel "Insects"@en,
+        "곤충"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:diet-mammals a pea:DietItem ;
+    rdfs:label "Small mammals"@en,
+        "작은 포유류"@ko ;
+    pea:dietCategory "vertebrate"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-mammals ;
+    pea:dietLabel "Small mammals"@en,
+        "작은 포유류"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:diet-reptiles a pea:DietItem ;
+    rdfs:label "Small reptiles"@en,
+        "작은 파충류"@ko ;
+    pea:dietCategory "vertebrate"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-reptiles ;
+    pea:dietLabel "Small reptiles"@en,
+        "작은 파충류"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:diet-snakes a pea:DietItem ;
+    rdfs:label "Snakes"@en,
+        "뱀"@ko ;
+    pea:dietCategory "vertebrate"^^xsd:string ;
+    pea:dietDescription "Listed as a food example by the zoo profile."@en,
+        "동물원 자료에 먹이 예시로 열거됨."@ko ;
+    pea:dietEvidence pea:e-diet-snakes ;
+    pea:dietLabel "Snakes"@en,
+        "뱀"@ko ;
+    pea:dietOfSpecies pea:species-indian .
+
+pea:e-diet-fruit a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-fruit"@en,
+        "근거 e-diet-fruit"@ko ;
+    pea:evidenceAbout pea:diet-fruit ;
+    pea:evidenceClaim "Berries and other fruits are listed among common peafowl food examples."@en,
+        "열매와 과일이 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-fruit"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "fruit is a listed food example in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-diet-grain a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-grain"@en,
+        "근거 e-diet-grain"@ko ;
+    pea:evidenceAbout pea:diet-grain-crops ;
+    pea:evidenceClaim "Grain and green crops are listed among common peafowl food examples."@en,
+        "곡물과 녹색 작물이 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-grain"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "grain and green crops are listed food examples in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-diet-insects a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-insects"@en,
+        "근거 e-diet-insects"@ko ;
+    pea:evidenceAbout pea:diet-insects ;
+    pea:evidenceClaim "Insects are listed among common peafowl food examples."@en,
+        "곤충이 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-insects"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "insects are a listed food example in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-diet-mammals a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-mammals"@en,
+        "근거 e-diet-mammals"@ko ;
+    pea:evidenceAbout pea:diet-mammals ;
+    pea:evidenceClaim "Small mammals are listed among common peafowl food examples."@en,
+        "작은 포유류가 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-mammals"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "small mammals are a listed food example in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-diet-reptiles a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-reptiles"@en,
+        "근거 e-diet-reptiles"@ko ;
+    pea:evidenceAbout pea:diet-reptiles ;
+    pea:evidenceClaim "Small reptiles are listed among common peafowl food examples."@en,
+        "작은 파충류가 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-reptiles"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "small reptiles are a listed food example in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-diet-snakes a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-diet-snakes"@en,
+        "근거 e-diet-snakes"@ko ;
+    pea:evidenceAbout pea:diet-snakes ;
+    pea:evidenceClaim "Snakes are listed among common peafowl food examples."@en,
+        "뱀이 공작류의 먹이 예시로 열거된다."@ko ;
+    pea:evidenceIdentifier "e-diet-snakes"^^xsd:string ;
+    pea:evidenceLocator "Food/Eating Habits: lines 31-33"^^xsd:string ;
+    pea:evidenceScope "snakes are a listed food example in the Pavo cristatus profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-display a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-display"@en,
+        "근거 e-display"@ko ;
+    pea:evidenceAbout pea:behavior-display ;
+    pea:evidenceClaim "The male fans the train and quivers it in display; the page discusses courtship display."@en,
+        "수컷은 구애 전시로 train을 펼치고 떨거나 흔든다."@ko ;
+    pea:evidenceIdentifier "e-display"^^xsd:string ;
+    pea:evidenceLocator "FAMILY LIFE: lines 69-70"^^xsd:string ;
+    pea:evidenceScope "peafowl courtship behavior"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-eggs-sd a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-eggs-sd"@en,
+        "근거 e-eggs-sd"@ko ;
+    pea:evidenceAbout pea:repro-eggs-sandiego ;
+    pea:evidenceClaim "The peahen is reported to lay three to eight eggs."@en,
+        "암컷의 한 번 산란 수는 3~8개로 기재된다."@ko ;
+    pea:evidenceIdentifier "e-eggs-sd"^^xsd:string ;
+    pea:evidenceLocator "FAMILY LIFE and YOUNG: lines 71 and 86-90"^^xsd:string ;
+    pea:evidenceScope "peafowl profile; source-specific clutch range"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-eggs-sm a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-eggs-sm"@en,
+        "근거 e-eggs-sm"@ko ;
+    pea:evidenceAbout pea:repro-eggs-smithsonian ;
+    pea:evidenceClaim "The peahen is reported to lay four to eight eggs."@en,
+        "암컷의 한 번 산란 수는 4~8개로 기재된다."@ko ;
+    pea:evidenceIdentifier "e-eggs-sm"^^xsd:string ;
+    pea:evidenceLocator "Reproduction and Development: lines 38-41"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile; source-specific clutch range"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-green-color a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-green-color"@en,
+        "근거 e-green-color"@ko ;
+    pea:evidenceAbout pea:feature-green-color ;
+    pea:evidenceClaim "Green peafowl are described with green rather than blue feathers on head and neck."@en,
+        "녹색공작은 머리와 목에 파란색 대신 녹색 깃털이 있다고 설명된다."@ko ;
+    pea:evidenceIdentifier "e-green-color"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 49"^^xsd:string ;
+    pea:evidenceScope "green peafowl appearance"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-green-range a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-green-range"@en,
+        "근거 e-green-range"@ko ;
+    pea:evidenceAbout pea:range-green ;
+    pea:evidenceClaim "Green peafowl are described as found in Southeast Asia."@en,
+        "녹색공작은 동남아시아에 분포한다고 설명된다."@ko ;
+    pea:evidenceIdentifier "e-green-range"^^xsd:string ;
+    pea:evidenceLocator "HABITAT AND DIET: line 60"^^xsd:string ;
+    pea:evidenceScope "green peafowl reported range"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-green-sex-difference a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-green-sex-difference"@en,
+        "근거 e-green-sex-difference"@ko ;
+    pea:evidenceAbout pea:feature-green-sex-similarity ;
+    pea:evidenceClaim "Green peafowl sexes are described as similarly colored, with the female less vivid and male tail longer."@en,
+        "녹색공작 암수의 색은 비슷하나 암컷은 덜 선명하고 수컷 꼬리는 더 길다고 설명된다."@ko ;
+    pea:evidenceIdentifier "e-green-sex-difference"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 49"^^xsd:string ;
+    pea:evidenceScope "green peafowl appearance"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-ground-foraging a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-ground-foraging"@en,
+        "근거 e-ground-foraging"@ko ;
+    pea:evidenceAbout pea:behavior-ground-foraging ;
+    pea:evidenceClaim "Peafowl groups forage on the ground."@en,
+        "공작류 무리는 땅 위에서 먹이를 찾는다고 기술된다."@ko ;
+    pea:evidenceIdentifier "e-ground-foraging"^^xsd:string ;
+    pea:evidenceLocator "HABITAT AND DIET: lines 60-62"^^xsd:string ;
+    pea:evidenceScope "Indian and green peafowl daily behavior"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-incubation-sd a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-incubation-sd"@en,
+        "근거 e-incubation-sd"@ko ;
+    pea:evidenceAbout pea:repro-incubation-sandiego ;
+    pea:evidenceClaim "Incubation is listed as 26 to 30 days."@en,
+        "포란 기간은 26~30일로 기재된다."@ko ;
+    pea:evidenceIdentifier "e-incubation-sd"^^xsd:string ;
+    pea:evidenceLocator "YOUNG: lines 86-90"^^xsd:string ;
+    pea:evidenceScope "peafowl profile; source-specific duration range"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-incubation-sm a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-incubation-sm"@en,
+        "근거 e-incubation-sm"@ko ;
+    pea:evidenceAbout pea:repro-incubation-smithsonian ;
+    pea:evidenceClaim "Female incubation is described as about 30 days."@en,
+        "암컷의 포란 기간은 약 30일로 기술된다."@ko ;
+    pea:evidenceIdentifier "e-incubation-sm"^^xsd:string ;
+    pea:evidenceLocator "Reproduction and Development: lines 40-41"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile; approximate duration"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-indian-habitat a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-indian-habitat"@en,
+        "근거 e-indian-habitat"@ko ;
+    pea:evidenceAbout pea:habitat-indian ;
+    pea:evidenceClaim "Open forests near streams and cultivated areas are described."@en,
+        "하천 근처의 개방된 숲과 경작지가 서식 환경으로 설명된다."@ko ;
+    pea:evidenceIdentifier "e-indian-habitat"^^xsd:string ;
+    pea:evidenceLocator "Native Habitat: lines 25-27"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-indian-male-color a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-indian-male-color"@en,
+        "근거 e-indian-male-color"@ko ;
+    pea:evidenceAbout pea:feature-indian-male-color ;
+    pea:evidenceClaim "The Indian male is described with a bright blue head and neck."@en,
+        "인도공작 수컷은 밝은 파란색 머리와 목을 가진다고 설명된다."@ko ;
+    pea:evidenceIdentifier "e-indian-male-color"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 48"^^xsd:string ;
+    pea:evidenceScope "Indian peafowl male appearance"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-indian-range a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-indian-range"@en,
+        "근거 e-indian-range"@ko ;
+    pea:evidenceAbout pea:range-indian ;
+    pea:evidenceClaim "The page lists India, Pakistan, and Sri Lanka for Indian peafowl."@en,
+        "인도공작의 분포 범위에는 인도, 파키스탄, 스리랑카가 포함된다고 기재된다."@ko ;
+    pea:evidenceIdentifier "e-indian-range"^^xsd:string ;
+    pea:evidenceLocator "HABITAT AND DIET: line 60"^^xsd:string ;
+    pea:evidenceScope "Indian peafowl reported range"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-indian-sex-difference-sd a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-indian-sex-difference-sd"@en,
+        "근거 e-indian-sex-difference-sd"@ko ;
+    pea:evidenceAbout pea:feature-indian-female ;
+    pea:evidenceClaim "The Indian female is described as mottled brown compared with the brightly colored male."@en,
+        "인도공작 암컷은 수컷과 비교해 얼룩 갈색이라고 기술된다."@ko ;
+    pea:evidenceIdentifier "e-indian-sex-difference-sd"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 48"^^xsd:string ;
+    pea:evidenceScope "Indian peafowl appearance"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-indian-sex-difference-sm a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-indian-sex-difference-sm"@en,
+        "근거 e-indian-sex-difference-sm"@ko ;
+    pea:evidenceAbout pea:feature-indian-female ;
+    pea:evidenceClaim "The female is described as smaller, duller, with a shorter train lacking ocelli."@en,
+        "암컷은 수컷보다 작고 덜 화려하며, train은 더 짧고 ocelli가 없다고 기술된다."@ko ;
+    pea:evidenceIdentifier "e-indian-sex-difference-sm"^^xsd:string ;
+    pea:evidenceLocator "Physical Description: lines 20-21"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile, Pavo cristatus"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-lek a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-lek"@en,
+        "근거 e-lek"@ko ;
+    pea:evidenceAbout pea:behavior-lek ;
+    pea:evidenceClaim "Males hold small territories in leks and display to visiting females."@en,
+        "수컷은 lek 안의 작은 영역을 차지하고 방문한 암컷에게 전시한다."@ko ;
+    pea:evidenceIdentifier "e-lek"^^xsd:string ;
+    pea:evidenceLocator "Social Structure: lines 35-37"^^xsd:string ;
+    pea:evidenceScope "common peafowl social behavior"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-peachick-term a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-peachick-term"@en,
+        "근거 e-peachick-term"@ko ;
+    pea:evidenceAbout pea:term-peachick ;
+    pea:evidenceClaim "Peachick is the term for a young peafowl."@en,
+        "peachick은 어린 공작류를 가리키는 명칭이다."@ko ;
+    pea:evidenceIdentifier "e-peachick-term"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: lines 43-45"^^xsd:string ;
+    pea:evidenceScope "the common term for young peafowl"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-peacock-term a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-peacock-term"@en,
+        "근거 e-peacock-term"@ko ;
+    pea:evidenceAbout pea:term-peacock ;
+    pea:evidenceClaim "Peacock is the term for an adult male peafowl."@en,
+        "peacock은 수컷 공작을 가리키는 명칭이다."@ko ;
+    pea:evidenceIdentifier "e-peacock-term"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: lines 43-45"^^xsd:string ;
+    pea:evidenceScope "the sex-specific common term for adult male peafowl"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-peahen-term a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-peahen-term"@en,
+        "근거 e-peahen-term"@ko ;
+    pea:evidenceAbout pea:term-peahen ;
+    pea:evidenceClaim "Peahen is the term for an adult female peafowl."@en,
+        "peahen은 암컷 공작을 가리키는 명칭이다."@ko ;
+    pea:evidenceIdentifier "e-peahen-term"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: lines 43-45"^^xsd:string ;
+    pea:evidenceScope "the sex-specific common term for adult female peafowl"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-taxonomy-green a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-taxonomy-green"@en,
+        "근거 e-taxonomy-green"@ko ;
+    pea:evidenceAbout pea:species-green ;
+    pea:evidenceClaim "Pavo muticus is listed as green peafowl under Pavo; the page also lists class Aves, order Galliformes and family Phasianidae."@en,
+        "페이지는 녹색공작을 P. muticus로 기재하고 속 Pavo와 강·목·과 정보를 함께 제시한다."@ko ;
+    pea:evidenceIdentifier "e-taxonomy-green"^^xsd:string ;
+    pea:evidenceLocator "ABOUT and taxonomic list: lines 32-40"^^xsd:string ;
+    pea:evidenceScope "green peafowl page taxonomy"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-taxonomy-indian a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-taxonomy-indian"@en,
+        "근거 e-taxonomy-indian"@ko ;
+    pea:evidenceAbout pea:species-indian ;
+    pea:evidenceClaim "Pavo cristatus; Aves, Galliformes, Phasianidae, Pavo."@en,
+        "공작류 프로필은 학명을 Pavo cristatus로, 분류를 Aves·Galliformes·Phasianidae·Pavo로 제시한다."@ko ;
+    pea:evidenceIdentifier "e-taxonomy-indian"^^xsd:string ;
+    pea:evidenceLocator "Taxonomic Information: Class, Order, Family, Genus and Species"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile taxonomy"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-train-ocelli a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-train-ocelli"@en,
+        "근거 e-train-ocelli"@ko ;
+    pea:evidenceAbout pea:feature-ocelli ;
+    pea:evidenceClaim "The train is described as having eye-like round spots called ocelli."@en,
+        "train의 둥근 눈 모양 무늬는 ocelli라고 불린다."@ko ;
+    pea:evidenceIdentifier "e-train-ocelli"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 50"^^xsd:string ;
+    pea:evidenceScope "train ornament description"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-train-structure a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-train-structure"@en,
+        "근거 e-train-structure"@ko ;
+    pea:evidenceAbout pea:feature-train-structure ;
+    pea:evidenceClaim "The train is described as elongated male tail coverts rather than the tail itself."@en,
+        "전시 train은 꼬리 자체가 아니라 길게 늘어난 상부 꼬리덮깃으로 이루어진다."@ko ;
+    pea:evidenceIdentifier "e-train-structure"^^xsd:string ;
+    pea:evidenceLocator "ABOUT: line 50"^^xsd:string ;
+    pea:evidenceScope "Indian and green peafowl train description"@en ;
+    pea:evidenceSource pea:sandiego ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:e-walk-run a pea:EvidenceRecord ;
+    rdfs:label "Evidence e-walk-run"@en,
+        "근거 e-walk-run"@ko ;
+    pea:evidenceAbout pea:behavior-walk-run ;
+    pea:evidenceClaim "The page says peafowl prefer walking and running to flying."@en,
+        "공작류는 날기보다 걷거나 달리는 것을 선호한다고 기술된다."@ko ;
+    pea:evidenceIdentifier "e-walk-run"^^xsd:string ;
+    pea:evidenceLocator "Size and Fun Facts: lines 22-24 and 52-54"^^xsd:string ;
+    pea:evidenceScope "common peafowl profile"@en ;
+    pea:evidenceSource pea:smithsonian ;
+    pea:evidenceStatus "source-reported"^^xsd:string .
+
+pea:feature-green-color a pea:MorphologicalFeature ;
+    rdfs:label "Green peafowl coloration"@en,
+        "녹색공작 머리와 목"@ko ;
+    pea:featureDescription "The zoo profile describes green rather than blue feathers on the green peafowl's head and neck."@en,
+        "녹색공작은 머리와 목에 파란색 대신 녹색 깃털이 있다고 동물원 자료가 설명한다."@ko ;
+    pea:featureEvidence pea:e-green-color ;
+    pea:featureKind "coloration"^^xsd:string ;
+    pea:featureLabel "Green peafowl coloration"@en,
+        "녹색공작 머리와 목"@ko ;
+    pea:featureOfSpecies pea:species-green .
+
+pea:feature-green-sex-similarity a pea:MorphologicalFeature ;
+    rdfs:label "Green peafowl sex coloration"@en,
+        "녹색공작 암수 색 비교"@ko ;
+    pea:featureDescription "The zoo profile describes green peafowl sexes as similarly colored, with the female less vivid and the male's tail longer."@en,
+        "녹색공작 암수의 색은 서로 비슷하지만 암컷은 덜 선명하고 수컷의 꼬리가 더 길다고 동물원 자료가 설명한다."@ko ;
+    pea:featureEvidence pea:e-green-sex-difference ;
+    pea:featureKind "sexual-dimorphism"^^xsd:string ;
+    pea:featureLabel "Green peafowl sex coloration"@en,
+        "녹색공작 암수 색 비교"@ko ;
+    pea:featureOfSpecies pea:species-green .
+
+pea:feature-indian-male-color a pea:MorphologicalFeature ;
+    rdfs:label "Indian peacock coloration"@en,
+        "인도공작 수컷의 색"@ko ;
+    pea:featureAssociatedSexTerm pea:term-peacock ;
+    pea:featureDescription "The Indian peacock has a bright blue head and neck."@en,
+        "인도공작 수컷은 밝은 파란색 머리와 목을 가진다."@ko ;
+    pea:featureEvidence pea:e-indian-male-color ;
+    pea:featureKind "coloration"^^xsd:string ;
+    pea:featureLabel "Indian peacock coloration"@en,
+        "인도공작 수컷의 색"@ko ;
+    pea:featureOfSpecies pea:species-indian .
+
+pea:feature-ocelli a pea:MorphologicalFeature ;
+    rdfs:label "Ocelli or eyespots"@en,
+        "눈무늬(ocelli)"@ko ;
+    pea:featureAssociatedSexTerm pea:term-peacock ;
+    pea:featureDescription "The train bears rounded eye-like markings called ocelli."@en,
+        "train 깃에는 눈처럼 보이는 둥근 무늬인 ocelli가 있다."@ko ;
+    pea:featureEvidence pea:e-train-ocelli ;
+    pea:featureKind "ornament"^^xsd:string ;
+    pea:featureLabel "Ocelli or eyespots"@en,
+        "눈무늬(ocelli)"@ko ;
+    pea:featureOfSpecies pea:species-indian .
+
+pea:feature-train-structure a pea:MorphologicalFeature ;
+    rdfs:label "Train structure"@en,
+        "깃털 구조"@ko ;
+    pea:featureAssociatedSexTerm pea:term-peacock ;
+    pea:featureDescription "The long display train is made of elongated upper-tail coverts rather than the tail itself."@en,
+        "전시 때 펼치는 공작의 긴 train은 꼬리 자체가 아니라 꼬리 위를 덮는 긴 상부 꼬리덮깃이다."@ko ;
+    pea:featureEvidence pea:e-train-structure ;
+    pea:featureKind "plumage-structure"^^xsd:string ;
+    pea:featureLabel "Train structure"@en,
+        "깃털 구조"@ko ;
+    pea:featureOfSpecies pea:species-indian .
+
+pea:habitat-indian a pea:HabitatRange ;
+    rdfs:label "Indian peafowl habitat"@en,
+        "인도공작의 서식 환경"@ko ;
+    pea:habitatDescription "The Smithsonian profile describes open forests near streams and cultivated areas."@en,
+        "스미스소니언 자료는 하천 근처의 개방된 숲과 경작지에서 산다고 설명한다."@ko ;
+    pea:habitatEvidence pea:e-indian-habitat ;
+    pea:habitatKind "habitat"^^xsd:string ;
+    pea:habitatLabel "Indian peafowl habitat"@en,
+        "인도공작의 서식 환경"@ko ;
+    pea:habitatOfSpecies pea:species-indian .
+
+pea:range-green a pea:HabitatRange ;
+    rdfs:label "Green peafowl geographic range"@en,
+        "녹색공작의 지리적 분포"@ko ;
+    pea:habitatDescription "The San Diego Zoo profile describes green peafowl as occurring in Southeast Asia."@en,
+        "샌디에이고 동물원 자료는 녹색공작을 동남아시아 분포 종으로 설명한다."@ko ;
+    pea:habitatEvidence pea:e-green-range ;
+    pea:habitatKind "geographic-range"^^xsd:string ;
+    pea:habitatLabel "Green peafowl geographic range"@en,
+        "녹색공작의 지리적 분포"@ko ;
+    pea:habitatOfSpecies pea:species-green .
+
+pea:range-indian a pea:HabitatRange ;
+    rdfs:label "Indian peafowl geographic range"@en,
+        "인도공작의 지리적 분포"@ko ;
+    pea:habitatDescription "The San Diego Zoo profile lists India, Pakistan, and Sri Lanka within the Indian peafowl's range."@en,
+        "샌디에이고 동물원 자료는 인도공작 분포 범위에 인도, 파키스탄, 스리랑카를 포함한다."@ko ;
+    pea:habitatEvidence pea:e-indian-range ;
+    pea:habitatKind "geographic-range"^^xsd:string ;
+    pea:habitatLabel "Indian peafowl geographic range"@en,
+        "인도공작의 지리적 분포"@ko ;
+    pea:habitatOfSpecies pea:species-indian .
+
+pea:repro-eggs-sandiego a pea:ReproductiveObservation ;
+    rdfs:label "Eggs per clutch: San Diego Zoo range"@en,
+        "산란 수: 샌디에이고 동물원 기재 범위"@ko ;
+    pea:reproductionAssociatedTerm pea:term-peahen ;
+    pea:reproductionEstimateType "source-range"^^xsd:string ;
+    pea:reproductionEvidence pea:e-eggs-sd ;
+    pea:reproductionLabel "Eggs per clutch: San Diego Zoo range"@en,
+        "산란 수: 샌디에이고 동물원 기재 범위"@ko ;
+    pea:reproductionMaximum 8.0 ;
+    pea:reproductionMeasure "eggs-per-clutch"^^xsd:string ;
+    pea:reproductionMinimum 3.0 ;
+    pea:reproductionUnit "eggs"^^xsd:string .
+
+pea:repro-eggs-smithsonian a pea:ReproductiveObservation ;
+    rdfs:label "Eggs per clutch: Smithsonian range"@en,
+        "산란 수: 스미스소니언 기재 범위"@ko ;
+    pea:reproductionAssociatedTerm pea:term-peahen ;
+    pea:reproductionEstimateType "source-range"^^xsd:string ;
+    pea:reproductionEvidence pea:e-eggs-sm ;
+    pea:reproductionLabel "Eggs per clutch: Smithsonian range"@en,
+        "산란 수: 스미스소니언 기재 범위"@ko ;
+    pea:reproductionMaximum 8.0 ;
+    pea:reproductionMeasure "eggs-per-clutch"^^xsd:string ;
+    pea:reproductionMinimum 4.0 ;
+    pea:reproductionUnit "eggs"^^xsd:string .
+
+pea:repro-incubation-sandiego a pea:ReproductiveObservation ;
+    rdfs:label "Incubation: San Diego Zoo range"@en,
+        "포란 기간: 샌디에이고 동물원 기재 범위"@ko ;
+    pea:reproductionAssociatedTerm pea:term-peahen ;
+    pea:reproductionEstimateType "source-range"^^xsd:string ;
+    pea:reproductionEvidence pea:e-incubation-sd ;
+    pea:reproductionLabel "Incubation: San Diego Zoo range"@en,
+        "포란 기간: 샌디에이고 동물원 기재 범위"@ko ;
+    pea:reproductionMaximum 30.0 ;
+    pea:reproductionMeasure "incubation-duration"^^xsd:string ;
+    pea:reproductionMinimum 26.0 ;
+    pea:reproductionUnit "days"^^xsd:string .
+
+pea:repro-incubation-smithsonian a pea:ReproductiveObservation ;
+    rdfs:label "Incubation: about 30 days"@en,
+        "포란 기간: 약 30일"@ko ;
+    pea:reproductionAssociatedTerm pea:term-peahen ;
+    pea:reproductionEstimateType "approximate"^^xsd:string ;
+    pea:reproductionEvidence pea:e-incubation-sm ;
+    pea:reproductionLabel "Incubation: about 30 days"@en,
+        "포란 기간: 약 30일"@ko ;
+    pea:reproductionMaximum 30.0 ;
+    pea:reproductionMeasure "incubation-duration"^^xsd:string ;
+    pea:reproductionMinimum 30.0 ;
+    pea:reproductionUnit "days"^^xsd:string .
+
+pea:taxon-aves a pea:Taxon ;
+    rdfs:label "Aves"@en,
+        "조강"@ko ;
+    pea:taxonCommonName "Birds"@en,
+        "조류"@ko ;
+    pea:taxonRank "class"^^xsd:string ;
+    pea:taxonScientificName "Aves"^^xsd:string .
+
+pea:taxon-galliformes a pea:Taxon ;
+    rdfs:label "Galliformes"@en,
+        "닭목"@ko ;
+    pea:taxonCommonName "Galliformes"@en,
+        "닭목"@ko ;
+    pea:taxonHigherTaxon pea:taxon-aves ;
+    pea:taxonRank "order"^^xsd:string ;
+    pea:taxonScientificName "Galliformes"^^xsd:string .
+
+pea:taxon-phasianidae a pea:Taxon ;
+    rdfs:label "Phasianidae"@en,
+        "꿩과"@ko ;
+    pea:taxonCommonName "Pheasant family"@en,
+        "꿩과"@ko ;
+    pea:taxonHigherTaxon pea:taxon-galliformes ;
+    pea:taxonRank "family"^^xsd:string ;
+    pea:taxonScientificName "Phasianidae"^^xsd:string .
+
+pea:term-peachick a pea:LifeStageTerm ;
+    rdfs:label "Young peafowl / peachick"@en,
+        "어린 공작 / peachick"@ko ;
+    pea:lifeStageAppliesToSpecies pea:species-green,
+        pea:species-indian ;
+    pea:lifeStageCategory "young"^^xsd:string ;
+    pea:lifeStageEvidence pea:e-peachick-term ;
+    pea:lifeStageTermLabel "Young peafowl / peachick"@en,
+        "어린 공작 / peachick"@ko .
+
+pea:feature-indian-female a pea:MorphologicalFeature ;
+    rdfs:label "Indian peahen appearance"@en,
+        "인도공작 암컷의 색과 train"@ko ;
+    pea:featureAssociatedSexTerm pea:term-peahen ;
+    pea:featureDescription "The Indian peahen is less brightly colored and mottled brown; the common peafowl profile describes females as having a shorter train without ocelli."@en,
+        "인도공작 암컷은 수컷보다 덜 화려한 얼룩 갈색이며, 공작 암컷의 train은 더 짧고 ocelli가 없다."@ko ;
+    pea:featureEvidence pea:e-indian-sex-difference-sd,
+        pea:e-indian-sex-difference-sm ;
+    pea:featureKind "sexual-dimorphism"^^xsd:string ;
+    pea:featureLabel "Indian peahen appearance"@en,
+        "인도공작 암컷의 색과 train"@ko ;
+    pea:featureOfSpecies pea:species-indian .
+
+pea:taxon-pavo a pea:Taxon ;
+    rdfs:label "Pavo"@en,
+        "공작속"@ko ;
+    pea:taxonCommonName "Pavo"@en,
+        "공작속"@ko ;
+    pea:taxonHigherTaxon pea:taxon-phasianidae ;
+    pea:taxonRank "genus"^^xsd:string ;
+    pea:taxonScientificName "Pavo"^^xsd:string .
+
+pea:term-peacock a pea:SexTerm ;
+    rdfs:label "Male peafowl / peacock"@en,
+        "수컷 공작 / peacock"@ko ;
+    pea:sexCategory "male"^^xsd:string ;
+    pea:sexTermAppliesToSpecies pea:species-green,
+        pea:species-indian ;
+    pea:sexTermEvidence pea:e-peacock-term ;
+    pea:sexTermLabel "Male peafowl / peacock"@en,
+        "수컷 공작 / peacock"@ko .
+
+pea:term-peahen a pea:SexTerm ;
+    rdfs:label "Female peafowl / peahen"@en,
+        "암컷 공작 / peahen"@ko ;
+    pea:sexCategory "female"^^xsd:string ;
+    pea:sexTermAppliesToSpecies pea:species-green,
+        pea:species-indian ;
+    pea:sexTermEvidence pea:e-peahen-term ;
+    pea:sexTermLabel "Female peafowl / peahen"@en,
+        "암컷 공작 / peahen"@ko .
+
+pea:species-green a pea:PeafowlSpecies,
+        pea:Taxon ;
+    rdfs:label "Green peafowl"@en,
+        "녹색공작"@ko ;
+    pea:taxonCommonName "Green peafowl"@en,
+        "녹색공작"@ko ;
+    pea:taxonHasEvidence pea:e-taxonomy-green ;
+    pea:taxonHigherTaxon pea:taxon-pavo ;
+    pea:taxonRank "species"^^xsd:string ;
+    pea:taxonScientificName "Pavo muticus"^^xsd:string .
+
+pea:smithsonian a pea:SourceDocument ;
+    rdfs:label "Smithsonian National Zoo common peafowl profile"@en,
+        "스미스소니언 국립동물원 공작류 정보"@ko ;
+    pea:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    pea:sourcePublisher "Smithsonian's National Zoo and Conservation Biology Institute"^^xsd:string ;
+    pea:sourceScope "The taxonomy section identifies Pavo cristatus. Morphology, habitat, diet, social behavior, and reproduction are recorded as claims from this species profile, not as individual observations."@en,
+        "종 정보 페이지는 Pavo cristatus를 명시한다. 형태, 서식지, 먹이, 사회 행동, 번식 설명을 해당 종 프로필의 출처 주장으로 기록한다. 개체별 관찰 자료는 아니다."@ko ;
+    pea:sourceTitle "Common peafowl"@en,
+        "공작류 (Common peafowl)"@ko ;
+    pea:sourceURL "https://nationalzoo.si.edu/animals/common-peafowl"^^xsd:anyURI .
+
+pea:sandiego a pea:SourceDocument ;
+    rdfs:label "San Diego Zoo peafowl profile"@en,
+        "샌디에이고 동물원 공작류 정보"@ko ;
+    pea:sourceAccessedOn "2026-10-08"^^xsd:date ;
+    pea:sourcePublisher "San Diego Zoo Wildlife Alliance"^^xsd:string ;
+    pea:sourceScope "The page describes Indian and green peafowl. Its general reproductive figures are not assigned to a particular species or population and are not combined with estimates from another profile."@en,
+        "인도공작과 녹색공작의 설명을 제공한다. 페이지의 일반 번식 수치는 특정 종이나 개체군의 추정치로 표시하지 않으며, 다른 출처의 값과 합치지 않는다."@ko ;
+    pea:sourceTitle "Peafowl"@en,
+        "공작류 (Peafowl)"@ko ;
+    pea:sourceURL "https://animals.sandiegozoo.org/animals/peafowl"^^xsd:anyURI .
+
+pea:species-indian a pea:PeafowlSpecies,
+        pea:Taxon ;
+    rdfs:label "Indian or blue peafowl"@en,
+        "인도공작"@ko ;
+    pea:taxonCommonName "Blue peafowl"@en,
+        "Indian peafowl"@en,
+        "인도공작"@ko ;
+    pea:taxonHasEvidence pea:e-taxonomy-indian ;
+    pea:taxonHigherTaxon pea:taxon-pavo ;
+    pea:taxonRank "species"^^xsd:string ;
+    pea:taxonScientificName "Pavo cristatus"^^xsd:string .

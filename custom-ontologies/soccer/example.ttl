@@ -1,0 +1,233 @@
+@prefix soccer: <https://example.org/ontology/custom/soccer#> .
+@prefix ex: <https://example.org/ontology/custom/soccer#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely fictional clubs, players and matches. Scores, minutes and every
+# urn:synthetic: location are invented placeholders, not real results or reports.
+ex:league2026 a soccer:Competition ; rdfs:label "가상 리그 2026"@ko ; soccer:season "2026" ; soccer:competitionType "league" ; soccer:substitutionLimit 5 .
+ex:cup2026 a soccer:Competition ; rdfs:label "가상 컵 2026"@ko ; soccer:season "2026" ; soccer:competitionType "cup" ; soccer:substitutionLimit 3 .
+
+ex:clubA a soccer:Club ; rdfs:label "가상 클럽 A"@ko .
+ex:clubB a soccer:Club ; rdfs:label "가상 클럽 B"@ko .
+ex:clubC a soccer:Club ; rdfs:label "가상 클럽 C"@ko .
+
+ex:playerA01 a soccer:Player ; rdfs:label "가상 선수 A01"@ko .
+ex:playerA02 a soccer:Player ; rdfs:label "가상 선수 A02"@ko .
+ex:playerA03 a soccer:Player ; rdfs:label "가상 선수 A03"@ko .
+ex:playerA04 a soccer:Player ; rdfs:label "가상 선수 A04"@ko .
+ex:playerA05 a soccer:Player ; rdfs:label "가상 선수 A05"@ko .
+ex:playerA06 a soccer:Player ; rdfs:label "가상 선수 A06"@ko .
+ex:playerA07 a soccer:Player ; rdfs:label "가상 선수 A07"@ko .
+ex:playerA08 a soccer:Player ; rdfs:label "가상 선수 A08"@ko .
+ex:playerA09 a soccer:Player ; rdfs:label "가상 선수 A09"@ko .
+ex:playerA10 a soccer:Player ; rdfs:label "가상 선수 A10"@ko .
+ex:playerA11 a soccer:Player ; rdfs:label "가상 선수 A11"@ko .
+ex:playerA12 a soccer:Player ; rdfs:label "가상 선수 A12"@ko .
+ex:playerB01 a soccer:Player ; rdfs:label "가상 선수 B01"@ko .
+ex:playerB02 a soccer:Player ; rdfs:label "가상 선수 B02"@ko .
+ex:playerB03 a soccer:Player ; rdfs:label "가상 선수 B03"@ko .
+ex:playerB04 a soccer:Player ; rdfs:label "가상 선수 B04"@ko .
+ex:playerB05 a soccer:Player ; rdfs:label "가상 선수 B05"@ko .
+ex:playerB06 a soccer:Player ; rdfs:label "가상 선수 B06"@ko .
+ex:playerB07 a soccer:Player ; rdfs:label "가상 선수 B07"@ko .
+ex:playerB08 a soccer:Player ; rdfs:label "가상 선수 B08"@ko .
+ex:playerB09 a soccer:Player ; rdfs:label "가상 선수 B09"@ko .
+ex:playerB10 a soccer:Player ; rdfs:label "가상 선수 B10"@ko .
+ex:playerB11 a soccer:Player ; rdfs:label "가상 선수 B11"@ko .
+ex:playerB12 a soccer:Player ; rdfs:label "가상 선수 B12"@ko .
+ex:playerC01 a soccer:Player ; rdfs:label "가상 선수 C01"@ko .
+ex:playerC02 a soccer:Player ; rdfs:label "가상 선수 C02"@ko .
+ex:playerC03 a soccer:Player ; rdfs:label "가상 선수 C03"@ko .
+ex:playerC04 a soccer:Player ; rdfs:label "가상 선수 C04"@ko .
+ex:playerC05 a soccer:Player ; rdfs:label "가상 선수 C05"@ko .
+ex:playerC06 a soccer:Player ; rdfs:label "가상 선수 C06"@ko .
+ex:playerC07 a soccer:Player ; rdfs:label "가상 선수 C07"@ko .
+ex:playerC08 a soccer:Player ; rdfs:label "가상 선수 C08"@ko .
+ex:playerC09 a soccer:Player ; rdfs:label "가상 선수 C09"@ko .
+ex:playerC10 a soccer:Player ; rdfs:label "가상 선수 C10"@ko .
+ex:playerC11 a soccer:Player ; rdfs:label "가상 선수 C11"@ko .
+ex:playerC12 a soccer:Player ; rdfs:label "가상 선수 C12"@ko .
+
+ex:match1 a soccer:Match ; rdfs:label "가상 경기: 클럽 A 대 클럽 B"@ko ;
+    soccer:inCompetition ex:league2026 ; soccer:matchDate "2026-03-01"^^xsd:date ;
+    soccer:homeClub ex:clubA ; soccer:awayClub ex:clubB ; soccer:matchStatus "finished" ; soccer:matchday 1 ;
+    soccer:homeGoals 2 ; soccer:awayGoals 1 ;
+    soccer:matchReportUri "urn:synthetic:report:match1"^^xsd:anyURI ;
+    soccer:hasAppearance ex:match1A01, ex:match1A02, ex:match1A03, ex:match1A04, ex:match1A05, ex:match1A06, ex:match1A07, ex:match1A08, ex:match1A09, ex:match1A10, ex:match1A11, ex:match1A12, ex:match1B01, ex:match1B02, ex:match1B03, ex:match1B04, ex:match1B05, ex:match1B06, ex:match1B07, ex:match1B08, ex:match1B09, ex:match1B10, ex:match1B11, ex:match1B12 ;
+    soccer:hasEvent ex:match1ev1, ex:match1ev2, ex:match1ev3, ex:match1ev4 .
+ex:match2 a soccer:Match ; rdfs:label "가상 경기: 클럽 B 대 클럽 C"@ko ;
+    soccer:inCompetition ex:cup2026 ; soccer:matchDate "2026-04-12"^^xsd:date ;
+    soccer:homeClub ex:clubB ; soccer:awayClub ex:clubC ; soccer:matchStatus "finished" ;
+    soccer:homeGoals 1 ; soccer:awayGoals 1 ;
+    soccer:matchReportUri "urn:synthetic:report:match2"^^xsd:anyURI ;
+    soccer:hasAppearance ex:match2B01, ex:match2B02, ex:match2B03, ex:match2B04, ex:match2B05, ex:match2B06, ex:match2B07, ex:match2B08, ex:match2B09, ex:match2B10, ex:match2B11, ex:match2B12, ex:match2C01, ex:match2C02, ex:match2C03, ex:match2C04, ex:match2C05, ex:match2C06, ex:match2C07, ex:match2C08, ex:match2C09, ex:match2C10, ex:match2C11, ex:match2C12 ;
+    soccer:hasEvent ex:match2ev5, ex:match2ev6, ex:match2ev7, ex:match2ev8 .
+ex:match3 a soccer:Match ; rdfs:label "가상 경기: 클럽 A 대 클럽 C"@ko ;
+    soccer:inCompetition ex:league2026 ; soccer:matchDate "2026-10-24"^^xsd:date ;
+    soccer:homeClub ex:clubA ; soccer:awayClub ex:clubC ; soccer:matchStatus "scheduled" ; soccer:matchday 3 .
+ex:match4 a soccer:Match ; rdfs:label "가상 경기: 클럽 C 대 클럽 B"@ko ;
+    soccer:inCompetition ex:league2026 ; soccer:matchDate "2026-09-20"^^xsd:date ;
+    soccer:homeClub ex:clubC ; soccer:awayClub ex:clubB ; soccer:matchStatus "postponed" ; soccer:matchday 2 .
+
+ex:match1A01 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수01 출전"@ko ;
+    soccer:forPlayer ex:playerA01 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "goalkeeper" ; soccer:shirtNumber 1 .
+ex:match1A02 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수02 출전"@ko ;
+    soccer:forPlayer ex:playerA02 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 2 .
+ex:match1A03 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수03 출전"@ko ;
+    soccer:forPlayer ex:playerA03 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 3 .
+ex:match1A04 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수04 출전"@ko ;
+    soccer:forPlayer ex:playerA04 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 4 .
+ex:match1A05 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수05 출전"@ko ;
+    soccer:forPlayer ex:playerA05 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 5 .
+ex:match1A06 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수06 출전"@ko ;
+    soccer:forPlayer ex:playerA06 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 6 .
+ex:match1A07 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수07 출전"@ko ;
+    soccer:forPlayer ex:playerA07 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 7 .
+ex:match1A08 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수08 출전"@ko ;
+    soccer:forPlayer ex:playerA08 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 8 ; soccer:minuteOut 70 .
+ex:match1A09 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수09 출전"@ko ;
+    soccer:forPlayer ex:playerA09 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 9 .
+ex:match1A10 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수10 출전"@ko ;
+    soccer:forPlayer ex:playerA10 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 10 .
+ex:match1A11 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수11 출전"@ko ;
+    soccer:forPlayer ex:playerA11 ; soccer:forClub ex:clubA ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 11 .
+ex:match1A12 a soccer:Appearance ; rdfs:label "match1 클럽 A 선수12 출전"@ko ;
+    soccer:forPlayer ex:playerA12 ; soccer:forClub ex:clubA ; soccer:lineupRole "substitute" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 12 ; soccer:minuteIn 70 .
+ex:match1B01 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수01 출전"@ko ;
+    soccer:forPlayer ex:playerB01 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "goalkeeper" ; soccer:shirtNumber 1 .
+ex:match1B02 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수02 출전"@ko ;
+    soccer:forPlayer ex:playerB02 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 2 .
+ex:match1B03 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수03 출전"@ko ;
+    soccer:forPlayer ex:playerB03 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 3 .
+ex:match1B04 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수04 출전"@ko ;
+    soccer:forPlayer ex:playerB04 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 4 .
+ex:match1B05 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수05 출전"@ko ;
+    soccer:forPlayer ex:playerB05 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 5 .
+ex:match1B06 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수06 출전"@ko ;
+    soccer:forPlayer ex:playerB06 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 6 .
+ex:match1B07 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수07 출전"@ko ;
+    soccer:forPlayer ex:playerB07 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 7 .
+ex:match1B08 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수08 출전"@ko ;
+    soccer:forPlayer ex:playerB08 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 8 ; soccer:minuteOut 60 .
+ex:match1B09 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수09 출전"@ko ;
+    soccer:forPlayer ex:playerB09 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 9 .
+ex:match1B10 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수10 출전"@ko ;
+    soccer:forPlayer ex:playerB10 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 10 .
+ex:match1B11 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수11 출전"@ko ;
+    soccer:forPlayer ex:playerB11 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 11 .
+ex:match1B12 a soccer:Appearance ; rdfs:label "match1 클럽 B 선수12 출전"@ko ;
+    soccer:forPlayer ex:playerB12 ; soccer:forClub ex:clubB ; soccer:lineupRole "substitute" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 12 ; soccer:minuteIn 60 .
+ex:match2B01 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수01 출전"@ko ;
+    soccer:forPlayer ex:playerB01 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "goalkeeper" ; soccer:shirtNumber 1 .
+ex:match2B02 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수02 출전"@ko ;
+    soccer:forPlayer ex:playerB02 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 2 .
+ex:match2B03 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수03 출전"@ko ;
+    soccer:forPlayer ex:playerB03 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 3 .
+ex:match2B04 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수04 출전"@ko ;
+    soccer:forPlayer ex:playerB04 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 4 .
+ex:match2B05 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수05 출전"@ko ;
+    soccer:forPlayer ex:playerB05 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 5 .
+ex:match2B06 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수06 출전"@ko ;
+    soccer:forPlayer ex:playerB06 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 6 .
+ex:match2B07 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수07 출전"@ko ;
+    soccer:forPlayer ex:playerB07 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 7 .
+ex:match2B08 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수08 출전"@ko ;
+    soccer:forPlayer ex:playerB08 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 8 ; soccer:minuteOut 70 .
+ex:match2B09 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수09 출전"@ko ;
+    soccer:forPlayer ex:playerB09 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 9 .
+ex:match2B10 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수10 출전"@ko ;
+    soccer:forPlayer ex:playerB10 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 10 .
+ex:match2B11 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수11 출전"@ko ;
+    soccer:forPlayer ex:playerB11 ; soccer:forClub ex:clubB ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 11 .
+ex:match2B12 a soccer:Appearance ; rdfs:label "match2 클럽 B 선수12 출전"@ko ;
+    soccer:forPlayer ex:playerB12 ; soccer:forClub ex:clubB ; soccer:lineupRole "substitute" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 12 ; soccer:minuteIn 70 .
+ex:match2C01 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수01 출전"@ko ;
+    soccer:forPlayer ex:playerC01 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "goalkeeper" ; soccer:shirtNumber 1 .
+ex:match2C02 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수02 출전"@ko ;
+    soccer:forPlayer ex:playerC02 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 2 .
+ex:match2C03 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수03 출전"@ko ;
+    soccer:forPlayer ex:playerC03 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 3 .
+ex:match2C04 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수04 출전"@ko ;
+    soccer:forPlayer ex:playerC04 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 4 .
+ex:match2C05 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수05 출전"@ko ;
+    soccer:forPlayer ex:playerC05 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "defender" ; soccer:shirtNumber 5 .
+ex:match2C06 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수06 출전"@ko ;
+    soccer:forPlayer ex:playerC06 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 6 .
+ex:match2C07 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수07 출전"@ko ;
+    soccer:forPlayer ex:playerC07 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 7 ; soccer:minuteOut 65 .
+ex:match2C08 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수08 출전"@ko ;
+    soccer:forPlayer ex:playerC08 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 8 .
+ex:match2C09 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수09 출전"@ko ;
+    soccer:forPlayer ex:playerC09 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 9 .
+ex:match2C10 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수10 출전"@ko ;
+    soccer:forPlayer ex:playerC10 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 10 ; soccer:minuteOut 80 .
+ex:match2C11 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수11 출전"@ko ;
+    soccer:forPlayer ex:playerC11 ; soccer:forClub ex:clubC ; soccer:lineupRole "starter" ;
+    soccer:position "forward" ; soccer:shirtNumber 11 .
+ex:match2C12 a soccer:Appearance ; rdfs:label "match2 클럽 C 선수12 출전"@ko ;
+    soccer:forPlayer ex:playerC12 ; soccer:forClub ex:clubC ; soccer:lineupRole "substitute" ;
+    soccer:position "midfielder" ; soccer:shirtNumber 12 ; soccer:minuteIn 80 .
+
+ex:match1ev1 a soccer:MatchEvent ; rdfs:label "match1 23분 goal"@ko ;
+    soccer:eventType "goal" ; soccer:eventMinute 23 ; soccer:byPlayer ex:playerA10 .
+ex:match1ev2 a soccer:MatchEvent ; rdfs:label "match1 40분 yellow-card"@ko ;
+    soccer:eventType "yellow-card" ; soccer:eventMinute 40 ; soccer:byPlayer ex:playerB03 .
+ex:match1ev3 a soccer:MatchEvent ; rdfs:label "match1 55분 goal"@ko ;
+    soccer:eventType "goal" ; soccer:eventMinute 55 ; soccer:byPlayer ex:playerB09 .
+ex:match1ev4 a soccer:MatchEvent ; rdfs:label "match1 78분 goal"@ko ;
+    soccer:eventType "goal" ; soccer:eventMinute 78 ; soccer:byPlayer ex:playerA11 .
+ex:match2ev5 a soccer:MatchEvent ; rdfs:label "match2 10분 goal"@ko ;
+    soccer:eventType "goal" ; soccer:eventMinute 10 ; soccer:byPlayer ex:playerC09 .
+ex:match2ev6 a soccer:MatchEvent ; rdfs:label "match2 30분 yellow-card"@ko ;
+    soccer:eventType "yellow-card" ; soccer:eventMinute 30 ; soccer:byPlayer ex:playerB02 .
+ex:match2ev7 a soccer:MatchEvent ; rdfs:label "match2 50분 own-goal"@ko ;
+    soccer:eventType "own-goal" ; soccer:eventMinute 50 ; soccer:byPlayer ex:playerC04 .
+ex:match2ev8 a soccer:MatchEvent ; rdfs:label "match2 65분 red-card"@ko ;
+    soccer:eventType "red-card" ; soccer:eventMinute 65 ; soccer:byPlayer ex:playerC07 .

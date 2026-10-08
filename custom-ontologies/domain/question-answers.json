@@ -1,0 +1,537 @@
+{
+  "DOM-01": {
+    "variables": [
+      "catalogLabel",
+      "version",
+      "status",
+      "topId",
+      "topLabel"
+    ],
+    "rows": [
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "artificial-intelligence",
+        "인공지능"
+      ],
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "computer-networking",
+        "컴퓨터 네트워킹"
+      ],
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "digital-media",
+        "디지털 미디어"
+      ],
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "healthcare",
+        "헬스케어"
+      ],
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "robotics",
+        "로보틱스"
+      ],
+      [
+        "예시 지식·응용 영역 분류",
+        "0.1.0",
+        "draft",
+        "transportation",
+        "교통"
+      ]
+    ]
+  },
+  "DOM-02": {
+    "variables": [
+      "id",
+      "label",
+      "notation",
+      "status"
+    ],
+    "rows": [
+      [
+        "ai-film-production",
+        "AI 영화 제작",
+        "MEDIA.AI-FILM",
+        "proposed"
+      ],
+      [
+        "artificial-intelligence",
+        "인공지능",
+        "AI",
+        "proposed"
+      ],
+      [
+        "autonomous-driving",
+        "자율주행",
+        "TRANSPORT.AUTONOMOUS",
+        "proposed"
+      ],
+      [
+        "computer-networking",
+        "컴퓨터 네트워킹",
+        "NET",
+        "proposed"
+      ],
+      [
+        "digital-media",
+        "디지털 미디어",
+        "MEDIA",
+        "proposed"
+      ],
+      [
+        "healthcare",
+        "헬스케어",
+        "HEALTH",
+        "proposed"
+      ],
+      [
+        "imitation-learning",
+        "모방학습",
+        "AI.ML.IMITATION",
+        "proposed"
+      ],
+      [
+        "machine-learning",
+        "머신러닝",
+        "AI.ML",
+        "proposed"
+      ],
+      [
+        "robot-middleware",
+        "로봇 미들웨어",
+        "ROB.MIDDLEWARE",
+        "proposed"
+      ],
+      [
+        "robotics",
+        "로보틱스",
+        "ROB",
+        "proposed"
+      ],
+      [
+        "transportation",
+        "교통",
+        "TRANSPORT",
+        "proposed"
+      ],
+      [
+        "wireless-networking",
+        "무선 네트워킹",
+        "NET.WIRELESS",
+        "proposed"
+      ]
+    ]
+  },
+  "DOM-03": {
+    "variables": [
+      "childId",
+      "childLabel",
+      "parentId",
+      "parentLabel"
+    ],
+    "rows": [
+      [
+        "ai-film-production",
+        "AI 영화 제작",
+        "artificial-intelligence",
+        "인공지능"
+      ],
+      [
+        "ai-film-production",
+        "AI 영화 제작",
+        "digital-media",
+        "디지털 미디어"
+      ],
+      [
+        "autonomous-driving",
+        "자율주행",
+        "robotics",
+        "로보틱스"
+      ],
+      [
+        "autonomous-driving",
+        "자율주행",
+        "transportation",
+        "교통"
+      ],
+      [
+        "imitation-learning",
+        "모방학습",
+        "machine-learning",
+        "머신러닝"
+      ],
+      [
+        "machine-learning",
+        "머신러닝",
+        "artificial-intelligence",
+        "인공지능"
+      ],
+      [
+        "robot-middleware",
+        "로봇 미들웨어",
+        "robotics",
+        "로보틱스"
+      ],
+      [
+        "wireless-networking",
+        "무선 네트워킹",
+        "computer-networking",
+        "컴퓨터 네트워킹"
+      ]
+    ]
+  },
+  "DOM-04": {
+    "variables": [
+      "id",
+      "label",
+      "alias",
+      "language"
+    ],
+    "rows": [
+      [
+        "artificial-intelligence",
+        "인공지능",
+        "AI",
+        "en"
+      ],
+      [
+        "machine-learning",
+        "머신러닝",
+        "기계학습",
+        "ko"
+      ],
+      [
+        "robotics",
+        "로보틱스",
+        "로봇공학",
+        "ko"
+      ],
+      [
+        "wireless-networking",
+        "무선 네트워킹",
+        "WLAN",
+        "en"
+      ]
+    ]
+  },
+  "DOM-05": {
+    "variables": [
+      "domainId",
+      "label",
+      "kind",
+      "text",
+      "status"
+    ],
+    "rows": [
+      [
+        "ai-film-production",
+        "AI 영화 제작",
+        "inclusion",
+        "Film and video production activities that use AI for ideation, generation, editing, or review.",
+        "draft"
+      ],
+      [
+        "artificial-intelligence",
+        "인공지능",
+        "exclusion",
+        "A topic is not automatically classified as AI merely because it uses software or automation.",
+        "draft"
+      ],
+      [
+        "artificial-intelligence",
+        "인공지능",
+        "inclusion",
+        "AI methods, models, and systems that support perception, prediction, generation, or decision-making.",
+        "draft"
+      ],
+      [
+        "computer-networking",
+        "컴퓨터 네트워킹",
+        "inclusion",
+        "Network protocols, addressing concepts, routing, switching, and wired or wireless connectivity.",
+        "draft"
+      ],
+      [
+        "robotics",
+        "로보틱스",
+        "inclusion",
+        "Integrated robotic platforms, their software architecture, sensing, planning, and actuation.",
+        "draft"
+      ],
+      [
+        "transportation",
+        "교통",
+        "inclusion",
+        "Movement of people or goods and the systems that support that movement.",
+        "draft"
+      ],
+      [
+        "wireless-networking",
+        "무선 네트워킹",
+        "inclusion",
+        "Wireless local-area links, radio interfaces, access points, and their network configuration.",
+        "draft"
+      ]
+    ]
+  },
+  "DOM-06": {
+    "variables": [
+      "profileId",
+      "domainId",
+      "status",
+      "method",
+      "confidence",
+      "rationale"
+    ],
+    "rows": [
+      [
+        "ai-film",
+        "ai-film-production",
+        "proposed",
+        "manual_scope_review",
+        "0.85",
+        "로컬 프로필 'ai-film'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."
+      ],
+      [
+        "autonomous-driving",
+        "autonomous-driving",
+        "proposed",
+        "manual_scope_review",
+        "0.85",
+        "로컬 프로필 'autonomous-driving'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."
+      ],
+      [
+        "imitation-learning",
+        "imitation-learning",
+        "proposed",
+        "manual_scope_review",
+        "0.85",
+        "로컬 프로필 'imitation-learning'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."
+      ],
+      [
+        "ros2",
+        "robot-middleware",
+        "proposed",
+        "manual_scope_review",
+        "0.85",
+        "로컬 프로필 'ros2'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."
+      ],
+      [
+        "wireless-router",
+        "wireless-networking",
+        "proposed",
+        "manual_scope_review",
+        "0.85",
+        "로컬 프로필 'wireless-router'의 이름과 설명을 근거로 연결한 초안이다. 분류 책임자의 검토 전이다."
+      ]
+    ]
+  },
+  "DOM-07": {
+    "variables": [
+      "relation",
+      "subjectId",
+      "objectId",
+      "type",
+      "status",
+      "rationale"
+    ],
+    "rows": [
+      [
+        "https://example.test/domain/relation-ai-robotics",
+        "artificial-intelligence",
+        "robotics",
+        "interdisciplinary",
+        "proposed",
+        "Illustrative cross-domain relation; review whether to retain an associative link alongside local scope boundaries."
+      ]
+    ]
+  },
+  "DOM-08": {
+    "variables": [
+      "mapping",
+      "domainId",
+      "status",
+      "relationType",
+      "schemeName",
+      "schemeUri",
+      "conceptUri",
+      "rationale"
+    ],
+    "rows": [
+      [
+        "https://example.test/domain/mapping-ai-unstarted",
+        "artificial-intelligence",
+        "not_started",
+        "unknown",
+        null,
+        null,
+        null,
+        "No external classification scheme or concept URI has been selected; no equivalence is asserted."
+      ]
+    ]
+  },
+  "DOM-09": {
+    "variables": [
+      "source",
+      "title",
+      "publisher",
+      "year",
+      "uri",
+      "kind",
+      "scope",
+      "limitations"
+    ],
+    "rows": [
+      [
+        "https://example.test/domain/source-profile-ai-film",
+        "AI Film Production Ontology",
+        "Local ontology studio catalog",
+        "2026",
+        "https://example.org/ontology/custom/ai-film#",
+        "local_profile",
+        "Connects screenplay, scene and shot planning to generation tasks, evidence, rights and quality reviews, and edit readiness.",
+        "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."
+      ],
+      [
+        "https://example.test/domain/source-profile-autonomous-driving",
+        "Autonomous Driving Ontology",
+        "Local ontology studio catalog",
+        "2026",
+        "https://example.org/ontology/custom/autonomous-driving#",
+        "local_profile",
+        "Connects driving features, SAE level terms, ODD, vehicles, sensors, perception, localization, planning, control, safety and test evidence.",
+        "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."
+      ],
+      [
+        "https://example.test/domain/source-profile-imitation-learning",
+        "Imitation Learning Ontology",
+        "Local ontology studio catalog",
+        "2026",
+        "https://example.org/ontology/custom/imitation-learning#",
+        "local_profile",
+        "Connects demonstrations, observation-action labels, behavior cloning, DAgger, inverse reinforcement learning, policies, run status, distribution shift and literature evidence; separates synthetic fixtures from executed experiments.",
+        "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."
+      ],
+      [
+        "https://example.test/domain/source-profile-ros2",
+        "ROS 2 System Ontology",
+        "Local ontology studio catalog",
+        "2026",
+        "https://example.org/ontology/custom/ros2#",
+        "local_profile",
+        "Connects ROS 2 packages, nodes, topics, services, actions, interface types, QoS, hardware, controllers and tf2 frames with official documentation sources.",
+        "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."
+      ],
+      [
+        "https://example.test/domain/source-profile-wireless-router",
+        "Wireless Router Ontology",
+        "Local ontology studio catalog",
+        "2026",
+        "https://example.org/ontology/custom/wireless-router#",
+        "local_profile",
+        "Connects router devices, radios, wireless networks, security profiles, isolation, clients and associations, firmware, configuration snapshots, performance observations, incidents, and evidence sources. Supported capability, configuration, and observed state remain distinct; examples are synthetic.",
+        "Snapshot of local profile metadata only; it is not an independent review or a claim that every profile instance belongs exclusively to this domain."
+      ],
+      [
+        "https://example.test/domain/source-skos-reference",
+        "SKOS Simple Knowledge Organization System Reference",
+        "World Wide Web Consortium (W3C)",
+        "2009",
+        "https://www.w3.org/TR/skos-reference/",
+        "standards_document",
+        "Defines SKOS concept schemes, concepts, preferred and alternative labels, definitions, direct broader/narrower links, associative links, and mapping properties.",
+        "SKOS supplies a knowledge-organization data model; it does not establish that this illustrative local domain taxonomy is authoritative or that any external mapping is correct."
+      ]
+    ]
+  },
+  "DOM-10": {
+    "variables": [
+      "domainId",
+      "status",
+      "outcome",
+      "criteria",
+      "reviewer",
+      "rationale"
+    ],
+    "rows": [
+      [
+        "artificial-intelligence",
+        "planned",
+        "not_reviewed",
+        "Check the definition boundary, direct parents, aliases, profile assignments, and source scope.",
+        "not_assigned",
+        "A review is planned; no domain owner has approved this draft."
+      ]
+    ]
+  },
+  "DOM-11": {
+    "variables": [
+      "domainId",
+      "action",
+      "date",
+      "previous",
+      "newStatus",
+      "reason",
+      "role"
+    ],
+    "rows": [
+      [
+        "artificial-intelligence",
+        "created",
+        "2026-10-08",
+        "not_recorded",
+        "proposed",
+        "Created an illustrative domain hierarchy to organize and cross-reference local ontology profiles.",
+        "ontology_editor"
+      ]
+    ]
+  },
+  "DOM-12": {
+    "variables": [
+      "id",
+      "label"
+    ],
+    "rows": [
+      [
+        "artificial-intelligence",
+        "인공지능"
+      ],
+      [
+        "computer-networking",
+        "컴퓨터 네트워킹"
+      ],
+      [
+        "digital-media",
+        "디지털 미디어"
+      ],
+      [
+        "healthcare",
+        "헬스케어"
+      ],
+      [
+        "machine-learning",
+        "머신러닝"
+      ],
+      [
+        "robotics",
+        "로보틱스"
+      ],
+      [
+        "transportation",
+        "교통"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+@prefix picnic: <https://example.org/ontology/custom/picnic#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Constraints validate plan records, not actual visits, prices or forecasts.
+# Ready means recorded preparation is complete, not safety certification.
+# Canonical date values are YYYY-MM-DD; date-times require a time zone.
+picnic:LabelShape a sh:NodeShape ; sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:datatype rdf:langString ; sh:minCount 1 ; sh:minLength 1 ; sh:uniqueLang true ] .
+
+picnic:PicnicPlanShape a sh:NodeShape ; sh:targetClass picnic:PicnicPlan ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path picnic:recordKind ; sh:datatype xsd:string ; sh:in ( "synthetic" "observed" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:picnicDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:startsAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:endsAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:status ; sh:datatype xsd:string ; sh:in ( "draft" "ready" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:hasPlace ; sh:class picnic:Place ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:hasParticipant ; sh:class picnic:Participant ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path picnic:hasActivity ; sh:class picnic:Activity ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path picnic:hasSupply ; sh:class picnic:SupplyItem ; sh:nodeKind sh:IRI ; sh:minCount 1 ] ;
+    sh:property [ sh:path picnic:hasAssignment ; sh:class picnic:Assignment ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path picnic:hasExpense ; sh:class picnic:Expense ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path picnic:hasWeatherCheck ; sh:class picnic:WeatherCheck ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:budgetAmount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:currency ; sh:datatype xsd:string ; sh:in ( "KRW" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:planNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The picnic start time must precede its end time." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:startsAt ?start ; picnic:endsAt ?end .
+            FILTER (?start >= ?end)
+          }""" ] ;
+    sh:sparql [ sh:message "Activity sequence values must be unique within a plan." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:hasActivity ?first, ?second .
+            ?first picnic:sequence ?sequence .
+            ?second picnic:sequence ?sequence .
+            FILTER (?first != ?second)
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan requires every supply's packed quantity to meet its required quantity." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:status "ready" ; picnic:hasSupply ?supply .
+            ?supply picnic:requiredQuantity ?required ; picnic:packedQuantity ?packed .
+            FILTER (?packed < ?required)
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan requires an assignment of every supply to a participant of that plan." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:status "ready" ; picnic:hasSupply ?supply .
+            FILTER NOT EXISTS {
+              $this picnic:hasAssignment ?assignment ; picnic:hasParticipant ?participant .
+              ?assignment picnic:assignedSupply ?supply ; picnic:assignedTo ?participant .
+            }
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan's planned and paid expense total must not exceed its budget; cancelled expenses are excluded." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:status "ready" ; picnic:budgetAmount ?budget .
+            {
+              SELECT $this (SUM(?amount) AS ?total) WHERE {
+                $this picnic:hasExpense ?expense .
+                ?expense picnic:expenseStatus ?expenseStatus ; picnic:amount ?amount .
+                FILTER (?expenseStatus IN ("planned", "paid"))
+              } GROUP BY $this
+            }
+            FILTER (?total > ?budget)
+          }""" ] ;
+    sh:sparql [ sh:message "A ready plan requires a recorded weather check; this is not safety certification." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:status "ready" ; picnic:hasWeatherCheck ?weather .
+            FILTER NOT EXISTS { ?weather picnic:checkStatus "recorded" }
+          }""" ] .
+
+picnic:PlaceShape a sh:NodeShape ; sh:targetClass picnic:Place ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path picnic:placeKind ; sh:datatype xsd:string ; sh:in ( "park" "garden" "riverside" "indoor" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:locationNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+picnic:ParticipantShape a sh:NodeShape ; sh:targetClass picnic:Participant ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasParticipant ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:role ; sh:datatype xsd:string ; sh:in ( "organizer" "attendee" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:participantNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+picnic:ActivityShape a sh:NodeShape ; sh:targetClass picnic:Activity ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasActivity ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:sequence ; sh:datatype xsd:integer ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:activityKind ; sh:datatype xsd:string ; sh:in ( "travel" "meal" "play" "rest" "cleanup" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:activityStart ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:activityEnd ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:activityNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An activity's start time must precede its end time." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:activityStart ?start ; picnic:activityEnd ?end .
+            FILTER (?start >= ?end)
+          }""" ] ;
+    sh:sparql [ sh:message "An activity must stay within its plan's time bounds." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            ?plan picnic:hasActivity $this ; picnic:startsAt ?planStart ; picnic:endsAt ?planEnd .
+            $this picnic:activityStart ?start ; picnic:activityEnd ?end .
+            FILTER (?start < ?planStart || ?end > ?planEnd)
+          }""" ] .
+
+picnic:SupplyItemShape a sh:NodeShape ; sh:targetClass picnic:SupplyItem ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasSupply ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:supplyKind ; sh:datatype xsd:string ; sh:in ( "food" "drink" "equipment" "cleanup" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:requiredQuantity ; sh:datatype xsd:decimal ; sh:minExclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:packedQuantity ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:unit ; sh:datatype xsd:string ; sh:in ( "piece" "bottle" "pack" "set" "portion" ) ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+picnic:AssignmentShape a sh:NodeShape ; sh:targetClass picnic:Assignment ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasAssignment ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:assignedTo ; sh:class picnic:Participant ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:assignedSupply ; sh:class picnic:SupplyItem ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "An assigned participant must belong to the assignment's plan." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            ?plan picnic:hasAssignment $this .
+            $this picnic:assignedTo ?participant .
+            FILTER NOT EXISTS { ?plan picnic:hasParticipant ?participant }
+          }""" ] ;
+    sh:sparql [ sh:message "An assigned supply must belong to the assignment's plan." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            ?plan picnic:hasAssignment $this .
+            $this picnic:assignedSupply ?supply .
+            FILTER NOT EXISTS { ?plan picnic:hasSupply ?supply }
+          }""" ] .
+
+picnic:ExpenseShape a sh:NodeShape ; sh:targetClass picnic:Expense ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasExpense ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:expenseKind ; sh:datatype xsd:string ; sh:in ( "transport" "food" "equipment" "admission" "other" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:amount ; sh:datatype xsd:decimal ; sh:minInclusive 0 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:expenseStatus ; sh:datatype xsd:string ; sh:in ( "planned" "paid" "cancelled" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:expenseNote ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+picnic:WeatherCheckShape a sh:NodeShape ; sh:targetClass picnic:WeatherCheck ; sh:node picnic:LabelShape ;
+    sh:property [ sh:path [ sh:inversePath picnic:hasWeatherCheck ] ; sh:class picnic:PicnicPlan ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:forDate ; sh:datatype xsd:date ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:checkStatus ; sh:datatype xsd:string ; sh:in ( "unverified" "recorded" ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:checkedAt ; sh:datatype xsd:dateTime ; sh:pattern "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:sourceUri ; sh:datatype xsd:anyURI ; sh:pattern "^(https?://|urn:)[^\\s]+$" ; sh:maxCount 1 ] ;
+    sh:property [ sh:path picnic:weatherSummary ; sh:datatype xsd:string ; sh:minLength 1 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [ sh:message "The weather target date must match the plan's picnic date." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            ?plan picnic:hasWeatherCheck $this ; picnic:picnicDate ?picnicDate .
+            $this picnic:forDate ?weatherDate .
+            FILTER (?weatherDate != ?picnicDate)
+          }""" ] ;
+    sh:sparql [ sh:message "A recorded weather check requires a check time and source URI." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:checkStatus "recorded" .
+            FILTER (NOT EXISTS { $this picnic:checkedAt ?checked } || NOT EXISTS { $this picnic:sourceUri ?source })
+          }""" ] ;
+    sh:sparql [ sh:message "An unverified weather check must not contain a check time or source URI." ;
+        sh:select """PREFIX picnic: <https://example.org/ontology/custom/picnic#>
+          SELECT $this WHERE {
+            $this picnic:checkStatus "unverified" .
+            FILTER (EXISTS { $this picnic:checkedAt ?checked } || EXISTS { $this picnic:sourceUri ?source })
+          }""" ] .

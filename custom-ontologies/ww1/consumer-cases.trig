@@ -1,0 +1,1639 @@
+@prefix ns1: <https://example.org/ontology/custom/ww1#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/ww1-accept> {
+    <https://example.test/ww1/belleauWood> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Belleau Wood"@en,
+            "벨로 숲 전투"@ko ;
+        ns1:endDate "1918-06-26"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/pershing> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Belleau, Aisne, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-06-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/caporetto> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Caporetto"@en,
+            "카포레토 전투"@ko ;
+        ns1:endDate "1917-11-19"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/below>,
+            <https://example.test/ww1/cadorna> ;
+        ns1:hasBelligerent <https://example.test/ww1/partAustriaHungary>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partItaly> ;
+        ns1:inTheatre <https://example.test/ww1/theatreItalian> ;
+        ns1:locationName "Kobarid (Caporetto), now in Slovenia" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-10-24"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/gallipoli> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Gallipoli campaign"@en,
+            "갈리폴리 전역"@ko ;
+        ns1:endDate "1916-01-09"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/hamilton>,
+            <https://example.test/ww1/kemal> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partOttoman>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreMiddleEast> ;
+        ns1:locationName "Gallipoli peninsula, Ottoman Empire (now Turkey)" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-02-19"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/hundredDays> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Hundred Days Offensive"@en,
+            "백일 공세"@ko ;
+        ns1:endDate "1918-11-11"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/foch>,
+            <https://example.test/ww1/haig>,
+            <https://example.test/ww1/pershing> ;
+        ns1:hasBelligerent <https://example.test/ww1/partBelgium>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Western Front, France and Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-08-08"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/jutland> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Jutland"@en,
+            "유틀란트 해전"@ko ;
+        ns1:endDate "1916-06-01"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/beatty>,
+            <https://example.test/ww1/hipper>,
+            <https://example.test/ww1/jellicoe>,
+            <https://example.test/ww1/scheer> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreNaval> ;
+        ns1:locationName "North Sea off the coast of Jutland, Denmark" ;
+        ns1:outcome "contested" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-05-31"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/marne> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "First Battle of the Marne"@en,
+            "제1차 마른 전투"@ko ;
+        ns1:endDate "1914-09-12"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/french>,
+            <https://example.test/ww1/joffre>,
+            <https://example.test/ww1/moltke> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Marne valley, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-09-06"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partBulgaria> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Bulgaria enters the war"@en,
+            "불가리아 왕국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/salonica> ;
+        ns1:enteredVia <https://example.test/ww1/declBulgSerbia> ;
+        ns1:entryDate "1915-10-14"^^xsd:date ;
+        ns1:exitDate "1918-09-29"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/bulgaria> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partJapan> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Empire of Japan enters the war"@en,
+            "일본 제국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declJapanGer> ;
+        ns1:entryDate "1914-08-23"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/japan> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partSerbia> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Serbia enters the war"@en,
+            "세르비아 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declAHSerbia> ;
+        ns1:entryDate "1914-07-28"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/serbia> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/passchendaele> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Passchendaele (Third Battle of Ypres)"@en,
+            "파스샹달 전투(제3차 이프르 전투)"@ko ;
+        ns1:endDate "1917-11-10"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/haig> ;
+        ns1:hasBelligerent <https://example.test/ww1/partBelgium>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "near Ypres, Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-07-31"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/sarajevo> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Assassination of Archduke Franz Ferdinand in Sarajevo"@en,
+            "사라예보 사건: 프란츠 페르디난트 대공 암살"@ko ;
+        ns1:endDate "1914-06-28"^^xsd:date ;
+        ns1:eventKind "assassination" ;
+        ns1:locationName "Sarajevo, Bosnia and Herzegovina (then Austria-Hungary)" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-06-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/somme> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of the Somme"@en,
+            "솜 전투"@ko ;
+        ns1:endDate "1916-11-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/foch>,
+            <https://example.test/ww1/haig> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Somme, France" ;
+        ns1:outcome "contested" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-07-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/springOffensive> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "German Spring Offensive"@en,
+            "독일 춘계 대공세"@ko ;
+        ns1:endDate "1918-07-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/haig>,
+            <https://example.test/ww1/ludendorff>,
+            <https://example.test/ww1/petain> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Western Front, France and Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-03-21"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/tannenberg> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Tannenberg"@en,
+            "탄넨베르크 전투"@ko ;
+        ns1:endDate "1914-08-30"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/hindenburg>,
+            <https://example.test/ww1/ludendorff>,
+            <https://example.test/ww1/samsonov> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partRussia> ;
+        ns1:inTheatre <https://example.test/ww1/theatreEastern> ;
+        ns1:locationName "East Prussia (now in Poland)" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-26"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/tripleAlliance> a ns1:Alliance ;
+        rdfs:label "Triple Alliance"@en,
+            "3국 동맹"@ko ;
+        ns1:correspondingSide <https://example.test/ww1/centralPowers> ;
+        ns1:hasMember <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/tripleEntente> a ns1:Alliance ;
+        rdfs:label "Triple Entente"@en,
+            "3국 협상"@ko ;
+        ns1:correspondingSide <https://example.test/ww1/alliedPowers> ;
+        ns1:hasMember <https://example.test/ww1/france>,
+            <https://example.test/ww1/russia>,
+            <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/verdun> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Verdun"@en,
+            "베르됭 전투"@ko ;
+        ns1:endDate "1916-12-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/falkenhayn>,
+            <https://example.test/ww1/petain> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Verdun-sur-Meuse, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-02-21"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/versailles> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Treaty of Versailles"@en,
+            "베르사유 조약"@ko ;
+        ns1:agreementKind "peace-treaty" ;
+        ns1:hasParty <https://example.test/ww1/belgium>,
+            <https://example.test/ww1/france>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/italy>,
+            <https://example.test/ww1/japan>,
+            <https://example.test/ww1/uk>,
+            <https://example.test/ww1/usa> ;
+        ns1:inForceDate "1920-01-10"^^xsd:date ;
+        ns1:signedDate "1919-06-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/vittorioVeneto> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Vittorio Veneto"@en,
+            "비토리오 베네토 전투"@ko ;
+        ns1:endDate "1918-11-03"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/diaz> ;
+        ns1:hasBelligerent <https://example.test/ww1/partAustriaHungary>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partItaly>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreItalian> ;
+        ns1:locationName "Veneto, Italy" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-10-24"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/beatty> a ns1:Person ;
+        rdfs:label "David Beatty"@en,
+            "데이비드 비티"@ko ;
+        ns1:birthYear 1871 ;
+        ns1:deathYear 1936 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/below> a ns1:Person ;
+        rdfs:label "Otto von Below"@en,
+            "오토 폰 벨로"@ko ;
+        ns1:birthYear 1857 ;
+        ns1:deathYear 1944 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/brestLitovsk> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Treaty of Brest-Litovsk"@en,
+            "브레스트리토프스크 조약"@ko ;
+        ns1:agreementKind "peace-treaty" ;
+        ns1:hasParty <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/bulgaria>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/ottoman>,
+            <https://example.test/ww1/russia> ;
+        ns1:signedDate "1918-03-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/cadorna> a ns1:Person ;
+        rdfs:label "Luigi Cadorna"@en,
+            "루이지 카도르나"@ko ;
+        ns1:birthYear 1850 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/compiegne> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Compiègne"@en,
+            "콩피에뉴 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/france>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-11-11"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declBulgSerbia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Bulgaria declares war on Serbia"@en,
+            "불가리아의 세르비아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/serbia> ;
+        ns1:endDate "1915-10-14"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/bulgaria> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-10-14"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declGerFrance> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Germany declares war on France"@en,
+            "독일의 프랑스 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/france> ;
+        ns1:endDate "1914-08-03"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declItalyAH> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Italy declares war on Austria-Hungary"@en,
+            "이탈리아의 오스트리아-헝가리 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/austriaHungary> ;
+        ns1:endDate "1915-05-23"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/italy> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-05-23"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declJapanGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Japan declares war on Germany"@en,
+            "일본의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1914-08-23"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/japan> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-23"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declUKGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "United Kingdom declares war on Germany"@en,
+            "영국의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1914-08-04"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/uk> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-04"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declUSGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "United States declares war on Germany"@en,
+            "미국의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1917-04-06"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/usa> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-04-06"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/diaz> a ns1:Person ;
+        rdfs:label "Armando Diaz"@en,
+            "아르만도 디아스"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/falkenhayn> a ns1:Person ;
+        rdfs:label "Erich von Falkenhayn"@en,
+            "에리히 폰 팔켄하인"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1922 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/french> a ns1:Person ;
+        rdfs:label "John French"@en,
+            "존 프렌치"@ko ;
+        ns1:birthYear 1852 ;
+        ns1:deathYear 1925 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/hamilton> a ns1:Person ;
+        rdfs:label "Ian Hamilton"@en,
+            "이언 해밀턴"@ko ;
+        ns1:birthYear 1853 ;
+        ns1:deathYear 1947 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/hindenburg> a ns1:Person ;
+        rdfs:label "Paul von Hindenburg"@en,
+            "파울 폰 힌덴부르크"@ko ;
+        ns1:birthYear 1847 ;
+        ns1:deathYear 1934 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/hipper> a ns1:Person ;
+        rdfs:label "Franz von Hipper"@en,
+            "프란츠 폰 히퍼"@ko ;
+        ns1:birthYear 1863 ;
+        ns1:deathYear 1943 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/invasionBelgium> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "German invasion of Belgium"@en,
+            "독일의 벨기에 침공"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/belgium> ;
+        ns1:endDate "1914-08-04"^^xsd:date ;
+        ns1:eventKind "invasion" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:locationName "Belgium" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-04"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/jellicoe> a ns1:Person ;
+        rdfs:label "John Jellicoe"@en,
+            "존 젤리코"@ko ;
+        ns1:birthYear 1859 ;
+        ns1:deathYear 1935 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/joffre> a ns1:Person ;
+        rdfs:label "Joseph Joffre"@en,
+            "조제프 조프르"@ko ;
+        ns1:birthYear 1852 ;
+        ns1:deathYear 1931 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/kemal> a ns1:Person ;
+        rdfs:label "Mustafa Kemal"@en,
+            "무스타파 케말"@ko ;
+        ns1:birthYear 1881 ;
+        ns1:deathYear 1938 ;
+        ns1:servedState <https://example.test/ww1/ottoman> .
+
+    <https://example.test/ww1/moltke> a ns1:Person ;
+        rdfs:label "Helmuth von Moltke the Younger"@en,
+            "소(小) 몰트케"@ko ;
+        ns1:birthYear 1848 ;
+        ns1:deathYear 1916 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/mudros> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Mudros"@en,
+            "무드로스 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/ottoman>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-10-30"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partOttoman> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Ottoman Empire enters the war"@en,
+            "오스만 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/mudros> ;
+        ns1:enteredVia <https://example.test/ww1/raidBlackSea> ;
+        ns1:entryDate "1914-10-29"^^xsd:date ;
+        ns1:exitDate "1918-10-30"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/ottoman> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partRussia> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Russian Empire enters the war"@en,
+            "러시아 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/brestLitovsk> ;
+        ns1:enteredVia <https://example.test/ww1/declGerRussia> ;
+        ns1:entryDate "1914-08-01"^^xsd:date ;
+        ns1:exitDate "1918-03-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/russia> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/raidBlackSea> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Ottoman raid on Russian Black Sea ports"@en,
+            "오스만 함대의 러시아 흑해 항구 공격"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/russia> ;
+        ns1:endDate "1914-10-29"^^xsd:date ;
+        ns1:eventKind "naval-raid" ;
+        ns1:initiatedBy <https://example.test/ww1/ottoman> ;
+        ns1:locationName "Black Sea coast of the Russian Empire" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-10-29"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/salonica> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Salonica"@en,
+            "살로니카 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/bulgaria>,
+            <https://example.test/ww1/france>,
+            <https://example.test/ww1/serbia>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-09-29"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/samsonov> a ns1:Person ;
+        rdfs:label "Alexander Samsonov"@en,
+            "알렉산드르 삼소노프"@ko ;
+        ns1:birthYear 1859 ;
+        ns1:deathYear 1914 ;
+        ns1:servedState <https://example.test/ww1/russia> .
+
+    <https://example.test/ww1/scheer> a ns1:Person ;
+        rdfs:label "Reinhard Scheer"@en,
+            "라인하르트 셰어"@ko ;
+        ns1:birthYear 1863 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/theatreEastern> a ns1:Theatre ;
+        rdfs:label "Eastern Front"@en,
+            "동부 전선"@ko .
+
+    <https://example.test/ww1/theatreMiddleEast> a ns1:Theatre ;
+        rdfs:label "Middle Eastern theatre"@en,
+            "중동 전역"@ko .
+
+    <https://example.test/ww1/theatreNaval> a ns1:Theatre ;
+        rdfs:label "Naval theatre (North Sea)"@en,
+            "해상 전역(북해)"@ko .
+
+    <https://example.test/ww1/villaGiusti> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Villa Giusti"@en,
+            "빌라 주스티 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/italy> ;
+        ns1:signedDate "1918-11-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declAHSerbia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Austria-Hungary declares war on Serbia"@en,
+            "오스트리아-헝가리의 세르비아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/serbia> ;
+        ns1:endDate "1914-07-28"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/austriaHungary> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-07-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declGerRussia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Germany declares war on Russia"@en,
+            "독일의 러시아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/russia> ;
+        ns1:endDate "1914-08-01"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/foch> a ns1:Person ;
+        rdfs:label "Ferdinand Foch"@en,
+            "페르디낭 포슈"@ko ;
+        ns1:birthYear 1851 ;
+        ns1:deathYear 1929 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/ludendorff> a ns1:Person ;
+        rdfs:label "Erich Ludendorff"@en,
+            "에리히 루덴도르프"@ko ;
+        ns1:birthYear 1865 ;
+        ns1:deathYear 1937 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/partAustriaHungary> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Austria-Hungary enters the war"@en,
+            "오스트리아-헝가리 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/villaGiusti> ;
+        ns1:enteredVia <https://example.test/ww1/declAHSerbia> ;
+        ns1:entryDate "1914-07-28"^^xsd:date ;
+        ns1:exitDate "1918-11-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/austriaHungary> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partBelgium> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Belgium enters the war"@en,
+            "벨기에 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/invasionBelgium> ;
+        ns1:entryDate "1914-08-04"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/belgium> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partItaly> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Italy enters the war"@en,
+            "이탈리아 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declItalyAH> ;
+        ns1:entryDate "1915-05-23"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/italy> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/pershing> a ns1:Person ;
+        rdfs:label "John J. Pershing"@en,
+            "존 퍼싱"@ko ;
+        ns1:birthYear 1860 ;
+        ns1:deathYear 1948 ;
+        ns1:servedState <https://example.test/ww1/usa> .
+
+    <https://example.test/ww1/petain> a ns1:Person ;
+        rdfs:label "Philippe Pétain"@en,
+            "필리프 페탱"@ko ;
+        ns1:birthYear 1856 ;
+        ns1:deathYear 1951 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/theatreItalian> a ns1:Theatre ;
+        rdfs:label "Italian Front"@en,
+            "이탈리아 전선"@ko .
+
+    <https://example.test/ww1/belgium> a ns1:State ;
+        rdfs:label "Kingdom of Belgium"@en,
+            "벨기에 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/japan> a ns1:State ;
+        rdfs:label "Empire of Japan"@en,
+            "일본 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/partUsa> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "United States enters the war"@en,
+            "미국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declUSGer> ;
+        ns1:entryDate "1917-04-06"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/usa> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/bulgaria> a ns1:State ;
+        rdfs:label "Kingdom of Bulgaria"@en,
+            "불가리아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/haig> a ns1:Person ;
+        rdfs:label "Douglas Haig"@en,
+            "더글러스 헤이그"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/serbia> a ns1:State ;
+        rdfs:label "Kingdom of Serbia"@en,
+            "세르비아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/usa> a ns1:State ;
+        rdfs:label "United States"@en,
+            "미국"@ko ;
+        ns1:governmentForm "republic" .
+
+    <https://example.test/ww1/centralPowers> a ns1:Side ;
+        rdfs:label "Central Powers"@en,
+            "동맹국"@ko .
+
+    <https://example.test/ww1/ottoman> a ns1:State ;
+        rdfs:label "Ottoman Empire"@en,
+            "오스만 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/austriaHungary> a ns1:State ;
+        rdfs:label "Austria-Hungary"@en,
+            "오스트리아-헝가리 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/russia> a ns1:State ;
+        rdfs:label "Russian Empire"@en,
+            "러시아 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/italy> a ns1:State ;
+        rdfs:label "Kingdom of Italy"@en,
+            "이탈리아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/theatreWestern> a ns1:Theatre ;
+        rdfs:label "Western Front"@en,
+            "서부 전선"@ko .
+
+    <https://example.test/ww1/partFrance> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "French Third Republic enters the war"@en,
+            "프랑스 제3공화국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declGerFrance> ;
+        ns1:entryDate "1914-08-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/france> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partUk> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "United Kingdom enters the war"@en,
+            "영국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declUKGer> ;
+        ns1:entryDate "1914-08-04"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/uk> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/alliedPowers> a ns1:Side ;
+        rdfs:label "Allied Powers"@en,
+            "연합국"@ko .
+
+    <https://example.test/ww1/france> a ns1:State ;
+        rdfs:label "French Third Republic"@en,
+            "프랑스 제3공화국"@ko ;
+        ns1:governmentForm "republic" .
+
+    <https://example.test/ww1/partGermany> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "German Empire enters the war"@en,
+            "독일 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/compiegne> ;
+        ns1:enteredVia <https://example.test/ww1/declGerRussia> ;
+        ns1:entryDate "1914-08-01"^^xsd:date ;
+        ns1:exitDate "1918-11-11"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/germany> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/uk> a ns1:State ;
+        rdfs:label "United Kingdom"@en,
+            "영국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/germany> a ns1:State ;
+        rdfs:label "German Empire"@en,
+            "독일 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/wwi> a ns1:Conflict ;
+        rdfs:label "World War I"@en,
+            "제1차 세계대전"@ko ;
+        ns1:conflictEndDate "1918-11-11"^^xsd:date ;
+        ns1:conflictStartDate "1914-07-28"^^xsd:date .
+}
+
+<https://example.test/consumer/ww1-reject> {
+    <https://example.test/ww1/belleauWood> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Belleau Wood"@en,
+            "벨로 숲 전투"@ko ;
+        ns1:endDate "1918-06-26"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/pershing> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Belleau, Aisne, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-06-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/caporetto> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Caporetto"@en,
+            "카포레토 전투"@ko ;
+        ns1:endDate "1917-11-19"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/below>,
+            <https://example.test/ww1/cadorna> ;
+        ns1:hasBelligerent <https://example.test/ww1/partAustriaHungary>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partItaly> ;
+        ns1:inTheatre <https://example.test/ww1/theatreItalian> ;
+        ns1:locationName "Kobarid (Caporetto), now in Slovenia" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-10-24"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/gallipoli> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Gallipoli campaign"@en,
+            "갈리폴리 전역"@ko ;
+        ns1:endDate "1916-01-09"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/hamilton>,
+            <https://example.test/ww1/kemal> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partOttoman>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreMiddleEast> ;
+        ns1:locationName "Gallipoli peninsula, Ottoman Empire (now Turkey)" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-02-19"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/hundredDays> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Hundred Days Offensive"@en,
+            "백일 공세"@ko ;
+        ns1:endDate "1918-11-11"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/foch>,
+            <https://example.test/ww1/haig>,
+            <https://example.test/ww1/pershing> ;
+        ns1:hasBelligerent <https://example.test/ww1/partBelgium>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Western Front, France and Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-08-08"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/jutland> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Jutland"@en,
+            "유틀란트 해전"@ko ;
+        ns1:endDate "1916-06-01"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/beatty>,
+            <https://example.test/ww1/hipper>,
+            <https://example.test/ww1/jellicoe>,
+            <https://example.test/ww1/scheer> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreNaval> ;
+        ns1:locationName "North Sea off the coast of Jutland, Denmark" ;
+        ns1:outcome "contested" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-05-31"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/marne> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "First Battle of the Marne"@en,
+            "제1차 마른 전투"@ko ;
+        ns1:endDate "1914-09-12"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/french>,
+            <https://example.test/ww1/joffre>,
+            <https://example.test/ww1/moltke> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Marne valley, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-09-06"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partBulgaria> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Bulgaria enters the war"@en,
+            "불가리아 왕국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/salonica> ;
+        ns1:enteredVia <https://example.test/ww1/declBulgSerbia> ;
+        ns1:entryDate "1915-10-14"^^xsd:date ;
+        ns1:exitDate "1918-09-29"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/bulgaria> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partJapan> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Empire of Japan enters the war"@en,
+            "일본 제국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declJapanGer> ;
+        ns1:entryDate "1914-08-23"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/japan> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partSerbia> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Serbia enters the war"@en,
+            "세르비아 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declAHSerbia> ;
+        ns1:entryDate "1914-07-28"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/serbia> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/passchendaele> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Passchendaele (Third Battle of Ypres)"@en,
+            "파스샹달 전투(제3차 이프르 전투)"@ko ;
+        ns1:endDate "1917-11-10"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/haig> ;
+        ns1:hasBelligerent <https://example.test/ww1/partBelgium>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "near Ypres, Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-07-31"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/sarajevo> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Assassination of Archduke Franz Ferdinand in Sarajevo"@en,
+            "사라예보 사건: 프란츠 페르디난트 대공 암살"@ko ;
+        ns1:endDate "1914-06-28"^^xsd:date ;
+        ns1:eventKind "assassination" ;
+        ns1:locationName "Sarajevo, Bosnia and Herzegovina (then Austria-Hungary)" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-06-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/somme> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of the Somme"@en,
+            "솜 전투"@ko ;
+        ns1:endDate "1916-11-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/foch>,
+            <https://example.test/ww1/haig> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Somme, France" ;
+        ns1:outcome "contested" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-07-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/springOffensive> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "German Spring Offensive"@en,
+            "독일 춘계 대공세"@ko ;
+        ns1:endDate "1918-07-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/haig>,
+            <https://example.test/ww1/ludendorff>,
+            <https://example.test/ww1/petain> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partUk>,
+            <https://example.test/ww1/partUsa> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Western Front, France and Belgium" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-03-21"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/tannenberg> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Tannenberg"@en,
+            "탄넨베르크 전투"@ko ;
+        ns1:endDate "1914-08-30"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/hindenburg>,
+            <https://example.test/ww1/ludendorff>,
+            <https://example.test/ww1/samsonov> ;
+        ns1:hasBelligerent <https://example.test/ww1/partGermany>,
+            <https://example.test/ww1/partRussia> ;
+        ns1:inTheatre <https://example.test/ww1/theatreEastern> ;
+        ns1:locationName "East Prussia (now in Poland)" ;
+        ns1:outcome "central-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-26"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/tripleAlliance> a ns1:Alliance ;
+        rdfs:label "Triple Alliance"@en,
+            "3국 동맹"@ko ;
+        ns1:correspondingSide <https://example.test/ww1/centralPowers> ;
+        ns1:hasMember <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/tripleEntente> a ns1:Alliance ;
+        rdfs:label "Triple Entente"@en,
+            "3국 협상"@ko ;
+        ns1:correspondingSide <https://example.test/ww1/alliedPowers> ;
+        ns1:hasMember <https://example.test/ww1/france>,
+            <https://example.test/ww1/russia>,
+            <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/verdun> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Verdun"@en,
+            "베르됭 전투"@ko ;
+        ns1:endDate "1916-12-18"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/falkenhayn>,
+            <https://example.test/ww1/petain> ;
+        ns1:hasBelligerent <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partGermany> ;
+        ns1:inTheatre <https://example.test/ww1/theatreWestern> ;
+        ns1:locationName "Verdun-sur-Meuse, France" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1916-02-21"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/versailles> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Treaty of Versailles"@en,
+            "베르사유 조약"@ko ;
+        ns1:agreementKind "peace-treaty" ;
+        ns1:hasParty <https://example.test/ww1/belgium>,
+            <https://example.test/ww1/france>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/italy>,
+            <https://example.test/ww1/japan>,
+            <https://example.test/ww1/uk>,
+            <https://example.test/ww1/usa> ;
+        ns1:inForceDate "1920-01-10"^^xsd:date ;
+        ns1:signedDate "1919-06-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/vittorioVeneto> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Battle of Vittorio Veneto"@en,
+            "비토리오 베네토 전투"@ko ;
+        ns1:endDate "1918-11-03"^^xsd:date ;
+        ns1:eventKind "battle" ;
+        ns1:hadCommander <https://example.test/ww1/diaz> ;
+        ns1:hasBelligerent <https://example.test/ww1/partAustriaHungary>,
+            <https://example.test/ww1/partFrance>,
+            <https://example.test/ww1/partItaly>,
+            <https://example.test/ww1/partUk> ;
+        ns1:inTheatre <https://example.test/ww1/theatreItalian> ;
+        ns1:locationName "Veneto, Italy" ;
+        ns1:outcome "allied-victory" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1918-10-24"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/beatty> a ns1:Person ;
+        rdfs:label "David Beatty"@en,
+            "데이비드 비티"@ko ;
+        ns1:birthYear 1871 ;
+        ns1:deathYear 1936 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/below> a ns1:Person ;
+        rdfs:label "Otto von Below"@en,
+            "오토 폰 벨로"@ko ;
+        ns1:birthYear 1857 ;
+        ns1:deathYear 1944 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/brestLitovsk> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Treaty of Brest-Litovsk"@en,
+            "브레스트리토프스크 조약"@ko ;
+        ns1:agreementKind "peace-treaty" ;
+        ns1:hasParty <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/bulgaria>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/ottoman>,
+            <https://example.test/ww1/russia> ;
+        ns1:signedDate "1918-03-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/cadorna> a ns1:Person ;
+        rdfs:label "Luigi Cadorna"@en,
+            "루이지 카도르나"@ko ;
+        ns1:birthYear 1850 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/compiegne> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Compiègne"@en,
+            "콩피에뉴 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/france>,
+            <https://example.test/ww1/germany>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-11-11"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declBulgSerbia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Bulgaria declares war on Serbia"@en,
+            "불가리아의 세르비아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/serbia> ;
+        ns1:endDate "1915-10-14"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/bulgaria> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-10-14"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declGerFrance> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Germany declares war on France"@en,
+            "독일의 프랑스 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/france> ;
+        ns1:endDate "1914-08-03"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declItalyAH> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Italy declares war on Austria-Hungary"@en,
+            "이탈리아의 오스트리아-헝가리 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/austriaHungary> ;
+        ns1:endDate "1915-05-23"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/italy> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1915-05-23"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declJapanGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Japan declares war on Germany"@en,
+            "일본의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1914-08-23"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/japan> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-23"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declUKGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "United Kingdom declares war on Germany"@en,
+            "영국의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1914-08-04"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/uk> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-04"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declUSGer> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "United States declares war on Germany"@en,
+            "미국의 독일 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/germany> ;
+        ns1:endDate "1917-04-06"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/usa> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1917-04-06"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/diaz> a ns1:Person ;
+        rdfs:label "Armando Diaz"@en,
+            "아르만도 디아스"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/italy> .
+
+    <https://example.test/ww1/falkenhayn> a ns1:Person ;
+        rdfs:label "Erich von Falkenhayn"@en,
+            "에리히 폰 팔켄하인"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1922 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/french> a ns1:Person ;
+        rdfs:label "John French"@en,
+            "존 프렌치"@ko ;
+        ns1:birthYear 1852 ;
+        ns1:deathYear 1925 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/hamilton> a ns1:Person ;
+        rdfs:label "Ian Hamilton"@en,
+            "이언 해밀턴"@ko ;
+        ns1:birthYear 1853 ;
+        ns1:deathYear 1947 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/hindenburg> a ns1:Person ;
+        rdfs:label "Paul von Hindenburg"@en,
+            "파울 폰 힌덴부르크"@ko ;
+        ns1:birthYear 1847 ;
+        ns1:deathYear 1934 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/hipper> a ns1:Person ;
+        rdfs:label "Franz von Hipper"@en,
+            "프란츠 폰 히퍼"@ko ;
+        ns1:birthYear 1863 ;
+        ns1:deathYear 1943 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/invasionBelgium> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "German invasion of Belgium"@en,
+            "독일의 벨기에 침공"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/belgium> ;
+        ns1:endDate "1914-08-04"^^xsd:date ;
+        ns1:eventKind "invasion" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:locationName "Belgium" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-04"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/jellicoe> a ns1:Person ;
+        rdfs:label "John Jellicoe"@en,
+            "존 젤리코"@ko ;
+        ns1:birthYear 1859 ;
+        ns1:deathYear 1935 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/joffre> a ns1:Person ;
+        rdfs:label "Joseph Joffre"@en,
+            "조제프 조프르"@ko ;
+        ns1:birthYear 1852 ;
+        ns1:deathYear 1931 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/kemal> a ns1:Person ;
+        rdfs:label "Mustafa Kemal"@en,
+            "무스타파 케말"@ko ;
+        ns1:birthYear 1881 ;
+        ns1:deathYear 1938 ;
+        ns1:servedState <https://example.test/ww1/ottoman> .
+
+    <https://example.test/ww1/moltke> a ns1:Person ;
+        rdfs:label "Helmuth von Moltke the Younger"@en,
+            "소(小) 몰트케"@ko ;
+        ns1:birthYear 1848 ;
+        ns1:deathYear 1916 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/mudros> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Mudros"@en,
+            "무드로스 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/ottoman>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-10-30"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partOttoman> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Ottoman Empire enters the war"@en,
+            "오스만 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/mudros> ;
+        ns1:enteredVia <https://example.test/ww1/raidBlackSea> ;
+        ns1:entryDate "1914-10-29"^^xsd:date ;
+        ns1:exitDate "1918-10-30"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/ottoman> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partRussia> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Russian Empire enters the war"@en,
+            "러시아 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/brestLitovsk> ;
+        ns1:enteredVia <https://example.test/ww1/declGerRussia> ;
+        ns1:entryDate "1914-08-01"^^xsd:date ;
+        ns1:exitDate "1918-03-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/russia> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/raidBlackSea> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Ottoman raid on Russian Black Sea ports"@en,
+            "오스만 함대의 러시아 흑해 항구 공격"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/russia> ;
+        ns1:endDate "1914-10-29"^^xsd:date ;
+        ns1:eventKind "naval-raid" ;
+        ns1:initiatedBy <https://example.test/ww1/ottoman> ;
+        ns1:locationName "Black Sea coast of the Russian Empire" ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-10-29"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/salonica> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Salonica"@en,
+            "살로니카 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/bulgaria>,
+            <https://example.test/ww1/france>,
+            <https://example.test/ww1/serbia>,
+            <https://example.test/ww1/uk> ;
+        ns1:signedDate "1918-09-29"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/samsonov> a ns1:Person ;
+        rdfs:label "Alexander Samsonov"@en,
+            "알렉산드르 삼소노프"@ko ;
+        ns1:birthYear 1859 ;
+        ns1:deathYear 1914 ;
+        ns1:servedState <https://example.test/ww1/russia> .
+
+    <https://example.test/ww1/scheer> a ns1:Person ;
+        rdfs:label "Reinhard Scheer"@en,
+            "라인하르트 셰어"@ko ;
+        ns1:birthYear 1863 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/theatreEastern> a ns1:Theatre ;
+        rdfs:label "Eastern Front"@en,
+            "동부 전선"@ko .
+
+    <https://example.test/ww1/theatreMiddleEast> a ns1:Theatre ;
+        rdfs:label "Middle Eastern theatre"@en,
+            "중동 전역"@ko .
+
+    <https://example.test/ww1/theatreNaval> a ns1:Theatre ;
+        rdfs:label "Naval theatre (North Sea)"@en,
+            "해상 전역(북해)"@ko .
+
+    <https://example.test/ww1/villaGiusti> a ns1:Agreement,
+            ns1:HistoricalClaim ;
+        rdfs:label "Armistice of Villa Giusti"@en,
+            "빌라 주스티 휴전 협정"@ko ;
+        ns1:agreementKind "armistice" ;
+        ns1:hasParty <https://example.test/ww1/austriaHungary>,
+            <https://example.test/ww1/italy> ;
+        ns1:signedDate "1918-11-03"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declAHSerbia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Austria-Hungary declares war on Serbia"@en,
+            "오스트리아-헝가리의 세르비아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/serbia> ;
+        ns1:endDate "1914-07-28"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/austriaHungary> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-07-28"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/declGerRussia> a ns1:Event,
+            ns1:HistoricalClaim ;
+        rdfs:label "Germany declares war on Russia"@en,
+            "독일의 러시아 선전포고"@ko ;
+        ns1:directedAgainst <https://example.test/ww1/russia> ;
+        ns1:endDate "1914-08-01"^^xsd:date ;
+        ns1:eventKind "war-declaration" ;
+        ns1:initiatedBy <https://example.test/ww1/germany> ;
+        ns1:relatedConflict <https://example.test/ww1/wwi> ;
+        ns1:startDate "1914-08-01"^^xsd:date ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/foch> a ns1:Person ;
+        rdfs:label "Ferdinand Foch"@en,
+            "페르디낭 포슈"@ko ;
+        ns1:birthYear 1851 ;
+        ns1:deathYear 1929 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/ludendorff> a ns1:Person ;
+        rdfs:label "Erich Ludendorff"@en,
+            "에리히 루덴도르프"@ko ;
+        ns1:birthYear 1865 ;
+        ns1:deathYear 1937 ;
+        ns1:servedState <https://example.test/ww1/germany> .
+
+    <https://example.test/ww1/partAustriaHungary> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Austria-Hungary enters the war"@en,
+            "오스트리아-헝가리 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/villaGiusti> ;
+        ns1:enteredVia <https://example.test/ww1/declAHSerbia> ;
+        ns1:entryDate "1914-07-28"^^xsd:date ;
+        ns1:exitDate "1918-11-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/austriaHungary> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partBelgium> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Belgium enters the war"@en,
+            "벨기에 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/invasionBelgium> ;
+        ns1:entryDate "1914-08-04"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/belgium> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partItaly> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "Kingdom of Italy enters the war"@en,
+            "이탈리아 왕국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declItalyAH> ;
+        ns1:entryDate "1915-05-23"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/italy> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/pershing> a ns1:Person ;
+        rdfs:label "John J. Pershing"@en,
+            "존 퍼싱"@ko ;
+        ns1:birthYear 1860 ;
+        ns1:deathYear 1948 ;
+        ns1:servedState <https://example.test/ww1/usa> .
+
+    <https://example.test/ww1/petain> a ns1:Person ;
+        rdfs:label "Philippe Pétain"@en,
+            "필리프 페탱"@ko ;
+        ns1:birthYear 1856 ;
+        ns1:deathYear 1951 ;
+        ns1:servedState <https://example.test/ww1/france> .
+
+    <https://example.test/ww1/theatreItalian> a ns1:Theatre ;
+        rdfs:label "Italian Front"@en,
+            "이탈리아 전선"@ko .
+
+    <https://example.test/ww1/belgium> a ns1:State ;
+        rdfs:label "Kingdom of Belgium"@en,
+            "벨기에 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/japan> a ns1:State ;
+        rdfs:label "Empire of Japan"@en,
+            "일본 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/partUsa> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "United States enters the war"@en,
+            "미국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declUSGer> ;
+        ns1:entryDate "1917-04-06"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/usa> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/bulgaria> a ns1:State ;
+        rdfs:label "Kingdom of Bulgaria"@en,
+            "불가리아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/haig> a ns1:Person ;
+        rdfs:label "Douglas Haig"@en,
+            "더글러스 헤이그"@ko ;
+        ns1:birthYear 1861 ;
+        ns1:deathYear 1928 ;
+        ns1:servedState <https://example.test/ww1/uk> .
+
+    <https://example.test/ww1/serbia> a ns1:State ;
+        rdfs:label "Kingdom of Serbia"@en,
+            "세르비아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/usa> a ns1:State ;
+        rdfs:label "United States"@en,
+            "미국"@ko ;
+        ns1:governmentForm "republic" .
+
+    <https://example.test/ww1/centralPowers> a ns1:Side ;
+        rdfs:label "Central Powers"@en,
+            "동맹국"@ko .
+
+    <https://example.test/ww1/ottoman> a ns1:State ;
+        rdfs:label "Ottoman Empire"@en,
+            "오스만 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/austriaHungary> a ns1:State ;
+        rdfs:label "Austria-Hungary"@en,
+            "오스트리아-헝가리 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/russia> a ns1:State ;
+        rdfs:label "Russian Empire"@en,
+            "러시아 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/italy> a ns1:State ;
+        rdfs:label "Kingdom of Italy"@en,
+            "이탈리아 왕국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/theatreWestern> a ns1:Theatre ;
+        rdfs:label "Western Front"@en,
+            "서부 전선"@ko .
+
+    <https://example.test/ww1/partFrance> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "French Third Republic enters the war"@en,
+            "프랑스 제3공화국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declGerFrance> ;
+        ns1:entryDate "1914-08-03"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/france> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/partUk> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "United Kingdom enters the war"@en,
+            "영국의 참전"@ko ;
+        ns1:enteredVia <https://example.test/ww1/declUKGer> ;
+        ns1:entryDate "1914-08-04"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/alliedPowers> ;
+        ns1:participant <https://example.test/ww1/uk> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/alliedPowers> a ns1:Side ;
+        rdfs:label "Allied Powers"@en,
+            "연합국"@ko .
+
+    <https://example.test/ww1/france> a ns1:State ;
+        rdfs:label "French Third Republic"@en,
+            "프랑스 제3공화국"@ko ;
+        ns1:governmentForm "republic" .
+
+    <https://example.test/ww1/partGermany> a ns1:HistoricalClaim,
+            ns1:Participation ;
+        rdfs:label "German Empire enters the war"@en,
+            "독일 제국의 참전"@ko ;
+        ns1:endedByAgreement <https://example.test/ww1/compiegne> ;
+        ns1:enteredVia <https://example.test/ww1/declGerRussia> ;
+        ns1:entryDate "1914-08-01"^^xsd:date ;
+        ns1:exitDate "1918-11-11"^^xsd:date ;
+        ns1:inConflict <https://example.test/ww1/wwi> ;
+        ns1:onSide <https://example.test/ww1/centralPowers> ;
+        ns1:participant <https://example.test/ww1/germany> ;
+        ns1:verificationStatus "unverified" .
+
+    <https://example.test/ww1/uk> a ns1:State ;
+        rdfs:label "United Kingdom"@en,
+            "영국"@ko ;
+        ns1:governmentForm "kingdom" .
+
+    <https://example.test/ww1/germany> a ns1:State ;
+        rdfs:label "German Empire"@en,
+            "독일 제국"@ko ;
+        ns1:governmentForm "empire" .
+
+    <https://example.test/ww1/wwi> a ns1:Conflict ;
+        ns1:conflictEndDate "1918-11-11"^^xsd:date ;
+        ns1:conflictStartDate "1914-07-28"^^xsd:date .
+}

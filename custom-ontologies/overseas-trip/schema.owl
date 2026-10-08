@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#countryCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">국가 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Country code</rdfs:label>
+    <rdfs:comment xml:lang="ko">목적지 국가를 나타내는 대문자 두 글자 코드이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the two-letter uppercase code of the destination country.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#coverageKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">보장 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Coverage kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">medical, cancellation, baggage, liability 중 보험이 보장하는 종류이며 하나 이상 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a coverage kind among medical, cancellation, baggage and liability; at least one is required.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasDestination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdfs:label xml:lang="ko">목적지 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has destination</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획이 방문하는 국가 단위 목적지를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trip plan to a country-level destination it visits.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasInsurancePolicy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdfs:label xml:lang="ko">보험 보장 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has insurance policy</rdfs:label>
+    <rdfs:comment xml:lang="ko">보험 예약의 보장 내용을 연결하며 보험 종류의 예약에만 쓴다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an insurance booking to its coverage details; used only on bookings of kind insurance.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#bookingStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예약 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Booking status</rdfs:label>
+    <rdfs:comment xml:lang="ko">아직 계획이면 planned, 확인 근거가 있으면 booked, 취소되었으면 cancelled로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Marks a booking as planned, booked with an evidence record, or cancelled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#departureAirport">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">출발 공항 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Departure airport code</rdfs:label>
+    <rdfs:comment xml:lang="ko">구간의 출발 공항을 나타내는 대문자 세 글자 IATA 코드이며 도착 공항과 달라야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the three-letter uppercase IATA code of the departure airport, different from the arrival airport.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#travelerCount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">여행 인원</rdfs:label>
+    <rdfs:label xml:lang="en">Traveler count</rdfs:label>
+    <rdfs:comment xml:lang="ko">함께 여행하는 사람 수를 양의 정수로 기록하며 여행자의 신원이나 여권 정보는 담지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the number of travelers as a positive integer without traveler identity or passport data.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#planStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">계획 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Plan status</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획의 draft 또는 confirmed 상태이며 확정에는 입국 요건 확인과 예약 확정이 필요하다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records draft or confirmed plan status; confirmation requires checked entry requirements and confirmed bookings.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasFlightSegment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:label xml:lang="ko">항공 구간 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has flight segment</rdfs:label>
+    <rdfs:comment xml:lang="ko">항공 예약을 구성하는 구간을 연결하며 항공 종류의 예약에만 쓴다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a flight booking to its segments; used only on bookings of kind flight.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#bookingStartDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">예약 시작일</rdfs:label>
+    <rdfs:label xml:lang="en">Booking start date</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 이용이 시작되는 날짜이며 출발일 이후여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date the booked service starts, not before the trip departure.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#travelerRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">동반자 역할</rdfs:label>
+    <rdfs:label xml:lang="en">Traveler role</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 책임지는 대표 여행자 primary 또는 함께하는 companion 중 하나이며 한 계획에 primary는 한 명이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records primary for the lead traveler or companion for others; a plan has exactly one primary traveler.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#bookingEndDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">예약 종료일</rdfs:label>
+    <rdfs:label xml:lang="en">Booking end date</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 이용이 끝나는 날짜이며 시작일보다 빠를 수 없고 귀국일 이전이어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date the booked service ends, not before its start and not after the trip return.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#activityOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">활동 순번</rdfs:label>
+    <rdfs:label xml:lang="en">Activity order</rdfs:label>
+    <rdfs:comment xml:lang="ko">하루 안에서 중복되지 않는 양의 정수 활동 순번이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer activity order that must be unique within its day.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#Destination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">목적지</rdfs:label>
+    <rdfs:label xml:lang="en">Destination</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획이 방문하는 국가 단위의 목적지이며 입국 요건은 이 목적지에 대해 확인한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a country-level destination visited by a trip plan; entry requirements are checked against it.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#returnDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">귀국일</rdfs:label>
+    <rdfs:label xml:lang="en">Return date</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행이 끝나는 날짜이며 출발일보다 빠를 수 없고 일정과 예약 날짜의 상한이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date the trip ends, not earlier than departure, and the upper bound for itinerary and booking dates.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#Activity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">활동</rdfs:label>
+    <rdfs:label xml:lang="en">Activity</rdfs:label>
+    <rdfs:comment xml:lang="ko">하루 일정 안에서 순서와 계획 시간을 가지는 관광, 식사, 이동 같은 한 가지 활동이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one ordered activity of a day, such as sightseeing, a meal or a transfer, with a planned duration.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#bookingKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예약 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Booking kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">flight, lodging, transport, ticket, insurance 중 예약의 종류이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the booking kind: flight, lodging, transport, ticket or insurance.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasEntryRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdfs:label xml:lang="ko">입국 요건 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has entry requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">목적지에 입국하기 위해 확인해야 하는 요건을 연결한다. 요건이 없다는 사실을 이 관계의 부재로 추정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a destination to a requirement to verify before entry; the absence of a link does not imply no requirement exists.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#departureDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">출발일</rdfs:label>
+    <rdfs:label xml:lang="en">Departure date</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행을 시작하는 날짜이며 일정과 예약 날짜의 하한이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date the trip begins, the lower bound for itinerary and booking dates.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#checkEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">확인 근거 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Check evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">공식 안내나 확인 기록의 위치이며 satisfied 또는 not-required 상태에 필수이고 unchecked 상태에서는 쓰지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to the official guidance or check record; required for satisfied or not-required and absent while unchecked.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#cityName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">체류 도시</rdfs:label>
+    <rdfs:label xml:lang="en">City name</rdfs:label>
+    <rdfs:comment xml:lang="ko">그날 주로 머무는 도시의 이름이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the name of the city where the day is mainly spent.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#arrivalAirport">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">도착 공항 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Arrival airport code</rdfs:label>
+    <rdfs:comment xml:lang="ko">구간의 도착 공항을 나타내는 대문자 세 글자 IATA 코드이며 다음 구간의 출발 공항과 이어져야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the three-letter uppercase IATA code of the arrival airport, which must connect to the next segment's departure airport.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#checkStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">확인 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Check status</rdfs:label>
+    <rdfs:comment xml:lang="ko">아직 확인하지 않았으면 unchecked, 충족을 확인했으면 satisfied, 해당하지 않음을 확인했으면 not-required로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Marks a requirement as unchecked, satisfied or confirmed not-required; no outcome is assumed without checking.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb4">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#coverageLimitAmount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">보장 한도 금액</rdfs:label>
+    <rdfs:label xml:lang="en">Coverage limit amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">보험 전체에 적용되는 0 이상의 보장 한도 계획값이며 통화 코드와 함께 해석한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a non-negative planned policy-wide coverage limit, read together with its currency code.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#plannedAmount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">계획 금액</rdfs:label>
+    <rdfs:label xml:lang="en">Planned amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">0 이상의 계획 금액이며 통화 코드와 함께 해석하고 실제 결제 금액과 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a non-negative planned amount, read together with its currency code and separate from paid amounts.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#FlightSegment">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">항공 구간</rdfs:label>
+    <rdfs:label xml:lang="en">Flight segment</rdfs:label>
+    <rdfs:comment xml:lang="ko">항공 예약 안에서 순번을 가지며 출발 공항에서 도착 공항으로 한 번 비행하는 구간이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one flight leg of a flight booking, ordered within the booking, from a departure airport to an arrival airport.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasTraveler">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:label xml:lang="ko">동반자 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has traveler</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획에 함께하는 동반자를 연결하며 그 수는 여행 인원과 같아야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trip plan to a traveler on it; their number must equal the traveler count.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#appliesToTraveler">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:label xml:lang="ko">적용 동반자</rdfs:label>
+    <rdfs:label xml:lang="en">Applies to traveler</rdfs:label>
+    <rdfs:comment xml:lang="ko">입국 요건이 특정 동반자에게 적용될 때 연결한다. 연결이 없으면 일행 전체에 대한 요건이며 같은 계획의 동반자여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a requirement to the specific traveler it applies to; without a link it is a group-level requirement, and the traveler must be on the same plan.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#budgetCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예산 범주</rdfs:label>
+    <rdfs:label xml:lang="en">Budget category</rdfs:label>
+    <rdfs:comment xml:lang="ko">transport, lodging, food, activities, insurance, other 중 비용의 범주이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the cost category: transport, lodging, food, activities, insurance or other.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#coversTraveler">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:label xml:lang="ko">보장 대상 동반자</rdfs:label>
+    <rdfs:label xml:lang="en">Covers traveler</rdfs:label>
+    <rdfs:comment xml:lang="ko">보험이 보장하는 동반자를 연결하며 같은 여행 계획의 동반자여야 한다. 연결이 없는 동반자는 보장되지 않은 것으로 본다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a policy to an insured traveler of the same trip plan; a traveler without a link is treated as not covered.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#segmentOrder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">구간 순번</rdfs:label>
+    <rdfs:label xml:lang="en">Segment order</rdfs:label>
+    <rdfs:comment xml:lang="ko">항공 예약 안에서 중복되지 않는 양의 정수 구간 순번이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer segment order that must be unique within a flight booking.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">해외여행 계획 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Overseas trip planning ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획의 목적지, 입국 요건, 일자별 일정, 동반자, 항공 구간, 보험, 예약, 예산을 연결한다. 예제는 합성 계획이며 실제 입국 가능 여부, 예약 성사, 보험 가입, 비용을 주장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects trip plans, destinations, entry requirements, daily itineraries, travelers, flight segments, insurance, bookings and budgets. The example is a synthetic plan and asserts no actual entry eligibility, reservation, coverage or cost.</rdfs:comment>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/overseas-trip/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#dayNumber">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">일차 번호</rdfs:label>
+    <rdfs:label xml:lang="en">Day number</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 여행 계획 안에서 중복되지 않는 양의 정수 일차 번호이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer day number that must be unique within a trip plan.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#forBooking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:label xml:lang="ko">대상 예약</rdfs:label>
+    <rdfs:label xml:lang="en">For booking</rdfs:label>
+    <rdfs:comment xml:lang="ko">예산 항목이 충당하려는 예약을 연결하며 같은 여행 계획의 예약이어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a budget item to the booking it is meant to pay for, within the same trip plan.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#plannedDurationMinutes">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">계획 시간 분</rdfs:label>
+    <rdfs:label xml:lang="en">Planned duration in minutes</rdfs:label>
+    <rdfs:comment xml:lang="ko">활동에 잡아 둔 시간을 분 단위 양의 정수로 기록하며 실제 소요 시간과 구분한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive planned duration in minutes, separate from measured time.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#segmentArrivalDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">구간 도착일</rdfs:label>
+    <rdfs:label xml:lang="en">Segment arrival date</rdfs:label>
+    <rdfs:comment xml:lang="ko">구간이 도착하는 날짜이며 출발일보다 빠를 수 없고 다음 구간의 출발일보다 늦을 수 없다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the arrival date, not before departure and not after the next segment's departure.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#dayDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">일정 날짜</rdfs:label>
+    <rdfs:label xml:lang="en">Day date</rdfs:label>
+    <rdfs:comment xml:lang="ko">그 일차의 날짜이며 출발일과 귀국일 사이여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date of the day, which must fall between the departure and return dates.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#requirementKind">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">요건 종류</rdfs:label>
+    <rdfs:label xml:lang="en">Requirement kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">passport-validity, visa, travel-authorization, vaccination, customs 중 확인할 요건의 종류이며 한 목적지에서 중복되지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the requirement kind: passport-validity, visa, travel-authorization, vaccination or customs; unique within a destination.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#atDestination">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdfs:label xml:lang="ko">체류 목적지</rdfs:label>
+    <rdfs:label xml:lang="en">At destination</rdfs:label>
+    <rdfs:comment xml:lang="ko">그날 머무는 국가 단위 목적지를 연결하며 같은 여행 계획의 목적지여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a day to the country-level destination where it is spent, which must belong to the same trip plan.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#coverageLimitCurrency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">보장 한도 통화 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Coverage limit currency code</rdfs:label>
+    <rdfs:comment xml:lang="ko">보장 한도에 적용되는 대문자 세 글자 통화 코드이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the three-letter uppercase currency code of the coverage limit.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdfs:label xml:lang="ko">활동 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has activity</rdfs:label>
+    <rdfs:comment xml:lang="ko">하루 일정을 구성하는 활동을 연결하며 실제 순서는 활동 순번으로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a day to its activities; their local sequence is recorded by activity order values.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#countryName">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">국가 이름</rdfs:label>
+    <rdfs:label xml:lang="en">Country name</rdfs:label>
+    <rdfs:comment xml:lang="ko">사람이 읽는 목적지 국가의 이름이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the human-readable name of the destination country.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#activityCategory">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">활동 범주</rdfs:label>
+    <rdfs:label xml:lang="en">Activity category</rdfs:label>
+    <rdfs:comment xml:lang="ko">sightseeing, meal, transport, lodging-checkin, free-time 중 활동의 범주이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the activity category: sightseeing, meal, transport, lodging-checkin or free-time.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#BudgetItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">예산 항목</rdfs:label>
+    <rdfs:label xml:lang="en">Budget item</rdfs:label>
+    <rdfs:comment xml:lang="ko">범주, 계획 금액, 통화를 가지는 여행 비용 한 건이며 실제 결제 금액이 아니라 계획값이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records one trip cost with a category, planned amount and currency; it is a planned value, not a paid amount.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#coversActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdfs:label xml:lang="ko">지원 활동</rdfs:label>
+    <rdfs:label xml:lang="en">Covers activity</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약이 뒷받침하는 활동을 연결하며 같은 여행 계획의 활동이어야 한다. 이 관계만으로 예약이 확정되었다고 주장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a booking to an activity it supports, within the same trip plan, without asserting that the booking is confirmed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#EntryRequirement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">입국 요건</rdfs:label>
+    <rdfs:label xml:lang="en">Entry requirement</rdfs:label>
+    <rdfs:comment xml:lang="ko">여권 유효기간, 비자, 전자여행허가처럼 목적지 입국 전에 확인해야 하는 한 가지 조건과 그 확인 상태이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one condition to verify before entering a destination, such as passport validity, visa or travel authorization, and its check status.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#Booking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">예약</rdfs:label>
+    <rdfs:label xml:lang="en">Booking</rdfs:label>
+    <rdfs:comment xml:lang="ko">항공, 숙박, 이동, 입장권, 보험의 예약 계획 또는 확정 상태를 기록한다. 확정에는 확인 근거가 필요하다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a planned or confirmed flight, lodging, transport, ticket or insurance booking; confirmation requires an evidence record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#currencyCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">통화 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Currency code</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획 금액에 적용되는 대문자 세 글자 통화 코드이며 서로 다른 통화는 합산하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the three-letter uppercase currency code of the amount; different currencies are never summed together.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#nationalityCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">국적 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Nationality code</rdfs:label>
+    <rdfs:comment xml:lang="ko">입국 요건이 국적에 따라 달라질 때 참고하는 대문자 두 글자 국가 코드이며 알 수 없으면 비워 두고 추정하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a two-letter uppercase country code used when entry requirements depend on nationality; left empty rather than guessed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb1">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#ItineraryDay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">일정 일자</rdfs:label>
+    <rdfs:label xml:lang="en">Itinerary day</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획 안에서 날짜와 머무는 도시를 가지며 하루의 활동을 순서대로 묶는 단위이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one dated day of a trip plan in a city, grouping that day's ordered activities.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#confirmationEvidenceUri">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">예약 확인 근거 주소</rdfs:label>
+    <rdfs:label xml:lang="en">Confirmation evidence URI</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 확인서나 접수 기록의 위치이며 booked 상태에 필수이고 planned 상태에서는 쓰지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Points to the confirmation record; required for booked and absent while planned, with no invented confirmation numbers.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasBudgetItem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdfs:label xml:lang="ko">예산 항목 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has budget item</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획의 비용 계획 항목을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trip plan to one of its planned cost items.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#segmentDepartureDate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">구간 출발일</rdfs:label>
+    <rdfs:label xml:lang="en">Segment departure date</rdfs:label>
+    <rdfs:comment xml:lang="ko">구간이 출발하는 날짜이며 소속 예약의 기간 안에 있어야 한다. 실제 편명과 시각은 기록하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the date the segment departs, within its booking period; flight numbers and times are not recorded.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasItineraryDay">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#ItineraryDay"/>
+    <rdfs:label xml:lang="ko">일정 일자 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has itinerary day</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획을 구성하는 날짜별 일정을 연결하며 실제 순서는 일차 번호로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trip plan to its dated days; their sequence is recorded by day numbers.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb3">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#EntryRequirement"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#TripRoleDisjointness">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n014a1824e4d544578426c1c2065877ceb1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#InsurancePolicy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">보험 보장</rdfs:label>
+    <rdfs:label xml:lang="en">Insurance policy</rdfs:label>
+    <rdfs:comment xml:lang="ko">보험 예약에 속하며 보장 종류, 보장 한도, 보장 대상 동반자를 기록한다. 가입 여부와 확인 근거는 소속 예약의 상태가 나타낸다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Describes the coverage kinds, limit and insured travelers of an insurance booking; purchase status and evidence live on that booking.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#hasBooking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#TripPlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdfs:label xml:lang="ko">예약 포함</rdfs:label>
+    <rdfs:label xml:lang="en">Has booking</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획에서 관리하는 예약을 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a trip plan to a booking it manages.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#TripPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Project"/>
+    <rdfs:label xml:lang="ko">여행 계획</rdfs:label>
+    <rdfs:label xml:lang="en">Trip plan</rdfs:label>
+    <rdfs:comment xml:lang="ko">출발일과 귀국일, 인원, 목적지, 일정, 예약, 예산을 하나로 묶는 해외여행 계획의 범위이다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Defines the scope of an overseas trip joining its dates, traveler count, destinations, itinerary, bookings and budget.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#ageGroup">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">연령대</rdfs:label>
+    <rdfs:label xml:lang="en">Age group</rdfs:label>
+    <rdfs:comment xml:lang="ko">adult, child, infant 중 동반자의 연령대이며 정확한 생년월일은 기록하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records adult, child or infant without an exact birth date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb9">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#FlightSegment"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb10"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://example.org/ontology/custom/overseas-trip#Traveler">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">동반자</rdfs:label>
+    <rdfs:label xml:lang="en">Traveler</rdfs:label>
+    <rdfs:comment xml:lang="ko">여행 계획에 함께하는 한 사람이다. 이름, 여권번호, 생년월일 같은 신원 정보는 담지 않고 역할과 연령대 같은 계획에 필요한 속성만 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents one person on a trip plan, holding only planning attributes such as role and age group and no name, passport number or birth date.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb10">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#InsurancePolicy"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb6">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#Booking"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb7"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb2">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#Destination"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb8">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#Traveler"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb9"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb5">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#Activity"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb6"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n014a1824e4d544578426c1c2065877ceb7">
+    <rdf:first rdf:resource="https://example.org/ontology/custom/overseas-trip#BudgetItem"/>
+    <rdf:rest rdf:nodeID="n014a1824e4d544578426c1c2065877ceb8"/>
+  </rdf:Description>
+</rdf:RDF>

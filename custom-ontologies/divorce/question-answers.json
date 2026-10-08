@@ -1,0 +1,364 @@
+{
+  "DIV-01": {
+    "variables": [
+      "case",
+      "type",
+      "status",
+      "filed",
+      "effective",
+      "evidence",
+      "withdrawn"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "consensual",
+        "finalized",
+        "2026-01-10",
+        "2026-04-28",
+        "urn:synthetic:registration:case1",
+        null
+      ],
+      [
+        "https://example.test/divorce/case2",
+        "consensual",
+        "filed",
+        "2026-09-01",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/divorce/case3",
+        "litigation",
+        "filed",
+        "2026-06-15",
+        null,
+        null,
+        null
+      ],
+      [
+        "https://example.test/divorce/case4",
+        "consensual",
+        "withdrawn",
+        "2026-02-01",
+        null,
+        null,
+        "2026-02-20"
+      ],
+      [
+        "https://example.test/divorce/case5",
+        "litigation",
+        "finalized",
+        "2026-02-10",
+        "2026-06-30",
+        "urn:synthetic:judgment:case5",
+        null
+      ]
+    ]
+  },
+  "DIV-02": {
+    "variables": [
+      "case",
+      "filed",
+      "reflectionEnd",
+      "confirmation",
+      "effective"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "2026-01-10",
+        "2026-04-10",
+        "2026-04-15",
+        "2026-04-28"
+      ],
+      [
+        "https://example.test/divorce/case2",
+        "2026-09-01",
+        "2026-10-01",
+        null,
+        null
+      ],
+      [
+        "https://example.test/divorce/case4",
+        "2026-02-01",
+        "2026-03-01",
+        null,
+        null
+      ]
+    ]
+  },
+  "DIV-03": {
+    "variables": [
+      "case",
+      "reflectionEnd"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case2",
+        "2026-10-01"
+      ]
+    ]
+  },
+  "DIV-04": {
+    "variables": [
+      "case",
+      "party",
+      "role"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "https://example.test/divorce/partyA1",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case1",
+        "https://example.test/divorce/partyB1",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case2",
+        "https://example.test/divorce/partyA2",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case2",
+        "https://example.test/divorce/partyB2",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case3",
+        "https://example.test/divorce/partyA3",
+        "petitioner"
+      ],
+      [
+        "https://example.test/divorce/case3",
+        "https://example.test/divorce/partyB3",
+        "respondent"
+      ],
+      [
+        "https://example.test/divorce/case4",
+        "https://example.test/divorce/partyA4",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case4",
+        "https://example.test/divorce/partyB4",
+        "joint-petitioner"
+      ],
+      [
+        "https://example.test/divorce/case5",
+        "https://example.test/divorce/partyA5",
+        "petitioner"
+      ],
+      [
+        "https://example.test/divorce/case5",
+        "https://example.test/divorce/partyB5",
+        "respondent"
+      ]
+    ]
+  },
+  "DIV-05": {
+    "variables": [
+      "case",
+      "child",
+      "minor"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "https://example.test/divorce/child1",
+        "true"
+      ],
+      [
+        "https://example.test/divorce/case3",
+        "https://example.test/divorce/child3a",
+        "true"
+      ],
+      [
+        "https://example.test/divorce/case3",
+        "https://example.test/divorce/child3b",
+        "false"
+      ]
+    ]
+  },
+  "DIV-06": {
+    "variables": [
+      "case",
+      "child",
+      "status"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case3",
+        "https://example.test/divorce/child3a",
+        "filed"
+      ]
+    ]
+  },
+  "DIV-07": {
+    "variables": [
+      "case",
+      "child",
+      "custodian",
+      "authority"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "https://example.test/divorce/child1",
+        "https://example.test/divorce/partyA1",
+        "joint"
+      ]
+    ]
+  },
+  "DIV-08": {
+    "variables": [
+      "case",
+      "child",
+      "payer",
+      "payee",
+      "amount",
+      "currency",
+      "day"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/case1",
+        "https://example.test/divorce/child1",
+        "https://example.test/divorce/partyB1",
+        "https://example.test/divorce/partyA1",
+        "600000",
+        "KRW",
+        "25"
+      ]
+    ]
+  },
+  "DIV-09": {
+    "variables": [
+      "asset",
+      "type",
+      "value",
+      "currency",
+      "party",
+      "share"
+    ],
+    "rows": [
+      [
+        "https://example.test/divorce/asset1",
+        "real-estate",
+        "400000000",
+        "KRW",
+        "https://example.test/divorce/partyA1",
+        "50"
+      ],
+      [
+        "https://example.test/divorce/asset1",
+        "real-estate",
+        "400000000",
+        "KRW",
+        "https://example.test/divorce/partyB1",
+        "50"
+      ],
+      [
+        "https://example.test/divorce/asset2",
+        "deposit",
+        "30000000",
+        "KRW",
+        "https://example.test/divorce/partyA1",
+        "60"
+      ],
+      [
+        "https://example.test/divorce/asset2",
+        "deposit",
+        "30000000",
+        "KRW",
+        "https://example.test/divorce/partyB1",
+        "40"
+      ],
+      [
+        "https://example.test/divorce/asset3",
+        "debt",
+        "50000000",
+        "KRW",
+        "https://example.test/divorce/partyA1",
+        "50"
+      ],
+      [
+        "https://example.test/divorce/asset3",
+        "debt",
+        "50000000",
+        "KRW",
+        "https://example.test/divorce/partyB1",
+        "50"
+      ],
+      [
+        "https://example.test/divorce/asset4",
+        "deposit",
+        "100000000",
+        "KRW",
+        "https://example.test/divorce/partyA5",
+        "70"
+      ],
+      [
+        "https://example.test/divorce/asset4",
+        "deposit",
+        "100000000",
+        "KRW",
+        "https://example.test/divorce/partyB5",
+        "30"
+      ]
+    ]
+  },
+  "DIV-10": {
+    "variables": [
+      "asset",
+      "total"
+    ],
+    "rows": []
+  },
+  "DIV-11": {
+    "variables": [
+      "support",
+      "payee",
+      "custodian"
+    ],
+    "rows": []
+  },
+  "DIV-12": {
+    "variables": [
+      "type",
+      "status",
+      "cases"
+    ],
+    "rows": [
+      [
+        "consensual",
+        "filed",
+        "1"
+      ],
+      [
+        "consensual",
+        "finalized",
+        "1"
+      ],
+      [
+        "consensual",
+        "withdrawn",
+        "1"
+      ],
+      [
+        "litigation",
+        "filed",
+        "1"
+      ],
+      [
+        "litigation",
+        "finalized",
+        "1"
+      ]
+    ]
+  }
+}

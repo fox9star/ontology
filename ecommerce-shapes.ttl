@@ -1,0 +1,117 @@
+@prefix ecom: <http://example.org/ontology/ecommerce#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ecom:ProductShape a sh:NodeShape ;
+    sh:targetClass ecom:Product ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "상품에는 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path ecom:productId ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path ecom:price ; sh:datatype xsd:decimal ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 0 ;
+                  sh:pattern "^[0-9]{1,14}([.]([0-9]{1,4}))?$" ;
+                  sh:message "가격은 소수점 아래 최대 4자리, 정수부 최대 14자리로 기록합니다."@ko ] ;
+    sh:property [ sh:path ecom:priceCurrency ; sh:datatype xsd:string ;
+                  sh:maxCount 1 ; sh:pattern "^[A-Z]{3}$" ;
+                  sh:message "통화 코드는 ISO 4217 형식의 대문자 3자리여야 합니다."@ko ] ;
+    sh:property [ sh:path ecom:priceCurrencyStatus ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ; sh:in ( "verified" "unverified" ) ] ;
+    sh:sparql [
+        sh:message "가격 통화가 확인 상태이면 ISO 4217 형식의 통화 코드가 있어야 합니다."@ko ;
+        sh:select """
+            PREFIX ecom: <http://example.org/ontology/ecommerce#>
+            SELECT $this WHERE {
+                $this ecom:priceCurrencyStatus "verified" .
+                FILTER NOT EXISTS { $this ecom:priceCurrency ?currency . }
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "통화 코드가 있으면 확인 상태를 verified로 표시해야 합니다."@ko ;
+        sh:select """
+            PREFIX ecom: <http://example.org/ontology/ecommerce#>
+            SELECT $this WHERE {
+                $this ecom:priceCurrency ?currency ; ecom:priceCurrencyStatus "unverified" .
+            }
+        """
+    ] .
+
+ecom:CustomerSessionShape a sh:NodeShape ;
+    sh:targetClass ecom:CustomerSession ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "세션에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path ecom:recommends ; sh:class ecom:Product ] .
+
+ecom:OrderTaskShape a sh:NodeShape ;
+    sh:targetClass ecom:OrderTask ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "주문 작업에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path ecom:orderStatus ; sh:datatype xsd:string ;
+                  sh:in ( "PLACED" "PROCESSING" "SHIPPED" "DELIVERED" "CANCELLED" ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ecom:handledBy ; sh:class ecom:RecommendationAgent ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ecom:includesProduct ; sh:class ecom:Product ; sh:minCount 1 ] ;
+    sh:sparql [
+        sh:message "주문 상태 이력의 마지막 새 상태는 현재 주문 상태와 같아야 합니다."@ko ;
+        sh:select """
+            PREFIX ecom: <http://example.org/ontology/ecommerce#>
+            SELECT $this ?event ?lastStatus ?current WHERE {
+                $this ecom:orderStatus ?current ; ecom:hasStatusEvent ?event .
+                ?event ecom:toStatus ?lastStatus ; ecom:changedAt ?time .
+                FILTER NOT EXISTS {
+                    $this ecom:hasStatusEvent ?later .
+                    ?later ecom:changedAt ?laterTime .
+                    FILTER (?laterTime > ?time)
+                }
+                FILTER (?lastStatus != ?current)
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "연속된 주문 상태 이벤트는 앞선 이벤트의 새 상태에서 시작해야 합니다."@ko ;
+        sh:select """
+            PREFIX ecom: <http://example.org/ontology/ecommerce#>
+            SELECT $this ?earlier ?later WHERE {
+                $this ecom:hasStatusEvent ?earlier, ?later .
+                ?earlier ecom:toStatus ?earlierStatus ; ecom:changedAt ?earlierTime .
+                ?later ecom:fromStatus ?laterStatus ; ecom:changedAt ?laterTime .
+                FILTER (?earlierTime < ?laterTime && ?earlierStatus != ?laterStatus)
+            }
+        """
+    ] .
+
+ecom:OrderStatusEventShape a sh:NodeShape ;
+    sh:targetClass ecom:OrderStatusEvent ;
+    sh:property [ sh:path ecom:eventOrder ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:class ecom:OrderTask ] ;
+    sh:property [ sh:path ecom:fromStatus ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ;
+                  sh:in ( "PLACED" "PROCESSING" "SHIPPED" "DELIVERED" "CANCELLED" ) ] ;
+    sh:property [ sh:path ecom:toStatus ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:string ;
+                  sh:in ( "PLACED" "PROCESSING" "SHIPPED" "DELIVERED" "CANCELLED" ) ] ;
+    sh:property [ sh:path ecom:changedAt ; sh:minCount 1 ; sh:maxCount 1 ;
+                  sh:datatype xsd:dateTime ] ;
+    sh:sparql [
+        sh:message "주문 상태 전이는 허용된 진행 또는 취소 흐름을 따라야 합니다."@ko ;
+        sh:select """
+            PREFIX ecom: <http://example.org/ontology/ecommerce#>
+            SELECT $this ?from ?to WHERE {
+                $this ecom:fromStatus ?from ; ecom:toStatus ?to .
+                FILTER NOT EXISTS {
+                    VALUES (?allowedFrom ?allowedTo) {
+                        ("PLACED" "PROCESSING")
+                        ("PLACED" "CANCELLED")
+                        ("PROCESSING" "SHIPPED")
+                        ("PROCESSING" "CANCELLED")
+                        ("SHIPPED" "DELIVERED")
+                    }
+                    FILTER (?from = ?allowedFrom && ?to = ?allowedTo)
+                }
+            }
+        """
+    ] .
+
+ecom:RecommendationAgentShape a sh:NodeShape ;
+    sh:targetClass ecom:RecommendationAgent ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "에이전트에 표시 라벨이 필요합니다."@ko ] .

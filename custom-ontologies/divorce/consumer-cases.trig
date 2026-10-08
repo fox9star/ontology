@@ -1,0 +1,400 @@
+@prefix ns1: <https://example.org/ontology/custom/divorce#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/divorce-reject> {
+    <https://example.test/divorce/case1> a ns1:DivorceCase ;
+        ns1:caseStatus "finalized" ;
+        ns1:caseType "consensual" ;
+        ns1:confirmationDate "2026-04-15"^^xsd:date ;
+        ns1:decreeEvidenceUri "urn:synthetic:registration:case1"^^xsd:anyURI ;
+        ns1:effectiveDate "2026-04-28"^^xsd:date ;
+        ns1:filedDate "2026-01-10"^^xsd:date ;
+        ns1:hasAsset <https://example.test/divorce/asset1>,
+            <https://example.test/divorce/asset2>,
+            <https://example.test/divorce/asset3> ;
+        ns1:hasChild <https://example.test/divorce/child1> ;
+        ns1:hasCustodyArrangement <https://example.test/divorce/custody1> ;
+        ns1:hasParty <https://example.test/divorce/partyA1>,
+            <https://example.test/divorce/partyB1> ;
+        ns1:hasSupportObligation <https://example.test/divorce/support1> ;
+        ns1:reflectionEndDate "2026-04-10"^^xsd:date .
+
+    <https://example.test/divorce/case2> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 2 (협의, 접수)"@ko ;
+        ns1:caseStatus "filed" ;
+        ns1:caseType "consensual" ;
+        ns1:filedDate "2026-09-01"^^xsd:date ;
+        ns1:hasParty <https://example.test/divorce/partyA2>,
+            <https://example.test/divorce/partyB2> ;
+        ns1:reflectionEndDate "2026-10-01"^^xsd:date .
+
+    <https://example.test/divorce/case3> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 3 (소송, 접수)"@ko ;
+        ns1:caseStatus "filed" ;
+        ns1:caseType "litigation" ;
+        ns1:filedDate "2026-06-15"^^xsd:date ;
+        ns1:hasChild <https://example.test/divorce/child3a>,
+            <https://example.test/divorce/child3b> ;
+        ns1:hasParty <https://example.test/divorce/partyA3>,
+            <https://example.test/divorce/partyB3> .
+
+    <https://example.test/divorce/case4> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 4 (협의, 철회)"@ko ;
+        ns1:caseStatus "withdrawn" ;
+        ns1:caseType "consensual" ;
+        ns1:filedDate "2026-02-01"^^xsd:date ;
+        ns1:hasParty <https://example.test/divorce/partyA4>,
+            <https://example.test/divorce/partyB4> ;
+        ns1:reflectionEndDate "2026-03-01"^^xsd:date ;
+        ns1:withdrawalDate "2026-02-20"^^xsd:date .
+
+    <https://example.test/divorce/case5> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 5 (소송, 종결)"@ko ;
+        ns1:caseStatus "finalized" ;
+        ns1:caseType "litigation" ;
+        ns1:decreeEvidenceUri "urn:synthetic:judgment:case5"^^xsd:anyURI ;
+        ns1:effectiveDate "2026-06-30"^^xsd:date ;
+        ns1:filedDate "2026-02-10"^^xsd:date ;
+        ns1:hasAsset <https://example.test/divorce/asset4> ;
+        ns1:hasParty <https://example.test/divorce/partyA5>,
+            <https://example.test/divorce/partyB5> .
+
+    <https://example.test/divorce/alloc1a> a ns1:AssetAllocation ;
+        rdfs:label "아파트 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc1b> a ns1:AssetAllocation ;
+        rdfs:label "아파트 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc2a> a ns1:AssetAllocation ;
+        rdfs:label "예금 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 60.0 .
+
+    <https://example.test/divorce/alloc2b> a ns1:AssetAllocation ;
+        rdfs:label "예금 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 40.0 .
+
+    <https://example.test/divorce/alloc3a> a ns1:AssetAllocation ;
+        rdfs:label "채무 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc3b> a ns1:AssetAllocation ;
+        rdfs:label "채무 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc4a> a ns1:AssetAllocation ;
+        rdfs:label "예금 5-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA5> ;
+        ns1:sharePercent 70.0 .
+
+    <https://example.test/divorce/alloc4b> a ns1:AssetAllocation ;
+        rdfs:label "예금 5-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB5> ;
+        ns1:sharePercent 30.0 .
+
+    <https://example.test/divorce/asset1> a ns1:Asset ;
+        rdfs:label "가상 아파트"@ko ;
+        ns1:assetType "real-estate" ;
+        ns1:estimatedValue 400000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc1a>,
+            <https://example.test/divorce/alloc1b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset2> a ns1:Asset ;
+        rdfs:label "가상 예금"@ko ;
+        ns1:assetType "deposit" ;
+        ns1:estimatedValue 30000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc2a>,
+            <https://example.test/divorce/alloc2b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset3> a ns1:Asset ;
+        rdfs:label "가상 대출 채무"@ko ;
+        ns1:assetType "debt" ;
+        ns1:estimatedValue 50000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc3a>,
+            <https://example.test/divorce/alloc3b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset4> a ns1:Asset ;
+        rdfs:label "가상 예금(사건 5)"@ko ;
+        ns1:assetType "deposit" ;
+        ns1:estimatedValue 100000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc4a>,
+            <https://example.test/divorce/alloc4b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/child3a> a ns1:Child ;
+        rdfs:label "가상 자녀 3-가"@ko ;
+        ns1:minorAtFiling true .
+
+    <https://example.test/divorce/child3b> a ns1:Child ;
+        rdfs:label "가상 자녀 3-나"@ko ;
+        ns1:minorAtFiling false .
+
+    <https://example.test/divorce/custody1> a ns1:CustodyArrangement ;
+        rdfs:label "자녀 1 양육 결정"@ko ;
+        ns1:authorityHolding "joint" ;
+        ns1:custodian <https://example.test/divorce/partyA1> ;
+        ns1:custodyOfChild <https://example.test/divorce/child1> .
+
+    <https://example.test/divorce/partyA2> a ns1:Party ;
+        rdfs:label "가상 당사자 2-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyA3> a ns1:Party ;
+        rdfs:label "가상 당사자 3-가"@ko ;
+        ns1:partyRole "petitioner" .
+
+    <https://example.test/divorce/partyA4> a ns1:Party ;
+        rdfs:label "가상 당사자 4-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyB2> a ns1:Party ;
+        rdfs:label "가상 당사자 2-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyB3> a ns1:Party ;
+        rdfs:label "가상 당사자 3-나"@ko ;
+        ns1:partyRole "respondent" .
+
+    <https://example.test/divorce/partyB4> a ns1:Party ;
+        rdfs:label "가상 당사자 4-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/support1> a ns1:SupportObligation ;
+        rdfs:label "자녀 1 양육비"@ko ;
+        ns1:currencyCode "KRW" ;
+        ns1:monthlyAmount 600000.0 ;
+        ns1:payee <https://example.test/divorce/partyA1> ;
+        ns1:payer <https://example.test/divorce/partyB1> ;
+        ns1:paymentDay 25 ;
+        ns1:supportForChild <https://example.test/divorce/child1> .
+
+    <https://example.test/divorce/partyA5> a ns1:Party ;
+        rdfs:label "가상 당사자 5-가"@ko ;
+        ns1:partyRole "petitioner" .
+
+    <https://example.test/divorce/partyB5> a ns1:Party ;
+        rdfs:label "가상 당사자 5-나"@ko ;
+        ns1:partyRole "respondent" .
+
+    <https://example.test/divorce/child1> a ns1:Child ;
+        rdfs:label "가상 자녀 1"@ko ;
+        ns1:minorAtFiling true .
+
+    <https://example.test/divorce/partyB1> a ns1:Party ;
+        rdfs:label "가상 당사자 1-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyA1> a ns1:Party ;
+        rdfs:label "가상 당사자 1-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+}
+
+<https://example.test/consumer/divorce-accept> {
+    <https://example.test/divorce/case1> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 1 (협의, 종결)"@ko ;
+        ns1:caseStatus "finalized" ;
+        ns1:caseType "consensual" ;
+        ns1:confirmationDate "2026-04-15"^^xsd:date ;
+        ns1:decreeEvidenceUri "urn:synthetic:registration:case1"^^xsd:anyURI ;
+        ns1:effectiveDate "2026-04-28"^^xsd:date ;
+        ns1:filedDate "2026-01-10"^^xsd:date ;
+        ns1:hasAsset <https://example.test/divorce/asset1>,
+            <https://example.test/divorce/asset2>,
+            <https://example.test/divorce/asset3> ;
+        ns1:hasChild <https://example.test/divorce/child1> ;
+        ns1:hasCustodyArrangement <https://example.test/divorce/custody1> ;
+        ns1:hasParty <https://example.test/divorce/partyA1>,
+            <https://example.test/divorce/partyB1> ;
+        ns1:hasSupportObligation <https://example.test/divorce/support1> ;
+        ns1:reflectionEndDate "2026-04-10"^^xsd:date .
+
+    <https://example.test/divorce/case2> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 2 (협의, 접수)"@ko ;
+        ns1:caseStatus "filed" ;
+        ns1:caseType "consensual" ;
+        ns1:filedDate "2026-09-01"^^xsd:date ;
+        ns1:hasParty <https://example.test/divorce/partyA2>,
+            <https://example.test/divorce/partyB2> ;
+        ns1:reflectionEndDate "2026-10-01"^^xsd:date .
+
+    <https://example.test/divorce/case3> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 3 (소송, 접수)"@ko ;
+        ns1:caseStatus "filed" ;
+        ns1:caseType "litigation" ;
+        ns1:filedDate "2026-06-15"^^xsd:date ;
+        ns1:hasChild <https://example.test/divorce/child3a>,
+            <https://example.test/divorce/child3b> ;
+        ns1:hasParty <https://example.test/divorce/partyA3>,
+            <https://example.test/divorce/partyB3> .
+
+    <https://example.test/divorce/case4> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 4 (협의, 철회)"@ko ;
+        ns1:caseStatus "withdrawn" ;
+        ns1:caseType "consensual" ;
+        ns1:filedDate "2026-02-01"^^xsd:date ;
+        ns1:hasParty <https://example.test/divorce/partyA4>,
+            <https://example.test/divorce/partyB4> ;
+        ns1:reflectionEndDate "2026-03-01"^^xsd:date ;
+        ns1:withdrawalDate "2026-02-20"^^xsd:date .
+
+    <https://example.test/divorce/case5> a ns1:DivorceCase ;
+        rdfs:label "가상 이혼 사건 5 (소송, 종결)"@ko ;
+        ns1:caseStatus "finalized" ;
+        ns1:caseType "litigation" ;
+        ns1:decreeEvidenceUri "urn:synthetic:judgment:case5"^^xsd:anyURI ;
+        ns1:effectiveDate "2026-06-30"^^xsd:date ;
+        ns1:filedDate "2026-02-10"^^xsd:date ;
+        ns1:hasAsset <https://example.test/divorce/asset4> ;
+        ns1:hasParty <https://example.test/divorce/partyA5>,
+            <https://example.test/divorce/partyB5> .
+
+    <https://example.test/divorce/alloc1a> a ns1:AssetAllocation ;
+        rdfs:label "아파트 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc1b> a ns1:AssetAllocation ;
+        rdfs:label "아파트 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc2a> a ns1:AssetAllocation ;
+        rdfs:label "예금 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 60.0 .
+
+    <https://example.test/divorce/alloc2b> a ns1:AssetAllocation ;
+        rdfs:label "예금 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 40.0 .
+
+    <https://example.test/divorce/alloc3a> a ns1:AssetAllocation ;
+        rdfs:label "채무 1-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc3b> a ns1:AssetAllocation ;
+        rdfs:label "채무 1-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB1> ;
+        ns1:sharePercent 50.0 .
+
+    <https://example.test/divorce/alloc4a> a ns1:AssetAllocation ;
+        rdfs:label "예금 5-가 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyA5> ;
+        ns1:sharePercent 70.0 .
+
+    <https://example.test/divorce/alloc4b> a ns1:AssetAllocation ;
+        rdfs:label "예금 5-나 몫"@ko ;
+        ns1:allocatedTo <https://example.test/divorce/partyB5> ;
+        ns1:sharePercent 30.0 .
+
+    <https://example.test/divorce/asset1> a ns1:Asset ;
+        rdfs:label "가상 아파트"@ko ;
+        ns1:assetType "real-estate" ;
+        ns1:estimatedValue 400000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc1a>,
+            <https://example.test/divorce/alloc1b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset2> a ns1:Asset ;
+        rdfs:label "가상 예금"@ko ;
+        ns1:assetType "deposit" ;
+        ns1:estimatedValue 30000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc2a>,
+            <https://example.test/divorce/alloc2b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset3> a ns1:Asset ;
+        rdfs:label "가상 대출 채무"@ko ;
+        ns1:assetType "debt" ;
+        ns1:estimatedValue 50000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc3a>,
+            <https://example.test/divorce/alloc3b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/asset4> a ns1:Asset ;
+        rdfs:label "가상 예금(사건 5)"@ko ;
+        ns1:assetType "deposit" ;
+        ns1:estimatedValue 100000000.0 ;
+        ns1:hasAllocation <https://example.test/divorce/alloc4a>,
+            <https://example.test/divorce/alloc4b> ;
+        ns1:valueCurrency "KRW" .
+
+    <https://example.test/divorce/child3a> a ns1:Child ;
+        rdfs:label "가상 자녀 3-가"@ko ;
+        ns1:minorAtFiling true .
+
+    <https://example.test/divorce/child3b> a ns1:Child ;
+        rdfs:label "가상 자녀 3-나"@ko ;
+        ns1:minorAtFiling false .
+
+    <https://example.test/divorce/custody1> a ns1:CustodyArrangement ;
+        rdfs:label "자녀 1 양육 결정"@ko ;
+        ns1:authorityHolding "joint" ;
+        ns1:custodian <https://example.test/divorce/partyA1> ;
+        ns1:custodyOfChild <https://example.test/divorce/child1> .
+
+    <https://example.test/divorce/partyA2> a ns1:Party ;
+        rdfs:label "가상 당사자 2-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyA3> a ns1:Party ;
+        rdfs:label "가상 당사자 3-가"@ko ;
+        ns1:partyRole "petitioner" .
+
+    <https://example.test/divorce/partyA4> a ns1:Party ;
+        rdfs:label "가상 당사자 4-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyB2> a ns1:Party ;
+        rdfs:label "가상 당사자 2-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyB3> a ns1:Party ;
+        rdfs:label "가상 당사자 3-나"@ko ;
+        ns1:partyRole "respondent" .
+
+    <https://example.test/divorce/partyB4> a ns1:Party ;
+        rdfs:label "가상 당사자 4-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/support1> a ns1:SupportObligation ;
+        rdfs:label "자녀 1 양육비"@ko ;
+        ns1:currencyCode "KRW" ;
+        ns1:monthlyAmount 600000.0 ;
+        ns1:payee <https://example.test/divorce/partyA1> ;
+        ns1:payer <https://example.test/divorce/partyB1> ;
+        ns1:paymentDay 25 ;
+        ns1:supportForChild <https://example.test/divorce/child1> .
+
+    <https://example.test/divorce/partyA5> a ns1:Party ;
+        rdfs:label "가상 당사자 5-가"@ko ;
+        ns1:partyRole "petitioner" .
+
+    <https://example.test/divorce/partyB5> a ns1:Party ;
+        rdfs:label "가상 당사자 5-나"@ko ;
+        ns1:partyRole "respondent" .
+
+    <https://example.test/divorce/child1> a ns1:Child ;
+        rdfs:label "가상 자녀 1"@ko ;
+        ns1:minorAtFiling true .
+
+    <https://example.test/divorce/partyB1> a ns1:Party ;
+        rdfs:label "가상 당사자 1-나"@ko ;
+        ns1:partyRole "joint-petitioner" .
+
+    <https://example.test/divorce/partyA1> a ns1:Party ;
+        rdfs:label "가상 당사자 1-가"@ko ;
+        ns1:partyRole "joint-petitioner" .
+}

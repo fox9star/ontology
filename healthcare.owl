@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#findingText">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">분석 소견</rdfs:label>
+    <rdfs:label xml:lang="en">Finding Text</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the finding text for a Clinical Report as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">임상 분석 보고서에 기록된 소견 문장을 보존한다. 원문에 없는 임상 사실을 덧붙이지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#associatedWithRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">관련 환자 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Associated With Record</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#PatientRecord"/>
+    <rdfs:comment xml:lang="en">Links a Diagnostic Task to a Patient Record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행이 대상으로 삼은 내부 환자 기록을 연결한다. 직접 식별정보는 그래프 밖에서 관리한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb2">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdf:rest rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#reportResult">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">보고서 결과 관측값</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Report Result Observation</rdfs:label>
+    <rdfs:comment xml:lang="ko">명시적으로 이 보고서에 포함된 개별 관측 결과를 연결한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Clinical Report to a Clinical Observation.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#DiagnosticTask">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#TaskRun"/>
+    <rdfs:label xml:lang="ko">진단 분석 실행</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Analysis Task</rdfs:label>
+    <rdfs:comment xml:lang="ko">환자 기록에 연결된 AI 분석 작업 실행.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a diagnostic analysis run associated with a patient record and its outputs.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://hl7.org/fhir/R5/task.html"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#PrivacyClassification">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">개인정보 분류</rdfs:label>
+    <rdfs:label xml:lang="en">Privacy Classification</rdfs:label>
+    <rdfs:comment xml:lang="ko">그래프의 민감도·출처 확인 상태를 표시한다. 접근 제어와 보존 정책은 저장 계층에서 별도 적용해야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents the privacy category used to govern handling of a patient record.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#analyzedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#runAgent"/>
+    <rdfs:label xml:lang="ko">분석 담당 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Analyzed By</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#MedicalAnalysisAgent"/>
+    <rdfs:comment xml:lang="en">Links a Diagnostic Task to a Medical Analysis Agent.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행을 담당한 의료 분석 에이전트를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#dataClassification">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">기록 분류</rdfs:label>
+    <rdfs:label xml:lang="en">Data Classification</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#PatientRecord"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdfs:comment xml:lang="en">Links a Patient Record to a Privacy Classification.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">환자 기록의 민감도와 출처 확인 상태를 나타내는 개인정보 분류 자원을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">헬스케어 진단 AI 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Healthcare Clinical &amp; Diagnostic AI Agent Ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">환자 기록, 진단 실행, 분석 에이전트와 보고서를 표현한다. 환자 직접 식별정보와 신원 연결표는 이 그래프 밖에서 관리한다.</rdfs:comment>
+    <owl:imports rdf:resource="https://example.org/ontology/core"/>
+    <owl:imports rdf:resource="https://example.org/ontology/vocab"/>
+    <owl:imports rdf:resource="http://www.w3.org/ns/prov-o#"/>
+    <owl:versionInfo>1.3.1</owl:versionInfo>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#PatientRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#SensitiveRecord"/>
+    <rdfs:label xml:lang="ko">환자 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Patient Record</rdfs:label>
+    <rdfs:comment xml:lang="ko">내부용 불투명 키와 분류만 보관한다. 직접 식별정보나 키 대응표는 포함하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a patient record whose identity and classification are managed separately from clinical content.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://hl7.org/fhir/R5/patient.html"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#confidenceScore">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">모델 신뢰 점수</rdfs:label>
+    <rdfs:label xml:lang="en">Confidence Score</rdfs:label>
+    <rdfs:comment xml:lang="ko">0과 1 사이의 모델 점수이며 임상적 확률로 해석하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the confidence score for a Clinical Report as a decimal value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#numericValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">수치 관측값</rdfs:label>
+    <rdfs:label xml:lang="en">Numeric Value</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:comment xml:lang="en">Records the numeric value for a Clinical Observation as a decimal value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">임상 관측 결과의 수치 값을 소수로 기록한다. 값이 없으면 0으로 채우지 않으며 단위 체계와 단위 코드를 함께 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb4">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdf:rest rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#Synthetic">
+    <rdf:type rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdfs:label xml:lang="ko">합성 예시</rdfs:label>
+    <rdfs:label xml:lang="en">Synthetic</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#reportStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">보고서 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Report Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">기록된 임상 보고서의 상태. FHIR DiagnosticReport.status 허용 코드와 일치할 때 교환한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the report status for a Clinical Report as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb3">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#MedicalAnalysisAgent"/>
+    <rdf:rest rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#ClinicalObservation">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">임상 관측값</rdfs:label>
+    <rdfs:label xml:lang="en">Clinical Observation</rdfs:label>
+    <rdfs:comment xml:lang="ko">코드 체계와 시각, 단위가 명시된 개별 관측 결과. 검증되지 않은 임상 사실은 만들어 넣지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Represents a coded clinical measurement or finding linked to a patient record; its privacy classification is recorded separately.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://hl7.org/fhir/R5/observation.html"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#ClinicalReport">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Artifact"/>
+    <rdfs:label xml:lang="ko">임상 분석 보고서</rdfs:label>
+    <rdfs:label xml:lang="en">Clinical Diagnostic Report</rdfs:label>
+    <rdfs:seeAlso rdf:resource="https://hl7.org/fhir/R5/diagnosticreport.html"/>
+    <rdfs:comment xml:lang="en">Represents a coded report that summarizes clinical findings and observation results.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행이 생성한 소견과 명시적으로 포함된 관측 결과를 담은 보고서 결과물.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#Sensitive">
+    <rdf:type rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdfs:label xml:lang="ko">민감 정보</rdfs:label>
+    <rdfs:label xml:lang="en">Sensitive</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#observedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">관측 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Observed At</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment xml:lang="en">Records the observed at for a Clinical Observation as a date-time value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">임상 관측 결과가 측정되거나 관측된 시각을 기록한다. 보고서 작성 시각과 동일하다고 추정하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#reportCodeSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">보고서 코드 체계</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Report Code System</rdfs:label>
+    <rdfs:comment xml:lang="ko">보고서 종류를 식별하는 코드 체계 URI.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Clinical Report to a Resource.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#codeSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">코드 체계</rdfs:label>
+    <rdfs:label xml:lang="en">Code System</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+    <rdfs:comment xml:lang="en">Links a Clinical Observation to a Resource.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">관측 코드의 의미를 정하는 코드 체계 URI를 연결한다. 실제 코드 값은 observationCode에 별도 기록한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#generatesReport">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#runOutput"/>
+    <rdfs:label xml:lang="ko">분석 보고서를 생성</rdfs:label>
+    <rdfs:label xml:lang="en">Generates Report</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:comment xml:lang="en">Links a Diagnostic Task to a Clinical Report.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행이 생성한 임상 분석 보고서를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#textValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">문자 관측값</rdfs:label>
+    <rdfs:label xml:lang="en">Text Value</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the text value for a Clinical Observation as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">수치로 표현하지 않은 임상 관측 결과의 출처 문장을 기록한다. 미확인 임상 내용을 생성해 채우지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#observesRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">관측 대상 환자 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Observes Record</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#PatientRecord"/>
+    <rdfs:comment xml:lang="en">Links a Clinical Observation to a Patient Record.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">개별 임상 관측 결과가 대상으로 삼은 내부 환자 기록을 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb1">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#PatientRecord"/>
+    <rdf:rest rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#generatesObservation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#runOutput"/>
+    <rdfs:label xml:lang="ko">임상 관측값을 생성</rdfs:label>
+    <rdfs:label xml:lang="en">Generates Observation</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:comment xml:lang="en">Links a Diagnostic Task to a Clinical Observation.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행이 생성한 개별 임상 관측 결과를 연결한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#diagnosticStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:subPropertyOf rdf:resource="https://example.org/ontology/core#taskStatus"/>
+    <rdfs:label xml:lang="ko">진단 실행 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Status</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the diagnostic status for a Diagnostic Task as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">진단 분석 실행의 현재 상태 코드를 기록한다. 허용 값은 헬스케어 통제 어휘와 SHACL에서 관리한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#unitCodeSystem">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="ko">단위 코드 체계</rdfs:label>
+    <rdfs:label xml:lang="en">Unit Code System</rdfs:label>
+    <rdfs:comment xml:lang="ko">수치 관측 단위 코드의 식별 URI. 교환 시 제공된 체계를 그대로 FHIR Quantity.system에 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a Clinical Observation to a Resource.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#reportCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">보고서 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Report Code</rdfs:label>
+    <rdfs:comment xml:lang="ko">보고서 종류를 식별하는 출처 코드.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the report code for a Clinical Report as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalReport"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#taskIntent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">진단 작업 의도</rdfs:label>
+    <rdfs:label xml:lang="en">Diagnostic Task Intent</rdfs:label>
+    <rdfs:comment xml:lang="ko">FHIR Task.intent와 호환되는 의도 코드. 값이 없으면 교환 시 unknown으로 표시한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the task intent for a Diagnostic Task as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#DiagnosticTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#MedicalAnalysisAgent">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://example.org/ontology/core#Agent"/>
+    <rdfs:label xml:lang="ko">의료 분석 에이전트</rdfs:label>
+    <rdfs:label xml:lang="en">Medical Image Analysis AI Agent</rdfs:label>
+    <rdfs:comment xml:lang="en">Represents an agent that performs medical image or clinical analysis.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">의료 영상 또는 임상 자료의 진단 분석 실행을 담당하는 에이전트. 이 분류만으로 임상적 자격이나 정확성을 보장하지 않는다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb5">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdf:rest rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb6"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#Pseudonymized">
+    <rdf:type rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdfs:label xml:lang="ko">가명 처리</rdfs:label>
+    <rdfs:label xml:lang="en">Pseudonymized</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#Unverified">
+    <rdf:type rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdfs:label xml:lang="ko">미확인</rdfs:label>
+    <rdfs:label xml:lang="en">Unverified</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#observationCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">관측 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Observation Code</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:comment xml:lang="en">Records the observation code for a Clinical Observation as a string value.</rdfs:comment>
+    <rdfs:comment xml:lang="ko">관측 결과가 무엇을 측정하거나 기술하는지 나타내는 출처 코드 값을 기록한다. 의미는 codeSystem과 함께 해석한다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#observationStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">관측 결과 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Observation Result Status</rdfs:label>
+    <rdfs:comment xml:lang="ko">관측값의 작성·검토 상태. 값이 없으면 교환 시 FHIR unknown 상태를 사용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the observation status for a Clinical Observation as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#unitCode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">UCUM 단위 코드</rdfs:label>
+    <rdfs:label xml:lang="en">Unit Code</rdfs:label>
+    <rdfs:comment xml:lang="ko">수치 관측값은 가능하면 UCUM 단위 코드로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the unit code for a Clinical Observation as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#ClinicalObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#HealthcareRoleDisjointness">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/ontology/healthcare#patientId">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:label xml:lang="ko">내부 환자 키</rdfs:label>
+    <rdfs:label xml:lang="en">Patient ID</rdfs:label>
+    <rdfs:comment xml:lang="ko">신원을 직접 드러내지 않는 내부 키만 허용한다. 외부 신원 대응표는 별도 보호 저장소에 둔다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records the patient id for a Patient Record as a string value.</rdfs:comment>
+    <rdfs:domain rdf:resource="http://example.org/ontology/healthcare#PatientRecord"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n47757649e7f94b7c86127318ddb35b1cb6">
+    <rdf:first rdf:resource="http://example.org/ontology/healthcare#PrivacyClassification"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+</rdf:RDF>

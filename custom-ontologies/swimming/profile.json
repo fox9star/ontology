@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "swimming",
+  "name": "수영 온톨로지 (swimming)",
+  "description": "수영 선수·클럽·대회·수영장·종목과 출전 결과, 구간 기록을 연결하고, 증빙 없는 공식 기록과 25m·50m 수영장 기록의 혼동을 막습니다.",
+  "name_en": "Swimming Ontology",
+  "description_en": "Connects swimmers, clubs, meets, pools, events, entries and split times, and blocks official results without evidence as well as mixing times from 25 m and 50 m pools.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/swimming#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T19:39:09+09:00",
+  "schema": "custom-ontologies/swimming/schema.ttl",
+  "owl": "custom-ontologies/swimming/schema.owl",
+  "shapes": "custom-ontologies/swimming/shapes.ttl",
+  "example": "custom-ontologies/swimming/example.ttl",
+  "questions": "custom-ontologies/swimming/questions.md",
+  "questions_fixture": "custom-ontologies/swimming/question-fixture.ttl",
+  "question_answers": "custom-ontologies/swimming/question-answers.json",
+  "compatibility_cases": "custom-ontologies/swimming/consumer-cases.trig"
+}

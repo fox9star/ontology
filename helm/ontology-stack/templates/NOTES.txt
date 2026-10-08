@@ -1,0 +1,24 @@
+Thank you for installing {{ .Chart.Name }}!
+
+Your release is named {{ .Release.Name }}.
+
+1. Get the Web Studio application URL:
+{{- if .Values.ingress.enabled }}
+  http://{{ (index .Values.ingress.hosts 0).host }}
+{{- else if contains "NodePort" .Values.webStudio.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "ontology-stack.fullname" . }}-web-studio)
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "ClusterIP" .Values.webStudio.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "ontology-stack.name" . }},app.kubernetes.io/instance={{ .Release.Name }},app.kubernetes.io/component=web-studio" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:5000 to use Web Studio"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 5000:5000
+{{- end }}
+
+2. MV Studio (Music Video & Multimedia Studio):
+  export MV_POD=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "ontology-stack.name" . }},app.kubernetes.io/instance={{ .Release.Name }},app.kubernetes.io/component=mv-studio" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8766 to use MV Studio"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $MV_POD 8766:8766
+
+3. Active Graph Backend:
+  {{ .Values.graphStore.backend }}

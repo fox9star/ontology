@@ -1,0 +1,137 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix ecom: <http://example.org/ontology/ecommerce#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/ecommerce> a owl:Ontology ;
+    rdfs:label "전자상거래 AI 에이전트 온톨로지"@ko,
+               "E-Commerce AI Agent Ontology"@en ;
+    rdfs:comment "상품 탐색, 추천, 주문 처리를 표현한다. 고객 신원이나 실제 결제 통화는 예시에서 추정하지 않는다."@ko ;
+    owl:imports <https://example.org/ontology/core>, <https://example.org/ontology/vocab>, <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.2.1" .
+
+ecom:Product a rdfs:Class, owl:Class ;
+    rdfs:label "상품"@ko, "Product"@en ;
+    rdfs:comment "상품 카탈로그 항목."@ko .
+
+ecom:CustomerSession a rdfs:Class, owl:Class ;
+    rdfs:label "고객 세션"@ko, "Customer Session"@en ;
+    rdfs:comment "상품 탐색 또는 주문 요청을 묶는 세션. 고객의 실명이나 직접 식별정보를 담지 않는다."@ko .
+
+ecom:OrderTask a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:TaskRun ;
+    rdfs:label "주문 처리 실행"@ko, "Order Fulfillment Task"@en ;
+    rdfs:comment "에이전트가 처리하는 주문 작업 실행."@ko .
+
+ecom:OrderStatusEvent a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "주문 상태 변경 이벤트"@ko ;
+    rdfs:comment "주문 상태를 바꾼 한 번의 기록. 이전·새 상태와 시각을 보존한다."@ko .
+
+ecom:RecommendationAgent a rdfs:Class, owl:Class ;
+    rdfs:subClassOf core:Agent ;
+    rdfs:label "추천 에이전트"@ko, "Recommendation Agent"@en ;
+    rdfs:comment "상품 추천을 제공하는 에이전트."@ko .
+
+ecom:recommends a owl:ObjectProperty ;
+    rdfs:label "상품을 추천"@ko ;
+    rdfs:domain ecom:CustomerSession ;
+    rdfs:range ecom:Product .
+
+ecom:handledBy a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runAgent ;
+    rdfs:label "담당 에이전트"@ko ;
+    rdfs:domain ecom:OrderTask ;
+    rdfs:range ecom:RecommendationAgent .
+
+ecom:includesProduct a owl:ObjectProperty ;
+    rdfs:label "포함 상품"@ko ;
+    rdfs:domain ecom:OrderTask ;
+    rdfs:range ecom:Product .
+
+ecom:hasStatusEvent a owl:ObjectProperty ;
+    rdfs:domain ecom:OrderTask ; rdfs:range ecom:OrderStatusEvent ;
+    rdfs:label "상태 변경 이력"@ko .
+
+ecom:eventOrder a owl:ObjectProperty ;
+    rdfs:domain ecom:OrderStatusEvent ; rdfs:range ecom:OrderTask ;
+    rdfs:label "상태 변경 대상 주문"@ko .
+
+ecom:productId a owl:DatatypeProperty ;
+    rdfs:label "상품 식별 코드"@ko, "Product ID"@en ;
+    rdfs:domain ecom:Product ;
+    rdfs:range xsd:string .
+
+ecom:price a owl:DatatypeProperty ;
+    rdfs:label "가격 금액"@ko, "Price Amount"@en ;
+    rdfs:comment "통화가 확인되지 않은 경우 통화를 추정하지 않는다. 실제 금액은 priceCurrency와 함께 기록한다."@ko ;
+    rdfs:domain ecom:Product ;
+    rdfs:range xsd:decimal .
+
+ecom:priceCurrency a owl:DatatypeProperty ;
+    rdfs:label "가격 통화 코드"@ko ;
+    rdfs:comment "가격에 적용되는 3자리 통화 코드. 예시의 통화는 미확인이다."@ko ;
+    rdfs:domain ecom:Product ;
+    rdfs:range xsd:string .
+
+ecom:priceCurrencyStatus a owl:DatatypeProperty ;
+    rdfs:label "가격 통화 확인 상태"@ko ;
+    rdfs:comment "통화 코드가 출처로 확인되었는지 표시한다. 추정 코드로 빈 값을 채우지 않는다."@ko ;
+    rdfs:domain ecom:Product ; rdfs:range xsd:string .
+
+ecom:orderStatus a owl:DatatypeProperty ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:label "주문 상태"@ko, "Order Status"@en ;
+    rdfs:domain ecom:OrderTask ;
+    rdfs:range xsd:string .
+
+ecom:fromStatus a owl:DatatypeProperty ;
+    rdfs:domain ecom:OrderStatusEvent ; rdfs:range xsd:string ;
+    rdfs:label "변경 전 주문 상태"@ko .
+
+ecom:toStatus a owl:DatatypeProperty ;
+    rdfs:domain ecom:OrderStatusEvent ; rdfs:range xsd:string ;
+    rdfs:label "변경 후 주문 상태"@ko .
+
+ecom:changedAt a owl:DatatypeProperty ;
+    rdfs:domain ecom:OrderStatusEvent ; rdfs:range xsd:dateTime ;
+    rdfs:label "주문 상태 변경 시각"@ko .
+
+# Each resource represents one distinct e-commerce business role.
+ecom:OrderRoleDisjointness a owl:AllDisjointClasses ;
+    owl:members ( ecom:CustomerSession ecom:OrderStatusEvent ecom:OrderTask
+                  ecom:Product ecom:RecommendationAgent ) .
+
+# English labels and definitions for named schema terms.
+<http://example.org/ontology/ecommerce#CustomerSession> rdfs:comment "Represents a product discovery or order session without a customer identity."@en .
+<http://example.org/ontology/ecommerce#OrderStatusEvent> rdfs:label "Order Status Event"@en ; rdfs:comment "Records a change in order status and when that change occurred."@en .
+<http://example.org/ontology/ecommerce#OrderTask> rdfs:comment "Represents processing work for an order and its status history."@en .
+<http://example.org/ontology/ecommerce#Product> rdfs:comment "Represents an item in the product catalog, including its price and currency metadata."@en .
+<http://example.org/ontology/ecommerce#RecommendationAgent> rdfs:comment "Represents an agent that recommends catalog products to a customer session."@en .
+<http://example.org/ontology/ecommerce#changedAt> rdfs:label "Changed At"@en ; rdfs:comment "Records the changed at for a Order Status Event as a date-time value."@en .
+<http://example.org/ontology/ecommerce#eventOrder> rdfs:label "Event Order"@en ; rdfs:comment "Links a Order Status Event to a Order Task."@en .
+<http://example.org/ontology/ecommerce#fromStatus> rdfs:label "From Status"@en ; rdfs:comment "Records the from status for a Order Status Event as a string value."@en .
+<http://example.org/ontology/ecommerce#handledBy> rdfs:label "Handled By"@en ; rdfs:comment "Links a Order Task to a Recommendation Agent."@en .
+<http://example.org/ontology/ecommerce#hasStatusEvent> rdfs:label "Has Status Event"@en ; rdfs:comment "Links a Order Task to a Order Status Event."@en .
+<http://example.org/ontology/ecommerce#includesProduct> rdfs:label "Includes Product"@en ; rdfs:comment "Links a Order Task to a Product."@en .
+<http://example.org/ontology/ecommerce#orderStatus> rdfs:comment "Records the order status for a Order Task as a string value."@en .
+<http://example.org/ontology/ecommerce#price> rdfs:comment "Records the price for a Product as a decimal value."@en .
+<http://example.org/ontology/ecommerce#priceCurrency> rdfs:label "Price Currency"@en ; rdfs:comment "Records the price currency for a Product as a string value."@en .
+<http://example.org/ontology/ecommerce#priceCurrencyStatus> rdfs:label "Price Currency Status"@en ; rdfs:comment "Records the price currency status for a Product as a string value."@en .
+<http://example.org/ontology/ecommerce#productId> rdfs:comment "Records the product id for a Product as a string value."@en .
+<http://example.org/ontology/ecommerce#recommends> rdfs:label "Recommends"@en ; rdfs:comment "Links a Customer Session to a Product."@en .
+<http://example.org/ontology/ecommerce#toStatus> rdfs:label "To Status"@en ; rdfs:comment "Records the to status for a Order Status Event as a string value."@en .
+
+# Korean definitions for order contents and status event history.
+ecom:changedAt rdfs:comment "한 주문 상태 변경이 발생한 시각을 시간대가 포함된 날짜·시간 값으로 기록한다."@ko .
+ecom:eventOrder rdfs:comment "상태 변경 이벤트가 대상으로 삼은 주문 처리 실행을 연결한다."@ko .
+ecom:fromStatus rdfs:comment "주문 상태 변경 이벤트 직전의 상태 코드를 기록한다. 허용 전이는 SHACL에서 검사한다."@ko .
+ecom:handledBy rdfs:comment "주문 처리 실행을 담당한 추천 에이전트를 연결한다."@ko .
+ecom:hasStatusEvent rdfs:comment "주문 처리 실행에 속하는 상태 변경 이력의 각 이벤트를 연결한다."@ko .
+ecom:includesProduct rdfs:comment "주문 처리 실행에 포함된 카탈로그 상품을 연결한다. 수량과 결제 정보는 이 관계에서 추정하지 않는다."@ko .
+ecom:orderStatus rdfs:comment "주문 처리 실행의 현재 상태 코드를 기록한다. 변경 시점과 이전 상태는 이벤트 이력에 별도 기록한다."@ko .
+ecom:productId rdfs:comment "출처 상품 카탈로그에서 사용하는 상품 식별 문자열을 기록한다."@ko .
+ecom:recommends rdfs:comment "고객 탐색 세션에서 추천된 카탈로그 상품을 연결한다. 이 관계만으로 주문이나 구매가 발생했다고 간주하지 않는다."@ko .
+ecom:toStatus rdfs:comment "주문 상태 변경 이벤트 직후의 상태 코드를 기록한다. 이전 상태와의 허용 전이는 SHACL에서 검사한다."@ko .

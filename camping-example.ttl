@@ -1,0 +1,82 @@
+@prefix camping: <https://example.org/ontology/camping#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+camping:ForestEdgeCampground a camping:Campground ;
+    rdfs:label "숲가장자리 야영장"@ko, "Forest Edge Campground"@en ;
+    camping:hasCampsite camping:CreeksideSite, camping:HilltopSite .
+
+camping:CreeksideSite a camping:Campsite ;
+    rdfs:label "계곡 옆 사이트 12"@ko, "Creekside Site 12"@en ;
+    camping:siteCapacity 4 ;
+    camping:belongsToCampground camping:ForestEdgeCampground .
+
+camping:HilltopSite a camping:Campsite ;
+    rdfs:label "언덕 사이트 3"@ko, "Hilltop Site 3"@en ;
+    camping:siteCapacity 6 ;
+    camping:belongsToCampground camping:ForestEdgeCampground .
+
+camping:Camper_Jiwoo a camping:Camper ;
+    rdfs:label "지우"@ko, "Jiwoo"@en .
+
+camping:Camper_Hana a camping:Camper ;
+    rdfs:label "하나"@ko, "Hana"@en .
+
+camping:AutumnWeekendReservation a camping:Reservation ;
+    rdfs:label "가을 주말 계곡 사이트 예약"@ko, "Autumn Weekend Creekside Booking"@en ;
+    camping:reservationStatus "CONFIRMED" ;
+    camping:reservationForSite camping:CreeksideSite .
+
+camping:FamilyWeekendTrip a camping:CampingTrip ;
+    rdfs:label "가을 숲가장자리 주말 캠핑"@ko, "Autumn Forest Edge Weekend Camping"@en ;
+    camping:tripStartDate "2026-10-17"^^xsd:date ;
+    camping:tripEndDate "2026-10-19"^^xsd:date ;
+    camping:tripDestination camping:ForestEdgeCampground ;
+    camping:tripHasParticipant camping:Camper_Jiwoo, camping:Camper_Hana ;
+    camping:tripHasReservation camping:AutumnWeekendReservation ;
+    camping:tripHasPackingList camping:WeekendPackingList ;
+    camping:tripHasActivity camping:ForestHike, camping:CampfireCooking .
+
+camping:FourPersonTent a camping:CampingEquipment ;
+    rdfs:label "4인용 방수 텐트"@ko, "Four-person Waterproof Tent"@en ;
+    camping:equipmentCategory "shelter" ;
+    camping:equipmentWeightKg "4.80"^^xsd:decimal .
+
+camping:Lantern a camping:CampingEquipment ;
+    rdfs:label "충전식 랜턴"@ko, "Rechargeable Lantern"@en ;
+    camping:equipmentCategory "lighting" ;
+    camping:equipmentWeightKg "0.42"^^xsd:decimal .
+
+camping:CookingSet a camping:CampingEquipment ;
+    rdfs:label "휴대용 취사 도구 세트"@ko, "Portable Cooking Set"@en ;
+    camping:equipmentCategory "cooking" ;
+    camping:equipmentWeightKg "1.35"^^xsd:decimal .
+
+camping:WeekendPackingList a camping:PackingList ;
+    rdfs:label "주말 캠핑 공용 준비물"@ko, "Shared Weekend Camping Checklist"@en ;
+    camping:listHasItem camping:Packing_Tent, camping:Packing_Lantern, camping:Packing_CookingSet .
+
+camping:Packing_Tent a camping:PackingListItem ;
+    rdfs:label "텐트 1동"@ko, "One Tent"@en ;
+    camping:itemEquipment camping:FourPersonTent ;
+    camping:itemQuantity 1 .
+
+camping:Packing_Lantern a camping:PackingListItem ;
+    rdfs:label "랜턴 2개"@ko, "Two Lanterns"@en ;
+    camping:itemEquipment camping:Lantern ;
+    camping:itemQuantity 2 .
+
+camping:Packing_CookingSet a camping:PackingListItem ;
+    rdfs:label "취사 도구 세트 1개"@ko, "One Cooking Set"@en ;
+    camping:itemEquipment camping:CookingSet ;
+    camping:itemQuantity 1 .
+
+camping:ForestHike a camping:CampActivity ;
+    rdfs:label "숲길 아침 하이킹"@ko, "Morning Forest Trail Hike"@en ;
+    camping:activityCategory "hiking" ;
+    camping:activityDate "2026-10-18"^^xsd:date .
+
+camping:CampfireCooking a camping:CampActivity ;
+    rdfs:label "저녁 야외 요리"@ko, "Evening Outdoor Cooking"@en ;
+    camping:activityCategory "cooking" ;
+    camping:activityDate "2026-10-17"^^xsd:date .

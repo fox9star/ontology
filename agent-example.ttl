@@ -1,0 +1,105 @@
+@prefix ag:   <https://example.org/agent#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# agent.md의 조사 -> 작성 -> 검수 사례를 실행 가능한 인스턴스로 확장했다.
+ag:project01 a ag:Project ;
+    ag:goal "출처를 확인할 수 있는 짧은 설명 글 작성" ;
+    ag:hasTask ag:researchTask, ag:draftTask, ag:reviewTask ;
+    ag:hasAssignment ag:researchAssignment, ag:writerAssignment,
+                     ag:reviewAssignment ;
+    ag:hasFinalArtifact ag:articleV1 .
+
+ag:researchAgent a ag:Agent, ag:SoftwareAgent ;
+    ag:version "1.0" ; ag:hasCapability ag:searchCapability .
+ag:writerAgent a ag:Agent, ag:SoftwareAgent ;
+    ag:version "1.0" ; ag:hasCapability ag:writingCapability .
+ag:reviewAgent a ag:Agent, ag:SoftwareAgent ;
+    ag:version "1.0" ; ag:hasCapability ag:reviewCapability .
+
+ag:searchCapability a ag:Capability .
+ag:writingCapability a ag:Capability .
+ag:reviewCapability a ag:Capability .
+ag:researchRole a ag:Role .
+ag:writerRole a ag:Role .
+ag:reviewRole a ag:Role .
+
+ag:researchAssignment a ag:AgentAssignment ;
+    ag:assignmentAgent ag:researchAgent ; ag:assignmentRole ag:researchRole .
+ag:writerAssignment a ag:AgentAssignment ;
+    ag:assignmentAgent ag:writerAgent ; ag:assignmentRole ag:writerRole .
+ag:reviewAssignment a ag:AgentAssignment ;
+    ag:assignmentAgent ag:reviewAgent ; ag:assignmentRole ag:reviewRole .
+
+ag:researchTask a ag:Task ;
+    ag:taskObjective "근거 자료 조사" ;
+    ag:assignedTo ag:researchAgent ;
+    ag:requiresCapability ag:searchCapability ;
+    ag:acceptanceCriteria "주요 주장에 대응하는 근거를 기록한다" .
+ag:draftTask a ag:Task ;
+    ag:taskObjective "근거를 바탕으로 글 초안 작성" ;
+    ag:assignedTo ag:writerAgent ;
+    ag:requiresCapability ag:writingCapability ;
+    ag:dependsOn ag:researchTask ;
+    ag:acceptanceCriteria "주요 주장마다 출처를 표시한다" .
+ag:reviewTask a ag:Task ;
+    ag:taskObjective "초안의 주장과 출처 검수" ;
+    ag:assignedTo ag:reviewAgent ;
+    ag:requiresCapability ag:reviewCapability ;
+    ag:dependsOn ag:draftTask ;
+    ag:acceptanceCriteria "모든 핵심 주장에 근거가 대응한다" .
+
+ag:researchRun01 a ag:TaskRun ;
+    ag:implementsTask ag:researchTask ;
+    ag:status "completed" ;
+    ag:toolVersion "search-1.0" ;
+    prov:wasAssociatedWith ag:researchAgent ;
+    prov:startedAtTime "2026-09-16T09:00:00+09:00"^^xsd:dateTime ;
+    prov:endedAtTime "2026-09-16T09:05:00+09:00"^^xsd:dateTime ;
+    ag:hasHandoff ag:handoff01 .
+
+ag:notesV1 a ag:Artifact ;
+    ag:artifactUri <https://example.org/files/notes-v1.md> ;
+    ag:artifactType "text/markdown" ;
+    ag:version "1" ;
+    prov:wasGeneratedBy ag:researchRun01 .
+
+ag:handoff01 a ag:Handoff ;
+    ag:toTask ag:draftTask ;
+    ag:toAgent ag:writerAgent ;
+    ag:containsArtifact ag:notesV1 ;
+    ag:acceptanceCriteria "주요 주장마다 출처를 표시한다" ;
+    prov:wasGeneratedBy ag:researchRun01 .
+
+ag:draftRun01 a ag:TaskRun ;
+    ag:implementsTask ag:draftTask ;
+    ag:status "completed" ;
+    ag:toolVersion "writer-1.0" ;
+    prov:wasAssociatedWith ag:writerAgent ;
+    prov:used ag:handoff01, ag:notesV1 ;
+    prov:startedAtTime "2026-09-16T09:06:00+09:00"^^xsd:dateTime ;
+    prov:endedAtTime "2026-09-16T09:12:00+09:00"^^xsd:dateTime .
+
+ag:articleV1 a ag:Artifact ;
+    ag:artifactUri <https://example.org/files/article-v1.md> ;
+    ag:artifactType "text/markdown" ;
+    ag:version "1" ;
+    prov:wasGeneratedBy ag:draftRun01 ;
+    prov:wasDerivedFrom ag:notesV1 .
+
+ag:reviewRun01 a ag:TaskRun, ag:ReviewRun ;
+    ag:implementsTask ag:reviewTask ;
+    ag:status "completed" ;
+    ag:toolVersion "reviewer-1.0" ;
+    prov:wasAssociatedWith ag:reviewAgent ;
+    prov:used ag:articleV1 ;
+    ag:reviews ag:articleV1 ;
+    ag:hasDecision ag:decision01 ;
+    prov:startedAtTime "2026-09-16T09:13:00+09:00"^^xsd:dateTime ;
+    prov:endedAtTime "2026-09-16T09:17:00+09:00"^^xsd:dateTime .
+
+ag:decision01 a ag:ReviewDecision ;
+    ag:decisionAbout ag:articleV1 ;
+    ag:decision "approved" ;
+    ag:reason "주장과 출처의 대응을 확인함" ;
+    prov:wasGeneratedBy ag:reviewRun01 .

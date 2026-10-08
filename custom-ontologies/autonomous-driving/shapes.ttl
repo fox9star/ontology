@@ -1,0 +1,862 @@
+@prefix ad: <https://example.org/ontology/custom/autonomous-driving#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ad:AutomationLevelShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Shape_documentedBy,
+        ad:Shape_levelLabel,
+        ad:Shape_levelNote,
+        ad:Shape_levelNumber,
+        ad:Shape_levelScope ;
+    sh:targetClass ad:AutomationLevel .
+
+ad:AutonomousDrivingSystemShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Shape_documentedBy,
+        ad:Shape_hasAutomationLevel,
+        ad:Shape_hasDocumentationSource,
+        ad:Shape_hasDrivingFeature,
+        ad:Shape_hasOperationalDesignDomain,
+        ad:Shape_hasRoadMap,
+        ad:Shape_hasRoute,
+        ad:Shape_hasSafetyFunction,
+        ad:Shape_hasScenario,
+        ad:Shape_hasSensor,
+        ad:Shape_hasSoftwareModule,
+        ad:Shape_hasTestRun,
+        ad:Shape_hasTrajectory,
+        ad:Shape_hasVehicle,
+        ad:Shape_systemNote,
+        ad:Shape_systemPurpose,
+        ad:Shape_systemRecordKind ;
+    sh:targetClass ad:AutonomousDrivingSystem .
+
+ad:DocumentationSourceShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Shape_documentedBy,
+        ad:Shape_sourceAccessedAt,
+        ad:Shape_sourceClaim,
+        ad:Shape_sourceLanguage,
+        ad:Shape_sourcePublisher,
+        ad:Shape_sourceTitle,
+        ad:Shape_sourceUri ;
+    sh:targetClass ad:DocumentationSource .
+
+ad:DrivingFeatureShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasDrivingFeature,
+        ad:Shape_documentedBy,
+        ad:Shape_featureAutomationLevel,
+        ad:Shape_featureKind,
+        ad:Shape_featureName,
+        ad:Shape_featureNote,
+        ad:Shape_featureODD,
+        ad:Shape_featureUsesModule ;
+    sh:sparql ad:Constraint_FeatureReferencesInSystem ;
+    sh:targetClass ad:DrivingFeature .
+
+ad:OperationalDesignDomainShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasOperationalDesignDomain,
+        ad:Shape_documentedBy,
+        ad:Shape_environmentCondition,
+        ad:Shape_geographicArea,
+        ad:Shape_maxSpeedKph,
+        ad:Shape_oddName,
+        ad:Shape_oddNote,
+        ad:Shape_roadwayType ;
+    sh:targetClass ad:OperationalDesignDomain .
+
+ad:RoadActorShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Shape_actorKind,
+        ad:Shape_actorMotion,
+        ad:Shape_actorName,
+        ad:Shape_actorVehicle,
+        ad:Shape_documentedBy ;
+    sh:targetClass ad:RoadActor .
+
+ad:RoadMapShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasRoadMap,
+        ad:Shape_documentedBy,
+        ad:Shape_mapCoverage,
+        ad:Shape_mapFormat,
+        ad:Shape_mapName,
+        ad:Shape_mapNote ;
+    sh:targetClass ad:RoadMap .
+
+ad:RouteShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasRoute,
+        ad:Shape_documentedBy,
+        ad:Shape_routeEnd,
+        ad:Shape_routeMap,
+        ad:Shape_routeName,
+        ad:Shape_routeNote,
+        ad:Shape_routeStart ;
+    sh:sparql ad:Constraint_RouteMapInSystem ;
+    sh:targetClass ad:Route .
+
+ad:SafetyFunctionShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasSafetyFunction,
+        ad:Shape_documentedBy,
+        ad:Shape_monitorsODD,
+        ad:Shape_responseAction,
+        ad:Shape_safetyFunctionKind,
+        ad:Shape_safetyFunctionName,
+        ad:Shape_safetyFunctionNote,
+        ad:Shape_safetyFunctionStatus ;
+    sh:sparql ad:Constraint_SafetyFunctionODDInSystem ;
+    sh:targetClass ad:SafetyFunction .
+
+ad:ScenarioShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasScenario,
+        ad:Shape_documentedBy,
+        ad:Shape_hasRoadActor,
+        ad:Shape_scenarioKind,
+        ad:Shape_scenarioName,
+        ad:Shape_scenarioNote,
+        ad:Shape_scenarioODD,
+        ad:Shape_scenarioRoute ;
+    sh:sparql ad:Constraint_ScenarioReferencesInSystem ;
+    sh:targetClass ad:Scenario .
+
+ad:SensorShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasSensor,
+        ad:Shape_documentedBy,
+        ad:Shape_mountedOnVehicle,
+        ad:Shape_sensorModality,
+        ad:Shape_sensorName,
+        ad:Shape_sensorPurpose ;
+    sh:sparql ad:Constraint_SensorMountedOnSystemVehicle ;
+    sh:targetClass ad:Sensor .
+
+ad:SoftwareModuleShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasSoftwareModule,
+        ad:Shape_dependsOnModule,
+        ad:Shape_documentedBy,
+        ad:Shape_moduleInput,
+        ad:Shape_moduleKind,
+        ad:Shape_moduleName,
+        ad:Shape_moduleNote,
+        ad:Shape_moduleOutput,
+        ad:Shape_modulePurpose ;
+    sh:sparql ad:Constraint_ModuleDependenciesInSystem,
+        ad:Constraint_ModuleDependencyAcyclic ;
+    sh:targetClass ad:SoftwareModule .
+
+ad:TestRunShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasTestRun,
+        ad:Shape_documentedBy,
+        ad:Shape_testDate,
+        ad:Shape_testEnvironment,
+        ad:Shape_testEvidenceUri,
+        ad:Shape_testName,
+        ad:Shape_testNote,
+        ad:Shape_testResult,
+        ad:Shape_testStatus,
+        ad:Shape_testsScenario ;
+    sh:sparql ad:Constraint_CompletedTestHasEvidence,
+        ad:Constraint_TestRunScenarioInSystem ;
+    sh:targetClass ad:TestRun .
+
+ad:TrajectoryShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasTrajectory,
+        ad:Shape_documentedBy,
+        ad:Shape_trajectoryForRoute,
+        ad:Shape_trajectoryGeneratedBy,
+        ad:Shape_trajectoryName,
+        ad:Shape_trajectoryNote,
+        ad:Shape_trajectoryStatus ;
+    sh:sparql ad:Constraint_TrajectoryReferencesInSystem ;
+    sh:targetClass ad:Trajectory .
+
+ad:VehicleShape a sh:NodeShape ;
+    sh:node ad:LabelShape ;
+    sh:property ad:Owner_hasVehicle,
+        ad:Shape_documentedBy,
+        ad:Shape_powertrainType,
+        ad:Shape_vehicleKind,
+        ad:Shape_vehicleName,
+        ad:Shape_vehicleNote ;
+    sh:targetClass ad:Vehicle .
+
+ad:Constraint_CompletedTestHasEvidence sh:message "완료된 시험은 날짜와 확인 가능한 증거 URI를 기록해야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { $this ad:testStatus "completed" . FILTER (NOT EXISTS { $this ad:testEvidenceUri ?uri } || NOT EXISTS { $this ad:testDate ?date }) }""" .
+
+ad:Constraint_FeatureReferencesInSystem sh:message "기능의 ODD·모듈·선택 수준은 해당 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasDrivingFeature $this . { $this ad:featureODD ?odd . FILTER NOT EXISTS { ?system ad:hasOperationalDesignDomain ?odd } } UNION { $this ad:featureUsesModule ?module . FILTER NOT EXISTS { ?system ad:hasSoftwareModule ?module } } UNION { $this ad:featureAutomationLevel ?level . FILTER NOT EXISTS { ?system ad:hasAutomationLevel ?level } } }""" .
+
+ad:Constraint_ModuleDependenciesInSystem sh:message "모듈 의존성은 같은 시스템의 모듈을 가리켜야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasSoftwareModule $this . $this ad:dependsOnModule ?module . FILTER NOT EXISTS { ?system ad:hasSoftwareModule ?module } }""" .
+
+ad:Constraint_ModuleDependencyAcyclic sh:message "소프트웨어 모듈 의존성은 순환할 수 없습니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { $this ad:dependsOnModule+ $this . }""" .
+
+ad:Constraint_RouteMapInSystem sh:message "경로가 참조하는 지도는 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasRoute $this . $this ad:routeMap ?map . FILTER NOT EXISTS { ?system ad:hasRoadMap ?map } }""" .
+
+ad:Constraint_SafetyFunctionODDInSystem sh:message "안전 기능이 감시하는 ODD는 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasSafetyFunction $this . $this ad:monitorsODD ?odd . FILTER NOT EXISTS { ?system ad:hasOperationalDesignDomain ?odd } }""" .
+
+ad:Constraint_ScenarioReferencesInSystem sh:message "시나리오의 ODD·경로·도로 행위자는 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasScenario $this . { $this ad:scenarioODD ?odd . FILTER NOT EXISTS { ?system ad:hasOperationalDesignDomain ?odd } } UNION { $this ad:scenarioRoute ?route . FILTER NOT EXISTS { ?system ad:hasRoute ?route } } UNION { $this ad:hasRoadActor ?actor . FILTER NOT EXISTS { ?system ad:hasScenario ?otherScenario . ?otherScenario ad:hasRoadActor ?actor } } }""" .
+
+ad:Constraint_SensorMountedOnSystemVehicle sh:message "센서는 같은 시스템의 차량에 장착되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasSensor $this . $this ad:mountedOnVehicle ?vehicle . FILTER NOT EXISTS { ?system ad:hasVehicle ?vehicle } }""" .
+
+ad:Constraint_TestRunScenarioInSystem sh:message "시험 시나리오는 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { ?system ad:hasTestRun $this . $this ad:testsScenario ?scenario . FILTER NOT EXISTS { ?system ad:hasScenario ?scenario } }""" .
+
+ad:Constraint_TrajectoryReferencesInSystem sh:message "궤적의 경로와 생성 모듈은 같은 시스템에 포함되어야 합니다."@ko ;
+    sh:select """PREFIX ad: <https://example.org/ontology/custom/autonomous-driving#>
+SELECT $this WHERE { $this ad:trajectoryForRoute ?route ; ad:trajectoryGeneratedBy ?module . ?routeOwner ad:hasRoute ?route . ?moduleOwner ad:hasSoftwareModule ?module . FILTER (?routeOwner != ?moduleOwner) }""" .
+
+ad:LabelPropertyShape sh:datatype rdf:langString ;
+    sh:minCount 2 ;
+    sh:path rdfs:label ;
+    sh:uniqueLang true .
+
+ad:Owner_hasDrivingFeature sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasDrivingFeature ] .
+
+ad:Owner_hasOperationalDesignDomain sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasOperationalDesignDomain ] .
+
+ad:Owner_hasRoadMap sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasRoadMap ] .
+
+ad:Owner_hasRoute sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasRoute ] .
+
+ad:Owner_hasSafetyFunction sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasSafetyFunction ] .
+
+ad:Owner_hasScenario sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasScenario ] .
+
+ad:Owner_hasSensor sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasSensor ] .
+
+ad:Owner_hasSoftwareModule sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasSoftwareModule ] .
+
+ad:Owner_hasTestRun sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasTestRun ] .
+
+ad:Owner_hasTrajectory sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasTrajectory ] .
+
+ad:Owner_hasVehicle sh:class ad:AutonomousDrivingSystem ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:path [ sh:inversePath ad:hasVehicle ] .
+
+ad:Shape_actorKind sh:datatype xsd:string ;
+    sh:in ( "ego_vehicle"^^xsd:string "vehicle"^^xsd:string "pedestrian"^^xsd:string "cyclist"^^xsd:string "traffic_signal"^^xsd:string "static_obstacle"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "행위자 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:actorKind .
+
+ad:Shape_actorMotion sh:datatype xsd:string ;
+    sh:in ( "moving"^^xsd:string "stationary"^^xsd:string "traffic_control"^^xsd:string "unspecified"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "행위자 동작를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:actorMotion .
+
+ad:Shape_actorName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "행위자 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:actorName .
+
+ad:Shape_actorVehicle sh:class ad:Vehicle ;
+    sh:maxCount 1 ;
+    sh:message "관련 표현 차량 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:actorVehicle .
+
+ad:Shape_dependsOnModule sh:class ad:SoftwareModule ;
+    sh:message "관련 의존 모듈 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:dependsOnModule .
+
+ad:Shape_environmentCondition sh:datatype xsd:string ;
+    sh:in ( "daylight"^^xsd:string "night"^^xsd:string "dry"^^xsd:string "rain"^^xsd:string "snow"^^xsd:string "fog"^^xsd:string "geofenced"^^xsd:string "construction"^^xsd:string ) ;
+    sh:message "환경 조건를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:environmentCondition .
+
+ad:Shape_featureAutomationLevel sh:class ad:AutomationLevel ;
+    sh:maxCount 1 ;
+    sh:message "관련 기능 자동화 수준 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:featureAutomationLevel .
+
+ad:Shape_featureKind sh:datatype xsd:string ;
+    sh:in ( "driver_support"^^xsd:string "automated_driving"^^xsd:string "parking"^^xsd:string "remote_assistance"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "기능 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:featureKind .
+
+ad:Shape_featureName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "기능 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:featureName .
+
+ad:Shape_featureNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "기능 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:featureNote .
+
+ad:Shape_featureODD sh:class ad:OperationalDesignDomain ;
+    sh:maxCount 1 ;
+    sh:message "관련 기능의 운행설계영역 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:featureODD .
+
+ad:Shape_featureUsesModule sh:class ad:SoftwareModule ;
+    sh:message "관련 기능 소프트웨어 모듈 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:featureUsesModule .
+
+ad:Shape_geographicArea sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "지리 범위를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:geographicArea .
+
+ad:Shape_hasAutomationLevel sh:class ad:AutomationLevel ;
+    sh:message "관련 자동화 수준 용어 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasAutomationLevel .
+
+ad:Shape_hasDocumentationSource sh:class ad:DocumentationSource ;
+    sh:message "관련 문서 출처 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasDocumentationSource .
+
+ad:Shape_hasDrivingFeature sh:class ad:DrivingFeature ;
+    sh:message "관련 주행 기능 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasDrivingFeature .
+
+ad:Shape_hasOperationalDesignDomain sh:class ad:OperationalDesignDomain ;
+    sh:message "관련 운행설계영역 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasOperationalDesignDomain .
+
+ad:Shape_hasRoadActor sh:class ad:RoadActor ;
+    sh:message "관련 도로 행위자 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasRoadActor .
+
+ad:Shape_hasRoadMap sh:class ad:RoadMap ;
+    sh:message "관련 도로 지도 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasRoadMap .
+
+ad:Shape_hasRoute sh:class ad:Route ;
+    sh:message "관련 경로 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasRoute .
+
+ad:Shape_hasSafetyFunction sh:class ad:SafetyFunction ;
+    sh:message "관련 안전 기능 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasSafetyFunction .
+
+ad:Shape_hasScenario sh:class ad:Scenario ;
+    sh:message "관련 시나리오 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasScenario .
+
+ad:Shape_hasSensor sh:class ad:Sensor ;
+    sh:message "관련 센서 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasSensor .
+
+ad:Shape_hasSoftwareModule sh:class ad:SoftwareModule ;
+    sh:message "관련 소프트웨어 모듈 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasSoftwareModule .
+
+ad:Shape_hasTestRun sh:class ad:TestRun ;
+    sh:message "관련 시험 실행 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasTestRun .
+
+ad:Shape_hasTrajectory sh:class ad:Trajectory ;
+    sh:message "관련 궤적 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasTrajectory .
+
+ad:Shape_hasVehicle sh:class ad:Vehicle ;
+    sh:message "관련 차량 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:hasVehicle .
+
+ad:Shape_levelLabel sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "수준 명칭를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:levelLabel .
+
+ad:Shape_levelNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "수준 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:levelNote .
+
+ad:Shape_levelNumber sh:datatype xsd:integer ;
+    sh:maxCount 1 ;
+    sh:maxInclusive 5 ;
+    sh:message "수준 번호를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:minInclusive 0 ;
+    sh:path ad:levelNumber .
+
+ad:Shape_levelScope sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "분류 범위를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:levelScope .
+
+ad:Shape_mapCoverage sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "지도 범위를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:mapCoverage .
+
+ad:Shape_mapFormat sh:datatype xsd:string ;
+    sh:in ( "lanelet2"^^xsd:string "pointcloud"^^xsd:string "raster"^^xsd:string "vector_map"^^xsd:string "other"^^xsd:string ) ;
+    sh:message "지도 형식를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:mapFormat .
+
+ad:Shape_mapName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "지도 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:mapName .
+
+ad:Shape_mapNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "지도 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:mapNote .
+
+ad:Shape_maxSpeedKph sh:datatype xsd:integer ;
+    sh:maxCount 1 ;
+    sh:message "최대 운행 속도 km/h를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:minInclusive 1 ;
+    sh:path ad:maxSpeedKph .
+
+ad:Shape_moduleInput sh:datatype xsd:string ;
+    sh:message "입력 데이터를 기록하거나 구분한다."@ko ;
+    sh:path ad:moduleInput .
+
+ad:Shape_moduleKind sh:datatype xsd:string ;
+    sh:in ( "sensing"^^xsd:string "perception"^^xsd:string "localization"^^xsd:string "planning"^^xsd:string "control"^^xsd:string "vehicle_interface"^^xsd:string "safety_monitor"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "모듈 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:moduleKind .
+
+ad:Shape_moduleName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "모듈 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:moduleName .
+
+ad:Shape_moduleNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "모듈 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:moduleNote .
+
+ad:Shape_moduleOutput sh:datatype xsd:string ;
+    sh:message "출력 데이터를 기록하거나 구분한다."@ko ;
+    sh:path ad:moduleOutput .
+
+ad:Shape_modulePurpose sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "모듈 목적를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:modulePurpose .
+
+ad:Shape_monitorsODD sh:class ad:OperationalDesignDomain ;
+    sh:maxCount 1 ;
+    sh:message "관련 감시 운행설계영역 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:monitorsODD .
+
+ad:Shape_mountedOnVehicle sh:class ad:Vehicle ;
+    sh:maxCount 1 ;
+    sh:message "관련 장착 차량 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:mountedOnVehicle .
+
+ad:Shape_oddName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "운행설계영역 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:oddName .
+
+ad:Shape_oddNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "운행설계영역 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:oddNote .
+
+ad:Shape_powertrainType sh:datatype xsd:string ;
+    sh:in ( "electric"^^xsd:string "hybrid"^^xsd:string "combustion"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "동력계 종류를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:powertrainType .
+
+ad:Shape_responseAction sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "대응 동작를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:responseAction .
+
+ad:Shape_roadwayType sh:datatype xsd:string ;
+    sh:in ( "private_campus"^^xsd:string "urban"^^xsd:string "highway"^^xsd:string "rural"^^xsd:string "indoor"^^xsd:string "mixed"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "도로 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:roadwayType .
+
+ad:Shape_routeEnd sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "경로 종점를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:routeEnd .
+
+ad:Shape_routeMap sh:class ad:RoadMap ;
+    sh:maxCount 1 ;
+    sh:message "관련 경로 지도 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:routeMap .
+
+ad:Shape_routeName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "경로 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:routeName .
+
+ad:Shape_routeNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "경로 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:routeNote .
+
+ad:Shape_routeStart sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "경로 시작점를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:routeStart .
+
+ad:Shape_safetyFunctionKind sh:datatype xsd:string ;
+    sh:in ( "odd_monitoring"^^xsd:string "object_event_response"^^xsd:string "minimal_risk_fallback"^^xsd:string "manual_disengagement"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "안전 기능 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:safetyFunctionKind .
+
+ad:Shape_safetyFunctionName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "안전 기능 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:safetyFunctionName .
+
+ad:Shape_safetyFunctionNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "안전 기능 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:safetyFunctionNote .
+
+ad:Shape_safetyFunctionStatus sh:datatype xsd:string ;
+    sh:in ( "conceptual"^^xsd:string "planned"^^xsd:string "implemented_unverified"^^xsd:string "verified"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "기능 구현 상태를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:safetyFunctionStatus .
+
+ad:Shape_scenarioKind sh:datatype xsd:string ;
+    sh:in ( "pedestrian_crossing"^^xsd:string "intersection"^^xsd:string "lane_change"^^xsd:string "merging"^^xsd:string "emergency_stop"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "시나리오 유형를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:scenarioKind .
+
+ad:Shape_scenarioName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시나리오 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:scenarioName .
+
+ad:Shape_scenarioNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시나리오 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:scenarioNote .
+
+ad:Shape_scenarioODD sh:class ad:OperationalDesignDomain ;
+    sh:maxCount 1 ;
+    sh:message "관련 시나리오 운행설계영역 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:scenarioODD .
+
+ad:Shape_scenarioRoute sh:class ad:Route ;
+    sh:maxCount 1 ;
+    sh:message "관련 시나리오 경로 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:scenarioRoute .
+
+ad:Shape_sensorModality sh:datatype xsd:string ;
+    sh:in ( "camera"^^xsd:string "lidar"^^xsd:string "radar"^^xsd:string "gnss_imu"^^xsd:string "wheel_odometry"^^xsd:string "ultrasonic"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "센서 방식를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sensorModality .
+
+ad:Shape_sensorName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "센서 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sensorName .
+
+ad:Shape_sensorPurpose sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "센서 용도를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sensorPurpose .
+
+ad:Shape_sourceAccessedAt sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:message "확인 날짜를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourceAccessedAt .
+
+ad:Shape_sourceClaim sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "근거 범위를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourceClaim .
+
+ad:Shape_sourceLanguage sh:datatype xsd:string ;
+    sh:in ( "en"^^xsd:string "ko"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "문서 언어를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourceLanguage .
+
+ad:Shape_sourcePublisher sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "문서 제공자를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourcePublisher .
+
+ad:Shape_sourceTitle sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "문서 제목를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourceTitle .
+
+ad:Shape_sourceUri sh:datatype xsd:anyURI ;
+    sh:maxCount 1 ;
+    sh:message "문서 주소를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:sourceUri ;
+    sh:pattern "^(https?://|urn:)[^\\s]+$" .
+
+ad:Shape_systemNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시스템 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:systemNote .
+
+ad:Shape_systemPurpose sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시스템 목적를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:systemPurpose .
+
+ad:Shape_systemRecordKind sh:datatype xsd:string ;
+    sh:in ( "documented"^^xsd:string "synthetic"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "기록 성격를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:systemRecordKind .
+
+ad:Shape_testDate sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:message "시험 날짜를 기록하거나 구분한다."@ko ;
+    sh:path ad:testDate .
+
+ad:Shape_testEnvironment sh:datatype xsd:string ;
+    sh:in ( "simulation"^^xsd:string "closed_track"^^xsd:string "public_road"^^xsd:string "log_replay"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "시험 환경를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:testEnvironment .
+
+ad:Shape_testEvidenceUri sh:datatype xsd:anyURI ;
+    sh:maxCount 1 ;
+    sh:message "시험 증거 URI를 기록하거나 구분한다."@ko ;
+    sh:path ad:testEvidenceUri ;
+    sh:pattern "^(https?://|urn:)[^\\s]+$" .
+
+ad:Shape_testName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시험 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:testName .
+
+ad:Shape_testNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "시험 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:testNote .
+
+ad:Shape_testResult sh:datatype xsd:string ;
+    sh:in ( "not_run"^^xsd:string "pass"^^xsd:string "fail"^^xsd:string "inconclusive"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "시험 결과를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:testResult .
+
+ad:Shape_testStatus sh:datatype xsd:string ;
+    sh:in ( "planned"^^xsd:string "in_progress"^^xsd:string "completed"^^xsd:string "not_run"^^xsd:string "blocked"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "시험 상태를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:testStatus .
+
+ad:Shape_testsScenario sh:class ad:Scenario ;
+    sh:maxCount 1 ;
+    sh:message "관련 시험 시나리오 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:testsScenario .
+
+ad:Shape_trajectoryForRoute sh:class ad:Route ;
+    sh:maxCount 1 ;
+    sh:message "관련 대상 경로 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:trajectoryForRoute .
+
+ad:Shape_trajectoryGeneratedBy sh:class ad:SoftwareModule ;
+    sh:maxCount 1 ;
+    sh:message "관련 생성 모듈 개체를 연결한다."@ko ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:trajectoryGeneratedBy .
+
+ad:Shape_trajectoryName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "궤적 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:trajectoryName .
+
+ad:Shape_trajectoryNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "궤적 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:trajectoryNote .
+
+ad:Shape_trajectoryStatus sh:datatype xsd:string ;
+    sh:in ( "planned"^^xsd:string "generated"^^xsd:string "tracking"^^xsd:string "completed"^^xsd:string "not_run"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "궤적 상태를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:trajectoryStatus .
+
+ad:Shape_vehicleKind sh:datatype xsd:string ;
+    sh:in ( "passenger_car"^^xsd:string "shuttle"^^xsd:string "truck"^^xsd:string "robotaxi"^^xsd:string "other"^^xsd:string ) ;
+    sh:maxCount 1 ;
+    sh:message "차량 종류를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:vehicleKind .
+
+ad:Shape_vehicleName sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "차량 이름를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:vehicleName .
+
+ad:Shape_vehicleNote sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:message "차량 설명를 기록하거나 구분한다."@ko ;
+    sh:minCount 1 ;
+    sh:path ad:vehicleNote .
+
+ad:LabelShape a sh:NodeShape ;
+    sh:property ad:LabelPropertyShape .
+
+ad:Shape_documentedBy sh:class ad:DocumentationSource ;
+    sh:message "관련 문서 근거 개체를 연결한다."@ko ;
+    sh:nodeKind sh:IRI ;
+    sh:path ad:documentedBy .

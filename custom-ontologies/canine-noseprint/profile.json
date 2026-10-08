@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "canine-noseprint",
+  "name": "개의 비문 온톨로지 (canine-noseprint)",
+  "description": "개의 코 관심 영역, 이미지 표본·촬영 조건·품질·전처리·템플릿, 1:1 검증·1:N 식별, 연구 범위별 성능 근거와 데이터 이용 권한을 연결한다. 실제 이미지 없이 합성 메타데이터로 상태를 구분한다.",
+  "name_en": "Canine Nose-Print Ontology",
+  "description_en": "Connects canine nose regions, image samples, capture quality, preprocessing, templates, verification and identification tasks, scoped evidence and data-use permission; its example contains synthetic metadata only.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/canine-noseprint#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T10:58:12+09:00",
+  "schema": "custom-ontologies/canine-noseprint/schema.ttl",
+  "owl": "custom-ontologies/canine-noseprint/schema.owl",
+  "shapes": "custom-ontologies/canine-noseprint/shapes.ttl",
+  "example": "custom-ontologies/canine-noseprint/example.ttl",
+  "questions": "custom-ontologies/canine-noseprint/questions.md",
+  "questions_fixture": "custom-ontologies/canine-noseprint/question-fixture.ttl",
+  "question_answers": "custom-ontologies/canine-noseprint/question-answers.json",
+  "compatibility_cases": "custom-ontologies/canine-noseprint/consumer-cases.trig"
+}

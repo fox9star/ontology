@@ -1,0 +1,428 @@
+{
+  "plans": {
+    "hall-plan": {
+      "label_ko": "가상 실내 결혼식 계획",
+      "label_en": "Fictional hall wedding plan",
+      "record_kind": "synthetic",
+      "status": "draft",
+      "people": [
+        "hall-partner-a",
+        "hall-partner-b",
+        "hall-guest-a",
+        "hall-guest-b"
+      ],
+      "partners": [
+        "hall-partner-a",
+        "hall-partner-b"
+      ],
+      "coordinator": "hall-partner-a",
+      "budget": "2000000",
+      "currency": "KRW",
+      "note": "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다.",
+      "marriage_info_status": "unrecorded",
+      "marriage_date": null,
+      "info_note": null,
+      "info_source": null
+    },
+    "garden-plan": {
+      "label_ko": "가상 정원 결혼식 계획",
+      "label_en": "Fictional garden wedding plan",
+      "record_kind": "synthetic",
+      "status": "draft",
+      "people": [
+        "garden-partner-a",
+        "garden-partner-b",
+        "garden-guest-a",
+        "garden-guest-b"
+      ],
+      "partners": [
+        "garden-partner-a",
+        "garden-partner-b"
+      ],
+      "coordinator": "garden-partner-a",
+      "budget": "1000000",
+      "currency": "KRW",
+      "note": "온톨로지 탐색을 위한 가상 계획이며 실제 결혼·행사·예약·지불 기록이 아닙니다.",
+      "marriage_info_status": "unrecorded",
+      "marriage_date": null,
+      "info_note": null,
+      "info_source": null
+    }
+  },
+  "people": {
+    "hall-partner-a": {
+      "label_ko": "가상 실내 당사자 A",
+      "label_en": "Fictional hall partner A",
+      "plan": "hall-plan",
+      "role": "partner",
+      "contact_alias": "synthetic-hall-partner-a",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "hall-partner-b": {
+      "label_ko": "가상 실내 당사자 B",
+      "label_en": "Fictional hall partner B",
+      "plan": "hall-plan",
+      "role": "partner",
+      "contact_alias": "synthetic-hall-partner-b",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "hall-guest-a": {
+      "label_ko": "가상 실내 초대 대상 A",
+      "label_en": "Fictional hall guest A",
+      "plan": "hall-plan",
+      "role": "guest",
+      "contact_alias": "synthetic-hall-guest-a",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "hall-guest-b": {
+      "label_ko": "가상 실내 초대 대상 B",
+      "label_en": "Fictional hall guest B",
+      "plan": "hall-plan",
+      "role": "guest",
+      "contact_alias": "synthetic-hall-guest-b",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "garden-partner-a": {
+      "label_ko": "가상 정원 당사자 A",
+      "label_en": "Fictional garden partner A",
+      "plan": "garden-plan",
+      "role": "partner",
+      "contact_alias": "synthetic-garden-partner-a",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "garden-partner-b": {
+      "label_ko": "가상 정원 당사자 B",
+      "label_en": "Fictional garden partner B",
+      "plan": "garden-plan",
+      "role": "partner",
+      "contact_alias": "synthetic-garden-partner-b",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "garden-guest-a": {
+      "label_ko": "가상 정원 초대 대상 A",
+      "label_en": "Fictional garden guest A",
+      "plan": "garden-plan",
+      "role": "guest",
+      "contact_alias": "synthetic-garden-guest-a",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    },
+    "garden-guest-b": {
+      "label_ko": "가상 정원 초대 대상 B",
+      "label_en": "Fictional garden guest B",
+      "plan": "garden-plan",
+      "role": "guest",
+      "contact_alias": "synthetic-garden-guest-b",
+      "note": "실제 개인이나 연락처가 없는 가상 인물과 연락용 별칭입니다."
+    }
+  },
+  "ceremonies": {
+    "hall-ceremony": {
+      "label_ko": "가상 실내 결혼식",
+      "label_en": "Fictional hall ceremony",
+      "plan": "hall-plan",
+      "sequence": 1,
+      "kind": "ceremony",
+      "start": "2026-11-15T02:00:00Z",
+      "end": "2026-11-15T03:00:00Z",
+      "venue": "hall-venue",
+      "note": "실제로 예약되거나 개최되지 않은 가상 행사입니다."
+    },
+    "hall-reception": {
+      "label_ko": "가상 실내 피로연",
+      "label_en": "Fictional hall reception",
+      "plan": "hall-plan",
+      "sequence": 2,
+      "kind": "reception",
+      "start": "2026-11-15T03:30:00Z",
+      "end": "2026-11-15T05:00:00Z",
+      "venue": "hall-venue",
+      "note": "실제로 예약되거나 개최되지 않은 가상 행사입니다."
+    },
+    "garden-ceremony": {
+      "label_ko": "가상 정원 결혼식",
+      "label_en": "Fictional garden ceremony",
+      "plan": "garden-plan",
+      "sequence": 1,
+      "kind": "ceremony",
+      "start": "2026-12-01T03:00:00Z",
+      "end": "2026-12-01T04:00:00Z",
+      "venue": "garden-venue",
+      "note": "실제로 예약되거나 개최되지 않은 가상 행사입니다."
+    }
+  },
+  "venues": {
+    "hall-venue": {
+      "label_ko": "가상 실내 행사장",
+      "label_en": "Fictional hall venue",
+      "capacity": 10,
+      "kind": "hall",
+      "location_note": "실제 주소가 없는 가상 실내 행사장입니다."
+    },
+    "garden-venue": {
+      "label_ko": "가상 정원 행사장",
+      "label_en": "Fictional garden venue",
+      "capacity": 4,
+      "kind": "garden",
+      "location_note": "실제 주소가 없는 가상 정원 행사장입니다."
+    }
+  },
+  "invitations": {
+    "hall-invitation-01": {
+      "label_ko": "가상 초대 hall-invitation-01",
+      "label_en": "Fictional invitation hall-invitation-01",
+      "plan": "hall-plan",
+      "person": "hall-guest-a",
+      "event": "hall-ceremony",
+      "status": "accepted",
+      "party_size": 2,
+      "response_at": "2026-10-05T01:00:00Z"
+    },
+    "hall-invitation-02": {
+      "label_ko": "가상 초대 hall-invitation-02",
+      "label_en": "Fictional invitation hall-invitation-02",
+      "plan": "hall-plan",
+      "person": "hall-guest-b",
+      "event": "hall-ceremony",
+      "status": "pending",
+      "party_size": null,
+      "response_at": null
+    },
+    "hall-invitation-03": {
+      "label_ko": "가상 초대 hall-invitation-03",
+      "label_en": "Fictional invitation hall-invitation-03",
+      "plan": "hall-plan",
+      "person": "hall-guest-a",
+      "event": "hall-reception",
+      "status": "accepted",
+      "party_size": 2,
+      "response_at": "2026-10-05T01:00:00Z"
+    },
+    "hall-invitation-04": {
+      "label_ko": "가상 초대 hall-invitation-04",
+      "label_en": "Fictional invitation hall-invitation-04",
+      "plan": "hall-plan",
+      "person": "hall-guest-b",
+      "event": "hall-reception",
+      "status": "pending",
+      "party_size": null,
+      "response_at": null
+    },
+    "garden-invitation-01": {
+      "label_ko": "가상 초대 garden-invitation-01",
+      "label_en": "Fictional invitation garden-invitation-01",
+      "plan": "garden-plan",
+      "person": "garden-guest-a",
+      "event": "garden-ceremony",
+      "status": "accepted",
+      "party_size": 3,
+      "response_at": "2026-10-05T01:00:00Z"
+    },
+    "garden-invitation-02": {
+      "label_ko": "가상 초대 garden-invitation-02",
+      "label_en": "Fictional invitation garden-invitation-02",
+      "plan": "garden-plan",
+      "person": "garden-guest-b",
+      "event": "garden-ceremony",
+      "status": "accepted",
+      "party_size": 2,
+      "response_at": "2026-10-05T01:00:00Z"
+    }
+  },
+  "tasks": {
+    "hall-task-01": {
+      "label_ko": "가상 실내 준비 작업 01",
+      "label_en": "Fictional hall preparation task 01",
+      "plan": "hall-plan",
+      "assignee": "hall-partner-a",
+      "due_at": "2026-11-01T00:00:00Z",
+      "status": "completed",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": "2026-10-05T01:00:00Z",
+      "depends_on": []
+    },
+    "hall-task-02": {
+      "label_ko": "가상 실내 준비 작업 02",
+      "label_en": "Fictional hall preparation task 02",
+      "plan": "hall-plan",
+      "assignee": "hall-partner-a",
+      "due_at": "2026-11-01T00:00:00Z",
+      "status": "in-progress",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": null,
+      "depends_on": [
+        "hall-task-01"
+      ]
+    },
+    "hall-task-03": {
+      "label_ko": "가상 실내 준비 작업 03",
+      "label_en": "Fictional hall preparation task 03",
+      "plan": "hall-plan",
+      "assignee": "hall-partner-a",
+      "due_at": "2026-11-01T00:00:00Z",
+      "status": "planned",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": null,
+      "depends_on": [
+        "hall-task-02"
+      ]
+    },
+    "garden-task-01": {
+      "label_ko": "가상 정원 준비 작업 01",
+      "label_en": "Fictional garden preparation task 01",
+      "plan": "garden-plan",
+      "assignee": "garden-partner-a",
+      "due_at": "2026-11-20T00:00:00Z",
+      "status": "completed",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": "2026-10-05T01:00:00Z",
+      "depends_on": []
+    },
+    "garden-task-02": {
+      "label_ko": "가상 정원 준비 작업 02",
+      "label_en": "Fictional garden preparation task 02",
+      "plan": "garden-plan",
+      "assignee": "garden-partner-a",
+      "due_at": "2026-11-20T00:00:00Z",
+      "status": "planned",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": null,
+      "depends_on": [
+        "garden-task-01"
+      ]
+    },
+    "garden-task-03": {
+      "label_ko": "가상 정원 준비 작업 03",
+      "label_en": "Fictional garden preparation task 03",
+      "plan": "garden-plan",
+      "assignee": "garden-partner-a",
+      "due_at": "2026-11-20T00:00:00Z",
+      "status": "cancelled",
+      "note": "진행 상태와 완료 시각 모두 가상 준비 기록입니다.",
+      "completed_at": null,
+      "depends_on": []
+    }
+  },
+  "bookings": {
+    "hall-booking01": {
+      "label_ko": "가상 예약 hall-booking01",
+      "label_en": "Fictional booking hall-booking01",
+      "plan": "hall-plan",
+      "kind": "venue",
+      "event": "hall-ceremony",
+      "status": "requested",
+      "provider": "가상 실내 장소 제공자",
+      "provider_en": "Fictional hall venue provider",
+      "confirmation_uri": null,
+      "note": "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+      "required": true
+    },
+    "hall-booking02": {
+      "label_ko": "가상 예약 hall-booking02",
+      "label_en": "Fictional booking hall-booking02",
+      "plan": "hall-plan",
+      "kind": "photography",
+      "event": "hall-ceremony",
+      "status": "confirmed",
+      "provider": "가상 실내 사진 서비스 제공자",
+      "provider_en": "Fictional hall photography provider",
+      "confirmation_uri": "urn:synthetic:marriage:hall:photography-confirmation",
+      "note": "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+      "required": true
+    },
+    "garden-booking01": {
+      "label_ko": "가상 예약 garden-booking01",
+      "label_en": "Fictional booking garden-booking01",
+      "plan": "garden-plan",
+      "kind": "venue",
+      "event": "garden-ceremony",
+      "status": "confirmed",
+      "provider": "가상 정원 장소 제공자",
+      "provider_en": "Fictional garden venue provider",
+      "confirmation_uri": "urn:synthetic:marriage:garden:venue-confirmation",
+      "note": "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+      "required": true
+    },
+    "garden-booking02": {
+      "label_ko": "가상 예약 garden-booking02",
+      "label_en": "Fictional booking garden-booking02",
+      "plan": "garden-plan",
+      "kind": "catering",
+      "event": "garden-ceremony",
+      "status": "requested",
+      "provider": "가상 정원 음식 서비스 제공자",
+      "provider_en": "Fictional garden catering provider",
+      "confirmation_uri": null,
+      "note": "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+      "required": true
+    },
+    "garden-booking03": {
+      "label_ko": "가상 예약 garden-booking03",
+      "label_en": "Fictional booking garden-booking03",
+      "plan": "garden-plan",
+      "kind": "transport",
+      "event": "garden-ceremony",
+      "status": "cancelled",
+      "provider": "가상 정원 이동 서비스 제공자",
+      "provider_en": "Fictional garden transport provider",
+      "confirmation_uri": null,
+      "note": "실제 서비스 예약이나 확인 증빙이 아닌 가상 예약 기록입니다.",
+      "required": false
+    }
+  },
+  "expenses": {
+    "hall-expense01": {
+      "label_ko": "가상 비용 hall-expense01",
+      "label_en": "Fictional expense hall-expense01",
+      "plan": "hall-plan",
+      "kind": "venue",
+      "amount": "1500000",
+      "status": "planned",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    },
+    "hall-expense02": {
+      "label_ko": "가상 비용 hall-expense02",
+      "label_en": "Fictional expense hall-expense02",
+      "plan": "hall-plan",
+      "kind": "photography",
+      "amount": "300000",
+      "status": "paid",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    },
+    "hall-expense03": {
+      "label_ko": "가상 비용 hall-expense03",
+      "label_en": "Fictional expense hall-expense03",
+      "plan": "hall-plan",
+      "kind": "attire",
+      "amount": "200000",
+      "status": "cancelled",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    },
+    "garden-expense01": {
+      "label_ko": "가상 비용 garden-expense01",
+      "label_en": "Fictional expense garden-expense01",
+      "plan": "garden-plan",
+      "kind": "venue",
+      "amount": "800000",
+      "status": "planned",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    },
+    "garden-expense02": {
+      "label_ko": "가상 비용 garden-expense02",
+      "label_en": "Fictional expense garden-expense02",
+      "plan": "garden-plan",
+      "kind": "catering",
+      "amount": "400000",
+      "status": "planned",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    },
+    "garden-expense03": {
+      "label_ko": "가상 비용 garden-expense03",
+      "label_en": "Fictional expense garden-expense03",
+      "plan": "garden-plan",
+      "kind": "transport",
+      "amount": "50000",
+      "status": "cancelled",
+      "note": "금액과 지불 상태는 가상 예시이며 실제 가격·거래·지불을 나타내지 않습니다."
+    }
+  }
+}

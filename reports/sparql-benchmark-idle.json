@@ -1,0 +1,1071 @@
+{
+  "created_at": "2026-10-04T17:32:50.581542+00:00",
+  "environment": {
+    "python": "3.13.15",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 158 Stepping 9, GenuineIntel",
+    "cpu_count": 4,
+    "packages": {
+      "rdflib": "7.6.0",
+      "pyshacl": "0.40.1",
+      "owlrl": "7.6.2"
+    },
+    "workload_version": "canonical-mv-archive-v1",
+    "schema_versions": [
+      "1.0.0",
+      "1.1.1",
+      "1.2.1"
+    ],
+    "schema_source_sha256": {
+      "mv-schema.ttl": "75f11d195496874719dc92c2fa0260dd50a1bf4e1e571ac1db25e60a475b843e",
+      "core-schema.ttl": "21b5a06e6cf6342960d01b656d8bf167be4a08dc3fb9209418761a0c9573c00d",
+      "controlled-vocabularies.ttl": "3ec8776c281411609d48828b992ef5e76bdd424d6be2cbd8959b55de1c349e2d",
+      "mv-shapes.ttl": "4e8f971224f1773241227d76af369ebf870e36ff07cd2ca0613c7a069cc10b5f",
+      "core-shapes.ttl": "d490baf80b956edff0e2aff37218281c0642eb0ddc106d3d10c59e62b595bfa2",
+      "property-contract-shapes.ttl": "4eb20cbd7f304eee25ea0d7a72190f151d743c0bfcee04f13d1081feefd70ebf"
+    },
+    "catalog_queries_sha256": "bb721016477a4470d1b42b1b061f3781a0f1b48ff272fc8268cd915b9746b0dd"
+  },
+  "policy": {
+    "warmups": 1,
+    "measured_repetitions": 10,
+    "query_mode": "raw-data-no-inference",
+    "query_preparation": "graph.query text parsing included",
+    "p95_method": "nearest-rank",
+    "memory_method": "one additional tracemalloc query outside timed repetitions; Windows process working set",
+    "validation_mode": "full data graph plus canonical imported schemas; inference none"
+  },
+  "sizes": [
+    {
+      "image_count": 1250,
+      "project_count": 8,
+      "requested_triples": 10000,
+      "actual_data_triples": 10008,
+      "generation_seconds": 0.1802,
+      "validation_seconds": 1.4377,
+      "shacl_conforms": true,
+      "working_set_after_validation": {
+        "current_bytes": 71581696,
+        "lifetime_peak_bytes": 71585792
+      },
+      "queries": {
+        "BMV-01": {
+          "p50_ms": 7.8529,
+          "p95_ms": 8.7478,
+          "runs_ms": [
+            8.4691,
+            7.9595,
+            8.7478,
+            7.3934,
+            8.0169,
+            7.3635,
+            8.649,
+            7.1831,
+            7.5274,
+            7.7463
+          ],
+          "traced_query_peak_bytes": 277229,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "dc08d9f8c8781a0de35630303f2dad60a733f3445e9593a5cb4f928654296c9a",
+          "answer": {
+            "variables": [
+              "project",
+              "video",
+              "audio",
+              "timeline"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "https://example.test/benchmark/video00",
+                "https://example.test/benchmark/audio00",
+                "https://example.test/benchmark/timeline00"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "https://example.test/benchmark/video01",
+                "https://example.test/benchmark/audio01",
+                "https://example.test/benchmark/timeline01"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "https://example.test/benchmark/video02",
+                "https://example.test/benchmark/audio02",
+                "https://example.test/benchmark/timeline02"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "https://example.test/benchmark/video03",
+                "https://example.test/benchmark/audio03",
+                "https://example.test/benchmark/timeline03"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "https://example.test/benchmark/video04",
+                "https://example.test/benchmark/audio04",
+                "https://example.test/benchmark/timeline04"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "https://example.test/benchmark/video05",
+                "https://example.test/benchmark/audio05",
+                "https://example.test/benchmark/timeline05"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "https://example.test/benchmark/video06",
+                "https://example.test/benchmark/audio06",
+                "https://example.test/benchmark/timeline06"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "https://example.test/benchmark/video07",
+                "https://example.test/benchmark/audio07",
+                "https://example.test/benchmark/timeline07"
+              ]
+            ]
+          }
+        },
+        "BMV-02": {
+          "p50_ms": 187.452,
+          "p95_ms": 198.595,
+          "runs_ms": [
+            192.0897,
+            184.1009,
+            185.1177,
+            194.4024,
+            184.3935,
+            188.5808,
+            182.9682,
+            186.3232,
+            198.595,
+            196.6814
+          ],
+          "traced_query_peak_bytes": 346565,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "a65b9ac8cd966f1f98159af2385ac66288a739294b6558e0716ac833fb308f95",
+          "answer": {
+            "variables": [
+              "project",
+              "imageCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "156"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "156"
+              ]
+            ]
+          }
+        },
+        "BMV-03": {
+          "p50_ms": 19.4512,
+          "p95_ms": 21.7116,
+          "runs_ms": [
+            19.4991,
+            21.7116,
+            19.4032,
+            18.0478,
+            19.3034,
+            19.0118,
+            20.9437,
+            20.1858,
+            20.4446,
+            18.1027
+          ],
+          "traced_query_peak_bytes": 367325,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "75d820e98da44000636291f739f18542f1155243ce4552bc7304504b1b76ae0c",
+          "answer": {
+            "variables": [
+              "project",
+              "shotCount",
+              "scheduledSeconds"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "4",
+                "20"
+              ]
+            ]
+          }
+        },
+        "BMV-04": {
+          "p50_ms": 4.1104,
+          "p95_ms": 4.8937,
+          "runs_ms": [
+            4.8937,
+            4.7316,
+            4.0306,
+            4.0634,
+            4.3333,
+            3.908,
+            3.8501,
+            4.1575,
+            4.5392,
+            4.0415
+          ],
+          "traced_query_peak_bytes": 181875,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "63f3d76edb73176149d6defdb7948c9a807728211bd4349f3ae74b23f7a1bd79",
+          "answer": {
+            "variables": [
+              "ancestor"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/raw01"
+              ],
+              [
+                "https://example.test/benchmark/source000001"
+              ]
+            ]
+          }
+        },
+        "BMV-05": {
+          "p50_ms": 195.9666,
+          "p95_ms": 339.1645,
+          "runs_ms": [
+            164.6133,
+            168.108,
+            170.0199,
+            165.6295,
+            176.2645,
+            284.7571,
+            339.1645,
+            220.7058,
+            268.1186,
+            215.6687
+          ],
+          "traced_query_peak_bytes": 351825,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "db9fbcd299188c2a7c92d1b4a3faca924e4f344ee8945bd5af37f4ede7b79bcb",
+          "answer": {
+            "variables": [
+              "project",
+              "missingChecksumCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "157"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "156"
+              ]
+            ]
+          }
+        },
+        "BMV-06": {
+          "p50_ms": 191.8787,
+          "p95_ms": 259.8132,
+          "runs_ms": [
+            181.4814,
+            165.6036,
+            175.3698,
+            210.6673,
+            195.0133,
+            171.2934,
+            259.8132,
+            208.002,
+            192.9395,
+            190.818
+          ],
+          "traced_query_peak_bytes": 357641,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "a8e4b8d80f707326498b8b9c610098fcd4fd9b20069d4e2cc2ecc42e74d763e9",
+          "answer": {
+            "variables": [
+              "project",
+              "unknownSourceCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "53"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "52"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "52"
+              ]
+            ]
+          }
+        }
+      },
+      "working_set_after_queries": {
+        "current_bytes": 72622080,
+        "lifetime_peak_bytes": 72626176
+      }
+    },
+    {
+      "image_count": 12862,
+      "project_count": 8,
+      "requested_triples": 100000,
+      "actual_data_triples": 100000,
+      "generation_seconds": 2.3568,
+      "validation_seconds": 8.8221,
+      "shacl_conforms": true,
+      "working_set_after_validation": {
+        "current_bytes": 269684736,
+        "lifetime_peak_bytes": 270516224
+      },
+      "queries": {
+        "BMV-01": {
+          "p50_ms": 13.2995,
+          "p95_ms": 23.3076,
+          "runs_ms": [
+            7.3859,
+            17.2882,
+            13.2955,
+            17.1476,
+            9.9879,
+            13.3035,
+            16.5177,
+            10.15,
+            23.3076,
+            13.2549
+          ],
+          "traced_query_peak_bytes": 277229,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "dc08d9f8c8781a0de35630303f2dad60a733f3445e9593a5cb4f928654296c9a",
+          "answer": {
+            "variables": [
+              "project",
+              "video",
+              "audio",
+              "timeline"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "https://example.test/benchmark/video00",
+                "https://example.test/benchmark/audio00",
+                "https://example.test/benchmark/timeline00"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "https://example.test/benchmark/video01",
+                "https://example.test/benchmark/audio01",
+                "https://example.test/benchmark/timeline01"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "https://example.test/benchmark/video02",
+                "https://example.test/benchmark/audio02",
+                "https://example.test/benchmark/timeline02"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "https://example.test/benchmark/video03",
+                "https://example.test/benchmark/audio03",
+                "https://example.test/benchmark/timeline03"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "https://example.test/benchmark/video04",
+                "https://example.test/benchmark/audio04",
+                "https://example.test/benchmark/timeline04"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "https://example.test/benchmark/video05",
+                "https://example.test/benchmark/audio05",
+                "https://example.test/benchmark/timeline05"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "https://example.test/benchmark/video06",
+                "https://example.test/benchmark/audio06",
+                "https://example.test/benchmark/timeline06"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "https://example.test/benchmark/video07",
+                "https://example.test/benchmark/audio07",
+                "https://example.test/benchmark/timeline07"
+              ]
+            ]
+          }
+        },
+        "BMV-02": {
+          "p50_ms": 1893.7141,
+          "p95_ms": 2661.9644,
+          "runs_ms": [
+            1853.6769,
+            1816.9668,
+            1960.9012,
+            2341.0407,
+            2470.3463,
+            1815.1789,
+            1845.0325,
+            1881.6266,
+            1905.8015,
+            2661.9644
+          ],
+          "traced_query_peak_bytes": 1287089,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "efc7a92b0d91ff78707e8c946b33bc360dc7225576bfcdcc55fa7f19e36473fc",
+          "answer": {
+            "variables": [
+              "project",
+              "imageCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "1607"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "1607"
+              ]
+            ]
+          }
+        },
+        "BMV-03": {
+          "p50_ms": 18.0442,
+          "p95_ms": 18.7256,
+          "runs_ms": [
+            17.7317,
+            18.1811,
+            17.3912,
+            17.5829,
+            18.0275,
+            18.0609,
+            17.0547,
+            18.1402,
+            18.2991,
+            18.7256
+          ],
+          "traced_query_peak_bytes": 367759,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "75d820e98da44000636291f739f18542f1155243ce4552bc7304504b1b76ae0c",
+          "answer": {
+            "variables": [
+              "project",
+              "shotCount",
+              "scheduledSeconds"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "4",
+                "20"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "4",
+                "20"
+              ]
+            ]
+          }
+        },
+        "BMV-04": {
+          "p50_ms": 4.1488,
+          "p95_ms": 4.9112,
+          "runs_ms": [
+            3.785,
+            4.456,
+            3.5424,
+            4.9112,
+            3.8598,
+            4.8162,
+            4.7329,
+            4.2416,
+            3.4398,
+            4.056
+          ],
+          "traced_query_peak_bytes": 181763,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "63f3d76edb73176149d6defdb7948c9a807728211bd4349f3ae74b23f7a1bd79",
+          "answer": {
+            "variables": [
+              "ancestor"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/raw01"
+              ],
+              [
+                "https://example.test/benchmark/source000001"
+              ]
+            ]
+          }
+        },
+        "BMV-05": {
+          "p50_ms": 1503.995,
+          "p95_ms": 1701.7598,
+          "runs_ms": [
+            1497.4354,
+            1579.7221,
+            1503.7009,
+            1500.1764,
+            1504.2891,
+            1482.596,
+            1481.0341,
+            1701.7598,
+            1587.3161,
+            1596.465
+          ],
+          "traced_query_peak_bytes": 326353,
+          "result_correct": true,
+          "result_rows": 2,
+          "answer_sha256": "8d6b1b50284888ddaa24e956466295bf9fe3eac3660b11faf5c2826627431f92",
+          "answer": {
+            "variables": [
+              "project",
+              "missingChecksumCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "1608"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "1608"
+              ]
+            ]
+          }
+        },
+        "BMV-06": {
+          "p50_ms": 1499.3049,
+          "p95_ms": 1760.2561,
+          "runs_ms": [
+            1607.0199,
+            1613.892,
+            1509.6988,
+            1488.9109,
+            1699.0062,
+            1760.2561,
+            1455.266,
+            1445.7708,
+            1459.0917,
+            1448.6626
+          ],
+          "traced_query_peak_bytes": 311581,
+          "result_correct": true,
+          "result_rows": 8,
+          "answer_sha256": "59b6a239fde8a5c770baa4a2ec0dec4dcc114e5ac9dce9bba716e1107163ed5b",
+          "answer": {
+            "variables": [
+              "project",
+              "unknownSourceCount"
+            ],
+            "rows": [
+              [
+                "https://example.test/benchmark/project00",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project01",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project02",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project03",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project04",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project05",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project06",
+                "536"
+              ],
+              [
+                "https://example.test/benchmark/project07",
+                "536"
+              ]
+            ]
+          }
+        }
+      },
+      "working_set_after_queries": {
+        "current_bytes": 269762560,
+        "lifetime_peak_bytes": 270516224
+      }
+    }
+  ],
+  "comparison": {
+    "comparable": true,
+    "threshold_percent": 25,
+    "measurements": [
+      {
+        "requested_triples": 10000,
+        "question": "BMV-01",
+        "metric": "p50_ms",
+        "baseline": 8.4077,
+        "current": 7.8529,
+        "change_percent": -6.6
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-01",
+        "metric": "p95_ms",
+        "baseline": 13.6396,
+        "current": 8.7478,
+        "change_percent": -35.86
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-01",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 277229,
+        "current": 277229,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-02",
+        "metric": "p50_ms",
+        "baseline": 208.3592,
+        "current": 187.452,
+        "change_percent": -10.03
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-02",
+        "metric": "p95_ms",
+        "baseline": 266.4021,
+        "current": 198.595,
+        "change_percent": -25.45
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-02",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 346565,
+        "current": 346565,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-03",
+        "metric": "p50_ms",
+        "baseline": 21.9381,
+        "current": 19.4512,
+        "change_percent": -11.34
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-03",
+        "metric": "p95_ms",
+        "baseline": 27.2266,
+        "current": 21.7116,
+        "change_percent": -20.26
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-03",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 367325,
+        "current": 367325,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-04",
+        "metric": "p50_ms",
+        "baseline": 3.8078,
+        "current": 4.1104,
+        "change_percent": 7.95
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-04",
+        "metric": "p95_ms",
+        "baseline": 6.0059,
+        "current": 4.8937,
+        "change_percent": -18.52
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-04",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 181875,
+        "current": 181875,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-05",
+        "metric": "p50_ms",
+        "baseline": 168.5263,
+        "current": 195.9666,
+        "change_percent": 16.28
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-05",
+        "metric": "p95_ms",
+        "baseline": 202.7465,
+        "current": 339.1645,
+        "change_percent": 67.29
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-05",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 351825,
+        "current": 351825,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-06",
+        "metric": "p50_ms",
+        "baseline": 178.8019,
+        "current": 191.8787,
+        "change_percent": 7.31
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-06",
+        "metric": "p95_ms",
+        "baseline": 228.0992,
+        "current": 259.8132,
+        "change_percent": 13.9
+      },
+      {
+        "requested_triples": 10000,
+        "question": "BMV-06",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 357641,
+        "current": 357641,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-01",
+        "metric": "p50_ms",
+        "baseline": 8.5153,
+        "current": 13.2995,
+        "change_percent": 56.18
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-01",
+        "metric": "p95_ms",
+        "baseline": 9.896,
+        "current": 23.3076,
+        "change_percent": 135.53
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-01",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 277229,
+        "current": 277229,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-02",
+        "metric": "p50_ms",
+        "baseline": 2061.7912,
+        "current": 1893.7141,
+        "change_percent": -8.15
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-02",
+        "metric": "p95_ms",
+        "baseline": 3184.0637,
+        "current": 2661.9644,
+        "change_percent": -16.4
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-02",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 1287089,
+        "current": 1287089,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-03",
+        "metric": "p50_ms",
+        "baseline": 32.1468,
+        "current": 18.0442,
+        "change_percent": -43.87
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-03",
+        "metric": "p95_ms",
+        "baseline": 63.2369,
+        "current": 18.7256,
+        "change_percent": -70.39
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-03",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 367759,
+        "current": 367759,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-04",
+        "metric": "p50_ms",
+        "baseline": 5.8459,
+        "current": 4.1488,
+        "change_percent": -29.03
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-04",
+        "metric": "p95_ms",
+        "baseline": 18.742,
+        "current": 4.9112,
+        "change_percent": -73.8
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-04",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 181763,
+        "current": 181763,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-05",
+        "metric": "p50_ms",
+        "baseline": 2276.2366,
+        "current": 1503.995,
+        "change_percent": -33.93
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-05",
+        "metric": "p95_ms",
+        "baseline": 2946.957,
+        "current": 1701.7598,
+        "change_percent": -42.25
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-05",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 326353,
+        "current": 326353,
+        "change_percent": 0.0
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-06",
+        "metric": "p50_ms",
+        "baseline": 1700.5536,
+        "current": 1499.3049,
+        "change_percent": -11.83
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-06",
+        "metric": "p95_ms",
+        "baseline": 2955.8382,
+        "current": 1760.2561,
+        "change_percent": -40.45
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-06",
+        "metric": "traced_query_peak_bytes",
+        "baseline": 311581,
+        "current": 311581,
+        "change_percent": 0.0
+      }
+    ],
+    "regressions": [
+      {
+        "requested_triples": 10000,
+        "question": "BMV-05",
+        "metric": "p95_ms",
+        "baseline": 202.7465,
+        "current": 339.1645,
+        "change_percent": 67.29
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-01",
+        "metric": "p50_ms",
+        "baseline": 8.5153,
+        "current": 13.2995,
+        "change_percent": 56.18
+      },
+      {
+        "requested_triples": 100000,
+        "question": "BMV-01",
+        "metric": "p95_ms",
+        "baseline": 9.896,
+        "current": 23.3076,
+        "change_percent": 135.53
+      }
+    ]
+  }
+}

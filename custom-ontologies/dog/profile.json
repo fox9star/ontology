@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "dog",
+  "name": "개 온톨로지 (dog)",
+  "description": "개의 품종·보호자·동물등록·예방접종·동물병원 방문·체중 기록을 연결하고, 증빙 없이 등록 완료나 접종 완료로 표시하지 못하게 합니다.",
+  "name_en": "Dog Ontology",
+  "description_en": "Connects dogs with breeds, guardians, identification registration, vaccinations, veterinary visits and weight records, and blocks marking a registration or vaccination as done without evidence.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/dog#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T19:31:07+09:00",
+  "schema": "custom-ontologies/dog/schema.ttl",
+  "owl": "custom-ontologies/dog/schema.owl",
+  "shapes": "custom-ontologies/dog/shapes.ttl",
+  "example": "custom-ontologies/dog/example.ttl",
+  "questions": "custom-ontologies/dog/questions.md",
+  "questions_fixture": "custom-ontologies/dog/question-fixture.ttl",
+  "question_answers": "custom-ontologies/dog/question-answers.json",
+  "compatibility_cases": "custom-ontologies/dog/consumer-cases.trig"
+}

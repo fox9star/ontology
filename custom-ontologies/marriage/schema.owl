@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:Ontology rdf:about="https://example.org/ontology/custom/marriage">
+    <rdfs:label xml:lang="ko">결혼 준비 온톨로지</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage preparation ontology</rdfs:label>
+    <rdfs:comment xml:lang="ko">결혼 준비 계획의 인물, 행사, 장소, 초대 응답, 준비 작업, 서비스 예약 및 비용 기록을 연결한다. 합성 예시와 관찰 기록을 구분하며 ready는 기록된 준비 상태의 완결 조건일 뿐 실제 예약, 혼인 여부나 법적 유효성을 인증하지 않는다. 결혼 관련 정보는 별도 출처 기록이며 행사 개최에서 자동 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Connects people, events, venues, invitation responses, preparation tasks, service bookings and expenses in a marriage preparation plan. Synthetic examples are distinguished from observed records. Ready denotes completion of recorded preparation, not verified actual bookings, marital status or legal validity. Marriage-related information is recorded separately with a source and is never inferred from holding an event.</rdfs:comment>
+    <owl:versionIRI rdf:resource="https://example.org/ontology/custom/marriage/0.1.0"/>
+    <owl:versionInfo>0.1.0</owl:versionInfo>
+  </owl:Ontology>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#eventNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">행사 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Event note</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사의 범위와 가정 또는 합성 일정을 설명한다. 행사 기록에서 혼인 관련 정보를 자동 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains an event's scope, assumptions or synthetic schedule without inferring marriage-related information from the event record.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#confirmationUri">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">예약 확인 참조</rdfs:label>
+    <rdfs:label xml:lang="en">Booking confirmation reference</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 확인 기록의 HTTP, HTTPS 또는 URN 참조를 적는다. 합성 URN은 실제 예약 증빙이 아니며 URI만으로 업체 확인이나 계약 효력을 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an HTTP, HTTPS or URN booking confirmation reference. A synthetic URN is not actual booking evidence; a URI alone authenticates neither provider confirmation nor contract effect.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#planNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">계획 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Plan note</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획의 범위·가정 또는 합성 예시임을 설명한다. 설명만으로 혼인 사실이나 실제 예약을 보증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains the plan's scope, assumptions or synthetic scenario without guaranteeing marriage or actual bookings.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#eventKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">행사 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Event kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사를 ceremony, reception, meeting 또는 other로 구분한다. 유형은 혼인 사실이나 법적 효력을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies an event as ceremony, reception, meeting or other without asserting marriage or legal effect.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#venueKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Venue"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">장소 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Venue kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">장소를 hall, garden, restaurant, home 또는 other로 구분한다. 유형에서 실제 영업 상태나 이용 가능 여부를 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies a venue as hall, garden, restaurant, home or other without inferring actual operating status or availability.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasTask">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:label xml:lang="ko">준비 작업 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has preparation task</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 한 개 이상의 준비 작업에 연결한다. 각 작업 기록은 정확히 한 계획에 속한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a plan to one or more preparation tasks, each belonging to exactly one plan.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasCeremony">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:label xml:lang="ko">행사 일정 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has event</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 선택적인 행사 일정에 연결한다. 각 행사 기록은 정확히 한 계획에 속하며 행사 없이도 준비 계획을 기록할 수 있다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Optionally links a plan to events, each belonging to exactly one plan. A preparation plan may be recorded without an event.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#eventEndsAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">행사 종료 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Event end time</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사 종료를 시간대가 있는 ISO 날짜·시각으로 기록하며 시작 시각 이후여야 한다. 현재 시각과 자동 비교하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an event's end as an ISO date-time with a time zone, following its start, without automatic comparison with the current clock.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#invitedPerson">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:label xml:lang="ko">초대 대상 인물</rdfs:label>
+    <rdfs:label xml:lang="en">Invited person</rdfs:label>
+    <rdfs:comment xml:lang="ko">초대를 같은 계획에 포함된 인물 한 기록에 연결한다. 인물 연결 자체는 실제 초대 발송이나 동의의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an invitation to one person record included in the same plan, without proving an invitation was actually sent or consent obtained.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#bookedFor">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:label xml:lang="ko">예약 대상 행사</rdfs:label>
+    <rdfs:label xml:lang="en">Booking for event</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 기록을 같은 계획의 행사 하나에 연결한다. 다른 계획의 행사에 예약을 연결하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a booking record to one event of the same plan, excluding events of other plans.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#isRequired">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="ko">필수 예약 기록 여부</rdfs:label>
+    <rdfs:label xml:lang="en">Required booking record</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획자가 필수로 지정한 예약 기록인지를 불리언 값으로 표시한다. ready 상태에는 모든 필수 예약 기록의 confirmed 상태가 필요하며 법적 의무를 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records whether a booking is marked required by the planner. Ready requires confirmed status for every required booking record; the flag does not establish a legal obligation.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#taskNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">작업 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Task note</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비 작업의 범위 또는 합성 작업 설정을 설명한다. 내용만으로 실제 수행이나 계약을 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains a preparation task's scope or synthetic setting without certifying actual execution or contracts.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#responseRecordedAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">응답 기록 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Response record time</rdfs:label>
+    <rdfs:comment xml:lang="ko">수락 또는 거절 응답의 기록 시각을 시간대가 있는 ISO 날짜·시각으로 표시한다. 미응답에는 두지 않으며 실제 연락을 자동 확인하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an accepted or declined response time as an ISO date-time with a time zone, absent for pending responses, without automatically verifying actual communication.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#atVenue">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Venue"/>
+    <rdfs:label xml:lang="ko">행사 장소 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Event at venue</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사를 한 장소 기록에 연결한다. 장소 연결은 실제 장소 예약이나 사용 허가를 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an event to one venue record without establishing an actual reservation or permission to use it.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#taskStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">작업 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Task status</rdfs:label>
+    <rdfs:comment xml:lang="ko">작업을 planned, in-progress, completed 또는 cancelled로 기록한다. completed에는 완료 시각이 필요하고 선행 작업도 완료 상태여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records planned, in-progress, completed or cancelled task status. Completed requires a completion time and completed dependencies.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#locationNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Venue"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">장소 위치 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Venue location note</rdfs:label>
+    <rdfs:comment xml:lang="ko">장소의 위치나 합성 장소 설정을 설명한다. 설명만으로 주소, 실재 장소 또는 방문을 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Describes a venue's location or synthetic setting without verifying an address, real venue or visit.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#amount">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Expense"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">비용 금액</rdfs:label>
+    <rdfs:label xml:lang="en">Expense amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">해당 계획의 KRW 통화로 0 이상인 십진수 금액을 기록한다. 실시간 가격 조회, 환율 변환이나 지급 확인을 수행하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a nonnegative decimal expense amount in the plan's KRW currency, without live pricing, currency conversion or payment verification.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#rsvpStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">초대 응답 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Invitation response status</rdfs:label>
+    <rdfs:comment xml:lang="ko">응답을 pending, accepted 또는 declined로 기록한다. accepted에는 인원과 응답 기록 시각, declined에는 응답 기록 시각이 필요하며 상태는 실제 참석을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records pending, accepted or declined responses. Accepted requires party size and response time, while declined requires response time; status does not establish actual attendance.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#partySize">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">초대 응답 인원</rdfs:label>
+    <rdfs:label xml:lang="en">Invitation party size</rdfs:label>
+    <rdfs:comment xml:lang="ko">초대 기록의 인원을 양의 정수로 기록한다. accepted에는 필수이며 declined에는 두지 않고 pending에는 선택적으로 기록한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer party size, required for accepted invitations, absent for declined invitations and optional for pending invitations.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#sequence">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">행사 순서</rdfs:label>
+    <rdfs:label xml:lang="en">Event sequence</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사 순서를 양의 정수로 기록하며 같은 계획 안에서 중복하지 않는다. 순서 자체는 행사 간 시간 겹침을 금지하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer event sequence, unique within the same plan. Sequence itself does not prohibit overlap between events.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#completedAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">작업 완료 기록 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Task completion record time</rdfs:label>
+    <rdfs:comment xml:lang="ko">completed 작업의 완료 시각을 시간대가 있는 ISO 날짜·시각으로 기록한다. 다른 작업 상태에는 두지 않으며 기록만으로 수행을 자동 검증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a completed task's time as an ISO date-time with a time zone, absent for other statuses, without automatically verifying performance.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#bookingNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예약 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Booking note</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 기록의 범위와 가정 또는 합성 설정을 설명한다. 설명에서 실제 예약이나 결제를 추론하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains a booking record's scope, assumptions or synthetic setting without inferring actual reservations or payments.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#personNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">인물 기록 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Person record note</rdfs:label>
+    <rdfs:comment xml:lang="ko">인물 기록의 범위나 합성 인물 설정을 설명한다. 성별·연령·실명은 필수로 기록하지 않으며 설명을 신원 확인으로 취급하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains a person record's scope or synthetic setting without requiring gender, age or legal name or treating the note as identity verification.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#serviceKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예약 서비스 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Booked service kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">서비스를 venue, catering, photography, transport 또는 other로 구분한다. 유형은 업체 이용 가능 여부나 서비스 품질을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies a service as venue, catering, photography, transport or other without establishing provider availability or service quality.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#currency">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예산 통화</rdfs:label>
+    <rdfs:label xml:lang="en">Budget currency</rdfs:label>
+    <rdfs:comment xml:lang="ko">현재 모형의 예산과 비용 통화를 KRW로 고정한다. 환율이나 다른 통화 변환을 계산하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Fixes the plan's budget and expenses to KRW in this model, without exchange rates or other currency conversion.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#forEvent">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:label xml:lang="ko">초대 대상 행사</rdfs:label>
+    <rdfs:label xml:lang="en">Invitation for event</rdfs:label>
+    <rdfs:comment xml:lang="ko">초대를 같은 계획의 행사 하나에 연결한다. 다른 계획의 행사에 초대 기록을 연결하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links an invitation to one event of the same plan, excluding events of other plans.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#eventStartsAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Ceremony"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">행사 시작 시각</rdfs:label>
+    <rdfs:label xml:lang="en">Event start time</rdfs:label>
+    <rdfs:comment xml:lang="ko">행사 시작을 시간대가 있는 ISO 날짜·시각으로 기록하며 종료 시각보다 앞서야 한다. 실제 시작이나 예약은 자동 확인하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an event's start as an ISO date-time with a time zone, preceding its end, without automatically confirming actual start or a reservation.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#marriageInfoStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">결혼 관련 정보 기록 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage information record status</rdfs:label>
+    <rdfs:comment xml:lang="ko">별도 결혼 관련 정보를 unrecorded 또는 recorded로 구분한다. recorded에는 설명과 출처 URI가 필요하며 검증된 혼인 상태나 법적 유효성을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes unrecorded from recorded separate marriage-related information. Recorded requires a note and source URI but does not establish verified marital status or legal validity.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasPerson">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:label xml:lang="ko">계획 인물 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has plan person</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 두 명 이상의 인물 기록에 연결한다. 파트너·조율 담당자·작업 담당자·초대 대상은 이 연결에 포함되어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a plan to two or more person records, including its partners, coordinator, task assignees and invitees.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#bookingStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">예약 기록 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Booking record status</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약을 requested, confirmed 또는 cancelled로 기록한다. confirmed에는 확인 URI가 필요하고 requested에는 두지 않으며 cancelled에는 과거 확인 URI를 남길 수 있다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records requested, confirmed or cancelled booking status. Confirmed requires a confirmation URI, requested contains none, and cancelled may retain a historical confirmation URI.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#expenseStatus">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Expense"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">비용 기록 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Expense record status</rdfs:label>
+    <rdfs:comment xml:lang="ko">비용을 planned, paid 또는 cancelled로 기록한다. planned와 paid만 ready 예산 합계에 포함하며 paid 값은 지급 증빙을 대신하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records planned, paid or cancelled expense status. Only planned and paid amounts enter the ready budget total, and paid does not replace payment evidence.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#marriageInfoSourceUri">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+    <rdfs:label xml:lang="ko">결혼 관련 정보 출처</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage information source</rdfs:label>
+    <rdfs:comment xml:lang="ko">별도 결혼 관련 정보의 HTTP, HTTPS 또는 URN 출처를 기록한다. URI는 정보의 참조이며 혼인증명서 인증이나 법적 판단을 수행하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records an HTTP, HTTPS or URN source for separate marriage-related information. The URI is a reference, not marriage certificate authentication or a legal determination.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#expenseKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Expense"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">준비 비용 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Preparation expense kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">비용을 venue, catering, attire, photography, transport 또는 other로 구분한다. 분류는 현재 가격 확인이나 비용 권고가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Classifies an expense as venue, catering, attire, photography, transport or other without verifying current prices or recommending expenditures.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#marriageDate">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+    <rdfs:label xml:lang="ko">기록된 결혼 관련 날짜</rdfs:label>
+    <rdfs:label xml:lang="en">Recorded marriage-related date</rdfs:label>
+    <rdfs:comment xml:lang="ko">recorded 정보의 선택적인 날짜를 YYYY-MM-DD로 기록한다. 행사 날짜에서 자동 생성하지 않으며 날짜만으로 법적 혼인일을 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Optionally records a date for recorded marriage-related information in YYYY-MM-DD form. It is not generated from an event date and does not certify a legal marriage date.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#marriageInfoNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">결혼 관련 정보 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage information note</rdfs:label>
+    <rdfs:comment xml:lang="ko">recorded 결혼 관련 정보의 범위와 출처 내용을 설명한다. 비어 있는 설명을 허용하지 않으며 설명 자체는 검증 완료를 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains the scope and source context of recorded marriage-related information. Empty notes are disallowed; a note itself does not mean verification is complete.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#providerLabel">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">서비스 제공자 표시 이름</rdfs:label>
+    <rdfs:label xml:lang="en">Service provider display label</rdfs:label>
+    <rdfs:comment xml:lang="ko">예약 기록에 서비스 제공자의 표시 이름을 적는다. 합성 업체명일 수 있으며 이름만으로 업체 실재나 예약을 확인하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a service provider display label, which may be fictional, without verifying a real provider or booking from its name alone.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasBooking">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#ServiceBooking"/>
+    <rdfs:label xml:lang="ko">서비스 예약 기록 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has service booking</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 서비스 예약 기록에 연결한다. 각 예약 기록은 한 계획과 그 계획의 행사에 속한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a plan to service booking records, each belonging to one plan and an event of that plan.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#coordinatedBy">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:label xml:lang="ko">계획 조율 담당자</rdfs:label>
+    <rdfs:label xml:lang="en">Plan coordinator</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획 인물 중 한 조율 담당자 기록을 연결한다. 담당자 기록은 외부 대리 권한이나 법적 권한을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links one coordinator record among the plan's people without establishing external representation or legal authority.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#dependsOn">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:label xml:lang="ko">선행 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Depends on task</rdfs:label>
+    <rdfs:comment xml:lang="ko">작업을 같은 계획의 선행 작업에 연결한다. 의존 관계는 순환할 수 없으며 완료 작업의 모든 직접 선행 작업도 완료되어야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a task to dependencies in the same plan. Dependency cycles are disallowed and every direct dependency of a completed task must be completed.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasExpense">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Expense"/>
+    <rdfs:label xml:lang="ko">비용 기록 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has expense</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 비용 기록에 연결한다. 각 비용은 한 계획에 속하며 취소되지 않은 비용을 예산 계산에 사용한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a plan to expense records, each belonging to one plan, with noncancelled expenses used for the budget calculation.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#dueAt">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="ko">작업 기한</rdfs:label>
+    <rdfs:label xml:lang="en">Task due time</rdfs:label>
+    <rdfs:comment xml:lang="ko">작업 기한을 시간대가 있는 ISO 날짜·시각으로 기록한다. 기한을 현재 시각과 자동 비교하거나 늦은 완료를 금지하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a task due time as an ISO date-time with a time zone, without automatic current-clock comparison or prohibiting late completion.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasPartner">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:label xml:lang="ko">파트너 기록 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has partner record</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획 안의 인물 중 두 명 이상의 파트너 기록을 연결하며 최대 인원을 정하지 않는다. 연결은 법적 관계, 성별, 나이 또는 동의를 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links two or more partner records from the plan's people without a maximum count. The link certifies neither legal relationship, gender, age nor consent.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#capacity">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Venue"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="ko">기록된 수용 인원</rdfs:label>
+    <rdfs:label xml:lang="en">Recorded capacity</rdfs:label>
+    <rdfs:comment xml:lang="ko">장소 수용 인원을 양의 정수로 기록한다. ready 계획에서 행사별 수락 인원의 합계와 비교하며 값 자체는 실제 시설의 안전 허가가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a positive integer venue capacity, compared with each event's accepted party total in a ready plan. The value itself is not actual facility safety authorization.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#hasInvitation">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Invitation"/>
+    <rdfs:label xml:lang="ko">초대 기록 연결</rdfs:label>
+    <rdfs:label xml:lang="en">Has invitation</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 초대 기록에 연결한다. 각 초대는 한 계획에 속하며 같은 인물·행사 조합은 중복하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Links a plan to invitations, each belonging to one plan, without duplicate person-event pairs.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#status">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">계획 준비 상태</rdfs:label>
+    <rdfs:label xml:lang="en">Plan preparation status</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 draft, ready 또는 cancelled로 기록한다. ready는 작업·필수 예약·응답·수용 인원·예산에 대한 기록 조건이 갖추어졌음을 뜻한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records draft, ready or cancelled plan status. Ready means recorded task, required booking, response, capacity and budget conditions are satisfied.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#expenseNote">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#Expense"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">비용 설명</rdfs:label>
+    <rdfs:label xml:lang="en">Expense note</rdfs:label>
+    <rdfs:comment xml:lang="ko">비용의 범위와 가정 또는 합성 금액을 설명한다. 설명 자체는 영수증이나 실제 거래의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Explains an expense's scope, assumptions or synthetic amount without itself serving as a receipt or evidence of an actual transaction.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#budgetAmount">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="ko">준비 예산 금액</rdfs:label>
+    <rdfs:label xml:lang="en">Preparation budget amount</rdfs:label>
+    <rdfs:comment xml:lang="ko">0 이상인 원화 십진수 예산을 기록한다. ready 계획의 planned 및 paid 비용 합계는 이 예산 이하여야 한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Records a nonnegative decimal budget in Korean won. A ready plan's planned and paid expense total must not exceed this budget.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="https://example.org/ontology/custom/marriage#recordKind">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#MarriagePlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="ko">계획 기록 유형</rdfs:label>
+    <rdfs:label xml:lang="en">Plan record kind</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획을 synthetic 합성 예시 또는 observed 관찰 기록으로 구분한다. observed 값 자체는 실제 혼인이나 행사를 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Distinguishes a synthetic example plan from an observed record. Observed itself verifies neither an actual marriage nor an event.</rdfs:comment>
+  </owl:DatatypeProperty>
+  <owl:ObjectProperty rdf:about="https://example.org/ontology/custom/marriage#assignedTo">
+    <rdfs:domain rdf:resource="https://example.org/ontology/custom/marriage#PreparationTask"/>
+    <rdfs:range rdf:resource="https://example.org/ontology/custom/marriage#Person"/>
+    <rdfs:label xml:lang="ko">작업 담당 인물</rdfs:label>
+    <rdfs:label xml:lang="en">Task assignee</rdfs:label>
+    <rdfs:comment xml:lang="ko">준비 작업을 같은 계획의 인물 한 기록에 배정한다. 담당자 배정은 외부 권한이나 실제 수행의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Assigns a preparation task to one person record of the same plan without establishing external authority or actual execution.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#MarriagePlan">
+    <rdfs:label xml:lang="ko">결혼 준비 계획</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage preparation plan</rdfs:label>
+    <rdfs:comment xml:lang="ko">인물, 파트너, 조율 담당자와 준비 작업을 연결하는 계획이다. 두 명 이상의 파트너 기록을 허용하며 성별, 연령, 법적 혼인 조건을 판정하지 않는다. ready 상태는 기록된 준비 완료만 표현한다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A plan linking people, partners, a coordinator and preparation tasks. It allows records of two or more partners without judging gender, age or legal marriage conditions. Ready expresses completion of recorded preparation only.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#Venue">
+    <rdfs:label xml:lang="ko">행사 장소</rdfs:label>
+    <rdfs:label xml:lang="en">Event venue</rdfs:label>
+    <rdfs:comment xml:lang="ko">장소 유형, 기록된 수용 인원 및 위치 설명을 가진 행사 장소 기록이다. 여러 계획과 행사에서 재사용할 수 있다. 수용 인원 값 자체는 시설의 실제 허가나 안전성 인증이 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A venue record with its type, recorded capacity and location note, reusable across plans and events. The capacity value itself is not proof of actual authorization or safety certification.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#Ceremony">
+    <rdfs:label xml:lang="ko">결혼 준비 행사</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage preparation event</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 계획에 속한 예식, 피로연, 모임 또는 기타 행사 일정이다. 행사 기록이나 개최는 혼인 사실, 법적 효력 또는 예약 확정을 뜻하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A ceremony, reception, meeting or other event belonging to one plan. Recording or holding an event establishes neither marriage, legal effect nor a confirmed reservation.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#Person">
+    <rdfs:label xml:lang="ko">인물 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Person record</rdfs:label>
+    <rdfs:comment xml:lang="ko">계획에서 파트너, 조율 담당자, 초대 대상 또는 작업 담당자로 연결되는 인물 기록이다. 여러 계획에서 재사용할 수 있으며 성별, 연령, 실명은 필수값이 아니다. 표시 이름은 신원이나 동의의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A person record used as a partner, coordinator, invitee or task assignee. It may be reused across plans; gender, age and legal name are not required. A display label verifies neither identity nor consent.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#PreparationTask">
+    <rdfs:label xml:lang="ko">결혼 준비 작업</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage preparation task</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 계획의 인물에게 배정된 기한과 상태를 가진 작업이다. 같은 계획의 선행 작업을 참조할 수 있으나 순환 의존을 허용하지 않는다. 완료 시각과 상태는 입력 기록이며 실제 수행을 자동 확인하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A task with a due time and status assigned to a person of its plan. It may depend on tasks of the same plan without dependency cycles. Completion status and time are entered records, not automatic proof of actual execution.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#Expense">
+    <rdfs:label xml:lang="ko">결혼 준비 비용 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Marriage preparation expense</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 계획의 예정·지급·취소 비용을 원화로 기록한다. 취소 비용은 ready 예산 합계에서 제외하며 비용 기록이나 paid 상태는 영수증 또는 실제 지급의 증거가 아니다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An expense recorded as planned, paid or cancelled in Korean won for one plan. Cancelled amounts are excluded from the ready budget total; a record or paid status is not a receipt or evidence of actual payment.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#Invitation">
+    <rdfs:label xml:lang="ko">행사 초대 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Event invitation</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 계획의 인물 한 기록을 같은 계획의 행사에 초대하고 응답 상태를 기록한다. 수락·거절·미응답은 기록 상태이며 실제 참석을 보장하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">An invitation of one person record to an event in the same plan, with its recorded response. Accepted, declined and pending values do not guarantee actual attendance.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="https://example.org/ontology/custom/marriage#ServiceBooking">
+    <rdfs:label xml:lang="ko">행사 서비스 예약 기록</rdfs:label>
+    <rdfs:label xml:lang="en">Event service booking</rdfs:label>
+    <rdfs:comment xml:lang="ko">한 계획의 행사에 연결한 서비스 제공자와 요청·확정·취소 상태 기록이다. confirmed에는 확인 참조 URI가 필요하지만 URI와 상태만으로 실제 업체 예약을 인증하지 않는다.</rdfs:comment>
+    <rdfs:comment xml:lang="en">A provider and requested, confirmed or cancelled service booking record linked to an event in its plan. Confirmed requires a confirmation reference URI, but the URI and status alone do not authenticate an actual provider booking.</rdfs:comment>
+  </owl:Class>
+</rdf:RDF>

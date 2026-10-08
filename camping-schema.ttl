@@ -1,0 +1,192 @@
+@prefix camping: <https://example.org/ontology/camping#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/camping> a owl:Ontology ;
+    rdfs:label "캠핑 계획 및 야영장 관리 온톨로지"@ko,
+               "Camping Planning and Campground Management Ontology"@en ;
+    rdfs:comment "캠핑 여행, 야영장과 사이트, 예약, 참가자, 장비 준비물 및 야외 활동을 표현한다."@ko,
+                 "Represents camping trips, campgrounds and sites, reservations, participants, equipment packing, and outdoor activities."@en ;
+    owl:imports <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.0.0" ;
+    owl:versionIRI <https://example.org/ontology/camping/1.0.0> .
+
+camping:CampingTrip a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 여행"@ko, "Camping Trip"@en ;
+    rdfs:comment "일정, 목적지, 참가자와 활동으로 구성되는 캠핑 여행 계획이다."@ko,
+                 "A planned camping outing with dates, a destination, participants, and activities."@en .
+
+camping:Campground a owl:Class, rdfs:Class ;
+    rdfs:label "야영장"@ko, "Campground"@en ;
+    rdfs:comment "캠핑 사이트와 편의시설을 제공하는 야외 숙박 장소이다."@ko,
+                 "An outdoor lodging destination that provides camping sites and facilities."@en .
+
+camping:Campsite a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 사이트"@ko, "Campsite"@en ;
+    rdfs:comment "야영장 안에서 텐트나 캠핑 차량을 설치하도록 지정된 개별 구역이다."@ko,
+                 "An individual area within a campground designated for a tent or camping vehicle."@en .
+
+camping:Camper a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 참가자"@ko, "Camper"@en ;
+    rdfs:comment "캠핑 여행에 참가하는 사람을 나타낸다."@ko,
+                 "A person participating in a camping trip."@en .
+
+camping:Reservation a owl:Class, rdfs:Class ;
+    rdfs:label "야영장 예약"@ko, "Campground Reservation"@en ;
+    rdfs:comment "캠핑 여행 기간 동안 특정 캠핑 사이트를 이용하기 위한 예약이다."@ko,
+                 "A booking for a particular campsite over the dates of a camping trip."@en .
+
+camping:CampingEquipment a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 장비"@ko, "Camping Equipment"@en ;
+    rdfs:comment "캠핑에 사용하는 텐트, 취사 도구, 조명 또는 안전 장비 등의 물품이다."@ko,
+                 "An item used for camping, such as a tent, cooking tool, light, or safety gear."@en .
+
+camping:PackingList a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 준비물 목록"@ko, "Camping Packing List"@en ;
+    rdfs:comment "여행에 필요한 장비와 수량을 정리한 준비물 목록이다."@ko,
+                 "A checklist of equipment and quantities needed for a camping trip."@en .
+
+camping:PackingListItem a owl:Class, rdfs:Class ;
+    rdfs:label "준비물 목록 항목"@ko, "Packing List Item"@en ;
+    rdfs:comment "준비물 목록에 포함된 장비와 준비 수량을 나타낸다."@ko,
+                 "An entry identifying a piece of equipment and its required quantity on a packing list."@en .
+
+camping:CampActivity a owl:Class, rdfs:Class ;
+    rdfs:label "캠핑 활동"@ko, "Camping Activity"@en ;
+    rdfs:comment "캠핑 여행 중 예정하거나 수행하는 하이킹, 낚시, 요리 등의 활동이다."@ko,
+                 "An activity planned or performed during a camping trip, such as hiking, fishing, or cooking."@en .
+
+camping:hasCampsite a owl:ObjectProperty ;
+    rdfs:label "야영장의 사이트"@ko, "Has Campsite"@en ;
+    rdfs:comment "야영장이 제공하는 캠핑 사이트를 연결한다."@ko,
+                 "Links a campground to one of the campsites it provides."@en ;
+    rdfs:domain camping:Campground ;
+    rdfs:range camping:Campsite .
+
+camping:belongsToCampground a owl:ObjectProperty ;
+    rdfs:label "소속 야영장"@ko, "Belongs to Campground"@en ;
+    rdfs:comment "캠핑 사이트가 속한 야영장을 연결한다."@ko,
+                 "Links a campsite to the campground it belongs to."@en ;
+    rdfs:domain camping:Campsite ;
+    rdfs:range camping:Campground .
+
+camping:tripDestination a owl:ObjectProperty ;
+    rdfs:label "여행 목적지"@ko, "Trip Destination"@en ;
+    rdfs:comment "캠핑 여행이 향하는 야영장을 지정한다."@ko,
+                 "Identifies the campground that is the destination of a trip."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range camping:Campground .
+
+camping:tripHasParticipant a owl:ObjectProperty ;
+    rdfs:label "여행 참가자"@ko, "Trip Participant"@en ;
+    rdfs:comment "캠핑 여행에 참가하는 사람을 연결한다."@ko,
+                 "Links a camping trip to a person participating in it."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range camping:Camper .
+
+camping:tripHasReservation a owl:ObjectProperty ;
+    rdfs:label "여행 예약"@ko, "Trip Reservation"@en ;
+    rdfs:comment "캠핑 여행에 사용되는 사이트 예약을 연결한다."@ko,
+                 "Links a camping trip to a campsite reservation used for it."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range camping:Reservation .
+
+camping:reservationForSite a owl:ObjectProperty ;
+    rdfs:label "예약 사이트"@ko, "Reserved Campsite"@en ;
+    rdfs:comment "예약 대상인 캠핑 사이트를 지정한다."@ko,
+                 "Identifies the campsite covered by a reservation."@en ;
+    rdfs:domain camping:Reservation ;
+    rdfs:range camping:Campsite .
+
+camping:tripHasPackingList a owl:ObjectProperty ;
+    rdfs:label "여행 준비물 목록"@ko, "Trip Packing List"@en ;
+    rdfs:comment "캠핑 여행에 사용할 준비물 목록을 연결한다."@ko,
+                 "Links a camping trip to its equipment packing list."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range camping:PackingList .
+
+camping:listHasItem a owl:ObjectProperty ;
+    rdfs:label "준비물 항목"@ko, "Packing List Item"@en ;
+    rdfs:comment "준비물 목록에 포함되는 개별 항목을 연결한다."@ko,
+                 "Links a packing list to one of its individual entries."@en ;
+    rdfs:domain camping:PackingList ;
+    rdfs:range camping:PackingListItem .
+
+camping:itemEquipment a owl:ObjectProperty ;
+    rdfs:label "항목의 장비"@ko, "Item Equipment"@en ;
+    rdfs:comment "준비물 항목이 가리키는 장비를 지정한다."@ko,
+                 "Identifies the equipment referred to by a packing list entry."@en ;
+    rdfs:domain camping:PackingListItem ;
+    rdfs:range camping:CampingEquipment .
+
+camping:tripHasActivity a owl:ObjectProperty ;
+    rdfs:label "여행 활동"@ko, "Trip Activity"@en ;
+    rdfs:comment "캠핑 여행 중 계획되거나 수행되는 활동을 연결한다."@ko,
+                 "Links a camping trip to an activity planned or performed during it."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range camping:CampActivity .
+
+camping:tripStartDate a owl:DatatypeProperty ;
+    rdfs:label "여행 시작일"@ko, "Trip Start Date"@en ;
+    rdfs:comment "캠핑 여행이 시작되는 날짜이다."@ko,
+                 "The calendar date on which a camping trip begins."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range xsd:date .
+
+camping:tripEndDate a owl:DatatypeProperty ;
+    rdfs:label "여행 종료일"@ko, "Trip End Date"@en ;
+    rdfs:comment "캠핑 여행이 끝나는 날짜이다."@ko,
+                 "The calendar date on which a camping trip ends."@en ;
+    rdfs:domain camping:CampingTrip ;
+    rdfs:range xsd:date .
+
+camping:siteCapacity a owl:DatatypeProperty ;
+    rdfs:label "사이트 수용 인원"@ko, "Campsite Capacity"@en ;
+    rdfs:comment "캠핑 사이트에 허용되는 최대 인원수이다."@ko,
+                 "The maximum number of people permitted at a campsite."@en ;
+    rdfs:domain camping:Campsite ;
+    rdfs:range xsd:integer .
+
+camping:reservationStatus a owl:DatatypeProperty ;
+    rdfs:label "예약 상태"@ko, "Reservation Status"@en ;
+    rdfs:comment "예약의 현재 처리 상태를 나타내는 문자열이다."@ko,
+                 "A text value describing the current processing state of a reservation."@en ;
+    rdfs:domain camping:Reservation ;
+    rdfs:range xsd:string .
+
+camping:equipmentCategory a owl:DatatypeProperty ;
+    rdfs:label "장비 분류"@ko, "Equipment Category"@en ;
+    rdfs:comment "캠핑 장비의 용도나 종류를 구분하는 분류이다."@ko,
+                 "A category describing the type or purpose of camping equipment."@en ;
+    rdfs:domain camping:CampingEquipment ;
+    rdfs:range xsd:string .
+
+camping:equipmentWeightKg a owl:DatatypeProperty ;
+    rdfs:label "장비 무게(kg)"@ko, "Equipment Weight (kg)"@en ;
+    rdfs:comment "캠핑 장비 한 개의 무게를 킬로그램 단위로 나타낸다."@ko,
+                 "The weight of one piece of camping equipment, measured in kilograms."@en ;
+    rdfs:domain camping:CampingEquipment ;
+    rdfs:range xsd:decimal .
+
+camping:itemQuantity a owl:DatatypeProperty ;
+    rdfs:label "준비 수량"@ko, "Required Quantity"@en ;
+    rdfs:comment "준비물 목록 항목에서 가져가야 하는 장비 수량이다."@ko,
+                 "The number of equipment units required for a packing list entry."@en ;
+    rdfs:domain camping:PackingListItem ;
+    rdfs:range xsd:integer .
+
+camping:activityCategory a owl:DatatypeProperty ;
+    rdfs:label "활동 분류"@ko, "Activity Category"@en ;
+    rdfs:comment "캠핑 중 수행할 활동의 종류를 나타내는 문자열이다."@ko,
+                 "A text value identifying the kind of activity planned during camping."@en ;
+    rdfs:domain camping:CampActivity ;
+    rdfs:range xsd:string .
+
+camping:activityDate a owl:DatatypeProperty ;
+    rdfs:label "활동 날짜"@ko, "Activity Date"@en ;
+    rdfs:comment "캠핑 활동이 계획된 날짜이다."@ko,
+                 "The calendar date on which a camping activity is planned."@en ;
+    rdfs:domain camping:CampActivity ;
+    rdfs:range xsd:date .

@@ -1,0 +1,315 @@
+{
+  "observed_date": "2026-10-05",
+  "source": "Entirely constructed synthetic fixture; no project, patient, server dataset, or API response was read.",
+  "fixture": "tests/fixtures/fhir/synthetic-clinical.ttl",
+  "runs": [
+    {
+      "status": "passed",
+      "validator_version": "6.10.4",
+      "jar_sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+      "fhir_version": "5.0.0",
+      "core_package": "hl7.fhir.r5.core#5.0.0",
+      "support_packages": [
+        {
+          "id": "hl7.fhir.xver-extensions#0.1.0",
+          "sha256": "f3bb9fa2083402e88a02b41f433655274e8a1cca563211c8f7ba6fd0badf537a"
+        },
+        {
+          "id": "hl7.terminology.r5#6.2.0",
+          "sha256": "4b492a0721d96f8c848142b581b1c87b58d427c358ec4b04be059d1b13d0d894"
+        },
+        {
+          "id": "hl7.fhir.uv.extensions.r5#5.2.0",
+          "sha256": "e02fc6eff0f37c1611a35aa93ef9aaa3b55ab7371a5c96f4d2a5834106a13170"
+        },
+        {
+          "id": "hl7.terminology#7.4.0",
+          "sha256": "b321ad4ee1c18798abd8692f45bc86550cffac72ae97413125cfb82f0112c72d"
+        }
+      ],
+      "profiles": [
+        "http://hl7.org/fhir/StructureDefinition/Bundle"
+      ],
+      "implementation_guides": [],
+      "mode": "structural",
+      "terminology_server": "n/a",
+      "terminology_service_validated": false,
+      "input_sha256": "c38a529b03a178e0d41acca34e5c692d6b43fc05421219e835d863216286aef3",
+      "java_version": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "returncode": 0,
+      "issue_counts": {
+        "fatal": 0,
+        "error": 0,
+        "warning": 6,
+        "information": 5,
+        "success": 0
+      },
+      "loaded_packages": [
+        "hl7.fhir.r5.core#5.0.0",
+        "hl7.fhir.xver-extensions#0.1.0",
+        "hl7.terminology.r5#6.2.0",
+        "hl7.fhir.uv.extensions.r5#5.2.0",
+        "hl7.terminology#7.4.0"
+      ],
+      "package_verification": {
+        "status": "ready",
+        "archive_and_definition_files_verified": true,
+        "packages": [
+          {
+            "id": "hl7.fhir.r5.core#5.0.0",
+            "sha256": "74b27cd1bfce9e80eaceac431edf230b0945a443564fbf5512f82e5fa50a80d4"
+          },
+          {
+            "id": "hl7.fhir.xver-extensions#0.1.0",
+            "sha256": "f3bb9fa2083402e88a02b41f433655274e8a1cca563211c8f7ba6fd0badf537a"
+          },
+          {
+            "id": "hl7.terminology.r5#6.2.0",
+            "sha256": "4b492a0721d96f8c848142b581b1c87b58d427c358ec4b04be059d1b13d0d894"
+          },
+          {
+            "id": "hl7.fhir.uv.extensions.r5#5.2.0",
+            "sha256": "e02fc6eff0f37c1611a35aa93ef9aaa3b55ab7371a5c96f4d2a5834106a13170"
+          },
+          {
+            "id": "hl7.terminology#7.4.0",
+            "sha256": "b321ad4ee1c18798abd8692f45bc86550cffac72ae97413125cfb82f0112c72d"
+          }
+        ]
+      },
+      "generated_at": "2026-10-04T16:59:36.311085+00:00",
+      "fixture_sha256": "785fbf4b033bea94310355c2fd803311ac947b7d371466f3a3dd82807ce90166",
+      "artifacts": {
+        "structural-outcome.json": {
+          "path": ".runtime/fhir-validation-structural/structural-outcome.json",
+          "sha256": "151020bb50e4249db028a7b6d485c7681f4f99de86d11e0f291eae384cc1ce7e"
+        },
+        "structural-validator.log": {
+          "path": ".runtime/fhir-validation-structural/structural-validator.log",
+          "sha256": "efe12974045f2280a22a228662ea67f8efece649af9ce28eec6842932fb5dd49"
+        },
+        "synthetic-bundle.json": {
+          "path": ".runtime/fhir-validation-structural/synthetic-bundle.json",
+          "sha256": "c38a529b03a178e0d41acca34e5c692d6b43fc05421219e835d863216286aef3"
+        },
+        "validation-report.json": {
+          "path": ".runtime/fhir-validation-structural/validation-report.json",
+          "sha256": "1dd77e3982cbbe7c342f9918789034893afced334e0aaadb33cdb26003da9c9f"
+        },
+        "validator-settings.json": {
+          "path": ".runtime/fhir-validation-structural/validator-settings.json",
+          "sha256": "c596214c6195fb232cea5f68e3f43a5544a0e63464910a69f331d44723bd7145"
+        }
+      },
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "code-invalid",
+          "text": "Binding for path Bundle.entry[1].resource/*Task/9fef297b-cb0b-4331-8d94-02417fcbfa16*/.output[0].type in profile StructureDefinition[http://hl7.org/fhir/StructureDefinition/Task|5.0.0] has no source, so can't be checked"
+        },
+        {
+          "severity": "information",
+          "code": "code-invalid",
+          "text": "Binding for path Bundle.entry[1].resource/*Task/9fef297b-cb0b-4331-8d94-02417fcbfa16*/.output[1].type in profile StructureDefinition[http://hl7.org/fhir/StructureDefinition/Task|5.0.0] has no source, so can't be checked"
+        },
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "informational",
+          "text": "Validate Observation against the Body weight profile (http://hl7.org/fhir/StructureDefinition/bodyweight) which is required by the FHIR specification because the LOINC code 29463-7 was found"
+        },
+        {
+          "severity": "information",
+          "code": "code-invalid",
+          "text": "Could not confirm that the codes provided are from the extensible value set http://hl7.org/fhir/ValueSet/observation-vitalsignresult|5.0.0 because there is no terminology service"
+        },
+        {
+          "severity": "warning",
+          "code": "business-rule",
+          "text": "Unable to validate code 'kg' in system 'http://unitsofmeasure.org' because the validator is running without terminology services"
+        },
+        {
+          "severity": "warning",
+          "code": "informational",
+          "text": "Unable to validate code without using server because: Resolved system http://unitsofmeasure.org (v3.0.1), but the definition doesn't include any codes, so the code has not been validated"
+        },
+        {
+          "severity": "warning",
+          "code": "invalid",
+          "text": "Best Practice Recommendation: In general, all observations should have a performer"
+        },
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "informational",
+          "text": "Validate Observation against the Body weight profile (http://hl7.org/fhir/StructureDefinition/bodyweight) which is required by the FHIR specification because the LOINC code 29463-7 was found"
+        }
+      ]
+    },
+    {
+      "status": "passed",
+      "validator_version": "6.10.4",
+      "jar_sha256": "1106b9d58f9e363e47bea7c4fc065841e5fc91fe9d062775c3bfdd212bd653cc",
+      "fhir_version": "5.0.0",
+      "core_package": "hl7.fhir.r5.core#5.0.0",
+      "support_packages": [
+        {
+          "id": "hl7.fhir.xver-extensions#0.1.0",
+          "sha256": "f3bb9fa2083402e88a02b41f433655274e8a1cca563211c8f7ba6fd0badf537a"
+        },
+        {
+          "id": "hl7.terminology.r5#6.2.0",
+          "sha256": "4b492a0721d96f8c848142b581b1c87b58d427c358ec4b04be059d1b13d0d894"
+        },
+        {
+          "id": "hl7.fhir.uv.extensions.r5#5.2.0",
+          "sha256": "e02fc6eff0f37c1611a35aa93ef9aaa3b55ab7371a5c96f4d2a5834106a13170"
+        },
+        {
+          "id": "hl7.terminology#7.4.0",
+          "sha256": "b321ad4ee1c18798abd8692f45bc86550cffac72ae97413125cfb82f0112c72d"
+        }
+      ],
+      "profiles": [
+        "http://hl7.org/fhir/StructureDefinition/Bundle"
+      ],
+      "implementation_guides": [],
+      "mode": "terminology",
+      "terminology_server": "https://tx.fhir.org",
+      "terminology_service_validated": true,
+      "input_sha256": "471d3f5858a8a44fbd5b30d1318133298502d85d1c3ee84bc11d7b51b5419edf",
+      "java_version": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode, sharing)",
+      "returncode": 0,
+      "issue_counts": {
+        "fatal": 0,
+        "error": 0,
+        "warning": 4,
+        "information": 4,
+        "success": 0
+      },
+      "loaded_packages": [
+        "hl7.fhir.r5.core#5.0.0",
+        "hl7.fhir.xver-extensions#0.1.0",
+        "hl7.terminology.r5#6.2.0",
+        "hl7.fhir.uv.extensions.r5#5.2.0",
+        "hl7.terminology#7.4.0"
+      ],
+      "package_verification": {
+        "status": "ready",
+        "archive_and_definition_files_verified": true,
+        "packages": [
+          {
+            "id": "hl7.fhir.r5.core#5.0.0",
+            "sha256": "74b27cd1bfce9e80eaceac431edf230b0945a443564fbf5512f82e5fa50a80d4"
+          },
+          {
+            "id": "hl7.fhir.xver-extensions#0.1.0",
+            "sha256": "f3bb9fa2083402e88a02b41f433655274e8a1cca563211c8f7ba6fd0badf537a"
+          },
+          {
+            "id": "hl7.terminology.r5#6.2.0",
+            "sha256": "4b492a0721d96f8c848142b581b1c87b58d427c358ec4b04be059d1b13d0d894"
+          },
+          {
+            "id": "hl7.fhir.uv.extensions.r5#5.2.0",
+            "sha256": "e02fc6eff0f37c1611a35aa93ef9aaa3b55ab7371a5c96f4d2a5834106a13170"
+          },
+          {
+            "id": "hl7.terminology#7.4.0",
+            "sha256": "b321ad4ee1c18798abd8692f45bc86550cffac72ae97413125cfb82f0112c72d"
+          }
+        ]
+      },
+      "generated_at": "2026-10-04T17:02:43.725152+00:00",
+      "fixture_sha256": "785fbf4b033bea94310355c2fd803311ac947b7d371466f3a3dd82807ce90166",
+      "artifacts": {
+        "synthetic-bundle.json": {
+          "path": ".runtime/fhir-validation-terminology/synthetic-bundle.json",
+          "sha256": "471d3f5858a8a44fbd5b30d1318133298502d85d1c3ee84bc11d7b51b5419edf"
+        },
+        "terminology-outcome.json": {
+          "path": ".runtime/fhir-validation-terminology/terminology-outcome.json",
+          "sha256": "08e00cb28874aba7b330de5b4f5f7b20705f942c80bd3ac1604441d6a0696d0d"
+        },
+        "terminology-terminology.log": {
+          "path": ".runtime/fhir-validation-terminology/terminology-terminology.log",
+          "sha256": "a55ba1292430f0fead08bd6cda4708ac4d7016ffb2254066d8d330419f646aa6"
+        },
+        "terminology-validator.log": {
+          "path": ".runtime/fhir-validation-terminology/terminology-validator.log",
+          "sha256": "2212eee7ce419f2f08ae5d330be4807f9016aed5ffe55f84e3eaf4eae4053995"
+        },
+        "validation-report.json": {
+          "path": ".runtime/fhir-validation-terminology/validation-report.json",
+          "sha256": "fae960face2a1c0015521462eb04eed353aa53d0f2ed2d3cb02fbe44c0d2436c"
+        },
+        "validator-settings.json": {
+          "path": ".runtime/fhir-validation-terminology/validator-settings.json",
+          "sha256": "c596214c6195fb232cea5f68e3f43a5544a0e63464910a69f331d44723bd7145"
+        }
+      },
+      "findings": [
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "code-invalid",
+          "text": "Binding for path Bundle.entry[1].resource/*Task/f9ca778d-6532-4292-8dcb-65f14526e2ce*/.output[0].type in profile StructureDefinition[http://hl7.org/fhir/StructureDefinition/Task|5.0.0] has no source, so can't be checked"
+        },
+        {
+          "severity": "information",
+          "code": "code-invalid",
+          "text": "Binding for path Bundle.entry[1].resource/*Task/f9ca778d-6532-4292-8dcb-65f14526e2ce*/.output[1].type in profile StructureDefinition[http://hl7.org/fhir/StructureDefinition/Task|5.0.0] has no source, so can't be checked"
+        },
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "informational",
+          "text": "Validate Observation against the Body weight profile (http://hl7.org/fhir/StructureDefinition/bodyweight) which is required by the FHIR specification because the LOINC code 29463-7 was found"
+        },
+        {
+          "severity": "warning",
+          "code": "invalid",
+          "text": "Best Practice Recommendation: In general, all observations should have a performer"
+        },
+        {
+          "severity": "warning",
+          "code": "invariant",
+          "text": "Constraint failed: dom-6: 'A resource should have narrative for robust management' (defined in http://hl7.org/fhir/StructureDefinition/DomainResource) (Best Practice Recommendation)"
+        },
+        {
+          "severity": "information",
+          "code": "informational",
+          "text": "Validate Observation against the Body weight profile (http://hl7.org/fhir/StructureDefinition/bodyweight) which is required by the FHIR specification because the LOINC code 29463-7 was found"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Validation covers the committed synthetic fixture and applicable FHIR R5 core profiles.",
+    "No partner implementation guide has been selected.",
+    "FHIR-to-local-RDF import and lossless clinical round trip are not implemented.",
+    "Warnings and informational findings are retained; passing means zero fatal/error issues in the configured gate.",
+    "Engine-generated .index.json search indexes are outside definition-file integrity verification."
+  ]
+}

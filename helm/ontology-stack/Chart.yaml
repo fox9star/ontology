@@ -1,0 +1,17 @@
+apiVersion: v2
+name: ontology-stack
+description: Enterprise Knowledge Graph & Ontology Studio Helm Chart (Web Studio, MV Studio, Graph Backends, Multimodal RAG)
+type: application
+version: 1.0.0
+appVersion: "2.5.0"
+keywords:
+  - ontology
+  - knowledge-graph
+  - semantic-web
+  - sparql
+  - neo4j
+  - neptune
+  - multimodal-rag
+maintainers:
+  - name: Ontology Engineering Team
+    email: ontology-dev@example.org

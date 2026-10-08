@@ -1,0 +1,414 @@
+@prefix item: <https://example.test/ros2/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ros2: <https://example.org/ontology/custom/ros2#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+item:greenhouse-system a ros2:ROS2System ;
+    rdfs:label "Synthetic ROS 2 greenhouse sensing and irrigation system"@en,
+        "가상 온실 계측·관수 ROS 2 구성"@ko ;
+    ros2:hasAction item:action-irrigation-cycle ;
+    ros2:hasController item:controller-irrigation-pump ;
+    ros2:hasCoordinateFrame item:frame-greenhouse-map,
+        item:frame-sensor-rack,
+        item:frame-soil-probe,
+        item:frame-temperature-probe ;
+    ros2:hasDocumentationSource item:src-control,
+        item:src-interfaces,
+        item:src-qos-guide,
+        item:src-rclcpp-qos,
+        item:src-setbool,
+        item:src-temperature,
+        item:src-tf2 ;
+    ros2:hasHardwareComponent item:hardware-pump,
+        item:hardware-soil-probe,
+        item:hardware-temperature-sensor ;
+    ros2:hasNode item:node-controller-manager,
+        item:node-greenhouse-supervisor,
+        item:node-operator-console,
+        item:node-sensor-bridge ;
+    ros2:hasPackage item:pkg-controller-manager,
+        item:pkg-farm-interfaces,
+        item:pkg-greenhouse-app,
+        item:pkg-rclcpp,
+        item:pkg-ros2-control,
+        item:pkg-ros2-controllers,
+        item:pkg-sensor-msgs,
+        item:pkg-std-srvs,
+        item:pkg-tf2 ;
+    ros2:hasQoSProfile item:qos-default,
+        item:qos-sensor-data,
+        item:qos-services ;
+    ros2:hasService item:service-pump-enable ;
+    ros2:hasTopic item:topic-soil-moisture,
+        item:topic-temperature ;
+    ros2:recordKind "synthetic"^^xsd:string ;
+    ros2:systemNote "실제 온실 배포, 펌프 회로, 센서 배선이나 검증된 안전 동작이 아닌 개념 예시다. 공식 ROS 개념 근거는 출처 개체에 연결한다."^^xsd:string ;
+    ros2:systemPurpose "학습용 구조로 온도·토양 수분을 수집하고 관수 펌프 동작을 요청한다."^^xsd:string .
+
+item:action-irrigation-cycle a ros2:Action ;
+    rdfs:label "Synthetic irrigation cycle action"@en,
+        "가상 관수 사이클 액션"@ko ;
+    ros2:actionClient item:node-operator-console ;
+    ros2:actionName "/greenhouse/irrigation/run_cycle"^^xsd:string ;
+    ros2:actionNote "긴 관수 작업에 목표·진행 피드백·결과·취소를 보여주는 합성 액션 연결이다. 농업 처방이나 안전 로직을 제공하지 않는다."^^xsd:string ;
+    ros2:actionServer item:node-greenhouse-supervisor ;
+    ros2:actionType item:type-irrigation-cycle ;
+    ros2:documentedBy item:src-interfaces .
+
+item:frame-soil-probe a ros2:CoordinateFrame ;
+    rdfs:label "Synthetic soil probe frame"@en,
+        "가상 토양 프로브 프레임"@ko ;
+    ros2:documentedBy item:src-tf2 ;
+    ros2:frameName "soil_probe"^^xsd:string ;
+    ros2:frameNote "센서 랙에 연결된 합성 토양 프로브 프레임이다."^^xsd:string ;
+    ros2:frameRole "sensor"^^xsd:string ;
+    ros2:parentFrame item:frame-sensor-rack .
+
+item:frame-temperature-probe a ros2:CoordinateFrame ;
+    rdfs:label "Synthetic temperature probe frame"@en,
+        "가상 온도 프로브 프레임"@ko ;
+    ros2:documentedBy item:src-tf2 ;
+    ros2:frameName "temperature_probe"^^xsd:string ;
+    ros2:frameNote "센서 랙에 연결된 합성 센서 프레임이다."^^xsd:string ;
+    ros2:frameRole "sensor"^^xsd:string ;
+    ros2:parentFrame item:frame-sensor-rack .
+
+item:hardware-soil-probe a ros2:HardwareComponent ;
+    rdfs:label "Synthetic soil moisture probe"@en,
+        "가상 토양 수분 프로브"@ko ;
+    ros2:componentKind "sensor"^^xsd:string ;
+    ros2:componentName "soil_moisture_probe"^^xsd:string ;
+    ros2:documentedBy item:src-control ;
+    ros2:hardwareNote "센서 측정 단위, 교정, 전기 연결과 ROS 드라이버는 구현하지 않은 예시다."^^xsd:string ;
+    ros2:hardwareProtocol "가상 MCU를 통한 아날로그 입력"^^xsd:string ;
+    ros2:stateInterface "['moisture']"^^xsd:string .
+
+item:hardware-temperature-sensor a ros2:HardwareComponent ;
+    rdfs:label "Synthetic temperature sensor"@en,
+        "가상 온도 센서"@ko ;
+    ros2:componentKind "sensor"^^xsd:string ;
+    ros2:componentName "temperature_sensor"^^xsd:string ;
+    ros2:documentedBy item:src-control ;
+    ros2:hardwareNote "연결 방식과 상태 인터페이스는 예시이며 실제 센서 모델·드라이버를 검증하지 않았다."^^xsd:string ;
+    ros2:hardwareProtocol "가상 MCU를 통한 I2C 센서 읽기"^^xsd:string ;
+    ros2:stateInterface "['temperature']"^^xsd:string .
+
+item:pkg-rclcpp a ros2:Package ;
+    rdfs:label "rclcpp"@en,
+        "rclcpp"@ko ;
+    ros2:documentedBy item:src-rclcpp-qos ;
+    ros2:packageName "rclcpp"^^xsd:string ;
+    ros2:packageNote "C++ ROS 2 클라이언트 라이브러리다. 이 예시 애플리케이션의 구현 의존성을 나타낸다."^^xsd:string ;
+    ros2:packageRole "client_library"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros2/rclcpp"^^xsd:anyURI .
+
+item:pkg-ros2-control a ros2:Package ;
+    rdfs:label "ros2_control"@en,
+        "ros2_control"@ko ;
+    ros2:documentedBy item:src-control ;
+    ros2:packageName "ros2_control"^^xsd:string ;
+    ros2:packageNote "하드웨어 구성요소·인터페이스와 컨트롤러 관리 구조를 제공한다."^^xsd:string ;
+    ros2:packageRole "control_framework"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros-controls/ros2_control"^^xsd:anyURI .
+
+item:pkg-ros2-controllers a ros2:Package ;
+    rdfs:label "ros2_controllers"@en,
+        "ros2_controllers"@ko ;
+    ros2:documentedBy item:src-control ;
+    ros2:packageName "ros2_controllers"^^xsd:string ;
+    ros2:packageNote "공용 ros2_control 컨트롤러 플러그인 모음이다."^^xsd:string ;
+    ros2:packageRole "controller_plugins"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros-controls/ros2_controllers"^^xsd:anyURI .
+
+item:pkg-tf2 a ros2:Package ;
+    rdfs:label "tf2"@en,
+        "tf2"@ko ;
+    ros2:documentedBy item:src-tf2 ;
+    ros2:packageName "tf2"^^xsd:string ;
+    ros2:packageNote "좌표 프레임 간 관계를 저장하고 변환하는 라이브러리 모음이다."^^xsd:string ;
+    ros2:packageRole "transform_library"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros2/geometry2"^^xsd:anyURI .
+
+item:qos-default a ros2:QoSProfile ;
+    rdfs:label "ROS 2 default QoS example"@en,
+        "ROS 2 기본 QoS 예시"@ko ;
+    ros2:documentedBy item:src-qos-guide ;
+    ros2:durability "volatile"^^xsd:string ;
+    ros2:historyDepth 10 ;
+    ros2:historyPolicy "keep_last"^^xsd:string ;
+    ros2:qosName "DefaultQoS"^^xsd:string ;
+    ros2:qosNote "ROS 2 문서의 기본 publish/subscribe 설정 예시다. 각 RMW 구현의 세부 기본값은 달라질 수 있다."^^xsd:string ;
+    ros2:reliability "reliable"^^xsd:string .
+
+item:service-pump-enable a ros2:Service ;
+    rdfs:label "Synthetic pump enable service"@en,
+        "가상 펌프 활성 서비스"@ko ;
+    ros2:documentedBy item:src-interfaces ;
+    ros2:serviceClient item:node-operator-console ;
+    ros2:serviceName "/greenhouse/pump/set_enabled"^^xsd:string ;
+    ros2:serviceNote "작업자 패널이 펌프 활성 여부를 요청하는 예시 서비스다. 실제 펌프를 작동시키지 않는다."^^xsd:string ;
+    ros2:serviceQoSProfile item:qos-services ;
+    ros2:serviceServer item:node-greenhouse-supervisor ;
+    ros2:serviceType item:type-set-bool .
+
+item:topic-soil-moisture a ros2:Topic ;
+    rdfs:label "Synthetic soil moisture topic"@en,
+        "가상 토양 수분 토픽"@ko ;
+    ros2:documentedBy item:src-interfaces ;
+    ros2:hasPublisher item:node-sensor-bridge ;
+    ros2:hasSubscriber item:node-greenhouse-supervisor ;
+    ros2:messageType item:type-soil-moisture ;
+    ros2:topicName "/greenhouse/soil_moisture"^^xsd:string ;
+    ros2:usesQoSProfile item:qos-sensor-data .
+
+item:topic-temperature a ros2:Topic ;
+    rdfs:label "Synthetic greenhouse temperature topic"@en,
+        "가상 온실 온도 토픽"@ko ;
+    ros2:documentedBy item:src-interfaces ;
+    ros2:hasPublisher item:node-sensor-bridge ;
+    ros2:hasSubscriber item:node-greenhouse-supervisor ;
+    ros2:messageType item:type-temperature ;
+    ros2:topicName "/greenhouse/temperature"^^xsd:string ;
+    ros2:usesQoSProfile item:qos-sensor-data .
+
+item:type-irrigation-cycle a ros2:MessageType ;
+    rdfs:label "farm_interfaces/action/IrrigationCycle (synthetic)"@en,
+        "farm_interfaces/action/IrrigationCycle (가상)"@ko ;
+    ros2:definedInPackage item:pkg-farm-interfaces ;
+    ros2:definitionKind "action"^^xsd:string ;
+    ros2:typeName "farm_interfaces/action/IrrigationCycle"^^xsd:string ;
+    ros2:typeNote "목표·피드백·결과가 필요한 관수 사이클의 예시 사용자 정의 액션 형식 이름이다."^^xsd:string .
+
+item:type-set-bool a ros2:MessageType ;
+    rdfs:label "std_srvs/srv/SetBool"@en,
+        "std_srvs/srv/SetBool"@ko ;
+    ros2:definedInPackage item:pkg-std-srvs ;
+    ros2:definitionKind "srv"^^xsd:string ;
+    ros2:documentedBy item:src-setbool ;
+    ros2:typeName "std_srvs/srv/SetBool"^^xsd:string ;
+    ros2:typeNote "불리언 요청과 성공 여부·메시지 응답을 정의하는 표준 서비스 형식이다."^^xsd:string .
+
+item:type-soil-moisture a ros2:MessageType ;
+    rdfs:label "farm_interfaces/msg/SoilMoisture (synthetic)"@en,
+        "farm_interfaces/msg/SoilMoisture (가상)"@ko ;
+    ros2:definedInPackage item:pkg-farm-interfaces ;
+    ros2:definitionKind "msg"^^xsd:string ;
+    ros2:typeName "farm_interfaces/msg/SoilMoisture"^^xsd:string ;
+    ros2:typeNote "온실 학습 예시를 위해 만든 사용자 정의 메시지 형식 이름이다. ROS 표준 형식이 아니다."^^xsd:string .
+
+item:type-temperature a ros2:MessageType ;
+    rdfs:label "sensor_msgs/msg/Temperature"@en,
+        "sensor_msgs/msg/Temperature"@ko ;
+    ros2:definedInPackage item:pkg-sensor-msgs ;
+    ros2:definitionKind "msg"^^xsd:string ;
+    ros2:documentedBy item:src-temperature ;
+    ros2:typeName "sensor_msgs/msg/Temperature"^^xsd:string ;
+    ros2:typeNote "sensor_msgs 문서에서 단일 온도 측정값으로 설명하는 표준 메시지 형식이다."^^xsd:string .
+
+item:controller-irrigation-pump a ros2:Controller ;
+    rdfs:label "Synthetic pump command controller"@en,
+        "가상 펌프 명령 컨트롤러"@ko ;
+    ros2:controllerKind "custom"^^xsd:string ;
+    ros2:controllerName "greenhouse_pump_controller"^^xsd:string ;
+    ros2:controllerNode item:node-controller-manager ;
+    ros2:controllerNote "예시 전용 사용자 정의 컨트롤러 연결이다. 공식 ros2_controllers 플러그인이나 실제 하드웨어 드라이버가 아니다."^^xsd:string ;
+    ros2:controllerPackage item:pkg-greenhouse-app ;
+    ros2:controlsHardware item:hardware-pump ;
+    ros2:documentedBy item:src-control .
+
+item:frame-greenhouse-map a ros2:CoordinateFrame ;
+    rdfs:label "Synthetic greenhouse world frame"@en,
+        "가상 온실 기준 프레임"@ko ;
+    ros2:documentedBy item:src-tf2 ;
+    ros2:frameName "greenhouse_map"^^xsd:string ;
+    ros2:frameNote "학습용 프레임 트리의 루트다."^^xsd:string ;
+    ros2:frameRole "world"^^xsd:string .
+
+item:hardware-pump a ros2:HardwareComponent ;
+    rdfs:label "Synthetic irrigation pump"@en,
+        "가상 관수 펌프"@ko ;
+    ros2:commandInterface "['enable']"^^xsd:string ;
+    ros2:componentKind "actuator"^^xsd:string ;
+    ros2:componentName "irrigation_pump"^^xsd:string ;
+    ros2:controlledBy item:controller-irrigation-pump ;
+    ros2:documentedBy item:src-control ;
+    ros2:hardwareNote "회로·전원·보호·급수 부품을 나타내지 않는 가상 하드웨어 구성요소다."^^xsd:string ;
+    ros2:hardwareProtocol "가상 절연 릴레이 출력"^^xsd:string ;
+    ros2:stateInterface "['enabled']"^^xsd:string .
+
+item:node-controller-manager a ros2:Node ;
+    rdfs:label "Synthetic controller_manager node"@en,
+        "가상 controller_manager 노드"@ko ;
+    ros2:nodeName "/controller_manager"^^xsd:string ;
+    ros2:nodeNote "온실 펌프 컨트롤러를 관리하는 합성 구성 연결이다. 특정 실행 환경에서 확인한 런타임 상태가 아니다."^^xsd:string ;
+    ros2:nodeRole "controller_manager"^^xsd:string ;
+    ros2:usesPackage item:pkg-controller-manager .
+
+item:pkg-controller-manager a ros2:Package ;
+    rdfs:label "controller_manager"@en,
+        "controller_manager"@ko ;
+    ros2:documentedBy item:src-control ;
+    ros2:packageName "controller_manager"^^xsd:string ;
+    ros2:packageNote "ros2_control의 컨트롤러와 하드웨어 인터페이스를 관리하는 패키지다."^^xsd:string ;
+    ros2:packageRole "control_framework"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros-controls/ros2_control/tree/master/controller_manager"^^xsd:anyURI .
+
+item:pkg-sensor-msgs a ros2:Package ;
+    rdfs:label "sensor_msgs"@en,
+        "sensor_msgs"@ko ;
+    ros2:documentedBy item:src-temperature ;
+    ros2:packageName "sensor_msgs"^^xsd:string ;
+    ros2:packageNote "센서 장치와 관련한 ROS 메시지 정의를 제공한다."^^xsd:string ;
+    ros2:packageRole "common_interfaces"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros2/common_interfaces/tree/rolling/sensor_msgs"^^xsd:anyURI .
+
+item:pkg-std-srvs a ros2:Package ;
+    rdfs:label "std_srvs"@en,
+        "std_srvs"@ko ;
+    ros2:documentedBy item:src-setbool ;
+    ros2:packageName "std_srvs"^^xsd:string ;
+    ros2:packageNote "일반적인 단순 서비스 형식을 제공한다."^^xsd:string ;
+    ros2:packageRole "common_interfaces"^^xsd:string ;
+    ros2:packageUri "https://github.com/ros2/common_interfaces/tree/rolling/std_srvs"^^xsd:anyURI .
+
+item:qos-services a ros2:QoSProfile ;
+    rdfs:label "ServicesQoS example"@en,
+        "ServicesQoS 예시"@ko ;
+    ros2:documentedBy item:src-rclcpp-qos ;
+    ros2:durability "volatile"^^xsd:string ;
+    ros2:historyDepth 10 ;
+    ros2:historyPolicy "keep_last"^^xsd:string ;
+    ros2:qosName "ServicesQoS"^^xsd:string ;
+    ros2:qosNote "rclcpp ServicesQoS 정의에 기록된 reliable, volatile, keep_last 깊이 10 조합이다."^^xsd:string ;
+    ros2:reliability "reliable"^^xsd:string .
+
+item:frame-sensor-rack a ros2:CoordinateFrame ;
+    rdfs:label "Synthetic sensor rack frame"@en,
+        "가상 센서 랙 프레임"@ko ;
+    ros2:documentedBy item:src-tf2 ;
+    ros2:frameName "sensor_rack"^^xsd:string ;
+    ros2:frameNote "온실 기준 프레임에 고정된 합성 장착 프레임이다."^^xsd:string ;
+    ros2:frameRole "other"^^xsd:string ;
+    ros2:parentFrame item:frame-greenhouse-map .
+
+item:node-operator-console a ros2:Node ;
+    rdfs:label "Synthetic operator console node"@en,
+        "가상 작업자 패널 노드"@ko ;
+    ros2:nodeName "/greenhouse/operator_console"^^xsd:string ;
+    ros2:nodeNote "펌프 활성 요청과 관수 사이클 목표를 보내는 예시 노드다."^^xsd:string ;
+    ros2:nodeRole "operator"^^xsd:string ;
+    ros2:usesPackage item:pkg-greenhouse-app .
+
+item:node-sensor-bridge a ros2:Node ;
+    rdfs:label "Synthetic sensor bridge node"@en,
+        "가상 센서 브리지 노드"@ko ;
+    ros2:nodeName "/greenhouse/sensor_bridge"^^xsd:string ;
+    ros2:nodeNote "가상 센서 읽기를 두 토픽으로 발행하는 예시 노드다."^^xsd:string ;
+    ros2:nodeRole "driver"^^xsd:string ;
+    ros2:usesPackage item:pkg-greenhouse-app .
+
+item:pkg-farm-interfaces a ros2:Package ;
+    rdfs:label "farm_interfaces (synthetic)"@en,
+        "farm_interfaces (가상)"@ko ;
+    ros2:packageName "farm_interfaces"^^xsd:string ;
+    ros2:packageNote "토양 수분 메시지와 관수 액션을 보여주기 위해 만든 예시 패키지 식별자이며 실제 저장소나 배포물이 아니다."^^xsd:string ;
+    ros2:packageRole "custom_interfaces"^^xsd:string ;
+    ros2:packageUri "urn:synthetic:ros2:package:farm_interfaces"^^xsd:anyURI .
+
+item:qos-sensor-data a ros2:QoSProfile ;
+    rdfs:label "SensorDataQoS example"@en,
+        "SensorDataQoS 예시"@ko ;
+    ros2:documentedBy item:src-qos-guide,
+        item:src-rclcpp-qos ;
+    ros2:durability "volatile"^^xsd:string ;
+    ros2:historyDepth 5 ;
+    ros2:historyPolicy "keep_last"^^xsd:string ;
+    ros2:qosName "SensorDataQoS"^^xsd:string ;
+    ros2:qosNote "rclcpp SensorDataQoS 정의에 기록된 keep_last 깊이 5, best effort, volatile 조합이다. 애플리케이션의 손실 허용 여부는 별도 검토해야 한다."^^xsd:string ;
+    ros2:reliability "best_effort"^^xsd:string .
+
+item:src-qos-guide a ros2:DocumentationSource ;
+    rdfs:label "ROS 2 QoS policies documentation"@en,
+        "ROS 2 QoS 정책 문서"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "QoS profiles group history, depth, reliability and durability; sensor data favors timely recent samples, and endpoint profiles must be compatible."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 Documentation project"^^xsd:string ;
+    ros2:sourceTitle "About Quality of Service settings"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.rst"^^xsd:anyURI .
+
+item:src-setbool a ros2:DocumentationSource ;
+    rdfs:label "std_srvs SetBool service definition"@en,
+        "std_srvs SetBool 서비스 정의"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "SetBool defines a boolean request and success/message response; the example uses it as a synthetic pump-enable interface."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 common_interfaces project"^^xsd:string ;
+    ros2:sourceTitle "SetBool.srv"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/common_interfaces/blob/rolling/std_srvs/srv/SetBool.srv"^^xsd:anyURI .
+
+item:src-temperature a ros2:DocumentationSource ;
+    rdfs:label "sensor_msgs message list"@en,
+        "sensor_msgs 메시지 목록"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "sensor_msgs lists Temperature as a single temperature reading."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 common_interfaces project"^^xsd:string ;
+    ros2:sourceTitle "sensor_msgs README: Temperature"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/README.md"^^xsd:anyURI .
+
+item:src-rclcpp-qos a ros2:DocumentationSource ;
+    rdfs:label "rclcpp QoS profile definitions"@en,
+        "rclcpp QoS 프로파일 정의"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "The source defines SensorDataQoS as keep_last depth 5, best effort, volatile; ServicesQoS as keep_last depth 10, reliable, volatile."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 rclcpp project"^^xsd:string ;
+    ros2:sourceTitle "rclcpp qos.hpp: SensorDataQoS and ServicesQoS"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/rclcpp/blob/rolling/rclcpp/include/rclcpp/qos.hpp"^^xsd:anyURI .
+
+item:node-greenhouse-supervisor a ros2:Node ;
+    rdfs:label "Synthetic greenhouse supervisor node"@en,
+        "가상 온실 관리 노드"@ko ;
+    ros2:nodeName "/greenhouse/supervisor"^^xsd:string ;
+    ros2:nodeNote "센서 토픽을 구독하고 펌프 서비스와 관수 액션을 제공하는 예시 노드다."^^xsd:string ;
+    ros2:nodeRole "manager"^^xsd:string ;
+    ros2:usesPackage item:pkg-greenhouse-app .
+
+item:pkg-greenhouse-app a ros2:Package ;
+    rdfs:label "greenhouse_application (synthetic)"@en,
+        "greenhouse_application (가상)"@ko ;
+    ros2:packageName "greenhouse_application"^^xsd:string ;
+    ros2:packageNote "가상 온실 노드와 사용자 정의 컨트롤러 구현을 나타내는 예시 패키지 식별자다."^^xsd:string ;
+    ros2:packageRole "application"^^xsd:string ;
+    ros2:packageUri "urn:synthetic:ros2:package:greenhouse_application"^^xsd:anyURI .
+
+item:src-interfaces a ros2:DocumentationSource ;
+    rdfs:label "ROS 2 topics, services and actions documentation"@en,
+        "ROS 2 토픽·서비스·액션 문서"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "Topics carry asynchronous data streams; services use request/response for short work; actions support long-running goals, feedback, cancellation and results."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 Documentation project"^^xsd:string ;
+    ros2:sourceTitle "Interfaces: Topics, Services, Actions"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/Interfaces-Topics-Services-Actions.rst"^^xsd:anyURI .
+
+item:src-tf2 a ros2:DocumentationSource ;
+    rdfs:label "tf2 coordinate frames documentation"@en,
+        "tf2 좌표 프레임 문서"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "tf2 tracks coordinate-frame relationships over time in a tree and transforms data between frames."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ROS 2 Documentation project"^^xsd:string ;
+    ros2:sourceTitle "About tf2"^^xsd:string ;
+    ros2:sourceUri "https://github.com/ros2/ros2_documentation/blob/rolling/source/ROS-Framework/interfaces/About-Tf2/About-Tf2.rst"^^xsd:anyURI .
+
+item:src-control a ros2:DocumentationSource ;
+    rdfs:label "ros2_control architecture documentation"@en,
+        "ros2_control 구조 문서"@ko ;
+    ros2:sourceAccessedAt "2026-10-07"^^xsd:date ;
+    ros2:sourceClaim "Controller Manager coordinates controllers and hardware interfaces; the loop reads hardware, updates controllers and writes commands; hardware components include sensors, actuators and systems."^^xsd:string ;
+    ros2:sourceLanguage "en"^^xsd:string ;
+    ros2:sourcePublisher "ros-controls project"^^xsd:string ;
+    ros2:sourceTitle "ros2_control Getting Started"^^xsd:string ;
+    ros2:sourceUri "https://control.ros.org/rolling/doc/getting_started/getting_started.html"^^xsd:anyURI .

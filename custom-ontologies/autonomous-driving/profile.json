@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "autonomous-driving",
+  "name": "자율주행 온톨로지 (autonomous-driving)",
+  "description": "주행 자동화 기능·SAE 수준 용어·운행설계영역·차량·센서·인지·위치추정·계획·제어·안전·시험 근거를 연결합니다.",
+  "name_en": "Autonomous Driving Ontology",
+  "description_en": "Connects driving features, SAE level terms, ODD, vehicles, sensors, perception, localization, planning, control, safety and test evidence.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/autonomous-driving#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-08T10:43:06+09:00",
+  "schema": "custom-ontologies/autonomous-driving/schema.ttl",
+  "owl": "custom-ontologies/autonomous-driving/schema.owl",
+  "shapes": "custom-ontologies/autonomous-driving/shapes.ttl",
+  "example": "custom-ontologies/autonomous-driving/example.ttl",
+  "questions": "custom-ontologies/autonomous-driving/questions.md",
+  "questions_fixture": "custom-ontologies/autonomous-driving/question-fixture.ttl",
+  "question_answers": "custom-ontologies/autonomous-driving/question-answers.json",
+  "compatibility_cases": "custom-ontologies/autonomous-driving/consumer-cases.trig"
+}

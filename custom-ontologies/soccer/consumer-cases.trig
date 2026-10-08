@@ -1,0 +1,1340 @@
+@prefix ns1: <https://example.org/ontology/custom/soccer#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/consumer/soccer-accept> {
+    <https://example.test/soccer/match1> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 A 대 클럽 B"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubB> ;
+        ns1:awayGoals 1 ;
+        ns1:hasAppearance <https://example.test/soccer/match1A01>,
+            <https://example.test/soccer/match1A02>,
+            <https://example.test/soccer/match1A03>,
+            <https://example.test/soccer/match1A04>,
+            <https://example.test/soccer/match1A05>,
+            <https://example.test/soccer/match1A06>,
+            <https://example.test/soccer/match1A07>,
+            <https://example.test/soccer/match1A08>,
+            <https://example.test/soccer/match1A09>,
+            <https://example.test/soccer/match1A10>,
+            <https://example.test/soccer/match1A11>,
+            <https://example.test/soccer/match1A12>,
+            <https://example.test/soccer/match1B01>,
+            <https://example.test/soccer/match1B02>,
+            <https://example.test/soccer/match1B03>,
+            <https://example.test/soccer/match1B04>,
+            <https://example.test/soccer/match1B05>,
+            <https://example.test/soccer/match1B06>,
+            <https://example.test/soccer/match1B07>,
+            <https://example.test/soccer/match1B08>,
+            <https://example.test/soccer/match1B09>,
+            <https://example.test/soccer/match1B10>,
+            <https://example.test/soccer/match1B11>,
+            <https://example.test/soccer/match1B12> ;
+        ns1:hasEvent <https://example.test/soccer/match1ev1>,
+            <https://example.test/soccer/match1ev2>,
+            <https://example.test/soccer/match1ev3>,
+            <https://example.test/soccer/match1ev4> ;
+        ns1:homeClub <https://example.test/soccer/clubA> ;
+        ns1:homeGoals 2 ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-03-01"^^xsd:date ;
+        ns1:matchReportUri "urn:synthetic:report:match1"^^xsd:anyURI ;
+        ns1:matchStatus "finished" ;
+        ns1:matchday 1 .
+
+    <https://example.test/soccer/match2> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 B 대 클럽 C"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubC> ;
+        ns1:awayGoals 1 ;
+        ns1:hasAppearance <https://example.test/soccer/match2B01>,
+            <https://example.test/soccer/match2B02>,
+            <https://example.test/soccer/match2B03>,
+            <https://example.test/soccer/match2B04>,
+            <https://example.test/soccer/match2B05>,
+            <https://example.test/soccer/match2B06>,
+            <https://example.test/soccer/match2B07>,
+            <https://example.test/soccer/match2B08>,
+            <https://example.test/soccer/match2B09>,
+            <https://example.test/soccer/match2B10>,
+            <https://example.test/soccer/match2B11>,
+            <https://example.test/soccer/match2B12>,
+            <https://example.test/soccer/match2C01>,
+            <https://example.test/soccer/match2C02>,
+            <https://example.test/soccer/match2C03>,
+            <https://example.test/soccer/match2C04>,
+            <https://example.test/soccer/match2C05>,
+            <https://example.test/soccer/match2C06>,
+            <https://example.test/soccer/match2C07>,
+            <https://example.test/soccer/match2C08>,
+            <https://example.test/soccer/match2C09>,
+            <https://example.test/soccer/match2C10>,
+            <https://example.test/soccer/match2C11>,
+            <https://example.test/soccer/match2C12> ;
+        ns1:hasEvent <https://example.test/soccer/match2ev5>,
+            <https://example.test/soccer/match2ev6>,
+            <https://example.test/soccer/match2ev7>,
+            <https://example.test/soccer/match2ev8> ;
+        ns1:homeClub <https://example.test/soccer/clubB> ;
+        ns1:homeGoals 1 ;
+        ns1:inCompetition <https://example.test/soccer/cup2026> ;
+        ns1:matchDate "2026-04-12"^^xsd:date ;
+        ns1:matchReportUri "urn:synthetic:report:match2"^^xsd:anyURI ;
+        ns1:matchStatus "finished" .
+
+    <https://example.test/soccer/match3> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 A 대 클럽 C"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubC> ;
+        ns1:homeClub <https://example.test/soccer/clubA> ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-10-24"^^xsd:date ;
+        ns1:matchStatus "scheduled" ;
+        ns1:matchday 3 .
+
+    <https://example.test/soccer/match4> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 C 대 클럽 B"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubB> ;
+        ns1:homeClub <https://example.test/soccer/clubC> ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-09-20"^^xsd:date ;
+        ns1:matchStatus "postponed" ;
+        ns1:matchday 2 .
+
+    <https://example.test/soccer/cup2026> a ns1:Competition ;
+        rdfs:label "가상 컵 2026"@ko ;
+        ns1:competitionType "cup" ;
+        ns1:season "2026" ;
+        ns1:substitutionLimit 3 .
+
+    <https://example.test/soccer/match1A01> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match1A02> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match1A03> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match1A04> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match1A05> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match1A06> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match1A07> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match1A08> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match1A09> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match1A10> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match1A11> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match1A12> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match1B01> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match1B02> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match1B03> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match1B04> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match1B05> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match1B06> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match1B07> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match1B08> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 60 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match1B09> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match1B10> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match1B11> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match1B12> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 60 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match1ev1> a ns1:MatchEvent ;
+        rdfs:label "match1 23분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerA10> ;
+        ns1:eventMinute 23 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match1ev2> a ns1:MatchEvent ;
+        rdfs:label "match1 40분 yellow-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB03> ;
+        ns1:eventMinute 40 ;
+        ns1:eventType "yellow-card" .
+
+    <https://example.test/soccer/match1ev3> a ns1:MatchEvent ;
+        rdfs:label "match1 55분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB09> ;
+        ns1:eventMinute 55 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match1ev4> a ns1:MatchEvent ;
+        rdfs:label "match1 78분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerA11> ;
+        ns1:eventMinute 78 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match2B01> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match2B02> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match2B03> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match2B04> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match2B05> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match2B06> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match2B07> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match2B08> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match2B09> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match2B10> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match2B11> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match2B12> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match2C01> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match2C02> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match2C03> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match2C04> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match2C05> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match2C06> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match2C07> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC07> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 65 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match2C08> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC08> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match2C09> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match2C10> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC10> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 80 ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match2C11> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match2C12> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 80 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match2ev5> a ns1:MatchEvent ;
+        rdfs:label "match2 10분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC09> ;
+        ns1:eventMinute 10 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match2ev6> a ns1:MatchEvent ;
+        rdfs:label "match2 30분 yellow-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB02> ;
+        ns1:eventMinute 30 ;
+        ns1:eventType "yellow-card" .
+
+    <https://example.test/soccer/match2ev7> a ns1:MatchEvent ;
+        rdfs:label "match2 50분 own-goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC04> ;
+        ns1:eventMinute 50 ;
+        ns1:eventType "own-goal" .
+
+    <https://example.test/soccer/match2ev8> a ns1:MatchEvent ;
+        rdfs:label "match2 65분 red-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC07> ;
+        ns1:eventMinute 65 ;
+        ns1:eventType "red-card" .
+
+    <https://example.test/soccer/playerA01> a ns1:Player ;
+        rdfs:label "가상 선수 A01"@ko .
+
+    <https://example.test/soccer/playerA02> a ns1:Player ;
+        rdfs:label "가상 선수 A02"@ko .
+
+    <https://example.test/soccer/playerA03> a ns1:Player ;
+        rdfs:label "가상 선수 A03"@ko .
+
+    <https://example.test/soccer/playerA04> a ns1:Player ;
+        rdfs:label "가상 선수 A04"@ko .
+
+    <https://example.test/soccer/playerA05> a ns1:Player ;
+        rdfs:label "가상 선수 A05"@ko .
+
+    <https://example.test/soccer/playerA06> a ns1:Player ;
+        rdfs:label "가상 선수 A06"@ko .
+
+    <https://example.test/soccer/playerA07> a ns1:Player ;
+        rdfs:label "가상 선수 A07"@ko .
+
+    <https://example.test/soccer/playerA08> a ns1:Player ;
+        rdfs:label "가상 선수 A08"@ko .
+
+    <https://example.test/soccer/playerA09> a ns1:Player ;
+        rdfs:label "가상 선수 A09"@ko .
+
+    <https://example.test/soccer/playerA12> a ns1:Player ;
+        rdfs:label "가상 선수 A12"@ko .
+
+    <https://example.test/soccer/playerC01> a ns1:Player ;
+        rdfs:label "가상 선수 C01"@ko .
+
+    <https://example.test/soccer/playerC02> a ns1:Player ;
+        rdfs:label "가상 선수 C02"@ko .
+
+    <https://example.test/soccer/playerC03> a ns1:Player ;
+        rdfs:label "가상 선수 C03"@ko .
+
+    <https://example.test/soccer/playerC05> a ns1:Player ;
+        rdfs:label "가상 선수 C05"@ko .
+
+    <https://example.test/soccer/playerC06> a ns1:Player ;
+        rdfs:label "가상 선수 C06"@ko .
+
+    <https://example.test/soccer/playerC08> a ns1:Player ;
+        rdfs:label "가상 선수 C08"@ko .
+
+    <https://example.test/soccer/playerC10> a ns1:Player ;
+        rdfs:label "가상 선수 C10"@ko .
+
+    <https://example.test/soccer/playerC11> a ns1:Player ;
+        rdfs:label "가상 선수 C11"@ko .
+
+    <https://example.test/soccer/playerC12> a ns1:Player ;
+        rdfs:label "가상 선수 C12"@ko .
+
+    <https://example.test/soccer/playerA10> a ns1:Player ;
+        rdfs:label "가상 선수 A10"@ko .
+
+    <https://example.test/soccer/playerA11> a ns1:Player ;
+        rdfs:label "가상 선수 A11"@ko .
+
+    <https://example.test/soccer/playerB01> a ns1:Player ;
+        rdfs:label "가상 선수 B01"@ko .
+
+    <https://example.test/soccer/playerB04> a ns1:Player ;
+        rdfs:label "가상 선수 B04"@ko .
+
+    <https://example.test/soccer/playerB05> a ns1:Player ;
+        rdfs:label "가상 선수 B05"@ko .
+
+    <https://example.test/soccer/playerB06> a ns1:Player ;
+        rdfs:label "가상 선수 B06"@ko .
+
+    <https://example.test/soccer/playerB07> a ns1:Player ;
+        rdfs:label "가상 선수 B07"@ko .
+
+    <https://example.test/soccer/playerB08> a ns1:Player ;
+        rdfs:label "가상 선수 B08"@ko .
+
+    <https://example.test/soccer/playerB10> a ns1:Player ;
+        rdfs:label "가상 선수 B10"@ko .
+
+    <https://example.test/soccer/playerB11> a ns1:Player ;
+        rdfs:label "가상 선수 B11"@ko .
+
+    <https://example.test/soccer/playerB12> a ns1:Player ;
+        rdfs:label "가상 선수 B12"@ko .
+
+    <https://example.test/soccer/playerC04> a ns1:Player ;
+        rdfs:label "가상 선수 C04"@ko .
+
+    <https://example.test/soccer/playerC07> a ns1:Player ;
+        rdfs:label "가상 선수 C07"@ko .
+
+    <https://example.test/soccer/playerC09> a ns1:Player ;
+        rdfs:label "가상 선수 C09"@ko .
+
+    <https://example.test/soccer/league2026> a ns1:Competition ;
+        rdfs:label "가상 리그 2026"@ko ;
+        ns1:competitionType "league" ;
+        ns1:season "2026" ;
+        ns1:substitutionLimit 5 .
+
+    <https://example.test/soccer/playerB02> a ns1:Player ;
+        rdfs:label "가상 선수 B02"@ko .
+
+    <https://example.test/soccer/playerB03> a ns1:Player ;
+        rdfs:label "가상 선수 B03"@ko .
+
+    <https://example.test/soccer/playerB09> a ns1:Player ;
+        rdfs:label "가상 선수 B09"@ko .
+
+    <https://example.test/soccer/clubA> a ns1:Club ;
+        rdfs:label "가상 클럽 A"@ko .
+
+    <https://example.test/soccer/clubC> a ns1:Club ;
+        rdfs:label "가상 클럽 C"@ko .
+
+    <https://example.test/soccer/clubB> a ns1:Club ;
+        rdfs:label "가상 클럽 B"@ko .
+}
+
+<https://example.test/consumer/soccer-reject> {
+    <https://example.test/soccer/match1> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 A 대 클럽 B"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubB> ;
+        ns1:awayGoals 1 ;
+        ns1:hasAppearance <https://example.test/soccer/match1A01>,
+            <https://example.test/soccer/match1A02>,
+            <https://example.test/soccer/match1A03>,
+            <https://example.test/soccer/match1A04>,
+            <https://example.test/soccer/match1A05>,
+            <https://example.test/soccer/match1A06>,
+            <https://example.test/soccer/match1A07>,
+            <https://example.test/soccer/match1A08>,
+            <https://example.test/soccer/match1A09>,
+            <https://example.test/soccer/match1A10>,
+            <https://example.test/soccer/match1A11>,
+            <https://example.test/soccer/match1A12>,
+            <https://example.test/soccer/match1B01>,
+            <https://example.test/soccer/match1B02>,
+            <https://example.test/soccer/match1B03>,
+            <https://example.test/soccer/match1B04>,
+            <https://example.test/soccer/match1B05>,
+            <https://example.test/soccer/match1B06>,
+            <https://example.test/soccer/match1B07>,
+            <https://example.test/soccer/match1B08>,
+            <https://example.test/soccer/match1B09>,
+            <https://example.test/soccer/match1B10>,
+            <https://example.test/soccer/match1B11>,
+            <https://example.test/soccer/match1B12> ;
+        ns1:hasEvent <https://example.test/soccer/match1ev1>,
+            <https://example.test/soccer/match1ev2>,
+            <https://example.test/soccer/match1ev3>,
+            <https://example.test/soccer/match1ev4> ;
+        ns1:homeClub <https://example.test/soccer/clubA> ;
+        ns1:homeGoals 2 ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-03-01"^^xsd:date ;
+        ns1:matchReportUri "urn:synthetic:report:match1"^^xsd:anyURI ;
+        ns1:matchStatus "finished" ;
+        ns1:matchday 1 .
+
+    <https://example.test/soccer/match2> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 B 대 클럽 C"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubC> ;
+        ns1:awayGoals 1 ;
+        ns1:hasAppearance <https://example.test/soccer/match2B01>,
+            <https://example.test/soccer/match2B02>,
+            <https://example.test/soccer/match2B03>,
+            <https://example.test/soccer/match2B04>,
+            <https://example.test/soccer/match2B05>,
+            <https://example.test/soccer/match2B06>,
+            <https://example.test/soccer/match2B07>,
+            <https://example.test/soccer/match2B08>,
+            <https://example.test/soccer/match2B09>,
+            <https://example.test/soccer/match2B10>,
+            <https://example.test/soccer/match2B11>,
+            <https://example.test/soccer/match2B12>,
+            <https://example.test/soccer/match2C01>,
+            <https://example.test/soccer/match2C02>,
+            <https://example.test/soccer/match2C03>,
+            <https://example.test/soccer/match2C04>,
+            <https://example.test/soccer/match2C05>,
+            <https://example.test/soccer/match2C06>,
+            <https://example.test/soccer/match2C07>,
+            <https://example.test/soccer/match2C08>,
+            <https://example.test/soccer/match2C09>,
+            <https://example.test/soccer/match2C10>,
+            <https://example.test/soccer/match2C11>,
+            <https://example.test/soccer/match2C12> ;
+        ns1:hasEvent <https://example.test/soccer/match2ev5>,
+            <https://example.test/soccer/match2ev6>,
+            <https://example.test/soccer/match2ev7>,
+            <https://example.test/soccer/match2ev8> ;
+        ns1:homeClub <https://example.test/soccer/clubB> ;
+        ns1:homeGoals 1 ;
+        ns1:inCompetition <https://example.test/soccer/cup2026> ;
+        ns1:matchDate "2026-04-12"^^xsd:date ;
+        ns1:matchReportUri "urn:synthetic:report:match2"^^xsd:anyURI ;
+        ns1:matchStatus "finished" .
+
+    <https://example.test/soccer/match3> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 A 대 클럽 C"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubC> ;
+        ns1:homeClub <https://example.test/soccer/clubA> ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-10-24"^^xsd:date ;
+        ns1:matchStatus "scheduled" ;
+        ns1:matchday 3 .
+
+    <https://example.test/soccer/match4> a ns1:Match ;
+        rdfs:label "가상 경기: 클럽 C 대 클럽 B"@ko ;
+        ns1:awayClub <https://example.test/soccer/clubB> ;
+        ns1:homeClub <https://example.test/soccer/clubC> ;
+        ns1:inCompetition <https://example.test/soccer/league2026> ;
+        ns1:matchDate "2026-09-20"^^xsd:date ;
+        ns1:matchStatus "postponed" ;
+        ns1:matchday 2 .
+
+    <https://example.test/soccer/cup2026> a ns1:Competition ;
+        rdfs:label "가상 컵 2026"@ko ;
+        ns1:competitionType "cup" ;
+        ns1:season "2026" ;
+        ns1:substitutionLimit 3 .
+
+    <https://example.test/soccer/match1A01> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match1A02> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match1A03> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match1A04> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match1A05> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match1A06> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match1A07> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match1A08> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match1A09> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match1A10> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match1A11> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match1A12> a ns1:Appearance ;
+        rdfs:label "match1 클럽 A 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubA> ;
+        ns1:forPlayer <https://example.test/soccer/playerA12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match1B01> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match1B02> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match1B03> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match1B04> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match1B05> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match1B06> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match1B07> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match1B08> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 60 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match1B09> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match1B10> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match1B11> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match1B12> a ns1:Appearance ;
+        rdfs:label "match1 클럽 B 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 60 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match1ev1> a ns1:MatchEvent ;
+        rdfs:label "match1 23분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerA10> ;
+        ns1:eventMinute 23 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match1ev2> a ns1:MatchEvent ;
+        rdfs:label "match1 40분 yellow-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB03> ;
+        ns1:eventMinute 40 ;
+        ns1:eventType "yellow-card" .
+
+    <https://example.test/soccer/match1ev3> a ns1:MatchEvent ;
+        rdfs:label "match1 55분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB09> ;
+        ns1:eventMinute 55 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match1ev4> a ns1:MatchEvent ;
+        rdfs:label "match1 78분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerA11> ;
+        ns1:eventMinute 78 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match2B01> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match2B02> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match2B03> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match2B04> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match2B05> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match2B06> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match2B07> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB07> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match2B08> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB08> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match2B09> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match2B10> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB10> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match2B11> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match2B12> a ns1:Appearance ;
+        rdfs:label "match2 클럽 B 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubB> ;
+        ns1:forPlayer <https://example.test/soccer/playerB12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 70 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match2C01> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수01 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC01> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "goalkeeper" ;
+        ns1:shirtNumber 1 .
+
+    <https://example.test/soccer/match2C02> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수02 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC02> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 2 .
+
+    <https://example.test/soccer/match2C03> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수03 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC03> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 3 .
+
+    <https://example.test/soccer/match2C04> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수04 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC04> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 4 .
+
+    <https://example.test/soccer/match2C05> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수05 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC05> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "defender" ;
+        ns1:shirtNumber 5 .
+
+    <https://example.test/soccer/match2C06> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수06 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC06> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 6 .
+
+    <https://example.test/soccer/match2C07> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수07 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC07> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 65 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 7 .
+
+    <https://example.test/soccer/match2C08> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수08 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC08> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 8 .
+
+    <https://example.test/soccer/match2C09> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수09 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC09> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 9 .
+
+    <https://example.test/soccer/match2C10> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수10 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC10> ;
+        ns1:lineupRole "starter" ;
+        ns1:minuteOut 80 ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 10 .
+
+    <https://example.test/soccer/match2C11> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수11 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC11> ;
+        ns1:lineupRole "starter" ;
+        ns1:position "forward" ;
+        ns1:shirtNumber 11 .
+
+    <https://example.test/soccer/match2C12> a ns1:Appearance ;
+        rdfs:label "match2 클럽 C 선수12 출전"@ko ;
+        ns1:forClub <https://example.test/soccer/clubC> ;
+        ns1:forPlayer <https://example.test/soccer/playerC12> ;
+        ns1:lineupRole "substitute" ;
+        ns1:minuteIn 80 ;
+        ns1:position "midfielder" ;
+        ns1:shirtNumber 12 .
+
+    <https://example.test/soccer/match2ev5> a ns1:MatchEvent ;
+        rdfs:label "match2 10분 goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC09> ;
+        ns1:eventMinute 10 ;
+        ns1:eventType "goal" .
+
+    <https://example.test/soccer/match2ev6> a ns1:MatchEvent ;
+        rdfs:label "match2 30분 yellow-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerB02> ;
+        ns1:eventMinute 30 ;
+        ns1:eventType "yellow-card" .
+
+    <https://example.test/soccer/match2ev7> a ns1:MatchEvent ;
+        rdfs:label "match2 50분 own-goal"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC04> ;
+        ns1:eventMinute 50 ;
+        ns1:eventType "own-goal" .
+
+    <https://example.test/soccer/match2ev8> a ns1:MatchEvent ;
+        rdfs:label "match2 65분 red-card"@ko ;
+        ns1:byPlayer <https://example.test/soccer/playerC07> ;
+        ns1:eventMinute 65 ;
+        ns1:eventType "red-card" .
+
+    <https://example.test/soccer/playerA01> a ns1:Player ;
+        rdfs:label "가상 선수 A01"@ko .
+
+    <https://example.test/soccer/playerA02> a ns1:Player ;
+        rdfs:label "가상 선수 A02"@ko .
+
+    <https://example.test/soccer/playerA03> a ns1:Player ;
+        rdfs:label "가상 선수 A03"@ko .
+
+    <https://example.test/soccer/playerA04> a ns1:Player ;
+        rdfs:label "가상 선수 A04"@ko .
+
+    <https://example.test/soccer/playerA05> a ns1:Player ;
+        rdfs:label "가상 선수 A05"@ko .
+
+    <https://example.test/soccer/playerA06> a ns1:Player ;
+        rdfs:label "가상 선수 A06"@ko .
+
+    <https://example.test/soccer/playerA07> a ns1:Player ;
+        rdfs:label "가상 선수 A07"@ko .
+
+    <https://example.test/soccer/playerA08> a ns1:Player ;
+        rdfs:label "가상 선수 A08"@ko .
+
+    <https://example.test/soccer/playerA09> a ns1:Player ;
+        rdfs:label "가상 선수 A09"@ko .
+
+    <https://example.test/soccer/playerA12> a ns1:Player ;
+        rdfs:label "가상 선수 A12"@ko .
+
+    <https://example.test/soccer/playerC01> a ns1:Player ;
+        rdfs:label "가상 선수 C01"@ko .
+
+    <https://example.test/soccer/playerC02> a ns1:Player ;
+        rdfs:label "가상 선수 C02"@ko .
+
+    <https://example.test/soccer/playerC03> a ns1:Player ;
+        rdfs:label "가상 선수 C03"@ko .
+
+    <https://example.test/soccer/playerC05> a ns1:Player ;
+        rdfs:label "가상 선수 C05"@ko .
+
+    <https://example.test/soccer/playerC06> a ns1:Player ;
+        rdfs:label "가상 선수 C06"@ko .
+
+    <https://example.test/soccer/playerC08> a ns1:Player ;
+        rdfs:label "가상 선수 C08"@ko .
+
+    <https://example.test/soccer/playerC10> a ns1:Player ;
+        rdfs:label "가상 선수 C10"@ko .
+
+    <https://example.test/soccer/playerC11> a ns1:Player ;
+        rdfs:label "가상 선수 C11"@ko .
+
+    <https://example.test/soccer/playerC12> a ns1:Player ;
+        rdfs:label "가상 선수 C12"@ko .
+
+    <https://example.test/soccer/playerA10> a ns1:Player ;
+        rdfs:label "가상 선수 A10"@ko .
+
+    <https://example.test/soccer/playerA11> a ns1:Player ;
+        rdfs:label "가상 선수 A11"@ko .
+
+    <https://example.test/soccer/playerB01> a ns1:Player ;
+        rdfs:label "가상 선수 B01"@ko .
+
+    <https://example.test/soccer/playerB04> a ns1:Player ;
+        rdfs:label "가상 선수 B04"@ko .
+
+    <https://example.test/soccer/playerB05> a ns1:Player ;
+        rdfs:label "가상 선수 B05"@ko .
+
+    <https://example.test/soccer/playerB06> a ns1:Player ;
+        rdfs:label "가상 선수 B06"@ko .
+
+    <https://example.test/soccer/playerB07> a ns1:Player ;
+        rdfs:label "가상 선수 B07"@ko .
+
+    <https://example.test/soccer/playerB08> a ns1:Player ;
+        rdfs:label "가상 선수 B08"@ko .
+
+    <https://example.test/soccer/playerB10> a ns1:Player ;
+        rdfs:label "가상 선수 B10"@ko .
+
+    <https://example.test/soccer/playerB11> a ns1:Player ;
+        rdfs:label "가상 선수 B11"@ko .
+
+    <https://example.test/soccer/playerB12> a ns1:Player ;
+        rdfs:label "가상 선수 B12"@ko .
+
+    <https://example.test/soccer/playerC04> a ns1:Player ;
+        rdfs:label "가상 선수 C04"@ko .
+
+    <https://example.test/soccer/playerC07> a ns1:Player ;
+        rdfs:label "가상 선수 C07"@ko .
+
+    <https://example.test/soccer/playerC09> a ns1:Player ;
+        rdfs:label "가상 선수 C09"@ko .
+
+    <https://example.test/soccer/league2026> a ns1:Competition ;
+        rdfs:label "가상 리그 2026"@ko ;
+        ns1:competitionType "league" ;
+        ns1:season "2026" ;
+        ns1:substitutionLimit 5 .
+
+    <https://example.test/soccer/playerB02> a ns1:Player ;
+        rdfs:label "가상 선수 B02"@ko .
+
+    <https://example.test/soccer/playerB03> a ns1:Player ;
+        rdfs:label "가상 선수 B03"@ko .
+
+    <https://example.test/soccer/playerB09> a ns1:Player ;
+        rdfs:label "가상 선수 B09"@ko .
+
+    <https://example.test/soccer/clubA> a ns1:Club .
+
+    <https://example.test/soccer/clubC> a ns1:Club ;
+        rdfs:label "가상 클럽 C"@ko .
+
+    <https://example.test/soccer/clubB> a ns1:Club ;
+        rdfs:label "가상 클럽 B"@ko .
+}

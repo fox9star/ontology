@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>온톨로지와 MCP 비교분석</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: #f4f7fb; color: #243044;
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif;
+      font-size: 16px; line-height: 1.75;
+    }
+    main {
+      max-width: 940px; margin: 36px auto; padding: 44px 54px;
+      background: #fff; border: 1px solid #e4eaf1;
+      border-radius: 14px; box-shadow: 0 8px 28px rgba(25, 44, 72, .06);
+    }
+    .document-title { margin: 0 0 30px; font-size: 2rem; line-height: 1.3; color: #15253d; }
+    h1, h2, h3 { color: #17365c; line-height: 1.4; margin: 2.2em 0 .7em; }
+    h1 { font-size: 1.65rem; }
+    h2 { font-size: 1.45rem; }
+    h3 { font-size: 1.25rem; }
+    p { margin: 0 0 1.1em; }
+    strong { color: #132b48; }
+    blockquote {
+      margin: 1.4em 0; padding: .8em 1.2em;
+      border-left: 4px solid #4d79ae; background: #f0f5fb;
+    }
+    blockquote p:last-child { margin-bottom: 0; }
+    table {
+      border-collapse: collapse; width: 100%; margin: 1.4em 0;
+      display: block; overflow-x: auto;
+    }
+    th, td { border: 1px solid #d9e2ed; padding: .55em .8em; text-align: left; vertical-align: top; }
+    th { background: #eaf1f9; font-weight: 700; white-space: nowrap; }
+    tbody tr:nth-child(even) { background: #f8fbfe; }
+    pre {
+      margin: 1.3em 0; padding: 1.1em 1.25em; overflow-x: auto;
+      border-radius: 8px; background: #172238; color: #edf3ff;
+      line-height: 1.55; font-family: Consolas, "D2Coding", monospace;
+    }
+    code { font-family: Consolas, "D2Coding", monospace; }
+    :not(pre) > code { padding: .15em .35em; border-radius: 4px; background: #e9eff6; }
+    hr { border: 0; border-top: 1px solid #dce5ef; margin: 2.2em 0; }
+    @media (max-width: 700px) {
+      main { margin: 0; padding: 28px 20px; border: 0; border-radius: 0; }
+      body { font-size: 15px; }
+    }
+    @media print {
+      body { background: #fff; }
+      main { margin: 0; max-width: none; border: 0; box-shadow: none; padding: 0; }
+      pre, blockquote, table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="document-title">온톨로지와 MCP 비교분석</h1>
+<p>온톨로지(Ontology)와 MCP(Model Context Protocol)는 이름만 보면 둘 다 AI 시스템에 정보를 제공하는 기술처럼 보이지만, 실제로는 <strong>계층이 다릅니다</strong>.</p>
+<p>핵심만 먼저 정리하면,</p>
+<blockquote>
+<p><strong>온톨로지 = AI가 “무엇이 무엇인지, 서로 어떤 관계인지” 이해하도록 만드는 지식 구조</strong><br />
+<strong>MCP = AI가 “외부 프로그램·데이터·장비에 어떻게 접근하고 실행할지” 정하는 연결 규격</strong></p>
+</blockquote>
+<p>따라서 둘 중 하나를 선택하는 관계라기보다, <strong>온톨로지 + MCP를 결합했을 때 훨씬 강력해지는 관계</strong>입니다.</p>
+<h3>1. 가장 중요한 차이</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>온톨로지</th>
+<th>MCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>정식 의미</td>
+<td>Ontology</td>
+<td>Model Context Protocol</td>
+</tr>
+<tr>
+<td>목적</td>
+<td>지식과 의미 구조화</td>
+<td>AI와 외부 시스템 연결</td>
+</tr>
+<tr>
+<td>핵심 질문</td>
+<td>“이것은 무엇인가?”</td>
+<td>“이것을 어떻게 가져오거나 실행할까?”</td>
+</tr>
+<tr>
+<td>다루는 것</td>
+<td>개념, 관계, 속성, 규칙</td>
+<td>Tool, Resource, Prompt 등</td>
+</tr>
+<tr>
+<td>실행 기능</td>
+<td>기본적으로 없음</td>
+<td>있음</td>
+</tr>
+<tr>
+<td>외부 시스템 연결</td>
+<td>직접 목적 아님</td>
+<td>핵심 목적</td>
+</tr>
+<tr>
+<td>지식 추론</td>
+<td>강점</td>
+<td>자체적으로는 제한적</td>
+</tr>
+<tr>
+<td>API 호출</td>
+<td>직접 담당하지 않음</td>
+<td>가능</td>
+</tr>
+<tr>
+<td>PLC 접근</td>
+<td>PLC 개념/관계 정의</td>
+<td>실제 PLC 읽기/쓰기 실행</td>
+</tr>
+<tr>
+<td>데이터베이스</td>
+<td>데이터 의미 정의</td>
+<td>DB 조회 Tool 제공</td>
+</tr>
+<tr>
+<td>대표 기술</td>
+<td>RDF, OWL, SPARQL, Knowledge Graph</td>
+<td>MCP Client / Server / Tool / Resource</td>
+</tr>
+<tr>
+<td>AI Agent 활용</td>
+<td>의미 이해 강화</td>
+<td>행동 능력 제공</td>
+</tr>
+</tbody>
+</table>
+<p>MCP 공식 사양에서 MCP 서버는 <strong>Resources, Tools, Prompts</strong> 등을 클라이언트에 제공할 수 있으며, Tools를 통해 데이터베이스 조회, API 호출, 계산 같은 외부 작업을 모델이 수행할 수 있습니다. 현재 MCP는 host-client-server 구조와 JSON-RPC 기반 프로토콜을 사용합니다. citeturn921110search1turn921110search2turn921110search13</p>
+<hr />
+<h2>2. 예를 들어 PLC 시스템에서 비교하면</h2>
+<p>공장이 다음과 같다고 하겠습니다.</p>
+<pre><code class="language-text">반응기 Reactor01
+    │
+    ├── 온도센서 TempSensor01
+    │
+    ├── 냉각펌프 Pump01
+    │
+    └── PLC01
+</code></pre>
+<p>온톨로지는 이것을 다음처럼 정의합니다.</p>
+<pre><code class="language-text">Reactor01
+    isA → Reactor
+
+TempSensor01
+    isA → TemperatureSensor
+    measures → Reactor01
+    connectedTo → PLC01
+
+Pump01
+    isA → CoolingPump
+    cools → Reactor01
+    controlledBy → PLC01
+</code></pre>
+<p>즉,</p>
+<blockquote>
+<p>TempSensor01은 온도센서이고<br />
+Reactor01의 온도를 측정하며<br />
+PLC01에 연결되어 있다.</p>
+</blockquote>
+<p>라는 <strong>의미</strong>를 저장합니다.</p>
+<p>온톨로지의 역할은 여기까지입니다.</p>
+<hr />
+<h2>3. MCP가 들어가면 실제 행동이 가능해집니다</h2>
+<p>MCP 서버에는 다음 Tool을 만들 수 있습니다.</p>
+<pre><code class="language-text">read_temperature()
+read_plc_register()
+start_pump()
+stop_pump()
+read_alarm()
+set_hmi_value()
+</code></pre>
+<p>사용자가 AI에게</p>
+<blockquote>
+<p>“반응기 온도 확인해줘.”</p>
+</blockquote>
+<p>라고 하면,</p>
+<pre><code class="language-text">사용자
+  ↓
+LLM
+  ↓
+MCP Client
+  ↓
+MCP Server
+  ↓
+PLC
+  ↓
+TempSensor01
+</code></pre>
+<p>MCP Tool이 실제 데이터를 가져옵니다.</p>
+<pre><code class="language-text">read_temperature(Reactor01)
+
+결과:
+93.4 °C
+</code></pre>
+<p>MCP Resources는 파일, 데이터베이스 스키마, 애플리케이션 데이터 같은 컨텍스트를 AI 애플리케이션에 노출할 수도 있습니다. citeturn921110search5</p>
+<hr />
+<h1>4. 그런데 MCP만 사용하면 생기는 문제</h1>
+<p>예를 들어 MCP 서버에 다음 Tool들이 있다고 생각해보겠습니다.</p>
+<pre><code class="language-text">read_D100()
+read_D102()
+write_M100()
+write_M101()
+</code></pre>
+<p>AI는 이것을 호출할 수 있습니다.</p>
+<p>하지만 AI 입장에서는</p>
+<pre><code class="language-text">D100이 뭐지?
+D102가 뭐지?
+M100은 뭐지?
+</code></pre>
+<p>라는 문제가 생깁니다.</p>
+<p>사람은 설계 문서를 보고</p>
+<pre><code class="language-text">D100 = 반응기 온도
+D102 = 냉각수 온도
+M100 = 냉각펌프 운전
+M101 = 냉각펌프 정지
+</code></pre>
+<p>라는 것을 알지만 AI에게는 이것이 단순 주소일 뿐입니다.</p>
+<hr />
+<h1>5. 이때 온톨로지가 들어가면 달라집니다</h1>
+<p>온톨로지에서 다음과 같이 정의합니다.</p>
+<pre><code class="language-text">Reactor01
+    hasTemperature → D100
+
+CoolingWater01
+    hasTemperature → D102
+
+CoolingPump01
+    startAddress → M100
+    stopAddress → M101
+
+CoolingPump01
+    cools → Reactor01
+</code></pre>
+<p>그러면 AI가</p>
+<blockquote>
+<p>“반응기 온도가 너무 높은데 관련 냉각장치를 확인해줘.”</p>
+</blockquote>
+<p>라고 했을 때 단순히 <code>D100</code>이라는 주소만 보는 것이 아닙니다.</p>
+<p>관계를 따라갈 수 있습니다.</p>
+<pre><code class="language-text">Reactor01
+     │
+     ├─ measuredBy
+     ↓
+TempSensor01
+     │
+     └─ PLC Address D100
+
+Reactor01
+     │
+     └─ cooledBy
+     ↓
+CoolingPump01
+     │
+     └─ controlledBy
+     ↓
+PLC01
+     │
+     └─ Start = M100
+</code></pre>
+<p>이게 온톨로지의 강점입니다.</p>
+<hr />
+<h1>6. 온톨로지 + MCP를 결합하면</h1>
+<p>매우 중요한 구조가 만들어집니다.</p>
+<pre><code class="language-text">                 사용자
+                   │
+                   ▼
+             자연어 명령
+                   │
+                   ▼
+               AI Agent
+             /           \
+            /             \
+           ▼               ▼
+      Ontology            MCP
+   &quot;무엇을 해야하지?&quot;   &quot;어떻게 실행하지?&quot;
+           │               │
+           ▼               ▼
+   Knowledge Graph       MCP Server
+           │               │
+           ▼               ▼
+       의미/관계          Tool 실행
+                           │
+                           ▼
+                 PLC / HMI / SCADA
+                 CAD / DB / MES
+</code></pre>
+<p>가장 간단하게 표현하면,</p>
+<pre><code class="language-text">Ontology = Brain Knowledge
+
+MCP = Hands &amp; Interface
+</code></pre>
+<p>라고 볼 수 있습니다.</p>
+<p>조금 더 정확하게는,</p>
+<pre><code class="language-text">LLM
+ ├── 언어 이해
+ │
+ ├── Ontology
+ │      └── 의미와 관계 이해
+ │
+ └── MCP
+        └── 외부 시스템 조회/실행
+</code></pre>
+<p>입니다.</p>
+<hr />
+<h1>7. 같은 질문을 처리하는 과정 비교</h1>
+<p>사용자가 다음과 같이 질문했다고 해보겠습니다.</p>
+<blockquote>
+<p>“1호 반응기 온도가 높은 원인을 확인하고 냉각 계통 상태도 확인해줘.”</p>
+</blockquote>
+<h3>MCP만 있는 경우</h3>
+<p>AI는 사용할 수 있는 Tool을 찾습니다.</p>
+<pre><code class="language-text">get_temperature()
+get_pump_status()
+get_valve_status()
+get_alarm()
+</code></pre>
+<p>그리고 적절한 Tool을 호출합니다.</p>
+<p>문제는 <strong>어떤 펌프와 어떤 밸브가 1호 반응기와 관련되어 있는지 별도로 알아야 한다는 것</strong>입니다.</p>
+<hr />
+<h3>온톨로지만 있는 경우</h3>
+<p>AI는 관계를 압니다.</p>
+<pre><code class="language-text">Reactor01
+ ↓ cooledBy
+
+Pump03
+Valve07
+
+ ↓ monitoredBy
+
+TempSensor05
+</code></pre>
+<p>따라서 관련 설비를 찾을 수 있습니다.</p>
+<p>하지만 실제 PLC 상태를 읽을 방법은 없습니다.</p>
+<hr />
+<h3>온톨로지 + MCP</h3>
+<p>먼저 온톨로지에서 찾습니다.</p>
+<pre><code class="language-text">Reactor01
+ ↓
+
+TempSensor05
+Pump03
+Valve07
+PLC01
+</code></pre>
+<p>그다음 MCP를 실행합니다.</p>
+<pre><code class="language-text">get_sensor_value(TempSensor05)
+
+→ 97.3 °C
+</code></pre>
+<pre><code class="language-text">get_pump_status(Pump03)
+
+→ STOP
+</code></pre>
+<pre><code class="language-text">get_valve_position(Valve07)
+
+→ 5 %
+</code></pre>
+<p>AI는 이 정보를 종합해서</p>
+<pre><code class="language-text">Reactor01 = 고온
+
+Pump03 = 정지
+
+Valve07 = 거의 닫힘
+</code></pre>
+<p>이라는 상태를 확인할 수 있습니다.</p>
+<hr />
+<h1>8. 데이터베이스와 비교하면 더 쉽게 이해됩니다</h1>
+<p>세 기술을 같이 비교하면 이해하기 쉽습니다.</p>
+<table>
+<thead>
+<tr>
+<th>기술</th>
+<th>담당하는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>데이터를 저장</td>
+</tr>
+<tr>
+<td>Ontology</td>
+<td>데이터의 의미와 관계를 정의</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>AI가 데이터를 조회하고 시스템을 실행</td>
+</tr>
+</tbody>
+</table>
+<p>예를 들어 MySQL에</p>
+<pre><code class="language-text">D100 = 93.5
+</code></pre>
+<p>가 저장되어 있다면,</p>
+<p>DB는</p>
+<blockquote>
+<p>D100 값이 93.5</p>
+</blockquote>
+<p>라는 것을 압니다.</p>
+<p>온톨로지는</p>
+<pre><code class="language-text">D100
+ → Reactor01
+ → Temperature
+ → Celsius
+</code></pre>
+<p>라는 의미를 제공합니다.</p>
+<p>MCP는</p>
+<pre><code class="language-text">get_plc_value(&quot;D100&quot;)
+</code></pre>
+<p>를 실제 실행합니다.</p>
+<p>따라서</p>
+<pre><code class="language-text">Database
+   데이터
+
+Ontology
+   의미
+
+MCP
+   접근/행동
+</code></pre>
+<p>이라고 보면 됩니다.</p>
+<hr />
+<h1>9. Knowledge Graph까지 넣으면</h1>
+<p>실무 AI 시스템에서는 다음 구조가 상당히 중요합니다.</p>
+<pre><code class="language-text">Ontology
+   ↓
+Knowledge Graph
+   ↓
+AI Agent
+   ↓
+MCP
+   ↓
+실제 시스템
+</code></pre>
+<p>Ontology는 규칙을 정의합니다.</p>
+<pre><code class="language-text">Pump
+Sensor
+PLC
+Reactor
+Valve
+</code></pre>
+<p>관계도 정의합니다.</p>
+<pre><code class="language-text">Sensor → measures → Reactor
+
+PLC → controls → Pump
+
+Pump → supplies → CoolingWater
+
+CoolingWater → cools → Reactor
+</code></pre>
+<p>Knowledge Graph에는 실제 설비가 들어갑니다.</p>
+<pre><code class="language-text">TempSensor01
+      ↓ measures
+
+Reactor01
+      ↓ cooledBy
+
+Pump01
+      ↓ controlledBy
+
+PLC01
+</code></pre>
+<p>그리고 MCP가 실제 데이터를 읽습니다.</p>
+<pre><code class="language-text">PLC01 → D100 = 95.7°C
+</code></pre>
+<hr />
+<h1>10. 산업용 MCP를 만든다면 가장 중요한 차이</h1>
+<p>예를 들어 사용자가 구축하려는 것처럼 <strong>GX Works2 / XG5000 / XP Builder / CAD 등을 AI Agent와 MCP로 연결하는 구조</strong>를 생각하면 차이가 더 분명합니다. </p>
+<p>MCP는 이런 Tool을 제공합니다.</p>
+<pre><code class="language-text">PLC MCP Server
+
+├─ read_device()
+├─ write_device()
+├─ search_ladder()
+├─ get_alarm()
+├─ download_program()
+└─ upload_program()
+</code></pre>
+<p>HMI MCP라면</p>
+<pre><code class="language-text">HMI MCP Server
+
+├─ get_screen()
+├─ get_tag()
+├─ modify_tag()
+├─ create_screen()
+└─ search_alarm()
+</code></pre>
+<p>CAD MCP라면</p>
+<pre><code class="language-text">CAD MCP Server
+
+├─ create_part()
+├─ create_sketch()
+├─ create_hole()
+├─ change_dimension()
+└─ export_drawing()
+</code></pre>
+<p>하지만 여기까지는 여전히 각각 별개 시스템입니다.</p>
+<p>온톨로지를 위에 얹으면</p>
+<pre><code class="language-text">Motor01
+ │
+ ├─ CAD Model → Motor01.SLDPRT
+ │
+ ├─ PLC Device → M100
+ │
+ ├─ HMI Tag → MOTOR_01
+ │
+ ├─ Alarm → ALM102
+ │
+ └─ MaintenanceDoc → Motor01.pdf
+</code></pre>
+<p>처럼 <strong>서로 다른 프로그램의 데이터를 하나의 실제 대상 중심으로 연결</strong>할 수 있습니다.</p>
+<p>이 부분이 상당히 중요합니다.</p>
+<hr />
+<h1>11. 사용자가 AI에게 이렇게 말할 수 있게 됩니다</h1>
+<p>예를 들어,</p>
+<blockquote>
+<p>“2번 모터와 관련된 모든 정보를 찾아줘.”</p>
+</blockquote>
+<p>온톨로지 없이 MCP만 있다면 AI가 여러 서버를 각각 검색해야 합니다.</p>
+<pre><code class="language-text">PLC 검색
+HMI 검색
+CAD 검색
+매뉴얼 검색
+DB 검색
+</code></pre>
+<p>온톨로지가 있으면 먼저</p>
+<pre><code class="language-text">Motor02
+</code></pre>
+<p>를 기준으로 관계를 찾습니다.</p>
+<pre><code class="language-text">Motor02
+ ├─ CAD → Motor02.SLDASM
+ ├─ PLC → Y20
+ ├─ HMI → MOTOR02_RUN
+ ├─ Alarm → ALM203
+ ├─ Sensor → CurrentSensor02
+ └─ Manual → MotorManual.pdf
+</code></pre>
+<p>그 후 필요한 MCP를 자동 선택하면 됩니다.</p>
+<pre><code class="language-text">Motor02
+   ↓
+
+Ontology / Knowledge Graph
+   ↓
+ ┌───────────────┬─────────────┬───────────────┐
+ ↓               ↓             ↓
+PLC MCP        HMI MCP       CAD MCP
+ ↓               ↓             ↓
+XG5000        XP Builder    SolidWorks
+</code></pre>
+<p>이것이 <strong>산업용 AI Agent에서 온톨로지와 MCP를 결합하는 핵심적인 이유</strong>입니다.</p>
+<hr />
+<h1>12. RAG와도 차이가 있습니다</h1>
+<p>많이 혼동되는 부분입니다.</p>
+<pre><code class="language-text">RAG
+Ontology
+MCP
+</code></pre>
+<p>는 모두 다릅니다.</p>
+<table>
+<thead>
+<tr>
+<th>기술</th>
+<th>질문</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>“관련 문서가 어디 있지?”</td>
+</tr>
+<tr>
+<td>Ontology</td>
+<td>“이 정보들은 서로 어떤 관계지?”</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>“어떤 시스템에서 가져오고 무엇을 실행하지?”</td>
+</tr>
+</tbody>
+</table>
+<p>예를 들어,</p>
+<blockquote>
+<p>“Pump01 이상 원인을 찾아줘.”</p>
+</blockquote>
+<p>RAG는 매뉴얼에서</p>
+<pre><code class="language-text">펌프 캐비테이션 원인
+모터 과전류 원인
+</code></pre>
+<p>등을 검색합니다.</p>
+<p>Ontology는</p>
+<pre><code class="language-text">Pump01
+ ↓ drivenBy
+Motor01
+
+ ↓ monitoredBy
+CurrentSensor01
+</code></pre>
+<p>이라는 관계를 찾습니다.</p>
+<p>MCP는</p>
+<pre><code class="language-text">read_current(CurrentSensor01)
+
+read_pressure(Pump01)
+
+get_alarm(Pump01)
+</code></pre>
+<p>을 실행합니다.</p>
+<p>세 가지를 결합하면 훨씬 강력합니다.</p>
+<hr />
+<h1>13. 이상적인 산업용 AI 구조</h1>
+<p>제가 산업 자동화 시스템을 구성한다면 개념적으로는 다음처럼 나누는 게 좋습니다.</p>
+<pre><code class="language-text">┌──────────────────────────────┐
+│          사용자              │
+│ &quot;반응기 상태 확인해줘&quot;       │
+└─────────────┬────────────────┘
+              ↓
+┌──────────────────────────────┐
+│          LLM Agent           │
+│  ChatGPT / Claude / Gemini   │
+└─────────────┬────────────────┘
+              ↓
+┌──────────────────────────────┐
+│      Ontology Layer          │
+│                              │
+│ Reactor                      │
+│ Sensor                       │
+│ PLC                          │
+│ Pump                         │
+│ Valve                        │
+│ Alarm                        │
+└─────────────┬────────────────┘
+              ↓
+┌──────────────────────────────┐
+│      Knowledge Graph         │
+│                              │
+│ Reactor01                    │
+│ ├─Sensor01                   │
+│ ├─Pump01                     │
+│ └─PLC01                      │
+└─────────────┬────────────────┘
+              ↓
+┌──────────────────────────────┐
+│          MCP Layer           │
+│                              │
+│ PLC MCP                      │
+│ HMI MCP                      │
+│ CAD MCP                      │
+│ Database MCP                 │
+│ Document MCP                 │
+└─────────────┬────────────────┘
+              ↓
+┌──────────────────────────────┐
+│         실제 시스템          │
+│                              │
+│ PLC / HMI / SCADA            │
+│ SolidWorks / DB / MES        │
+└──────────────────────────────┘
+</code></pre>
+<p>MCP 공식 구조에서도 서버는 독립적으로 Resources, Tools, Prompts 등의 기능을 제공하고, 하나의 Host가 여러 MCP Client를 관리하여 여러 서버와 연결할 수 있도록 설계되어 있습니다. 따라서 위처럼 PLC MCP, HMI MCP, CAD MCP 등을 분리하는 아키텍처와 잘 맞습니다. citeturn921110search1turn921110search10</p>
+<hr />
+<h2>결론</h2>
+<p>둘의 차이를 한 문장으로 정리하면 이렇습니다.</p>
+<blockquote>
+<p><strong>온톨로지는 AI에게 산업현장의 “의미와 관계”를 알려주고, MCP는 AI에게 산업현장을 “조회하고 조작할 수 있는 손”을 제공합니다.</strong></p>
+</blockquote>
+<p>그래서 산업용 AI 자동화에서 더 강력한 구조는 단순히</p>
+<pre><code class="language-text">ChatGPT
+ ↓
+MCP
+ ↓
+PLC
+</code></pre>
+<p>가 아니라,</p>
+<pre><code class="language-text">               AI Agent
+                  │
+          ┌───────┴────────┐
+          ↓                ↓
+      Ontology            RAG
+          ↓                ↓
+    Knowledge Graph      Documents
+          │
+          └───────┬────────┘
+                  ↓
+                 MCP
+        ┌─────────┼──────────┐
+        ↓         ↓          ↓
+      PLC        HMI        CAD
+       ↓          ↓          ↓
+    XG5000   XP Builder  SolidWorks
+</code></pre>
+<p>에 가깝습니다.</p>
+<p>특히 <strong>PLC·HMI·SolidWorks 같은 서로 다른 산업용 프로그램을 하나의 AI Agent가 자연어로 통합 제어하는 시스템</strong>을 목표로 한다면, 장기적으로는 <strong><code>Ontology + Knowledge Graph + RAG + MCP + LLM Agent</code> 조합</strong>이 상당히 적합합니다. MCP만 만드는 것보다, 나중에 프로그램과 설비가 많아질수록 온톨로지의 가치가 커집니다.</p>
+  </main>
+</body>
+</html>

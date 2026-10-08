@@ -1,0 +1,114 @@
+@prefix devops: <http://example.org/ontology/devops#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+devops:DevOpsPipelineShape a sh:NodeShape ;
+    sh:targetClass devops:DevOpsPipeline ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "파이프라인에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path devops:pipelineId ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] ;
+    sh:property [ sh:path devops:executionStatus ; sh:datatype xsd:string ;
+                  sh:in ( "PENDING" "RUNNING" "SUCCESS" "FAILED" "CANCELLED" ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path devops:hasTask ; sh:class devops:PipelineTask ; sh:minCount 1 ] ;
+    sh:sparql [
+        sh:message "성공한 파이프라인에는 성공 상태가 아닌 작업이 포함될 수 없습니다."@ko ;
+        sh:select """
+            PREFIX devops: <http://example.org/ontology/devops#>
+            SELECT $this ?task ?status WHERE {
+                $this devops:executionStatus "SUCCESS" ; devops:hasTask ?task .
+                ?task devops:executionStatus ?status .
+                FILTER (?status != "SUCCESS")
+            }
+        """
+    ] .
+
+devops:PipelineTaskShape a sh:NodeShape ;
+    sh:targetClass devops:PipelineTask ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "파이프라인 작업에 표시 라벨이 필요합니다."@ko ] ;
+    sh:property [ sh:path devops:managedBy ; sh:class devops:DevOpsAgent ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path devops:executionStatus ; sh:datatype xsd:string ;
+                  sh:in ( "PENDING" "RUNNING" "SUCCESS" "FAILED" "CANCELLED" ) ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [
+        sh:message "작업 의존성은 같은 파이프라인 안의 작업을 가리켜야 합니다."@ko ;
+        sh:select """
+            PREFIX devops: <http://example.org/ontology/devops#>
+            SELECT $this ?dependency WHERE {
+                $this devops:dependsOn ?dependency .
+                FILTER NOT EXISTS {
+                    ?pipeline devops:hasTask $this, ?dependency .
+                }
+            }
+        """
+    ] ;
+    sh:sparql [
+        sh:message "파이프라인 작업 의존성에 순환이 있습니다."@ko ;
+        sh:select """
+            PREFIX devops: <http://example.org/ontology/devops#>
+            SELECT $this WHERE { $this devops:dependsOn+ $this . }
+        """
+    ] .
+
+devops:BuildTaskShape a sh:NodeShape ;
+    sh:targetClass devops:BuildTask ;
+    sh:property [ sh:path devops:producesArtifact ; sh:class devops:BuildArtifact ] ;
+    sh:sparql [
+        sh:message "성공한 빌드에는 빌드 산출물이 연결되어야 합니다."@ko ;
+        sh:select """
+            PREFIX devops: <http://example.org/ontology/devops#>
+            SELECT $this WHERE {
+                $this devops:executionStatus "SUCCESS" .
+                FILTER NOT EXISTS { $this devops:producesArtifact ?artifact . }
+            }
+        """
+    ] .
+
+devops:SecurityScanTaskShape a sh:NodeShape ;
+    sh:targetClass devops:SecurityScanTask ;
+    sh:property [ sh:path devops:vulnerabilityCount ; sh:datatype xsd:integer ;
+                  sh:maxCount 1 ; sh:minInclusive 0 ] ;
+    sh:property [ sh:path devops:generatesReport ; sh:class devops:VulnerabilityReport ;
+                  sh:minCount 1 ; sh:maxCount 1 ] .
+
+devops:DeploymentTaskShape a sh:NodeShape ;
+    sh:targetClass devops:DeploymentTask ;
+    sh:property [ sh:path devops:deployedTo ; sh:class devops:TargetEnvironment ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path devops:deploysArtifact ; sh:class devops:BuildArtifact ;
+                  sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [
+        sh:message "배포 산출물은 같은 파이프라인의 성공한 빌드 작업에서 생성되어야 합니다."@ko ;
+        sh:select """
+            PREFIX devops: <http://example.org/ontology/devops#>
+            SELECT $this ?artifact WHERE {
+                $this devops:deploysArtifact ?artifact .
+                FILTER NOT EXISTS {
+                    ?pipeline devops:hasTask $this, ?build .
+                    ?build a devops:BuildTask ;
+                           devops:executionStatus "SUCCESS" ;
+                           devops:producesArtifact ?artifact .
+                }
+            }
+        """
+    ] .
+
+devops:DevOpsAgentShape a sh:NodeShape ;
+    sh:targetClass devops:DevOpsAgent ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "에이전트에 표시 라벨이 필요합니다."@ko ] .
+
+devops:BuildArtifactShape a sh:NodeShape ;
+    sh:targetClass devops:BuildArtifact ;
+    sh:property [ sh:path devops:imageTag ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] .
+
+devops:TargetEnvironmentShape a sh:NodeShape ;
+    sh:targetClass devops:TargetEnvironment ;
+    sh:property [ sh:path devops:environmentName ; sh:datatype xsd:string ;
+                  sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 1 ] .
+
+devops:VulnerabilityReportShape a sh:NodeShape ;
+    sh:targetClass devops:VulnerabilityReport ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:message "취약점 보고서에 표시 라벨이 필요합니다."@ko ] .

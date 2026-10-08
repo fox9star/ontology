@@ -1,0 +1,312 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix diet: <http://example.org/ontology/diet#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================================
+# SHACL NodeShapes for Weight Loss and Metabolic Healthcare Ontology
+# =============================================================================
+
+diet:WeightLossProfileShape a sh:NodeShape ;
+    sh:targetClass diet:WeightLossProfile ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "체중감량 프로필에는 명칭 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:profileName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "체중감량 프로필에는 사용자 성명이 1개 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:heightCm ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 50.0 ;
+        sh:maxInclusive 250.0 ;
+        sh:message "신장은 50cm 이상 250cm 이하의 유효한 수치여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:hasTargetGoal ;
+        sh:class diet:TargetGoal ;
+        sh:message "목표 설정 참조는 TargetGoal 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:followsDietPlan ;
+        sh:class diet:DietaryPlan ;
+        sh:message "식이 플랜 참조는 DietaryPlan 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:hasBodyComposition ;
+        sh:class diet:BodyCompositionRecord ;
+        sh:message "체성분 계측치 참조는 BodyCompositionRecord 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:logsMeal ;
+        sh:class diet:DietaryMealLog ;
+        sh:message "식단 기록 참조는 DietaryMealLog 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:logsExercise ;
+        sh:class diet:ExerciseSession ;
+        sh:message "운동 활동 참조는 ExerciseSession 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:hasDailySummary ;
+        sh:class diet:MetabolicDailySummary ;
+        sh:message "일일 대사 요약 참조는 MetabolicDailySummary 인스턴스여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:assignedAgent ;
+        sh:class diet:DietCoachingAgent ;
+        sh:message "전담 코칭 에이전트 참조는 DietCoachingAgent 인스턴스여야 합니다."@ko
+    ] .
+
+diet:TargetGoalShape a sh:NodeShape ;
+    sh:targetClass diet:TargetGoal ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "체중감량 목표에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:targetWeightKg ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minInclusive 20.0 ;
+        sh:maxInclusive 300.0 ;
+        sh:message "목표 체중은 20kg 이상 300kg 이하의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:targetBodyFatPercent ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 1.0 ;
+        sh:maxInclusive 60.0 ;
+        sh:message "목표 체지방률은 1% 이상 60% 이하의 비율이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:targetDailyCalorieDeficit ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 2500.0 ;
+        sh:message "일일 목표 칼로리 결손량은 0kcal 이상 2500kcal 이하여야 합니다."@ko
+    ] .
+
+diet:BodyCompositionRecordShape a sh:NodeShape ;
+    sh:targetClass diet:BodyCompositionRecord ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "체성분 계측 기록에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:weightKg ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minInclusive 20.0 ;
+        sh:maxInclusive 350.0 ;
+        sh:message "계측 체중은 20kg 이상 350kg 이하의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:bodyFatMassKg ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "체지방량은 0kg 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:skeletalMuscleMassKg ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "골격근량은 0kg 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:bmi ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 10.0 ;
+        sh:maxInclusive 70.0 ;
+        sh:message "체질량지수(BMI)는 10 이상 70 이하의 수치여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:bmrKcal ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 500.0 ;
+        sh:maxInclusive 4000.0 ;
+        sh:message "기초대사량(BMR)은 500kcal 이상 4000kcal 이하의 수치여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:recordedAt ;
+        sh:datatype xsd:dateTime ;
+        sh:minCount 1 ;
+        sh:message "계측 측정 일시(recordedAt)는 유효한 dateTime이어야 합니다."@ko
+    ] .
+
+diet:DietaryMealLogShape a sh:NodeShape ;
+    sh:targetClass diet:DietaryMealLog ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "식단 섭취 기록에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:mealType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:in ( "BREAKFAST" "LUNCH" "DINNER" "SNACK" ) ;
+        sh:message "식사 구분은 BREAKFAST, LUNCH, DINNER, SNACK 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:mealCaloriesKcal ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:message "식사 총 섭취 열량은 0kcal 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:carbohydrateGrams ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "탄수화물 함량은 0g 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:proteinGrams ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "단백질 함량은 0g 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:fatGrams ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "지방 함량은 0g 이상의 십진수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:containsFood ;
+        sh:class diet:FoodItem ;
+        sh:message "포함 식품 항목 참조는 FoodItem 인스턴스여야 합니다."@ko
+    ] .
+
+diet:FoodItemShape a sh:NodeShape ;
+    sh:targetClass diet:FoodItem ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "식품 항목에는 라벨이 필요합니다."@ko
+    ] .
+
+diet:DietaryPlanShape a sh:NodeShape ;
+    sh:targetClass diet:DietaryPlan ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "식이 처방 플랜에는 라벨이 필요합니다."@ko
+    ] .
+
+diet:ExerciseSessionShape a sh:NodeShape ;
+    sh:targetClass diet:ExerciseSession ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "운동 세션에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:exerciseType ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "운동 유형은 문자열이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:durationMinutes ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:minInclusive 1 ;
+        sh:message "운동 시간은 1분 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:burnedCaloriesKcal ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:message "운동 소비 열량은 0kcal 이상의 십진수여야 합니다."@ko
+    ] .
+
+diet:MetabolicDailySummaryShape a sh:NodeShape ;
+    sh:targetClass diet:MetabolicDailySummary ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "일일 대사 수지 요약에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:netCalorieDeficitKcal ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:message "일일 순 칼로리 결손량은 십진수여야 합니다."@ko
+    ] .
+
+diet:PlateauAlertShape a sh:NodeShape ;
+    sh:targetClass diet:PlateauAlert ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "체중 정체기 감지 경보에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:detectedOnProfile ;
+        sh:class diet:WeightLossProfile ;
+        sh:minCount 1 ;
+        sh:message "정체 감지 대상 프로필이 지정되어야 합니다."@ko
+    ] .
+
+diet:CoachingInterventionTaskShape a sh:NodeShape ;
+    sh:targetClass diet:CoachingInterventionTask ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "코칭 개입 작업에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:interventionAction ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:message "코칭 중재 지침 텍스트가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:taskStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:in ( "PENDING" "ACTIVE" "COMPLETED" "DISMISSED" ) ;
+        sh:message "작업 상태는 PENDING, ACTIVE, COMPLETED, DISMISSED 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:targetProfile ;
+        sh:class diet:WeightLossProfile ;
+        sh:minCount 1 ;
+        sh:message "개입 대상 프로필이 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:executedByCoach ;
+        sh:class diet:DietCoachingAgent ;
+        sh:minCount 1 ;
+        sh:message "실행 코치 에이전트가 지정되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path diet:triggeredByAlert ;
+        sh:class diet:PlateauAlert ;
+        sh:message "유발 경보 참조는 PlateauAlert 인스턴스여야 합니다."@ko
+    ] .
+
+diet:DietCoachingAgentShape a sh:NodeShape ;
+    sh:targetClass diet:DietCoachingAgent, diet:NutritionistAgent, diet:FitnessTrainerAgent, diet:MetabolicMonitorAgent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "코칭 에이전트에는 라벨이 필요합니다."@ko
+    ] .

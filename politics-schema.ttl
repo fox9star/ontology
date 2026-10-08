@@ -1,0 +1,213 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix politics: <https://example.org/ontology/politics#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/politics> a owl:Ontology ;
+    rdfs:label "정치·선거 정보 온톨로지"@ko,
+               "Political and Election Information Ontology"@en ;
+    rdfs:comment "선거, 선거구, 정당, 후보자, 집계 결과, 선거운동, 정책 쟁점 및 출처가 명시된 정치적 입장을 중립적으로 표현한다."@ko,
+                 "Neutrally represents elections, districts, parties, candidates, aggregate results, campaigns, policy issues, and source-attributed political positions."@en ;
+    owl:imports <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.0.0" ;
+    owl:versionIRI <https://example.org/ontology/politics/1.0.0> .
+
+politics:PoliticalActor a owl:Class, rdfs:Class ;
+    rdfs:label "정치 주체"@ko, "Political Actor"@en ;
+    rdfs:comment "정치 또는 선거 활동에 참여하는 개인이나 조직의 공통 유형이다."@ko,
+                 "A shared type for an individual or organization participating in political or electoral activity."@en .
+
+politics:PoliticalParty a owl:Class, rdfs:Class ;
+    rdfs:subClassOf politics:PoliticalActor ;
+    rdfs:label "정당"@ko, "Political Party"@en ;
+    rdfs:comment "정치적 목표와 조직을 공유하며 선거에 참여하는 정치 조직이다."@ko,
+                 "A political organization with shared objectives and an organizational structure that may participate in elections."@en .
+
+politics:Candidate a owl:Class, rdfs:Class ;
+    rdfs:subClassOf politics:PoliticalActor ;
+    rdfs:label "선거 후보자"@ko, "Election Candidate"@en ;
+    rdfs:comment "특정 선거에서 공직 후보로 등록되거나 출마하는 개인이다."@ko,
+                 "An individual nominated or running for public office in an election."@en .
+
+politics:Election a owl:Class, rdfs:Class ;
+    rdfs:label "선거"@ko, "Election"@en ;
+    rdfs:comment "공직 또는 대표자를 선출하기 위해 정해진 시점에 시행되는 선거 절차이다."@ko,
+                 "An electoral process held at a specified time to select public officials or representatives."@en .
+
+politics:ElectoralDistrict a owl:Class, rdfs:Class ;
+    rdfs:label "선거구"@ko, "Electoral District"@en ;
+    rdfs:comment "선거에서 대표자를 선출하거나 투표를 집계하는 지리적 또는 행정적 구역이다."@ko,
+                 "A geographic or administrative area in which representatives are elected or votes are aggregated."@en .
+
+politics:ElectionResult a owl:Class, rdfs:Class ;
+    rdfs:label "선거 집계 결과"@ko, "Election Tally Result"@en ;
+    rdfs:comment "선거·선거구·후보자와 관련된 집계 득표 및 개표 상태 기록이다."@ko,
+                 "A record of aggregate votes and counting status associated with an election, district, and candidate."@en .
+
+politics:Campaign a owl:Class, rdfs:Class ;
+    rdfs:label "선거운동"@ko, "Election Campaign"@en ;
+    rdfs:comment "후보자 또는 정당이 선거 기간에 수행하는 공개 활동과 계획의 묶음이다."@ko,
+                 "A set of public activities and plans conducted by a candidate or party during an election period."@en .
+
+politics:CampaignEvent a owl:Class, rdfs:Class ;
+    rdfs:label "선거운동 행사"@ko, "Campaign Event"@en ;
+    rdfs:comment "선거운동에 속한 공개 일정이나 행사이다."@ko,
+                 "A public meeting or scheduled event associated with an election campaign."@en .
+
+politics:PolicyIssue a owl:Class, rdfs:Class ;
+    rdfs:label "정책 쟁점"@ko, "Policy Issue"@en ;
+    rdfs:comment "정책 제안과 입장이 다루는 공공 의제 또는 쟁점이다."@ko,
+                 "A public topic or issue addressed by policy proposals and positions."@en .
+
+politics:PolicyPosition a owl:Class, rdfs:Class ;
+    rdfs:label "정책 입장 기록"@ko, "Policy Position Record"@en ;
+    rdfs:comment "정치 주체의 정책 관련 주장을 기록하고 그 출처와 시점을 연결하는 자료이다."@ko,
+                 "A record of a political actor's policy-related statement linked to its source and date."@en .
+
+politics:hasCandidate a owl:ObjectProperty ;
+    rdfs:label "선거 후보자"@ko, "Has Candidate"@en ;
+    rdfs:comment "선거에 출마하는 후보자를 연결한다."@ko,
+                 "Links an election to a candidate running in it."@en ;
+    rdfs:domain politics:Election ;
+    rdfs:range politics:Candidate .
+
+politics:heldInDistrict a owl:ObjectProperty ;
+    rdfs:label "선거 시행 선거구"@ko, "Held in District"@en ;
+    rdfs:comment "선거가 시행되는 선거구를 연결한다."@ko,
+                 "Links an election to the electoral district where it is held."@en ;
+    rdfs:domain politics:Election ;
+    rdfs:range politics:ElectoralDistrict .
+
+politics:memberParty a owl:ObjectProperty ;
+    rdfs:label "소속 정당"@ko, "Member Party"@en ;
+    rdfs:comment "후보자 또는 정치 주체의 정당 소속을 연결한다."@ko,
+                 "Links a candidate or political actor to an affiliated political party."@en ;
+    rdfs:domain politics:Candidate ;
+    rdfs:range politics:PoliticalParty .
+
+politics:resultForCandidate a owl:ObjectProperty ;
+    rdfs:label "결과 후보자"@ko, "Result for Candidate"@en ;
+    rdfs:comment "집계 결과의 대상 후보자를 지정한다."@ko,
+                 "Identifies the candidate to whom an election tally applies."@en ;
+    rdfs:domain politics:ElectionResult ;
+    rdfs:range politics:Candidate .
+
+politics:resultForElection a owl:ObjectProperty ;
+    rdfs:label "결과 선거"@ko, "Result for Election"@en ;
+    rdfs:comment "집계 결과가 속하는 선거를 지정한다."@ko,
+                 "Identifies the election to which a tally result belongs."@en ;
+    rdfs:domain politics:ElectionResult ;
+    rdfs:range politics:Election .
+
+politics:resultForDistrict a owl:ObjectProperty ;
+    rdfs:label "결과 선거구"@ko, "Result for District"@en ;
+    rdfs:comment "집계 결과가 속하는 선거구를 지정한다."@ko,
+                 "Identifies the district to which a tally result applies."@en ;
+    rdfs:domain politics:ElectionResult ;
+    rdfs:range politics:ElectoralDistrict .
+
+politics:hasResult a owl:ObjectProperty ;
+    rdfs:label "선거 결과"@ko, "Has Result"@en ;
+    rdfs:comment "선거와 해당 선거의 집계 결과 기록을 연결한다."@ko,
+                 "Links an election to one of its aggregate tally records."@en ;
+    rdfs:domain politics:Election ;
+    rdfs:range politics:ElectionResult .
+
+politics:runByActor a owl:ObjectProperty ;
+    rdfs:label "선거운동 주체"@ko, "Campaign Run by Actor"@en ;
+    rdfs:comment "선거운동을 수행하는 후보자 또는 정당을 연결한다."@ko,
+                 "Links a campaign to the candidate or party conducting it."@en ;
+    rdfs:domain politics:Campaign ;
+    rdfs:range politics:PoliticalActor .
+
+politics:campaignForElection a owl:ObjectProperty ;
+    rdfs:label "대상 선거"@ko, "Campaign for Election"@en ;
+    rdfs:comment "선거운동이 대상으로 하는 선거를 연결한다."@ko,
+                 "Links a campaign to the election it concerns."@en ;
+    rdfs:domain politics:Campaign ;
+    rdfs:range politics:Election .
+
+politics:hasCampaignEvent a owl:ObjectProperty ;
+    rdfs:label "선거운동 행사"@ko, "Has Campaign Event"@en ;
+    rdfs:comment "선거운동에 포함된 행사를 연결한다."@ko,
+                 "Links a campaign to an event included in it."@en ;
+    rdfs:domain politics:Campaign ;
+    rdfs:range politics:CampaignEvent .
+
+politics:positionByActor a owl:ObjectProperty ;
+    rdfs:label "입장 표명 주체"@ko, "Position by Actor"@en ;
+    rdfs:comment "정책 입장을 표명한 후보자 또는 정당을 연결한다."@ko,
+                 "Links a policy position record to the candidate or party that stated it."@en ;
+    rdfs:domain politics:PolicyPosition ;
+    rdfs:range politics:PoliticalActor .
+
+politics:positionOnIssue a owl:ObjectProperty ;
+    rdfs:label "관련 정책 쟁점"@ko, "Position on Issue"@en ;
+    rdfs:comment "정책 입장이 다루는 쟁점을 연결한다."@ko,
+                 "Links a policy position record to the issue it addresses."@en ;
+    rdfs:domain politics:PolicyPosition ;
+    rdfs:range politics:PolicyIssue .
+
+politics:electionDate a owl:DatatypeProperty ;
+    rdfs:label "선거일"@ko, "Election Date"@en ;
+    rdfs:comment "선거가 예정되거나 시행되는 날짜이다."@ko,
+                 "The date on which an election is scheduled or held."@en ;
+    rdfs:domain politics:Election ;
+    rdfs:range xsd:date .
+
+politics:electionStatus a owl:DatatypeProperty ;
+    rdfs:label "선거 상태"@ko, "Election Status"@en ;
+    rdfs:comment "선거 절차의 예정, 진행, 완료 상태를 나타낸다."@ko,
+                 "The scheduled, in-progress, or completed status of an election process."@en ;
+    rdfs:domain politics:Election ;
+    rdfs:range xsd:string .
+
+politics:jurisdiction a owl:DatatypeProperty ;
+    rdfs:label "관할 구역"@ko, "Jurisdiction"@en ;
+    rdfs:comment "선거 또는 선거구의 행정 관할 범위를 나타낸다."@ko,
+                 "The administrative jurisdiction associated with an election or district."@en ;
+    rdfs:domain politics:ElectoralDistrict ;
+    rdfs:range xsd:string .
+
+politics:voteCount a owl:DatatypeProperty ;
+    rdfs:label "집계 득표수"@ko, "Aggregate Vote Count"@en ;
+    rdfs:comment "후보자에게 집계된 비식별 총 득표수이다."@ko,
+                 "The non-identifying aggregate number of votes tallied for a candidate."@en ;
+    rdfs:domain politics:ElectionResult ;
+    rdfs:range xsd:integer .
+
+politics:resultStatus a owl:DatatypeProperty ;
+    rdfs:label "개표 결과 상태"@ko, "Tally Status"@en ;
+    rdfs:comment "개표 기록이 잠정인지 확정인지 나타낸다."@ko,
+                 "Indicates whether a tally record is preliminary or certified."@en ;
+    rdfs:domain politics:ElectionResult ;
+    rdfs:range xsd:string .
+
+politics:positionStatement a owl:DatatypeProperty ;
+    rdfs:label "정책 입장 내용"@ko, "Policy Position Statement"@en ;
+    rdfs:comment "출처에 귀속되는 정책 관련 발언 또는 요약문이다."@ko,
+                 "A policy-related statement or summary attributed to a source."@en ;
+    rdfs:domain politics:PolicyPosition ;
+    rdfs:range xsd:string .
+
+politics:positionRecordedAt a owl:DatatypeProperty ;
+    rdfs:label "입장 기록일"@ko, "Position Record Date"@en ;
+    rdfs:comment "정책 입장 기록의 기준 날짜이다."@ko,
+                 "The date on which a policy-position record was made."@en ;
+    rdfs:domain politics:PolicyPosition ;
+    rdfs:range xsd:date .
+
+politics:sourceURL a owl:DatatypeProperty ;
+    rdfs:label "출처 URL"@ko, "Source URL"@en ;
+    rdfs:comment "정책 입장을 확인할 수 있는 공개 출처의 URL이다."@ko,
+                 "The URL of a public source that can be consulted for a policy position."@en ;
+    rdfs:domain politics:PolicyPosition ;
+    rdfs:range xsd:anyURI .
+
+politics:eventDate a owl:DatatypeProperty ;
+    rdfs:label "행사 날짜"@ko, "Campaign Event Date"@en ;
+    rdfs:comment "선거운동 행사가 열리는 날짜이다."@ko,
+                 "The date on which a campaign event takes place."@en ;
+    rdfs:domain politics:CampaignEvent ;
+    rdfs:range xsd:date .

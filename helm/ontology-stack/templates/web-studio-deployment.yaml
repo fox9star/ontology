@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ontology-stack.fullname" . }}-web-studio
+  labels:
+    {{- include "ontology-stack.labels" . | nindent 4 }}
+    app.kubernetes.io/component: web-studio
+spec:
+  {{- if not .Values.webStudio.autoscaling.enabled }}
+  replicas: {{ .Values.webStudio.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "ontology-stack.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: web-studio
+  template:
+    metadata:
+      labels:
+        {{- include "ontology-stack.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: web-studio
+    spec:
+      containers:
+        - name: web-studio
+          image: "{{ .Values.webStudio.image.repository }}:{{ .Values.webStudio.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.webStudio.image.pullPolicy }}
+          command: ["python", "app.py"]
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ include "ontology-stack.fullname" . }}-config
+            - secretRef:
+                name: {{ include "ontology-stack.fullname" . }}-secrets
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.webStudio.resources | nindent 12 }}

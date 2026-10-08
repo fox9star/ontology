@@ -1,0 +1,909 @@
+@prefix ec: <https://example.org/ontology/custom/electricity-craftsman#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.test/electricity-craftsman/qualification-electricity-craftsman> a ec:ElectricalQualification ;
+    rdfs:label "Craftsman Electricity"@en,
+        "전기기능사"@ko ;
+    ec:qualificationAdministeringBody "한국산업인력공단"^^xsd:string ;
+    ec:qualificationAlternativeLabel "Electricity Craftsman"@en ;
+    ec:qualificationCategory "국가기술자격 기능사"^^xsd:string ;
+    ec:qualificationHasEvidence <https://example.test/electricity-craftsman/evidence-exam-structure>,
+        <https://example.test/electricity-craftsman/evidence-materials-list>,
+        <https://example.test/electricity-craftsman/evidence-pass-thresholds>,
+        <https://example.test/electricity-craftsman/evidence-practical-format>,
+        <https://example.test/electricity-craftsman/evidence-practical-safety>,
+        <https://example.test/electricity-craftsman/evidence-practical-scope>,
+        <https://example.test/electricity-craftsman/evidence-public-task>,
+        <https://example.test/electricity-craftsman/evidence-qualification-identity>,
+        <https://example.test/electricity-craftsman/evidence-standard-current>,
+        <https://example.test/electricity-craftsman/evidence-standard-future>,
+        <https://example.test/electricity-craftsman/evidence-written-format> ;
+    ec:qualificationHasSource <https://example.test/electricity-craftsman/qnet-exam-details>,
+        <https://example.test/electricity-craftsman/qnet-materials>,
+        <https://example.test/electricity-craftsman/qnet-public-task-2025>,
+        <https://example.test/electricity-craftsman/qnet-qualification>,
+        <https://example.test/electricity-craftsman/qnet-standard-2024>,
+        <https://example.test/electricity-craftsman/qnet-standard-2027> ;
+    ec:qualificationHasStage <https://example.test/electricity-craftsman/stage-practical>,
+        <https://example.test/electricity-craftsman/stage-written> ;
+    ec:qualificationHasStandard <https://example.test/electricity-craftsman/standard-2024-2026>,
+        <https://example.test/electricity-craftsman/standard-2027-2029> ;
+    ec:qualificationIdentifier "electricity-craftsman"^^xsd:string ;
+    ec:qualificationPreferredLabel "Craftsman Electricity"@en,
+        "전기기능사"@ko ;
+    ec:qualificationQnetCode "7780"^^xsd:string ;
+    ec:qualificationRelatedMinistry "기후에너지환경부"^^xsd:string ;
+    ec:qualificationStatus "draft"^^xsd:string .
+
+<https://example.test/electricity-craftsman/competency-installation> a ec:Competency ;
+    rdfs:label "Electrical installation work"@en,
+        "전기설비 작업 수행"@ko ;
+    ec:competencyDescription "A capability linked to the published practical scope for conduit and wiring work; it does not provide real-world installation instructions."@en,
+        "공개된 실기 출제경향의 배관·배선공사 범위와 연결되는 작업 역량이다. 실제 시공 절차 지침은 포함하지 않는다."@ko ;
+    ec:competencyEvidence <https://example.test/electricity-craftsman/evidence-practical-scope> ;
+    ec:competencyIdentifier "electrical-installation-work"^^xsd:string ;
+    ec:competencyPreferredLabel "Electrical installation work"@en,
+        "전기설비 작업 수행"@ko ;
+    ec:competencyRelatedTask <https://example.test/electricity-craftsman/task-conduit-wiring> ;
+    ec:competencySource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/competency-sequence> a ec:Competency ;
+    rdfs:label "Sequence-control circuit assembly"@en,
+        "시퀀스 제어회로 구성"@ko ;
+    ec:competencyDescription "A capability linked to completing the sequence-control circuit named in the Q-Net practical scope."@en,
+        "큐넷 출제경향에 명시된 시퀀스 제어회로 완성 작업과 연결되는 역량이다."@ko ;
+    ec:competencyEvidence <https://example.test/electricity-craftsman/evidence-practical-scope> ;
+    ec:competencyIdentifier "sequence-control-circuit"^^xsd:string ;
+    ec:competencyPreferredLabel "Sequence-control circuit assembly"@en,
+        "시퀀스 제어회로 구성"@ko ;
+    ec:competencyRelatedTask <https://example.test/electricity-craftsman/task-sequence-control> ;
+    ec:competencySource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/evidence-public-task> a ec:EvidenceRecord ;
+    rdfs:label "The public-task page identifies a 2025-08-04 revision applied from the 2025 Craftsman third exam round."@en,
+        "공개문제 페이지는 2025-08-04 수정본과 2025년 기능사 제3회부터의 적용시점을 안내한다."@ko ;
+    ec:evidenceClaim "The public-task page identifies a 2025-08-04 revision applied from the 2025 Craftsman third exam round."@en,
+        "공개문제 페이지는 2025-08-04 수정본과 2025년 기능사 제3회부터의 적용시점을 안내한다."@ko ;
+    ec:evidenceIdentifier "evidence-public-task"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "공개문제는 변경될 수 있다는 페이지 안내를 함께 기록한다."@en,
+        "공개문제는 변경될 수 있다는 페이지 안내를 함께 기록한다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-public-task-2025> ;
+    ec:evidenceSourceLocator "공개문제 본문 > 적용시기 및 수정 내역"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string .
+
+<https://example.test/electricity-craftsman/evidence-qualification-identity> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net lists Craftsman Electricity, item code 7780, HRD Korea as the administering body, and the Ministry of Climate, Energy and Environment as the related ministry."@en,
+        "큐넷은 종목을 전기기능사(Craftsman Electricity), 코드 7780, 시행기관 한국산업인력공단, 관련 부처 기후에너지환경부로 표시한다."@ko ;
+    ec:evidenceClaim "Q-Net lists Craftsman Electricity, item code 7780, HRD Korea as the administering body, and the Ministry of Climate, Energy and Environment as the related ministry."@en,
+        "큐넷은 종목을 전기기능사(Craftsman Electricity), 코드 7780, 시행기관 한국산업인력공단, 관련 부처 기후에너지환경부로 표시한다."@ko ;
+    ec:evidenceIdentifier "evidence-qualification-identity"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "공식 페이지를 2026-10-08 확인한 사실 스냅샷이다."@en,
+        "공식 페이지를 2026-10-08 확인한 사실 스냅샷이다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-qualification> ;
+    ec:evidenceSourceLocator "국가자격 종목별 상세정보 > 전기기능사"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string .
+
+<https://example.test/electricity-craftsman/rule-practical-pass> a ec:AssessmentRule ;
+    rdfs:label "Practical pass threshold"@en,
+        "실기 합격 기준"@ko ;
+    ec:ruleAppliesToStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:ruleDescription "The practical-stage pass threshold listed on the current Q-Net detail page."@en,
+        "큐넷 현재 상세 페이지에 게시된 실기 합격 기준이다."@ko ;
+    ec:ruleHasEvidence <https://example.test/electricity-craftsman/evidence-pass-thresholds> ;
+    ec:ruleIdentifier "practical-pass-60"^^xsd:string ;
+    ec:ruleMaximumScore 100.0 ;
+    ec:ruleMinimumScore 60.0 ;
+    ec:rulePreferredLabel "At least 60 out of 100 on practical stage"@en,
+        "실기 100점 중 60점 이상"@ko ;
+    ec:ruleSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:ruleType "minimum_score"^^xsd:string .
+
+<https://example.test/electricity-craftsman/rule-written-pass> a ec:AssessmentRule ;
+    rdfs:label "Written pass threshold"@en,
+        "필기 합격 기준"@ko ;
+    ec:ruleAppliesToStage <https://example.test/electricity-craftsman/stage-written> ;
+    ec:ruleDescription "The written-stage pass threshold listed on the current Q-Net detail page."@en,
+        "큐넷 현재 상세 페이지에 게시된 필기 합격 기준이다."@ko ;
+    ec:ruleHasEvidence <https://example.test/electricity-craftsman/evidence-pass-thresholds> ;
+    ec:ruleIdentifier "written-pass-60"^^xsd:string ;
+    ec:ruleMaximumScore 100.0 ;
+    ec:ruleMinimumScore 60.0 ;
+    ec:rulePreferredLabel "At least 60 out of 100 on written stage"@en,
+        "필기 100점 중 60점 이상"@ko ;
+    ec:ruleSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:ruleType "minimum_score"^^xsd:string .
+
+<https://example.test/electricity-craftsman/safety-level-label> a ec:SafetyRequirement ;
+    rdfs:label "Q-Net published safety level 4"@en,
+        "큐넷 게시 안전등급 4"@ko ;
+    ec:safetyForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:safetyHasEvidence <https://example.test/electricity-craftsman/evidence-practical-safety> ;
+    ec:safetyIdentifier "safety-level-label"^^xsd:string ;
+    ec:safetyLevel 4 ;
+    ec:safetyPreferredLabel "Q-Net published safety level 4"@en,
+        "큐넷 게시 안전등급 4"@ko ;
+    ec:safetyRequirementType "published_level"^^xsd:string ;
+    ec:safetySource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:safetyText "Records the level number as published by Q-Net without interpreting it as another risk scale."@en,
+        "큐넷 페이지에 게시된 등급 숫자 그대로 기록하며 별도의 위험 척도로 해석하지 않는다."@ko .
+
+<https://example.test/electricity-craftsman/safety-score> a ec:SafetyRequirement ;
+    rdfs:label "Safety and housekeeping scoring"@en,
+        "안전·정리정돈 채점"@ko ;
+    ec:safetyForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:safetyHasEvidence <https://example.test/electricity-craftsman/evidence-practical-safety> ;
+    ec:safetyIdentifier "safety-score"^^xsd:string ;
+    ec:safetyPreferredLabel "Safety and housekeeping scoring"@en,
+        "안전·정리정돈 채점"@ko ;
+    ec:safetyRequirementType "scored"^^xsd:string ;
+    ec:safetySource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:safetyText "Work clothing, housekeeping, and safety may be included in scoring."@en,
+        "작업복 착용, 정리정돈, 안전사항 등이 채점 대상이 될 수 있다."@ko .
+
+<https://example.test/electricity-craftsman/standard-2027-2029> a ec:ExamStandardVersion ;
+    rdfs:label "Electricity Craftsman standard 2027-2029"@en,
+        "전기기능사 출제기준 2027-2029"@ko ;
+    ec:standardContentStatus "not_ingested"^^xsd:string ;
+    ec:standardHasEvidence <https://example.test/electricity-craftsman/evidence-standard-future> ;
+    ec:standardIdentifier "electricity-craftsman-2027-2029"^^xsd:string ;
+    ec:standardNote "Q-Net lists the title and applicability period. Detailed items and changes from the 2026 standard are not asserted until the source document is reviewed."@en,
+        "큐넷 페이지에서 명칭과 적용기간을 확인했다. 세부 출제 항목과 2026년 기준 대비 변경사항은 원문 검토 전까지 주장하지 않는다."@ko ;
+    ec:standardPreferredLabel "Electricity Craftsman Exam Standard 2027-2029"@en,
+        "전기기능사 출제기준 (2027.1.1~2029.12.31)"@ko ;
+    ec:standardSource <https://example.test/electricity-craftsman/qnet-standard-2027> ;
+    ec:standardStatus "scheduled"^^xsd:string ;
+    ec:standardValidFrom "2027-01-01"^^xsd:date ;
+    ec:standardValidThrough "2029-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/subject-electrical-equipment> a ec:KnowledgeArea ;
+    rdfs:label "Electrical equipment"@en,
+        "전기설비"@ko ;
+    ec:knowledgeAreaDescription "The official written-subject name. Consult the applicable source standard for detailed items."@en,
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."@ko ;
+    ec:knowledgeAreaEvidence <https://example.test/electricity-craftsman/evidence-exam-structure> ;
+    ec:knowledgeAreaIdentifier "electrical-equipment"^^xsd:string ;
+    ec:knowledgeAreaInStage <https://example.test/electricity-craftsman/stage-written> ;
+    ec:knowledgeAreaInStandard <https://example.test/electricity-craftsman/standard-2024-2026> ;
+    ec:knowledgeAreaPreferredLabel "Electrical equipment"@en,
+        "전기설비"@ko ;
+    ec:knowledgeAreaSource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/subject-electrical-machinery> a ec:KnowledgeArea ;
+    rdfs:label "Electrical machinery"@en,
+        "전기기기"@ko ;
+    ec:knowledgeAreaDescription "The official written-subject name. Consult the applicable source standard for detailed items."@en,
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."@ko ;
+    ec:knowledgeAreaEvidence <https://example.test/electricity-craftsman/evidence-exam-structure> ;
+    ec:knowledgeAreaIdentifier "electrical-machinery"^^xsd:string ;
+    ec:knowledgeAreaInStage <https://example.test/electricity-craftsman/stage-written> ;
+    ec:knowledgeAreaInStandard <https://example.test/electricity-craftsman/standard-2024-2026> ;
+    ec:knowledgeAreaPreferredLabel "Electrical machinery"@en,
+        "전기기기"@ko ;
+    ec:knowledgeAreaSource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/subject-electrical-theory> a ec:KnowledgeArea ;
+    rdfs:label "Electrical theory"@en,
+        "전기이론"@ko ;
+    ec:knowledgeAreaDescription "The official written-subject name. Consult the applicable source standard for detailed items."@en,
+        "전기기능사 필기시험의 공식 과목명이다. 세부 항목은 출제기준 원문에서 확인한다."@ko ;
+    ec:knowledgeAreaEvidence <https://example.test/electricity-craftsman/evidence-exam-structure> ;
+    ec:knowledgeAreaIdentifier "electrical-theory"^^xsd:string ;
+    ec:knowledgeAreaInStage <https://example.test/electricity-craftsman/stage-written> ;
+    ec:knowledgeAreaInStandard <https://example.test/electricity-craftsman/standard-2024-2026> ;
+    ec:knowledgeAreaPreferredLabel "Electrical theory"@en,
+        "전기이론"@ko ;
+    ec:knowledgeAreaSource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/tool-01-circuit-tester> a ec:MaterialRequirement ;
+    rdfs:label "Circuit tester (bell tester or multimeter)"@en,
+        "회로시험기(벨테스터, 멀티테스터)"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-01-circuit-tester"^^xsd:string ;
+    ec:materialPreferredLabel "Circuit tester (bell tester or multimeter)"@en,
+        "회로시험기(벨테스터, 멀티테스터)"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "동작시험 기기는 사용할 수 없으며 10V 이하 제품 사용"@en,
+        "동작시험 기기는 사용할 수 없으며 10V 이하 제품 사용"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "회로 시험용"@en,
+        "회로 시험용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-02-screwdriver> a ec:MaterialRequirement ;
+    rdfs:label "Screwdriver"@en,
+        "드라이버"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-02-screwdriver"^^xsd:string ;
+    ec:materialPreferredLabel "Screwdriver"@en,
+        "드라이버"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "임팩트 드릴 기능 및 해머 드릴 기능 사용 불가"@en,
+        "임팩트 드릴 기능 및 해머 드릴 기능 사용 불가"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "+, -; 충전 드라이버 사용 가능"@en,
+        "+, -; 충전 드라이버 사용 가능"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-03-driver-bits> a ec:MaterialRequirement ;
+    rdfs:label "Screwdriver bits"@en,
+        "드라이버 비트"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-03-driver-bits"^^xsd:string ;
+    ec:materialPreferredLabel "Screwdriver bits"@en,
+        "드라이버 비트"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-04-nippers> a ec:MaterialRequirement ;
+    rdfs:label "Nippers"@en,
+        "니퍼"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-04-nippers"^^xsd:string ;
+    ec:materialPreferredLabel "Nippers"@en,
+        "니퍼"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-05-long-nose-pliers> a ec:MaterialRequirement ;
+    rdfs:label "Long-nose pliers"@en,
+        "롱노즈 플라이어"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-05-long-nose-pliers"^^xsd:string ;
+    ec:materialPreferredLabel "Long-nose pliers"@en,
+        "롱노즈 플라이어"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "개"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-06-pliers> a ec:MaterialRequirement ;
+    rdfs:label "Pliers"@en,
+        "펜치"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-06-pliers"^^xsd:string ;
+    ec:materialPreferredLabel "Pliers"@en,
+        "펜치"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-07-wire-stripper> a ec:MaterialRequirement ;
+    rdfs:label "Wire stripper"@en,
+        "와이어 스트리퍼"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-07-wire-stripper"^^xsd:string ;
+    ec:materialPreferredLabel "Wire stripper"@en,
+        "와이어 스트리퍼"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-08-fish-tape> a ec:MaterialRequirement ;
+    rdfs:label "Steel fish tape"@en,
+        "강철선(피시테이프)"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-08-fish-tape"^^xsd:string ;
+    ec:materialPreferredLabel "Steel fish tape"@en,
+        "강철선(피시테이프)"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "1.0mm; 안내선 2m 이상"@en,
+        "1.0mm; 안내선 2m 이상"@ko ;
+    ec:materialUnit "M"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-09-other-tools> a ec:MaterialRequirement ;
+    rdfs:label "Other necessary tools"@en,
+        "기타 필요공구"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-09-other-tools"^^xsd:string ;
+    ec:materialPreferredLabel "Other necessary tools"@en,
+        "기타 필요공구"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "검정용 수공구 세트 및 PE관·CD관 배선작업 공구"@en,
+        "검정용 수공구 세트 및 PE관·CD관 배선작업 공구"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-10-hacksaw> a ec:MaterialRequirement ;
+    rdfs:label "Hacksaw"@en,
+        "쇠톱"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-10-hacksaw"^^xsd:string ;
+    ec:materialPreferredLabel "Hacksaw"@en,
+        "쇠톱"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "전선관 절단용; 파이프 커터 대체 가능"@en,
+        "전선관 절단용; 파이프 커터 대체 가능"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-11-spring-bender> a ec:MaterialRequirement ;
+    rdfs:label "Spring bender"@en,
+        "스프링벤더"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-11-spring-bender"^^xsd:string ;
+    ec:materialPreferredLabel "Spring bender"@en,
+        "스프링벤더"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "16mm 전선관 굽힘용"@en,
+        "16mm 전선관 굽힘용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-12-ruler> a ec:MaterialRequirement ;
+    rdfs:label "Ruler"@en,
+        "자"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-12-ruler"^^xsd:string ;
+    ec:materialPreferredLabel "Ruler"@en,
+        "자"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "사전 준비작업 금지"@en,
+        "사전 준비작업 금지"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-13-level> a ec:MaterialRequirement ;
+    rdfs:label "Level"@en,
+        "수평계"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-13-level"^^xsd:string ;
+    ec:materialPreferredLabel "Level"@en,
+        "수평계"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "사전 준비작업 금지; 자 눈금은 무관"@en,
+        "사전 준비작업 금지; 자 눈금은 무관"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-14-writing-tool> a ec:MaterialRequirement ;
+    rdfs:label "Writing instrument"@en,
+        "필기구"@ko ;
+    ec:materialCategory "other"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-14-writing-tool"^^xsd:string ;
+    ec:materialPreferredLabel "Writing instrument"@en,
+        "필기구"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "볼펜, 분필 등"@en,
+        "볼펜, 분필 등"@ko ;
+    ec:materialUnit "세트"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-15-masking-tape> a ec:MaterialRequirement ;
+    rdfs:label "Masking tape"@en,
+        "마스킹 테이프류"@ko ;
+    ec:materialCategory "marking"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-15-masking-tape"^^xsd:string ;
+    ec:materialPreferredLabel "Masking tape"@en,
+        "마스킹 테이프류"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "사전 준비작업 및 절연테이프 사용 금지"@en,
+        "사전 준비작업 및 절연테이프 사용 금지"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-16-labels> a ec:MaterialRequirement ;
+    rdfs:label "Labels or index tabs"@en,
+        "견출지류(포스트잇, 인덱스 등)"@ko ;
+    ec:materialCategory "marking"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-16-labels"^^xsd:string ;
+    ec:materialPreferredLabel "Labels or index tabs"@en,
+        "견출지류(포스트잇, 인덱스 등)"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "사전 준비작업 및 절연테이프 사용 금지"@en,
+        "사전 준비작업 및 절연테이프 사용 금지"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-17-magnetic-tools> a ec:MaterialRequirement ;
+    rdfs:label "Magnetizer or magnetic tool holder"@en,
+        "자화기·손목자석밴드·단자대 자석·자석바"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-17-magnetic-tools"^^xsd:string ;
+    ec:materialPreferredLabel "Magnetizer or magnetic tool holder"@en,
+        "자화기·손목자석밴드·단자대 자석·자석바"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "동시 사용 가능"@en,
+        "동시 사용 가능"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "SET"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-18-tool-belt> a ec:MaterialRequirement ;
+    rdfs:label "Tool belt"@en,
+        "공구벨트"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-18-tool-belt"^^xsd:string ;
+    ec:materialPreferredLabel "Tool belt"@en,
+        "공구벨트"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "작업조끼 또는 앞치마 가능"@en,
+        "작업조끼 또는 앞치마 가능"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-19-toolbox> a ec:MaterialRequirement ;
+    rdfs:label "Tool or parts box"@en,
+        "공구함·부속품함"@ko ;
+    ec:materialCategory "tool"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-19-toolbox"^^xsd:string ;
+    ec:materialPreferredLabel "Tool or parts box"@en,
+        "공구함·부속품함"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-20-long-trousers> a ec:MaterialRequirement ;
+    rdfs:label "Long trousers"@en,
+        "긴바지"@ko ;
+    ec:materialCategory "PPE"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-20-long-trousers"^^xsd:string ;
+    ec:materialPreferredLabel "Long trousers"@en,
+        "긴바지"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "안전 복장 요건"@en,
+        "안전 복장 요건"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "범용"@en,
+        "범용"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-21-shoes> a ec:MaterialRequirement ;
+    rdfs:label "Athletic shoes"@en,
+        "운동화"@ko ;
+    ec:materialCategory "PPE"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-21-shoes"^^xsd:string ;
+    ec:materialPreferredLabel "Athletic shoes"@en,
+        "운동화"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "안전 복장 요건"@en,
+        "안전 복장 요건"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "안전화 대체 가능"@en,
+        "안전화 대체 가능"@ko ;
+    ec:materialUnit "족"^^xsd:string .
+
+<https://example.test/electricity-craftsman/tool-22-cotton-gloves> a ec:MaterialRequirement ;
+    rdfs:label "Cotton gloves"@en,
+        "면장갑"@ko ;
+    ec:materialCategory "PPE"^^xsd:string ;
+    ec:materialForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:materialHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:materialIdentifier "tool-22-cotton-gloves"^^xsd:string ;
+    ec:materialPreferredLabel "Cotton gloves"@en,
+        "면장갑"@ko ;
+    ec:materialQuantity 1.0 ;
+    ec:materialRestriction "안전 복장 요건"@en,
+        "안전 복장 요건"@ko ;
+    ec:materialSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:materialSpecification "일반; 기타 손 보호용 장갑 가능"@en,
+        "일반; 기타 손 보호용 장갑 가능"@ko ;
+    ec:materialUnit "EA"^^xsd:string .
+
+<https://example.test/electricity-craftsman/evidence-standard-current> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net lists an exam standard applicable from 2024-01-01 through 2026-12-31."@en,
+        "큐넷에는 2024-01-01부터 2026-12-31까지 적용되는 출제기준이 표시된다."@ko ;
+    ec:evidenceClaim "Q-Net lists an exam standard applicable from 2024-01-01 through 2026-12-31."@en,
+        "큐넷에는 2024-01-01부터 2026-12-31까지 적용되는 출제기준이 표시된다."@ko ;
+    ec:evidenceIdentifier "evidence-standard-current"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "문서 제목과 적용기간만 구조화했다. 세부 항목은 별도 추출하지 않았다."@en,
+        "문서 제목과 적용기간만 구조화했다. 세부 항목은 별도 추출하지 않았다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-standard-2024> ;
+    ec:evidenceSourceLocator "전기기능사 출제기준 목록"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/evidence-standard-future> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net lists the title of the next standard, applicable from 2027-01-01 through 2029-12-31."@en,
+        "큐넷 상세 페이지에 2027-01-01부터 2029-12-31까지의 차기 출제기준 제목이 게시되어 있다."@ko ;
+    ec:evidenceClaim "Q-Net lists the title of the next standard, applicable from 2027-01-01 through 2029-12-31."@en,
+        "큐넷 상세 페이지에 2027-01-01부터 2029-12-31까지의 차기 출제기준 제목이 게시되어 있다."@ko ;
+    ec:evidenceIdentifier "evidence-standard-future"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "적용기간 공지만 확인했다. 미래 기준의 상세 항목은 현재 데이터에 포함하지 않았다."@en,
+        "적용기간 공지만 확인했다. 미래 기준의 상세 항목은 현재 데이터에 포함하지 않았다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-standard-2027> ;
+    ec:evidenceSourceLocator "시험정보 > 출제기준 > 2027.1.1~2029.12.31"^^xsd:string ;
+    ec:evidenceStatus "announced_not_ingested"^^xsd:string .
+
+<https://example.test/electricity-craftsman/qnet-public-task-2025> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-public-task-2025"@en,
+        "Q-Net 전기기능사 공개문제(2025-08-04 수정)"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-public-task-2025"^^xsd:string ;
+    ec:sourceKind "public_task"^^xsd:string ;
+    ec:sourceLimitations "공개 과제는 일부 변경될 수 있으며, 회차별 안내를 다시 확인해야 한다."@en,
+        "공개 과제는 일부 변경될 수 있으며, 회차별 안내를 다시 확인해야 한다."@ko ;
+    ec:sourcePublicationDate "2025-09-02"^^xsd:date ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 전기기능사 공개문제(2025-08-04 수정)"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/cst006.do?artlSeq=5208377&brdId=Q006&code=1204&id=cst00602"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/qnet-qualification> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-qualification"@en,
+        "Q-Net 국가자격 종목별 상세정보: 전기기능사"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-qualification"^^xsd:string ;
+    ec:sourceKind "qualification_page"^^xsd:string ;
+    ec:sourceLimitations "종목의 현재 공식 소개 페이지다. 시험 일정이나 조건은 개별 회차 안내에서 다시 확인해야 한다."@en,
+        "종목의 현재 공식 소개 페이지다. 시험 일정이나 조건은 개별 회차 안내에서 다시 확인해야 한다."@ko ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 국가자격 종목별 상세정보: 전기기능사"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503&jmCd=7780"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/task-conduit-wiring> a ec:PracticalTask ;
+    rdfs:label "Electrical-facility conduit and wiring work"@en,
+        "전기설비 배관 및 배선공사"@ko ;
+    ec:practicalTaskDescription "A summary of the practical task named by Q-Net; it does not describe step-by-step field installation."@en,
+        "큐넷 출제경향에 명시된 실기 작업 범위 요약이다. 단계별 현장 시공법은 다루지 않는다."@ko ;
+    ec:practicalTaskEvidence <https://example.test/electricity-craftsman/evidence-practical-scope> ;
+    ec:practicalTaskIdentifier "conduit-and-wiring"^^xsd:string ;
+    ec:practicalTaskPreferredLabel "Electrical-facility conduit and wiring work"@en,
+        "전기설비 배관 및 배선공사"@ko ;
+    ec:taskHasCompetency <https://example.test/electricity-craftsman/competency-installation> ;
+    ec:taskHasSafetyRequirement <https://example.test/electricity-craftsman/safety-ppe>,
+        <https://example.test/electricity-craftsman/safety-prohibited-tools>,
+        <https://example.test/electricity-craftsman/safety-unsafe-handling> ;
+    ec:taskInStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:taskSource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/task-sequence-control> a ec:PracticalTask ;
+    rdfs:label "Sequence-control circuit completion"@en,
+        "시퀀스 제어회로 완성"@ko ;
+    ec:practicalTaskDescription "A summary of the practical task named by Q-Net; no energizing or step-by-step work procedure is included."@en,
+        "큐넷 출제경향에 명시된 실기 작업 범위 요약이다. 전원 연결·실작업 절차는 다루지 않는다."@ko ;
+    ec:practicalTaskEvidence <https://example.test/electricity-craftsman/evidence-practical-scope> ;
+    ec:practicalTaskIdentifier "sequence-control-circuit-completion"^^xsd:string ;
+    ec:practicalTaskPreferredLabel "Sequence-control circuit completion"@en,
+        "시퀀스 제어회로 완성"@ko ;
+    ec:taskHasCompetency <https://example.test/electricity-craftsman/competency-sequence> ;
+    ec:taskHasSafetyRequirement <https://example.test/electricity-craftsman/safety-ppe>,
+        <https://example.test/electricity-craftsman/safety-prohibited-tools>,
+        <https://example.test/electricity-craftsman/safety-unsafe-handling> ;
+    ec:taskInStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:taskSource <https://example.test/electricity-craftsman/qnet-exam-details> .
+
+<https://example.test/electricity-craftsman/evidence-practical-format> a ec:EvidenceRecord ;
+    rdfs:label "The practical stage is listed as a performance task in electrical facility work, lasting about four hours and thirty minutes."@en,
+        "실기는 전기설비작업 작업형이며 약 4시간 30분으로 안내된다."@ko ;
+    ec:evidenceClaim "The practical stage is listed as a performance task in electrical facility work, lasting about four hours and thirty minutes."@en,
+        "실기는 전기설비작업 작업형이며 약 4시간 30분으로 안내된다."@ko ;
+    ec:evidenceIdentifier "evidence-practical-format"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "2026-10-08 확인 스냅샷; 시행 전 회차 공지를 확인해야 한다."@en,
+        "2026-10-08 확인 스냅샷; 시행 전 회차 공지를 확인해야 한다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "취득방법 > 검정방법"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/evidence-written-format> a ec:EvidenceRecord ;
+    rdfs:label "The written examination is listed as 60 multiple-choice items with four options."@en,
+        "필기는 4지택일형 60문항으로 안내된다."@ko ;
+    ec:evidenceClaim "The written examination is listed as 60 multiple-choice items with four options."@en,
+        "필기는 4지택일형 60문항으로 안내된다."@ko ;
+    ec:evidenceIdentifier "evidence-written-format"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "2026-10-08 확인 스냅샷; 시행 전 회차 공지를 확인해야 한다."@en,
+        "2026-10-08 확인 스냅샷; 시행 전 회차 공지를 확인해야 한다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "취득방법 > 검정방법"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/qnet-standard-2024> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-standard-2024"@en,
+        "Q-Net 전기기능사 출제기준(2024.1.1~2026.12.31)"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-standard-2024"^^xsd:string ;
+    ec:sourceKind "exam_standard"^^xsd:string ;
+    ec:sourceLimitations "첨부 원문 세부 항목은 이 초안에서 구조화하지 않았다. 과목명과 시험 정보는 Q-Net 상세 페이지에서 별도로 확인했다."@en,
+        "첨부 원문 세부 항목은 이 초안에서 구조화하지 않았다. 과목명과 시험 정보는 Q-Net 상세 페이지에서 별도로 확인했다."@ko ;
+    ec:sourcePublicationDate "2023-07-06"^^xsd:date ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 전기기능사 출제기준(2024.1.1~2026.12.31)"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/cst006.do?artlSeq=5212053&brdId=Q006&id=cst00602"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/qnet-standard-2027> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-standard-2027"@en,
+        "Q-Net 전기기능사 출제기준(2027.1.1~2029.12.31) 공지"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-standard-2027"^^xsd:string ;
+    ec:sourceKind "exam_standard"^^xsd:string ;
+    ec:sourceLimitations "첨부 원문 세부 내용을 추출·검토하지 않아 2027-2029 기준의 과목·세부 항목은 주장하지 않는다."@en,
+        "첨부 원문 세부 내용을 추출·검토하지 않아 2027-2029 기준의 과목·세부 항목은 주장하지 않는다."@ko ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 전기기능사 출제기준(2027.1.1~2029.12.31) 공지"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=7780&jmInfoDivCcd=B0"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/safety-ppe> a ec:SafetyRequirement ;
+    rdfs:label "PPE and clothing"@en,
+        "보호구 및 복장"@ko ;
+    ec:safetyForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:safetyHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:safetyIdentifier "safety-ppe"^^xsd:string ;
+    ec:safetyPreferredLabel "PPE and clothing"@en,
+        "보호구 및 복장"@ko ;
+    ec:safetyRequirementType "PPE"^^xsd:string ;
+    ec:safetySource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:safetyText "Bring long trousers, athletic or safety shoes, and cotton or other hand-protection gloves."@en,
+        "긴바지·운동화(또는 안전화)·면장갑(또는 손 보호 장갑)을 지참한다."@ko .
+
+<https://example.test/electricity-craftsman/safety-prohibited-tools> a ec:SafetyRequirement ;
+    rdfs:label "Tool and material restrictions"@en,
+        "공구·재료 사용 제한"@ko ;
+    ec:safetyForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:safetyHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:safetyIdentifier "safety-prohibited-tools"^^xsd:string ;
+    ec:safetyPreferredLabel "Tool and material restrictions"@en,
+        "공구·재료 사용 제한"@ko ;
+    ec:safetyRequirementType "prohibited"^^xsd:string ;
+    ec:safetySource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:safetyText "Items outside the list, self-made or modified tools, jigs, and some tool functions are prohibited."@en,
+        "지참 목록 밖 품목, 개인 제작·개조 공구, 지그류는 사용할 수 없으며 일부 공구 기능이 금지된다."@ko .
+
+<https://example.test/electricity-craftsman/safety-unsafe-handling> a ec:SafetyRequirement ;
+    rdfs:label "Unsafe equipment or material handling"@en,
+        "위험한 장비·재료 취급"@ko ;
+    ec:safetyForStage <https://example.test/electricity-craftsman/stage-practical> ;
+    ec:safetyHasEvidence <https://example.test/electricity-craftsman/evidence-materials-list> ;
+    ec:safetyIdentifier "safety-unsafe-handling"^^xsd:string ;
+    ec:safetyPreferredLabel "Unsafe equipment or material handling"@en,
+        "위험한 장비·재료 취급"@ko ;
+    ec:safetyRequirementType "disqualification_condition"^^xsd:string ;
+    ec:safetySource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:safetyText "Unsafe equipment operation or material handling may result in disqualification when all examiners agree."@en,
+        "위해를 일으킬 것으로 예상되는 장비 조작 또는 재료 취급은 시험감독위원 전원의 합의 판단으로 실격 처리될 수 있다."@ko .
+
+<https://example.test/electricity-craftsman/evidence-practical-safety> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net publishes practical safety level 4 and related PPE, safety-scoring, and hazardous-handling notices."@en,
+        "큐넷은 실기 안전등급 4와 보호구·안전 채점·위해 가능 행위 관련 안내를 게시한다."@ko ;
+    ec:evidenceClaim "Q-Net publishes practical safety level 4 and related PPE, safety-scoring, and hazardous-handling notices."@en,
+        "큐넷은 실기 안전등급 4와 보호구·안전 채점·위해 가능 행위 관련 안내를 게시한다."@ko ;
+    ec:evidenceIdentifier "evidence-practical-safety"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "안전등급 숫자는 큐넷 게시 라벨 그대로이며 별도 위험도 해석은 하지 않는다."@en,
+        "안전등급 숫자는 큐넷 게시 라벨 그대로이며 별도 위험도 해석은 하지 않는다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "취득방법 > 작업형 실기시험 기본정보"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/evidence-exam-structure> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net lists three written subjects and electrical-facility work as the practical examination."@en,
+        "큐넷 상세정보는 필기 3과목, 실기 전기설비작업을 안내한다."@ko ;
+    ec:evidenceClaim "Q-Net lists three written subjects and electrical-facility work as the practical examination."@en,
+        "큐넷 상세정보는 필기 3과목, 실기 전기설비작업을 안내한다."@ko ;
+    ec:evidenceIdentifier "evidence-exam-structure"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "현행 상세 페이지의 안내이며 차기 기준 세부 내용으로 확장하지 않는다."@en,
+        "현행 상세 페이지의 안내이며 차기 기준 세부 내용으로 확장하지 않는다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "시험정보 > 취득방법"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/evidence-pass-thresholds> a ec:EvidenceRecord ;
+    rdfs:label "The listed pass threshold is at least 60 out of 100 for each stage."@en,
+        "필기와 실기는 각각 100점 만점에 60점 이상이 합격 기준이다."@ko ;
+    ec:evidenceClaim "The listed pass threshold is at least 60 out of 100 for each stage."@en,
+        "필기와 실기는 각각 100점 만점에 60점 이상이 합격 기준이다."@ko ;
+    ec:evidenceIdentifier "evidence-pass-thresholds"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "현재 페이지에 게시된 점수 기준; 차기 기준 재확인이 필요하다."@en,
+        "현재 페이지에 게시된 점수 기준; 차기 기준 재확인이 필요하다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "취득방법 > 합격기준"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/stage-written> a ec:ExamStage ;
+    rdfs:label "Written examination"@en,
+        "필기시험"@ko ;
+    ec:stageChoiceCount 4 ;
+    ec:stageHasAssessmentRule <https://example.test/electricity-craftsman/rule-written-pass> ;
+    ec:stageHasEvidence <https://example.test/electricity-craftsman/evidence-exam-structure>,
+        <https://example.test/electricity-craftsman/evidence-pass-thresholds>,
+        <https://example.test/electricity-craftsman/evidence-written-format> ;
+    ec:stageHasKnowledgeArea <https://example.test/electricity-craftsman/subject-electrical-equipment>,
+        <https://example.test/electricity-craftsman/subject-electrical-machinery>,
+        <https://example.test/electricity-craftsman/subject-electrical-theory> ;
+    ec:stageIdentifier "written"^^xsd:string ;
+    ec:stageInStandard <https://example.test/electricity-craftsman/standard-2024-2026> ;
+    ec:stageMaximumScore 100.0 ;
+    ec:stageMethod "60 multiple-choice items with four options"@en,
+        "객관식 4지택일형 60문항"@ko ;
+    ec:stagePreferredLabel "Written examination"@en,
+        "필기시험"@ko ;
+    ec:stageQuestionCount 60 ;
+    ec:stageSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:stageType "written"^^xsd:string .
+
+<https://example.test/electricity-craftsman/standard-2024-2026> a ec:ExamStandardVersion ;
+    rdfs:label "Electricity Craftsman standard 2024-2026"@en,
+        "전기기능사 출제기준 2024-2026"@ko ;
+    ec:standardContentStatus "partial"^^xsd:string ;
+    ec:standardHasEvidence <https://example.test/electricity-craftsman/evidence-exam-structure>,
+        <https://example.test/electricity-craftsman/evidence-pass-thresholds>,
+        <https://example.test/electricity-craftsman/evidence-practical-format>,
+        <https://example.test/electricity-craftsman/evidence-practical-scope>,
+        <https://example.test/electricity-craftsman/evidence-standard-current>,
+        <https://example.test/electricity-craftsman/evidence-written-format> ;
+    ec:standardHasStage <https://example.test/electricity-craftsman/stage-practical>,
+        <https://example.test/electricity-craftsman/stage-written> ;
+    ec:standardIdentifier "electricity-craftsman-2024-2026"^^xsd:string ;
+    ec:standardNote "Active on 2026-10-08. Exam subjects, methods, and pass thresholds were checked on Q-Net; detailed units from the attached standard have not been structured."@en,
+        "2026-10-08 현재 적용 중인 버전이다. 큐넷 상세 페이지에서 시험과목·방법·합격 기준을 확인했으나 첨부 출제기준의 세부 능력단위는 아직 구조화하지 않았다."@ko ;
+    ec:standardPreferredLabel "Electricity Craftsman Exam Standard 2024-2026"@en,
+        "전기기능사 출제기준 (2024.1.1~2026.12.31)"@ko ;
+    ec:standardSource <https://example.test/electricity-craftsman/qnet-standard-2024> ;
+    ec:standardStatus "active"^^xsd:string ;
+    ec:standardValidFrom "2024-01-01"^^xsd:date ;
+    ec:standardValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/evidence-practical-scope> a ec:EvidenceRecord ;
+    rdfs:label "The practical exam scope names electrical-facility conduit and wiring work and completion of a sequence-control circuit."@en,
+        "실기 출제경향은 전기설비 배관·배선공사와 시퀀스 제어회로 완성을 제시한다."@ko ;
+    ec:evidenceClaim "The practical exam scope names electrical-facility conduit and wiring work and completion of a sequence-control circuit."@en,
+        "실기 출제경향은 전기설비 배관·배선공사와 시퀀스 제어회로 완성을 제시한다."@ko ;
+    ec:evidenceIdentifier "evidence-practical-scope"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "작업 범위 요약이며 따라 할 수 있는 실제 전기 시공 절차나 현장 안전 지침이 아니다."@en,
+        "작업 범위 요약이며 따라 할 수 있는 실제 전기 시공 절차나 현장 안전 지침이 아니다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:evidenceSourceLocator "시험정보 > 출제경향"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string ;
+    ec:evidenceValidThrough "2026-12-31"^^xsd:date .
+
+<https://example.test/electricity-craftsman/qnet-exam-details> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-exam-details"@en,
+        "Q-Net 전기기능사 시험정보·취득방법"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-exam-details"^^xsd:string ;
+    ec:sourceKind "exam_details"^^xsd:string ;
+    ec:sourceLimitations "시험 세부사항과 출제기준은 변경될 수 있어 이 프로필은 2026-10-08 확인 스냅샷으로 한정한다."@en,
+        "시험 세부사항과 출제기준은 변경될 수 있어 이 프로필은 2026-10-08 확인 스냅샷으로 한정한다."@ko ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 전기기능사 시험정보·취득방법"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=7780&jmInfoDivCcd=B0"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/evidence-materials-list> a ec:EvidenceRecord ;
+    rdfs:label "Q-Net publishes 22 practical-exam items with specifications and restrictions."@en,
+        "큐넷은 전기기능사 실기 지참준비물 22개 항목과 규격·제한을 게시한다."@ko ;
+    ec:evidenceClaim "Q-Net publishes 22 practical-exam items with specifications and restrictions."@en,
+        "큐넷은 전기기능사 실기 지참준비물 22개 항목과 규격·제한을 게시한다."@ko ;
+    ec:evidenceIdentifier "evidence-materials-list"^^xsd:string ;
+    ec:evidenceObservedAt "2026-10-08"^^xsd:date ;
+    ec:evidenceScopeNote "2026-10-08 확인한 전체 목록 스냅샷이며 최신 목록은 응시 전 재확인해야 한다."@en,
+        "2026-10-08 확인한 전체 목록 스냅샷이며 최신 목록은 응시 전 재확인해야 한다."@ko ;
+    ec:evidenceSource <https://example.test/electricity-craftsman/qnet-materials> ;
+    ec:evidenceSourceLocator "수험자 지참준비물 > 전기기능사"^^xsd:string ;
+    ec:evidenceStatus "verified_as_of_access"^^xsd:string .
+
+<https://example.test/electricity-craftsman/qnet-materials> a ec:SourceDocument ;
+    rdfs:label "Q-Net source: qnet-materials"@en,
+        "Q-Net 전기기능사 수험자 지참 준비물"@ko ;
+    ec:sourceAccessedAt "2026-10-08"^^xsd:date ;
+    ec:sourceIdentifier "qnet-materials"^^xsd:string ;
+    ec:sourceKind "required_materials"^^xsd:string ;
+    ec:sourceLimitations "목록은 확인일 기준 스냅샷이다. 응시 전 Q-Net의 최신 지참준비물·공개문제 공지를 확인해야 한다."@en,
+        "목록은 확인일 기준 스냅샷이다. 응시 전 Q-Net의 최신 지참준비물·공개문제 공지를 확인해야 한다."@ko ;
+    ec:sourcePublisher "한국산업인력공단 큐넷(Q-Net)"^^xsd:string ;
+    ec:sourceTitle "Q-Net 전기기능사 수험자 지참 준비물"^^xsd:string ;
+    ec:sourceUri "https://www.q-net.or.kr/rcv013.do?IMPL_ID=PL2024557010&JM_CD=7780&JM_FLD_NM=%EC%A0%84%EA%B8%B0%EA%B8%B0%EB%8A%A5%EC%82%AC&SELFLD_CD=00&SERIES_CD=04&gSite=Q&id=rcv01314"^^xsd:anyURI .
+
+<https://example.test/electricity-craftsman/stage-practical> a ec:ExamStage ;
+    rdfs:label "Practical examination"@en,
+        "실기시험"@ko ;
+    ec:stageDurationMinutes 270 ;
+    ec:stageHasAssessmentRule <https://example.test/electricity-craftsman/rule-practical-pass> ;
+    ec:stageHasEvidence <https://example.test/electricity-craftsman/evidence-pass-thresholds>,
+        <https://example.test/electricity-craftsman/evidence-practical-format>,
+        <https://example.test/electricity-craftsman/evidence-practical-safety>,
+        <https://example.test/electricity-craftsman/evidence-practical-scope> ;
+    ec:stageHasMaterialRequirement <https://example.test/electricity-craftsman/tool-01-circuit-tester>,
+        <https://example.test/electricity-craftsman/tool-02-screwdriver>,
+        <https://example.test/electricity-craftsman/tool-03-driver-bits>,
+        <https://example.test/electricity-craftsman/tool-04-nippers>,
+        <https://example.test/electricity-craftsman/tool-05-long-nose-pliers>,
+        <https://example.test/electricity-craftsman/tool-06-pliers>,
+        <https://example.test/electricity-craftsman/tool-07-wire-stripper>,
+        <https://example.test/electricity-craftsman/tool-08-fish-tape>,
+        <https://example.test/electricity-craftsman/tool-09-other-tools>,
+        <https://example.test/electricity-craftsman/tool-10-hacksaw>,
+        <https://example.test/electricity-craftsman/tool-11-spring-bender>,
+        <https://example.test/electricity-craftsman/tool-12-ruler>,
+        <https://example.test/electricity-craftsman/tool-13-level>,
+        <https://example.test/electricity-craftsman/tool-14-writing-tool>,
+        <https://example.test/electricity-craftsman/tool-15-masking-tape>,
+        <https://example.test/electricity-craftsman/tool-16-labels>,
+        <https://example.test/electricity-craftsman/tool-17-magnetic-tools>,
+        <https://example.test/electricity-craftsman/tool-18-tool-belt>,
+        <https://example.test/electricity-craftsman/tool-19-toolbox>,
+        <https://example.test/electricity-craftsman/tool-20-long-trousers>,
+        <https://example.test/electricity-craftsman/tool-21-shoes>,
+        <https://example.test/electricity-craftsman/tool-22-cotton-gloves> ;
+    ec:stageHasSafetyRequirement <https://example.test/electricity-craftsman/safety-level-label>,
+        <https://example.test/electricity-craftsman/safety-ppe>,
+        <https://example.test/electricity-craftsman/safety-prohibited-tools>,
+        <https://example.test/electricity-craftsman/safety-score>,
+        <https://example.test/electricity-craftsman/safety-unsafe-handling> ;
+    ec:stageHasTask <https://example.test/electricity-craftsman/task-conduit-wiring>,
+        <https://example.test/electricity-craftsman/task-sequence-control> ;
+    ec:stageIdentifier "practical"^^xsd:string ;
+    ec:stageInStandard <https://example.test/electricity-craftsman/standard-2024-2026> ;
+    ec:stageMaximumScore 100.0 ;
+    ec:stageMethod "Performance task in electrical facility work"@en,
+        "전기설비작업 작업형"@ko ;
+    ec:stagePreferredLabel "Practical examination"@en,
+        "실기시험"@ko ;
+    ec:stageSource <https://example.test/electricity-craftsman/qnet-exam-details> ;
+    ec:stageType "practical"^^xsd:string .

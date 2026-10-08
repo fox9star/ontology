@@ -1,0 +1,21 @@
+# Optional: docker compose -f docker-compose.yml -f compose.fuseki.yml up -d
+# Set FUSEKI_ADMIN_PASSWORD explicitly before using this file.
+services:
+  web-studio:
+    environment:
+      FUSEKI_ENDPOINT: "http://fuseki:3030/ds"
+  fuseki:
+    image: stain/jena-fuseki:4.7.0
+    ports:
+      - "127.0.0.1:3030:3030"
+    environment:
+      ADMIN_PASSWORD: "${FUSEKI_ADMIN_PASSWORD:?Set FUSEKI_ADMIN_PASSWORD before enabling optional Fuseki}"
+      FUSEKI_DATASET_1: "ds"
+    volumes:
+      - fuseki-data:/fuseki
+    networks:
+      - local-studio
+    restart: unless-stopped
+
+volumes:
+  fuseki-data:

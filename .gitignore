@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+.runtime/
+.codex-jobs/
+.snapshots/
+exports/
+.env
+.env.*
+!.env.example
+*.lock
+projects/*/assets/
+projects/late-night-mood/
+.pytest_cache/

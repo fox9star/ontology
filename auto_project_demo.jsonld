@@ -1,0 +1,329 @@
+[
+  {
+    "@id": "https://example.org/mv#image_01",
+    "@type": [
+      "https://example.org/mv#ImageAsset"
+    ],
+    "https://example.org/mv#fileUri": [
+      {
+        "@id": "https://example.org/assets/img01.png"
+      }
+    ],
+    "https://example.org/mv#height": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1080
+      }
+    ],
+    "https://example.org/mv#width": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1920
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#task_audio_gen",
+    "@type": [
+      "https://example.org/mv#AudioGenerationTask"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "음원 트랙 자동 생성"
+      }
+    ],
+    "http://www.w3.org/ns/prov#wasAssociatedWith": [
+      {
+        "@id": "https://example.org/mv#agent_music"
+      }
+    ],
+    "https://example.org/mv#status": [
+      {
+        "@value": "completed"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#demo_p01",
+    "@type": [
+      "https://example.org/mv#MusicVideoProject"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "파이프라인 자동화 60초 뮤직비디오"
+      }
+    ],
+    "https://example.org/mv#hasAudio": [
+      {
+        "@id": "https://example.org/mv#audio_main"
+      }
+    ],
+    "https://example.org/mv#hasBrief": [
+      {
+        "@id": "https://example.org/mv#demo_p01_brief"
+      }
+    ],
+    "https://example.org/mv#hasFinalVideo": [
+      {
+        "@id": "https://example.org/mv#video_main"
+      }
+    ],
+    "https://example.org/mv#hasImage": [
+      {
+        "@id": "https://example.org/mv#image_01"
+      },
+      {
+        "@id": "https://example.org/mv#image_02"
+      }
+    ],
+    "https://example.org/mv#hasTimeline": [
+      {
+        "@id": "https://example.org/mv#timeline_main"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#image_02",
+    "@type": [
+      "https://example.org/mv#ImageAsset"
+    ],
+    "https://example.org/mv#fileUri": [
+      {
+        "@id": "https://example.org/assets/img02.png"
+      }
+    ],
+    "https://example.org/mv#height": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1080
+      }
+    ],
+    "https://example.org/mv#width": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1920
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#shot_02",
+    "@type": [
+      "https://example.org/mv#Shot"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "두 번째 드라이브 샷"
+      }
+    ],
+    "https://example.org/mv#endSecond": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "60"
+      }
+    ],
+    "https://example.org/mv#orderIndex": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 2
+      }
+    ],
+    "https://example.org/mv#startSecond": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "30"
+      }
+    ],
+    "https://example.org/mv#usesImage": [
+      {
+        "@id": "https://example.org/mv#image_02"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#agent_music",
+    "@type": [
+      "https://example.org/mv#AIAgent"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "작곡 에이전트"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#demo_p01_brief",
+    "@type": [
+      "https://example.org/mv#CreativeBrief"
+    ],
+    "https://example.org/mv#targetDurationSeconds": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "60"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#audio_main",
+    "@type": [
+      "https://example.org/mv#AudioAsset"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "메인 음원"
+      }
+    ],
+    "http://www.w3.org/ns/prov#wasGeneratedBy": [
+      {
+        "@id": "https://example.org/mv#task_audio_gen"
+      }
+    ],
+    "https://example.org/mv#bpm": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 128
+      }
+    ],
+    "https://example.org/mv#durationSeconds": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "60"
+      }
+    ],
+    "https://example.org/mv#fileUri": [
+      {
+        "@id": "https://example.org/assets/demo_song.wav"
+      }
+    ],
+    "https://example.org/mv#genre": [
+      {
+        "@value": "CityPop"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#shot_01",
+    "@type": [
+      "https://example.org/mv#Shot"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "첫 번째 밤거리 샷"
+      }
+    ],
+    "https://example.org/mv#endSecond": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "30"
+      }
+    ],
+    "https://example.org/mv#orderIndex": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 1
+      }
+    ],
+    "https://example.org/mv#startSecond": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "0"
+      }
+    ],
+    "https://example.org/mv#usesImage": [
+      {
+        "@id": "https://example.org/mv#image_01"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#video_main",
+    "@type": [
+      "https://example.org/mv#MusicVideo"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "최종 렌더링 뮤직비디오"
+      }
+    ],
+    "http://www.w3.org/ns/prov#wasGeneratedBy": [
+      {
+        "@id": "https://example.org/mv#task_render"
+      }
+    ],
+    "https://example.org/mv#durationSeconds": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#decimal",
+        "@value": "60"
+      }
+    ],
+    "https://example.org/mv#fileUri": [
+      {
+        "@id": "https://example.org/assets/demo_video.mp4"
+      }
+    ],
+    "https://example.org/mv#hasTimeline": [
+      {
+        "@id": "https://example.org/mv#timeline_main"
+      }
+    ],
+    "https://example.org/mv#usesAudio": [
+      {
+        "@id": "https://example.org/mv#audio_main"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#timeline_main",
+    "@type": [
+      "https://example.org/mv#Timeline"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "메인 타임라인"
+      }
+    ],
+    "https://example.org/mv#hasShot": [
+      {
+        "@id": "https://example.org/mv#shot_01"
+      },
+      {
+        "@id": "https://example.org/mv#shot_02"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#task_render",
+    "@type": [
+      "https://example.org/mv#RenderTask"
+    ],
+    "http://www.w3.org/ns/prov#wasAssociatedWith": [
+      {
+        "@id": "https://example.org/mv#agent_editor"
+      }
+    ],
+    "https://example.org/mv#status": [
+      {
+        "@value": "completed"
+      }
+    ]
+  },
+  {
+    "@id": "https://example.org/mv#agent_editor",
+    "@type": [
+      "https://example.org/mv#AIAgent"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@language": "ko",
+        "@value": "영상 편집 에이전트"
+      }
+    ]
+  }
+]

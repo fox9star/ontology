@@ -1,0 +1,137 @@
+@prefix ex: <https://example.test/consumer/> .
+@prefix mv: <https://example.org/mv#> .
+@prefix ag: <https://example.org/agent#> .
+@prefix dev: <http://example.org/ontology/devops#> .
+@prefix ec: <http://example.org/ontology/ecommerce#> .
+@prefix health: <http://example.org/ontology/healthcare#> .
+@prefix ac: <https://example.org/ontology/academic#> .
+@prefix ev: <https://example.org/ontology/evidence#> .
+@prefix stock: <http://example.org/ontology/stock#> .
+@prefix diet: <http://example.org/ontology/diet#> .
+@prefix camping: <https://example.org/ontology/camping#> .
+@prefix kwar: <http://example.org/ontology/korean-war#> .
+@prefix politics: <https://example.org/ontology/politics#> .
+@prefix tpark: <http://example.org/ontology/theme-park#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Entirely constructed acceptance/rejection cases. No patient record, project
+# dataset, external API response, or local media registration was consulted.
+
+ex:mv-accept {
+  ex:image a mv:ImageAsset ; mv:fileUri ex:fixture.png ; mv:width 1920 ; mv:height 1080 .
+}
+ex:mv-reject {
+  ex:image a mv:ImageAsset ; mv:fileUri ex:fixture.png ; mv:width 1920 .
+}
+ex:e2e-accept {
+  ex:image a mv:ImageAsset ; mv:fileUri ex:fixture.png ; mv:width 1920 ; mv:height 1080 .
+}
+ex:e2e-reject {
+  ex:image a mv:ImageAsset ; mv:fileUri ex:fixture.png ; mv:width 1920 .
+}
+ex:devops-accept {
+  ex:artifact a dev:BuildArtifact ; dev:imageTag "constructed:v1" .
+}
+ex:devops-reject {
+  ex:artifact a dev:BuildArtifact .
+}
+ex:agent-accept {
+  ex:artifact a ag:Artifact ; ag:artifactUri ex:fixture.txt ; ag:version "1.0.0" .
+}
+ex:agent-reject {
+  ex:artifact a ag:Artifact ; ag:artifactUri ex:fixture.txt .
+}
+ex:ecommerce-accept {
+  ex:product a ec:Product ; rdfs:label "Constructed product" ;
+    ec:productId "CONSTRUCTED-PRODUCT" ; ec:price "12.50"^^xsd:decimal ; ec:priceCurrencyStatus "unverified" .
+}
+ex:ecommerce-reject {
+  ex:product a ec:Product ; rdfs:label "Constructed product" ;
+    ec:productId "CONSTRUCTED-PRODUCT" ; ec:price "-1.00"^^xsd:decimal ; ec:priceCurrencyStatus "unverified" .
+}
+ex:healthcare-accept {
+  ex:agent a health:MedicalAnalysisAgent ; rdfs:label "Constructed test agent; no patient" .
+}
+ex:healthcare-reject {
+  ex:agent a health:MedicalAnalysisAgent .
+}
+ex:academic-accept {
+  ex:course a ac:Course ; rdfs:label "Constructed course" .
+}
+ex:academic-reject {
+  ex:course a ac:Course .
+}
+ex:evidence-accept {
+  ex:checker a prov:Agent .
+  ex:claim a ev:VerificationClaim ; ev:aboutAsset ex:asset ;
+    ev:scope ev:OriginalOrigin ; ev:status ev:Unverified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:projectIdentifier "constructed" ; ev:assetIdentifier "fixture" ;
+    ev:unknownReason "No original source was established by this constructed fixture." .
+}
+ex:evidence-reject {
+  ex:checker a prov:Agent .
+  ex:claim a ev:VerificationClaim ; ev:aboutAsset ex:asset ;
+    ev:scope ev:OriginalOrigin ; ev:status ev:Unverified ;
+    ev:checkedAt "2026-10-05T00:00:00Z"^^xsd:dateTime ; ev:checkedBy ex:checker ;
+    ev:projectIdentifier "constructed" ; ev:assetIdentifier "fixture" .
+}
+ex:stock-accept {
+  ex:stock a stock:Stock ; rdfs:label "삼성전자" ; stock:tickerSymbol "005930" ;
+    stock:issuedBy ex:corp ; stock:tradedOn ex:exchange .
+  ex:corp a stock:Corporation ; rdfs:label "삼성전자 주식회사" .
+  ex:exchange a stock:StockExchange ; rdfs:label "한국거래소" .
+}
+ex:stock-reject {
+  ex:stock a stock:Stock ; rdfs:label "삼성전자" .
+}
+ex:diet-accept {
+  ex:profile a diet:WeightLossProfile ; rdfs:label "김다이어트" ;
+    diet:profileName "김다이어트" ; diet:heightCm "175.5"^^xsd:decimal .
+}
+ex:diet-reject {
+  ex:profile a diet:WeightLossProfile ; rdfs:label "김다이어트" ;
+    diet:profileName "김다이어트" .
+}
+ex:korean-war-accept {
+  ex:operation a kwar:MilitaryOperation ; rdfs:label "인천상륙작전" ;
+    kwar:operationName "인천상륙작전" ; kwar:startDate "1950-09-15"^^xsd:date .
+}
+ex:korean-war-reject {
+  ex:operation a kwar:MilitaryOperation ; rdfs:label "인천상륙작전" ;
+    kwar:operationName "인천상륙작전" .
+}
+ex:camping-accept {
+  ex:ground a camping:Campground ; rdfs:label "설악산 야영장" ; camping:hasCampsite ex:site .
+  ex:site a camping:Campsite ; rdfs:label "A-1 사이트" ; camping:siteCapacity 4 ; camping:belongsToCampground ex:ground .
+}
+ex:camping-reject {
+  ex:ground a camping:Campground ; rdfs:label "설악산 야영장" .
+}
+ex:politics-accept {
+  ex:election a politics:Election ; rdfs:label "가상 선거" ;
+    politics:electionDate "2027-06-09"^^xsd:date ;
+    politics:electionStatus "SCHEDULED" ;
+    politics:heldInDistrict ex:district ;
+    politics:hasCandidate ex:candidate .
+  ex:district a politics:ElectoralDistrict ; rdfs:label "가상 선거구" ;
+    politics:jurisdiction "가상시" .
+  ex:candidate a politics:Candidate ; rdfs:label "가상 후보" .
+}
+ex:politics-reject {
+  ex:election a politics:Election ; rdfs:label "가상 선거" ;
+    politics:electionDate "2027-06-09"^^xsd:date ;
+    politics:electionStatus "INVALID_STATUS" .
+}
+ex:theme-park-accept {
+  ex:park a tpark:ThemePark ; rdfs:label "갤럭시월드" ;
+    tpark:parkName "갤럭시월드" .
+  ex:ride a tpark:RollerCoaster ; rdfs:label "썬더볼트" ;
+    tpark:attractionCode "RC-01" ; tpark:rideCapacityPerHour 1000 ;
+    tpark:operationalStatus "operating" ; tpark:rideDurationSeconds 120 .
+}
+ex:theme-park-reject {
+  ex:park a tpark:ThemePark ; rdfs:label "갤럭시월드" .
+}

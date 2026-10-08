@@ -1,0 +1,301 @@
+@prefix mv:   <https://example.org/mv#> .
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/mv> a owl:Ontology ;
+    rdfs:label "뮤직비디오 생성 AI 에이전트 온톨로지"@ko ;
+    rdfs:comment "mv.md의 음원, 이미지, 타임라인 배치, 뮤직비디오 렌더링 및 생성 에이전트 출처 추적을 형식화한 OWL 2 온톨로지 스키마."@ko ;
+    owl:imports <http://www.w3.org/ns/prov-o#> ;
+    rdfs:seeAlso <https://www.w3.org/TR/prov-o/> ,
+                 <https://www.w3.org/TR/shacl/> ,
+                 <https://www.w3.org/TR/owl2-primer/> ;
+    owl:imports <https://example.org/ontology/core> ;
+    owl:imports <https://example.org/ontology/vocab> ;
+    owl:versionInfo "1.2.1" .
+
+# ==========================================
+# Classes
+# ==========================================
+
+mv:MusicVideoProject a owl:Class ;
+    rdfs:label "뮤직비디오 프로젝트"@ko ;
+    rdfs:comment "제작 요청, 음원·이미지 자산, 타임라인, 최종 뮤직비디오를 통합 관리하는 제작 단위."@ko ;
+    rdfs:subClassOf core:Project, prov:Entity,
+        [ a owl:Restriction ; owl:onProperty mv:hasBrief ; owl:someValuesFrom mv:CreativeBrief ] .
+
+mv:CreativeBrief a owl:Class ;
+    rdfs:label "제작 요청"@ko ;
+    rdfs:comment "목표 분위기, 길이, 스타일 기준 및 요구사항."@ko ;
+    rdfs:subClassOf prov:Entity .
+
+mv:MediaAsset a owl:Class ;
+    rdfs:label "미디어 자산"@ko ;
+    rdfs:comment "파일로 저장된 미디어 결과물의 상위 클래스."@ko ;
+    rdfs:subClassOf core:Artifact, prov:Entity .
+
+mv:AudioAsset a owl:Class ;
+    rdfs:label "음원 자산"@ko ;
+    rdfs:comment "생성되거나 사용된 음악 오디오 파일 자산."@ko ;
+    rdfs:subClassOf mv:MediaAsset .
+
+mv:ImageAsset a owl:Class ;
+    rdfs:label "이미지 자산"@ko ;
+    rdfs:comment "장면에 사용될 정지 이미지 자산."@ko ;
+    rdfs:subClassOf mv:MediaAsset .
+
+mv:MusicVideo a owl:Class ;
+    rdfs:label "뮤직비디오 영상"@ko ;
+    rdfs:comment "렌더링 완료된 최종 뮤직비디오 비디오 자산."@ko ;
+    rdfs:subClassOf mv:MediaAsset,
+        [ a owl:Restriction ; owl:onProperty mv:usesAudio ; owl:someValuesFrom mv:AudioAsset ],
+        [ a owl:Restriction ; owl:onProperty mv:hasTimeline ; owl:someValuesFrom mv:Timeline ] .
+
+mv:Timeline a owl:Class ;
+    rdfs:label "타임라인"@ko ;
+    rdfs:comment "영상의 시간 배치 및 샷 구성을 담은 계획."@ko ;
+    rdfs:subClassOf prov:Entity,
+        [ a owl:Restriction ; owl:onProperty mv:hasShot ; owl:someValuesFrom mv:Shot ] .
+
+mv:Shot a owl:Class ;
+    rdfs:label "장면(샷)"@ko ;
+    rdfs:comment "특정 이미지가 표시되는 시간 구간 및 속성."@ko ;
+    rdfs:subClassOf prov:Entity,
+        [ a owl:Restriction ; owl:onProperty mv:usesImage ; owl:someValuesFrom mv:ImageAsset ] .
+
+mv:GenerationTask a owl:Class ;
+    rdfs:label "생성 작업"@ko ;
+    rdfs:comment "에이전트가 수행하는 자산 생성 또는 렌더링 실행 활동."@ko ;
+    rdfs:subClassOf core:TaskRun, prov:Activity .
+
+mv:LyricGenerationTask a owl:Class ;
+    rdfs:label "가사 생성 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:TranslationTask a owl:Class ;
+    rdfs:label "번역 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:SubtitleGenerationTask a owl:Class ;
+    rdfs:label "자막 생성 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:AudioGenerationTask a owl:Class ;
+    rdfs:label "음원 생성 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:ImageGenerationTask a owl:Class ;
+    rdfs:label "이미지 생성 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:RenderTask a owl:Class ;
+    rdfs:label "렌더링 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:QualityCheckTask a owl:Class ;
+    rdfs:label "품질 검수 작업"@ko ;
+    rdfs:subClassOf mv:GenerationTask .
+
+mv:AIAgent a owl:Class ;
+    rdfs:label "AI 에이전트"@ko ;
+    rdfs:comment "작업을 수행하거나 조정하는 소프트웨어 에이전트."@ko ;
+    rdfs:subClassOf core:Agent, prov:Agent, prov:SoftwareAgent .
+
+# ==========================================
+# Object Properties
+# ==========================================
+
+mv:hasBrief a owl:ObjectProperty ;
+    rdfs:label "제작 요청 참조"@ko ;
+    rdfs:domain mv:MusicVideoProject ; rdfs:range mv:CreativeBrief .
+
+mv:hasAudio a owl:ObjectProperty ;
+    rdfs:label "채택 음원"@ko ;
+    rdfs:domain mv:MusicVideoProject ; rdfs:range mv:AudioAsset .
+
+mv:hasImage a owl:ObjectProperty ;
+    rdfs:label "채택 이미지"@ko ;
+    rdfs:domain mv:MusicVideoProject ; rdfs:range mv:ImageAsset .
+
+mv:hasTimeline a owl:ObjectProperty ;
+    rdfs:label "타임라인 참조"@ko ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( mv:MusicVideoProject mv:MusicVideo ) ] ;
+    rdfs:range mv:Timeline .
+
+mv:hasFinalVideo a owl:ObjectProperty ;
+    rdfs:label "최종 영상 자산"@ko ;
+    rdfs:domain mv:MusicVideoProject ; rdfs:range mv:MusicVideo .
+
+mv:hasShot a owl:ObjectProperty ;
+    rdfs:label "장면을 포함"@ko ;
+    rdfs:domain mv:Timeline ; rdfs:range mv:Shot .
+
+mv:usesImage a owl:ObjectProperty ;
+    rdfs:label "사용 이미지"@ko ;
+    rdfs:domain mv:Shot ; rdfs:range mv:ImageAsset .
+
+mv:usesAudio a owl:ObjectProperty ;
+    rdfs:label "사용 음원"@ko ;
+    rdfs:domain mv:MusicVideo ; rdfs:range mv:AudioAsset .
+
+mv:dependsOn a owl:ObjectProperty ;
+    rdfs:label "선행 작업 의존"@ko ;
+    rdfs:domain mv:GenerationTask ; rdfs:range mv:GenerationTask .
+
+mv:usesInput a owl:ObjectProperty ;
+    rdfs:label "입력 자료를 사용"@ko ;
+    rdfs:comment "실행이 선행 작업 대신 계획, 파일 또는 기타 PROV 개체를 입력으로 참조할 때 사용한다."@ko ;
+    rdfs:domain mv:GenerationTask ; rdfs:range prov:Entity .
+
+mv:fileUri a owl:ObjectProperty ;
+    rdfs:label "파일 위치 URI"@ko ;
+    rdfs:comment "외부 미디어 파일을 가리키는 IRI. 파일의 존재와 접근 가능 여부는 별도로 검사한다."@ko ;
+    rdfs:domain mv:MediaAsset ; rdfs:range rdfs:Resource .
+
+# ==========================================
+# Datatype Properties
+# ==========================================
+
+mv:checksum a owl:DatatypeProperty ;
+    rdfs:label "파일 SHA-256"@ko ;
+    rdfs:comment "등록 파일의 SHA-256 해시. 파일 변경 여부를 확인하는 데 사용한다."@ko ;
+    rdfs:domain mv:MediaAsset ; rdfs:range xsd:string .
+
+mv:mimeType a owl:DatatypeProperty ;
+    rdfs:label "미디어 형식"@ko ;
+    rdfs:domain mv:MediaAsset ; rdfs:range xsd:string .
+
+mv:targetDurationSeconds a owl:DatatypeProperty ;
+    rdfs:label "목표 재생 시간(초)"@ko ;
+    rdfs:domain mv:CreativeBrief ; rdfs:range xsd:decimal .
+
+mv:durationSeconds a owl:DatatypeProperty ;
+    rdfs:label "재생 시간(초)"@ko ;
+    rdfs:domain mv:MediaAsset ; rdfs:range xsd:decimal .
+
+mv:width a owl:DatatypeProperty ;
+    rdfs:label "가로 해상도(px)"@ko ;
+    rdfs:domain mv:ImageAsset ; rdfs:range xsd:integer .
+
+mv:height a owl:DatatypeProperty ;
+    rdfs:label "세로 해상도(px)"@ko ;
+    rdfs:domain mv:ImageAsset ; rdfs:range xsd:integer .
+
+mv:bpm a owl:DatatypeProperty ;
+    rdfs:label "분당 박자 수"@ko ;
+    rdfs:domain mv:AudioAsset ; rdfs:range xsd:integer .
+
+mv:genre a owl:DatatypeProperty ;
+    rdfs:label "음악 장르"@ko ;
+    rdfs:domain mv:AudioAsset ; rdfs:range xsd:string .
+
+mv:lyricText a owl:DatatypeProperty ;
+    rdfs:label "가사 문장"@ko ;
+    rdfs:comment "언어 태그가 있으면 문장 언어를 함께 보존한다."@ko ;
+    rdfs:domain mv:AudioAsset ; rdfs:range xsd:string .
+
+mv:orderIndex a owl:DatatypeProperty ;
+    rdfs:label "장면 순서 번호"@ko ;
+    rdfs:domain mv:Shot ; rdfs:range xsd:integer .
+
+mv:startSecond a owl:DatatypeProperty ;
+    rdfs:label "시작 시간(초)"@ko ;
+    rdfs:domain mv:Shot ; rdfs:range xsd:decimal .
+
+mv:endSecond a owl:DatatypeProperty ;
+    rdfs:label "종료 시간(초)"@ko ;
+    rdfs:domain mv:Shot ; rdfs:range xsd:decimal .
+
+mv:promptText a owl:DatatypeProperty ;
+    rdfs:label "프롬프트 문구"@ko ;
+    rdfs:domain mv:GenerationTask ; rdfs:range xsd:string .
+
+mv:status a owl:DatatypeProperty ;
+    rdfs:label "작업 상태"@ko ;
+    rdfs:domain mv:GenerationTask ; rdfs:range xsd:string .
+
+mv:modelVersion a owl:DatatypeProperty ;
+    rdfs:label "생성 모델 버전"@ko ;
+    rdfs:domain mv:GenerationTask ; rdfs:range xsd:string .
+
+# Audio and image assets represent mutually exclusive media modalities.
+mv:AudioAsset owl:disjointWith mv:ImageAsset .
+
+# English labels and definitions for named schema terms.
+<https://example.org/mv#AIAgent> rdfs:label "AI Agent"@en ; rdfs:comment "Represents an AI agent that performs or coordinates media production work."@en .
+<https://example.org/mv#AudioAsset> rdfs:label "Audio Asset"@en ; rdfs:comment "Represents an audio file with optional genre, duration, and BPM metadata."@en .
+<https://example.org/mv#AudioGenerationTask> rdfs:label "Audio Generation Task"@en ; rdfs:comment "Represents work that generates an audio asset from recorded production inputs."@en .
+<https://example.org/mv#CreativeBrief> rdfs:label "Creative Brief"@en ; rdfs:comment "Represents production requirements such as target duration, mood, or style."@en .
+<https://example.org/mv#GenerationTask> rdfs:label "Generation Task"@en ; rdfs:comment "Represents a media-generation activity, its inputs, status, and model version."@en .
+<https://example.org/mv#ImageAsset> rdfs:label "Image Asset"@en ; rdfs:comment "Represents an image file with dimensions and media metadata."@en .
+<https://example.org/mv#ImageGenerationTask> rdfs:label "Image Generation Task"@en ; rdfs:comment "Represents work that generates an image asset from recorded inputs."@en .
+<https://example.org/mv#LyricGenerationTask> rdfs:label "Lyric Generation Task"@en ; rdfs:comment "Represents work that generates lyric text for an audio asset."@en .
+<https://example.org/mv#MediaAsset> rdfs:label "Media Asset"@en ; rdfs:comment "Represents a media file with location, MIME type, duration, and integrity metadata."@en .
+<https://example.org/mv#MusicVideo> rdfs:label "Music Video"@en ; rdfs:comment "Represents a completed music-video media asset that uses audio and visual material."@en .
+<https://example.org/mv#MusicVideoProject> rdfs:label "Music Video Project"@en ; rdfs:comment "Represents a music-video production with a brief, assets, timeline, and final video."@en .
+<https://example.org/mv#QualityCheckTask> rdfs:label "Quality Check Task"@en ; rdfs:comment "Represents a task that checks the quality of a generated or assembled media asset."@en .
+<https://example.org/mv#RenderTask> rdfs:label "Render Task"@en ; rdfs:comment "Represents work that renders a production timeline into a media asset."@en .
+<https://example.org/mv#Shot> rdfs:label "Shot"@en ; rdfs:comment "Represents a timed visual segment in a production timeline."@en .
+<https://example.org/mv#SubtitleGenerationTask> rdfs:label "Subtitle Generation Task"@en ; rdfs:comment "Represents work that generates subtitle content for a media asset."@en .
+<https://example.org/mv#Timeline> rdfs:label "Timeline"@en ; rdfs:comment "Represents the ordered timing and shot structure of a media production."@en .
+<https://example.org/mv#TranslationTask> rdfs:label "Translation Task"@en ; rdfs:comment "Represents work that translates recorded text or media content."@en .
+<https://example.org/mv#bpm> rdfs:label "BPM"@en ; rdfs:comment "Records the bpm for a Audio Asset as a integer value."@en .
+<https://example.org/mv#checksum> rdfs:label "Checksum"@en ; rdfs:comment "Records the checksum for a Media Asset as a string value."@en .
+<https://example.org/mv#dependsOn> rdfs:label "Depends On"@en ; rdfs:comment "Links a Generation Task to a Generation Task."@en .
+<https://example.org/mv#durationSeconds> rdfs:label "Duration Seconds"@en ; rdfs:comment "Records the duration seconds for a Media Asset as a decimal value."@en .
+<https://example.org/mv#endSecond> rdfs:label "End Second"@en ; rdfs:comment "Records the end second for a Shot as a decimal value."@en .
+<https://example.org/mv#fileUri> rdfs:label "File URI"@en ; rdfs:comment "Links a Media Asset to a Resource."@en .
+<https://example.org/mv#genre> rdfs:label "Genre"@en ; rdfs:comment "Records the genre for a Audio Asset as a string value."@en .
+<https://example.org/mv#hasAudio> rdfs:label "Has Audio"@en ; rdfs:comment "Links a Music Video Project to a Audio Asset."@en .
+<https://example.org/mv#hasBrief> rdfs:label "Has Brief"@en ; rdfs:comment "Links a Music Video Project to a Creative Brief."@en .
+<https://example.org/mv#hasFinalVideo> rdfs:label "Has Final Video"@en ; rdfs:comment "Links a Music Video Project to a Music Video."@en .
+<https://example.org/mv#hasImage> rdfs:label "Has Image"@en ; rdfs:comment "Links a Music Video Project to a Image Asset."@en .
+<https://example.org/mv#hasShot> rdfs:label "Has Shot"@en ; rdfs:comment "Links a Timeline to a Shot."@en .
+<https://example.org/mv#hasTimeline> rdfs:label "Has Timeline"@en ; rdfs:comment "Links a subject to a Timeline."@en .
+<https://example.org/mv#height> rdfs:label "Height"@en ; rdfs:comment "Records the height for a Image Asset as a integer value."@en .
+<https://example.org/mv#lyricText> rdfs:label "Lyric Text"@en ; rdfs:comment "Records the lyric text for a Audio Asset as a string value."@en .
+<https://example.org/mv#mimeType> rdfs:label "MIME Type"@en ; rdfs:comment "Records the mime type for a Media Asset as a string value."@en .
+<https://example.org/mv#modelVersion> rdfs:label "Model Version"@en ; rdfs:comment "Records the model version for a Generation Task as a string value."@en .
+<https://example.org/mv#orderIndex> rdfs:label "Order Index"@en ; rdfs:comment "Records the order index for a Shot as a integer value."@en .
+<https://example.org/mv#promptText> rdfs:label "Prompt Text"@en ; rdfs:comment "Records the prompt text for a Generation Task as a string value."@en .
+<https://example.org/mv#startSecond> rdfs:label "Start Second"@en ; rdfs:comment "Records the start second for a Shot as a decimal value."@en .
+<https://example.org/mv#status> rdfs:label "Status"@en ; rdfs:comment "Records the status for a Generation Task as a string value."@en .
+<https://example.org/mv#targetDurationSeconds> rdfs:label "Target Duration Seconds"@en ; rdfs:comment "Records the target duration seconds for a Creative Brief as a decimal value."@en .
+<https://example.org/mv#usesAudio> rdfs:label "Uses Audio"@en ; rdfs:comment "Links a Music Video to a Audio Asset."@en .
+<https://example.org/mv#usesImage> rdfs:label "Uses Image"@en ; rdfs:comment "Links a Shot to a Image Asset."@en .
+<https://example.org/mv#usesInput> rdfs:label "Uses Input"@en ; rdfs:comment "Links a Generation Task to a Entity."@en .
+<https://example.org/mv#width> rdfs:label "Width"@en ; rdfs:comment "Records the width for a Image Asset as a integer value."@en .
+
+# Korean definitions for production activities and their media relationships.
+mv:AudioGenerationTask rdfs:comment "입력 자료와 생성 설정을 사용해 음원 자산을 만드는 한 번의 작업 실행."@ko .
+mv:ImageGenerationTask rdfs:comment "입력 자료와 생성 설정을 사용해 장면용 이미지 자산을 만드는 한 번의 작업 실행."@ko .
+mv:LyricGenerationTask rdfs:comment "음원 제작에 사용할 가사 문장을 만드는 작업 실행. 생성 가사와 입력 자료의 출처는 함께 기록한다."@ko .
+mv:QualityCheckTask rdfs:comment "생성되거나 조합된 미디어 자산이 제작 요구사항을 충족하는지 검사하는 작업 실행."@ko .
+mv:RenderTask rdfs:comment "음원과 장면의 타임라인 배치를 최종 영상 파일로 렌더링하는 작업 실행."@ko .
+mv:SubtitleGenerationTask rdfs:comment "미디어에 사용할 자막 내용을 작성하는 작업 실행. 영상에 자막이 삽입되었다는 사실과는 구분한다."@ko .
+mv:TranslationTask rdfs:comment "기록된 문장이나 미디어 내용을 다른 언어로 옮기는 작업 실행."@ko .
+mv:bpm rdfs:comment "음원 자산의 빠르기를 분당 박자 수로 기록한다. 확인된 측정값이나 출처 값만 사용한다."@ko .
+mv:dependsOn rdfs:comment "생성 작업 실행이 선행 실행의 완료에 의존함을 연결한다. 파일 입력은 usesInput으로 별도 표현한다."@ko .
+mv:durationSeconds rdfs:comment "미디어 자산의 실제 재생 길이를 초 단위 소수 값으로 기록한다."@ko .
+mv:endSecond rdfs:comment "타임라인에서 장면 표시가 끝나는 위치를 시작점 기준 초 단위로 기록한다."@ko .
+mv:genre rdfs:comment "음원 자산에 기록된 음악 장르 이름을 보존한다. 장르가 확인되지 않으면 추정해 채우지 않는다."@ko .
+mv:hasAudio rdfs:comment "뮤직비디오 프로젝트가 제작에 채택한 음원 자산을 연결한다."@ko .
+mv:hasBrief rdfs:comment "뮤직비디오 프로젝트의 목표 길이와 분위기 등 요구사항을 담은 제작 요청을 연결한다."@ko .
+mv:hasFinalVideo rdfs:comment "프로젝트가 최종 결과물로 채택한 뮤직비디오 영상 자산을 연결한다."@ko .
+mv:hasImage rdfs:comment "뮤직비디오 프로젝트가 제작에 채택한 이미지 자산을 연결한다."@ko .
+mv:hasShot rdfs:comment "타임라인을 구성하는 장면 구간을 연결한다. 실제 순서와 시간은 각 장면 속성으로 기록한다."@ko .
+mv:hasTimeline rdfs:comment "뮤직비디오 프로젝트 또는 완성 영상에 사용된 장면·시간 배치 계획을 연결한다."@ko .
+mv:height rdfs:comment "이미지 자산의 세로 해상도를 픽셀 단위 정수로 기록한다."@ko .
+mv:mimeType rdfs:comment "미디어 파일의 콘텐츠 형식을 MIME 유형 문자열로 기록한다. 파일 위치나 확장자와는 별도 메타데이터이다."@ko .
+mv:modelVersion rdfs:comment "생성 실행에서 사용한 모델과 버전의 출처 문자열을 기록한다. 확인되지 않은 모델을 추정하지 않는다."@ko .
+mv:orderIndex rdfs:comment "타임라인 안에서 장면을 배열하는 순서 번호를 기록한다. 표시 시간은 시작·종료 속성으로 별도 기록한다."@ko .
+mv:promptText rdfs:comment "생성 작업에 실제로 제공한 프롬프트 문구를 기록한다. 원문이 확인되지 않으면 새 문구로 대체하지 않는다."@ko .
+mv:startSecond rdfs:comment "타임라인에서 장면 표시가 시작되는 위치를 시작점 기준 초 단위로 기록한다."@ko .
+mv:status rdfs:comment "생성 실행의 현재 상태 코드를 기록한다. 허용 값과 작업 관계 제약은 미디어 SHACL 프로파일에서 검사한다."@ko .
+mv:targetDurationSeconds rdfs:comment "제작 요청이 요구하는 목표 재생 길이를 초 단위 소수 값으로 기록한다. 실제 파일 길이와는 구분한다."@ko .
+mv:usesAudio rdfs:comment "완성된 뮤직비디오에 실제로 사용된 음원 자산을 연결한다."@ko .
+mv:usesImage rdfs:comment "타임라인의 한 장면 구간에 표시할 이미지 자산을 연결한다."@ko .
+mv:width rdfs:comment "이미지 자산의 가로 해상도를 픽셀 단위 정수로 기록한다."@ko .

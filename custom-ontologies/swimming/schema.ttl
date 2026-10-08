@@ -1,0 +1,130 @@
+@prefix swim: <https://example.org/ontology/custom/swimming#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/swimming> a owl:Ontology ;
+    rdfs:label "수영 온톨로지"@ko, "Swimming ontology"@en ;
+    rdfs:comment "경영(수영 경기)의 선수, 클럽, 대회, 수영장, 종목, 출전 결과와 구간 기록을 연결한다. 공식 기록과 실격에는 증빙 주소를 요구하며 같은 종목도 25m와 50m 수영장 기록을 구분한다. 예제는 가상의 선수와 대회만 담는다."@ko,
+      "Connects competitive swimmers, clubs, meets, pools, events, entries and split times. Official results and disqualifications require an evidence location, and times in 25 m and 50 m pools are kept apart. The example contains only fictional swimmers and meets."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/swimming/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+swim:Swimmer a owl:Class ;
+    rdfs:label "선수"@ko, "Swimmer"@en ;
+    rdfs:comment "경기에 출전하는 수영 선수이다. 이름이나 생년월일 같은 개인정보는 담지 않고 가명 표시와 경기 부문만 기록한다."@ko,
+      "A competitive swimmer; no name or birth date is recorded, only a pseudonymous label and a competition category."@en .
+swim:Club a owl:Class ;
+    rdfs:label "클럽"@ko, "Club"@en ;
+    rdfs:comment "선수가 소속된 수영 클럽이나 팀이다. 소속이 없는 선수도 있을 수 있다."@ko,
+      "A swimming club or team to which a swimmer belongs; a swimmer may have no club."@en .
+swim:Pool a owl:Class ;
+    rdfs:label "수영장"@ko, "Pool"@en ;
+    rdfs:comment "대회가 열리는 수영장이다. 한 바퀴 길이가 25m 또는 50m이며 기록의 종류를 정한다."@ko,
+      "The pool where a meet is held; its length of 25 m or 50 m decides the course of the recorded times."@en .
+swim:Meet a owl:Class ;
+    rdfs:label "대회"@ko, "Meet"@en ;
+    rdfs:comment "한 수영장에서 열리는 기간이 있는 대회이다. 하나 이상의 종목을 연다."@ko,
+      "A meet held in one pool over a period of days, offering one or more events."@en .
+swim:SwimEvent a owl:Class ;
+    rdfs:label "종목"@ko, "Swim event"@en ;
+    rdfs:comment "자유형 100m 같은 영법, 거리, 부문의 조합이며 한 대회에 속한다. 가능한 영법과 거리의 조합이 정해져 있다."@ko,
+      "A combination of stroke, distance and category, such as the 100 m freestyle for women, belonging to one meet; only certain stroke and distance combinations exist."@en .
+swim:Entry a owl:Class ;
+    rdfs:label "출전"@ko, "Entry"@en ;
+    rdfs:comment "한 선수가 한 종목에 출전한 기록 하나이다. 출전 신청, 공식 기록, 실격, 기권을 구분하며 상태에 따라 필요한 정보가 다르다."@ko,
+      "One swimmer's entry in one event, distinguishing entered, official, disqualified and did-not-start states, each with its own required details."@en .
+swim:Split a owl:Class ;
+    rdfs:label "구간 기록"@ko, "Split"@en ;
+    rdfs:comment "공식 기록의 중간 거리까지의 누적 시간이다. 수영장 길이의 배수 거리에서만 잰다."@ko,
+      "The cumulative time up to an intermediate distance of an official result, taken only at multiples of the pool length."@en .
+
+swim:memberOf a owl:ObjectProperty ; rdfs:domain swim:Swimmer ; rdfs:range swim:Club ;
+    rdfs:label "소속 클럽"@ko, "Member of"@en ;
+    rdfs:comment "선수가 소속된 클럽을 연결한다. 선수는 클럽을 하나까지 가질 수 있다."@ko,
+      "Links a swimmer to the club they belong to; a swimmer has at most one club."@en .
+swim:heldAt a owl:ObjectProperty ; rdfs:domain swim:Meet ; rdfs:range swim:Pool ;
+    rdfs:label "개최 수영장"@ko, "Held at"@en ;
+    rdfs:comment "대회가 열리는 수영장을 연결한다. 대회는 수영장 한 곳에서 열린다."@ko,
+      "Links a meet to the pool where it is held; a meet takes place in exactly one pool."@en .
+swim:hasEvent a owl:ObjectProperty ; rdfs:domain swim:Meet ; rdfs:range swim:SwimEvent ;
+    rdfs:label "개설 종목"@ko, "Has event"@en ;
+    rdfs:comment "대회가 여는 종목을 연결한다. 종목은 한 대회에만 속한다."@ko,
+      "Links a meet to an event it offers; an event belongs to exactly one meet."@en .
+swim:forSwimmer a owl:ObjectProperty ; rdfs:domain swim:Entry ; rdfs:range swim:Swimmer ;
+    rdfs:label "출전 선수"@ko, "For swimmer"@en ;
+    rdfs:comment "출전 기록이 어느 선수의 것인지 연결한다."@ko,
+      "Links an entry to the swimmer who entered."@en .
+swim:inEvent a owl:ObjectProperty ; rdfs:domain swim:Entry ; rdfs:range swim:SwimEvent ;
+    rdfs:label "출전 종목"@ko, "In event"@en ;
+    rdfs:comment "출전 기록이 어느 종목의 것인지 연결한다. 한 선수는 같은 종목에 한 번만 출전한다."@ko,
+      "Links an entry to the event swum; a swimmer enters a given event only once."@en .
+swim:hasSplit a owl:ObjectProperty ; rdfs:domain swim:Entry ; rdfs:range swim:Split ;
+    rdfs:label "구간 기록 연결"@ko, "Has split"@en ;
+    rdfs:comment "공식 기록의 구간 기록을 연결한다. 구간 기록은 한 출전에만 속한다."@ko,
+      "Links an official entry to one of its split times; a split belongs to exactly one entry."@en .
+
+swim:competitionCategory a owl:DatatypeProperty ; rdfs:domain swim:Swimmer ; rdfs:range xsd:string ;
+    rdfs:label "경기 부문"@ko, "Competition category"@en ;
+    rdfs:comment "선수가 출전하는 부문을 women 또는 men으로 기록한다. 종목 부문과 같아야 출전할 수 있다."@ko,
+      "The category the swimmer competes in, women or men; it must match the event category to enter."@en .
+swim:poolLengthMeters a owl:DatatypeProperty ; rdfs:domain swim:Pool ; rdfs:range xsd:integer ;
+    rdfs:label "수영장 길이 미터"@ko, "Pool length in metres"@en ;
+    rdfs:comment "수영장의 한 바퀴 길이를 25 또는 50 미터로 기록한다. 25m 기록과 50m 기록은 서로 비교하지 않는다."@ko,
+      "The length of the pool, 25 or 50 metres; times from 25 m and 50 m pools are not compared with each other."@en .
+swim:laneCount a owl:DatatypeProperty ; rdfs:domain swim:Pool ; rdfs:range xsd:integer ;
+    rdfs:label "레인 수"@ko, "Lane count"@en ;
+    rdfs:comment "수영장의 경기용 레인 수이며 1개 이상 12개 이하의 정수이다."@ko,
+      "The number of racing lanes, an integer from 1 to 12."@en .
+swim:startDate a owl:DatatypeProperty ; rdfs:domain swim:Meet ; rdfs:range xsd:date ;
+    rdfs:label "대회 시작일"@ko, "Meet start date"@en ;
+    rdfs:comment "대회가 시작되는 날짜이다."@ko,
+      "The date the meet begins."@en .
+swim:endDate a owl:DatatypeProperty ; rdfs:domain swim:Meet ; rdfs:range xsd:date ;
+    rdfs:label "대회 종료일"@ko, "Meet end date"@en ;
+    rdfs:comment "대회가 끝나는 날짜이며 시작일보다 앞설 수 없다."@ko,
+      "The date the meet ends; it cannot precede the start date."@en .
+swim:stroke a owl:DatatypeProperty ; rdfs:domain swim:SwimEvent ; rdfs:range xsd:string ;
+    rdfs:label "영법"@ko, "Stroke"@en ;
+    rdfs:comment "freestyle, backstroke, breaststroke, butterfly, individual-medley 중 하나로 기록한다."@ko,
+      "One of freestyle, backstroke, breaststroke, butterfly or individual-medley."@en .
+swim:distanceMeters a owl:DatatypeProperty ; rdfs:domain swim:SwimEvent ; rdfs:range xsd:integer ;
+    rdfs:label "종목 거리 미터"@ko, "Event distance in metres"@en ;
+    rdfs:comment "종목의 거리를 50, 100, 200, 400, 800, 1500 미터 중 하나로 기록하며 영법에 따라 가능한 거리가 다르다."@ko,
+      "The distance in metres: 50, 100, 200, 400, 800 or 1500, with the possible values depending on the stroke."@en .
+swim:eventCategory a owl:DatatypeProperty ; rdfs:domain swim:SwimEvent ; rdfs:range xsd:string ;
+    rdfs:label "종목 부문"@ko, "Event category"@en ;
+    rdfs:comment "종목의 부문을 women 또는 men으로 기록한다."@ko,
+      "The category of the event, women or men."@en .
+swim:entryStatus a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:string ;
+    rdfs:label "출전 상태"@ko, "Entry status"@en ;
+    rdfs:comment "entered(신청), official(공식 기록), disqualified(실격), did-not-start(기권) 중 하나이며 상태마다 필요한 정보가 다르다."@ko,
+      "One of entered, official, disqualified or did-not-start, each with different required details."@en .
+swim:seedTimeSeconds a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:decimal ;
+    rdfs:label "신청 기록 초"@ko, "Seed time in seconds"@en ;
+    rdfs:comment "출전 신청 때 낸 예상 기록을 초 단위 양의 소수로 기록하며 실제 결과가 아니다."@ko,
+      "The expected time submitted with the entry, as positive decimal seconds; it is not a result."@en .
+swim:finalTimeSeconds a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:decimal ;
+    rdfs:label "공식 기록 초"@ko, "Final time in seconds"@en ;
+    rdfs:comment "공식 기록 상태에서만 두는 최종 기록으로 초 단위 양의 소수이다. 1분 5초 20은 65.20으로 적는다."@ko,
+      "The final time of an official result, positive decimal seconds; 1:05.20 is written 65.20."@en .
+swim:timingEvidenceUri a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:anyURI ;
+    rdfs:label "계시 증빙 주소"@ko, "Timing evidence URI"@en ;
+    rdfs:comment "공식 기록이나 실격 판정을 확인할 수 있는 결과표의 위치이며 문서의 진위를 자동으로 보증하지 않는다."@ko,
+      "Points to the results sheet or ruling behind an official result or disqualification; authenticity is not verified automatically."@en .
+swim:disqualificationReason a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:string ;
+    rdfs:label "실격 사유"@ko, "Disqualification reason"@en ;
+    rdfs:comment "false-start, stroke-violation, turn-violation, finish-violation, other 중 하나이며 실격 상태에만 둔다."@ko,
+      "One of false-start, stroke-violation, turn-violation, finish-violation or other, used only for a disqualification."@en .
+swim:placeRank a owl:DatatypeProperty ; rdfs:domain swim:Entry ; rdfs:range xsd:integer ;
+    rdfs:label "순위"@ko, "Place rank"@en ;
+    rdfs:comment "공식 기록의 종목 내 순위이며 1 이상의 정수이다. 더 빠른 기록이 더 낮은 순위일 수 없다."@ko,
+      "The place within the event for an official result, an integer from 1; a faster time cannot rank lower."@en .
+swim:splitDistanceMeters a owl:DatatypeProperty ; rdfs:domain swim:Split ; rdfs:range xsd:integer ;
+    rdfs:label "구간 거리 미터"@ko, "Split distance in metres"@en ;
+    rdfs:comment "구간 기록을 잰 누적 거리이며 수영장 길이의 배수이고 종목 거리를 넘을 수 없다."@ko,
+      "The cumulative distance at which the split was taken, a multiple of the pool length and not beyond the event distance."@en .
+swim:splitTimeSeconds a owl:DatatypeProperty ; rdfs:domain swim:Split ; rdfs:range xsd:decimal ;
+    rdfs:label "구간 누적 기록 초"@ko, "Split cumulative time in seconds"@en ;
+    rdfs:comment "출발부터 구간 거리까지의 누적 시간이다. 더 먼 구간일수록 커야 하고 종목 거리의 구간은 공식 기록과 같다."@ko,
+      "The cumulative time from the start to the split distance; it grows with distance, and the split at the full distance equals the final time."@en .

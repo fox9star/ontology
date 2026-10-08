@@ -1,0 +1,23 @@
+@prefix ecom: <http://example.org/ontology/ecommerce#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ecom:Product_Headphones a ecom:Product ;
+    rdfs:label "Wireless Noise Cancelling Headphones" ;
+    ecom:productId "PROD-99881" ;
+    ecom:price "299.99"^^xsd:decimal ;
+    ecom:priceCurrencyStatus "unverified" .
+
+ecom:Agent_RecSys a ecom:RecommendationAgent ;
+    rdfs:label "AI Personal Shopper & RecSys Agent" .
+
+ecom:Session_User101 a ecom:CustomerSession ;
+    rdfs:label "Session #88219" ;
+    ecom:recommends ecom:Product_Headphones .
+
+ecom:Order_88219 a ecom:OrderTask ;
+    rdfs:label "Order #88219 Fulfillment" ;
+    ecom:orderStatus "PROCESSING" ;
+    ecom:handledBy ecom:Agent_RecSys ;
+    ecom:includesProduct ecom:Product_Headphones .
+

@@ -1,0 +1,169 @@
+{
+  "scope": "bounded-local-fhir-r5-ingestion",
+  "complete_clinical_import": false,
+  "lossless_rdf_mapping": false,
+  "fields": [
+    {
+      "source_field": "Bundle.id/type/timestamp",
+      "local_mapping": "No Bundle identity node",
+      "reexport_boundary": "New collection ID/timestamp generated; original bytes retained.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "entry.fullUrl / resource.id",
+      "local_mapping": "Fresh local URN; mapping in protected sidecar",
+      "reexport_boundary": "Fresh IDs on export; original identity omitted.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Patient.resourceType",
+      "local_mapping": "`health:PatientRecord`",
+      "reexport_boundary": "Synthetic patients export as opaque Patient resources.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Patient.name/identifier/contact/address/birthDate and other demographics",
+      "local_mapping": "Sidecar only",
+      "reexport_boundary": "Never emitted by this synthetic-only exporter.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Patient.meta/security or any input Synthetic assertion",
+      "local_mapping": "No trust promotion",
+      "reexport_boundary": "Arbitrary input remains Unverified.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.for",
+      "local_mapping": "`health:associatedWithRecord`",
+      "reexport_boundary": "Equivalent opaque subject link.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.status requested/in-progress/completed/failed/cancelled",
+      "local_mapping": "PENDING/ANALYZING/COMPLETED/FAILED/CANCELLED",
+      "reexport_boundary": "Corresponding FHIR code preserved.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.businessStatus.text exactly VERIFIED with completed status",
+      "local_mapping": "VERIFIED",
+      "reexport_boundary": "Export includes completed plus VERIFIED businessStatus. Other content is sidecar only.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Other valid Task.status codes",
+      "local_mapping": "Sidecar only; no guessed local status",
+      "reexport_boundary": "Task omitted on export if no valid local state exists.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.intent",
+      "local_mapping": "`health:taskIntent`",
+      "reexport_boundary": "Supported R5 intent code preserved.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.executionPeriod.start/end",
+      "local_mapping": "`prov:startedAtTime` / `prov:endedAtTime`",
+      "reexport_boundary": "Instants preserved; equivalent lexical/timezone spelling may normalize.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.output.valueReference",
+      "local_mapping": "`health:generatesObservation` / `health:generatesReport`; Observation `prov:wasGeneratedBy`",
+      "reexport_boundary": "Subject-consistent result links preserved. Exactly one Task association required.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Task.output.type and unsupported output value choices",
+      "local_mapping": "Sidecar only",
+      "reexport_boundary": "Export regenerates generic result-type text.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.code.coding[0].system/code",
+      "local_mapping": "`health:codeSystem` / `health:observationCode`",
+      "reexport_boundary": "Single coding preserved. Known URI aliases normalize on export. Extra codings reject input.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.code text, display, version, userSelected",
+      "local_mapping": "Sidecar only",
+      "reexport_boundary": "Not reconstructed.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.subject/status/effectiveDateTime",
+      "local_mapping": "`health:observesRecord` / `health:observationStatus` / `health:observedAt`",
+      "reexport_boundary": "Subject/status and supported full timestamp preserved.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.valueQuantity value/system/code",
+      "local_mapping": "`health:numericValue` / `health:unitCodeSystem` / `health:unitCode`",
+      "reexport_boundary": "Finite supported JSON quantity/code preserved. Exact source numeric spelling remains in raw bytes.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.valueQuantity.unit",
+      "local_mapping": "Local coded unit uses code, not arbitrary display",
+      "reexport_boundary": "Display differences reported; raw display retained.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.valueString",
+      "local_mapping": "Known fixture text maps to `health:textValue`; unverified text stays sidecar only",
+      "reexport_boundary": "Unverified text observation is not eligible for export.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Observation.category",
+      "local_mapping": "Sidecar only",
+      "reexport_boundary": "Exporter reconstructs only its known body-weight category/profile behavior.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "DiagnosticReport.code.coding[0].system/code/status",
+      "local_mapping": "`health:reportCodeSystem` / `health:reportCode` / `health:reportStatus`",
+      "reexport_boundary": "Single coding/status preserved; extra codings reject input.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "DiagnosticReport.subject",
+      "local_mapping": "Derived through its explicit owning Task",
+      "reexport_boundary": "Subject consistency required; no invented Task or provenance.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "DiagnosticReport.result",
+      "local_mapping": "`health:reportResult`",
+      "reexport_boundary": "Closed, same-subject Observation references preserved.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "DiagnosticReport.conclusion",
+      "local_mapping": "Known synthetic fixture maps to `health:findingText`; unverified text stays sidecar only",
+      "reexport_boundary": "No arbitrary free text emitted from unverified import.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "OperationOutcome.issue",
+      "local_mapping": "Sidecar only",
+      "reexport_boundary": "Original warnings not reconstructed from local graph.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "All other fields on accepted resources and Bundle/entry metadata",
+      "local_mapping": "Exact original bytes in restricted sidecar",
+      "reexport_boundary": "No implied RDF semantics or re-export fidelity.",
+      "raw_sidecar_retention": true
+    },
+    {
+      "source_field": "Unsupported resource types/contained patterns or invalid mappings",
+      "local_mapping": "Import rejected; input file preserved",
+      "reexport_boundary": "No partial dataset published and no remote fetch.",
+      "raw_sidecar_retention": true
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+@prefix soccer: <https://example.org/ontology/custom/soccer#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/soccer> a owl:Ontology ;
+    rdfs:label "축구 온톨로지"@ko, "Soccer ontology"@en ;
+    rdfs:comment "축구의 클럽, 선수, 대회, 경기, 출전 명단과 득점·경고·퇴장 같은 경기 사건을 연결한다. 종료된 경기는 경기 보고서 증빙과 일치하는 득점 사건, 11명의 선발 명단과 골키퍼 한 명을 요구한다. 예제는 가상의 클럽과 선수만 담는다."@ko,
+      "Connects clubs, players, competitions, matches, lineups and match events such as goals, cautions and sending-offs. A finished match requires a match report, goal events that agree with the score, eleven starters per side and one starting goalkeeper. The example contains only fictional clubs and players."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/soccer/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+soccer:Club a owl:Class ;
+    rdfs:label "클럽"@ko, "Club"@en ;
+    rdfs:comment "경기에 출전하는 축구 클럽이나 팀이다. 선수 이적과 소속 이력은 다루지 않는다."@ko,
+      "A football club or team that plays matches; player transfers and contract histories are not modelled."@en .
+soccer:Player a owl:Class ;
+    rdfs:label "선수"@ko, "Player"@en ;
+    rdfs:comment "경기에 출전하는 축구 선수이다. 이름 같은 개인정보 없이 가명 표시만 기록하며 소속은 경기별 출전 기록으로 나타낸다."@ko,
+      "A footballer who plays in matches; only a pseudonymous label is kept and club membership is shown per match by appearances."@en .
+soccer:Competition a owl:Class ;
+    rdfs:label "대회"@ko, "Competition"@en ;
+    rdfs:comment "한 시즌의 리그나 컵 대회이다. 경기마다 허용되는 교체 선수의 수가 대회마다 다르다."@ko,
+      "A league or cup competition in one season; the number of substitutes allowed per match differs between competitions."@en .
+soccer:Match a owl:Class ;
+    rdfs:label "경기"@ko, "Match"@en ;
+    rdfs:comment "홈 클럽과 원정 클럽이 치르는 경기 하나이다. 예정, 종료, 연기 상태를 구분하며 종료된 경기에만 결과와 사건이 있다."@ko,
+      "One match between a home and an away club, distinguishing scheduled, finished and postponed states; only a finished match has a result and events."@en .
+soccer:Appearance a owl:Class ;
+    rdfs:label "출전 기록"@ko, "Appearance"@en ;
+    rdfs:comment "한 선수가 한 경기에서 한 클럽 소속으로 맡은 역할이다. 선발, 교체 출전, 출전하지 않은 교체 대기를 구분한다."@ko,
+      "The role one player had in one match for one club: starter, substitute who came on, or unused substitute."@en .
+soccer:MatchEvent a owl:Class ;
+    rdfs:label "경기 사건"@ko, "Match event"@en ;
+    rdfs:comment "경기 중 특정 분에 선수가 일으킨 득점, 자책골, 경고, 퇴장 같은 사건이다."@ko,
+      "An event caused by a player at a given minute of a match, such as a goal, own goal, yellow card or red card."@en .
+
+soccer:homeClub a owl:ObjectProperty ; rdfs:domain soccer:Match ; rdfs:range soccer:Club ;
+    rdfs:label "홈 클럽"@ko, "Home club"@en ;
+    rdfs:comment "경기의 홈 클럽을 연결한다. 원정 클럽과 달라야 한다."@ko,
+      "Links a match to its home club, which must differ from the away club."@en .
+soccer:awayClub a owl:ObjectProperty ; rdfs:domain soccer:Match ; rdfs:range soccer:Club ;
+    rdfs:label "원정 클럽"@ko, "Away club"@en ;
+    rdfs:comment "경기의 원정 클럽을 연결한다. 홈 클럽과 달라야 한다."@ko,
+      "Links a match to its away club, which must differ from the home club."@en .
+soccer:inCompetition a owl:ObjectProperty ; rdfs:domain soccer:Match ; rdfs:range soccer:Competition ;
+    rdfs:label "소속 대회"@ko, "In competition"@en ;
+    rdfs:comment "경기가 속한 대회를 연결한다. 경기는 대회 하나에만 속한다."@ko,
+      "Links a match to the competition it belongs to; a match belongs to exactly one competition."@en .
+soccer:hasAppearance a owl:ObjectProperty ; rdfs:domain soccer:Match ; rdfs:range soccer:Appearance ;
+    rdfs:label "출전 기록 연결"@ko, "Has appearance"@en ;
+    rdfs:comment "경기의 출전 기록을 연결한다. 출전 기록은 한 경기에만 속한다."@ko,
+      "Links a match to one of its appearance records; an appearance belongs to exactly one match."@en .
+soccer:hasEvent a owl:ObjectProperty ; rdfs:domain soccer:Match ; rdfs:range soccer:MatchEvent ;
+    rdfs:label "경기 사건 연결"@ko, "Has event"@en ;
+    rdfs:comment "경기 중 일어난 사건을 연결한다. 사건은 한 경기에만 속한다."@ko,
+      "Links a match to one of its events; an event belongs to exactly one match."@en .
+soccer:forPlayer a owl:ObjectProperty ; rdfs:domain soccer:Appearance ; rdfs:range soccer:Player ;
+    rdfs:label "출전 선수"@ko, "For player"@en ;
+    rdfs:comment "출전 기록이 어느 선수의 것인지 연결한다. 한 선수는 한 경기에 한 번만 기록된다."@ko,
+      "Links an appearance to the player; a player has only one appearance per match."@en .
+soccer:forClub a owl:ObjectProperty ; rdfs:domain soccer:Appearance ; rdfs:range soccer:Club ;
+    rdfs:label "출전 클럽"@ko, "For club"@en ;
+    rdfs:comment "선수가 그 경기에서 소속으로 뛴 클럽을 연결한다. 경기의 홈 또는 원정 클럽이어야 한다."@ko,
+      "Links an appearance to the club the player played for in that match, which must be the home or away club."@en .
+soccer:byPlayer a owl:ObjectProperty ; rdfs:domain soccer:MatchEvent ; rdfs:range soccer:Player ;
+    rdfs:label "사건 선수"@ko, "By player"@en ;
+    rdfs:comment "사건을 일으킨 선수를 연결한다. 그 경기에 실제로 출전한 선수여야 한다."@ko,
+      "Links an event to the player who caused it, who must actually have played in that match."@en .
+
+soccer:season a owl:DatatypeProperty ; rdfs:domain soccer:Competition ; rdfs:range xsd:string ;
+    rdfs:label "시즌"@ko, "Season"@en ;
+    rdfs:comment "대회의 시즌을 2026 또는 2025-2026 같은 연도 표기로 기록한다."@ko,
+      "The season of the competition as a year such as 2026 or 2025-2026."@en .
+soccer:competitionType a owl:DatatypeProperty ; rdfs:domain soccer:Competition ; rdfs:range xsd:string ;
+    rdfs:label "대회 종류"@ko, "Competition type"@en ;
+    rdfs:comment "대회가 league(리그)인지 cup(토너먼트)인지 기록한다."@ko,
+      "Whether the competition is a league or a cup."@en .
+soccer:substitutionLimit a owl:DatatypeProperty ; rdfs:domain soccer:Competition ; rdfs:range xsd:integer ;
+    rdfs:label "교체 허용 인원"@ko, "Substitution limit"@en ;
+    rdfs:comment "한 클럽이 한 경기에서 교체 출전시킬 수 있는 선수의 최대 수이며 1명 이상 11명 이하이다."@ko,
+      "The maximum number of substitutes one club may bring on in a match, from 1 to 11."@en .
+soccer:matchDate a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:date ;
+    rdfs:label "경기일"@ko, "Match date"@en ;
+    rdfs:comment "경기가 열리거나 열릴 예정인 날짜이다. 연기된 경기는 원래 예정일을 유지한다."@ko,
+      "The date the match is or was scheduled; a postponed match keeps its original date."@en .
+soccer:matchStatus a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:string ;
+    rdfs:label "경기 상태"@ko, "Match status"@en ;
+    rdfs:comment "scheduled(예정), finished(종료), postponed(연기) 중 하나이며 종료에는 결과와 경기 보고서가 필요하다."@ko,
+      "One of scheduled, finished or postponed; finished requires a result and a match report."@en .
+soccer:homeGoals a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:integer ;
+    rdfs:label "홈 득점"@ko, "Home goals"@en ;
+    rdfs:comment "종료된 경기에서 홈 클럽의 득점 수이며 홈 클럽 득점 사건의 수와 같아야 한다. 자책골은 상대 클럽의 득점이다."@ko,
+      "The home club's goals in a finished match, equal to the number of goal events credited to it; an own goal is credited to the opponent."@en .
+soccer:awayGoals a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:integer ;
+    rdfs:label "원정 득점"@ko, "Away goals"@en ;
+    rdfs:comment "종료된 경기에서 원정 클럽의 득점 수이며 원정 클럽 득점 사건의 수와 같아야 한다."@ko,
+      "The away club's goals in a finished match, equal to the number of goal events credited to it."@en .
+soccer:matchReportUri a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:anyURI ;
+    rdfs:label "경기 보고서 주소"@ko, "Match report URI"@en ;
+    rdfs:comment "종료된 경기의 결과를 확인할 수 있는 경기 보고서의 위치이며 문서의 진위를 자동으로 보증하지 않는다."@ko,
+      "Points to the match report behind a finished result; authenticity is not verified automatically."@en .
+soccer:matchday a owl:DatatypeProperty ; rdfs:domain soccer:Match ; rdfs:range xsd:integer ;
+    rdfs:label "라운드"@ko, "Matchday"@en ;
+    rdfs:comment "리그의 몇 번째 라운드 경기인지 나타내는 1 이상의 정수이며 컵 경기에는 없을 수 있다."@ko,
+      "The round number within a league, an integer from 1; a cup match may have none."@en .
+soccer:lineupRole a owl:DatatypeProperty ; rdfs:domain soccer:Appearance ; rdfs:range xsd:string ;
+    rdfs:label "명단 역할"@ko, "Lineup role"@en ;
+    rdfs:comment "starter(선발), substitute(교체 출전), unused-substitute(출전하지 않은 교체 대기) 중 하나이다."@ko,
+      "One of starter, substitute (came on) or unused-substitute."@en .
+soccer:position a owl:DatatypeProperty ; rdfs:domain soccer:Appearance ; rdfs:range xsd:string ;
+    rdfs:label "포지션"@ko, "Position"@en ;
+    rdfs:comment "그 경기에서 맡은 포지션을 goalkeeper, defender, midfielder, forward 중 하나로 기록한다."@ko,
+      "The position played in that match: goalkeeper, defender, midfielder or forward."@en .
+soccer:shirtNumber a owl:DatatypeProperty ; rdfs:domain soccer:Appearance ; rdfs:range xsd:integer ;
+    rdfs:label "등번호"@ko, "Shirt number"@en ;
+    rdfs:comment "그 경기에서 입은 등번호이며 1에서 99 사이이고 같은 경기 같은 클럽에서 겹칠 수 없다."@ko,
+      "The shirt number worn in that match, from 1 to 99, unique within a club in a match."@en .
+soccer:minuteIn a owl:DatatypeProperty ; rdfs:domain soccer:Appearance ; rdfs:range xsd:integer ;
+    rdfs:label "투입 분"@ko, "Minute in"@en ;
+    rdfs:comment "교체 출전한 선수가 경기에 들어간 분이다. 교체 출전에만 있고 다른 역할에는 없다."@ko,
+      "The minute a substitute came on; present only for substitutes."@en .
+soccer:minuteOut a owl:DatatypeProperty ; rdfs:domain soccer:Appearance ; rdfs:range xsd:integer ;
+    rdfs:label "교체·퇴장 분"@ko, "Minute out"@en ;
+    rdfs:comment "선수가 교체되거나 퇴장당해 경기를 떠난 분이다. 투입 분보다 늦어야 하며 끝까지 뛴 선수에는 없다."@ko,
+      "The minute a player left the match, substituted or sent off; later than the minute in, and absent if the player finished the match."@en .
+soccer:eventType a owl:DatatypeProperty ; rdfs:domain soccer:MatchEvent ; rdfs:range xsd:string ;
+    rdfs:label "사건 종류"@ko, "Event type"@en ;
+    rdfs:comment "goal(득점), own-goal(자책골), yellow-card(경고), red-card(퇴장) 중 하나이다. 퇴장당한 선수는 그 뒤 사건이 없어야 한다."@ko,
+      "One of goal, own-goal, yellow-card or red-card; a sent-off player has no later events."@en .
+soccer:eventMinute a owl:DatatypeProperty ; rdfs:domain soccer:MatchEvent ; rdfs:range xsd:integer ;
+    rdfs:label "사건 분"@ko, "Event minute"@en ;
+    rdfs:comment "사건이 일어난 경기 시간으로 1분에서 130분 사이의 정수이다. 추가 시간은 90분 뒤의 정수로 적는다."@ko,
+      "The match minute of the event, an integer from 1 to 130; stoppage time is written as an integer after 90."@en .

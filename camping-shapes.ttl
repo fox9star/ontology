@@ -1,0 +1,206 @@
+@prefix camping: <https://example.org/ontology/camping#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+camping:CampgroundShape a sh:NodeShape ;
+    sh:targetClass camping:Campground ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "야영장에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:hasCampsite ;
+        sh:class camping:Campsite ;
+        sh:minCount 1 ;
+        sh:message "야영장에는 하나 이상의 캠핑 사이트가 연결되어야 합니다."@ko
+    ] .
+
+camping:CampsiteShape a sh:NodeShape ;
+    sh:targetClass camping:Campsite ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "캠핑 사이트에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:siteCapacity ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:message "사이트 수용 인원은 1명 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:belongsToCampground ;
+        sh:class camping:Campground ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "캠핑 사이트에는 소속 야영장을 하나 지정해야 합니다."@ko
+    ] .
+
+camping:CamperShape a sh:NodeShape ;
+    sh:targetClass camping:Camper ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "캠핑 참가자에는 이름 또는 표시 라벨이 필요합니다."@ko
+    ] .
+
+camping:CampingTripShape a sh:NodeShape ;
+    sh:targetClass camping:CampingTrip ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "캠핑 여행에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripStartDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "캠핑 여행 시작일은 유효한 날짜 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripEndDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "캠핑 여행 종료일은 유효한 날짜 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripStartDate ;
+        sh:lessThan camping:tripEndDate ;
+        sh:message "캠핑 여행 종료일은 시작일보다 뒤여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripDestination ;
+        sh:class camping:Campground ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "캠핑 여행에는 목적지 야영장을 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripHasParticipant ;
+        sh:class camping:Camper ;
+        sh:minCount 1 ;
+        sh:message "캠핑 여행에는 한 명 이상의 참가자가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripHasReservation ;
+        sh:class camping:Reservation ;
+        sh:message "여행에 연결하는 예약은 야영장 예약이어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripHasPackingList ;
+        sh:class camping:PackingList ;
+        sh:message "여행에 연결하는 준비물 목록은 Camping Packing List여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:tripHasActivity ;
+        sh:class camping:CampActivity ;
+        sh:message "여행에 연결하는 활동은 Camping Activity여야 합니다."@ko
+    ] .
+
+camping:ReservationShape a sh:NodeShape ;
+    sh:targetClass camping:Reservation ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "야영장 예약에는 식별 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:reservationStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "예약 상태를 비어 있지 않은 문자열 하나로 기록해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:reservationForSite ;
+        sh:class camping:Campsite ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "예약 대상 캠핑 사이트를 하나 지정해야 합니다."@ko
+    ] .
+
+camping:CampingEquipmentShape a sh:NodeShape ;
+    sh:targetClass camping:CampingEquipment ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "캠핑 장비에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:equipmentCategory ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:message "장비에는 비어 있지 않은 분류를 기록해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:equipmentWeightKg ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:message "장비 무게는 0kg 이상의 십진수여야 합니다."@ko
+    ] .
+
+camping:PackingListShape a sh:NodeShape ;
+    sh:targetClass camping:PackingList ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "준비물 목록에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:listHasItem ;
+        sh:class camping:PackingListItem ;
+        sh:minCount 1 ;
+        sh:message "준비물 목록에는 하나 이상의 항목이 필요합니다."@ko
+    ] .
+
+camping:PackingListItemShape a sh:NodeShape ;
+    sh:targetClass camping:PackingListItem ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "준비물 목록 항목에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:itemEquipment ;
+        sh:class camping:CampingEquipment ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "준비물 항목에는 대상 장비를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:itemQuantity ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:message "준비 수량은 1 이상의 정수여야 합니다."@ko
+    ] .
+
+camping:CampActivityShape a sh:NodeShape ;
+    sh:targetClass camping:CampActivity ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "캠핑 활동에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:activityCategory ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:minLength 1 ;
+        sh:message "캠핑 활동에는 비어 있지 않은 분류가 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path camping:activityDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+        sh:message "활동 날짜는 유효한 날짜를 최대 하나까지 기록할 수 있습니다."@ko
+    ] .

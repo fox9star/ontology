@@ -1,0 +1,162 @@
+@prefix div: <https://example.org/ontology/custom/divorce#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/divorce> a owl:Ontology ;
+    rdfs:label "이혼 온톨로지"@ko, "Divorce ontology"@en ;
+    rdfs:comment "이혼 사건의 절차 단계, 당사자, 자녀, 양육 결정, 양육비, 재산분할을 연결한다. 종결된 사건에는 법원 문서나 등록 증빙과 효력 발생일을 요구하며, 법정 기간 같은 법적 요건은 담지 않고 법원이 정한 날짜의 순서만 검사한다. 법률 자문이 아니며 예제는 가상 사건만 담는다."@ko,
+      "Connects the procedural stages, parties, children, custody decisions, child support and property division of a divorce case. A finalized case requires a court or registration document and an effective date; statutory requirements are not encoded and only the order of court-set dates is checked. It is not legal advice and the example contains only fictional cases."@en ;
+    owl:versionIRI <https://example.org/ontology/custom/divorce/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+div:DivorceCase a owl:Class ;
+    rdfs:label "이혼 사건"@ko, "Divorce case"@en ;
+    rdfs:comment "한 부부의 이혼 절차 하나이다. 협의, 조정, 소송 가운데 한 유형과 준비·접수·종결·철회 중 한 단계를 가진다."@ko,
+      "One divorce proceeding of a couple, with a type of consensual, mediation or litigation and a stage of preparing, filed, finalized or withdrawn."@en .
+div:Party a owl:Class ;
+    rdfs:label "당사자"@ko, "Party"@en ;
+    rdfs:comment "이혼 사건의 부부 중 한 사람이다. 이름이나 연락처 없이 가명 표시만 기록한다."@ko,
+      "One of the two spouses in a divorce case; only a pseudonymous label is kept, never a name or contact details."@en .
+div:Child a owl:Class ;
+    rdfs:label "자녀"@ko, "Child"@en ;
+    rdfs:comment "이혼하는 부부의 자녀이다. 접수 시점에 미성년인지 여부를 기록하며 이름과 생년월일은 담지 않는다."@ko,
+      "A child of the couple, recorded with whether they were a minor at filing; name and birth date are not kept."@en .
+div:CustodyArrangement a owl:Class ;
+    rdfs:label "양육 결정"@ko, "Custody arrangement"@en ;
+    rdfs:comment "미성년 자녀 한 명을 누가 양육하는지와 친권을 어떻게 행사하는지에 관한 결정이다."@ko,
+      "The decision on who raises one minor child and how parental authority is exercised."@en .
+div:SupportObligation a owl:Class ;
+    rdfs:label "양육비 의무"@ko, "Child support obligation"@en ;
+    rdfs:comment "미성년 자녀 한 명을 위해 한 당사자가 다른 당사자에게 매달 지급하기로 한 금액이다."@ko,
+      "A monthly amount one party pays to the other for one minor child."@en .
+div:Asset a owl:Class ;
+    rdfs:label "재산·채무 항목"@ko, "Asset or debt item"@en ;
+    rdfs:comment "재산분할 대상인 부동산, 예금, 연금 같은 재산이나 채무 한 항목이다. 종결된 사건에서는 분할 비율의 합이 100이어야 한다."@ko,
+      "One asset or debt subject to division, such as property, deposits or pensions; in a finalized case its shares must total 100."@en .
+div:AssetAllocation a owl:Class ;
+    rdfs:label "분할 비율"@ko, "Asset allocation"@en ;
+    rdfs:comment "재산·채무 항목 하나 중 한 당사자에게 돌아가는 비율이다."@ko,
+      "The share of one asset or debt item that goes to one party."@en .
+
+div:hasParty a owl:ObjectProperty ; rdfs:domain div:DivorceCase ; rdfs:range div:Party ;
+    rdfs:label "당사자 연결"@ko, "Has party"@en ;
+    rdfs:comment "사건의 당사자를 연결한다. 사건에는 당사자가 정확히 두 명이며 당사자는 한 사건에만 속한다."@ko,
+      "Links a case to its parties; a case has exactly two, and a party belongs to one case."@en .
+div:hasChild a owl:ObjectProperty ; rdfs:domain div:DivorceCase ; rdfs:range div:Child ;
+    rdfs:label "자녀 연결"@ko, "Has child"@en ;
+    rdfs:comment "사건에 관련된 부부의 자녀를 연결한다. 자녀는 한 사건에만 속한다."@ko,
+      "Links a case to a child of the couple; a child belongs to one case."@en .
+div:hasCustodyArrangement a owl:ObjectProperty ; rdfs:domain div:DivorceCase ; rdfs:range div:CustodyArrangement ;
+    rdfs:label "양육 결정 연결"@ko, "Has custody arrangement"@en ;
+    rdfs:comment "사건에서 정해진 양육 결정을 연결한다."@ko,
+      "Links a case to a custody arrangement made in it."@en .
+div:hasSupportObligation a owl:ObjectProperty ; rdfs:domain div:DivorceCase ; rdfs:range div:SupportObligation ;
+    rdfs:label "양육비 연결"@ko, "Has support obligation"@en ;
+    rdfs:comment "사건에서 정해진 양육비 의무를 연결한다."@ko,
+      "Links a case to a child support obligation set in it."@en .
+div:hasAsset a owl:ObjectProperty ; rdfs:domain div:DivorceCase ; rdfs:range div:Asset ;
+    rdfs:label "재산 항목 연결"@ko, "Has asset"@en ;
+    rdfs:comment "사건에서 분할 대상으로 다루는 재산·채무 항목을 연결한다."@ko,
+      "Links a case to an asset or debt item it divides."@en .
+div:custodyOfChild a owl:ObjectProperty ; rdfs:domain div:CustodyArrangement ; rdfs:range div:Child ;
+    rdfs:label "양육 대상 자녀"@ko, "Custody of child"@en ;
+    rdfs:comment "양육 결정이 대상으로 하는 미성년 자녀를 연결한다. 자녀 한 명에 결정은 하나이다."@ko,
+      "Links a custody arrangement to the minor child it concerns; one arrangement per child."@en .
+div:custodian a owl:ObjectProperty ; rdfs:domain div:CustodyArrangement ; rdfs:range div:Party ;
+    rdfs:label "양육자"@ko, "Custodian"@en ;
+    rdfs:comment "자녀를 맡아 양육하기로 한 당사자를 연결한다. 같은 사건의 당사자여야 한다."@ko,
+      "Links an arrangement to the party who will raise the child, who must be a party of the same case."@en .
+div:supportForChild a owl:ObjectProperty ; rdfs:domain div:SupportObligation ; rdfs:range div:Child ;
+    rdfs:label "양육비 대상 자녀"@ko, "Support for child"@en ;
+    rdfs:comment "양육비를 지급하는 대상인 미성년 자녀를 연결한다."@ko,
+      "Links a support obligation to the minor child it is paid for."@en .
+div:payer a owl:ObjectProperty ; rdfs:domain div:SupportObligation ; rdfs:range div:Party ;
+    rdfs:label "지급 당사자"@ko, "Payer"@en ;
+    rdfs:comment "양육비를 지급하는 당사자를 연결한다. 받는 당사자와 달라야 한다."@ko,
+      "Links a support obligation to the party who pays, who differs from the payee."@en .
+div:payee a owl:ObjectProperty ; rdfs:domain div:SupportObligation ; rdfs:range div:Party ;
+    rdfs:label "수령 당사자"@ko, "Payee"@en ;
+    rdfs:comment "양육비를 받는 당사자를 연결한다. 그 자녀의 양육자와 같아야 한다."@ko,
+      "Links a support obligation to the party who receives it, who must be the child's custodian."@en .
+div:hasAllocation a owl:ObjectProperty ; rdfs:domain div:Asset ; rdfs:range div:AssetAllocation ;
+    rdfs:label "분할 비율 연결"@ko, "Has allocation"@en ;
+    rdfs:comment "재산·채무 항목의 당사자별 분할 비율을 연결한다."@ko,
+      "Links an asset or debt item to its per-party allocations."@en .
+div:allocatedTo a owl:ObjectProperty ; rdfs:domain div:AssetAllocation ; rdfs:range div:Party ;
+    rdfs:label "분할 대상 당사자"@ko, "Allocated to"@en ;
+    rdfs:comment "분할 비율이 돌아가는 당사자를 연결한다. 같은 사건의 당사자여야 한다."@ko,
+      "Links an allocation to the party who receives the share, who must be a party of the same case."@en .
+
+div:caseType a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:string ;
+    rdfs:label "사건 유형"@ko, "Case type"@en ;
+    rdfs:comment "consensual(협의), mediation(조정), litigation(소송) 중 하나이다. 협의 유형에만 숙려 종료일과 확인일이 있다."@ko,
+      "One of consensual, mediation or litigation; only the consensual type has a reflection end date and a confirmation date."@en .
+div:caseStatus a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:string ;
+    rdfs:label "사건 단계"@ko, "Case stage"@en ;
+    rdfs:comment "preparing(준비), filed(접수), finalized(종결), withdrawn(철회) 중 하나이며 단계마다 필요한 날짜와 증빙이 다르다."@ko,
+      "One of preparing, filed, finalized or withdrawn, each needing different dates and evidence."@en .
+div:filedDate a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:date ;
+    rdfs:label "접수일"@ko, "Filed date"@en ;
+    rdfs:comment "법원에 신청이나 소장을 낸 날짜이다. 준비 단계에서는 값이 없다."@ko,
+      "The date the application or complaint was filed with the court; absent while the case is only being prepared."@en .
+div:reflectionEndDate a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:date ;
+    rdfs:label "숙려 종료일"@ko, "Reflection end date"@en ;
+    rdfs:comment "협의 이혼에서 법원이 알린 숙려 기간의 마지막 날짜이다. 기간의 길이는 법원 안내에 따르며 이 온톨로지가 계산하지 않는다."@ko,
+      "The last day of the reflection period given by the court in a consensual divorce; its length follows the court's notice and is not computed here."@en .
+div:confirmationDate a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:date ;
+    rdfs:label "의사 확인일"@ko, "Confirmation date"@en ;
+    rdfs:comment "협의 이혼에서 법원이 이혼 의사를 확인한 날짜이며 숙려 종료일보다 앞설 수 없다."@ko,
+      "The date the court confirmed the intention to divorce in a consensual case; it cannot precede the reflection end date."@en .
+div:effectiveDate a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:date ;
+    rdfs:label "효력 발생일"@ko, "Effective date"@en ;
+    rdfs:comment "이혼이 법적으로 성립한 날짜이다. 종결된 사건에만 있으며 접수일과 의사 확인일보다 앞설 수 없다."@ko,
+      "The date the divorce took legal effect; only for finalized cases, and not before the filed or confirmation date."@en .
+div:decreeEvidenceUri a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:anyURI ;
+    rdfs:label "종결 증빙 주소"@ko, "Decree evidence URI"@en ;
+    rdfs:comment "판결문, 조정 조서, 등록 기록처럼 이혼 성립을 확인할 수 있는 문서의 위치이다. 종결된 사건에 필요하며 진위를 자동으로 보증하지 않는다."@ko,
+      "Points to a judgment, mediation record or registration record showing the divorce took effect; required for a finalized case and not verified automatically."@en .
+div:withdrawalDate a owl:DatatypeProperty ; rdfs:domain div:DivorceCase ; rdfs:range xsd:date ;
+    rdfs:label "철회일"@ko, "Withdrawal date"@en ;
+    rdfs:comment "신청을 거두어들인 날짜이다. 철회된 사건에만 있으며 접수일보다 앞설 수 없다."@ko,
+      "The date the application was withdrawn; only for withdrawn cases and not before the filed date."@en .
+div:partyRole a owl:DatatypeProperty ; rdfs:domain div:Party ; rdfs:range xsd:string ;
+    rdfs:label "당사자 역할"@ko, "Party role"@en ;
+    rdfs:comment "joint-petitioner(공동 신청), petitioner(신청·원고), respondent(상대방·피고) 중 하나이다. 협의 사건은 두 사람 모두 공동 신청이다."@ko,
+      "One of joint-petitioner, petitioner or respondent; both parties of a consensual case are joint petitioners."@en .
+div:minorAtFiling a owl:DatatypeProperty ; rdfs:domain div:Child ; rdfs:range xsd:boolean ;
+    rdfs:label "접수 시 미성년 여부"@ko, "Minor at filing"@en ;
+    rdfs:comment "접수 시점에 자녀가 미성년이었는지를 true 또는 false로 기록한다. 미성년 자녀에게만 양육 결정이 필요하다."@ko,
+      "Whether the child was a minor at filing, true or false; only a minor child needs a custody arrangement."@en .
+div:authorityHolding a owl:DatatypeProperty ; rdfs:domain div:CustodyArrangement ; rdfs:range xsd:string ;
+    rdfs:label "친권 행사 방식"@ko, "Authority arrangement"@en ;
+    rdfs:comment "친권을 sole(한 사람) 또는 joint(공동)로 행사하기로 했는지 기록한다."@ko,
+      "Whether parental authority is exercised by one parent (sole) or jointly (joint)."@en .
+div:monthlyAmount a owl:DatatypeProperty ; rdfs:domain div:SupportObligation ; rdfs:range xsd:decimal ;
+    rdfs:label "월 양육비"@ko, "Monthly amount"@en ;
+    rdfs:comment "매달 지급하기로 한 양육비 금액이며 0보다 큰 소수이다. 통화는 별도로 기록한다."@ko,
+      "The monthly support amount, a decimal above zero, with the currency recorded separately."@en .
+div:currencyCode a owl:DatatypeProperty ; rdfs:domain div:SupportObligation ; rdfs:range xsd:string ;
+    rdfs:label "양육비 통화"@ko, "Support currency"@en ;
+    rdfs:comment "양육비의 통화를 KRW 같은 세 글자 대문자 코드로 기록한다."@ko,
+      "The currency of the support amount as a three-letter uppercase code such as KRW."@en .
+div:paymentDay a owl:DatatypeProperty ; rdfs:domain div:SupportObligation ; rdfs:range xsd:integer ;
+    rdfs:label "지급일"@ko, "Payment day"@en ;
+    rdfs:comment "매달 지급하는 날짜를 1에서 31 사이의 정수로 기록한다."@ko,
+      "The day of the month on which payment is due, an integer from 1 to 31."@en .
+div:assetType a owl:DatatypeProperty ; rdfs:domain div:Asset ; rdfs:range xsd:string ;
+    rdfs:label "항목 종류"@ko, "Item type"@en ;
+    rdfs:comment "real-estate, deposit, vehicle, pension, debt, other 중 하나이다. debt는 분할할 채무를 뜻한다."@ko,
+      "One of real-estate, deposit, vehicle, pension, debt or other; debt means a liability to be divided."@en .
+div:estimatedValue a owl:DatatypeProperty ; rdfs:domain div:Asset ; rdfs:range xsd:decimal ;
+    rdfs:label "추정 가액"@ko, "Estimated value"@en ;
+    rdfs:comment "항목의 추정 금액이며 0보다 큰 소수이다. 채무도 양수로 적고 종류로 구분한다."@ko,
+      "The estimated amount of the item, a decimal above zero; a debt is also positive and told apart by its type."@en .
+div:valueCurrency a owl:DatatypeProperty ; rdfs:domain div:Asset ; rdfs:range xsd:string ;
+    rdfs:label "가액 통화"@ko, "Value currency"@en ;
+    rdfs:comment "추정 가액의 통화를 KRW 같은 세 글자 대문자 코드로 기록한다."@ko,
+      "The currency of the estimated value as a three-letter uppercase code such as KRW."@en .
+div:sharePercent a owl:DatatypeProperty ; rdfs:domain div:AssetAllocation ; rdfs:range xsd:decimal ;
+    rdfs:label "분할 비율 퍼센트"@ko, "Share percent"@en ;
+    rdfs:comment "한 당사자에게 돌아가는 비율이며 0보다 크고 100 이하이다. 항목별 합은 종결된 사건에서 100이어야 한다."@ko,
+      "The share going to one party, above 0 and up to 100; per item the shares total 100 in a finalized case."@en .

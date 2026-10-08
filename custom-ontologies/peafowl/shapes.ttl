@@ -1,0 +1,337 @@
+@prefix pea: <https://example.org/ontology/custom/peafowl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+pea:BehaviorShape a sh:NodeShape ;
+    sh:class pea:Behavior ;
+    sh:property [ sh:class pea:PeafowlSpecies ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:behaviorOfSpecies ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "courtship-display"^^xsd:string "social-organization"^^xsd:string "foraging"^^xsd:string "movement"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:behaviorKind ],
+        [ sh:class pea:SexTerm ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:behaviorAssociatedSexTerm ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:behaviorDescription ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:behaviorEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:behaviorLabel ] ;
+    sh:targetClass pea:Behavior .
+
+pea:CoverageNoteShape a sh:NodeShape ;
+    sh:class pea:CoverageNote ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:coverageLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "included"^^xsd:string "limited"^^xsd:string "excluded"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:coverageStatus ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:coverageExplanation ] ;
+    sh:targetClass pea:CoverageNote .
+
+pea:DietItemShape a sh:NodeShape ;
+    sh:class pea:DietItem ;
+    sh:property [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:dietEvidence ],
+        [ sh:class pea:PeafowlSpecies ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:dietOfSpecies ],
+        [ sh:datatype rdf:langString ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:dietDescription ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:dietLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "plant"^^xsd:string "invertebrate"^^xsd:string "vertebrate"^^xsd:string "general-foraging"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:dietCategory ] ;
+    sh:targetClass pea:DietItem .
+
+pea:EvidenceRecordShape a sh:NodeShape ;
+    sh:class pea:EvidenceRecord ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:evidenceScope ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:evidenceIdentifier ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:evidenceAbout ],
+        [ sh:class pea:SourceDocument ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:evidenceSource ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:evidenceClaim ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "source-reported"^^xsd:string "conflict-preserved"^^xsd:string "editorial-scope"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:evidenceStatus ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:evidenceLocator ] ;
+    sh:targetClass pea:EvidenceRecord .
+
+pea:HabitatRangeShape a sh:NodeShape ;
+    sh:class pea:HabitatRange ;
+    sh:property [ sh:class pea:PeafowlSpecies ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:habitatOfSpecies ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:habitatLabel ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:habitatEvidence ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "habitat"^^xsd:string "geographic-range"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:habitatKind ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:habitatDescription ] ;
+    sh:targetClass pea:HabitatRange .
+
+pea:LifeStageTermShape a sh:NodeShape ;
+    sh:class pea:LifeStageTerm ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:lifeStageTermLabel ],
+        [ sh:class pea:PeafowlSpecies ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:lifeStageAppliesToSpecies ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "young"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:lifeStageCategory ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:lifeStageEvidence ] ;
+    sh:targetClass pea:LifeStageTerm .
+
+pea:MorphologicalFeatureShape a sh:NodeShape ;
+    sh:class pea:MorphologicalFeature ;
+    sh:property [ sh:class pea:SexTerm ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:featureAssociatedSexTerm ],
+        [ sh:class pea:PeafowlSpecies ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:featureOfSpecies ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:featureLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "plumage-structure"^^xsd:string "coloration"^^xsd:string "sexual-dimorphism"^^xsd:string "ornament"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:featureKind ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:featureDescription ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:featureEvidence ] ;
+    sh:targetClass pea:MorphologicalFeature .
+
+pea:PeafowlSpeciesShape a sh:NodeShape ;
+    sh:class pea:PeafowlSpecies ;
+    sh:targetClass pea:PeafowlSpecies .
+
+pea:ReproductiveObservationShape a sh:NodeShape ;
+    sh:class pea:ReproductiveObservation ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionLabel ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "source-range"^^xsd:string "approximate"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionEstimateType ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:reproductionEvidence ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0.0 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionMaximum ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionUnit ],
+        [ sh:class pea:PeafowlSpecies ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:reproductionForSpecies ],
+        [ sh:class pea:SexTerm ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:reproductionAssociatedTerm ],
+        [ sh:datatype xsd:string ;
+            sh:in ( "eggs-per-clutch"^^xsd:string "incubation-duration"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionMeasure ],
+        [ sh:datatype xsd:decimal ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minInclusive 0.0 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:reproductionMinimum ] ;
+    sh:targetClass pea:ReproductiveObservation .
+
+pea:SexTermShape a sh:NodeShape ;
+    sh:class pea:SexTerm ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "male"^^xsd:string "female"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sexCategory ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:sexTermEvidence ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sexTermLabel ],
+        [ sh:class pea:PeafowlSpecies ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:sexTermAppliesToSpecies ] ;
+    sh:targetClass pea:SexTerm .
+
+pea:SourceDocumentShape a sh:NodeShape ;
+    sh:class pea:SourceDocument ;
+    sh:property [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sourceScope ],
+        [ sh:datatype xsd:anyURI ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sourceURL ],
+        [ sh:datatype rdf:langString ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sourceTitle ],
+        [ sh:datatype xsd:date ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sourceAccessedOn ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:sourcePublisher ] ;
+    sh:targetClass pea:SourceDocument .
+
+pea:TaxonShape a sh:NodeShape ;
+    sh:class pea:Taxon ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:in ( "class"^^xsd:string "order"^^xsd:string "family"^^xsd:string "genus"^^xsd:string "species"^^xsd:string ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:taxonRank ],
+        [ sh:class pea:Taxon ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:taxonHigherTaxon ],
+        [ sh:class pea:EvidenceRecord ;
+            sh:nodeKind sh:IRI ;
+            sh:path pea:taxonHasEvidence ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:minLength 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:taxonScientificName ],
+        [ sh:datatype rdf:langString ;
+            sh:nodeKind sh:Literal ;
+            sh:path pea:taxonCommonName ] ;
+    sh:targetClass pea:Taxon .

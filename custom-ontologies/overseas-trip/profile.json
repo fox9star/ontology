@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "overseas-trip",
+  "name": "해외여행 계획 온톨로지 (overseas-trip)",
+  "description": "여행 계획의 목적지·입국 요건·일자별 일정·동반자·항공 구간·보험·예약·예산을 연결하고, 확인되지 않은 입국 요건이나 미확정 예약이 남은 계획을 확정하지 못하게 합니다.",
+  "name_en": "Overseas Trip Planning Ontology",
+  "description_en": "Connects trip plans, destinations, entry requirements, daily itineraries, travelers, flight segments, insurance, bookings and budgets, and blocks confirming a plan while entry requirements are unchecked or bookings are unconfirmed.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/overseas-trip#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-04T23:50:13.737663+00:00",
+  "schema": "custom-ontologies/overseas-trip/schema.ttl",
+  "owl": "custom-ontologies/overseas-trip/schema.owl",
+  "shapes": "custom-ontologies/overseas-trip/shapes.ttl",
+  "example": "custom-ontologies/overseas-trip/example.ttl",
+  "questions": "custom-ontologies/overseas-trip/questions.md",
+  "questions_fixture": "custom-ontologies/overseas-trip/question-fixture.ttl",
+  "question_answers": "custom-ontologies/overseas-trip/question-answers.json",
+  "compatibility_cases": "custom-ontologies/overseas-trip/consumer-cases.trig"
+}

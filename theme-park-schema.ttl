@@ -1,0 +1,343 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix tpark: <http://example.org/ontology/theme-park#> .
+
+<http://example.org/ontology/theme-park> a owl:Ontology ;
+    rdfs:label "놀이공원 운영 및 스마트 대기 온톨로지"@ko , "Theme Park Operations and Smart Queuing Ontology"@en ;
+    rdfs:comment "놀이공원(테마파크)의 테마 구역, 어트랙션(놀이기구), 탑승 제한, 실시간 대기열, 안전 점검 및 AI 혼잡도 제어 에이전트의 운영을 종합적으로 모델링하는 온톨로지"@ko ,
+                 "An ontology comprehensively modeling theme park zones, attractions, ride restrictions, real-time queues, safety inspections, and AI crowd control agent operations."@en ;
+    owl:versionInfo "1.0.0" .
+
+# =================================================================
+# Classes (14)
+# =================================================================
+
+tpark:ThemePark a owl:Class ;
+    rdfs:label "테마파크"@ko , "Theme Park"@en ;
+    rdfs:comment "다양한 테마 구역과 어트랙션, 편의시설을 보유한 종합 놀이공원 시설"@ko ,
+                 "A comprehensive amusement park facility comprising multiple themed zones, attractions, and amenities."@en .
+
+tpark:ThemeZone a owl:Class ;
+    rdfs:label "테마 구역"@ko , "Themed Zone"@en ;
+    rdfs:comment "공원 내에서 특정 세계관이나 테마 컨셉으로 조성된 구역"@ko ,
+                 "A designated zone within the theme park styled around a specific worldview or aesthetic concept."@en .
+
+tpark:Attraction a owl:Class ;
+    rdfs:label "어트랙션/놀이기구"@ko , "Attraction"@en ;
+    rdfs:comment "방문객이 즐길 수 있도록 설치된 놀이 탑승물 또는 체험형 시설"@ko ,
+                 "A ride or experiential installation provided for visitors to enjoy in the park."@en .
+
+tpark:RollerCoaster a owl:Class ;
+    rdfs:subClassOf tpark:Attraction ;
+    rdfs:label "롤러코스터"@ko , "Roller Coaster"@en ;
+    rdfs:comment "트랙을 따라 고속으로 주행하며 급강하 및 회전 체험을 제공하는 철도형 놀이기구"@ko ,
+                 "A rail-based ride operating at high speeds along tracks featuring steep drops and inversions."@en .
+
+tpark:WaterRide a owl:Class ;
+    rdfs:subClassOf tpark:Attraction ;
+    rdfs:label "수상 어트랙션"@ko , "Water Ride"@en ;
+    rdfs:comment "수로를 따라 주행하거나 급류를 타는 물 관련 탑승 시설"@ko ,
+                 "A water-based ride installation navigating waterways or flumes with splashing thrills."@en .
+
+tpark:DarkRide a owl:Class ;
+    rdfs:subClassOf tpark:Attraction ;
+    rdfs:label "다크 라이드"@ko , "Dark Ride"@en ;
+    rdfs:comment "실내 특수효과 및 스토리텔링 음향·시각 연출이 결합된 실내 탑승 어트랙션"@ko ,
+                 "An indoor guided ride combining special effects, storytelling, lighting, and soundscapes."@en .
+
+tpark:ParkVisitor a owl:Class ;
+    rdfs:label "공원 방문객"@ko , "Park Visitor"@en ;
+    rdfs:comment "테마파크에 입장하여 시설을 이용하는 관람객"@ko ,
+                 "A guest admitted to the theme park utilizing facilities and riding attractions."@en .
+
+tpark:AdmissionPass a owl:Class ;
+    rdfs:label "입장권/패스"@ko , "Admission Pass"@en ;
+    rdfs:comment "테마파크 입장 및 어트랙션 이용 권한을 증명하는 티켓 또는 디지털 패스"@ko ,
+                 "A physical ticket or digital pass certifying admission and ride access privileges."@en .
+
+tpark:WaitTimeRecord a owl:Class ;
+    rdfs:label "대기 시간 기록"@ko , "Wait Time Record"@en ;
+    rdfs:comment "어트랙션별 특정 시점에 측정된 실시간 대기 시간 및 대기 인원 통계"@ko ,
+                 "A statistical record of real-time queue wait duration and visitor count for an attraction."@en .
+
+tpark:SafetyInspection a owl:Class ;
+    rdfs:label "안전 점검 기록"@ko , "Safety Inspection"@en ;
+    rdfs:comment "어트랙션의 안전 운행을 검증하기 위한 정기 및 수시 기술 점검 기록"@ko ,
+                 "A formal record of periodic or ad-hoc technical inspection verifying safe ride operation."@en .
+
+tpark:RideMaintenanceTask a owl:Class ;
+    rdfs:label "정비 보수 작업"@ko , "Ride Maintenance Task"@en ;
+    rdfs:comment "어트랙션의 부품 교체, 윤활, 레일 교정 등 실제 유지보수 실행 과업"@ko ,
+                 "An operational maintenance task executing component replacement, lubrication, or track calibration."@en .
+
+tpark:ThemeParkAgent a owl:Class ;
+    rdfs:label "테마파크 AI 에이전트"@ko , "Theme Park AI Agent"@en ;
+    rdfs:comment "테마파크의 스마트 운영, 대기열 최적화 및 시설 안전을 관리하는 지능형 소프트웨어 에이전트"@ko ,
+                 "An intelligent software agent managing smart operations, queue optimization, and safety in the theme park."@en .
+
+tpark:CrowdControlAgent a owl:Class ;
+    rdfs:subClassOf tpark:ThemeParkAgent ;
+    rdfs:label "군중 혼잡도 제어 에이전트"@ko , "Crowd Control Agent"@en ;
+    rdfs:comment "공원 전역의 인파 밀집도를 실시간 모니터링하고 대기열을 분산하는 AI 에이전트"@ko ,
+                 "An AI agent monitoring visitor density across the park and dynamically balancing queues."@en .
+
+tpark:SafetyMonitoringAgent a owl:Class ;
+    rdfs:subClassOf tpark:ThemeParkAgent ;
+    rdfs:label "안전 모니터링 에이전트"@ko , "Safety Monitoring Agent"@en ;
+    rdfs:comment "센서 데이터와 점검 이력을 분석하여 선제적 정비 수요와 이상 징후를 감지하는 에이전트"@ko ,
+                 "An agent analyzing sensor telemetry and inspection history to detect maintenance needs and anomalies."@en .
+
+# =================================================================
+# Object Properties (12)
+# =================================================================
+
+tpark:hasZone a owl:ObjectProperty ;
+    rdfs:domain tpark:ThemePark ;
+    rdfs:range tpark:ThemeZone ;
+    rdfs:label "테마 구역 보유"@ko , "has themed zone"@en ;
+    rdfs:comment "테마파크 단지 내에 포함된 개별 테마 구역을 연결"@ko ,
+                 "Associates a theme park with its constituent themed zones."@en .
+
+tpark:locatedInZone a owl:ObjectProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range tpark:ThemeZone ;
+    rdfs:label "위치한 테마 구역"@ko , "located in zone"@en ;
+    rdfs:comment "해당 어트랙션이 설치되어 위치하는 테마 구역"@ko ,
+                 "Specifies the themed zone in which the attraction is installed."@en .
+
+tpark:holdsPass a owl:ObjectProperty ;
+    rdfs:domain tpark:ParkVisitor ;
+    rdfs:range tpark:AdmissionPass ;
+    rdfs:label "보유 입장권"@ko , "holds admission pass"@en ;
+    rdfs:comment "방문객이 소지하고 있는 입장권 또는 우선탑승 패스"@ko ,
+                 "Indicates the admission ticket or express pass held by the park visitor."@en .
+
+tpark:hasWaitTime a owl:ObjectProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range tpark:WaitTimeRecord ;
+    rdfs:label "대기 시간 기록 보유"@ko , "has wait time record"@en ;
+    rdfs:comment "어트랙션에 연결된 실시간 대기열 측정 기록"@ko ,
+                 "Relates an attraction to its measured real-time queue wait record."@en .
+
+tpark:hasInspection a owl:ObjectProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range tpark:SafetyInspection ;
+    rdfs:label "안전 점검 기록 보유"@ko , "has safety inspection"@en ;
+    rdfs:comment "어트랙션에 대해 수행된 안전 점검 내역"@ko ,
+                 "Associates an attraction with conducted safety inspection records."@en .
+
+tpark:hasMaintenanceTask a owl:ObjectProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range tpark:RideMaintenanceTask ;
+    rdfs:label "정비 작업 내역"@ko , "has maintenance task"@en ;
+    rdfs:comment "어트랙션의 예방 정비 및 긴급 수리 작업"@ko ,
+                 "Connects an attraction with preventive or corrective maintenance tasks."@en .
+
+tpark:managedByAgent a owl:ObjectProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range tpark:ThemeParkAgent ;
+    rdfs:label "담당 운영 에이전트"@ko , "managed by agent"@en ;
+    rdfs:comment "어트랙션의 운영 및 상태 관리를 전담하는 AI 에이전트"@ko ,
+                 "Indicates the AI agent responsible for managing attraction operations."@en .
+
+tpark:executesTask a owl:ObjectProperty ;
+    rdfs:domain tpark:ThemeParkAgent ;
+    rdfs:range tpark:RideMaintenanceTask ;
+    rdfs:label "정비 작업 지시/실행"@ko , "executes maintenance task"@en ;
+    rdfs:comment "AI 에이전트가 스케줄링하거나 제어하는 시설 정비 작업"@ko ,
+                 "Links an agent to the maintenance task it schedules or supervises."@en .
+
+tpark:monitorsAttraction a owl:ObjectProperty ;
+    rdfs:domain tpark:CrowdControlAgent ;
+    rdfs:range tpark:Attraction ;
+    rdfs:label "모니터링 대상 어트랙션"@ko , "monitors attraction"@en ;
+    rdfs:comment "혼잡도 분산 에이전트가 실시간 대기열을 감시하는 어트랙션"@ko ,
+                 "Specifies an attraction whose queue density is observed by the crowd control agent."@en .
+
+tpark:auditsInspection a owl:ObjectProperty ;
+    rdfs:domain tpark:SafetyMonitoringAgent ;
+    rdfs:range tpark:SafetyInspection ;
+    rdfs:label "감사 대상 안전점검"@ko , "audits safety inspection"@en ;
+    rdfs:comment "안전 모니터링 에이전트가 검증 및 감사하는 안전 점검 기록"@ko ,
+                 "Identifies safety inspection records audited by the safety monitoring agent."@en .
+
+tpark:visitorAssignedTo a owl:ObjectProperty ;
+    rdfs:domain tpark:ParkVisitor ;
+    rdfs:range tpark:Attraction ;
+    rdfs:label "예약/대기 중인 어트랙션"@ko , "visitor assigned to attraction"@en ;
+    rdfs:comment "방문객이 스마트 줄서기를 통해 배정받아 탑승 대기 중인 어트랙션"@ko ,
+                 "Associates a visitor with the attraction they are currently queued or scheduled for."@en .
+
+tpark:validForPark a owl:ObjectProperty ;
+    rdfs:domain tpark:AdmissionPass ;
+    rdfs:range tpark:ThemePark ;
+    rdfs:label "적용 대상 테마파크"@ko , "valid for theme park"@en ;
+    rdfs:comment "해당 패스가 효력을 갖는 대상 테마파크 단지"@ko ,
+                 "Specifies the theme park for which the admission pass is valid."@en .
+
+# =================================================================
+# Datatype Properties (23)
+# =================================================================
+
+tpark:parkName a owl:DatatypeProperty ;
+    rdfs:domain tpark:ThemePark ;
+    rdfs:range xsd:string ;
+    rdfs:label "테마파크 명칭"@ko , "park name"@en ;
+    rdfs:comment "놀이공원(테마파크)의 공식 브랜드 상호 명칭"@ko ,
+                 "The official brand name of the theme park."@en .
+
+tpark:openingHours a owl:DatatypeProperty ;
+    rdfs:domain tpark:ThemePark ;
+    rdfs:range xsd:string ;
+    rdfs:label "개장 운영 시간"@ko , "opening hours"@en ;
+    rdfs:comment "일일 개장 및 폐장 시간 표기 (예: 10:00-21:00)"@ko ,
+                 "The daily operational hours from opening to closing (e.g., 10:00-21:00)."@en .
+
+tpark:totalAreaSqMeters a owl:DatatypeProperty ;
+    rdfs:domain tpark:ThemePark ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "총 부지 면적(m²)"@ko , "total area square meters"@en ;
+    rdfs:comment "놀이공원의 총 부지 면적(제곱미터 단위)"@ko ,
+                 "The total site area of the theme park in square meters."@en .
+
+tpark:zoneTheme a owl:DatatypeProperty ;
+    rdfs:domain tpark:ThemeZone ;
+    rdfs:range xsd:string ;
+    rdfs:label "구역 테마 컨셉"@ko , "zone theme concept"@en ;
+    rdfs:comment "테마 구역에 적용된 건축 및 시각 컨셉 (예: 서부개척시대, 미래우주, 동화)"@ko ,
+                 "The narrative or stylistic theme applied to the zone (e.g., Western, Sci-Fi, Fantasy)."@en .
+
+tpark:attractionCode a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:string ;
+    rdfs:label "어트랙션 식별 코드"@ko , "attraction code"@en ;
+    rdfs:comment "어트랙션의 사내 관리용 고유 영숫자 식별 코드"@ko ,
+                 "A unique alphanumeric facility code assigned to the attraction."@en .
+
+tpark:rideCapacityPerHour a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:integer ;
+    rdfs:label "시간당 탑승 정원(명)"@ko , "ride capacity per hour"@en ;
+    rdfs:comment "이론상 시간당 최대로 수용 가능한 탑승객 수"@ko ,
+                 "Theoretical maximum passenger throughput capacity per hour."@en .
+
+tpark:minHeightRequirementCm a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "탑승 제한 신장(cm)"@ko , "minimum height requirement cm"@en ;
+    rdfs:comment "어트랙션 탑승을 위해 요구되는 최소 신장(cm)"@ko ,
+                 "Minimum body height in centimeters required for safe boarding."@en .
+
+tpark:maxSpeedKmh a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "최고 속도(km/h)"@ko , "maximum speed kmh"@en ;
+    rdfs:comment "탑승물 운행 중 기록되는 순간 최고 속도"@ko ,
+                 "The top instantaneous speed reached during the ride cycle in km/h."@en .
+
+tpark:trackLengthMeters a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "트랙 길이(m)"@ko , "track length meters"@en ;
+    rdfs:comment "롤러코스터 또는 주행 어트랙션의 레일 총 길이"@ko ,
+                 "Total rail track distance of the ride installation in meters."@en .
+
+tpark:rideDurationSeconds a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:integer ;
+    rdfs:label "운행 소요 시간(초)"@ko , "ride duration seconds"@en ;
+    rdfs:comment "출발부터 정지까지 1회 탑승 사이클 소요 시간(초)"@ko ,
+                 "Duration of one complete ride cycle from departure to station return in seconds."@en .
+
+tpark:operationalStatus a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:string ;
+    rdfs:label "운영 상태"@ko , "operational status"@en ;
+    rdfs:comment "현재 어트랙션 운영 상태 (operating, maintenance, weather_hold, closed)"@ko ,
+                 "Current operational condition of the ride (operating, maintenance, weather_hold, closed)."@en .
+
+tpark:fastPassAvailable a owl:DatatypeProperty ;
+    rdfs:domain tpark:Attraction ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "스마트/매직패스 지원 여부"@ko , "fast pass available"@en ;
+    rdfs:comment "우선탑승 예약 시스템(패스트패스) 지원 여부"@ko ,
+                 "Indicates whether express priority queuing (fast pass) is supported."@en .
+
+tpark:currentWaitMinutes a owl:DatatypeProperty ;
+    rdfs:domain tpark:WaitTimeRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:label "현재 대기 시간(분)"@ko , "current wait minutes"@en ;
+    rdfs:comment "일반 대기열 기준 예상 대기 시간(분 단위)"@ko ,
+                 "Estimated queue waiting time in minutes for standard queue guests."@en .
+
+tpark:queueLengthPersons a owl:DatatypeProperty ;
+    rdfs:domain tpark:WaitTimeRecord ;
+    rdfs:range xsd:integer ;
+    rdfs:label "대기열 인원(명)"@ko , "queue length persons"@en ;
+    rdfs:comment "대기열 구역에 줄을 서 있는 실시간 인원 수"@ko ,
+                 "Real-time head count of visitors waiting in line."@en .
+
+tpark:recordedTimestamp a owl:DatatypeProperty ;
+    rdfs:domain tpark:WaitTimeRecord ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "측정 일시"@ko , "recorded timestamp"@en ;
+    rdfs:comment "대기 시간 데이터가 집계되어 기록된 시각"@ko ,
+                 "Date and time when the wait time metric was sampled."@en .
+
+tpark:passType a owl:DatatypeProperty ;
+    rdfs:domain tpark:AdmissionPass ;
+    rdfs:range xsd:string ;
+    rdfs:label "패스 유형"@ko , "pass type"@en ;
+    rdfs:comment "입장권 상품 등급 및 유형 (DayPass, AfternoonPass, MagicPass, AnnualPass)"@ko ,
+                 "Category or tier of admission product (DayPass, AfternoonPass, MagicPass, AnnualPass)."@en .
+
+tpark:passPrice a owl:DatatypeProperty ;
+    rdfs:domain tpark:AdmissionPass ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "패스 가격"@ko , "pass price"@en ;
+    rdfs:comment "입장권의 통화 기준 판매 가격"@ko ,
+                 "Monetary sale price of the admission pass."@en .
+
+tpark:inspectionDate a owl:DatatypeProperty ;
+    rdfs:domain tpark:SafetyInspection ;
+    rdfs:range xsd:date ;
+    rdfs:label "점검 일자"@ko , "inspection date"@en ;
+    rdfs:comment "안전 점검을 실시한 날짜"@ko ,
+                 "Calendar date on which the safety inspection was conducted."@en .
+
+tpark:inspectionPassed a owl:DatatypeProperty ;
+    rdfs:domain tpark:SafetyInspection ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "점검 합격 여부"@ko , "inspection passed"@en ;
+    rdfs:comment "안전 점검 결과 기준 합격 여부"@ko ,
+                 "Boolean indicator verifying whether the attraction passed safety inspection."@en .
+
+tpark:safetyInspector a owl:DatatypeProperty ;
+    rdfs:domain tpark:SafetyInspection ;
+    rdfs:range xsd:string ;
+    rdfs:label "점검관/인증기관"@ko , "safety inspector"@en ;
+    rdfs:comment "점검을 주관한 전문 안전 검사관 또는 공인 검사 기관"@ko ,
+                 "Name of the certified safety inspector or regulatory auditing agency."@en .
+
+tpark:maintenanceCategory a owl:DatatypeProperty ;
+    rdfs:domain tpark:RideMaintenanceTask ;
+    rdfs:range xsd:string ;
+    rdfs:label "정비 분류"@ko , "maintenance category"@en ;
+    rdfs:comment "정비 작업의 분류 (daily_check, periodic_overhaul, emergency_fix)"@ko ,
+                 "Classification of maintenance activity (daily_check, periodic_overhaul, emergency_fix)."@en .
+
+tpark:congestionLevel a owl:DatatypeProperty ;
+    rdfs:domain tpark:CrowdControlAgent ;
+    rdfs:range xsd:string ;
+    rdfs:label "파크 혼잡도 레벨"@ko , "congestion level"@en ;
+    rdfs:comment "에이전트가 산정한 공원 전역의 혼잡 수준 (low, moderate, high, extreme)"@ko ,
+                 "Park-wide congestion rating computed by the AI agent (low, moderate, high, extreme)."@en .
+
+tpark:aiRecommendationNote a owl:DatatypeProperty ;
+    rdfs:domain tpark:ThemeParkAgent ;
+    rdfs:range xsd:string ;
+    rdfs:label "AI 운영 권고문"@ko , "AI recommendation note"@en ;
+    rdfs:comment "AI 에이전트가 생성한 대기 분산 또는 시설 운영 조치 권고"@ko ,
+                 "Operational dispatch or queue balancing advisory formulated by the AI agent."@en .

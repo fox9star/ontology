@@ -1,0 +1,111 @@
+{
+  "created_at": "2026-10-08T01:43:12+00:00",
+  "id": "autonomous-driving",
+  "version": "0.1.0",
+  "draft": true,
+  "classes": 15,
+  "properties": 92,
+  "instance_counts": {
+    "AutomationLevel": 6,
+    "AutonomousDrivingSystem": 1,
+    "DocumentationSource": 6,
+    "DrivingFeature": 1,
+    "OperationalDesignDomain": 1,
+    "RoadActor": 4,
+    "RoadMap": 1,
+    "Route": 1,
+    "SafetyFunction": 2,
+    "Scenario": 2,
+    "Sensor": 4,
+    "SoftwareModule": 7,
+    "TestRun": 1,
+    "Trajectory": 1,
+    "Vehicle": 1
+  },
+  "triples": 390,
+  "ingestion_validation": {
+    "conforms": true,
+    "raw_conforms": true,
+    "inferred_conforms": true,
+    "raw_results": 0,
+    "inferred_results": 0,
+    "inferred_type_count": 79
+  },
+  "questions": 11,
+  "query_syntax": "parsed",
+  "question_answers_compared": false,
+  "consumer_cases_executed": false,
+  "automated_tests_executed": false,
+  "browser_visual_verification": "not_performed",
+  "scope": "SAE and NHTSA terms and Autoware architecture descriptions are linked to primary sources. The campus shuttle, its ODD, sensors, modules, road actors, safety-function concepts and test plan are synthetic; no driving feature level was assessed and no vehicle, simulation or road test was run.",
+  "files": {
+    "consumer-cases.trig": {
+      "sha256": "808f8586d55c8ff608ee3e9328eef74cb6b6f1086a265a693b09a2acf421d613",
+      "bytes": 60742
+    },
+    "curated-data.json": {
+      "sha256": "b3f51b912f5cb9af10a67ebf7b984d5d662b4e985faf1897480c3ded3203d8c6",
+      "bytes": 22817
+    },
+    "example.ttl": {
+      "sha256": "6f06fbab50e6e86e233fd2911a5bfb7c28f5801775fda37632698e587e5922ed",
+      "bytes": 24084
+    },
+    "profile.json": {
+      "sha256": "071317d1c822c386126b027a99973f84aa6a0f64168930cd0a187a23cc40dfb4",
+      "bytes": 1268
+    },
+    "question-answers.json": {
+      "sha256": "437a072f820cb4c869d77ae9715608523465c92fa228ad83dd4ecef1ed6dd37d",
+      "bytes": 36838
+    },
+    "question-fixture.ttl": {
+      "sha256": "bacdfffd5a88cbfb854eb65b1b6f37e9508410e07ca5eef8aea0c60d4c389f6e",
+      "bytes": 23591
+    },
+    "questions.md": {
+      "sha256": "cb23ea929f2f6de690ce2bcda60a1218c33eb639471d1188645ac97a98627240",
+      "bytes": 8006
+    },
+    "schema.owl": {
+      "sha256": "03c14d1c4d7ab1f6fa3b83e747c1625694799e14be7dfbb211a7334164f9cfe0",
+      "bytes": 72844
+    },
+    "schema.ttl": {
+      "sha256": "b689e65899c4a2e55f354bcdbd381be6ec144034c05c716a0c30cddb3be310ea",
+      "bytes": 33459
+    },
+    "shapes.ttl": {
+      "sha256": "b9769f82ec01430e76a9e86286d6c16deffe0bfc7c830688b2670b65066fa0ed",
+      "bytes": 32510
+    }
+  },
+  "live_studio": {
+    "observed_at": "2026-10-08T01:43:18+00:00",
+    "base_url": "http://127.0.0.1:5000",
+    "catalog_count": 26,
+    "profile_name": "자율주행 온톨로지 (autonomous-driving)",
+    "profile_id": "autonomous-driving",
+    "explorer": {
+      "classes": 15,
+      "properties": 92,
+      "instances": 39
+    },
+    "question_keys": [
+      "AD-01",
+      "AD-02",
+      "AD-03",
+      "AD-04",
+      "AD-05",
+      "AD-06",
+      "AD-07",
+      "AD-08",
+      "AD-09",
+      "AD-10",
+      "AD-11"
+    ],
+    "page_status": 200,
+    "page_has_profile_option": true,
+    "browser_visual_verification": "not_performed"
+  }
+}

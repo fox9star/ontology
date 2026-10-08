@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "id": "divorce",
+  "name": "이혼 온톨로지 (divorce)",
+  "description": "이혼 사건의 절차 단계, 당사자, 자녀, 양육 결정, 양육비, 재산분할을 연결하고, 증빙 없는 종결과 날짜 순서의 모순, 비율 합이 100이 아닌 재산분할을 막습니다. 법률 자문이 아닙니다.",
+  "name_en": "Divorce Ontology",
+  "description_en": "Connects the stages, parties, children, custody decisions, child support and property division of a divorce case, and blocks finalizing without evidence, contradictory date order and property shares that do not total 100. It is not legal advice.",
+  "version": "0.1.0",
+  "prefix": "https://example.org/ontology/custom/divorce#",
+  "custom": true,
+  "draft": true,
+  "created_at": "2026-10-05T21:00:40+09:00",
+  "schema": "custom-ontologies/divorce/schema.ttl",
+  "owl": "custom-ontologies/divorce/schema.owl",
+  "shapes": "custom-ontologies/divorce/shapes.ttl",
+  "example": "custom-ontologies/divorce/example.ttl",
+  "questions": "custom-ontologies/divorce/questions.md",
+  "questions_fixture": "custom-ontologies/divorce/question-fixture.ttl",
+  "question_answers": "custom-ontologies/divorce/question-answers.json",
+  "compatibility_cases": "custom-ontologies/divorce/consumer-cases.trig"
+}

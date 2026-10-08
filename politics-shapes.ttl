@@ -1,0 +1,220 @@
+@prefix politics: <https://example.org/ontology/politics#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+politics:PoliticalPartyShape a sh:NodeShape ;
+    sh:targetClass politics:PoliticalParty ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "정당에는 이름 라벨이 필요합니다."@ko
+    ] .
+
+politics:CandidateShape a sh:NodeShape ;
+    sh:targetClass politics:Candidate ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "후보자에는 이름 또는 표시 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:memberParty ;
+        sh:class politics:PoliticalParty ;
+        sh:message "소속 정당은 PoliticalParty여야 합니다."@ko
+    ] .
+
+politics:ElectoralDistrictShape a sh:NodeShape ;
+    sh:targetClass politics:ElectoralDistrict ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "선거구에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:jurisdiction ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "선거구의 관할 구역을 문자열 하나로 기록해야 합니다."@ko
+    ] .
+
+politics:ElectionShape a sh:NodeShape ;
+    sh:targetClass politics:Election ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "선거에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:electionDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "선거일은 유효한 날짜 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:electionStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "SCHEDULED" "IN_PROGRESS" "COMPLETED" ) ;
+        sh:message "선거 상태는 SCHEDULED, IN_PROGRESS, COMPLETED 중 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:heldInDistrict ;
+        sh:class politics:ElectoralDistrict ;
+        sh:minCount 1 ;
+        sh:message "선거에는 하나 이상의 선거구가 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:hasCandidate ;
+        sh:class politics:Candidate ;
+        sh:minCount 1 ;
+        sh:message "선거에는 한 명 이상의 후보자가 연결되어야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:hasResult ;
+        sh:class politics:ElectionResult ;
+        sh:message "선거 결과 링크는 집계 결과 기록이어야 합니다."@ko
+    ] .
+
+politics:ElectionResultShape a sh:NodeShape ;
+    sh:targetClass politics:ElectionResult ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "선거 집계 결과에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:resultForCandidate ;
+        sh:class politics:Candidate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "집계 결과에는 대상 후보자를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:resultForElection ;
+        sh:class politics:Election ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "집계 결과에는 대상 선거를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:resultForDistrict ;
+        sh:class politics:ElectoralDistrict ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "집계 결과에는 대상 선거구를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:voteCount ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "집계 득표수는 0 이상의 정수여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:resultStatus ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "PRELIMINARY" "CERTIFIED" ) ;
+        sh:message "개표 결과 상태는 PRELIMINARY 또는 CERTIFIED여야 합니다."@ko
+    ] .
+
+politics:CampaignShape a sh:NodeShape ;
+    sh:targetClass politics:Campaign ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "선거운동에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:runByActor ;
+        sh:class politics:PoliticalActor ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "선거운동 주체를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:campaignForElection ;
+        sh:class politics:Election ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "선거운동 대상 선거를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:hasCampaignEvent ;
+        sh:class politics:CampaignEvent ;
+        sh:message "선거운동 행사 링크는 Campaign Event여야 합니다."@ko
+    ] .
+
+politics:CampaignEventShape a sh:NodeShape ;
+    sh:targetClass politics:CampaignEvent ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "선거운동 행사에는 이름 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:eventDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "행사 날짜는 유효한 날짜 하나여야 합니다."@ko
+    ] .
+
+politics:PolicyIssueShape a sh:NodeShape ;
+    sh:targetClass politics:PolicyIssue ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "정책 쟁점에는 이름 라벨이 필요합니다."@ko
+    ] .
+
+politics:PolicyPositionShape a sh:NodeShape ;
+    sh:targetClass politics:PolicyPosition ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "정책 입장 기록에는 라벨이 필요합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:positionByActor ;
+        sh:class politics:PoliticalActor ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "정책 입장을 표명한 정치 주체를 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:positionOnIssue ;
+        sh:class politics:PolicyIssue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "정책 입장이 다루는 쟁점을 하나 지정해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:positionStatement ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minLength 1 ;
+        sh:message "정책 입장 내용을 비어 있지 않은 문자열로 기록해야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:positionRecordedAt ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "정책 입장 기록일은 유효한 날짜 하나여야 합니다."@ko
+    ] ;
+    sh:property [
+        sh:path politics:sourceURL ;
+        sh:datatype xsd:anyURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "정책 입장에는 확인 가능한 출처 URL 하나가 필요합니다."@ko
+    ] .

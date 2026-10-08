@@ -1,0 +1,436 @@
+{
+  "MV-01": {
+    "variables": [
+      "shotName",
+      "order",
+      "startSec",
+      "endSec"
+    ],
+    "rows": [
+      [
+        "첫 번째 장면 (0~30초)",
+        "1",
+        "0.0",
+        "30.0"
+      ],
+      [
+        "두 번째 장면 (30~60초)",
+        "2",
+        "30.0",
+        "60.0"
+      ]
+    ]
+  },
+  "MV-02": {
+    "variables": [
+      "asset",
+      "file",
+      "duration",
+      "width",
+      "height"
+    ],
+    "rows": [
+      [
+        "https://example.org/mv#audio01",
+        "https://example.org/assets/song.wav",
+        "60.0",
+        null,
+        null
+      ],
+      [
+        "https://example.org/mv#image01",
+        "https://example.org/assets/image01.png",
+        null,
+        "1920",
+        "1080"
+      ],
+      [
+        "https://example.org/mv#image02",
+        "https://example.org/assets/image02.png",
+        null,
+        "1920",
+        "1080"
+      ],
+      [
+        "https://example.org/mv#video01",
+        "https://example.org/assets/video.mp4",
+        "60.0",
+        null,
+        null
+      ]
+    ]
+  },
+  "E2E-01": {
+    "variables": [
+      "task",
+      "taskLabel",
+      "status",
+      "agentLabel"
+    ],
+    "rows": [
+      [
+        "https://example.org/mv#task_audio_gen",
+        "음원 트랙 자동 생성",
+        "completed",
+        "음악 생성 AI 에이전트"
+      ],
+      [
+        "https://example.org/mv#task_lyric_gen",
+        "한국어 가사 작사 작업",
+        "completed",
+        "가사 작사 AI 에이전트"
+      ],
+      [
+        "https://example.org/mv#task_render",
+        null,
+        "completed",
+        "영상 편집 에이전트"
+      ],
+      [
+        "https://example.org/mv#task_subtitle_gen",
+        "타임라인 자막 싱크 작업",
+        "completed",
+        "자막 싱크 AI 에이전트"
+      ],
+      [
+        "https://example.org/mv#task_translation",
+        "영어 가사 번역 작업",
+        "completed",
+        "다국어 번역 AI 에이전트"
+      ]
+    ]
+  },
+  "E2E-02": {
+    "variables": [
+      "task",
+      "relation",
+      "target"
+    ],
+    "rows": [
+      [
+        "https://example.org/mv#task_subtitle_gen",
+        "input",
+        "https://example.org/mv#timeline_main"
+      ],
+      [
+        "https://example.org/mv#task_translation",
+        "task-dependency",
+        "https://example.org/mv#task_lyric_gen"
+      ]
+    ]
+  },
+  "DEV-01": {
+    "variables": [
+      "pipeId",
+      "status",
+      "task",
+      "taskLabel"
+    ],
+    "rows": [
+      [
+        "pipe-20261004-prod",
+        "SUCCESS",
+        "http://example.org/ontology/devops#BuildStep_01",
+        "Docker Container Build Step"
+      ],
+      [
+        "pipe-20261004-prod",
+        "SUCCESS",
+        "http://example.org/ontology/devops#DeployStep_01",
+        "Kubernetes Production Cluster Deployment"
+      ],
+      [
+        "pipe-20261004-prod",
+        "SUCCESS",
+        "http://example.org/ontology/devops#SecScan_01",
+        "SAST / Dependency Vulnerability Scan"
+      ]
+    ]
+  },
+  "DEV-02": {
+    "variables": [
+      "task",
+      "label",
+      "vulnerabilities"
+    ],
+    "rows": [
+      [
+        "http://example.org/ontology/devops#SecScan_01",
+        "SAST / Dependency Vulnerability Scan",
+        "0"
+      ]
+    ]
+  },
+  "AG-01": {
+    "variables": [
+      "task",
+      "objective",
+      "agent",
+      "dependsOn"
+    ],
+    "rows": [
+      [
+        "https://example.org/agent#draftTask",
+        "근거를 바탕으로 글 초안 작성",
+        "https://example.org/agent#writerAgent",
+        "https://example.org/agent#researchTask"
+      ],
+      [
+        "https://example.org/agent#researchTask",
+        "근거 자료 조사",
+        "https://example.org/agent#researchAgent",
+        null
+      ],
+      [
+        "https://example.org/agent#reviewTask",
+        "초안의 주장과 출처 검수",
+        "https://example.org/agent#reviewAgent",
+        "https://example.org/agent#draftTask"
+      ]
+    ]
+  },
+  "AG-02": {
+    "variables": [
+      "project",
+      "artifact",
+      "decision"
+    ],
+    "rows": [
+      [
+        "https://example.org/agent#project01",
+        "https://example.org/agent#articleV1",
+        "approved"
+      ]
+    ]
+  },
+  "EC-01": {
+    "variables": [
+      "product",
+      "label",
+      "productId",
+      "price",
+      "currency"
+    ],
+    "rows": [
+      [
+        "http://example.org/ontology/ecommerce#Product_Headphones",
+        "Wireless Noise Cancelling Headphones",
+        "PROD-99881",
+        "299.99",
+        null
+      ]
+    ]
+  },
+  "EC-02": {
+    "variables": [
+      "order",
+      "status",
+      "agent",
+      "product"
+    ],
+    "rows": [
+      [
+        "http://example.org/ontology/ecommerce#Order_88219",
+        "PROCESSING",
+        "http://example.org/ontology/ecommerce#Agent_RecSys",
+        "http://example.org/ontology/ecommerce#Product_Headphones"
+      ]
+    ]
+  },
+  "HC-01": {
+    "variables": [
+      "recordCount"
+    ],
+    "rows": [
+      [
+        "1"
+      ]
+    ]
+  },
+  "HC-02": {
+    "variables": [
+      "status",
+      "taskCount"
+    ],
+    "rows": [
+      [
+        "COMPLETED",
+        "1"
+      ],
+      [
+        "PENDING",
+        "1"
+      ]
+    ]
+  },
+  "AC-01": {
+    "variables": [
+      "courseLabel",
+      "studentLabel"
+    ],
+    "rows": []
+  },
+  "AC-02": {
+    "variables": [
+      "professorLabel",
+      "courseLabel"
+    ],
+    "rows": []
+  },
+  "SYN-01": {
+    "variables": [
+      "asset",
+      "model",
+      "prompt",
+      "evidence",
+      "recording"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/unverifiedAsset",
+        null,
+        null,
+        null,
+        "not-recorded"
+      ],
+      [
+        "https://example.test/competency/verifiedAsset",
+        "synthetic-model-v1",
+        "invented prompt",
+        "https://example.test/competency/generationReceipt",
+        "recorded"
+      ]
+    ]
+  },
+  "SYN-02": {
+    "variables": [
+      "ancestor"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/intermediateAsset"
+      ],
+      [
+        "https://example.test/competency/rawSource"
+      ]
+    ]
+  },
+  "SYN-03": {
+    "variables": [
+      "run",
+      "status",
+      "start",
+      "end"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/failedRun",
+        "failed",
+        "2026-10-01T01:00:00+00:00",
+        "2026-10-01T01:01:00+00:00"
+      ],
+      [
+        "https://example.test/competency/successfulRun",
+        "completed",
+        "2026-10-01T01:02:00+00:00",
+        "2026-10-01T01:03:00+00:00"
+      ]
+    ]
+  },
+  "SYN-04": {
+    "variables": [
+      "event",
+      "from",
+      "to",
+      "changedAt"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/event01",
+        "PLACED",
+        "PROCESSING",
+        "2026-10-01T02:00:00+00:00"
+      ],
+      [
+        "https://example.test/competency/event02",
+        "PROCESSING",
+        "SHIPPED",
+        "2026-10-01T02:01:00+00:00"
+      ]
+    ]
+  },
+  "SYN-05": {
+    "variables": [
+      "asset",
+      "identifier"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/alphaAsset",
+        "SHARED-001"
+      ]
+    ]
+  },
+  "SYN-06": {
+    "variables": [
+      "scope",
+      "identifier",
+      "count"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/alpha",
+        "DUP-001",
+        "2"
+      ]
+    ]
+  },
+  "SYN-07": {
+    "variables": [
+      "asset",
+      "assertedType",
+      "commonType"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/inferenceAsset",
+        "https://example.org/mv#ImageAsset",
+        "https://example.org/ontology/core#Artifact"
+      ]
+    ]
+  },
+  "SYN-08": {
+    "variables": [
+      "run",
+      "asset"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/inferenceRun",
+        "https://example.test/competency/inferenceAsset"
+      ]
+    ]
+  },
+  "SYN-09": {
+    "variables": [
+      "source"
+    ],
+    "rows": []
+  },
+  "SYN-10": {
+    "variables": [
+      "asset"
+    ],
+    "rows": []
+  },
+  "SYN-11": {
+    "variables": [
+      "asset"
+    ],
+    "rows": [
+      [
+        "https://example.test/competency/unverifiedAsset"
+      ]
+    ]
+  }
+}

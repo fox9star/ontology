@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-10-05T08:45:12.358218+09:00",
+  "python_version": "3.13.15",
+  "command": ".venv/Scripts/python.exe run_tests.py",
+  "exit_code": 0,
+  "tests_run": 468,
+  "elapsed_seconds": 201.5,
+  "raw_log": ".runtime/semantic-upgrade-tests-final.log",
+  "log_sha256": "fb8c6e5f04eaeb9aaf1a9bf88f5643d73dcfcd9127bf8fa81fdd8042a027a6e1",
+  "previous_run": "reports/semantic-upgrade-verification.json",
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0
+}

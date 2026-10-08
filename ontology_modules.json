@@ -1,0 +1,23 @@
+{
+  "format_version": 1,
+  "strict_declarations": true,
+  "external_imports": ["http://www.w3.org/ns/prov-o#"],
+  "shared_shapes": ["core-shapes.ttl", "property-contract-shapes.ttl"],
+  "modules": [
+    {"schema": "core-schema.ttl", "shapes": ["core-shapes.ttl"], "documentation": true},
+    {"schema": "mv-schema.ttl", "shapes": ["mv-shapes.ttl"], "documentation": true},
+    {"schema": "agent-schema.ttl", "shapes": ["agent-shapes.ttl"], "documentation": true},
+    {"schema": "devops-schema.ttl", "shapes": ["devops-shapes.ttl"], "documentation": true},
+    {"schema": "ecommerce-schema.ttl", "shapes": ["ecommerce-shapes.ttl"], "documentation": true},
+    {"schema": "healthcare-schema.ttl", "shapes": ["healthcare-shapes.ttl"], "documentation": true},
+    {"schema": "academic-schema.ttl", "shapes": ["academic-shapes.ttl"], "documentation": true},
+    {"schema": "controlled-vocabularies.ttl", "shapes": [], "documentation": false},
+    {"schema": "evidence-schema.ttl", "shapes": ["evidence-shapes.ttl"], "example": "evidence-example.ttl", "questions": "EVIDENCE_QUESTIONS.md", "documentation": true},
+    {"schema": "stock-schema.ttl", "shapes": ["stock-shapes.ttl"], "example": "stock-example.ttl", "documentation": true},
+    {"schema": "diet-schema.ttl", "shapes": ["diet-shapes.ttl"], "example": "diet-example.ttl", "documentation": true},
+    {"schema": "camping-schema.ttl", "shapes": ["camping-shapes.ttl"], "example": "camping-example.ttl", "documentation": true},
+    {"schema": "korean-war-schema.ttl", "shapes": ["korean-war-shapes.ttl"], "example": "korean-war-example.ttl", "documentation": true},
+    {"schema": "politics-schema.ttl", "shapes": ["politics-shapes.ttl"], "example": "politics-example.ttl", "questions": "POLITICS_QUESTIONS.md", "documentation": true},
+    {"schema": "theme-park-schema.ttl", "shapes": ["theme-park-shapes.ttl"], "example": "theme-park-example.ttl", "documentation": true}
+  ]
+}

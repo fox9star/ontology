@@ -1,0 +1,558 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pea: <https://example.org/ontology/custom/peafowl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/peafowl> a owl:Ontology ;
+    rdfs:label "Peacock / Peafowl Ontology"@en,
+        "Peacock / 공작류 온톨로지"@ko ;
+    rdfs:comment "A draft connecting Indian and green peafowl examples to their sources and claim scopes. It distinguishes the sex-specific common term peacock, species-specific traits, and differing source figures."@en,
+        "인도공작과 녹색공작 예시를 출처 및 주장 범위와 연결하는 초안이다. 보통명사 peacock의 성별 의미, 종별 차이, 상이한 출처 수치를 구분한다."@ko ;
+    owl:versionIRI <https://example.org/ontology/custom/peafowl/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+pea:behaviorAssociatedSexTerm a owl:ObjectProperty ;
+    rdfs:label "associated sex term"@en,
+        "관련 성별 용어"@ko ;
+    rdfs:comment "Records associated sex term for Behavior."@en,
+        "Behavior의 관련 성별 용어를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range pea:SexTerm .
+
+pea:behaviorDescription a owl:DatatypeProperty ;
+    rdfs:label "behavior description"@en,
+        "행동 설명"@ko ;
+    rdfs:comment "Records behavior description for Behavior."@en,
+        "Behavior의 행동 설명를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range rdf:langString .
+
+pea:behaviorEvidence a owl:ObjectProperty ;
+    rdfs:label "behavior evidence"@en,
+        "행동 근거"@ko ;
+    rdfs:comment "Records behavior evidence for Behavior."@en,
+        "Behavior의 행동 근거를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:behaviorKind a owl:DatatypeProperty ;
+    rdfs:label "behavior kind"@en,
+        "행동 유형"@ko ;
+    rdfs:comment "Records behavior kind for Behavior."@en,
+        "Behavior의 행동 유형를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range xsd:string .
+
+pea:behaviorLabel a owl:DatatypeProperty ;
+    rdfs:label "behavior label"@en,
+        "행동 이름"@ko ;
+    rdfs:comment "Records behavior label for Behavior."@en,
+        "Behavior의 행동 이름를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range rdf:langString .
+
+pea:behaviorOfSpecies a owl:ObjectProperty ;
+    rdfs:label "behavior of species"@en,
+        "해당 종"@ko ;
+    rdfs:comment "Records behavior of species for Behavior."@en,
+        "Behavior의 해당 종를 기록한다."@ko ;
+    rdfs:domain pea:Behavior ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:coverageExplanation a owl:DatatypeProperty ;
+    rdfs:label "coverage explanation"@en,
+        "범위 설명"@ko ;
+    rdfs:comment "Records coverage explanation for CoverageNote."@en,
+        "CoverageNote의 범위 설명를 기록한다."@ko ;
+    rdfs:domain pea:CoverageNote ;
+    rdfs:range rdf:langString .
+
+pea:coverageLabel a owl:DatatypeProperty ;
+    rdfs:label "coverage label"@en,
+        "범위 항목"@ko ;
+    rdfs:comment "Records coverage label for CoverageNote."@en,
+        "CoverageNote의 범위 항목를 기록한다."@ko ;
+    rdfs:domain pea:CoverageNote ;
+    rdfs:range rdf:langString .
+
+pea:coverageStatus a owl:DatatypeProperty ;
+    rdfs:label "coverage status"@en,
+        "포함 범위 상태"@ko ;
+    rdfs:comment "Records coverage status for CoverageNote."@en,
+        "CoverageNote의 포함 범위 상태를 기록한다."@ko ;
+    rdfs:domain pea:CoverageNote ;
+    rdfs:range xsd:string .
+
+pea:dietCategory a owl:DatatypeProperty ;
+    rdfs:label "diet category"@en,
+        "먹이 범주"@ko ;
+    rdfs:comment "Records diet category for DietItem."@en,
+        "DietItem의 먹이 범주를 기록한다."@ko ;
+    rdfs:domain pea:DietItem ;
+    rdfs:range xsd:string .
+
+pea:dietDescription a owl:DatatypeProperty ;
+    rdfs:label "diet description"@en,
+        "먹이 설명"@ko ;
+    rdfs:comment "Records diet description for DietItem."@en,
+        "DietItem의 먹이 설명를 기록한다."@ko ;
+    rdfs:domain pea:DietItem ;
+    rdfs:range rdf:langString .
+
+pea:dietEvidence a owl:ObjectProperty ;
+    rdfs:label "diet evidence"@en,
+        "먹이 근거"@ko ;
+    rdfs:comment "Records diet evidence for DietItem."@en,
+        "DietItem의 먹이 근거를 기록한다."@ko ;
+    rdfs:domain pea:DietItem ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:dietLabel a owl:DatatypeProperty ;
+    rdfs:label "diet item"@en,
+        "먹이 항목"@ko ;
+    rdfs:comment "Records diet item for DietItem."@en,
+        "DietItem의 먹이 항목를 기록한다."@ko ;
+    rdfs:domain pea:DietItem ;
+    rdfs:range rdf:langString .
+
+pea:dietOfSpecies a owl:ObjectProperty ;
+    rdfs:label "diet of species"@en,
+        "해당 종"@ko ;
+    rdfs:comment "Records diet of species for DietItem."@en,
+        "DietItem의 해당 종를 기록한다."@ko ;
+    rdfs:domain pea:DietItem ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:evidenceAbout a owl:ObjectProperty ;
+    rdfs:label "subject of evidence"@en,
+        "주장 대상"@ko ;
+    rdfs:comment "Records subject of evidence for EvidenceRecord."@en,
+        "EvidenceRecord의 주장 대상를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range owl:Thing .
+
+pea:evidenceClaim a owl:DatatypeProperty ;
+    rdfs:label "evidence claim"@en,
+        "근거 주장"@ko ;
+    rdfs:comment "Records evidence claim for EvidenceRecord."@en,
+        "EvidenceRecord의 근거 주장를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range rdf:langString .
+
+pea:evidenceIdentifier a owl:DatatypeProperty ;
+    rdfs:label "evidence identifier"@en,
+        "근거 식별자"@ko ;
+    rdfs:comment "Records evidence identifier for EvidenceRecord."@en,
+        "EvidenceRecord의 근거 식별자를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+pea:evidenceLocator a owl:DatatypeProperty ;
+    rdfs:label "source locator"@en,
+        "출처 내 위치"@ko ;
+    rdfs:comment "Records source locator for EvidenceRecord."@en,
+        "EvidenceRecord의 출처 내 위치를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+pea:evidenceScope a owl:DatatypeProperty ;
+    rdfs:label "claim scope"@en,
+        "주장 적용 범위"@ko ;
+    rdfs:comment "Records claim scope for EvidenceRecord."@en,
+        "EvidenceRecord의 주장 적용 범위를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range rdf:langString .
+
+pea:evidenceSource a owl:ObjectProperty ;
+    rdfs:label "evidence source"@en,
+        "근거 출처"@ko ;
+    rdfs:comment "Records evidence source for EvidenceRecord."@en,
+        "EvidenceRecord의 근거 출처를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range pea:SourceDocument .
+
+pea:evidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "evidence status"@en,
+        "근거 상태"@ko ;
+    rdfs:comment "Records evidence status for EvidenceRecord."@en,
+        "EvidenceRecord의 근거 상태를 기록한다."@ko ;
+    rdfs:domain pea:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+pea:featureAssociatedSexTerm a owl:ObjectProperty ;
+    rdfs:label "associated sex term"@en,
+        "관련 성별 용어"@ko ;
+    rdfs:comment "Records associated sex term for MorphologicalFeature."@en,
+        "MorphologicalFeature의 관련 성별 용어를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range pea:SexTerm .
+
+pea:featureDescription a owl:DatatypeProperty ;
+    rdfs:label "feature description"@en,
+        "형태 특성 설명"@ko ;
+    rdfs:comment "Records feature description for MorphologicalFeature."@en,
+        "MorphologicalFeature의 형태 특성 설명를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range rdf:langString .
+
+pea:featureEvidence a owl:ObjectProperty ;
+    rdfs:label "feature evidence"@en,
+        "형태 근거"@ko ;
+    rdfs:comment "Records feature evidence for MorphologicalFeature."@en,
+        "MorphologicalFeature의 형태 근거를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:featureKind a owl:DatatypeProperty ;
+    rdfs:label "feature kind"@en,
+        "특성 유형"@ko ;
+    rdfs:comment "Records feature kind for MorphologicalFeature."@en,
+        "MorphologicalFeature의 특성 유형를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range xsd:string .
+
+pea:featureLabel a owl:DatatypeProperty ;
+    rdfs:label "feature label"@en,
+        "형태 특성 이름"@ko ;
+    rdfs:comment "Records feature label for MorphologicalFeature."@en,
+        "MorphologicalFeature의 형태 특성 이름를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range rdf:langString .
+
+pea:featureOfSpecies a owl:ObjectProperty ;
+    rdfs:label "feature of species"@en,
+        "해당 종"@ko ;
+    rdfs:comment "Records feature of species for MorphologicalFeature."@en,
+        "MorphologicalFeature의 해당 종를 기록한다."@ko ;
+    rdfs:domain pea:MorphologicalFeature ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:habitatDescription a owl:DatatypeProperty ;
+    rdfs:label "habitat or range description"@en,
+        "서식·분포 설명"@ko ;
+    rdfs:comment "Records habitat or range description for HabitatRange."@en,
+        "HabitatRange의 서식·분포 설명를 기록한다."@ko ;
+    rdfs:domain pea:HabitatRange ;
+    rdfs:range rdf:langString .
+
+pea:habitatEvidence a owl:ObjectProperty ;
+    rdfs:label "habitat evidence"@en,
+        "서식·분포 근거"@ko ;
+    rdfs:comment "Records habitat evidence for HabitatRange."@en,
+        "HabitatRange의 서식·분포 근거를 기록한다."@ko ;
+    rdfs:domain pea:HabitatRange ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:habitatKind a owl:DatatypeProperty ;
+    rdfs:label "habitat or range kind"@en,
+        "서식·분포 유형"@ko ;
+    rdfs:comment "Records habitat or range kind for HabitatRange."@en,
+        "HabitatRange의 서식·분포 유형를 기록한다."@ko ;
+    rdfs:domain pea:HabitatRange ;
+    rdfs:range xsd:string .
+
+pea:habitatLabel a owl:DatatypeProperty ;
+    rdfs:label "habitat or range label"@en,
+        "서식·분포 이름"@ko ;
+    rdfs:comment "Records habitat or range label for HabitatRange."@en,
+        "HabitatRange의 서식·분포 이름를 기록한다."@ko ;
+    rdfs:domain pea:HabitatRange ;
+    rdfs:range rdf:langString .
+
+pea:habitatOfSpecies a owl:ObjectProperty ;
+    rdfs:label "habitat of species"@en,
+        "해당 종"@ko ;
+    rdfs:comment "Records habitat of species for HabitatRange."@en,
+        "HabitatRange의 해당 종를 기록한다."@ko ;
+    rdfs:domain pea:HabitatRange ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:lifeStageAppliesToSpecies a owl:ObjectProperty ;
+    rdfs:label "applies to species"@en,
+        "적용 종"@ko ;
+    rdfs:comment "Records applies to species for LifeStageTerm."@en,
+        "LifeStageTerm의 적용 종를 기록한다."@ko ;
+    rdfs:domain pea:LifeStageTerm ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:lifeStageCategory a owl:DatatypeProperty ;
+    rdfs:label "life-stage category"@en,
+        "성장 단계 범주"@ko ;
+    rdfs:comment "Records life-stage category for LifeStageTerm."@en,
+        "LifeStageTerm의 성장 단계 범주를 기록한다."@ko ;
+    rdfs:domain pea:LifeStageTerm ;
+    rdfs:range xsd:string .
+
+pea:lifeStageEvidence a owl:ObjectProperty ;
+    rdfs:label "term evidence"@en,
+        "용어 근거"@ko ;
+    rdfs:comment "Records term evidence for LifeStageTerm."@en,
+        "LifeStageTerm의 용어 근거를 기록한다."@ko ;
+    rdfs:domain pea:LifeStageTerm ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:lifeStageTermLabel a owl:DatatypeProperty ;
+    rdfs:label "life-stage common term"@en,
+        "성장 단계 보통명"@ko ;
+    rdfs:comment "Records life-stage common term for LifeStageTerm."@en,
+        "LifeStageTerm의 성장 단계 보통명를 기록한다."@ko ;
+    rdfs:domain pea:LifeStageTerm ;
+    rdfs:range rdf:langString .
+
+pea:reproductionAssociatedTerm a owl:ObjectProperty ;
+    rdfs:label "associated sex term"@en,
+        "관련 성별 용어"@ko ;
+    rdfs:comment "Records associated sex term for ReproductiveObservation."@en,
+        "ReproductiveObservation의 관련 성별 용어를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range pea:SexTerm .
+
+pea:reproductionEstimateType a owl:DatatypeProperty ;
+    rdfs:label "estimate type"@en,
+        "값 유형"@ko ;
+    rdfs:comment "Records estimate type for ReproductiveObservation."@en,
+        "ReproductiveObservation의 값 유형를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range xsd:string .
+
+pea:reproductionEvidence a owl:ObjectProperty ;
+    rdfs:label "reproductive evidence"@en,
+        "번식 근거"@ko ;
+    rdfs:comment "Records reproductive evidence for ReproductiveObservation."@en,
+        "ReproductiveObservation의 번식 근거를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:reproductionForSpecies a owl:ObjectProperty ;
+    rdfs:label "reproduction for species"@en,
+        "해당 종"@ko ;
+    rdfs:comment "Records reproduction for species for ReproductiveObservation."@en,
+        "ReproductiveObservation의 해당 종를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:reproductionLabel a owl:DatatypeProperty ;
+    rdfs:label "reproductive figure label"@en,
+        "번식 기록 이름"@ko ;
+    rdfs:comment "Records reproductive figure label for ReproductiveObservation."@en,
+        "ReproductiveObservation의 번식 기록 이름를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range rdf:langString .
+
+pea:reproductionMaximum a owl:DatatypeProperty ;
+    rdfs:label "maximum value"@en,
+        "최댓값"@ko ;
+    rdfs:comment "Records maximum value for ReproductiveObservation."@en,
+        "ReproductiveObservation의 최댓값를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range xsd:decimal .
+
+pea:reproductionMeasure a owl:DatatypeProperty ;
+    rdfs:label "measure"@en,
+        "측정 항목"@ko ;
+    rdfs:comment "Records measure for ReproductiveObservation."@en,
+        "ReproductiveObservation의 측정 항목를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range xsd:string .
+
+pea:reproductionMinimum a owl:DatatypeProperty ;
+    rdfs:label "minimum value"@en,
+        "최솟값"@ko ;
+    rdfs:comment "Records minimum value for ReproductiveObservation."@en,
+        "ReproductiveObservation의 최솟값를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range xsd:decimal .
+
+pea:reproductionUnit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en,
+        "단위"@ko ;
+    rdfs:comment "Records unit for ReproductiveObservation."@en,
+        "ReproductiveObservation의 단위를 기록한다."@ko ;
+    rdfs:domain pea:ReproductiveObservation ;
+    rdfs:range xsd:string .
+
+pea:sexCategory a owl:DatatypeProperty ;
+    rdfs:label "sex category"@en,
+        "성별 범주"@ko ;
+    rdfs:comment "Records sex category for SexTerm."@en,
+        "SexTerm의 성별 범주를 기록한다."@ko ;
+    rdfs:domain pea:SexTerm ;
+    rdfs:range xsd:string .
+
+pea:sexTermAppliesToSpecies a owl:ObjectProperty ;
+    rdfs:label "applies to species"@en,
+        "적용 종"@ko ;
+    rdfs:comment "Records applies to species for SexTerm."@en,
+        "SexTerm의 적용 종를 기록한다."@ko ;
+    rdfs:domain pea:SexTerm ;
+    rdfs:range pea:PeafowlSpecies .
+
+pea:sexTermEvidence a owl:ObjectProperty ;
+    rdfs:label "term evidence"@en,
+        "용어 근거"@ko ;
+    rdfs:comment "Records term evidence for SexTerm."@en,
+        "SexTerm의 용어 근거를 기록한다."@ko ;
+    rdfs:domain pea:SexTerm ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:sexTermLabel a owl:DatatypeProperty ;
+    rdfs:label "sex common term"@en,
+        "성별 보통명"@ko ;
+    rdfs:comment "Records sex common term for SexTerm."@en,
+        "SexTerm의 성별 보통명를 기록한다."@ko ;
+    rdfs:domain pea:SexTerm ;
+    rdfs:range rdf:langString .
+
+pea:sourceAccessedOn a owl:DatatypeProperty ;
+    rdfs:label "accessed on"@en,
+        "확인일"@ko ;
+    rdfs:comment "Records accessed on for SourceDocument."@en,
+        "SourceDocument의 확인일를 기록한다."@ko ;
+    rdfs:domain pea:SourceDocument ;
+    rdfs:range xsd:date .
+
+pea:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "publisher"@en,
+        "발행 기관"@ko ;
+    rdfs:comment "Records publisher for SourceDocument."@en,
+        "SourceDocument의 발행 기관를 기록한다."@ko ;
+    rdfs:domain pea:SourceDocument ;
+    rdfs:range xsd:string .
+
+pea:sourceScope a owl:DatatypeProperty ;
+    rdfs:label "source scope and caveat"@en,
+        "출처 범위·주의"@ko ;
+    rdfs:comment "Records source scope and caveat for SourceDocument."@en,
+        "SourceDocument의 출처 범위·주의를 기록한다."@ko ;
+    rdfs:domain pea:SourceDocument ;
+    rdfs:range rdf:langString .
+
+pea:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "source title"@en,
+        "출처 제목"@ko ;
+    rdfs:comment "Records source title for SourceDocument."@en,
+        "SourceDocument의 출처 제목를 기록한다."@ko ;
+    rdfs:domain pea:SourceDocument ;
+    rdfs:range rdf:langString .
+
+pea:sourceURL a owl:DatatypeProperty ;
+    rdfs:label "source URL"@en,
+        "출처 URL"@ko ;
+    rdfs:comment "Records source URL for SourceDocument."@en,
+        "SourceDocument의 출처 URL를 기록한다."@ko ;
+    rdfs:domain pea:SourceDocument ;
+    rdfs:range xsd:anyURI .
+
+pea:taxonCommonName a owl:DatatypeProperty ;
+    rdfs:label "common name"@en,
+        "보통명"@ko ;
+    rdfs:comment "Records common name for Taxon."@en,
+        "Taxon의 보통명를 기록한다."@ko ;
+    rdfs:domain pea:Taxon ;
+    rdfs:range rdf:langString .
+
+pea:taxonHasEvidence a owl:ObjectProperty ;
+    rdfs:label "taxonomic evidence"@en,
+        "분류 근거"@ko ;
+    rdfs:comment "Records taxonomic evidence for Taxon."@en,
+        "Taxon의 분류 근거를 기록한다."@ko ;
+    rdfs:domain pea:Taxon ;
+    rdfs:range pea:EvidenceRecord .
+
+pea:taxonHigherTaxon a owl:ObjectProperty ;
+    rdfs:label "higher taxon"@en,
+        "상위 분류군"@ko ;
+    rdfs:comment "Records higher taxon for Taxon."@en,
+        "Taxon의 상위 분류군를 기록한다."@ko ;
+    rdfs:domain pea:Taxon ;
+    rdfs:range pea:Taxon .
+
+pea:taxonRank a owl:DatatypeProperty ;
+    rdfs:label "taxonomic rank"@en,
+        "분류 단계"@ko ;
+    rdfs:comment "Records taxonomic rank for Taxon."@en,
+        "Taxon의 분류 단계를 기록한다."@ko ;
+    rdfs:domain pea:Taxon ;
+    rdfs:range xsd:string .
+
+pea:taxonScientificName a owl:DatatypeProperty ;
+    rdfs:label "scientific name"@en,
+        "학명"@ko ;
+    rdfs:comment "Records scientific name for Taxon."@en,
+        "Taxon의 학명를 기록한다."@ko ;
+    rdfs:domain pea:Taxon ;
+    rdfs:range xsd:string .
+
+pea:CoverageNote a owl:Class ;
+    rdfs:label "Coverage note"@en,
+        "범위 메모"@ko ;
+    rdfs:comment "States knowledge areas included, limited, or excluded by this draft."@en,
+        "이 초안에서 포함·제한·제외한 지식 영역을 명시한다."@ko .
+
+pea:LifeStageTerm a owl:Class ;
+    rdfs:label "Life-stage term"@en,
+        "성장 단계 명칭"@ko ;
+    rdfs:comment "A common term for a young peafowl and its stated scope."@en,
+        "어린 공작류를 가리키는 용어와 적용 범위를 나타낸다."@ko .
+
+pea:DietItem a owl:Class ;
+    rdfs:label "Diet item"@en,
+        "먹이 항목"@ko ;
+    rdfs:comment "A food type or feeding category documented by a source."@en,
+        "출처에 기록된 먹이 종류 또는 먹이 범주이다."@ko .
+
+pea:HabitatRange a owl:Class ;
+    rdfs:label "Habitat or range"@en,
+        "서식지·분포"@ko ;
+    rdfs:comment "Preserves a source-specific description of habitat or geographic range."@en,
+        "출처별 서식 환경 또는 지리적 분포 서술을 보존한다."@ko .
+
+pea:Behavior a owl:Class ;
+    rdfs:label "Behavior"@en,
+        "행동"@ko ;
+    rdfs:comment "A sourced courtship, foraging, or social behavior."@en,
+        "출처에 기술된 구애·섭식·사회 행동을 나타낸다."@ko .
+
+pea:MorphologicalFeature a owl:Class ;
+    rdfs:label "Morphological feature"@en,
+        "형태 특성"@ko ;
+    rdfs:comment "A sourced plumage or color feature with a stated species and sex scope."@en,
+        "출처에 설명된 깃털·색채 등 종 및 성별 범위가 있는 형태 특성이다."@ko .
+
+pea:SourceDocument a owl:Class ;
+    rdfs:label "Source document"@en,
+        "출처 문서"@ko ;
+    rdfs:comment "Records a zoo or species profile's publisher, URL, access date, and scope."@en,
+        "사육·종 정보 페이지의 발행자, URL, 확인일 및 범위를 기록한다."@ko .
+
+pea:PeafowlSpecies a owl:Class ;
+    rdfs:label "Peafowl species"@en,
+        "공작류 종"@ko ;
+    rdfs:comment "A peafowl species example covered by this draft; a subclass of Taxon."@en,
+        "이 초안에서 다루는 공작류의 종 예시이며 Taxon의 하위 유형이다."@ko ;
+    rdfs:subClassOf pea:Taxon .
+
+pea:SexTerm a owl:Class ;
+    rdfs:label "Sex term"@en,
+        "성별 명칭"@ko ;
+    rdfs:comment "A common term for male or female peafowl and its stated scope."@en,
+        "공작 수컷·암컷을 가리키는 보통명사와 적용 범위를 나타낸다."@ko .
+
+pea:Taxon a owl:Class ;
+    rdfs:label "Taxon"@en,
+        "분류군"@ko ;
+    rdfs:comment "A taxonomic group or species in the recorded classification."@en,
+        "분류 체계의 상위 분류군과 종을 나타낸다."@ko .
+
+pea:ReproductiveObservation a owl:Class ;
+    rdfs:label "Reproductive figure"@en,
+        "번식 수치 기록"@ko ;
+    rdfs:comment "A source-specific range or approximate figure for eggs or incubation."@en,
+        "출처별 산란 수나 포란 기간의 범위·근삿값을 기록한다."@ko .
+
+pea:EvidenceRecord a owl:Class ;
+    rdfs:label "Evidence record"@en,
+        "근거 기록"@ko ;
+    rdfs:comment "Connects a described resource or claim to a source, locator, scope, and review status."@en,
+        "특정 개체·주장과 출처, 위치, 범위 및 검토 상태를 연결한다."@ko .

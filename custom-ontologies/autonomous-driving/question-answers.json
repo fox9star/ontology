@@ -1,0 +1,828 @@
+{
+  "AD-01": {
+    "variables": [
+      "system",
+      "name",
+      "recordKind",
+      "purpose",
+      "vehicleCount",
+      "featureCount",
+      "levelCount",
+      "oddCount",
+      "sensorCount",
+      "moduleCount",
+      "mapCount",
+      "routeCount",
+      "trajectoryCount",
+      "scenarioCount",
+      "safetyCount",
+      "testCount",
+      "sourceCount",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "가상 캠퍼스 셔틀 자율주행 구성",
+        "synthetic",
+        "자율주행 구성요소, 운행 조건과 시험 계획 사이의 관계를 학습한다.",
+        "1",
+        "1",
+        "6",
+        "1",
+        "4",
+        "7",
+        "1",
+        "1",
+        "1",
+        "2",
+        "2",
+        "1",
+        "6",
+        "실제 차량·도로 배포, 성능 수준, 인증 또는 안전 검증을 나타내지 않는 설명용 합성 그래프다."
+      ]
+    ]
+  },
+  "AD-02": {
+    "variables": [
+      "system",
+      "feature",
+      "featureName",
+      "level",
+      "levelLabel",
+      "odd",
+      "oddName",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/feature-campus-loop",
+        "geofenced_campus_loop",
+        null,
+        null,
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "campus_day_dry_demo",
+        "SAE 수준을 평가·할당하지 않았다. 제한된 ODD가 있는 가상 학습 기능 이름이며, 운행 가능성이나 안전성을 의미하지 않는다."
+      ]
+    ]
+  },
+  "AD-03": {
+    "variables": [
+      "system",
+      "level",
+      "number",
+      "label",
+      "scope",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-0",
+        "0",
+        "No Driving Automation",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-1",
+        "1",
+        "Driver Assistance",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-2",
+        "2",
+        "Partial Driving Automation",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-3",
+        "3",
+        "Conditional Driving Automation",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-4",
+        "4",
+        "High Driving Automation",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/level-5",
+        "5",
+        "Full Driving Automation",
+        "on-road vehicle feature",
+        "표준 용어 참조 항목이다. 이 시스템의 합성 셔틀 기능에 평가 결과를 부여하지 않는다."
+      ]
+    ]
+  },
+  "AD-04": {
+    "variables": [
+      "system",
+      "sensor",
+      "name",
+      "modality",
+      "vehicle",
+      "vehicleName",
+      "purpose"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/sensor-camera",
+        "front_camera_demo",
+        "camera",
+        "https://example.test/autonomous-driving/vehicle-campus-shuttle",
+        "campus_shuttle_demo",
+        "차선·신호·물체 인지 입력을 나타내는 예시다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/sensor-gnss-imu",
+        "gnss_imu_demo",
+        "gnss_imu",
+        "https://example.test/autonomous-driving/vehicle-campus-shuttle",
+        "campus_shuttle_demo",
+        "위치·자세 추정 입력을 나타내는 예시다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/sensor-lidar",
+        "roof_lidar_demo",
+        "lidar",
+        "https://example.test/autonomous-driving/vehicle-campus-shuttle",
+        "campus_shuttle_demo",
+        "주변 3차원 물체 인지 입력을 나타내는 예시다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/sensor-wheel-odometry",
+        "wheel_odometry_demo",
+        "wheel_odometry",
+        "https://example.test/autonomous-driving/vehicle-campus-shuttle",
+        "campus_shuttle_demo",
+        "차량 이동 추정 입력을 나타내는 예시다."
+      ]
+    ]
+  },
+  "AD-05": {
+    "variables": [
+      "system",
+      "module",
+      "moduleName",
+      "kind",
+      "inputs",
+      "outputs",
+      "dependency",
+      "dependencyName",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-control",
+        "control",
+        "control",
+        "planned trajectory and vehicle state",
+        "steering and velocity commands",
+        "https://example.test/autonomous-driving/module-planning",
+        "planning",
+        "차량의 실제 actuator에 명령하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-localization",
+        "localization",
+        "localization",
+        "GNSS/IMU, wheel odometry and map",
+        "localized vehicle pose",
+        "https://example.test/autonomous-driving/module-sensing",
+        "sensing",
+        "정확도나 수렴 상태를 주장하지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-odd-monitor",
+        "odd_monitor",
+        "safety_monitor",
+        "vehicle, weather and geofence state",
+        "odd_status",
+        null,
+        null,
+        "실제 감시 로직이나 안전 무결성 수준을 구현·평가하지 않았다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-perception",
+        "perception",
+        "perception",
+        "timestamped sensor data",
+        "objects, traffic signal states and lane scene",
+        "https://example.test/autonomous-driving/module-sensing",
+        "sensing",
+        "출력 형식과 모델 성능은 지정하거나 검증하지 않았다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-planning",
+        "planning",
+        "planning",
+        "localized vehicle pose, objects and route",
+        "planned trajectory",
+        "https://example.test/autonomous-driving/module-localization",
+        "localization",
+        "실제 충돌 회피나 통행 규칙 준수 결과는 확인하지 않았다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-planning",
+        "planning",
+        "planning",
+        "localized vehicle pose, objects and route",
+        "planned trajectory",
+        "https://example.test/autonomous-driving/module-perception",
+        "perception",
+        "실제 충돌 회피나 통행 규칙 준수 결과는 확인하지 않았다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-sensing",
+        "sensing",
+        "sensing",
+        "camera frames, LiDAR scans, GNSS/IMU and wheel odometry",
+        "timestamped sensor data",
+        null,
+        null,
+        "실제 ROS 노드나 드라이버를 가리키지 않는다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/module-vehicle-interface",
+        "vehicle_interface",
+        "vehicle_interface",
+        "steering and velocity commands, vehicle status",
+        "vehicle-specific command and normalized vehicle status",
+        "https://example.test/autonomous-driving/module-control",
+        "control",
+        "CAN, drive-by-wire 또는 실차 프로토콜을 구현하지 않았다."
+      ]
+    ]
+  },
+  "AD-06": {
+    "variables": [
+      "system",
+      "odd",
+      "name",
+      "roadwayType",
+      "area",
+      "maxSpeed",
+      "condition",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "campus_day_dry_demo",
+        "private_campus",
+        "가상의 분리된 캠퍼스 순환로",
+        "20",
+        "daylight",
+        "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "campus_day_dry_demo",
+        "private_campus",
+        "가상의 분리된 캠퍼스 순환로",
+        "20",
+        "dry",
+        "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "campus_day_dry_demo",
+        "private_campus",
+        "가상의 분리된 캠퍼스 순환로",
+        "20",
+        "geofenced",
+        "도로·지역·속도·날씨 값은 문서 학습을 위한 합성 경계다. 실제 설계·허가·검증 결과가 아니다."
+      ]
+    ]
+  },
+  "AD-07": {
+    "variables": [
+      "map",
+      "mapName",
+      "format",
+      "coverage",
+      "route",
+      "routeName",
+      "start",
+      "end",
+      "trajectory",
+      "trajectoryName",
+      "status",
+      "planner",
+      "plannerName"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/map-campus",
+        "campus_map_demo",
+        "lanelet2",
+        "가상의 캠퍼스 순환 구간",
+        "https://example.test/autonomous-driving/route-campus-loop",
+        "campus_loop_demo",
+        "가상 북문 정류장",
+        "가상 연구동 정류장",
+        "https://example.test/autonomous-driving/trajectory-campus-loop",
+        "campus_loop_trajectory_demo",
+        "planned",
+        "https://example.test/autonomous-driving/module-planning",
+        "planning"
+      ]
+    ]
+  },
+  "AD-08": {
+    "variables": [
+      "scenario",
+      "scenarioName",
+      "kind",
+      "odd",
+      "actor",
+      "actorName",
+      "actorKind",
+      "motion",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/scenario-pedestrian-crossing",
+        "crosswalk_pedestrian_demo",
+        "pedestrian_crossing",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "https://example.test/autonomous-driving/actor-ego-shuttle",
+        "ego_shuttle",
+        "ego_vehicle",
+        "moving",
+        "속도·거리·우선권·반응 시간을 규정하지 않은 시험 설계 예시다."
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-pedestrian-crossing",
+        "crosswalk_pedestrian_demo",
+        "pedestrian_crossing",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "https://example.test/autonomous-driving/actor-pedestrian",
+        "crossing_pedestrian",
+        "pedestrian",
+        "moving",
+        "속도·거리·우선권·반응 시간을 규정하지 않은 시험 설계 예시다."
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-signalized-junction",
+        "signalized_junction_demo",
+        "intersection",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "https://example.test/autonomous-driving/actor-approaching-car",
+        "approaching_vehicle",
+        "vehicle",
+        "moving",
+        "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-signalized-junction",
+        "signalized_junction_demo",
+        "intersection",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "https://example.test/autonomous-driving/actor-ego-shuttle",
+        "ego_shuttle",
+        "ego_vehicle",
+        "moving",
+        "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-signalized-junction",
+        "signalized_junction_demo",
+        "intersection",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "https://example.test/autonomous-driving/actor-traffic-signal",
+        "campus_signal",
+        "traffic_signal",
+        "traffic_control",
+        "신호·주변 차량 상호작용을 위한 가상 시나리오이며 통행 동작이 실행된 기록이 아니다."
+      ]
+    ]
+  },
+  "AD-09": {
+    "variables": [
+      "system",
+      "function",
+      "name",
+      "kind",
+      "odd",
+      "response",
+      "status",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/safety-minimal-risk",
+        "minimal_risk_fallback_demo",
+        "minimal_risk_fallback",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "조건에 따라 감속·정지 등 최소위험상태 전환을 검토한다.",
+        "conceptual",
+        "차량 제동거리, 위험 분석, 규제 요구사항 또는 안전 성능을 정의하지 않은 학습용 개념이다."
+      ],
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/safety-odd-monitor",
+        "odd_boundary_monitor_demo",
+        "odd_monitoring",
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "범위 이탈 감지 시 운행 승인 상태를 낮추고 대응 계획으로 전달한다.",
+        "conceptual",
+        "동작 코드·진단 커버리지·안전 검증이 없는 개념 항목이다."
+      ]
+    ]
+  },
+  "AD-10": {
+    "variables": [
+      "system",
+      "test",
+      "name",
+      "environment",
+      "status",
+      "scenario",
+      "scenarioName",
+      "result",
+      "date",
+      "evidence",
+      "note"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/campus-shuttle-system",
+        "https://example.test/autonomous-driving/test-pedestrian-simulation",
+        "pedestrian_crossing_simulation_plan",
+        "simulation",
+        "planned",
+        "https://example.test/autonomous-driving/scenario-pedestrian-crossing",
+        "crosswalk_pedestrian_demo",
+        "not_run",
+        null,
+        null,
+        "실제 시뮬레이터 실행, 결과 측정, 로그 수집 또는 안전 검증이 수행되지 않았다."
+      ]
+    ]
+  },
+  "AD-11": {
+    "variables": [
+      "entity",
+      "entityName",
+      "source",
+      "title",
+      "publisher",
+      "uri",
+      "accessedAt",
+      "claim",
+      "language"
+    ],
+    "rows": [
+      [
+        "https://example.test/autonomous-driving/feature-campus-loop",
+        "가상 지정 구간 셔틀 운행 기능",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/map-campus",
+        "가상 캠퍼스 도로 지도",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-control",
+        "가상 차량 제어 모듈",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-localization",
+        "가상 위치추정 모듈",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-perception",
+        "가상 인지 모듈",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-planning",
+        "가상 경로계획 모듈",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-sensing",
+        "가상 감지 모듈",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/sensor-camera",
+        "가상 전방 카메라",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/sensor-gnss-imu",
+        "가상 GNSS·IMU",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/sensor-lidar",
+        "가상 라이다",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/sensor-wheel-odometry",
+        "가상 휠 오도메트리",
+        "https://example.test/autonomous-driving/src-autoware-stack",
+        "Autonomous Driving Stack Architecture",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/1.5.0/design/autoware-architecture-v2/roadmap/autonomous-driving-stack-architecture/",
+        "2026-10-08",
+        "The architecture describes a modular robotics stack including perception, localization, planning and trajectory generation, while also documenting an evolving end-to-end roadmap.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-vehicle-interface",
+        "가상 차량 인터페이스 모듈",
+        "https://example.test/autonomous-driving/src-autoware-vehicle",
+        "Vehicle Interface design",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/",
+        "2026-10-08",
+        "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/safety-minimal-risk",
+        "가상 최소위험상태 전환 개념",
+        "https://example.test/autonomous-driving/src-autoware-vehicle",
+        "Vehicle Interface design",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/",
+        "2026-10-08",
+        "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/vehicle-campus-shuttle",
+        "가상 전기 캠퍼스 셔틀",
+        "https://example.test/autonomous-driving/src-autoware-vehicle",
+        "Vehicle Interface design",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/autoware-documentation/latest/design/autoware-architecture/vehicle/",
+        "2026-10-08",
+        "The interface maps Autoware control commands to vehicle-specific commands and returns vehicle status; the design describes manual disengagement as a possible safety feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-pedestrian-crossing",
+        "가상 횡단보도 보행자 시나리오",
+        "https://example.test/autonomous-driving/src-awsim",
+        "AWSIM Labs",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/AWSIM-Labs/main/Introduction/AWSIM/",
+        "2026-10-08",
+        "AWSIM is documented as a simulator for testing and evaluating autonomous-driving perception, planning and control under different configurations and scenarios.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-signalized-junction",
+        "가상 신호 교차로 시나리오",
+        "https://example.test/autonomous-driving/src-awsim",
+        "AWSIM Labs",
+        "Autoware Foundation",
+        "https://autowarefoundation.github.io/AWSIM-Labs/main/Introduction/AWSIM/",
+        "2026-10-08",
+        "AWSIM is documented as a simulator for testing and evaluating autonomous-driving perception, planning and control under different configurations and scenarios.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/module-odd-monitor",
+        "가상 ODD 감시 모듈",
+        "https://example.test/autonomous-driving/src-nhtsa-ads",
+        "Automated Driving Systems",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems",
+        "2026-10-08",
+        "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "가상 캠퍼스 낮·건조 조건 ODD",
+        "https://example.test/autonomous-driving/src-nhtsa-ads",
+        "Automated Driving Systems",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems",
+        "2026-10-08",
+        "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/safety-minimal-risk",
+        "가상 최소위험상태 전환 개념",
+        "https://example.test/autonomous-driving/src-nhtsa-ads",
+        "Automated Driving Systems",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems",
+        "2026-10-08",
+        "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/safety-odd-monitor",
+        "가상 운행영역 이탈 감시",
+        "https://example.test/autonomous-driving/src-nhtsa-ads",
+        "Automated Driving Systems",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/vehicle-manufacturers/automated-driving-systems",
+        "2026-10-08",
+        "NHTSA guidance lists system safety, ODD, object and event detection and response, and fallback among safety elements for ADS; guidance does not certify a particular implementation.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/odd-campus-day",
+        "가상 캠퍼스 낮·건조 조건 ODD",
+        "https://example.test/autonomous-driving/src-nhtsa-odd",
+        "A Framework for Automated Driving System Testable Cases and Scenarios",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/13882-automateddrivingsystems_092618_v1a_tag.pdf",
+        "2026-10-08",
+        "The report describes ODD attributes such as roadway type, speed range, lighting, weather and other operating constraints; the sample campus bounds here are synthetic.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/scenario-pedestrian-crossing",
+        "가상 횡단보도 보행자 시나리오",
+        "https://example.test/autonomous-driving/src-nhtsa-odd",
+        "A Framework for Automated Driving System Testable Cases and Scenarios",
+        "National Highway Traffic Safety Administration",
+        "https://www.nhtsa.gov/sites/nhtsa.gov/files/documents/13882-automateddrivingsystems_092618_v1a_tag.pdf",
+        "2026-10-08",
+        "The report describes ODD attributes such as roadway type, speed range, lighting, weather and other operating constraints; the sample campus bounds here are synthetic.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/feature-campus-loop",
+        "가상 지정 구간 셔틀 운행 기능",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-0",
+        "SAE 주행 자동화 수준 0",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-1",
+        "SAE 주행 자동화 수준 1",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-2",
+        "SAE 주행 자동화 수준 2",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-3",
+        "SAE 주행 자동화 수준 3",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-4",
+        "SAE 주행 자동화 수준 4",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ],
+      [
+        "https://example.test/autonomous-driving/level-5",
+        "SAE 주행 자동화 수준 5",
+        "https://example.test/autonomous-driving/src-sae-j3016",
+        "J3016: Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles",
+        "SAE International",
+        "https://saemobilus.sae.org/standards/j3016_202104-taxonomy-definitions-terms-related-driving-automation-systems-road-motor-vehicles?tabType=viewannotation",
+        "2026-10-08",
+        "The SAE product page describes six on-road driving-automation levels from 0 through 5 and shows a September 2026 revision record. This ontology records level terms; it does not assign an assessed level to its synthetic shuttle feature.",
+        "en"
+      ]
+    ]
+  }
+}

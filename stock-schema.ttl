@@ -1,0 +1,352 @@
+@prefix core: <https://example.org/ontology/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix stock: <http://example.org/ontology/stock#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/ontology/stock> a owl:Ontology ;
+    rdfs:label "주식투자 AI 에이전트 온톨로지"@ko,
+               "Stock Investment AI Agent Ontology"@en ;
+    rdfs:comment "상장 주식, 재무 펀더멘털 지표, 기술적 분석 지표, 투자 포트폴리오 및 AI 트레이딩 에이전트 협업 체계를 정의한다."@ko,
+                 "Defines listed equities, fundamental valuation metrics, technical indicators, investment portfolios, and AI trading agent collaboration."@en ;
+    owl:imports <https://example.org/ontology/core>, <http://www.w3.org/ns/prov-o#> ;
+    owl:versionInfo "1.0.0" .
+
+# =============================================================================
+# Classes (클래스 정의)
+# =============================================================================
+
+stock:FinancialAsset a owl:Class, rdfs:Class ;
+    rdfs:label "금융 자산"@ko, "Financial Asset"@en ;
+    rdfs:comment "투자 대상이 되는 모든 금융 자산의 상위 추상 클래스."@ko,
+                 "Abstract base class representing any financial asset available for investment and trading."@en .
+
+stock:Stock a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:FinancialAsset ;
+    rdfs:label "주식 종목"@ko, "Stock Security"@en ;
+    rdfs:comment "주식회사의 소유 지분을 나타내며 거래소에 상장되어 거래되는 유가증권."@ko,
+                 "An equity security representing proportional fractional ownership in a publicly listed corporate entity."@en .
+
+stock:CommonStock a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:Stock ;
+    rdfs:label "보통주"@ko, "Common Stock"@en ;
+    rdfs:comment "주주총회 의결권과 잔여재산 분배 청구권을 가지는 일반 보통주."@ko,
+                 "Ordinary voting equity securities conferring proportional corporate rights and dividend participations."@en .
+
+stock:PreferredStock a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:Stock ;
+    rdfs:label "우선주"@ko, "Preferred Stock"@en ;
+    rdfs:comment "의결권은 제한되거나 배제되나 이익 배당에서 보통주보다 우선권을 가지는 주식."@ko,
+                 "A class of ownership shares with priority dividend claims ahead of common shares and without voting rights."@en .
+
+stock:ExchangeTradedFund a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:FinancialAsset ;
+    rdfs:label "상장지수펀드 ETF"@ko, "Exchange Traded Fund"@en ;
+    rdfs:comment "특정 주가지수나 자산 바스켓의 수익률을 추종하며 거래소에 상장된 집합투자기구."@ko,
+                 "An open-ended index-tracking investment fund traded in real time across organized stock exchanges."@en .
+
+stock:Corporation a owl:Class, rdfs:Class ;
+    rdfs:label "상장 법인"@ko, "Listed Corporation"@en ;
+    rdfs:comment "주식을 발행하여 증권 거래소 시장에 정식 상장한 기업 법인."@ko,
+                 "A publicly listed corporate enterprise that has issued securities on an organized exchange."@en .
+
+stock:StockExchange a owl:Class, rdfs:Class ;
+    rdfs:label "증권 거래소"@ko, "Stock Exchange"@en ;
+    rdfs:comment "유가증권의 공정한 가격 형성과 원활한 유통 거래를 주관하는 공인 금융시장 시설."@ko,
+                 "An officially recognized and regulated trading venue and marketplace facilitating securities trading."@en .
+
+stock:DailyPrice a owl:Class, rdfs:Class ;
+    rdfs:label "일별 시세 데이터"@ko, "Daily Market Price"@en ;
+    rdfs:comment "특정 거래일에 기록된 주식의 종가 및 당일 체결 거래량 데이터 기록."@ko,
+                 "A daily historical price bar record capturing official market close quotes and executed trading volume."@en .
+
+stock:FinancialMetric a owl:Class, rdfs:Class ;
+    rdfs:label "재무 지표"@ko, "Financial Metric"@en ;
+    rdfs:comment "기업의 수익성, 장부가치, 성장성을 평가하기 위한 기본적 분석 펀더멘털 배수 지표."@ko,
+                 "Fundamental corporate valuation ratios measuring profitability, asset strength, and earnings quality."@en .
+
+stock:TechnicalIndicator a owl:Class, rdfs:Class ;
+    rdfs:label "기술적 지표"@ko, "Technical Indicator"@en ;
+    rdfs:comment "과거 시세와 거래량 데이터의 통계적 패턴을 기반으로 산출된 모멘텀 및 추세 지표."@ko,
+                 "Quantitative chart indicator derived from mathematical evaluation of historical price trends and volume."@en .
+
+stock:TradingStrategy a owl:Class, rdfs:Class ;
+    rdfs:label "투자 전략"@ko, "Trading Strategy"@en ;
+    rdfs:comment "시장 조건에 따라 포지션을 진입, 청산, 조절하는 규칙 및 계량 알고리즘 투자 모델."@ko,
+                 "Rule-based or algorithmic portfolio management strategy governing asset allocation and trading decisions."@en .
+
+stock:PortfolioPosition a owl:Class, rdfs:Class ;
+    rdfs:label "포트폴리오 보유 종목"@ko, "Portfolio Position"@en ;
+    rdfs:comment "특정 시점에 투자 포트폴리오가 보유하고 있는 개별 유가증권의 수량 및 매입단가 기록."@ko,
+                 "Detailed individual holding entry tracking asset ownership quantity and unit cost basis in a portfolio."@en .
+
+stock:InvestmentPortfolio a owl:Class, rdfs:Class ;
+    rdfs:label "투자 포트폴리오"@ko, "Investment Portfolio"@en ;
+    rdfs:comment "복수의 주식 포지션, 가용 현금 예수금, 투자 전략과 위험 관리 한도를 통합 관리하는 계좌 단위."@ko,
+                 "A structured basket of securities holdings, liquid cash balances, and associated risk-return mandates."@en .
+
+stock:TradingOrder a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:TaskRun ;
+    rdfs:label "주식 매매 주문"@ko, "Stock Trading Order"@en ;
+    rdfs:comment "AI 트레이딩 에이전트에 의해 생성되어 시장에 전송·체결되는 매수 또는 매도 작업 실행 기록."@ko,
+                 "A trade order execution transaction representing an instruction to purchase or liquidate shares."@en .
+
+stock:StockTradingAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf core:Agent ;
+    rdfs:label "주식 투자 AI 에이전트"@ko, "Stock Trading AI Agent"@en ;
+    rdfs:comment "시세 수집, 펀더멘털 분석, 위험 통제 및 주문 발주를 자율 수행하는 소프트웨어 지능형 에이전트."@ko,
+                 "Autonomous artificial intelligence agent performing financial market analysis, trade routing, and portfolio management."@en .
+
+stock:QuantAnalystAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:StockTradingAgent ;
+    rdfs:label "퀀트 분석 에이전트"@ko, "Quantitative Analyst Agent"@en ;
+    rdfs:comment "다변량 팩터 지표 및 통계적 머신러닝 알고리즘으로 알파 종목을 선별하는 계량 분석 전문 에이전트."@ko,
+                 "Specialized algorithmic agent evaluating multi-factor statistical models to identify mispriced securities."@en .
+
+stock:RiskManagerAgent a owl:Class, rdfs:Class ;
+    rdfs:subClassOf stock:StockTradingAgent ;
+    rdfs:label "리스크 관리 에이전트"@ko, "Risk Manager Agent"@en ;
+    rdfs:comment "포트폴리오 변동성, 최대 낙폭(MDD), 밸류앳리스크(VaR) 한도를 상시 감시하고 조절하는 위험 관리 에이전트."@ko,
+                 "Supervisory agent monitoring downside risk, maximum drawdown limits, and portfolio value-at-risk exposures."@en .
+
+# =============================================================================
+# Object Properties (객체 속성)
+# =============================================================================
+
+stock:issuedBy a owl:ObjectProperty ;
+    rdfs:label "발행 법인"@ko, "Issued By"@en ;
+    rdfs:comment "금융 자산을 발행한 법인체를 연결한다."@ko,
+                 "Connects a financial asset to its legal issuer corporate entity."@en ;
+    rdfs:domain stock:FinancialAsset ;
+    rdfs:range stock:Corporation .
+
+stock:tradedOn a owl:ObjectProperty ;
+    rdfs:label "상장 거래소"@ko, "Traded On"@en ;
+    rdfs:comment "자산이 상장되어 거래되는 정규 증권 거래소를 지정한다."@ko,
+                 "Links an asset to the officially authorized exchange venue where it is traded."@en ;
+    rdfs:domain stock:FinancialAsset ;
+    rdfs:range stock:StockExchange .
+
+stock:hasDailyPrice a owl:ObjectProperty ;
+    rdfs:label "일별 시세 참조"@ko, "Has Daily Price"@en ;
+    rdfs:comment "주식 종목의 특정 거래일 시세 정보를 연결한다."@ko,
+                 "Associates a stock security with a concrete daily price quote record."@en ;
+    rdfs:domain stock:Stock ;
+    rdfs:range stock:DailyPrice .
+
+stock:hasFinancialMetric a owl:ObjectProperty ;
+    rdfs:label "재무 지표 참조"@ko, "Has Financial Metric"@en ;
+    rdfs:comment "주식 종목의 펀더멘털 가치평가 재무 지표를 연결한다."@ko,
+                 "Links a stock security to its fundamental financial valuation metrics."@en ;
+    rdfs:domain stock:Stock ;
+    rdfs:range stock:FinancialMetric .
+
+stock:hasTechnicalIndicator a owl:ObjectProperty ;
+    rdfs:label "기술적 지표 참조"@ko, "Has Technical Indicator"@en ;
+    rdfs:comment "주식 종목의 시계열 차트 기반 기술적 분석 지표를 연결한다."@ko,
+                 "Links a stock security to its computed technical momentum and trend indicators."@en ;
+    rdfs:domain stock:Stock ;
+    rdfs:range stock:TechnicalIndicator .
+
+stock:holdsPosition a owl:ObjectProperty ;
+    rdfs:label "보유 포지션 연결"@ko, "Holds Position"@en ;
+    rdfs:comment "투자 포트폴리오에 편입된 개별 종목 포지션을 연결한다."@ko,
+                 "Associates an investment portfolio with an individual asset holding entry."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range stock:PortfolioPosition .
+
+stock:positionAsset a owl:ObjectProperty ;
+    rdfs:label "보유 대상 자산"@ko, "Position Asset"@en ;
+    rdfs:comment "포트폴리오 포지션이 보유하고 있는 대상 금융 자산을 가리킨다."@ko,
+                 "Identifies the underlying financial asset owned within a portfolio holding position."@en ;
+    rdfs:domain stock:PortfolioPosition ;
+    rdfs:range stock:FinancialAsset .
+
+stock:hasOrder a owl:ObjectProperty ;
+    rdfs:label "발주 주문 연결"@ko, "Has Order"@en ;
+    rdfs:comment "투자 포트폴리오 운용을 위해 발생한 매매 체결 주문을 연결한다."@ko,
+                 "Associates an executed or active trading order with the portfolio account."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range stock:TradingOrder .
+
+stock:orderAsset a owl:ObjectProperty ;
+    rdfs:label "주문 대상 자산"@ko, "Order Asset"@en ;
+    rdfs:comment "매매 주문이 체결을 지시하는 대상 유가증권을 가리킨다."@ko,
+                 "Specifies the financial security targeted for purchase or liquidation by the order."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range stock:FinancialAsset .
+
+stock:executedByAgent a owl:ObjectProperty ;
+    rdfs:subPropertyOf core:runAgent ;
+    rdfs:label "주문 집행 에이전트"@ko, "Executed By Agent"@en ;
+    rdfs:comment "주문을 생성하고 시장에 발주시킨 담당 AI 트레이딩 에이전트를 지정한다."@ko,
+                 "Designates the AI trading agent that created and submitted the transaction order."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range stock:StockTradingAgent .
+
+stock:managedByAgent a owl:ObjectProperty ;
+    rdfs:label "총괄 운용 에이전트"@ko, "Managed By Agent"@en ;
+    rdfs:comment "포트폴리오의 비중과 리밸런싱을 총괄 책임지는 AI 에이전트를 지정한다."@ko,
+                 "Identifies the primary portfolio manager AI agent guiding investment decisions."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range stock:StockTradingAgent .
+
+stock:followsStrategy a owl:ObjectProperty ;
+    rdfs:label "적용 투자 전략"@ko, "Follows Strategy"@en ;
+    rdfs:comment "포트폴리오 자산 배분에 적용되는 정량적 또는 규칙 기반 투자 전략을 가리킨다."@ko,
+                 "Connects an investment portfolio to its formal quantitative or rule-based strategy."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range stock:TradingStrategy .
+
+# =============================================================================
+# Datatype Properties (데이터 속성)
+# =============================================================================
+
+stock:tickerSymbol a owl:DatatypeProperty ;
+    rdfs:label "티커 심볼 종목 코드"@ko, "Ticker Symbol"@en ;
+    rdfs:comment "거래소에서 종목을 식별하기 위해 부여된 고유 식별 코드 문자열."@ko,
+                 "Official alphanumeric trading symbol or market ticker identifying the security."@en ;
+    rdfs:domain stock:FinancialAsset ;
+    rdfs:range xsd:string .
+
+stock:isin a owl:DatatypeProperty ;
+    rdfs:label "국제 증권 식별 번호"@ko, "ISIN Code"@en ;
+    rdfs:comment "국제 표준화 기구(ISO 6166) 규격에 따른 12자리의 국제 유가증권 식별 번호."@ko,
+                 "Standardized twelve-character International Securities Identification Number code."@en ;
+    rdfs:domain stock:FinancialAsset ;
+    rdfs:range xsd:string .
+
+stock:marketCap a owl:DatatypeProperty ;
+    rdfs:label "시가 총액"@ko, "Market Capitalization"@en ;
+    rdfs:comment "기업의 상장 주식 총수에 현재 주가를 곱하여 산출한 총 시장 가치 금액."@ko,
+                 "Total aggregate equity valuation computed by multiplying total shares by current price."@en ;
+    rdfs:domain stock:Corporation ;
+    rdfs:range xsd:decimal .
+
+stock:closingPrice a owl:DatatypeProperty ;
+    rdfs:label "장마감 종가"@ko, "Closing Price"@en ;
+    rdfs:comment "정규 거래 시간 마감 시점에 공식 체결된 주식 1주의 최종 거래 가격."@ko,
+                 "Final cash settlement price executed at the end of the regular trading day session."@en ;
+    rdfs:domain stock:DailyPrice ;
+    rdfs:range xsd:decimal .
+
+stock:tradingVolume a owl:DatatypeProperty ;
+    rdfs:label "당일 누적 거래량"@ko, "Trading Volume"@en ;
+    rdfs:comment "해당 거래일 동안 정규 거래소에서 체결된 총 주식 수량."@ko,
+                 "Total cumulative number of security units exchanged during the daily market session."@en ;
+    rdfs:domain stock:DailyPrice ;
+    rdfs:range xsd:integer .
+
+stock:priceDate a owl:DatatypeProperty ;
+    rdfs:label "시세 기준일자"@ko, "Price Date"@en ;
+    rdfs:comment "시세와 거래량이 집계된 기준 거래 일자."@ko,
+                 "Official calendar date for which the market price quote and volume are recorded."@en ;
+    rdfs:domain stock:DailyPrice ;
+    rdfs:range xsd:date .
+
+stock:per a owl:DatatypeProperty ;
+    rdfs:label "주가수익비율 PER"@ko, "Price-to-Earnings Ratio"@en ;
+    rdfs:comment "현재 주가를 1주당 순이익(EPS)으로 나눈 가치평가 배수."@ko,
+                 "Fundamental valuation multiple dividing market price per share by earnings per share."@en ;
+    rdfs:domain stock:FinancialMetric ;
+    rdfs:range xsd:decimal .
+
+stock:pbr a owl:DatatypeProperty ;
+    rdfs:label "주가순자산비율 PBR"@ko, "Price-to-Book Ratio"@en ;
+    rdfs:comment "현재 주가를 1주당 순자산가치(BPS)로 나눈 장부가치 배수."@ko,
+                 "Financial multiple comparing current share price against book value of equity per share."@en ;
+    rdfs:domain stock:FinancialMetric ;
+    rdfs:range xsd:decimal .
+
+stock:roe a owl:DatatypeProperty ;
+    rdfs:label "자기자본이익률 ROE"@ko, "Return on Equity"@en ;
+    rdfs:comment "당기순이익을 자기자본으로 나누어 산출한 기업의 자본 운용 효율성 비율 백분율."@ko,
+                 "Profitability indicator calculated as annual net income divided by shareholder equity."@en ;
+    rdfs:domain stock:FinancialMetric ;
+    rdfs:range xsd:decimal .
+
+stock:dividendYield a owl:DatatypeProperty ;
+    rdfs:label "배당수익률"@ko, "Dividend Yield"@en ;
+    rdfs:comment "1주당 연간 배당금을 현재 주가로 나눈 백분율 배당 수익률."@ko,
+                 "Annual financial return generated from dividend distributions relative to stock price."@en ;
+    rdfs:domain stock:FinancialMetric ;
+    rdfs:range xsd:decimal .
+
+stock:rsi a owl:DatatypeProperty ;
+    rdfs:label "상대강도지수 RSI"@ko, "Relative Strength Index"@en ;
+    rdfs:comment "일정 기간 주가 상승폭과 하락폭의 상대적 강도를 0부터 100 범위로 표현한 모멘텀 지표."@ko,
+                 "Bounded momentum technical oscillator evaluating speed and change of price movements."@en ;
+    rdfs:domain stock:TechnicalIndicator ;
+    rdfs:range xsd:decimal .
+
+stock:movingAverage20 a owl:DatatypeProperty ;
+    rdfs:label "20일 이동평균선"@ko, "20-Day Moving Average"@en ;
+    rdfs:comment "최근 20거래일 동안의 종가를 단순 산술 평균한 기술적 추세 가격선."@ko,
+                 "Technical trend indicator tracking the arithmetic mean closing price over 20 sessions."@en ;
+    rdfs:domain stock:TechnicalIndicator ;
+    rdfs:range xsd:decimal .
+
+stock:orderType a owl:DatatypeProperty ;
+    rdfs:label "주문 유형"@ko, "Order Type"@en ;
+    rdfs:comment "주문의 거래 방향을 나타내며 BUY(매수) 또는 SELL(매도) 값을 취한다."@ko,
+                 "Directional action parameter specifying whether the trading order is BUY or SELL."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range xsd:string .
+
+stock:orderStatus a owl:DatatypeProperty ;
+    rdfs:subPropertyOf core:taskStatus ;
+    rdfs:label "주문 처리 상태"@ko, "Order Execution Status"@en ;
+    rdfs:comment "주문 생애주기의 진행 상태로 PENDING, EXECUTED, CANCELLED 값을 취한다."@ko,
+                 "Current transactional state of the order lifecycle such as PENDING, EXECUTED, or CANCELLED."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range xsd:string .
+
+stock:orderQuantity a owl:DatatypeProperty ;
+    rdfs:label "주문 수량"@ko, "Order Share Quantity"@en ;
+    rdfs:comment "매매 주문에서 체결을 요청한 주식의 주수 단위 수량."@ko,
+                 "Number of equity security shares specified for execution in the market order."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range xsd:integer .
+
+stock:orderPrice a owl:DatatypeProperty ;
+    rdfs:label "주문 한도 가격"@ko, "Order Limit Price"@en ;
+    rdfs:comment "지정가 매매 주문 체결을 위해 지정된 1주당 거래 단가."@ko,
+                 "Specified unit monetary price limit set for execution of the limit order."@en ;
+    rdfs:domain stock:TradingOrder ;
+    rdfs:range xsd:decimal .
+
+stock:positionQuantity a owl:DatatypeProperty ;
+    rdfs:label "포지션 보유 수량"@ko, "Position Holding Quantity"@en ;
+    rdfs:comment "해당 포지션에서 현재 계좌에 보유하고 있는 실물 주식의 수량."@ko,
+                 "Aggregate quantity of shares currently held active within the portfolio holding."@en ;
+    rdfs:domain stock:PortfolioPosition ;
+    rdfs:range xsd:integer .
+
+stock:averageCost a owl:DatatypeProperty ;
+    rdfs:label "평균 매입 단가"@ko, "Average Cost Basis"@en ;
+    rdfs:comment "보유 주식을 매입하는 데 지출된 1주당 가중 평균 매입 가격."@ko,
+                 "Weighted average dollar cost basis invested per share for currently held securities."@en ;
+    rdfs:domain stock:PortfolioPosition ;
+    rdfs:range xsd:decimal .
+
+stock:totalValue a owl:DatatypeProperty ;
+    rdfs:label "포트폴리오 총 평가액"@ko, "Total Portfolio Value"@en ;
+    rdfs:comment "모든 보유 자산 평가액과 예수금 현금을 합산한 포트폴리오의 총 순자산 가치."@ko,
+                 "Total aggregate portfolio net asset value combining securities valuations and cash."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range xsd:decimal .
+
+stock:cashBalance a owl:DatatypeProperty ;
+    rdfs:label "가용 현금 잔고"@ko, "Available Cash Balance"@en ;
+    rdfs:comment "포트폴리오 계좌에서 신규 매수 주문에 즉시 투입 가능한 미투자 현금 예수금."@ko,
+                 "Liquid uninvested capital available for allocation and new order execution."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range xsd:decimal .
+
+stock:sharpeRatio a owl:DatatypeProperty ;
+    rdfs:label "샤프 지수"@ko, "Portfolio Sharpe Ratio"@en ;
+    rdfs:comment "무위험 수익률 대비 포트폴리오 초과 수익률을 변동성으로 나눈 위험조정 성과 지표."@ko,
+                 "Annualized risk-adjusted performance metric dividing excess return by standard deviation."@en ;
+    rdfs:domain stock:InvestmentPortfolio ;
+    rdfs:range xsd:decimal .

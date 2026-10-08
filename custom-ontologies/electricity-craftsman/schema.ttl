@@ -1,0 +1,894 @@
+@prefix ec: <https://example.org/ontology/custom/electricity-craftsman#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ec: a owl:Ontology ;
+    rdfs:label "Electricity Craftsman Qualification Ontology"@en,
+        "전기기능사 온톨로지"@ko ;
+    rdfs:comment "A draft connecting Q-Net electricity-craftsman exam facts to provenance and validity periods. Detailed learning criteria are managed with explicit version and review status."@en,
+        "큐넷의 전기기능사 시험 정보와 출처·적용기간을 연결하는 초안이다. 상세 학습 기준은 버전별 검토 상태와 함께 관리한다."@ko ;
+    owl:versionInfo "0.1.0" .
+
+ec:competencyDescription a owl:DatatypeProperty ;
+    rdfs:label "competency description"@en,
+        "역량 설명"@ko ;
+    rdfs:comment "Records the competency description for Competency."@en,
+        "직무 역량의 역량 설명를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range rdf:langString .
+
+ec:competencyEvidence a owl:ObjectProperty ;
+    rdfs:label "competency evidence"@en,
+        "역량 근거"@ko ;
+    rdfs:comment "Records a relation from Competency to Evidence record."@en,
+        "직무 역량에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:competencyIdentifier a owl:DatatypeProperty ;
+    rdfs:label "competency identifier"@en,
+        "역량 식별자"@ko ;
+    rdfs:comment "Records the competency identifier for Competency."@en,
+        "직무 역량의 역량 식별자를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range xsd:string .
+
+ec:competencyPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "competency label"@en,
+        "역량 이름"@ko ;
+    rdfs:comment "Records the competency label for Competency."@en,
+        "직무 역량의 역량 이름를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range rdf:langString .
+
+ec:competencyRelatedTask a owl:ObjectProperty ;
+    rdfs:label "related practical task"@en,
+        "관련 실기 과제"@ko ;
+    rdfs:comment "Records a relation from Competency to Practical task."@en,
+        "직무 역량에서 실기 수행 과제로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range ec:PracticalTask .
+
+ec:competencySource a owl:ObjectProperty ;
+    rdfs:label "competency source"@en,
+        "역량 출처"@ko ;
+    rdfs:comment "Records a relation from Competency to Source document."@en,
+        "직무 역량에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:Competency ;
+    rdfs:range ec:SourceDocument .
+
+ec:evidenceClaim a owl:DatatypeProperty ;
+    rdfs:label "supported claim"@en,
+        "근거가 뒷받침하는 주장"@ko ;
+    rdfs:comment "Records the supported claim for Evidence record."@en,
+        "근거 기록의 근거가 뒷받침하는 주장를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range rdf:langString .
+
+ec:evidenceIdentifier a owl:DatatypeProperty ;
+    rdfs:label "evidence identifier"@en,
+        "근거 식별자"@ko ;
+    rdfs:comment "Records the evidence identifier for Evidence record."@en,
+        "근거 기록의 근거 식별자를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+ec:evidenceObservedAt a owl:DatatypeProperty ;
+    rdfs:label "observed at"@en,
+        "확인 시점"@ko ;
+    rdfs:comment "Records the observed at for Evidence record."@en,
+        "근거 기록의 확인 시점를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range xsd:date .
+
+ec:evidenceScopeNote a owl:DatatypeProperty ;
+    rdfs:label "evidence scope and limits"@en,
+        "근거 범위·한계"@ko ;
+    rdfs:comment "Records the evidence scope and limits for Evidence record."@en,
+        "근거 기록의 근거 범위·한계를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range rdf:langString .
+
+ec:evidenceSource a owl:ObjectProperty ;
+    rdfs:label "evidence source"@en,
+        "근거 출처"@ko ;
+    rdfs:comment "Records a relation from Evidence record to Source document."@en,
+        "근거 기록에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range ec:SourceDocument .
+
+ec:evidenceSourceLocator a owl:DatatypeProperty ;
+    rdfs:label "source locator"@en,
+        "출처 내 위치"@ko ;
+    rdfs:comment "Records the source locator for Evidence record."@en,
+        "근거 기록의 출처 내 위치를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+ec:evidenceStatus a owl:DatatypeProperty ;
+    rdfs:label "evidence status"@en,
+        "검증 상태"@ko ;
+    rdfs:comment "Records the evidence status for Evidence record."@en,
+        "근거 기록의 검증 상태를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range xsd:string .
+
+ec:evidenceValidThrough a owl:DatatypeProperty ;
+    rdfs:label "verified through"@en,
+        "확인된 적용 종료일"@ko ;
+    rdfs:comment "Records the verified through for Evidence record."@en,
+        "근거 기록의 확인된 적용 종료일를 기록한다."@ko ;
+    rdfs:domain ec:EvidenceRecord ;
+    rdfs:range xsd:date .
+
+ec:knowledgeAreaDescription a owl:DatatypeProperty ;
+    rdfs:label "subject description"@en,
+        "과목 설명"@ko ;
+    rdfs:comment "Records the subject description for Knowledge area."@en,
+        "필기 지식 영역의 과목 설명를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range rdf:langString .
+
+ec:knowledgeAreaEvidence a owl:ObjectProperty ;
+    rdfs:label "subject evidence"@en,
+        "과목 근거"@ko ;
+    rdfs:comment "Records a relation from Knowledge area to Evidence record."@en,
+        "필기 지식 영역에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:knowledgeAreaIdentifier a owl:DatatypeProperty ;
+    rdfs:label "subject identifier"@en,
+        "과목 식별자"@ko ;
+    rdfs:comment "Records the subject identifier for Knowledge area."@en,
+        "필기 지식 영역의 과목 식별자를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range xsd:string .
+
+ec:knowledgeAreaInStage a owl:ObjectProperty ;
+    rdfs:label "in exam stage"@en,
+        "적용 시험 단계"@ko ;
+    rdfs:comment "Records a relation from Knowledge area to Exam stage."@en,
+        "필기 지식 영역에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range ec:ExamStage .
+
+ec:knowledgeAreaInStandard a owl:ObjectProperty ;
+    rdfs:label "in standard"@en,
+        "적용 기준"@ko ;
+    rdfs:comment "Records a relation from Knowledge area to Exam standard version."@en,
+        "필기 지식 영역에서 출제기준 버전로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range ec:ExamStandardVersion .
+
+ec:knowledgeAreaPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "subject label"@en,
+        "과목 이름"@ko ;
+    rdfs:comment "Records the subject label for Knowledge area."@en,
+        "필기 지식 영역의 과목 이름를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range rdf:langString .
+
+ec:knowledgeAreaSource a owl:ObjectProperty ;
+    rdfs:label "subject source"@en,
+        "과목 출처"@ko ;
+    rdfs:comment "Records a relation from Knowledge area to Source document."@en,
+        "필기 지식 영역에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:KnowledgeArea ;
+    rdfs:range ec:SourceDocument .
+
+ec:materialCategory a owl:DatatypeProperty ;
+    rdfs:label "material category"@en,
+        "품목 분류"@ko ;
+    rdfs:comment "Records the material category for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 품목 분류를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range xsd:string .
+
+ec:materialForStage a owl:ObjectProperty ;
+    rdfs:label "for exam stage"@en,
+        "적용 시험 단계"@ko ;
+    rdfs:comment "Records a relation from Material or tool requirement to Exam stage."@en,
+        "지참 재료·공구 요건에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range ec:ExamStage .
+
+ec:materialHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "품목 근거"@ko ;
+    rdfs:comment "Records a relation from Material or tool requirement to Evidence record."@en,
+        "지참 재료·공구 요건에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:materialIdentifier a owl:DatatypeProperty ;
+    rdfs:label "material identifier"@en,
+        "품목 식별자"@ko ;
+    rdfs:comment "Records the material identifier for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 품목 식별자를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range xsd:string .
+
+ec:materialPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "material label"@en,
+        "품목명"@ko ;
+    rdfs:comment "Records the material label for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 품목명를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range rdf:langString .
+
+ec:materialQuantity a owl:DatatypeProperty ;
+    rdfs:label "quantity"@en,
+        "수량"@ko ;
+    rdfs:comment "Records the quantity for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 수량를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range xsd:decimal .
+
+ec:materialRestriction a owl:DatatypeProperty ;
+    rdfs:label "restriction or note"@en,
+        "사용 제한·비고"@ko ;
+    rdfs:comment "Records the restriction or note for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 사용 제한·비고를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range rdf:langString .
+
+ec:materialSource a owl:ObjectProperty ;
+    rdfs:label "material source"@en,
+        "품목 출처"@ko ;
+    rdfs:comment "Records a relation from Material or tool requirement to Source document."@en,
+        "지참 재료·공구 요건에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range ec:SourceDocument .
+
+ec:materialSpecification a owl:DatatypeProperty ;
+    rdfs:label "specification"@en,
+        "규격"@ko ;
+    rdfs:comment "Records the specification for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 규격를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range rdf:langString .
+
+ec:materialUnit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en,
+        "단위"@ko ;
+    rdfs:comment "Records the unit for Material or tool requirement."@en,
+        "지참 재료·공구 요건의 단위를 기록한다."@ko ;
+    rdfs:domain ec:MaterialRequirement ;
+    rdfs:range xsd:string .
+
+ec:practicalTaskDescription a owl:DatatypeProperty ;
+    rdfs:label "practical task description"@en,
+        "실기 과제 설명"@ko ;
+    rdfs:comment "Records the practical task description for Practical task."@en,
+        "실기 수행 과제의 실기 과제 설명를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range rdf:langString .
+
+ec:practicalTaskEvidence a owl:ObjectProperty ;
+    rdfs:label "practical task evidence"@en,
+        "실기 과제 근거"@ko ;
+    rdfs:comment "Records a relation from Practical task to Evidence record."@en,
+        "실기 수행 과제에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:practicalTaskIdentifier a owl:DatatypeProperty ;
+    rdfs:label "practical task identifier"@en,
+        "실기 과제 식별자"@ko ;
+    rdfs:comment "Records the practical task identifier for Practical task."@en,
+        "실기 수행 과제의 실기 과제 식별자를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range xsd:string .
+
+ec:practicalTaskPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "practical task label"@en,
+        "실기 과제 이름"@ko ;
+    rdfs:comment "Records the practical task label for Practical task."@en,
+        "실기 수행 과제의 실기 과제 이름를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range rdf:langString .
+
+ec:qualificationAdministeringBody a owl:DatatypeProperty ;
+    rdfs:label "administering body"@en,
+        "시행 기관"@ko ;
+    rdfs:comment "Records the administering body for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 시행 기관를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:qualificationAlternativeLabel a owl:DatatypeProperty ;
+    rdfs:label "alternative label"@en,
+        "영문·별칭"@ko ;
+    rdfs:comment "Records the alternative label for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 영문·별칭를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range rdf:langString .
+
+ec:qualificationCategory a owl:DatatypeProperty ;
+    rdfs:label "qualification category"@en,
+        "자격 등급"@ko ;
+    rdfs:comment "Records the qualification category for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 자격 등급를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:qualificationHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "근거 기록"@ko ;
+    rdfs:comment "Records a relation from Electrical craftsman qualification to Evidence record."@en,
+        "전기기능사 자격에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:qualificationHasSource a owl:ObjectProperty ;
+    rdfs:label "has source"@en,
+        "공식 출처"@ko ;
+    rdfs:comment "Records a relation from Electrical craftsman qualification to Source document."@en,
+        "전기기능사 자격에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range ec:SourceDocument .
+
+ec:qualificationHasStage a owl:ObjectProperty ;
+    rdfs:label "has exam stage"@en,
+        "시험 단계"@ko ;
+    rdfs:comment "Records a relation from Electrical craftsman qualification to Exam stage."@en,
+        "전기기능사 자격에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range ec:ExamStage .
+
+ec:qualificationHasStandard a owl:ObjectProperty ;
+    rdfs:label "has exam standard"@en,
+        "출제기준 버전"@ko ;
+    rdfs:comment "Records a relation from Electrical craftsman qualification to Exam standard version."@en,
+        "전기기능사 자격에서 출제기준 버전로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range ec:ExamStandardVersion .
+
+ec:qualificationIdentifier a owl:DatatypeProperty ;
+    rdfs:label "qualification identifier"@en,
+        "자격 식별자"@ko ;
+    rdfs:comment "Records the qualification identifier for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 자격 식별자를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:qualificationPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "qualification name"@en,
+        "자격명"@ko ;
+    rdfs:comment "Records the qualification name for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 자격명를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range rdf:langString .
+
+ec:qualificationQnetCode a owl:DatatypeProperty ;
+    rdfs:label "Q-Net item code"@en,
+        "큐넷 종목 코드"@ko ;
+    rdfs:comment "Records the Q-Net item code for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 큐넷 종목 코드를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:qualificationRelatedMinistry a owl:DatatypeProperty ;
+    rdfs:label "related ministry"@en,
+        "관련 부처"@ko ;
+    rdfs:comment "Records the related ministry for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 관련 부처를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:qualificationStatus a owl:DatatypeProperty ;
+    rdfs:label "profile status"@en,
+        "프로필 상태"@ko ;
+    rdfs:comment "Records the profile status for Electrical craftsman qualification."@en,
+        "전기기능사 자격의 프로필 상태를 기록한다."@ko ;
+    rdfs:domain ec:ElectricalQualification ;
+    rdfs:range xsd:string .
+
+ec:ruleAppliesToStage a owl:ObjectProperty ;
+    rdfs:label "applies to stage"@en,
+        "적용 시험 단계"@ko ;
+    rdfs:comment "Records a relation from Assessment rule to Exam stage."@en,
+        "평가 기준에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range ec:ExamStage .
+
+ec:ruleDescription a owl:DatatypeProperty ;
+    rdfs:label "rule description"@en,
+        "기준 설명"@ko ;
+    rdfs:comment "Records the rule description for Assessment rule."@en,
+        "평가 기준의 기준 설명를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range rdf:langString .
+
+ec:ruleHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "평가 기준 근거"@ko ;
+    rdfs:comment "Records a relation from Assessment rule to Evidence record."@en,
+        "평가 기준에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:ruleIdentifier a owl:DatatypeProperty ;
+    rdfs:label "rule identifier"@en,
+        "평가 기준 식별자"@ko ;
+    rdfs:comment "Records the rule identifier for Assessment rule."@en,
+        "평가 기준의 평가 기준 식별자를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range xsd:string .
+
+ec:ruleMaximumScore a owl:DatatypeProperty ;
+    rdfs:label "maximum score"@en,
+        "만점"@ko ;
+    rdfs:comment "Records the maximum score for Assessment rule."@en,
+        "평가 기준의 만점를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range xsd:decimal .
+
+ec:ruleMinimumScore a owl:DatatypeProperty ;
+    rdfs:label "minimum passing score"@en,
+        "합격 최저 점수"@ko ;
+    rdfs:comment "Records the minimum passing score for Assessment rule."@en,
+        "평가 기준의 합격 최저 점수를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range xsd:decimal .
+
+ec:rulePreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "rule label"@en,
+        "평가 기준명"@ko ;
+    rdfs:comment "Records the rule label for Assessment rule."@en,
+        "평가 기준의 평가 기준명를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range rdf:langString .
+
+ec:ruleSource a owl:ObjectProperty ;
+    rdfs:label "rule source"@en,
+        "평가 기준 출처"@ko ;
+    rdfs:comment "Records a relation from Assessment rule to Source document."@en,
+        "평가 기준에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range ec:SourceDocument .
+
+ec:ruleType a owl:DatatypeProperty ;
+    rdfs:label "rule type"@en,
+        "기준 유형"@ko ;
+    rdfs:comment "Records the rule type for Assessment rule."@en,
+        "평가 기준의 기준 유형를 기록한다."@ko ;
+    rdfs:domain ec:AssessmentRule ;
+    rdfs:range xsd:string .
+
+ec:safetyForStage a owl:ObjectProperty ;
+    rdfs:label "for exam stage"@en,
+        "적용 시험 단계"@ko ;
+    rdfs:comment "Records a relation from Practical safety requirement to Exam stage."@en,
+        "실기 안전 요건에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range ec:ExamStage .
+
+ec:safetyHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "안전 근거"@ko ;
+    rdfs:comment "Records a relation from Practical safety requirement to Evidence record."@en,
+        "실기 안전 요건에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:safetyIdentifier a owl:DatatypeProperty ;
+    rdfs:label "safety requirement identifier"@en,
+        "안전 요건 식별자"@ko ;
+    rdfs:comment "Records the safety requirement identifier for Practical safety requirement."@en,
+        "실기 안전 요건의 안전 요건 식별자를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range xsd:string .
+
+ec:safetyLevel a owl:DatatypeProperty ;
+    rdfs:label "Q-Net published safety level"@en,
+        "큐넷 게시 안전 등급"@ko ;
+    rdfs:comment "Records the Q-Net published safety level for Practical safety requirement."@en,
+        "실기 안전 요건의 큐넷 게시 안전 등급를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range xsd:integer .
+
+ec:safetyPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "safety requirement label"@en,
+        "안전 요건명"@ko ;
+    rdfs:comment "Records the safety requirement label for Practical safety requirement."@en,
+        "실기 안전 요건의 안전 요건명를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range rdf:langString .
+
+ec:safetyRequirementType a owl:DatatypeProperty ;
+    rdfs:label "safety requirement type"@en,
+        "안전 요건 유형"@ko ;
+    rdfs:comment "Records the safety requirement type for Practical safety requirement."@en,
+        "실기 안전 요건의 안전 요건 유형를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range xsd:string .
+
+ec:safetySource a owl:ObjectProperty ;
+    rdfs:label "safety source"@en,
+        "안전 요건 출처"@ko ;
+    rdfs:comment "Records a relation from Practical safety requirement to Source document."@en,
+        "실기 안전 요건에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range ec:SourceDocument .
+
+ec:safetyText a owl:DatatypeProperty ;
+    rdfs:label "safety statement"@en,
+        "안전 안내"@ko ;
+    rdfs:comment "Records the safety statement for Practical safety requirement."@en,
+        "실기 안전 요건의 안전 안내를 기록한다."@ko ;
+    rdfs:domain ec:SafetyRequirement ;
+    rdfs:range rdf:langString .
+
+ec:sourceAccessedAt a owl:DatatypeProperty ;
+    rdfs:label "access date"@en,
+        "확인일"@ko ;
+    rdfs:comment "Records the access date for Source document."@en,
+        "공식 출처 문서의 확인일를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:date .
+
+ec:sourceIdentifier a owl:DatatypeProperty ;
+    rdfs:label "source identifier"@en,
+        "출처 식별자"@ko ;
+    rdfs:comment "Records the source identifier for Source document."@en,
+        "공식 출처 문서의 출처 식별자를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:string .
+
+ec:sourceKind a owl:DatatypeProperty ;
+    rdfs:label "source type"@en,
+        "출처 유형"@ko ;
+    rdfs:comment "Records the source type for Source document."@en,
+        "공식 출처 문서의 출처 유형를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:string .
+
+ec:sourceLimitations a owl:DatatypeProperty ;
+    rdfs:label "source limitations"@en,
+        "출처 한계"@ko ;
+    rdfs:comment "Records the source limitations for Source document."@en,
+        "공식 출처 문서의 출처 한계를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range rdf:langString .
+
+ec:sourcePublicationDate a owl:DatatypeProperty ;
+    rdfs:label "publication date"@en,
+        "게시일"@ko ;
+    rdfs:comment "Records the publication date for Source document."@en,
+        "공식 출처 문서의 게시일를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:date .
+
+ec:sourcePublisher a owl:DatatypeProperty ;
+    rdfs:label "publisher"@en,
+        "발행·운영 기관"@ko ;
+    rdfs:comment "Records the publisher for Source document."@en,
+        "공식 출처 문서의 발행·운영 기관를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:string .
+
+ec:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "source title"@en,
+        "문서명"@ko ;
+    rdfs:comment "Records the source title for Source document."@en,
+        "공식 출처 문서의 문서명를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:string .
+
+ec:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "source URI"@en,
+        "원문 URI"@ko ;
+    rdfs:comment "Records the source URI for Source document."@en,
+        "공식 출처 문서의 원문 URI를 기록한다."@ko ;
+    rdfs:domain ec:SourceDocument ;
+    rdfs:range xsd:anyURI .
+
+ec:stageChoiceCount a owl:DatatypeProperty ;
+    rdfs:label "choice count"@en,
+        "선택지 수"@ko ;
+    rdfs:comment "Records the choice count for Exam stage."@en,
+        "시험 단계의 선택지 수를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:integer .
+
+ec:stageDurationMinutes a owl:DatatypeProperty ;
+    rdfs:label "duration in minutes"@en,
+        "시험 시간(분)"@ko ;
+    rdfs:comment "Records the duration in minutes for Exam stage."@en,
+        "시험 단계의 시험 시간(분)를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:integer .
+
+ec:stageHasAssessmentRule a owl:ObjectProperty ;
+    rdfs:label "has assessment rule"@en,
+        "평가 기준"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Assessment rule."@en,
+        "시험 단계에서 평가 기준로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:AssessmentRule .
+
+ec:stageHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "시험 단계 근거"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Evidence record."@en,
+        "시험 단계에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:stageHasKnowledgeArea a owl:ObjectProperty ;
+    rdfs:label "has knowledge area"@en,
+        "필기 과목"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Knowledge area."@en,
+        "시험 단계에서 필기 지식 영역로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:KnowledgeArea .
+
+ec:stageHasMaterialRequirement a owl:ObjectProperty ;
+    rdfs:label "has material requirement"@en,
+        "지참 품목"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Material or tool requirement."@en,
+        "시험 단계에서 지참 재료·공구 요건로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:MaterialRequirement .
+
+ec:stageHasSafetyRequirement a owl:ObjectProperty ;
+    rdfs:label "has safety requirement"@en,
+        "안전 요건"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Practical safety requirement."@en,
+        "시험 단계에서 실기 안전 요건로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:SafetyRequirement .
+
+ec:stageHasTask a owl:ObjectProperty ;
+    rdfs:label "has practical task"@en,
+        "실기 과제"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Practical task."@en,
+        "시험 단계에서 실기 수행 과제로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:PracticalTask .
+
+ec:stageIdentifier a owl:DatatypeProperty ;
+    rdfs:label "stage identifier"@en,
+        "시험 단계 식별자"@ko ;
+    rdfs:comment "Records the stage identifier for Exam stage."@en,
+        "시험 단계의 시험 단계 식별자를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:string .
+
+ec:stageInStandard a owl:ObjectProperty ;
+    rdfs:label "in standard"@en,
+        "적용 출제기준"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Exam standard version."@en,
+        "시험 단계에서 출제기준 버전로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:ExamStandardVersion .
+
+ec:stageMaximumScore a owl:DatatypeProperty ;
+    rdfs:label "maximum score"@en,
+        "만점"@ko ;
+    rdfs:comment "Records the maximum score for Exam stage."@en,
+        "시험 단계의 만점를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:decimal .
+
+ec:stageMethod a owl:DatatypeProperty ;
+    rdfs:label "assessment method"@en,
+        "검정 방법"@ko ;
+    rdfs:comment "Records the assessment method for Exam stage."@en,
+        "시험 단계의 검정 방법를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range rdf:langString .
+
+ec:stagePreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "stage label"@en,
+        "시험 단계명"@ko ;
+    rdfs:comment "Records the stage label for Exam stage."@en,
+        "시험 단계의 시험 단계명를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range rdf:langString .
+
+ec:stageQuestionCount a owl:DatatypeProperty ;
+    rdfs:label "question count"@en,
+        "문항 수"@ko ;
+    rdfs:comment "Records the question count for Exam stage."@en,
+        "시험 단계의 문항 수를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:integer .
+
+ec:stageSource a owl:ObjectProperty ;
+    rdfs:label "stage source"@en,
+        "시험 정보 출처"@ko ;
+    rdfs:comment "Records a relation from Exam stage to Source document."@en,
+        "시험 단계에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range ec:SourceDocument .
+
+ec:stageType a owl:DatatypeProperty ;
+    rdfs:label "stage type"@en,
+        "시험 구분"@ko ;
+    rdfs:comment "Records the stage type for Exam stage."@en,
+        "시험 단계의 시험 구분를 기록한다."@ko ;
+    rdfs:domain ec:ExamStage ;
+    rdfs:range xsd:string .
+
+ec:standardContentStatus a owl:DatatypeProperty ;
+    rdfs:label "detailed content ingestion status"@en,
+        "세부 기준 반영 상태"@ko ;
+    rdfs:comment "Records the detailed content ingestion status for Exam standard version."@en,
+        "출제기준 버전의 세부 기준 반영 상태를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range xsd:string .
+
+ec:standardHasEvidence a owl:ObjectProperty ;
+    rdfs:label "has evidence"@en,
+        "기준 근거"@ko ;
+    rdfs:comment "Records a relation from Exam standard version to Evidence record."@en,
+        "출제기준 버전에서 근거 기록로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range ec:EvidenceRecord .
+
+ec:standardHasStage a owl:ObjectProperty ;
+    rdfs:label "has exam stage"@en,
+        "연결 시험 단계"@ko ;
+    rdfs:comment "Records a relation from Exam standard version to Exam stage."@en,
+        "출제기준 버전에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range ec:ExamStage .
+
+ec:standardIdentifier a owl:DatatypeProperty ;
+    rdfs:label "standard identifier"@en,
+        "기준 식별자"@ko ;
+    rdfs:comment "Records the standard identifier for Exam standard version."@en,
+        "출제기준 버전의 기준 식별자를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range xsd:string .
+
+ec:standardNote a owl:DatatypeProperty ;
+    rdfs:label "standard note"@en,
+        "기준 메모"@ko ;
+    rdfs:comment "Records the standard note for Exam standard version."@en,
+        "출제기준 버전의 기준 메모를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range rdf:langString .
+
+ec:standardPreferredLabel a owl:DatatypeProperty ;
+    rdfs:label "standard label"@en,
+        "기준명"@ko ;
+    rdfs:comment "Records the standard label for Exam standard version."@en,
+        "출제기준 버전의 기준명를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range rdf:langString .
+
+ec:standardSource a owl:ObjectProperty ;
+    rdfs:label "standard source"@en,
+        "기준 출처"@ko ;
+    rdfs:comment "Records a relation from Exam standard version to Source document."@en,
+        "출제기준 버전에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range ec:SourceDocument .
+
+ec:standardStatus a owl:DatatypeProperty ;
+    rdfs:label "standard status"@en,
+        "기준 상태"@ko ;
+    rdfs:comment "Records the standard status for Exam standard version."@en,
+        "출제기준 버전의 기준 상태를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range xsd:string .
+
+ec:standardValidFrom a owl:DatatypeProperty ;
+    rdfs:label "valid from"@en,
+        "적용 시작일"@ko ;
+    rdfs:comment "Records the valid from for Exam standard version."@en,
+        "출제기준 버전의 적용 시작일를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range xsd:date .
+
+ec:standardValidThrough a owl:DatatypeProperty ;
+    rdfs:label "valid through"@en,
+        "적용 종료일"@ko ;
+    rdfs:comment "Records the valid through for Exam standard version."@en,
+        "출제기준 버전의 적용 종료일를 기록한다."@ko ;
+    rdfs:domain ec:ExamStandardVersion ;
+    rdfs:range xsd:date .
+
+ec:taskHasCompetency a owl:ObjectProperty ;
+    rdfs:label "has competency"@en,
+        "연결 역량"@ko ;
+    rdfs:comment "Records a relation from Practical task to Competency."@en,
+        "실기 수행 과제에서 직무 역량로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range ec:Competency .
+
+ec:taskHasSafetyRequirement a owl:ObjectProperty ;
+    rdfs:label "has safety requirement"@en,
+        "관련 안전 요건"@ko ;
+    rdfs:comment "Records a relation from Practical task to Practical safety requirement."@en,
+        "실기 수행 과제에서 실기 안전 요건로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range ec:SafetyRequirement .
+
+ec:taskInStage a owl:ObjectProperty ;
+    rdfs:label "in exam stage"@en,
+        "실기 단계"@ko ;
+    rdfs:comment "Records a relation from Practical task to Exam stage."@en,
+        "실기 수행 과제에서 시험 단계로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range ec:ExamStage .
+
+ec:taskSource a owl:ObjectProperty ;
+    rdfs:label "task source"@en,
+        "과제 출처"@ko ;
+    rdfs:comment "Records a relation from Practical task to Source document."@en,
+        "실기 수행 과제에서 공식 출처 문서로 연결되는 관계를 기록한다."@ko ;
+    rdfs:domain ec:PracticalTask ;
+    rdfs:range ec:SourceDocument .
+
+ec:Competency a owl:Class ;
+    rdfs:label "Competency"@en,
+        "직무 역량"@ko ;
+    rdfs:comment "A capability recorded separately from the official exam scope and linked to evidence."@en,
+        "공식 시험 범위와 구별하여 기록하는 능력 또는 수행 역량이다."@ko .
+
+ec:KnowledgeArea a owl:Class ;
+    rdfs:label "Knowledge area"@en,
+        "필기 지식 영역"@ko ;
+    rdfs:comment "A written-exam subject or knowledge area explicitly named in official exam information."@en,
+        "공식 시험 정보에 명시된 필기 시험의 과목 또는 지식 영역이다."@ko .
+
+ec:AssessmentRule a owl:Class ;
+    rdfs:label "Assessment rule"@en,
+        "평가 기준"@ko ;
+    rdfs:comment "A score threshold, item format, or time condition for an exam stage."@en,
+        "시험 단계의 점수 기준, 문항 형식 또는 시간 조건을 나타낸다."@ko .
+
+ec:PracticalTask a owl:Class ;
+    rdfs:label "Practical task"@en,
+        "실기 수행 과제"@ko ;
+    rdfs:comment "A practical-work scope or task type described by Q-Net."@en,
+        "큐넷이 안내한 실기 작업의 범위 또는 과제 유형이다."@ko .
+
+ec:SafetyRequirement a owl:Class ;
+    rdfs:label "Practical safety requirement"@en,
+        "실기 안전 요건"@ko ;
+    rdfs:comment "Records published practical PPE, prohibitions, safety scoring, or a stated safety-level label."@en,
+        "실기시험에서 게시된 보호구, 금지사항, 안전 채점 또는 안전 등급 문구를 기록한다."@ko .
+
+ec:MaterialRequirement a owl:Class ;
+    rdfs:label "Material or tool requirement"@en,
+        "지참 재료·공구 요건"@ko ;
+    rdfs:comment "Records a Q-Net listed practical item, specification, quantity, and any stated restriction."@en,
+        "실기시험에서 큐넷이 게시한 지참 품목, 규격, 수량, 사용 제한을 기록한다."@ko .
+
+ec:ElectricalQualification a owl:Class ;
+    rdfs:label "Electrical craftsman qualification"@en,
+        "전기기능사 자격"@ko ;
+    rdfs:comment "Represents the Korean national technical qualification, including its administering body and source-backed exam information."@en,
+        "전기설비 분야의 국가기술자격 종목과 공식 시험·운영 정보를 나타낸다."@ko .
+
+ec:ExamStandardVersion a owl:Class ;
+    rdfs:label "Exam standard version"@en,
+        "출제기준 버전"@ko ;
+    rdfs:comment "Records an exam standard's applicability period, publication state, and whether its detailed content has been ingested."@en,
+        "적용 시작일과 종료일, 발표 상태, 세부 기준의 반영 상태를 기록한다."@ko .
+
+ec:EvidenceRecord a owl:Class ;
+    rdfs:label "Evidence record"@en,
+        "근거 기록"@ko ;
+    rdfs:comment "Records a source, observation date, scope, and review status for a specific claim."@en,
+        "특정 사실의 근거 출처, 확인 시점, 적용 범위, 검토 상태를 기록한다."@ko .
+
+ec:SourceDocument a owl:Class ;
+    rdfs:label "Source document"@en,
+        "공식 출처 문서"@ko ;
+    rdfs:comment "Records an official source for qualification, exam, standards, public tasks, or required materials, together with its limits."@en,
+        "자격·시험·출제기준·공개문제·지참준비물에 대한 공식 출처와 그 한계를 기록한다."@ko .
+
+ec:ExamStage a owl:Class ;
+    rdfs:label "Exam stage"@en,
+        "시험 단계"@ko ;
+    rdfs:comment "Represents an assessment stage such as the written or practical examination and its published method."@en,
+        "필기 또는 실기처럼 시험의 평가 단계와 검정 방법을 나타낸다."@ko .

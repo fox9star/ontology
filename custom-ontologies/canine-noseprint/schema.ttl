@@ -1,0 +1,908 @@
+@prefix np: <https://example.org/ontology/custom/canine-noseprint#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/ontology/custom/canine-noseprint> a owl:Ontology ;
+    rdfs:label "Canine Nose-Print Ontology"@en,
+        "개의 비문 온톨로지 (canine-noseprint)"@ko ;
+    rdfs:comment "Connects canine nose-pattern samples, capture and quality, preprocessing, subject comparison, evaluation status, data-use permission and evidence."@en,
+        "개 코 무늬 표본, 촬영·품질·전처리, 개체 비교와 검증 상태, 데이터 이용 권한 및 문헌 근거를 연결한다."@ko ;
+    owl:versionIRI <https://example.org/ontology/custom/canine-noseprint/0.1.0> ;
+    owl:versionInfo "0.1.0" .
+
+np:captureDeviceModel a owl:DatatypeProperty ;
+    rdfs:label "Device model"@en,
+        "장치 모델"@ko ;
+    rdfs:comment "Records or classifies device model."@en,
+        "장치 모델를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:captureDeviceType a owl:DatatypeProperty ;
+    rdfs:label "Capture device type"@en,
+        "촬영 장치 유형"@ko ;
+    rdfs:comment "Records or classifies capture device type."@en,
+        "촬영 장치 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:captureLighting a owl:DatatypeProperty ;
+    rdfs:label "Lighting condition"@en,
+        "조명 조건"@ko ;
+    rdfs:comment "Records or classifies lighting condition."@en,
+        "조명 조건를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:captureNote a owl:DatatypeProperty ;
+    rdfs:label "Capture note"@en,
+        "촬영 메모"@ko ;
+    rdfs:comment "Records or classifies capture note."@en,
+        "촬영 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:capturePose a owl:DatatypeProperty ;
+    rdfs:label "Nose pose"@en,
+        "코 각도·자세"@ko ;
+    rdfs:comment "Records or classifies nose pose."@en,
+        "코 각도·자세를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:captureSurfaceCondition a owl:DatatypeProperty ;
+    rdfs:label "Nose surface condition"@en,
+        "코 표면 상태"@ko ;
+    rdfs:comment "Records or classifies nose surface condition."@en,
+        "코 표면 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:string .
+
+np:captureTime a owl:DatatypeProperty ;
+    rdfs:label "Capture time"@en,
+        "촬영 시각"@ko ;
+    rdfs:comment "Records or classifies capture time."@en,
+        "촬영 시각를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CaptureSession ;
+    rdfs:range xsd:dateTime .
+
+np:datasetDescribedBy a owl:ObjectProperty ;
+    rdfs:label "Dataset described by"@en,
+        "문헌 출처"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range np:DocumentationSource .
+
+np:datasetIncludesSample a owl:ObjectProperty ;
+    rdfs:label "Includes sample"@en,
+        "포함 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range np:NosePrintSample .
+
+np:datasetLimitations a owl:DatatypeProperty ;
+    rdfs:label "Dataset limitations"@en,
+        "데이터 한계"@ko ;
+    rdfs:comment "Records or classifies dataset limitations."@en,
+        "데이터 한계를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:string .
+
+np:datasetName a owl:DatatypeProperty ;
+    rdfs:label "Dataset name"@en,
+        "데이터셋 이름"@ko ;
+    rdfs:comment "Records or classifies dataset name."@en,
+        "데이터셋 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:string .
+
+np:datasetProvenance a owl:DatatypeProperty ;
+    rdfs:label "Dataset provenance"@en,
+        "데이터 출처 유형"@ko ;
+    rdfs:comment "Records or classifies dataset provenance."@en,
+        "데이터 출처 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:string .
+
+np:datasetSampleCount a owl:DatatypeProperty ;
+    rdfs:label "Sample count"@en,
+        "표본 수"@ko ;
+    rdfs:comment "Records or classifies sample count."@en,
+        "표본 수를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:integer .
+
+np:datasetSplitProtocol a owl:DatatypeProperty ;
+    rdfs:label "Dataset split protocol"@en,
+        "데이터 분할 절차"@ko ;
+    rdfs:comment "Records or classifies dataset split protocol."@en,
+        "데이터 분할 절차를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:string .
+
+np:datasetStatus a owl:DatatypeProperty ;
+    rdfs:label "Dataset status"@en,
+        "사용 상태"@ko ;
+    rdfs:comment "Records or classifies dataset status."@en,
+        "사용 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:string .
+
+np:datasetSubjectCount a owl:DatatypeProperty ;
+    rdfs:label "Subject count"@en,
+        "개체 수"@ko ;
+    rdfs:comment "Records or classifies subject count."@en,
+        "개체 수를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ReferenceDataset ;
+    rdfs:range xsd:integer .
+
+np:evaluationNote a owl:DatatypeProperty ;
+    rdfs:label "Evaluation note"@en,
+        "평가 메모"@ko ;
+    rdfs:comment "Records or classifies evaluation note."@en,
+        "평가 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range xsd:string .
+
+np:evaluationProtocol a owl:DatatypeProperty ;
+    rdfs:label "Evaluation protocol"@en,
+        "평가 프로토콜"@ko ;
+    rdfs:comment "Records or classifies evaluation protocol."@en,
+        "평가 프로토콜를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range xsd:string .
+
+np:evaluationStatus a owl:DatatypeProperty ;
+    rdfs:label "Evaluation status"@en,
+        "평가 상태"@ko ;
+    rdfs:comment "Records or classifies evaluation status."@en,
+        "평가 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range xsd:string .
+
+np:evaluationUsesDataset a owl:ObjectProperty ;
+    rdfs:label "Evaluation uses dataset"@en,
+        "평가 데이터셋"@ko ;
+    rdfs:comment "Links a related reference dataset entity."@en,
+        "관련 참조 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range np:ReferenceDataset .
+
+np:evaluationUsesMetric a owl:ObjectProperty ;
+    rdfs:label "Evaluation uses metric"@en,
+        "평가 지표"@ko ;
+    rdfs:comment "Links a related recognition performance metric entity."@en,
+        "관련 인식 성능 지표 개체를 연결한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range np:EvaluationMetric .
+
+np:evaluationUsesModel a owl:ObjectProperty ;
+    rdfs:label "Evaluation uses model"@en,
+        "평가 방법·모델"@ko ;
+    rdfs:comment "Links a related recognition method or model entity."@en,
+        "관련 인식 방법 또는 모델 개체를 연결한다."@ko ;
+    rdfs:domain np:EvaluationRun ;
+    rdfs:range np:RecognitionModel .
+
+np:focusStatus a owl:DatatypeProperty ;
+    rdfs:label "Focus status"@en,
+        "초점 상태"@ko ;
+    rdfs:comment "Records or classifies focus status."@en,
+        "초점 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:glareStatus a owl:DatatypeProperty ;
+    rdfs:label "Glare status"@en,
+        "반사 상태"@ko ;
+    rdfs:comment "Records or classifies glare status."@en,
+        "반사 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:lightingStatus a owl:DatatypeProperty ;
+    rdfs:label "Lighting status"@en,
+        "조명 상태"@ko ;
+    rdfs:comment "Records or classifies lighting status."@en,
+        "조명 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:matchNote a owl:DatatypeProperty ;
+    rdfs:label "Result interpretation note"@en,
+        "결과 해석 메모"@ko ;
+    rdfs:comment "Records or classifies result interpretation note."@en,
+        "결과 해석 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range xsd:string .
+
+np:matchRank a owl:DatatypeProperty ;
+    rdfs:label "Candidate rank"@en,
+        "후보 순위"@ko ;
+    rdfs:comment "Records or classifies candidate rank."@en,
+        "후보 순위를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range xsd:integer .
+
+np:matchScore a owl:DatatypeProperty ;
+    rdfs:label "Similarity or distance score"@en,
+        "유사도 또는 거리 점수"@ko ;
+    rdfs:comment "Records or classifies similarity or distance score."@en,
+        "유사도 또는 거리 점수를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range xsd:decimal .
+
+np:matchStatus a owl:DatatypeProperty ;
+    rdfs:label "Match status"@en,
+        "비교 상태"@ko ;
+    rdfs:comment "Records or classifies match status."@en,
+        "비교 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range xsd:string .
+
+np:metricDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "Metric source"@en,
+        "수치 출처"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range np:DocumentationSource .
+
+np:metricKind a owl:DatatypeProperty ;
+    rdfs:label "Metric kind"@en,
+        "지표 유형"@ko ;
+    rdfs:comment "Records or classifies metric kind."@en,
+        "지표 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+np:metricMeasurementStatus a owl:DatatypeProperty ;
+    rdfs:label "Measurement status"@en,
+        "측정 상태"@ko ;
+    rdfs:comment "Records or classifies measurement status."@en,
+        "측정 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+np:metricName a owl:DatatypeProperty ;
+    rdfs:label "Metric name"@en,
+        "지표 이름"@ko ;
+    rdfs:comment "Records or classifies metric name."@en,
+        "지표 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+np:metricUnit a owl:DatatypeProperty ;
+    rdfs:label "Metric unit"@en,
+        "지표 단위"@ko ;
+    rdfs:comment "Records or classifies metric unit."@en,
+        "지표 단위를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range xsd:string .
+
+np:metricValue a owl:DatatypeProperty ;
+    rdfs:label "Metric value"@en,
+        "측정값"@ko ;
+    rdfs:comment "Records or classifies metric value."@en,
+        "측정값를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:EvaluationMetric ;
+    rdfs:range xsd:decimal .
+
+np:modelDescription a owl:DatatypeProperty ;
+    rdfs:label "Method description"@en,
+        "방법 설명"@ko ;
+    rdfs:comment "Records or classifies method description."@en,
+        "방법 설명를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range xsd:string .
+
+np:modelDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "Model documented by"@en,
+        "근거 문헌"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range np:DocumentationSource .
+
+np:modelFamily a owl:DatatypeProperty ;
+    rdfs:label "Model family"@en,
+        "방법 계열"@ko ;
+    rdfs:comment "Records or classifies model family."@en,
+        "방법 계열를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range xsd:string .
+
+np:modelName a owl:DatatypeProperty ;
+    rdfs:label "Method or model name"@en,
+        "방법 또는 모델 이름"@ko ;
+    rdfs:comment "Records or classifies method or model name."@en,
+        "방법 또는 모델 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range xsd:string .
+
+np:modelScopeNote a owl:DatatypeProperty ;
+    rdfs:label "Scope note"@en,
+        "적용 범위 메모"@ko ;
+    rdfs:comment "Records or classifies scope note."@en,
+        "적용 범위 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range xsd:string .
+
+np:modelStatus a owl:DatatypeProperty ;
+    rdfs:label "Implementation status"@en,
+        "구현 상태"@ko ;
+    rdfs:comment "Records or classifies implementation status."@en,
+        "구현 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:RecognitionModel ;
+    rdfs:range xsd:string .
+
+np:occlusionStatus a owl:DatatypeProperty ;
+    rdfs:label "Occlusion status"@en,
+        "가림 상태"@ko ;
+    rdfs:comment "Records or classifies occlusion status."@en,
+        "가림 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:permissionCoversSample a owl:ObjectProperty ;
+    rdfs:label "Permission covers sample"@en,
+        "대상 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:DataUsePermission ;
+    rdfs:range np:NosePrintSample .
+
+np:permissionCoversSubject a owl:ObjectProperty ;
+    rdfs:label "Permission covers subject"@en,
+        "대상 개체"@ko ;
+    rdfs:comment "Links a related canine subject reference entity."@en,
+        "관련 개체 참조 개체를 연결한다."@ko ;
+    rdfs:domain np:DataUsePermission ;
+    rdfs:range np:CanineSubject .
+
+np:permissionScope a owl:DatatypeProperty ;
+    rdfs:label "Permission scope"@en,
+        "이용 범위"@ko ;
+    rdfs:comment "Records or classifies permission scope."@en,
+        "이용 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DataUsePermission ;
+    rdfs:range xsd:string .
+
+np:permissionStatus a owl:DatatypeProperty ;
+    rdfs:label "Permission status"@en,
+        "이용 허가 상태"@ko ;
+    rdfs:comment "Records or classifies permission status."@en,
+        "이용 허가 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DataUsePermission ;
+    rdfs:range xsd:string .
+
+np:poseStatus a owl:DatatypeProperty ;
+    rdfs:label "Pose status"@en,
+        "각도 적합성"@ko ;
+    rdfs:comment "Records or classifies pose status."@en,
+        "각도 적합성를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:preprocessingOfSample a owl:ObjectProperty ;
+    rdfs:label "Preprocesses sample"@en,
+        "처리 대상 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:PreprocessingRecord ;
+    rdfs:range np:NosePrintSample .
+
+np:preprocessingStatus a owl:DatatypeProperty ;
+    rdfs:label "Preprocessing status"@en,
+        "전처리 상태"@ko ;
+    rdfs:comment "Records or classifies preprocessing status."@en,
+        "전처리 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:PreprocessingRecord ;
+    rdfs:range xsd:string .
+
+np:preprocessingSteps a owl:DatatypeProperty ;
+    rdfs:label "Preprocessing steps"@en,
+        "전처리 단계"@ko ;
+    rdfs:comment "Records or classifies preprocessing steps."@en,
+        "전처리 단계를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:PreprocessingRecord ;
+    rdfs:range xsd:string .
+
+np:preprocessingVersion a owl:DatatypeProperty ;
+    rdfs:label "Preprocessing version"@en,
+        "전처리 버전"@ko ;
+    rdfs:comment "Records or classifies preprocessing version."@en,
+        "전처리 버전를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:PreprocessingRecord ;
+    rdfs:range xsd:string .
+
+np:projectHasComparisonTask a owl:ObjectProperty ;
+    rdfs:label "Has comparison task"@en,
+        "비교 작업"@ko ;
+    rdfs:comment "Links a related nose-print comparison task entity."@en,
+        "관련 비문 비교 작업 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:IdentificationTask .
+
+np:projectHasDataset a owl:ObjectProperty ;
+    rdfs:label "Has dataset"@en,
+        "참조 데이터셋"@ko ;
+    rdfs:comment "Links a related reference dataset entity."@en,
+        "관련 참조 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:ReferenceDataset .
+
+np:projectHasEvaluation a owl:ObjectProperty ;
+    rdfs:label "Has evaluation"@en,
+        "평가 실행"@ko ;
+    rdfs:comment "Links a related evaluation run entity."@en,
+        "관련 성능 평가 실행 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:EvaluationRun .
+
+np:projectHasModel a owl:ObjectProperty ;
+    rdfs:label "Has model"@en,
+        "인식 방법 또는 모델"@ko ;
+    rdfs:comment "Links a related recognition method or model entity."@en,
+        "관련 인식 방법 또는 모델 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:RecognitionModel .
+
+np:projectHasPermission a owl:ObjectProperty ;
+    rdfs:label "Has permission record"@en,
+        "표본 이용 권한"@ko ;
+    rdfs:comment "Links a related data-use permission record entity."@en,
+        "관련 표본 이용 권한 기록 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:DataUsePermission .
+
+np:projectHasSample a owl:ObjectProperty ;
+    rdfs:label "Has sample"@en,
+        "비문 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:NosePrintSample .
+
+np:projectHasSource a owl:ObjectProperty ;
+    rdfs:label "Has source"@en,
+        "문헌 출처"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:DocumentationSource .
+
+np:projectHasSubject a owl:ObjectProperty ;
+    rdfs:label "Has subject"@en,
+        "개체 참조"@ko ;
+    rdfs:comment "Links a related canine subject reference entity."@en,
+        "관련 개체 참조 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range np:CanineSubject .
+
+np:projectScopeNote a owl:DatatypeProperty ;
+    rdfs:label "Scope note"@en,
+        "범위 메모"@ko ;
+    rdfs:comment "Records or classifies scope note."@en,
+        "범위 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range xsd:string .
+
+np:projectStatus a owl:DatatypeProperty ;
+    rdfs:label "Project status"@en,
+        "프로젝트 상태"@ko ;
+    rdfs:comment "Records or classifies project status."@en,
+        "프로젝트 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NosePrintProject ;
+    rdfs:range xsd:string .
+
+np:qualityIssue a owl:DatatypeProperty ;
+    rdfs:label "Quality issue"@en,
+        "품질 이슈"@ko ;
+    rdfs:comment "Records or classifies quality issue."@en,
+        "품질 이슈를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:qualityNote a owl:DatatypeProperty ;
+    rdfs:label "Quality note"@en,
+        "품질 메모"@ko ;
+    rdfs:comment "Records or classifies quality note."@en,
+        "품질 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:qualityStatus a owl:DatatypeProperty ;
+    rdfs:label "Overall quality status"@en,
+        "종합 품질 상태"@ko ;
+    rdfs:comment "Records or classifies overall quality status."@en,
+        "종합 품질 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:ImageQualityAssessment ;
+    rdfs:range xsd:string .
+
+np:regionDefinition a owl:DatatypeProperty ;
+    rdfs:label "Anatomical scope"@en,
+        "해부학적 범위"@ko ;
+    rdfs:comment "Records or classifies anatomical scope."@en,
+        "해부학적 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NoseRegion ;
+    rdfs:range xsd:string .
+
+np:regionDocumentedBy a owl:ObjectProperty ;
+    rdfs:label "Region source"@en,
+        "해부 근거 문헌"@ko ;
+    rdfs:comment "Links a related documentation source entity."@en,
+        "관련 문헌 출처 개체를 연결한다."@ko ;
+    rdfs:domain np:NoseRegion ;
+    rdfs:range np:DocumentationSource .
+
+np:regionName a owl:DatatypeProperty ;
+    rdfs:label "Region name"@en,
+        "관심 영역 이름"@ko ;
+    rdfs:comment "Records or classifies region name."@en,
+        "관심 영역 이름를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NoseRegion ;
+    rdfs:range xsd:string .
+
+np:resultCandidateSample a owl:ObjectProperty ;
+    rdfs:label "Candidate sample"@en,
+        "후보 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range np:NosePrintSample .
+
+np:resultCandidateSubject a owl:ObjectProperty ;
+    rdfs:label "Candidate subject"@en,
+        "후보 개체"@ko ;
+    rdfs:comment "Links a related canine subject reference entity."@en,
+        "관련 개체 참조 개체를 연결한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range np:CanineSubject .
+
+np:resultForTask a owl:ObjectProperty ;
+    rdfs:label "Result for task"@en,
+        "대상 비교 작업"@ko ;
+    rdfs:comment "Links a related nose-print comparison task entity."@en,
+        "관련 비문 비교 작업 개체를 연결한다."@ko ;
+    rdfs:domain np:MatchResult ;
+    rdfs:range np:IdentificationTask .
+
+np:retentionRule a owl:DatatypeProperty ;
+    rdfs:label "Retention or deletion rule"@en,
+        "보존·삭제 조건"@ko ;
+    rdfs:comment "Records or classifies retention or deletion rule."@en,
+        "보존·삭제 조건를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DataUsePermission ;
+    rdfs:range xsd:string .
+
+np:sampleAssetStatus a owl:DatatypeProperty ;
+    rdfs:label "Image asset status"@en,
+        "이미지 자산 상태"@ko ;
+    rdfs:comment "Records or classifies image asset status."@en,
+        "이미지 자산 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range xsd:string .
+
+np:sampleAssetUri a owl:DatatypeProperty ;
+    rdfs:label "Image asset reference"@en,
+        "이미지 자산 참조"@ko ;
+    rdfs:comment "Records or classifies image asset reference."@en,
+        "이미지 자산 참조를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range xsd:anyURI .
+
+np:sampleCapturedIn a owl:ObjectProperty ;
+    rdfs:label "Captured in"@en,
+        "촬영 세션"@ko ;
+    rdfs:comment "Links a related capture session entity."@en,
+        "관련 촬영 세션 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range np:CaptureSession .
+
+np:sampleOfSubject a owl:ObjectProperty ;
+    rdfs:label "Sample of subject"@en,
+        "대상 개체"@ko ;
+    rdfs:comment "Links a related canine subject reference entity."@en,
+        "관련 개체 참조 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range np:CanineSubject .
+
+np:sampleQualityAssessment a owl:ObjectProperty ;
+    rdfs:label "Quality assessment"@en,
+        "품질 평가"@ko ;
+    rdfs:comment "Links a related image quality assessment entity."@en,
+        "관련 이미지 품질 평가 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range np:ImageQualityAssessment .
+
+np:sampleStatus a owl:DatatypeProperty ;
+    rdfs:label "Sample status"@en,
+        "표본 상태"@ko ;
+    rdfs:comment "Records or classifies sample status."@en,
+        "표본 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range xsd:string .
+
+np:sampleUsesRegion a owl:ObjectProperty ;
+    rdfs:label "Uses region"@en,
+        "분석 영역"@ko ;
+    rdfs:comment "Links a related nose-pattern region of interest entity."@en,
+        "관련 비문 관심 영역 개체를 연결한다."@ko ;
+    rdfs:domain np:NosePrintSample ;
+    rdfs:range np:NoseRegion .
+
+np:sourceAuthors a owl:DatatypeProperty ;
+    rdfs:label "Authors"@en,
+        "저자"@ko ;
+    rdfs:comment "Records or classifies authors."@en,
+        "저자를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:string .
+
+np:sourceClaimScope a owl:DatatypeProperty ;
+    rdfs:label "Claim scope"@en,
+        "인용 주장 범위"@ko ;
+    rdfs:comment "Records or classifies claim scope."@en,
+        "인용 주장 범위를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:string .
+
+np:sourceLimitations a owl:DatatypeProperty ;
+    rdfs:label "Study limitations"@en,
+        "연구 한계"@ko ;
+    rdfs:comment "Records or classifies study limitations."@en,
+        "연구 한계를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:string .
+
+np:sourceTitle a owl:DatatypeProperty ;
+    rdfs:label "Source title"@en,
+        "문헌 제목"@ko ;
+    rdfs:comment "Records or classifies source title."@en,
+        "문헌 제목를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:string .
+
+np:sourceUri a owl:DatatypeProperty ;
+    rdfs:label "Source URI"@en,
+        "문헌 URI"@ko ;
+    rdfs:comment "Records or classifies source uri."@en,
+        "문헌 URI를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:anyURI .
+
+np:sourceYear a owl:DatatypeProperty ;
+    rdfs:label "Publication year"@en,
+        "발행 연도"@ko ;
+    rdfs:comment "Records or classifies publication year."@en,
+        "발행 연도를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:DocumentationSource ;
+    rdfs:range xsd:integer .
+
+np:subjectDogRecordUri a owl:DatatypeProperty ;
+    rdfs:label "Dog ontology record URI"@en,
+        "개 온톨로지 개체 URI"@ko ;
+    rdfs:comment "Records or classifies dog ontology record uri."@en,
+        "개 온톨로지 개체 URI를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CanineSubject ;
+    rdfs:range xsd:anyURI .
+
+np:subjectPseudonym a owl:DatatypeProperty ;
+    rdfs:label "Pseudonymous subject ID"@en,
+        "가명 개체 ID"@ko ;
+    rdfs:comment "Records or classifies pseudonymous subject id."@en,
+        "가명 개체 ID를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CanineSubject ;
+    rdfs:range xsd:string .
+
+np:subjectRecordStatus a owl:DatatypeProperty ;
+    rdfs:label "Subject record status"@en,
+        "개체 기록 유형"@ko ;
+    rdfs:comment "Records or classifies subject record status."@en,
+        "개체 기록 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:CanineSubject ;
+    rdfs:range xsd:string .
+
+np:taskGalleryDataset a owl:ObjectProperty ;
+    rdfs:label "Gallery dataset"@en,
+        "비교 갤러리"@ko ;
+    rdfs:comment "Links a related reference dataset entity."@en,
+        "관련 참조 데이터셋 개체를 연결한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range np:ReferenceDataset .
+
+np:taskHasResult a owl:ObjectProperty ;
+    rdfs:label "Has result"@en,
+        "비교 결과"@ko ;
+    rdfs:comment "Links a related candidate comparison result entity."@en,
+        "관련 후보 비교 결과 개체를 연결한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range np:MatchResult .
+
+np:taskMode a owl:DatatypeProperty ;
+    rdfs:label "Comparison task mode"@en,
+        "비교 작업 유형"@ko ;
+    rdfs:comment "Records or classifies comparison task mode."@en,
+        "비교 작업 유형를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range xsd:string .
+
+np:taskNote a owl:DatatypeProperty ;
+    rdfs:label "Task note"@en,
+        "작업 메모"@ko ;
+    rdfs:comment "Records or classifies task note."@en,
+        "작업 메모를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range xsd:string .
+
+np:taskQuerySample a owl:ObjectProperty ;
+    rdfs:label "Query sample"@en,
+        "질의 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range np:NosePrintSample .
+
+np:taskStatus a owl:DatatypeProperty ;
+    rdfs:label "Task status"@en,
+        "작업 상태"@ko ;
+    rdfs:comment "Records or classifies task status."@en,
+        "작업 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range xsd:string .
+
+np:taskThresholdSetting a owl:DatatypeProperty ;
+    rdfs:label "Threshold setting"@en,
+        "판정 임계값 설정"@ko ;
+    rdfs:comment "Records or classifies threshold setting."@en,
+        "판정 임계값 설정를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:IdentificationTask ;
+    rdfs:range xsd:string .
+
+np:templateDigest a owl:DatatypeProperty ;
+    rdfs:label "Template digest"@en,
+        "템플릿 해시"@ko ;
+    rdfs:comment "Records or classifies template digest."@en,
+        "템플릿 해시를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range xsd:string .
+
+np:templateFromSample a owl:ObjectProperty ;
+    rdfs:label "Template from sample"@en,
+        "원본 표본"@ko ;
+    rdfs:comment "Links a related nose-print sample entity."@en,
+        "관련 비문 표본 개체를 연결한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range np:NosePrintSample .
+
+np:templateGeneratedBy a owl:ObjectProperty ;
+    rdfs:label "Generated by model"@en,
+        "생성 방법·모델"@ko ;
+    rdfs:comment "Links a related recognition method or model entity."@en,
+        "관련 인식 방법 또는 모델 개체를 연결한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range np:RecognitionModel .
+
+np:templateMethod a owl:DatatypeProperty ;
+    rdfs:label "Template method"@en,
+        "템플릿 생성 방법"@ko ;
+    rdfs:comment "Records or classifies template method."@en,
+        "템플릿 생성 방법를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range xsd:string .
+
+np:templateStatus a owl:DatatypeProperty ;
+    rdfs:label "Template status"@en,
+        "템플릿 상태"@ko ;
+    rdfs:comment "Records or classifies template status."@en,
+        "템플릿 상태를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range xsd:string .
+
+np:templateVersion a owl:DatatypeProperty ;
+    rdfs:label "Template version"@en,
+        "템플릿 버전"@ko ;
+    rdfs:comment "Records or classifies template version."@en,
+        "템플릿 버전를 기록하거나 구분한다."@ko ;
+    rdfs:domain np:BiometricTemplate ;
+    rdfs:range xsd:string .
+
+np:NoseRegion a owl:Class ;
+    rdfs:label "Nose-pattern region of interest"@en,
+        "비문 관심 영역"@ko ;
+    rdfs:comment "Describes the anatomical region of interest selected on the nose surface."@en,
+        "코 표면에서 분석 대상으로 정한 해부학적 관심 영역을 기술한다."@ko .
+
+np:PreprocessingRecord a owl:Class ;
+    rdfs:label "Preprocessing record"@en,
+        "전처리 기록"@ko ;
+    rdfs:comment "Records processing such as region extraction or normalization and its run status."@en,
+        "관심 영역 추출·정규화 같은 처리 단계와 실행 상태를 기록한다."@ko .
+
+np:BiometricTemplate a owl:Class ;
+    rdfs:label "Nose-pattern biometric template"@en,
+        "비문 특징 템플릿"@ko ;
+    rdfs:comment "Records method, version and status of a derived feature representation without storing the template itself."@en,
+        "표본에서 생성될 특징 표현의 방법·버전·상태를 기록하며 템플릿 값을 직접 담지 않는다."@ko .
+
+np:DataUsePermission a owl:Class ;
+    rdfs:label "Data-use permission record"@en,
+        "표본 이용 권한 기록"@ko ;
+    rdfs:comment "Records permission scope and status plus retention or deletion conditions for real nose images."@en,
+        "실제 비문 이미지의 허가 범위, 상태와 보존·삭제 조건을 기록한다."@ko .
+
+np:CanineSubject a owl:Class ;
+    rdfs:label "Canine subject reference"@en,
+        "개체 참조"@ko ;
+    rdfs:comment "A pseudonymous subject reference for nose samples, optionally cross-linked to the dog ontology."@en,
+        "비문 표본을 연결하는 가명 개체 참조이며 개 온톨로지의 개체 URI와 교차 연결할 수 있다."@ko .
+
+np:EvaluationMetric a owl:Class ;
+    rdfs:label "Recognition performance metric"@en,
+        "인식 성능 지표"@ko ;
+    rdfs:comment "Records a measure such as Rank-1, EER, FAR or FRR and whether it was measured."@en,
+        "Rank-1, EER, FAR, FRR 등의 척도와 측정값 상태를 기록한다."@ko .
+
+np:EvaluationRun a owl:Class ;
+    rdfs:label "Evaluation run"@en,
+        "성능 평가 실행"@ko ;
+    rdfs:comment "Records evaluation data, method, protocol and measurement status."@en,
+        "평가 데이터, 방법, 프로토콜과 측정 상태를 기록한다."@ko .
+
+np:CaptureSession a owl:Class ;
+    rdfs:label "Capture session"@en,
+        "촬영 세션"@ko ;
+    rdfs:comment "Records device, lighting, pose, surface condition and time for a capture."@en,
+        "표본 촬영의 장치, 조명, 각도, 표면 상태와 촬영 시각을 기록한다."@ko .
+
+np:MatchResult a owl:Class ;
+    rdfs:label "Candidate comparison result"@en,
+        "후보 비교 결과"@ko ;
+    rdfs:comment "Represents comparison status, candidate, score and review state without treating an automated output as confirmed identity."@en,
+        "비교 상태, 후보, 점수와 검토 상태를 나타내며 자동 결과를 확정 신원으로 취급하지 않는다."@ko .
+
+np:IdentificationTask a owl:Class ;
+    rdfs:label "Nose-print comparison task"@en,
+        "비문 비교 작업"@ko ;
+    rdfs:comment "Records a 1:1 verification or 1:N identification task, inputs, gallery and status."@en,
+        "1:1 검증 또는 1:N 식별 작업, 입력, 갤러리와 처리 상태를 기록한다."@ko .
+
+np:ImageQualityAssessment a owl:Class ;
+    rdfs:label "Image quality assessment"@en,
+        "이미지 품질 평가"@ko ;
+    rdfs:comment "Records assessment of focus, pose, lighting, glare and occlusion."@en,
+        "초점, 각도, 조명, 반사와 가림 등의 평가 상태를 기록한다."@ko .
+
+np:RecognitionModel a owl:Class ;
+    rdfs:label "Recognition method or model"@en,
+        "인식 방법 또는 모델"@ko ;
+    rdfs:comment "Records a nose-pattern comparison method or architecture, evidence source and implementation status."@en,
+        "비문 비교 방법·구조와 출처를 기록하고 모델의 구현·평가 상태를 구분한다."@ko .
+
+np:NosePrintProject a owl:Class ;
+    rdfs:label "Canine nose-print project"@en,
+        "개의 비문 프로젝트"@ko ;
+    rdfs:comment "Groups canine nose-pattern samples, capture, processing, comparison, evaluation, data-use permission and evidence."@en,
+        "개의 비문 표본, 촬영, 처리, 비교·검증, 데이터 이용 권한과 문헌 근거를 한 범위에 묶는다."@ko .
+
+np:DocumentationSource a owl:Class ;
+    rdfs:label "Documentation source"@en,
+        "문헌 출처"@ko ;
+    rdfs:comment "Records source-specific methods, population, results and limitations."@en,
+        "연구의 방법·표본·결과와 제한을 출처별로 기록한다."@ko .
+
+np:ReferenceDataset a owl:Class ;
+    rdfs:label "Reference dataset"@en,
+        "참조 데이터셋"@ko ;
+    rdfs:comment "Records sample and subject counts, provenance type, split protocol and limitations."@en,
+        "표본 수, 개체 수, 출처 유형, 분할 절차와 한계를 기록한다."@ko .
+
+np:NosePrintSample a owl:Class ;
+    rdfs:label "Nose-print sample"@en,
+        "비문 표본"@ko ;
+    rdfs:comment "Links a subject, region, capture session, image-asset reference and quality assessment."@en,
+        "개체, 관심 영역, 촬영 세션, 이미지 자산 참조와 품질 평가를 연결한다."@ko .

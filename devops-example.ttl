@@ -1,0 +1,53 @@
+@prefix devops: <http://example.org/ontology/devops#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+devops:Pipeline_20261004 a devops:DevOpsPipeline ;
+    rdfs:label "Release Pipeline v2.0.0" ;
+    devops:pipelineId "pipe-20261004-prod" ;
+    devops:commitHash "a1b2c3d4e5f6" ;
+    devops:branchName "main" ;
+    devops:executionStatus "SUCCESS" ;
+    devops:hasTask devops:BuildStep_01 , devops:SecScan_01 , devops:DeployStep_01 .
+
+devops:Agent_BuildBot a devops:DevOpsAgent ;
+    rdfs:label "CI/CD Build Bot Agent" .
+
+devops:Agent_SecGuard a devops:DevOpsAgent ;
+    rdfs:label "DevSecOps Vulnerability Scanner Agent" .
+
+devops:Agent_K8sDeployer a devops:DevOpsAgent ;
+    rdfs:label "Kubernetes Deployment Controller Agent" .
+
+devops:BuildStep_01 a devops:BuildTask ;
+    rdfs:label "Docker Container Build Step" ;
+    devops:managedBy devops:Agent_BuildBot ;
+    devops:executionStatus "SUCCESS" ;
+    devops:producesArtifact devops:DockerImage_v200 .
+
+devops:DockerImage_v200 a devops:BuildArtifact ;
+    rdfs:label "ontology-studio:v2.0.0 Docker Image" ;
+    devops:imageTag "registry.example.org/ontology-studio:v2.0.0" .
+
+devops:SecScan_01 a devops:SecurityScanTask ;
+    rdfs:label "SAST / Dependency Vulnerability Scan" ;
+    devops:managedBy devops:Agent_SecGuard ;
+    devops:executionStatus "SUCCESS" ;
+    devops:dependsOn devops:BuildStep_01 ;
+    devops:vulnerabilityCount 0 ;
+    devops:generatesReport devops:VulnerabilityReport_v200 .
+
+devops:VulnerabilityReport_v200 a devops:VulnerabilityReport ;
+    rdfs:label "Clean Audit Report - 0 Critical CVEs" .
+
+devops:DeployStep_01 a devops:DeploymentTask ;
+    rdfs:label "Kubernetes Production Cluster Deployment" ;
+    devops:managedBy devops:Agent_K8sDeployer ;
+    devops:executionStatus "SUCCESS" ;
+    devops:dependsOn devops:SecScan_01 ;
+    devops:deploysArtifact devops:DockerImage_v200 ;
+    devops:deployedTo devops:ProdCluster_K8s .
+
+devops:ProdCluster_K8s a devops:TargetEnvironment ;
+    rdfs:label "Production K8s Multi-Region Cluster" ;
+    devops:environmentName "production-us-east" .
