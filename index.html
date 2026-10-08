@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102522">
+  <meta name="description" content="RDF/OWL 스키마, SHACL 규칙, 예시 데이터와 온톨로지 문서를 검색하는 온톨로지 카탈로그입니다.">
+  <meta property="og:title" content="Ontology Atlas — 온톨로지 카탈로그">
+  <meta property="og:description" content="도메인별 RDF/OWL 스키마와 SHACL 규칙을 한곳에서 살펴보세요.">
+  <meta property="og:url" content="https://fox9star.github.io/ontology/">
+  <title>Ontology Atlas — 온톨로지 카탈로그</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #142522;
+      --ink-soft: #40534f;
+      --muted: #6f807b;
+      --paper: #f5f6f0;
+      --surface: #ffffff;
+      --line: #dfe7e1;
+      --green: #176d5d;
+      --green-dark: #104d43;
+      --lime: #c6f178;
+      --mint: #dff3e7;
+      --shadow: 0 18px 50px rgba(20, 48, 41, .08);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .skip-link {
+      position: absolute; left: 1rem; top: -4rem; z-index: 20;
+      padding: .7rem 1rem; border-radius: .7rem; background: white; color: var(--ink);
+    }
+    .skip-link:focus { top: 1rem; }
+    .wrap { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+
+    .site-header {
+      height: 76px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+    .brand-mark {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      color: var(--lime); background: var(--ink); border-radius: 11px;
+      font-size: 16px; font-weight: 800;
+    }
+    .brand-name { font-size: 14px; font-weight: 800; letter-spacing: .12em; }
+    .brand-name span { display: block; margin-top: -2px; color: var(--muted); font-size: 9px; letter-spacing: .18em; }
+    .nav { display: flex; align-items: center; gap: 28px; }
+    .nav a { color: var(--ink-soft); font-size: 13px; font-weight: 650; text-decoration: none; }
+    .nav a:hover { color: var(--green); }
+    .nav .nav-cta { padding: 10px 15px; color: white; background: var(--green); border-radius: 999px; }
+    .nav .nav-cta:hover { color: white; background: var(--green-dark); }
+
+    .hero {
+      position: relative; overflow: hidden; isolation: isolate;
+      display: grid; grid-template-columns: 1.18fr .82fr; align-items: center; gap: 48px;
+      min-height: 430px; margin-top: 13px; padding: 60px 64px;
+      color: #f4f8ef; background: #102522; border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+    .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 500px; height: 500px; right: -85px; top: -190px; border: 1px solid rgba(198, 241, 120, .17); box-shadow: 0 0 0 52px rgba(198,241,120,.035), 0 0 0 105px rgba(198,241,120,.025); }
+    .hero::after { width: 330px; height: 330px; right: 20px; bottom: -250px; background: rgba(33, 128, 102, .25); filter: blur(5px); }
+    .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--lime); font-size: 11px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    h1 { max-width: 650px; margin: 22px 0 16px; font-size: clamp(42px, 5.3vw, 66px); line-height: 1.12; letter-spacing: -.055em; }
+    h1 em { color: var(--lime); font-style: normal; }
+    .hero-copy { max-width: 530px; margin: 0; color: #c4d3cd; font-size: 16px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 45px; padding: 0 18px; border: 1px solid transparent; border-radius: 999px;
+      font-size: 13px; font-weight: 750; text-decoration: none; transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: #142522; background: var(--lime); }
+    .button-primary:hover { background: #d7ff9b; }
+    .button-quiet { color: #edf5ef; border-color: rgba(237,245,239,.22); background: rgba(255,255,255,.045); }
+    .button-quiet:hover { background: rgba(255,255,255,.1); }
+
+    .graph-card {
+      position: relative; justify-self: end; width: min(100%, 340px); aspect-ratio: 1 / .88;
+      display: grid; place-items: center;
+    }
+    .graph-card svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+    .graph-card line { stroke: rgba(198,241,120,.5); stroke-width: 1.3; stroke-dasharray: 4 6; }
+    .node {
+      position: absolute; display: grid; place-items: center; width: 103px; height: 103px;
+      border: 1px solid rgba(226,245,232,.2); border-radius: 50%; color: #f0f7ef;
+      background: rgba(255,255,255,.075); box-shadow: 0 10px 30px rgba(0,0,0,.13); backdrop-filter: blur(8px);
+      font-size: 13px; font-weight: 750;
+    }
+    .node small { display: block; margin-top: -20px; color: #a9c5b9; font-size: 9px; font-weight: 600; letter-spacing: .08em; }
+    .node-center { width: 120px; height: 120px; color: var(--ink); border-color: transparent; background: var(--lime); box-shadow: 0 0 0 13px rgba(198,241,120,.1), 0 14px 35px rgba(0,0,0,.2); }
+    .node-top { left: 50%; top: 0; transform: translateX(-50%); }
+    .node-left { left: 0; top: 50%; transform: translateY(-50%); }
+    .node-right { right: 0; top: 50%; transform: translateY(-50%); }
+    .node-bottom { left: 50%; bottom: 0; transform: translateX(-50%); }
+    .graph-caption { position: absolute; right: 4px; bottom: -20px; color: #9bb2a8; font-size: 10px; letter-spacing: .14em; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0 76px; }
+    .stat {
+      display: flex; align-items: center; gap: 15px; min-height: 83px; padding: 17px 22px;
+      border: 1px solid var(--line); border-radius: 17px; background: rgba(255,255,255,.7);
+    }
+    .stat-number { font-size: 27px; line-height: 1; font-weight: 800; letter-spacing: -.04em; }
+    .stat-label { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .stat-dot { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px var(--mint); }
+
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 22px; }
+    .section-kicker { margin: 0 0 5px; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(27px, 3vw, 36px); line-height: 1.2; letter-spacing: -.045em; }
+    .section-description { max-width: 410px; margin: 0; color: var(--muted); font-size: 13px; }
+    .catalog-tools { display: grid; grid-template-columns: minmax(230px, 1fr) auto; gap: 13px; margin-bottom: 20px; }
+    .search-wrap { position: relative; }
+    .search-icon { position: absolute; left: 17px; top: 50%; width: 17px; height: 17px; color: #71837d; transform: translateY(-50%); pointer-events: none; }
+    .search {
+      width: 100%; height: 52px; padding: 0 18px 0 48px; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 14px; outline: none; background: white;
+      box-shadow: 0 4px 18px rgba(20,48,41,.025); font-size: 14px;
+    }
+    .search:focus { border-color: #76a899; box-shadow: 0 0 0 4px rgba(23,109,93,.1); }
+    .filters { display: flex; flex-wrap: wrap; justify-content: end; gap: 7px; }
+    .filter {
+      min-height: 44px; padding: 0 15px; color: var(--ink-soft); border: 1px solid var(--line);
+      border-radius: 999px; background: transparent; cursor: pointer; font-size: 12px; font-weight: 700;
+    }
+    .filter:hover { border-color: #9ab9af; }
+    .filter[aria-pressed="true"] { color: white; border-color: var(--green); background: var(--green); }
+    .results-meta { display: flex; justify-content: space-between; gap: 15px; margin: 0 2px 14px; color: var(--muted); font-size: 11px; }
+    .results-meta strong { color: var(--ink); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .card {
+      min-width: 0; display: flex; flex-direction: column; min-height: 248px; padding: 21px;
+      border: 1px solid var(--line); border-radius: 18px; background: var(--surface);
+      box-shadow: 0 5px 22px rgba(20,48,41,.025); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: #b7d2c8; box-shadow: 0 15px 35px rgba(20,48,41,.08); }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 13px; }
+    .kind { display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: .07em; }
+    .kind::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .version { color: #84918d; font-size: 10px; font-variant-numeric: tabular-nums; }
+    .card h3 { margin: 0; font-size: 18px; line-height: 1.35; letter-spacing: -.035em; }
+    .card-en { margin: 3px 0 9px; color: #73827d; font-size: 10px; }
+    .card-description { display: -webkit-box; overflow: hidden; margin: 0 0 17px; color: var(--ink-soft); font-size: 12px; line-height: 1.7; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+    .card-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 13px; border-top: 1px solid #edf1ed; }
+    .card-link { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 8px; color: var(--green-dark); background: #edf7f1; font-size: 10px; font-weight: 750; text-decoration: none; }
+    .card-link:hover { color: white; background: var(--green); }
+    .card-link svg { width: 12px; height: 12px; }
+    .empty-state { grid-column: 1 / -1; padding: 58px 20px; border: 1px dashed #bdcec5; border-radius: 18px; color: var(--muted); text-align: center; }
+    .empty-state strong { display: block; margin-bottom: 5px; color: var(--ink); font-size: 16px; }
+
+    .how-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 40px; align-items: start; margin: 80px 0 42px; padding: 34px; border: 1px solid var(--line); border-radius: var(--radius); background: #edf2ea; }
+    .how-copy p { max-width: 340px; margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .step { min-height: 126px; padding: 17px; border: 1px solid #dce6dc; border-radius: 14px; background: rgba(255,255,255,.65); }
+    .step-number { display: grid; place-items: center; width: 25px; height: 25px; margin-bottom: 13px; border-radius: 8px; color: white; background: var(--green); font-size: 11px; font-weight: 800; }
+    .step strong { display: block; font-size: 12px; }
+    .step span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+
+    .local-note { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin: 0 0 72px; padding: 22px 25px; border-radius: 16px; color: #dcebe2; background: #173b34; }
+    .local-note strong { display: block; margin-bottom: 3px; color: white; font-size: 13px; }
+    .local-note p { margin: 0; color: #bbd0c5; font-size: 11px; }
+    .local-note a { flex: 0 0 auto; color: var(--lime); font-size: 11px; font-weight: 800; text-decoration: none; }
+    .local-note a:hover { text-decoration: underline; }
+    footer { display: flex; justify-content: space-between; gap: 18px; padding: 22px 0 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+    footer a { color: var(--green); font-weight: 700; text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr .72fr; gap: 18px; padding: 48px 42px; }
+      .graph-card { transform: scale(.85); transform-origin: center right; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 28px, 540px); }
+      .site-header { height: 66px; }
+      .nav { gap: 13px; }
+      .nav a:not(.nav-cta) { display: none; }
+      .nav .nav-cta { padding: 8px 12px; font-size: 11px; }
+      .hero { display: block; min-height: 0; margin-top: 6px; padding: 38px 25px 30px; border-radius: 23px; }
+      h1 { margin-top: 18px; font-size: clamp(40px, 12vw, 54px); }
+      .hero-copy { font-size: 14px; }
+      .hero-actions { margin-top: 22px; }
+      .graph-card { width: 260px; max-width: 100%; margin: 32px auto 0; transform: none; }
+      .node { width: 82px; height: 82px; font-size: 11px; }
+      .node-center { width: 98px; height: 98px; }
+      .graph-caption { right: 0; bottom: -15px; font-size: 8px; }
+      .stats { gap: 7px; margin: 12px 0 55px; }
+      .stat { display: block; min-height: 79px; padding: 13px 11px; }
+      .stat-dot { display: none; }
+      .stat-number { margin-bottom: 7px; font-size: 23px; }
+      .stat-label { font-size: 9px; }
+      .section-heading { display: block; }
+      .section-description { margin-top: 9px; }
+      .catalog-tools { grid-template-columns: 1fr; }
+      .filters { justify-content: start; }
+      .filter { min-height: 38px; padding: 0 12px; font-size: 10px; }
+      .grid { grid-template-columns: 1fr; gap: 10px; }
+      .card { min-height: 0; padding: 18px; }
+      .how-section { grid-template-columns: 1fr; gap: 22px; margin: 58px 0 25px; padding: 23px 18px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: 0; display: grid; grid-template-columns: 28px 1fr; column-gap: 10px; align-items: center; }
+      .step-number { grid-row: span 2; margin: 0; }
+      .step span { margin-top: 0; }
+      .local-note { display: block; padding: 18px; }
+      .local-note a { display: inline-block; margin-top: 12px; }
+      footer { display: block; line-height: 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#catalog">카탈로그로 건너뛰기</a>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Ontology Atlas 홈">
+        <span class="brand-mark" aria-hidden="true">O</span>
+        <span class="brand-name">ONTOLOGY ATLAS<span>KNOWLEDGE CATALOG</span></span>
+      </a>
+      <nav class="nav" aria-label="주 메뉴">
+        <a href="#catalog">카탈로그</a>
+        <a href="#how">이용 방법</a>
+        <a class="nav-cta" href="https://github.com/fox9star/ontology" target="_blank" rel="noopener noreferrer">GitHub 보기 ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <div class="eyebrow">Ontology Studio · Project Catalog</div>
+          <h1 id="hero-title">개념을 잇고,<br><em>지식을 찾다.</em></h1>
+          <p class="hero-copy">도메인별 RDF/OWL 스키마와 SHACL 규칙, 예시 데이터를 한곳에서 살펴보세요. 관심 있는 주제를 검색해 원본 문서로 바로 이동할 수 있습니다.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#catalog">카탈로그 탐색 <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="https://github.com/fox9star/ontology" target="_blank" rel="noopener noreferrer">저장소 열기 ↗</a>
+          </div>
+        </div>
+        <div class="graph-card" aria-label="개념과 관계, 근거로 연결된 지식 그래프 일러스트">
+          <svg viewBox="0 0 340 300" aria-hidden="true">
+            <line x1="170" y1="62" x2="170" y2="151"></line>
+            <line x1="52" y1="150" x2="129" y2="150"></line>
+            <line x1="211" y1="150" x2="289" y2="150"></line>
+            <line x1="170" y1="151" x2="170" y2="239"></line>
+            <line x1="82" y1="77" x2="142" y2="133"></line>
+            <line x1="258" y1="77" x2="198" y2="133"></line>
+            <line x1="82" y1="224" x2="142" y2="167"></line>
+            <line x1="258" y1="224" x2="198" y2="167"></line>
+          </svg>
+          <div class="node node-top">개념<small>CLASS</small></div>
+          <div class="node node-left">관계<small>PROPERTY</small></div>
+          <div class="node node-center">지식<br>그래프</div>
+          <div class="node node-right">제약<small>SHACL</small></div>
+          <div class="node node-bottom">근거<small>PROVENANCE</small></div>
+          <div class="graph-caption">RDF · OWL · SHACL</div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="카탈로그 통계">
+        <div class="stat"><span class="stat-dot" aria-hidden="true"></span><div><div class="stat-number" id="total-count">—</div><div class="stat-label">등록된 온톨로지</div></div></div>
+        <div class="stat"><span class="stat-dot" aria-hidden="true"></span><div><div class="stat-number" id="base-count">—</div><div class="stat-label">기본 프로파일</div></div></div>
+        <div class="stat"><span class="stat-dot" aria-hidden="true"></span><div><div class="stat-number" id="custom-count">—</div><div class="stat-label">확장 프로파일</div></div></div>
+      </section>
+
+      <section id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Browse the catalog</p>
+            <h2 id="catalog-title">온톨로지 둘러보기</h2>
+          </div>
+          <p class="section-description">이름, 주제, 식별자로 검색하고 스키마·검증 규칙·예시를 열어보세요.</p>
+        </div>
+        <div class="catalog-tools">
+          <label class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+            <input class="search" id="search" type="search" autocomplete="off" placeholder="예: ROS2, 고양이, SHACL, 자율주행" aria-label="온톨로지 검색">
+          </label>
+          <div class="filters" role="group" aria-label="프로파일 종류 필터">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true">전체</button>
+            <button class="filter" type="button" data-filter="base" aria-pressed="false">기본 프로파일</button>
+            <button class="filter" type="button" data-filter="custom" aria-pressed="false">확장 프로파일</button>
+          </div>
+        </div>
+        <div class="results-meta"><span id="result-count" role="status" aria-live="polite"></span><span>정의서와 데이터는 GitHub 원본으로 연결됩니다.</span></div>
+        <div class="grid" id="catalog-grid"></div>
+        <noscript><p class="empty-state">검색 가능한 카탈로그를 보려면 브라우저에서 JavaScript를 켜주세요.</p></noscript>
+      </section>
+
+      <section class="how-section" id="how" aria-labelledby="how-title">
+        <div class="how-copy">
+          <p class="section-kicker">A simple path</p>
+          <h2 id="how-title">필요한 자료를<br>빠르게 찾으세요.</h2>
+          <p>각 항목에서 개념 문서와 기계가 읽을 수 있는 RDF 파일을 확인할 수 있습니다.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-number">1</span><strong>주제 검색</strong><span>이름이나 키워드로 프로파일을 찾습니다.</span></div>
+          <div class="step"><span class="step-number">2</span><strong>구조 확인</strong><span>스키마에서 클래스와 속성을 살펴봅니다.</span></div>
+          <div class="step"><span class="step-number">3</span><strong>규칙·예시 열기</strong><span>SHACL 제약과 예시 데이터를 확인합니다.</span></div>
+        </div>
+      </section>
+
+      <aside class="local-note" aria-label="로컬 스튜디오 안내">
+        <div><strong>온톨로지 편집과 검증은 로컬 스튜디오에서</strong><p>이 페이지는 스키마와 문서를 살펴보는 정적 카탈로그입니다. Flask 스튜디오 실행 방법은 저장소 README에서 확인하세요.</p></div>
+        <a href="https://github.com/fox9star/ontology/blob/main/README.md" target="_blank" rel="noopener noreferrer">실행 안내 보기 ↗</a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© Ontology Atlas · RDF / OWL / SHACL</span>
+      <span><a href="https://github.com/fox9star/ontology" target="_blank" rel="noopener noreferrer">fox9star/ontology</a> · GitHub Pages</span>
+    </footer>
+  </div>
+
+  <script>
+    const catalog = [{"id":"mv","name":"????? ??","name_en":"Music Video Production","description":"????? ??, ?, ??? ??, ?? ??? ?? ??? ?????.","kind":"base","schema":"mv-schema.ttl","shapes":"mv-shapes.ttl","example":"mv-example.ttl","guide":"manual.md","questions":null},{"id":"agent","name":"AI ???? ??","name_en":"AI Agent Collaboration","description":"????, ??, ?????? ?? ??? ???? ?? ??? ?????.","kind":"base","schema":"agent-schema.ttl","shapes":"agent-shapes.ttl","example":"agent-example.ttl","guide":"agent.md","questions":null},{"id":"devops","name":"????? ?????","name_en":"Software Build & Delivery","description":"???, ??, ???, ?? ?????? ?? ??? ?????.","kind":"base","schema":"devops-schema.ttl","shapes":"devops-shapes.ttl","example":"devops-example.ttl","guide":null,"questions":null},{"id":"ecommerce","name":"?????","name_en":"E-commerce","description":"??, ??, ??, ??? ?? ????? ??? ??????.","kind":"base","schema":"ecommerce-schema.ttl","shapes":"ecommerce-shapes.ttl","example":"ecommerce-example.ttl","guide":null,"questions":null},{"id":"healthcare","name":"?????FHIR","name_en":"Healthcare & FHIR","description":"?? ??? FHIR ?? ??, ?????? ?? ??? ????.","kind":"base","schema":"healthcare-schema.ttl","shapes":"healthcare-shapes.ttl","example":"healthcare-example.ttl","guide":"healthcare-fhir-crosswalk.md","questions":null},{"id":"academic","name":"?? ??","name_en":"Academic Courses","description":"??, ??, ??, ??? ?? ??? ??????.","kind":"base","schema":"academic-schema.ttl","shapes":"academic-shapes.ttl","example":"academic-example.ttl","guide":null,"questions":null},{"id":"evidence","name":"??? ??","name_en":"Evidence & Provenance","description":"??, ?? ??, ??? ?? ??? ?? ??? ??? ?????.","kind":"base","schema":"evidence-schema.ttl","shapes":"evidence-shapes.ttl","example":"evidence-example.ttl","guide":"EVIDENCE_MODEL.md","questions":"EVIDENCE_QUESTIONS.md"},{"id":"stock","name":"?? ??","name_en":"Stock Investing","description":"??, ?? ??, ?????? ?? ?? ??? ?????.","kind":"base","schema":"stock-schema.ttl","shapes":"stock-shapes.ttl","example":"stock-example.ttl","guide":null,"questions":null},{"id":"diet","name":"??? ??","name_en":"Diet & Exercise","description":"??, ??, ??? ?? ??? ???? ??? ?????.","kind":"base","schema":"diet-schema.ttl","shapes":"diet-shapes.ttl","example":"diet-example.ttl","guide":null,"questions":null},{"id":"camping","name":"??","name_en":"Camping","description":"???, ???, ??, ???, ??? ?? ??? ??????.","kind":"base","schema":"camping-schema.ttl","shapes":"camping-shapes.ttl","example":"camping-example.ttl","guide":"CAMPING_QUESTIONS.md","questions":null},{"id":"korean-war","name":"????","name_en":"Korean War","description":"?? ??? ??, ?? ? ?? ??? ?????.","kind":"base","schema":"korean-war-schema.ttl","shapes":"korean-war-shapes.ttl","example":"korean-war-example.ttl","guide":null,"questions":null},{"id":"politics","name":"??? ??","name_en":"Politics & Elections","description":"??, ???, ??, ??, ?? ??? ?? ??? ????.","kind":"base","schema":"politics-schema.ttl","shapes":"politics-shapes.ttl","example":"politics-example.ttl","guide":"POLITICS_QUESTIONS.md","questions":"POLITICS_QUESTIONS.md"},{"id":"theme-park","name":"???? ??","name_en":"Theme Park Operations","description":"??, ????, ?? ??, ?? ??? ?? ??? ?????.","kind":"base","schema":"theme-park-schema.ttl","shapes":"theme-park-shapes.ttl","example":"theme-park-example.ttl","guide":null,"questions":null},{"id":"ai-film","name":"AI 영화 제작 온톨로지 (ai-film)","name_en":"AI Film Production Ontology","description":"시나리오·장면·샷부터 생성 계획, 출처 및 권리·품질 검토, 편집 버전의 준비 상태까지 연결합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/ai-film/schema.ttl","shapes":"custom-ontologies/ai-film/shapes.ttl","example":"custom-ontologies/ai-film/example.ttl","guide":"AI_FILM_ONTOLOGY.md","questions":"custom-ontologies/ai-film/questions.md"},{"id":"autonomous-driving","name":"자율주행 온톨로지 (autonomous-driving)","name_en":"Autonomous Driving Ontology","description":"주행 자동화 기능·SAE 수준 용어·운행설계영역·차량·센서·인지·위치추정·계획·제어·안전·시험 근거를 연결합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/autonomous-driving/schema.ttl","shapes":"custom-ontologies/autonomous-driving/shapes.ttl","example":"custom-ontologies/autonomous-driving/example.ttl","guide":"AUTONOMOUS_DRIVING_ONTOLOGY.md","questions":"custom-ontologies/autonomous-driving/questions.md"},{"id":"canine-noseprint","name":"개의 비문 온톨로지 (canine-noseprint)","name_en":"Canine Nose-Print Ontology","description":"개의 코 관심 영역, 이미지 표본·촬영 조건·품질·전처리·템플릿, 1:1 검증·1:N 식별, 연구 범위별 성능 근거와 데이터 이용 권한을 연결한다. 실제 이미지 없이 합성 메타데이터로 상태를 구분한다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/canine-noseprint/schema.ttl","shapes":"custom-ontologies/canine-noseprint/shapes.ttl","example":"custom-ontologies/canine-noseprint/example.ttl","guide":"CANINE_NOSEPRINT_ONTOLOGY.md","questions":"custom-ontologies/canine-noseprint/questions.md"},{"id":"cat","name":"고양이 온톨로지 (cat)","name_en":"Cat (Feline, Kitten) Ontology","description":"고양이 개체·품종·출처가 있는 특징·생활환경·보호자·돌봄·관찰 기록을 연결합니다. 공식 품종 정보와 가상 개체 예제를 구분하고, 품종 미확인 상태와 돌봄 계획·수행 상태를 보존합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/cat/schema.ttl","shapes":"custom-ontologies/cat/shapes.ttl","example":"custom-ontologies/cat/example.ttl","guide":"CAT_ONTOLOGY.md","questions":"custom-ontologies/cat/questions.md"},{"id":"divorce","name":"이혼 온톨로지 (divorce)","name_en":"Divorce Ontology","description":"이혼 사건의 절차 단계, 당사자, 자녀, 양육 결정, 양육비, 재산분할을 연결하고, 증빙 없는 종결과 날짜 순서의 모순, 비율 합이 100이 아닌 재산분할을 막습니다. 법률 자문이 아닙니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/divorce/schema.ttl","shapes":"custom-ontologies/divorce/shapes.ttl","example":"custom-ontologies/divorce/example.ttl","guide":"DIVORCE_ONTOLOGY.md","questions":"custom-ontologies/divorce/questions.md"},{"id":"dog","name":"개 온톨로지 (dog)","name_en":"Dog Ontology","description":"개의 품종·보호자·동물등록·예방접종·동물병원 방문·체중 기록을 연결하고, 증빙 없이 등록 완료나 접종 완료로 표시하지 못하게 합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/dog/schema.ttl","shapes":"custom-ontologies/dog/shapes.ttl","example":"custom-ontologies/dog/example.ttl","guide":"DOG_ONTOLOGY.md","questions":"custom-ontologies/dog/questions.md"},{"id":"domain","name":"지식·업무 영역 온톨로지 (domain)","name_en":"Knowledge and Application Domain Ontology","description":"지식·응용 영역의 분류 체계와 하위 계층, 범위 경계, 로컬 온톨로지 프로필 배정, 교차 영역 관계, 외부 분류 매핑의 출처·검토·변경 상태를 관리한다. SKOS 개념 모델과 연결한 예시 분류는 초안이다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/domain/schema.ttl","shapes":"custom-ontologies/domain/shapes.ttl","example":"custom-ontologies/domain/example.ttl","guide":"DOMAIN_ONTOLOGY.md","questions":"custom-ontologies/domain/questions.md"},{"id":"electric-vehicle","name":"전기자동차 온톨로지 (Electric Vehicle)","name_en":"Electric Vehicle Ontology","description":"BEV·PHEV·HEV 구분, 구동계 구성품, AC/DC 에너지 흐름, 충전소-포트-커넥터 관계와 출처 근거를 연결하는 로컬 초안입니다. 차량 유형은 개념 예시이며 충전 인프라는 합성 데이터입니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/electric-vehicle/schema.ttl","shapes":"custom-ontologies/electric-vehicle/shapes.ttl","example":"custom-ontologies/electric-vehicle/example.ttl","guide":"ELECTRIC_VEHICLE_ONTOLOGY.md","questions":"custom-ontologies/electric-vehicle/questions.md"},{"id":"electricity-craftsman","name":"전기기능사 자격·시험 온톨로지","name_en":"Electricity Craftsman Qualification Ontology","description":"전기기능사 자격과 필기·실기 구조, 출제기준 버전, 공식 과목·실기 범위, 평가 규칙, 지참 공구·안전 안내 및 출처 근거를 관리한다. 2027-2029 기준 세부 항목은 원문 검토 전까지 미반영 상태로 둔다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/electricity-craftsman/schema.ttl","shapes":"custom-ontologies/electricity-craftsman/shapes.ttl","example":"custom-ontologies/electricity-craftsman/example.ttl","guide":"ELECTRICITY_CRAFTSMAN_ONTOLOGY.md","questions":"custom-ontologies/electricity-craftsman/questions.md"},{"id":"imitation-learning","name":"모방학습 온톨로지 (imitation-learning)","name_en":"Imitation Learning Ontology","description":"시연, 관측·행동 레이블, 행동복제·DAgger·역강화학습, 정책, 학습·평가 상태, 분포 변화와 문헌 근거를 연결하며 합성 예시와 실제 실험을 구분한다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/imitation-learning/schema.ttl","shapes":"custom-ontologies/imitation-learning/shapes.ttl","example":"custom-ontologies/imitation-learning/example.ttl","guide":"IMITATION_LEARNING_ONTOLOGY.md","questions":"custom-ontologies/imitation-learning/questions.md"},{"id":"marriage","name":"결혼·결혼식 온톨로지 (marriage)","name_en":"Marriage (Wedding) Ontology","description":"결혼 당사자와 결혼 정보 기록, 행사·장소·초대 응답·준비 작업·서비스 예약·예산을 연결하고 준비 누락과 수용 인원·예산 초과를 탐색합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/marriage/schema.ttl","shapes":"custom-ontologies/marriage/shapes.ttl","example":"custom-ontologies/marriage/example.ttl","guide":"MARRIAGE_ONTOLOGY.md","questions":"custom-ontologies/marriage/questions.md"},{"id":"overseas-trip","name":"해외여행 계획 온톨로지 (overseas-trip)","name_en":"Overseas Trip Planning Ontology","description":"여행 계획의 목적지·입국 요건·일자별 일정·동반자·항공 구간·보험·예약·예산을 연결하고, 확인되지 않은 입국 요건이나 미확정 예약이 남은 계획을 확정하지 못하게 합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/overseas-trip/schema.ttl","shapes":"custom-ontologies/overseas-trip/shapes.ttl","example":"custom-ontologies/overseas-trip/example.ttl","guide":null,"questions":"custom-ontologies/overseas-trip/questions.md"},{"id":"peafowl","name":"공작류 온톨로지 (Peacock / Peafowl)","name_en":"Peacock / Peafowl Ontology","description":"인도공작과 녹색공작을 예시로 분류·성별 명칭·깃털 형태·행동·서식지·먹이·번식 정보를 출처 근거와 연결합니다. 동물원 출처별 수치와 범위를 합치지 않으며, 보전 등급과 개체군 관찰은 제외한 초안입니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/peafowl/schema.ttl","shapes":"custom-ontologies/peafowl/shapes.ttl","example":"custom-ontologies/peafowl/example.ttl","guide":"PEAFOWL_ONTOLOGY.md","questions":"custom-ontologies/peafowl/questions.md"},{"id":"picnic","name":"소풍 온톨로지 (picnic)","name_en":"Picnic (Outing) Ontology","description":"소풍 계획·장소·참가자·시간순 일정·준비물 수량과 담당자·예산·날씨 확인 기록을 연결하고, 준비물 부족과 미확인 항목을 탐색합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/picnic/schema.ttl","shapes":"custom-ontologies/picnic/shapes.ttl","example":"custom-ontologies/picnic/example.ttl","guide":"PICNIC_ONTOLOGY.md","questions":"custom-ontologies/picnic/questions.md"},{"id":"ros2","name":"ROS 2 시스템 온톨로지 (ros2)","name_en":"ROS 2 System Ontology","description":"ROS 2 패키지·노드·토픽·서비스·액션·메시지 형식·QoS·하드웨어·컨트롤러·tf2 프레임을 연결하고 공식 문서 근거를 조회합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/ros2/schema.ttl","shapes":"custom-ontologies/ros2/shapes.ttl","example":"custom-ontologies/ros2/example.ttl","guide":"ROS2_ONTOLOGY.md","questions":"custom-ontologies/ros2/questions.md"},{"id":"soccer","name":"축구 온톨로지 (soccer)","name_en":"Soccer Ontology","description":"축구 클럽·선수·대회·경기와 출전 명단, 득점·경고·퇴장 사건을 연결하고, 보고서 없는 결과와 득점 사건과 맞지 않는 점수, 11명이 아닌 선발 명단을 막습니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/soccer/schema.ttl","shapes":"custom-ontologies/soccer/shapes.ttl","example":"custom-ontologies/soccer/example.ttl","guide":"SOCCER_ONTOLOGY.md","questions":"custom-ontologies/soccer/questions.md"},{"id":"swimming","name":"수영 온톨로지 (swimming)","name_en":"Swimming Ontology","description":"수영 선수·클럽·대회·수영장·종목과 출전 결과, 구간 기록을 연결하고, 증빙 없는 공식 기록과 25m·50m 수영장 기록의 혼동을 막습니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/swimming/schema.ttl","shapes":"custom-ontologies/swimming/shapes.ttl","example":"custom-ontologies/swimming/example.ttl","guide":"SWIMMING_ONTOLOGY.md","questions":"custom-ontologies/swimming/questions.md"},{"id":"wireless-router","name":"무선공유기 온톨로지 (wireless-router)","name_en":"Wireless Router Ontology","description":"무선공유기 장치·무선 인터페이스·네트워크·보안 프로필·망 분리·클라이언트 접속·펌웨어·설정 스냅샷·성능 관측·장애 및 근거 출처를 연결한다. 기능 지원, 설정 상태, 실제 관측 상태를 분리하며 예시는 합성 자료이다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/wireless-router/schema.ttl","shapes":"custom-ontologies/wireless-router/shapes.ttl","example":"custom-ontologies/wireless-router/example.ttl","guide":"WIRELESS_ROUTER_ONTOLOGY.md","questions":"custom-ontologies/wireless-router/questions.md"},{"id":"ww1","name":"제1차 세계대전 온톨로지 (ww1)","name_en":"World War I Ontology","description":"참전국과 진영, 참전 기간, 개전 계기 사건, 주요 전투와 지휘관, 휴전·강화 협정을 연결하고 각 기록의 출처 확인 상태를 구분합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/ww1/schema.ttl","shapes":"custom-ontologies/ww1/shapes.ttl","example":"custom-ontologies/ww1/example.ttl","guide":"WW1_ONTOLOGY.md","questions":"custom-ontologies/ww1/questions.md"},{"id":"ww2","name":"세계2차대전 온톨로지 (ww2)","name_en":"World War II (WWII, Second World War) Ontology","description":"제2차 세계대전의 사건·연표·국가·인물·장소를 연결하고 사건별 참여 역할, 날짜의 의미, 공식 기록관·박물관 출처를 탐색합니다.","kind":"custom","version":"0.1.0","schema":"custom-ontologies/ww2/schema.ttl","shapes":"custom-ontologies/ww2/shapes.ttl","example":"custom-ontologies/ww2/example.ttl","guide":"WW2_ONTOLOGY.md","questions":"custom-ontologies/ww2/questions.md"}];
+    const repository = 'https://github.com/fox9star/ontology/blob/main/';
+    const grid = document.getElementById('catalog-grid');
+    const search = document.getElementById('search');
+    const resultCount = document.getElementById('result-count');
+    const filters = [...document.querySelectorAll('.filter')];
+    let activeFilter = 'all';
+
+    document.getElementById('total-count').textContent = catalog.length;
+    document.getElementById('base-count').textContent = catalog.filter(item => item.kind === 'base').length;
+    document.getElementById('custom-count').textContent = catalog.filter(item => item.kind === 'custom').length;
+
+    function makeLink(label, path) {
+      const link = document.createElement('a');
+      link.className = 'card-link';
+      link.href = repository + path.split('/').map(encodeURIComponent).join('/');
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = label + ' ↗';
+      link.setAttribute('aria-label', `${label}: ${path} (새 탭)`);
+      return link;
+    }
+
+    function render() {
+      const query = search.value.trim().toLocaleLowerCase('ko-KR');
+      const items = catalog.filter(item => {
+        const inKind = activeFilter === 'all' || item.kind === activeFilter;
+        const text = [item.id, item.name, item.name_en, item.description].join(' ').toLocaleLowerCase('ko-KR');
+        return inKind && (!query || text.includes(query));
+      });
+
+      grid.replaceChildren();
+      resultCount.textContent = `${items.length}개 항목`;
+      if (!items.length) {
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        const title = document.createElement('strong');
+        title.textContent = '검색 결과가 없습니다';
+        const message = document.createElement('span');
+        message.textContent = '다른 키워드나 프로파일 종류를 선택해 보세요.';
+        empty.append(title, message);
+        grid.append(empty);
+        return;
+      }
+
+      for (const item of items) {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.setAttribute('aria-labelledby', `title-${item.id}`);
+
+        const top = document.createElement('div');
+        top.className = 'card-top';
+        const kind = document.createElement('span');
+        kind.className = 'kind';
+        kind.textContent = item.kind === 'custom' ? '확장 프로파일' : '기본 프로파일';
+        const id = document.createElement('span');
+        id.className = 'version';
+        id.textContent = item.id;
+        top.append(kind, id);
+
+        const title = document.createElement('h3');
+        title.id = `title-${item.id}`;
+        title.textContent = item.name;
+        const english = document.createElement('p');
+        english.className = 'card-en';
+        english.textContent = item.name_en || '';
+        const description = document.createElement('p');
+        description.className = 'card-description';
+        description.textContent = item.description || '온톨로지 스키마와 관련 자료를 확인할 수 있습니다.';
+        const links = document.createElement('div');
+        links.className = 'card-links';
+        if (item.guide) links.append(makeLink('개념 안내', item.guide));
+        if (item.schema) links.append(makeLink('RDF 스키마', item.schema));
+        if (item.shapes) links.append(makeLink('SHACL 규칙', item.shapes));
+        if (item.example) links.append(makeLink('예시 데이터', item.example));
+        if (item.questions) links.append(makeLink('질문 목록', item.questions));
+        card.append(top, title, english, description, links);
+        grid.append(card);
+      }
+    }
+
+    search.addEventListener('input', render);
+    filters.forEach(button => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      filters.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      render();
+    }));
+    render();
+  </script>
+</body>
+</html>
